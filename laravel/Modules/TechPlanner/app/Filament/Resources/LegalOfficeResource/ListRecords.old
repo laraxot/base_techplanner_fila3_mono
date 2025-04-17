@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
+
+use Filament\Tables;
+use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
+
+class ListRecords extends XotBaseListRecords
+{
+    protected static string $resource = LegalOfficeResource::class;
+
+    public function getListTableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('name')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('email')
+                ->searchable()
+                ->sortable(),
+        ];
+    }
+}
