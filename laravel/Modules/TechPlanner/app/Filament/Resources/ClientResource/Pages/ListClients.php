@@ -105,7 +105,7 @@ class ListClients extends XotBaseListRecords
         return array_filter($columns);
     }
 
-    protected function getTableFilters(): array
+    public function getTableFilters(): array
     {
         $activities = static::getModel()::query()
             ->whereNotNull('activity')
@@ -145,7 +145,7 @@ class ListClients extends XotBaseListRecords
         ];
     }
 
-    protected function getTableBulkActions(): array
+    public function getTableBulkActions(): array
     {
         return [
             BulkAction::make('updateCoordinates')

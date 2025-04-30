@@ -33,9 +33,6 @@ return new class extends XotBaseMigration
                 }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
-                if (! $this->hasColumn('created_by')) {
-                    $table->string('created_by')->nullable()->index();
-                }
 
             }
         );

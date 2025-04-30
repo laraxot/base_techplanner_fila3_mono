@@ -80,25 +80,7 @@ return new class extends XotBaseMigration
                     $table->string('created_by')->nullable()->after('created_at');
                 }
 
-                if (! $this->hasColumn('phone')) {
-                    $table->string('phone')->nullable();
-                }
-                if (! $this->hasColumn('website')) {
-                    $table->string('website')->nullable();
-                }
-                if (! $this->hasColumn('email')) {
-                    $table->string('email')->nullable();
-                }
 
-                if (! $this->hasColumn('formatted_address')) {
-                    $table->string('formatted_address')->nullable();
-                }
-                if (! $this->hasColumn('latitude')) {
-                    $table->decimal('latitude', 11, 8)->nullable();
-                }
-                if (! $this->hasColumn('longitude')) {
-                    $table->decimal('longitude', 11, 8)->nullable();
-                }
                 if (! $this->hasColumn('updated_at')) {
                     $table->timestamps();
                 }
