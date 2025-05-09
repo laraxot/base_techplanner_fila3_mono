@@ -1,4 +1,6 @@
-<?php return array (
+<?php
+
+return array (
   'navigation' => 
   array (
     'label' => 'Chiamate',
@@ -9,6 +11,7 @@
       'name' => 'Admin',
     ),
     'sort' => 51,
+    'icon' => 'phone call.navigation',
   ),
   'enums' => 
   array (
@@ -259,4 +262,4 @@
       'label' => 'Attività',
     ),
   ),
-);
+);
