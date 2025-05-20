@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head>
@@ -134,14 +133,3 @@
     @filamentScripts
 </body>
 </html>
-=======
-@extends('pub_theme::layouts.base')
-
-@section('body')
-    @yield('content')
-
-    @isset($slot)
-        {{ $slot }}
-    @endisset
-@endsection
->>>>>>> 1b374b6 (.)

@@ -1,5 +1,5 @@
 @php
-$title = 'Registrazione - Salute ORAle';
+$title = 'Registrazione - <slogan>';
 @endphp
 
 <x-layouts.marketing :title="$title">

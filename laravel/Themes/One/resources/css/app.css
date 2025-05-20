@@ -1,40 +1,12 @@
-<<<<<<< HEAD
-=======
-/*
-@import "tailwindcss";
-*/
-
-/* Importa Filament CSS da node_modules */
-/*
-@import 'node_modules/@filamentphp/forms/dist/index.css';
-@import 'node_modules/@filamentphp/notifications/dist/index.css';
-@import 'node_modules/@filamentphp/support/dist/index.css';
-@import 'tailwindcss';
-*/
-
-@import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
-@source "../../node_modules/flowbite";
-/* Tailwind */
->>>>>>> 1b374b6 (.)
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
 
-<<<<<<< HEAD
-=======
-/* Custom Filament button styles
-@layer components {
-
-}
-*/
->>>>>>> 1b374b6 (.)
 
 [x-cloak] {
     display: none;
 }
-<<<<<<< HEAD
 
 /* Custom Filament button styles */
 @layer components {
@@ -279,5 +251,3 @@
         @apply px-4 py-6 sm:px-6;
     }
 }
-=======
->>>>>>> 1b374b6 (.)

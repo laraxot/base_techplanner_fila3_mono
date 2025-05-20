@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<?php return array (
-  'navigation' => 
-  array (
-    'label' => 'legal_representative',
-    'name' => 'legal_representative',
-    'plural' => 'legal_representative',
-=======
 <?php
 
 return array (
@@ -14,16 +6,12 @@ return array (
     'label' => 'Rappresentante Legale',
     'name' => 'Rappresentante Legale',
     'plural' => 'Rappresentanti Legali',
->>>>>>> b32e314 (.)
     'group' => 
     array (
       'name' => 'Admin',
     ),
     'sort' => 84,
-<<<<<<< HEAD
-=======
     'icon' => 'legal representative.navigation',
->>>>>>> b32e314 (.)
   ),
   'actions' => 
   array (
@@ -70,10 +58,6 @@ return array (
     array (
       'label' => 'applyFilters',
     ),
-<<<<<<< HEAD
-  ),
-);
-=======
     'toggleColumns' => 
     array (
       'label' => 'toggleColumns',
@@ -88,4 +72,3 @@ return array (
     ),
   ),
 );
->>>>>>> b32e314 (.)

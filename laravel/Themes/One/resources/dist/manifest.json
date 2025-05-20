@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "resources/css/app.css": {
     "file": "assets/app-CMdkNS-N.css",
     "src": "resources/css/app.css",
@@ -10,16 +9,5 @@
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
-=======
-  "Resources/js/app.js": {
-    "file": "assets/app.js",
-    "isEntry": true,
-    "src": "Resources/js/app.js"
-  },
-  "Resources/sass/app.scss": {
-    "file": "assets/app.css",
-    "isEntry": true,
-    "src": "Resources/sass/app.scss"
->>>>>>> 1b374b6 (.)
   }
 }

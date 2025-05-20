@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 declare(strict_types=1);
 return [
     /*
@@ -106,22 +105,6 @@ return [
             'in-out' => 'cubic-bezier(0.4, 0, 0.2, 1)'
         ]
     ],
-=======
-
-return [
-    /*
-    |--------------------------------------------------------------------------
-    | Configurazione del Tema One
-    |--------------------------------------------------------------------------
-    |
-    | Questo file contiene la configurazione del tema One.
-    |
-    */
-
-    'name' => 'One',
-    'description' => 'Tema predefinito per SaluteOra',
-    'version' => '1.0.0',
->>>>>>> 1b374b6 (.)
 
     /*
     |--------------------------------------------------------------------------
@@ -135,10 +118,7 @@ return [
     'paths' => [
         'views' => 'resources/views',
         'assets' => 'assets',
-<<<<<<< HEAD
         'content' => 'content/pages',
-=======
->>>>>>> 1b374b6 (.)
     ],
 
     /*
@@ -146,11 +126,7 @@ return [
     | Blocchi
     |--------------------------------------------------------------------------
     |
-<<<<<<< HEAD
     | Blocchi di contenuto disponibili nel tema.
-=======
-    | Questi blocchi sono disponibili nel tema.
->>>>>>> 1b374b6 (.)
     |
     */
 
@@ -160,43 +136,29 @@ return [
         'team',
         'stats',
         'cta',
-<<<<<<< HEAD
         'testimonials',
         'pricing',
         'faq',
         'contact',
         'newsletter'
-=======
->>>>>>> 1b374b6 (.)
     ],
 
     /*
     |--------------------------------------------------------------------------
-<<<<<<< HEAD
     | Integrazione CMS
     |--------------------------------------------------------------------------
     |
     | Configurazione per l'integrazione con sistemi CMS.
-=======
-    | Integrazione con il Modulo CMS
-    |--------------------------------------------------------------------------
-    |
-    | Questa sezione contiene la configurazione per l'integrazione con il modulo CMS.
->>>>>>> 1b374b6 (.)
     |
     */
 
     'cms' => [
-<<<<<<< HEAD
         'enabled' => true,
         'content_path' => 'content/pages',
         'cache' => [
             'enabled' => true,
             'duration' => 3600
         ]
-=======
-        'content_path' => 'laravel/config/local/saluteora/database/content/pages',
->>>>>>> 1b374b6 (.)
     ],
 
     /*
@@ -204,19 +166,12 @@ return [
     | Integrazione con Laravel Folio
     |--------------------------------------------------------------------------
     |
-<<<<<<< HEAD
     | Configurazione per l'integrazione con Laravel Folio.
-=======
-    | Questa sezione contiene la configurazione per l'integrazione con Laravel Folio.
->>>>>>> 1b374b6 (.)
     |
     */
 
     'folio' => [
-<<<<<<< HEAD
         'enabled' => true,
-=======
->>>>>>> 1b374b6 (.)
         'pages_path' => 'resources/views/pages',
     ],
 ];

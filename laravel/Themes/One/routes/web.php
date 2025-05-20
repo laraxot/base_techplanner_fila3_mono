@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 declare(strict_types=1);
-=======
-
->>>>>>> 1b374b6 (.)
 /*
 use Illuminate\Support\Facades\Route;
 use Themes\One\Http\Controllers\PagesController;

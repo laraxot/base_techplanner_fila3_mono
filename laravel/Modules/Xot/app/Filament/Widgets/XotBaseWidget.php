@@ -25,7 +25,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
     use InteractsWithPageFilters;
     //use InteractsWithPageTable;
     use InteractsWithForms;
-
+    
     public string $title = '';
     public string $icon = '';
     protected int|string|array $columnSpan = 'full';
@@ -39,11 +39,11 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
      * @var view-string
      */
     protected static string $view;
-
+    
 
     public array $listener = [
         'filters-updated' => 'filtersUpdated',
-
+      
     ];
 
     public ?array $data = [];
@@ -62,23 +62,22 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
     public function mount(): void
     {
         $this->form->fill();
-    }
+    }    
     */
 
 
     abstract public function getFormSchema(): array;
 
-
-    public function form(Form $form): Form
+    /*
+    final public function form(Form $form): Form
     {
         return $form
             ->schema($this->getFormSchema())
             //->columns(2)
             ->statePath('data');
     }
-
-
-
+    */
+    
      protected function getFormActions(): array
     {
         return [

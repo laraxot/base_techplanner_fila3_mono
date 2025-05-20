@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Folio nel Tema One
 
 ## Introduzione
@@ -125,9 +124,6 @@ middleware(['auth', 'verified']);
 - [Best Practices Laravel](https://laravel.com/docs/best-practices)
 
 ## Integrazione con Laravel Folio
-=======
-# Integrazione con Laravel Folio
->>>>>>> 1b374b6 (.)
 
 ## Introduzione
 
@@ -281,11 +277,8 @@ Le pagine Folio si integrano con il modulo CMS attraverso:
 Per assistenza tecnica, contattare:
 - Email: support@saluteora.com
 - Documentazione: https://docs.saluteora.com 
-<<<<<<< HEAD
 
 ## Collegamenti tra versioni di folio.md
 * [folio.md](laravel/Modules/User/resources/views/docs/folio.md)
 * [folio.md](laravel/Themes/One/docs/folio.md)
 
-=======
->>>>>>> 1b374b6 (.)

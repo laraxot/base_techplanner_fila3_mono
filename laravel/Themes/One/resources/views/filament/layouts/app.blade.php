@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<<<<<<< HEAD
     <title>{{ config('app.name', 'il progetto') }}</title>
-=======
-    <title>{{ config('app.name', 'SaluteOra') }}</title>
->>>>>>> 1b374b6 (.)
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

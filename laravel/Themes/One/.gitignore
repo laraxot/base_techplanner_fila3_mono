@@ -1,11 +1,8 @@
 *:Zone.Identifier
 .php-cs-fixer.cache
 **/*.Zone.Identifier
-<<<<<<< HEAD
 vendor
 node_modules
 *.log
-=======
->>>>>>> 1b374b6 (.)
 
 

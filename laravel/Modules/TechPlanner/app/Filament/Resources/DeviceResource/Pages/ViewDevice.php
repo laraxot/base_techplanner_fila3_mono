@@ -2,10 +2,7 @@
 
 namespace Modules\TechPlanner\Filament\Resources\DeviceResource\Pages;
 
-<<<<<<< HEAD
-=======
 use Filament\Infolists\Components;
->>>>>>> b32e314 (.)
 use Modules\TechPlanner\Filament\Resources\DeviceResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 
@@ -13,8 +10,6 @@ class ViewDevice extends XotBaseViewRecord
 {
     protected static string $resource = DeviceResource::class;
 
-<<<<<<< HEAD
-=======
     protected function getInfolistSchema(): array
     {
         return [
@@ -49,7 +44,6 @@ class ViewDevice extends XotBaseViewRecord
         ];
     }
 
->>>>>>> b32e314 (.)
     protected function getHeaderActions(): array
     {
         return [

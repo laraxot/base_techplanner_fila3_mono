@@ -1,5 +1,149 @@
 # Changelog
 
+## Panoramica
+
+Questa documentazione contiene il changelog del tema One, con tutte le modifiche apportate nel tempo.
+
+## [1.0.0] - 2024-03-20
+
+### Aggiunto
+
+- Tema base con Laravel 10+
+- Integrazione con Filament 3.3+
+- Supporto per Volt
+- Supporto per Folio
+- Supporto per Laraxot
+- Supporto per Tailwind CSS
+- Supporto per Alpine.js
+- Supporto per TypeScript
+- Supporto per PostCSS
+- Supporto per ESLint
+- Supporto per Prettier
+- Supporto per PHPStan
+- Supporto per PHPUnit
+- Supporto per Laravel Dusk
+- Supporto per Laravel Telescope
+- Supporto per Laravel Horizon
+- Supporto per Laravel Nova
+- Supporto per Laravel Scribe
+- Supporto per Laravel Sanctum
+- Supporto per Laravel Fortify
+- Supporto per Laravel Breeze
+
+### Modificato
+
+- Standardizzazione dei nomi dei pacchetti
+- Standardizzazione della documentazione
+- Standardizzazione della configurazione
+- Standardizzazione degli asset
+- Standardizzazione delle viste
+- Standardizzazione dei componenti
+- Standardizzazione dei blocchi
+- Standardizzazione delle pagine
+
+### Rimosso
+
+- Dipendenze non necessarie
+- Configurazioni non necessarie
+- Asset non necessari
+- Viste non necessarie
+- Componenti non necessari
+- Blocchi non necessari
+- Pagine non necessarie
+
+## [0.9.0] - 2024-03-19
+
+### Aggiunto
+
+- Supporto per Laravel 10+
+- Supporto per Filament 3.3+
+- Supporto per Volt
+- Supporto per Folio
+- Supporto per Laraxot
+
+### Modificato
+
+- Standardizzazione dei nomi dei pacchetti
+- Standardizzazione della documentazione
+- Standardizzazione della configurazione
+
+### Rimosso
+
+- Dipendenze non necessarie
+- Configurazioni non necessarie
+
+## [0.8.0] - 2024-03-18
+
+### Aggiunto
+
+- Supporto per Tailwind CSS
+- Supporto per Alpine.js
+- Supporto per TypeScript
+- Supporto per PostCSS
+- Supporto per ESLint
+- Supporto per Prettier
+
+### Modificato
+
+- Standardizzazione degli asset
+- Standardizzazione delle viste
+- Standardizzazione dei componenti
+
+### Rimosso
+
+- Asset non necessari
+- Viste non necessarie
+- Componenti non necessari
+
+## [0.7.0] - 2024-03-17
+
+### Aggiunto
+
+- Supporto per PHPStan
+- Supporto per PHPUnit
+- Supporto per Laravel Dusk
+- Supporto per Laravel Telescope
+- Supporto per Laravel Horizon
+- Supporto per Laravel Nova
+
+### Modificato
+
+- Standardizzazione dei blocchi
+- Standardizzazione delle pagine
+
+### Rimosso
+
+- Blocchi non necessari
+- Pagine non necessarie
+
+## [0.6.0] - 2024-03-16
+
+### Aggiunto
+
+- Supporto per Laravel Scribe
+- Supporto per Laravel Sanctum
+- Supporto per Laravel Fortify
+- Supporto per Laravel Breeze
+
+### Modificato
+
+- Standardizzazione della sicurezza
+- Standardizzazione dell'autenticazione
+- Standardizzazione dell'autorizzazione
+
+### Rimosso
+
+- Sicurezza non necessaria
+- Autenticazione non necessaria
+- Autorizzazione non necessaria
+
+## Riferimenti
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [Filament Documentation](https://filamentphp.com/docs)
+- [Vite Documentation](https://vitejs.dev/guide)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
 ## Formato
 Ogni voce del changelog deve seguire questo formato:
 ```

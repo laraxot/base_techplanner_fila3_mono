@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 > **Collegamenti correlati**
 > - [README.md documentazione generale SaluteOra](../../../../docs/README.md)
 > - [README.md toolkit bashscripts](../../../../bashscripts/docs/README.md)
@@ -200,13 +199,6 @@ php artisan test --testsuite=theme-one
 ## Introduzione
 
 Il Tema One è il tema predefinito per il progetto, basato su Filament 3.3. Questo tema fornisce un'interfaccia moderna e responsive per il frontend del sito.
-=======
-# Tema One per SaluteOra
-
-## Introduzione
-
-Il Tema One è il tema predefinito per SaluteOra, basato su Filament 3.3. Questo tema fornisce un'interfaccia moderna e responsive per il frontend del sito.
->>>>>>> 1b374b6 (.)
 
 ## Requisiti
 
@@ -221,7 +213,6 @@ Il Tema One è il tema predefinito per SaluteOra, basato su Filament 3.3. Questo
 ```
 Themes/One/
 ├── app/
-<<<<<<< HEAD
 │   └── providers/
 │       └── ThemeServiceProvider.php
 ├── config/
@@ -234,15 +225,6 @@ Themes/One/
 │       │   ├── sections/
 │       │   │   ├── header.blade.php
 │       │   │   └── footer.blade.php
-=======
-│   └── Providers/
-│       └── ThemeServiceProvider.php
-├── config/
-│   └── theme.php
-├── resources/
-│   └── views/
-│       ├── components/
->>>>>>> 1b374b6 (.)
 │       │   └── blocks/
 │       ├── layouts/
 │       └── pages/
@@ -251,7 +233,6 @@ Themes/One/
     └── js/
 ```
 
-<<<<<<< HEAD
 ## Gestione dei Contenuti
 
 ### Struttura dei Dati
@@ -404,8 +385,6 @@ I contenuti sono organizzati in tre livelli principali:
    - Mantenere la coerenza tra ambienti
    - Testare su sistemi case-sensitive
 
-=======
->>>>>>> 1b374b6 (.)
 ## Blocchi Disponibili
 
 Il tema One include i seguenti blocchi:
@@ -450,7 +429,6 @@ Il tema One si integra con il modulo CMS per la gestione dei contenuti. I conten
 
 ## Supporto
 
-<<<<<<< HEAD
 Per supporto tecnico, contattare il team il progetto.
 
 # Tema One
@@ -620,6 +598,3 @@ Per supporto tecnico, contattare il team il progetto.
 - **Etica**: Ogni contributo deve essere guidato da onestà, rispetto, responsabilità e attenzione all'impatto sociale e ambientale.
 - **Zen**: Si valorizza la semplicità, la concentrazione sul presente, l'armonia tra le parti e la serenità nel processo di sviluppo.
 
-=======
-Per supporto tecnico, contattare il team SaluteOra. 
->>>>>>> 1b374b6 (.)

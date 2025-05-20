@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Collegamenti Theme One (Multiprogetto)
 
 ## Collegamenti in Uscita
@@ -23,11 +22,4 @@
 * [links.md](laravel/Modules/Tenant/docs/it/links/links.md)
 * [links.md](laravel/Modules/Cms/docs/links.md)
 * [links.md](laravel/Themes/One/docs/links.md)
-=======
-https://github.com/themesberg/tailwind-laravel-starter
-https://github.com/themesberg/flowbite-laravel
-https://github.com/themesberg/volt-laravel-dashboard
-
-
->>>>>>> 1b374b6 (.)
 

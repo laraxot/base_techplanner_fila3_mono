@@ -309,6 +309,70 @@ return array (
       'placeholder' => 'icon',
       'helper_text' => 'icon',
     ),
+    'user' => 
+    array (
+      'label' => 'user',
+    ),
+    'attributes' => 
+    array (
+      'label' => 'attributes',
+    ),
+    '946595X2254X48249SQ01' => 
+    array (
+      'label' => '946595X2254X48249SQ01',
+    ),
+    '946595X2255X48257SQ01' => 
+    array (
+      'label' => '946595X2255X48257SQ01',
+    ),
+    '946595X2256X48262SQ01' => 
+    array (
+      'label' => '946595X2256X48262SQ01',
+    ),
+    '946595X2257X48264' => 
+    array (
+      'label' => '946595X2257X48264',
+    ),
+    '946595X2257X48265SQ01' => 
+    array (
+      'label' => '946595X2257X48265SQ01',
+    ),
+    '946595X2258X48268SQ01' => 
+    array (
+      'label' => '946595X2258X48268SQ01',
+    ),
+    '946595X2259X48269SQ01' => 
+    array (
+      'label' => '946595X2259X48269SQ01',
+    ),
+    '946595X2259X48843SQ01' => 
+    array (
+      'label' => '946595X2259X48843SQ01',
+    ),
+    '946595X2259X48847SQ01' => 
+    array (
+      'label' => '946595X2259X48847SQ01',
+    ),
+    '946595X2259X48270SQ01' => 
+    array (
+      'label' => '946595X2259X48270SQ01',
+    ),
+    '946595X2259X48850SQ01' => 
+    array (
+      'label' => '946595X2259X48850SQ01',
+    ),
+    '946595X2259X48852SQ01' => 
+    array (
+      'label' => '946595X2259X48852SQ01',
+    ),
+    '946595X2259X48271SQ01' => 
+    array (
+      'label' => '946595X2259X48271SQ01',
+    ),
+    '946595X2259X48869SQ01' => 
+    array (
+      'label' => '946595X2259X48869SQ01',
+    ),
   ),
   'actions' => 
   array (
@@ -383,6 +447,10 @@ return array (
     'bet_action' => 
     array (
       'label' => 'bet_action',
+    ),
+    'export_xls' => 
+    array (
+      'label' => 'export_xls',
     ),
   ),
 );

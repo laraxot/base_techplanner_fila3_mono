@@ -1,68 +1,157 @@
 # Modulo Xot
 
+### Versione HEAD
+
 ## Introduzione
+Il modulo Xot è il modulo base che fornisce le classi e le funzionalità fondamentali per gli altri moduli. Gestisce l'integrazione con Filament, Livewire e Volt, fornendo una base solida per lo sviluppo di applicazioni modulari.
 
-Il modulo Xot è il core del sistema, fornisce funzionalità base e componenti riutilizzabili per tutti gli altri moduli. Implementa pattern architetturali, gestione degli errori, e componenti UI comuni.
+## Indice
 
-## File Chiave
-- [BaseUser.php](../User/app/Models/BaseUser.php)
-- [User.php](../User/app/Models/User.php)
-- [Doctor.php](../Patient/app/Models/Doctor.php)
-- [DoctorResource.php](../Patient/app/Filament/Resources/DoctorResource.php)
-- [RegisterAction.php](../Patient/app/Actions/RegisterAction.php)
-- [RegistrationWidget.php](../User/app/Filament/Widgets/RegistrationWidget.php)
+### Architettura e Componenti Base
+- [Architecture](./architecture.md) - Architettura del modulo
+- [Base Classes](./base_classes.md) - Classi base
+- [Service Providers](./service_providers.md) - Provider di servizi
+- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
+- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
 
-## Componenti Principali
+- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
+- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Foliob6f667c (.)
 
-### 1. Base Classes
-- `BaseModel`: Classe base per tutti i modelli
-- `BaseController`: Controller base con funzionalità comuni
-- `BaseService`: Service layer base
-- `BaseRepository`: Repository pattern base
+- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
+- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Foliob6f667c (.)
 
-### 2. Traits
-- `HasUuid`: Generazione UUID per i modelli
-- `HasSlug`: Gestione slug automatica
-- `HasStatus`: Gestione stati dei modelli
-- `HasTimestamps`: Gestione timestamp estesa
+### Filament
+- [Filament Integration](./filament_integration.md) - Integrazione con Filament
+- [Widgets](./widgets.md) - Sistema widget
+- [Resources](./resources.md) - Gestione risorse
 
-### 3. Interfaces
-- `RepositoryInterface`: Contratto base per i repository
-- `ServiceInterface`: Contratto base per i service
-- `ActionInterface`: Contratto base per le actions
+### Service Providers
+- [Provider Structure](./provider_structure.md) - Struttura provider
+- [Provider Traits](./provider_traits.md) - Trait per provider
+- [Provider Best Practices](./provider_best_practices.md) - Best practices
 
-### 4. Exceptions
-- `BaseException`: Classe base per le eccezioni
-- `ValidationException`: Gestione errori di validazione
-- `NotFoundException`: Gestione risorse non trovate
-- `AuthorizationException`: Gestione errori di autorizzazione
+### Testing e Quality
+- [Testing](./testing.md) - Testing e quality assurance
+- [Best Practices](./BEST-PRACTICES.md) - Linee guida generali
+- [Security](./security.md) - Sicurezza e hardening
 
-## Best Practices
+### Documentazione Tecnica
+- [Roadmap](./roadmap.md) - Piano di sviluppo futuro
+- [Bottlenecks](./bottlenecks.md) - Analisi performance e ottimizzazioni
+- [Module Structure](./MODULE_STRUCTURE.md) - Struttura moduli
 
-### 1. Ereditarietà
-- Estendere sempre le classi base appropriate
-- Implementare le interfacce richieste
-- Usare i trait forniti quando necessario
+### Link Esterni
+- [Laravel Framework](https://laravel.com/docs/12.x)
+- [Filament Documentation](https://filamentphp.com/docs)
+- [Livewire Documentation](https://livewire.laravel.com/docs)
 
-### 2. Error Handling
-- Usare le eccezioni custom fornite
-- Implementare logging appropriato
-- Gestire gli errori in modo consistente
+## Note Importanti
 
-### 3. Validation
-- Usare le regole di validazione base
-- Estendere le regole quando necessario
-- Mantenere la validazione consistente
+### Estensione Classi
+- Non estendere mai direttamente le classi di Filament
+- Utilizzare sempre le classi base di Xot con prefisso XotBase
+- Seguire le convenzioni di naming del modulo
 
-## Dependencies
+### Trait e Service Provider
+- I trait per i provider devono essere in `Providers/Traits/`
+- Seguire la struttura esistente per nuovi trait
+- Documentare sempre l'uso dei trait
+
+### Traduzioni
+- Utilizzare il LangServiceProvider per le traduzioni
+- Non usare ->label() direttamente
+- Struttura corretta: 'source' => ['label'=>'Sorgente']
+
+## Esempi
+
+### Service Provider
+```php
+use Xot\XotBaseServiceProvider;
+
+class CustomServiceProvider extends XotBaseServiceProvider
+{
+    // Implementazione
+}
+```
+
+### Widget Base
+```php
+use Xot\Filament\Widgets\XotBaseWidget;
+
+class CustomWidget extends XotBaseWidget
+{
+    // Implementazione
+}
+```
+
+## Dipendenze
 - Laravel Framework
 - Filament
-- Parental
-- Laravel Modules
+- Livewire
+- Volt
+- Folio
 
-## Struttura
+## Utilizzo
+Il modulo Xot fornisce funzionalità base attraverso:
+- Classi base estensibili
+- Service provider modulari
+- Integrazione Filament
+- Sistema widget
+- Gestione risorse
+
+## Panoramica
+Il modulo Xot è il cuore dell'architettura dell'applicazione. Fornisce le classi base, i trait e le interfacce fondamentali utilizzate da tutti gli altri moduli.
+
+### Versione HEAD
+
+
+### Versione Incoming
+
+##> **Collegamenti correlati**
+> - [README.md documentazione generale](../../docs/README.md)
+> - [README.md toolkit bashscripts](../../bashscripts/docs/README.md)
+> - [README.md modulo GDPR](../Gdpr/docs/README.md)
+> - [README.md modulo User](../User/docs/README.md)
+> - [README.md modulo Lang](../Lang/docs/README.md)
+> - [README.md modulo CMS](../../laravel/Modules/Cms/docs/README.md) <!-- TODO: documento non presente -->
+> - [README.md modulo Reporting](../../laravel/Modules/Reporting/docs/README.md) <!-- TODO: documento non presente -->
+> - [README.md modulo Chart](../../laravel/Modules/Chart/docs/README.md) <!-- TODO: documento non presente -->
+> - [README.md modulo UI](../UI/docs/README.md)
+> - [README.md modulo Xot](../Xot/docs/README.md)
+> - [Collegamenti documentazione centrale](../../docs/collegamenti-documentazione.md)
+
+
+---
+
+## Collegamenti Principali
+
+### Documentazione Core
+- [Struttura del Modulo](./structure.md)
+- [Base Classes](./base-classes.md)
+- [Service Provider](./SERVICE-PROVIDER-BEST-PRACTICES.md)
+- [Filament Integration](./FILAMENT_BEST_PRACTICES.md)
+- [Module Structure](./MODULE_STRUCTURE.md)
+
+### Integrazioni
+- [Integrazione con User](../User/docs/README.md)
+- [Integrazione con Lang](../Lang/docs/README.md)
+- [Integrazione con UI](../UI/docs/README.md)
+
+### Best Practices
+- [Best Practices Generali](./BEST-PRACTICES.md)
+- [Convenzioni Namespace](./namespace-conventions.md)
+- [PHPStan Fixes](./phpstan-fixes.md)
+- [Risoluzione Conflitti](./RISOLUZIONE_CONFLITTI_MERGE.md)
+
+### Testing e Qualità
+- [PHPStan Level 9](./PHPSTAN_LEVEL9_FIXES.md)
+- [PHPStan Level 10](./PHPSTAN_LEVEL10_FIXES.md)
+- [Testing Best Practices](./testing-best-practices.md)
+
+## Struttura del Modulo
+
 ```
-Xot/
+Modules/Xot/
 ├── app/
 │   ├── Models/
 │   │   └── XotBaseModel.php
@@ -261,22 +350,159 @@ class User extends XotBaseModel { ... }
 - Bug estensione classi
 - Problemi di configurazione
 - Errori di integrazione
+### Versione HEAD
 
-## Best Practices XotBaseResource
 
-> **Regola vincolante:** Se una risorsa estende `XotBaseResource`, NON deve mai dichiarare:
-> - `protected static ?string $navigationGroup`
-> - `protected static ?string $navigationLabel`
-> - `public static function table(Table $table): Table`
+### Versione Incoming
+# Modulo Xot - Documentazione Core
 
-La configurazione di navigazione e la definizione della tabella sono centralizzate nella classe base o nei provider.
+## Introduzione
+Il modulo Xot è il cuore dell'architettura modulare del sistema. Fornisce le funzionalità di base e le convenzioni utilizzate da tutti gli altri moduli.
 
-**Checklist:**
-- [ ] Nessuna dichiarazione di navigationGroup/navigationLabel/table() nelle risorse che estendono XotBaseResource
-- [ ] Configurazione centralizzata e DRY
+## Indice
 
-**Vedi anche:**
-- [filament-xotbase-resource-best-practices.mdc](../../../.cursor/rules/filament-xotbase-resource-best-practices.mdc)
+### Architettura
+- [Struttura del Modulo](./MODULE-STRUCTURE.md)
+- [Convenzioni dei Namespace](./NAMESPACE-CONVENTIONS.md)
+- [Convenzioni di Naming](./NAMING-CONVENTIONS.md)
+- [Struttura delle Directory](./DIRECTORY-STRUCTURE-GUIDE.md)
+
+### Sviluppo
+- [Guida PHPStan](./phpstan/README.md)
+- [Gestione Traduzioni](./TRANSLATIONS-BEST-PRACTICES.md)
+- [Gestione Conflitti](./conflicts/README.md)
+- [Filament Tables](./FILAMENT-TABLES.md)
+
+### Integrazione
+- [Service Provider](./provider.md)
+- [Route Service Provider](./ROUTE-SERVICE-PROVIDER.md)
+- [Assets](./assets.md)
+- [Configurazione](./config.md)
+
+### Best Practices
+- [Documentazione](./DOCUMENTATION-GUIDELINES.md)
+- [Code Standards](./CODE-STANDARDS.md)
+- [Gestione Pacchetti](./packages.md)
+
+## Collegamenti alla Documentazione Root
+- [Roadmap Generale](/docs/roadmap.md)
+- [Architettura Generale](/docs/ARCHITECTURE.md)
+- [Documentazione Tecnica](/docs/TECHNICAL.md)
+
+## Panoramica
+Il modulo Xot fornisce le funzionalità base e le utilities utilizzate da tutti gli altri moduli dell'applicazione.
+
+## Componenti Principali
+
+### XotBaseResource
+Classe base per tutte le risorse Filament. Gestisce:
+- Navigazione automatica
+- Traduzioni
+- Permessi base
+- Configurazioni comuni
+
+### XotBasePage
+Classe base per tutte le pagine Filament. Fornisce:
+- Layout standard
+- Gestione permessi
+- Integrazione con il sistema di traduzioni
+- Funzionalità comuni
+
+### XotBaseModel
+Modello base con funzionalità comuni:
+- Soft delete
+- Timestamp automatici
+- Relazioni standard
+- Metodi utility
+
+## Servizi
+
+### LangService
+Gestisce le traduzioni dell'applicazione:
+- Caricamento automatico
+- Fallback configurabile
+- Cache delle traduzioni
+- Supporto per più lingue
+
+### PermissionService
+Gestisce i permessi dell'applicazione:
+- Controllo accessi
+- Ruoli e capacità
+- Cache dei permessi
+- Integrazione con Gate
+
+## Traits
+
+### HasPermissions
+Trait per la gestione dei permessi nei modelli:
+- Verifica permessi
+- Assegnazione ruoli
+- Sincronizzazione permessi
+
+### HasTranslations
+Trait per la gestione delle traduzioni nei modelli:
+- Campi traducibili
+- Fallback automatico
+- Cache delle traduzioni
+
+## Configurazione
+Il modulo è configurabile tramite:
+- `config/xot.php`
+- Environment variables
+- Service providers
+
+## Best Practices
+1. Estendere sempre le classi base appropriate
+2. Utilizzare i traits forniti
+3. Seguire le convenzioni di naming
+4. Mantenere la documentazione aggiornata
+
+## Directory Principali
+- `Abstracts/`: Classi base e interfacce
+- `Helpers/`: Utility globali
+- `Http/`: Middleware e controller base
+- `config/`: Configurazioni condivise
+
+## Funzionalità Chiave
+1. **Helper Globali**
+   - Manipolazione stringhe/array
+   - Utility date e tempi
+   - Helper database
+   - Funzioni sicurezza
+
+2. **Astrazioni Base**
+   - Interfacce comuni
+   - Classi base per modelli/controller
+   - Trait riutilizzabili
+
+3. **Quality Assurance**
+   - PHP Insights
+   - PHPStan
+   - PHPMD
+   - Psalm
+   - Rector
+   - PHP CS Fixer
+
+## Utilizzo
+1. Estendere le classi base per nuovi modelli/controller
+2. Utilizzare gli helper per funzionalità comuni
+3. Seguire gli standard di codice definiti
+
+## Documentazione Dettagliata
+- `/docs/filament/`: Integrazione Filament
+- `/docs/model/`: Gestione modelli
+- `/docs/service/`: Servizi disponibili
+- `/docs/activity/`: Sistema di logging
+
+## Documentazione PHPStan
+
+- [Linee Guida PHPStan Livello 10](./PHPStan/LEVEL10_LINEE_GUIDA.md) - Linee guida dettagliate per rispettare le regole di PHPStan a livello 10
+
+## Documentazione Filament
+
+- [Linee Guida per getInfolistSchema](./filament/INFOLIST_SCHEMA_GUIDELINES.md) - Guida completa per l'implementazione corretta del metodo getInfolistSchema, con focus sull'uso delle chiavi stringa negli array 
+
+---
 
 ## Documentazione Filament
 
@@ -290,6 +516,7 @@ La configurazione di navigazione e la definizione della tabella sono centralizza
 
 ## Documentazione Filament
 - [Linee Guida per getInfolistSchema](./filament/INFOLIST_SCHEMA_GUIDELINES.md) - Guida completa per l'implementazione corretta del metodo getInfolistSchema, con focus sull'uso delle chiavi stringa negli array 
+
 
 ## Politica, Filosofia, Religione, Etica, Zen
 
@@ -322,106 +549,3 @@ Consulta le [best practices aggiornate](./providers/service_provider_best_practi
 ## Backlink
 - [Collegamento a docs/links.md della root](../../../../docs/links.md)
 - **Zen**: Semplicità, concentrazione sul presente, armonia e serenità nello sviluppo.
-
-## Errori Comuni e Soluzioni (Best Practice)
-
-1. **ValidationException custom**
-   - ✅ throw ValidationException::withMessages(['email' => ['Messaggio personalizzato']]);
-
-2. **Fallback enum/status**
-   - Usare metodo privato per fallback:
-   ```php
-   private function getDoctorRegistrationStatus(): string {
-       if (!class_exists(DoctorRegistrationStatus::class)) return 'pending';
-       try {
-           foreach (DoctorRegistrationStatus::cases() as $case) {
-               if (strtolower($case->name) === 'pending') return $case->value;
-           }
-           return 'pending';
-       } catch (\Exception $e) { return 'pending'; }
-   }
-   ```
-
-3. **Controllo su modello specializzato**
-   - ✅ Doctor::where('email', ...)
-
-## Checklist Generale
-- [ ] Namespace corretti
-- [ ] Ereditarietà STI
-- [ ] Proprietà deprecate rimosse
-- [ ] Error handling idiomatico
-- [ ] Fallback enum/status
-- [ ] Collegamenti bidirezionali
-- [ ] Test e validazione
-
-## Collegamenti
-- [Patient Errori e Soluzioni](../../Patient/docs/models.md)
-- [Patient Workflow](../../Patient/docs/doctor-registration-workflow.md)
-- [Error Handling Xot](./error-handling.md)
-
-# Errori di Validazione Custom
-
-Per errori custom nei form, usa sempre:
-
-```php
-throw \Illuminate\Validation\ValidationException::withMessages([
-    'campo' => ['Messaggio di errore personalizzato.'],
-]);
-```
-
-Vedi dettagli in [error-handling.md](./error-handling.md) e [Patient: errors/validation.md](../../Patient/docs/errors/validation.md)
-
-# Regola: Non duplicare trait già presenti nei modelli base
-
-Se un trait (es. HasFactory) è già presente in un modello base, **non aggiungerlo** nei modelli che lo estendono.
-
-Motivazione: evitare ridondanza, warning, confusione e problemi di override.
-
-# Checklist di Ripartenza (dopo restart)
-- Verifica che tutte le migration siano applicate nei moduli
-- Controlla che i trait NON siano duplicati nei modelli specializzati
-- Verifica la catena di ereditarietà nei modelli STI
-- Controlla che la documentazione sia aggiornata e neutra
-- Controlla i file chiave:
-  - [BaseUser.php](../User/app/Models/BaseUser.php)
-  - [User.php](../User/app/Models/User.php)
-  - [Doctor.php](../Patient/app/Models/Doctor.php)
-  - [DoctorResource.php](../Patient/app/Filament/Resources/DoctorResource.php)
-  - [RegisterAction.php](../Patient/app/Actions/RegisterAction.php)
-  - [RegistrationWidget.php](../User/app/Filament/Widgets/RegistrationWidget.php)
-- Consulta le sezioni:
-  - [Error Handling](error-handling.md)
-  - [Best Practices](best-practices/README.md)
-  - [Ereditarietà](standards/README.md)
-  - [Migrazioni](../Patient/docs/database/migrations.md)
-
-## Reminder
-- Documentazione sempre neutra e riutilizzabile
-- Aggiornare sempre la doc PRIMA di ogni modifica
-- Validazione custom solo con ValidationException::withMessages
-- Non duplicare trait già presenti nei modelli base
-
----
-
-Dopo ogni restart, esegui la checklist sopra per evitare errori ricorrenti.
-
-# AVVISO IMPORTANTE: Regole Fondamentali e Checklist di Ripartenza
-
-> **Prima di ogni sviluppo o dopo ogni riavvio:**
-> - Consulta la [checklist di ripartenza](./checklist-di-ripartenza.md) o la versione locale se presente
-> - Applica SEMPRE le [Filament Best Practices](./filament-best-practices.md)
-> - Ricorda: nessun riferimento a progetti/brand nelle doc dei moduli
-> - Non duplicare mai trait già presenti nei modelli base
-> - Usa solo ValidationException::withMessages per errori custom
-> - Aggiorna la doc PRIMA di ogni modifica
-> - Se trovi un warning o errore, aggiorna subito la doc e segnala la regola
-
-## Collegamenti rapidi
-- [Filament Best Practices](./filament-best-practices.md)
-- [Neutralità documentazione](./module-documentation-neutrality.md)
-- [Ereditarietà modelli](./model-inheritance-best-practices.md)
-- [Checklist di ripartenza](./checklist-di-ripartenza.md)
-
----
-
-- [ ] Rispetta la [regola PSR-4 Namespace](./psr4-namespaces.md) per tutti i file in app/

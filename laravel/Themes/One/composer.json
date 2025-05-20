@@ -17,11 +17,7 @@
     },
     "require": {
         "filament/filament": "^3.3",
-<<<<<<< HEAD
         "filament/tables": "^3.3",
         "filament/forms": "^3.3"
-=======
-        "filament/tables": "^3.3"
->>>>>>> 1b374b6 (.)
     }
 }

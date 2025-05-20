@@ -83,3 +83,130 @@ The following files were resolved with conflicts:
 2. Keep feature branches up to date with main branch
 3. Make smaller, focused commits
 4. Document API changes proactively
+
+# Risoluzione dei Conflitti Git
+
+## Linee Guida Generali
+
+1. **Analisi Manuale**: Ogni conflitto deve essere analizzato manualmente
+2. **Documentazione**: Ogni risoluzione deve essere documentata
+3. **Test**: Verificare che tutto funzioni dopo la risoluzione
+4. **Commit**: Commit atomici e ben documentati
+
+## Tipi di Conflitti
+
+### 1. File di Configurazione
+
+#### Composer.json
+- Mantenere le dipendenze più recenti
+- Standardizzare i nomi dei pacchetti
+- Documentare le versioni specifiche
+
+#### Package.json
+- Allineare con i requisiti di Filament 3.x
+- Mantenere le dipendenze di sviluppo necessarie
+- Standardizzare gli script
+
+#### Tailwind.config.js
+- Mantenere la configurazione base
+- Aggiungere i percorsi dei componenti del tema
+- Documentare le personalizzazioni
+
+#### Vite.config.js
+- Mantenere la configurazione base
+- Aggiungere gli alias necessari
+- Supportare TypeScript e PostCSS
+
+### 2. Documentazione
+
+#### README.md
+- Mantenere la documentazione generica per progetti multipli
+- Aggiungere riferimenti incrociati
+- Standardizzare il formato Markdown
+
+#### File di Configurazione
+- Documentare le scelte architetturali
+- Mantenere la coerenza tra i file
+- Aggiungere commenti esplicativi
+
+### 3. Codice Sorgente
+
+#### PHP
+- Mantenere la compatibilità con Laravel 10+
+- Seguire le best practices di Filament 3.x
+- Documentare le modifiche
+
+#### JavaScript/TypeScript
+- Mantenere la compatibilità con Filament 3.x
+- Seguire le best practices di Vite
+- Documentare le modifiche
+
+#### Blade Templates
+- Mantenere la compatibilità con Filament 3.x
+- Seguire le best practices di Laravel
+- Documentare le modifiche
+
+## Processo di Risoluzione
+
+1. **Analisi**
+   - Identificare i file in conflitto
+   - Analizzare le differenze
+   - Consultare la documentazione
+
+2. **Risoluzione**
+   - Applicare le linee guida
+   - Documentare le scelte
+   - Verificare la coerenza
+
+3. **Test**
+   - Verificare la compilazione
+   - Testare le funzionalità
+   - Controllare la documentazione
+
+4. **Commit**
+   - Commit atomici
+   - Messaggi descrittivi
+   - Riferimenti alla documentazione
+
+## Best Practices
+
+1. **Documentazione**
+   - Mantenere aggiornata
+   - Riferimenti incrociati
+   - Esempi di codice
+
+2. **Configurazione**
+   - Standardizzare i nomi
+   - Documentare le scelte
+   - Mantenere la coerenza
+
+3. **Codice**
+   - Seguire le best practices
+   - Documentare le modifiche
+   - Mantenere la compatibilità
+
+## Struttura della Documentazione
+
+```
+docs/
+├── README.md
+├── merge_conflict_resolution.md
+├── architecture.md
+├── installation.md
+├── configuration.md
+├── development.md
+├── deployment.md
+├── maintenance.md
+├── troubleshooting.md
+├── faq.md
+├── changelog.md
+├── contributing.md
+└── license.md
+```
+
+## Riferimenti
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [Filament Documentation](https://filamentphp.com/docs)
+- [Vite Documentation](https://vitejs.dev/guide)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)

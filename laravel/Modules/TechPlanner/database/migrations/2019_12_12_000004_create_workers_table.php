@@ -79,7 +79,6 @@ return new class extends XotBaseMigration
                 if (! $this->hasColumn('created_by')) {
                     $table->string('created_by')->nullable()->after('created_at');
                 }
-<<<<<<< HEAD
 
                 if (! $this->hasColumn('phone')) {
                     $table->string('phone')->nullable();
@@ -110,8 +109,6 @@ return new class extends XotBaseMigration
                     $table->string('created_by')->nullable()->after('created_at');
                 }
 
-=======
->>>>>>> b32e314 (.)
                 if (! $this->hasColumn('full_name')) {
                     $table->string('full_name')->nullable()->after('first_name');
                 }

@@ -23,7 +23,6 @@ return array (
       'label' => 'email',
       'description' => 'email',
       'helper_text' => 'email',
-      'placeholder' => 'email',
     ),
     'password' => 
     array (

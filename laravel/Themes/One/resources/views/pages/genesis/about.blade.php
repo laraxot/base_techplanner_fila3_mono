@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 declare(strict_types=1);
-=======
-
->>>>>>> 1b374b6 (.)
 use function Laravel\Folio\{name};
 use Livewire\Volt\Component;
 

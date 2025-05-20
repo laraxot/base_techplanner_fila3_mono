@@ -226,7 +226,6 @@ Assicurarsi che i nomi dei parametri nel database corrispondano a quelli attesi 
 
 - Il blocco `feature_sections` utilizza il parametro `sections` invece di `features`
 - Il blocco `stats` utilizza il parametro `number` invece di `value` per i valori delle statistiche
-<<<<<<< HEAD
 
 ## Gestione Link Dinamici
 
@@ -383,5 +382,3 @@ Per aggiornare i blocchi esistenti:
 * [blocks.md](laravel/Themes/One/docs/blocks.md)
 * [blocks.md](laravel/Themes/One/docs/components/blocks.md)
 
-=======
->>>>>>> 1b374b6 (.)

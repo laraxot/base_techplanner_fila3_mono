@@ -48,3 +48,53 @@ When contributing to documentation:
 3. Update the table of contents if necessary
 4. Cross-reference related documentation
 5. Commit documentation changes along with code changes
+
+## [Aggiornamento 2024-06-10] Collegamento Tema One
+
+- Vedi [laravel/Themes/One/docs/README.md](../laravel/Themes/One/docs/README.md) per dettagli sulle scelte architetturali e funzionali adottate nella risoluzione dei conflitti composer.json, package.json, tailwind.config.js e vite.config.js.
+- Le scelte seguono le [merge_conflict_resolution.md](./merge_conflict_resolution.md).
+
+# Documentazione del Progetto
+
+## 📚 Indice
+
+- [Architettura](architecture.md)
+- [Installazione](installation.md)
+- [Configurazione](configuration.md)
+- [Sviluppo](development.md)
+- [Deployment](deployment.md)
+- [Manutenzione](maintenance.md)
+- [Troubleshooting](troubleshooting.md)
+- [FAQ](faq.md)
+- [Changelog](changelog.md)
+- [Contributing](contributing.md)
+- [Licenza](license.md)
+
+## 🎨 Temi
+
+- [Tema One](laravel/Themes/One/README.md) - Tema frontend moderno e riusabile basato su Filament 3.x
+
+## 🔄 Risoluzione Conflitti
+
+Durante la risoluzione dei conflitti sono state prese le seguenti decisioni architetturali:
+
+1. **Standardizzazione dei nomi dei pacchetti**:
+   - Utilizzo del namespace `laraxot` per i pacchetti generici
+   - Nomi dei pacchetti in formato snake_case (es. `theme_one_fila3`)
+
+2. **Configurazione Vite**:
+   - Mantenimento della configurazione base di Vite
+   - Aggiunta di alias per i componenti del tema
+   - Supporto per TypeScript e PostCSS
+
+3. **Documentazione**:
+   - Mantenimento della documentazione generica per progetti multipli
+   - Aggiunta di riferimenti incrociati tra documentazioni
+   - Standardizzazione del formato Markdown
+
+4. **Dipendenze**:
+   - Allineamento con i requisiti di Filament 3.x
+   - Utilizzo di versioni specifiche per evitare incompatibilità
+   - Documentazione chiara delle dipendenze obbligatorie
+
+Per maggiori dettagli sulla risoluzione dei conflitti, consulta i file di configurazione e la documentazione specifica di ogni componente.

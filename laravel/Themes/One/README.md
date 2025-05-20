@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tema One – Tema Frontend Moderno e Riusabile
 
 ## Introduzione
@@ -29,15 +28,6 @@ Può essere utilizzato sia come tema generico per progetti multipli, sia come te
 Per la roadmap completa e lo stato di sviluppo, consulta [docs/roadmap.md](docs/roadmap.md)
 
 ## 🛠️ Requisiti
-=======
-# Tema One per SaluteOra
-
-## Introduzione
-
-Tema One è il tema predefinito per SaluteOra, basato su Filament 3.3. Offre un'interfaccia moderna e responsive per la gestione dei contenuti del sito web.
-
-## Requisiti
->>>>>>> 1b374b6 (.)
 
 - PHP 8.1+
 - Laravel 10+
@@ -45,15 +35,9 @@ Tema One è il tema predefinito per SaluteOra, basato su Filament 3.3. Offre un'
 - Node.js 16+
 - NPM 8+
 
-<<<<<<< HEAD
 ## 🚀 Installazione
 
 1. Aggiungi il tema al tuo `composer.json` (adatta il nome del pacchetto se usato in progetti diversi):
-=======
-## Installazione
-
-1. Aggiungi il tema al tuo `composer.json`:
->>>>>>> 1b374b6 (.)
 
 ```json
 {
@@ -77,15 +61,12 @@ php artisan vendor:publish --tag=theme-one-views
 php artisan vendor:publish --tag=theme-one-config
 ```
 
-<<<<<<< HEAD
 3. **IMPORTANTE:** Con Filament 3.x è OBBLIGATORIO usare solo le seguenti dipendenze (come da [Filament Docs](https://filamentphp.com/docs/3.x/notifications/installation#installing-tailwind-css)):
   ```sh
   npm install tailwindcss@3 @tailwindcss/forms @tailwindcss/typography postcss postcss-nesting autoprefixer --save-dev
   npm run build
   ```
 
-=======
->>>>>>> 1b374b6 (.)
 4. Installa le dipendenze NPM:
 
 ```bash
@@ -98,26 +79,11 @@ npm install
 npm run build
 ```
 
-<<<<<<< HEAD
 ## ⚙️ Configurazione
 
 ### Tailwind CSS
 
 Il tema utilizza Tailwind CSS per lo styling. Assicurati che i seguenti file siano configurati correttamente:
-=======
-6. Copia gli asset compilati:
-
-```bash
-npm run copy
-```
-
-## Configurazione
-
-### Tailwind CSS
-
-Assicurati che i seguenti file siano configurati correttamente:
-
->>>>>>> 1b374b6 (.)
 1. `postcss.config.js`:
 
 ```js
@@ -186,11 +152,7 @@ export default defineConfig({
 });
 ```
 
-<<<<<<< HEAD
 ## 📁 Struttura del Tema
-=======
-## Struttura del Tema
->>>>>>> 1b374b6 (.)
 
 ```
 laravel/Themes/One/
@@ -202,33 +164,24 @@ laravel/Themes/One/
 ├── resources/
 │   ├── views/
 │   │   ├── components/
-<<<<<<< HEAD
 │   │   │   ├── ui/          # Componenti UI di base
 │   │   │   ├── layouts/     # Layout principali
 │   │   │   └── blocks/      # Blocchi di contenuto
-=======
-│   │   │   └── blocks/
->>>>>>> 1b374b6 (.)
 │   │   └── pages/
 │   │       ├── pages/
 │   │       │   └── [slug].blade.php
 │   │       └── it/
 │   │           └── pages/
 │   └── assets/
-<<<<<<< HEAD
 ├── routes/
 │   └── web.php
 └── docs/
     ├── roadmap.md
-=======
-└── docs/
->>>>>>> 1b374b6 (.)
     ├── blocks.md
     ├── folio.md
     └── installation.md
 ```
 
-<<<<<<< HEAD
 ## 🧩 Componenti Disponibili
 
 ### UI Components
@@ -255,29 +208,6 @@ laravel/Themes/One/
 - `paragraph` - Paragrafo di testo
 
 ## 🔧 Personalizzazione
-=======
-## Blocchi Disponibili
-
-### Hero
-Blocco hero per le pagine principali con titolo, sottotitolo e CTA.
-
-### Feature Sections
-Sezioni di caratteristiche con icone, titoli e descrizioni.
-
-### Team
-Sezione per visualizzare i membri del team con foto, nomi e ruoli.
-
-### Stats
-Statistiche con numeri e etichette.
-
-### CTA
-Call to Action con titolo, descrizione e pulsante.
-
-### Paragraph
-Paragrafo di testo formattato.
-
-## Personalizzazione
->>>>>>> 1b374b6 (.)
 
 ### Viste
 Le viste possono essere personalizzate copiandole dalla directory `resources/views` del tema nella directory `resources/views` della tua applicazione.
@@ -288,7 +218,6 @@ Gli asset possono essere personalizzati modificando i file nella directory `reso
 ### Configurazione
 La configurazione del tema può essere personalizzata modificando il file `config/theme.php`.
 
-<<<<<<< HEAD
 ## 🔄 Integrazioni
 
 ### Filament
@@ -323,8 +252,6 @@ Per la documentazione completa, consulta:
 
 Questo tema è open-source sotto la licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
 
-=======
->>>>>>> 1b374b6 (.)
 ## Integrazione con Laravel Folio
 
 Il tema utilizza Laravel Folio per la gestione delle rotte frontend. Vedi la documentazione in `docs/folio.md` per maggiori dettagli.
@@ -344,8 +271,4 @@ Assicurati che i nomi dei parametri nel database corrispondano a quelli attesi d
 
 Per assistenza tecnica, contattare:
 - Email: support@saluteora.com
-<<<<<<< HEAD
 - Documentazione: https://docs.saluteora.com
-=======
-- Documentazione: https://docs.saluteora.com 
->>>>>>> 1b374b6 (.)

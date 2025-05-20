@@ -11,30 +11,16 @@ class ClusterLocationsAction
 {
     public function __construct(
         private readonly CalculateDistanceAction $distanceCalculator,
-<<<<<<< HEAD
     ) {}
-=======
-    ) {
-    }
->>>>>>> 294f04a (.)
 
     /**
      * Raggruppa le posizioni in cluster basati sulla distanza.
      *
-<<<<<<< HEAD
      * @param  array<LocationData>  $locations  Lista delle posizioni da raggruppare
      * @param  float  $maxDistance  Distanza massima in km tra i punti di un cluster
      * @return array<array{center: LocationData, points: array<LocationData>}>
      *
      * @throws InvalidLocationException Se i dati della posizione non sono validi
-=======
-     * @param array<LocationData> $locations   Lista delle posizioni da raggruppare
-     * @param float               $maxDistance Distanza massima in km tra i punti di un cluster
-     *
-     * @throws InvalidLocationException Se i dati della posizione non sono validi
-     *
-     * @return array<array{center: LocationData, points: array<LocationData>}>
->>>>>>> 294f04a (.)
      */
     public function execute(array $locations, float $maxDistance = 1.0): array
     {
@@ -73,11 +59,7 @@ class ClusterLocationsAction
     /**
      * Aggiorna il centro del cluster calcolando la media delle coordinate.
      *
-<<<<<<< HEAD
      * @param  array{center: LocationData, points: array<LocationData>}  $cluster
-=======
-     * @param array{center: LocationData, points: array<LocationData>} $cluster
->>>>>>> 294f04a (.)
      */
     private function updateClusterCenter(array &$cluster): void
     {
