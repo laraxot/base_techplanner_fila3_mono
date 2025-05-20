@@ -1,144 +1,211 @@
-# Convenzioni di Nomenclatura in <nome progetto>
+<?php
 
-Questo documento definisce le convenzioni ufficiali di nomenclatura da utilizzare in tutto il progetto <nome progetto>.
+declare(strict_types=1);
 
-## Convenzioni Generali
+namespace Modules\Xot\Providers;
 
-### Formato Case
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
+use Filament\Infolists\Components\Entry;
+use Filament\Support\Components\Component;
+use Filament\Support\Concerns\Configurable;
+use Filament\Tables\Columns\Column;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\BaseFilter;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
+use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
+use Modules\Xot\Exceptions\Handlers\HandlersRepository;
+use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
+use Modules\Xot\View\Composers\XotComposer;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Webmozart\Assert\Assert;
 
-- **PascalCase**: Prima lettera maiuscola, senza spazi o separatori (es. `UserProfile`)
-  - Usato per: Nomi di classi, interfacce, enumerazioni, nomi dei moduli
-  
-- **camelCase**: Prima lettera minuscola, senza spazi o separatori (es. `getUserProfile`)
-  - Usato per: Metodi, funzioni, proprietà non statiche
-  
-- **snake_case**: Tutte le lettere minuscole, parole separate da underscore (es. `user_profile`)
-  - Usato per: Variabili, costanti di classe (non globali), nomi di file delle viste, tabelle del database, colonne del database
-  
-- **UPPER_SNAKE_CASE**: Tutte le lettere maiuscole, parole separate da underscore (es. `MAX_LOGIN_ATTEMPTS`)
-  - Usato per: Costanti globali, enums
+use function Safe\realpath;
 
-## Moduli
-
-### Nome del Modulo
-
-Il nome del modulo deve essere in formato **PascalCase** con la prima lettera maiuscola.
-
-- ✅ CORRETTO: `Blog`, `UserProfile`, `MobilitaVolontaria`
-- ❌ ERRATO: `blog`, `userProfile`, `mobilitavolontaria`, `Mobilita_Volontaria`
-
-### Namespace del Modulo
-
-I namespace dei moduli devono seguire il formato:
-
-```php
-namespace Modules\NomeModulo;
-```
-
-### Service Provider
-
-Il service provider principale di un modulo deve:
-
-1. Avere il nome che termina con `ServiceProvider` 
-2. Estendere `XotBaseServiceProvider`
-3. Definire una proprietà `$name` con il nome del modulo in **PascalCase**
-
-```php
-class BlogServiceProvider extends XotBaseServiceProvider {
-    public string $name = 'Blog';
-    // ...
-}
-```
-
-## Database
-
-### Tabelle
-
-I nomi delle tabelle devono essere in **snake_case** e al plurale:
-
-- ✅ CORRETTO: `users`, `blog_posts`, `user_profiles`
-- ❌ ERRATO: `User`, `BlogPost`, `user_profile`
-
-### Colonne
-
-I nomi delle colonne devono essere in **snake_case**:
-
-- ✅ CORRETTO: `first_name`, `created_at`, `user_id`
-- ❌ ERRATO: `firstName`, `CreatedAt`, `UserID`
-
-### Chiavi Primarie
-
-Usare `id` come nome della chiave primaria.
-
-### Chiavi Esterne
-
-Usare `table_name_singular_id` come formato per le chiavi esterne:
-
-- ✅ CORRETTO: `user_id`, `blog_post_id`
-- ❌ ERRATO: `userID`, `blogPostId`, `user`
-
-## Filament
-
-### Nomi delle Risorse
-
-I nomi delle risorse Filament devono essere in **PascalCase** e terminare con `Resource`:
-
-- ✅ CORRETTO: `UserResource`, `BlogPostResource`
-- ❌ ERRATO: `Users`, `blogPost`, `Blog_Post_Resource`
-
-### Metodi per le azioni
-
-I metodi per le azioni delle tabelle devono essere **pubblici**:
-
-```php
-// ✅ CORRETTO
-public function getTableHeaderActions(): array
+/**
+ * Class XotServiceProvider.
+ */
+class XotServiceProvider extends XotBaseServiceProvider
 {
-    // ...
-}
+    public string $name = 'Xot';
 
-// ❌ ERRATO
-protected function getTableHeaderActions(): array
-{
-    // ...
-}
-```
+    protected string $module_dir = __DIR__;
 
-## Traduzioni
+    protected string $module_ns = __NAMESPACE__;
 
-### Chiavi di Traduzione
+    public function boot(): void
+    {
+        parent::boot();
+        $this->redirectSSL();
+        $this->registerViewComposers();
+        $this->registerEvents();
+        //$this->registerExceptionHandler(); // guardare come fa sentry
+        $this->registerTimezone();
+        $this->registerProviders();
+    }
 
-Le chiavi di traduzione devono essere in **snake_case**:
+    public function register(): void
+    {
+        parent::register();
+        $this->registerConfig();
+        //$this->registerExceptionHandlersRepository();
+        //$this->extendExceptionHandler();
+        $this->registerCommands();
+    }
 
-```php
-// File di traduzione
-return [
-    'user_profile' => [
-        'title' => 'Profilo Utente',
-        'fields' => [
-            'first_name' => 'Nome',
-            'last_name' => 'Cognome',
-        ],
-    ],
-];
-```
+    public function registerProviders(): void
+    {
+        // $this->app->register(Filament\ModulesServiceProvider::class);
+    }
 
-## Repository Git
+    public function registerTimezone(): void
+    {
+        Assert::string($timezone = config('app.timezone') ?? 'Europe/Berlin', '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($date_format = config('app.date_format') ?? 'd/m/Y', '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($locale = config('app.locale') ?? 'it', '['.__LINE__.']['.class_basename($this).']');
 
-### Nomi dei Branch
+        app()->setLocale($locale);
+        Carbon::setLocale($locale);
+        date_default_timezone_set($timezone);
 
-- **feature/nome-feature**: Per nuove funzionalità
-- **bugfix/descrizione-bug**: Per correzioni di bug
-- **hotfix/descrizione-hotfix**: Per correzioni urgenti
-- **release/versione**: Per preparare release
+        DateTimePicker::configureUsing(fn (DateTimePicker $component) => $component->timezone($timezone));
+        DatePicker::configureUsing(fn (DatePicker $component) => $component->timezone($timezone)->displayFormat($date_format));
+        TimePicker::configureUsing(fn (TimePicker $component) => $component->timezone($timezone));
+        TextColumn::configureUsing(fn (TextColumn $column) => $column->timezone($timezone));
+    }
 
-### Commit Message
+    /*
+     * @see https://github.com/cerbero90/exception-handler
+     --  guardare come fa sentry 
+    public function registerExceptionHandler(): void
+    {
+        $exceptionHandler = $this->app->make(ExceptionHandler::class);
+        if ($exceptionHandler instanceof HandlerDecorator) {
+            $exceptionHandler->reporter(
+                static function (\Throwable $e): void {
+                    $data = (new WebhookErrorFormatter($e))->format();
+                    if ($e instanceof AuthenticationException || $e instanceof NotFoundHttpException) {
+                        return;
+                    }
 
-Formato consigliato:
-```
-type(scope): descrizione breve
+                    if (is_string(config('logging.channels.slack_errors.url'))
+                        && mb_strlen(config('logging.channels.slack_errors.url')) > 5) {
+                        Log::channel('slack_errors')
+                            ->error($e->getMessage(), $data);
+                    }
+                }
+            );
+        }
+    }
+        */
 
-Descrizione dettagliata se necessaria
-```
+    public function registerConfig(): void
+    {
+        // $config_file = realpath(__DIR__.'/../config/metatag.php');
+        // $this->mergeConfigFrom($config_file, 'metatag');
+    }
 
-Tipi: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+    public function loadHelpersFrom(string $path): void
+    {
+        $files = File::files($path);
+        foreach ($files as $file) {
+            if ('php' !== $file->getExtension()) {
+                continue;
+            }
+
+            $realPath = $file->getRealPath();
+            if (false === $realPath) {
+                continue;
+            }
+
+            include_once $realPath;
+        }
+    }
+
+    protected function translatableComponents(): void
+    {
+        $components = [Field::class, BaseFilter::class, Placeholder::class, Column::class, Entry::class];
+        foreach ($components as $component) {
+            /* @var Configurable $component */
+            $component::configureUsing(function (Component $translatable): void {
+                /* @phpstan-ignore method.notFound */
+                $translatable->translateLabel();
+            });
+        }
+    }
+
+    /*
+     * Register the custom exception handlers repository.
+     -- guardare come fa sentry
+    private function registerExceptionHandlersRepository(): void
+    {
+        $this->app->singleton(HandlersRepository::class, HandlersRepository::class);
+    }
+    */
+    /*
+     * Extend the Laravel default exception handler.
+     *
+     * @see https://github.com/cerbero90/exception-handler/blob/master/src/Providers/ExceptionHandlerServiceProvider.php
+     -- guardare come fa sentry
+    private function extendExceptionHandler(): void
+    {
+        $this->app->extend(
+            ExceptionHandler::class,
+            static function (ExceptionHandler $handler, $app) {
+                return new HandlerDecorator($handler, $app[HandlersRepository::class]);
+            }
+        );
+    }
+    */
+    private function redirectSSL(): void
+    {
+        // --- meglio ficcare un controllo anche sull'env
+        if (
+            config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
+            && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
+        ) {
+            URL::forceScheme('https');
+            /*
+             * da fare in htaccess
+             */
+            if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
+                exit(redirect()->secure(request()->getRequestUri()));
+            }
+        }
+    }
+
+    /**
+     * Undocumented function.
+     *
+     * @see https://medium.com/@dobron/running-laravel-ide-helper-generator-automatically-b909e75849d0
+     */
+    private function registerEvents(): void
+    {
+        Event::listen(
+            MigrationsEnded::class,
+            static function (): void {
+                // Artisan::call('ide-helper:models -r -W');
+            }
+        );
+    }
+
+    private function registerViewComposers(): void
+    {
+        View::composer('*', XotComposer::class);
+    }
+
+
+} // end class
