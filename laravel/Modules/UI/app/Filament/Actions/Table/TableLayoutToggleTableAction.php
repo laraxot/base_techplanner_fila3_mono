@@ -2,13 +2,21 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
+namespace Modules\UI\Filament\Actions\Table;
+=======
 namespace Modules\UI\app\Filament\Actions\Table;
+>>>>>>> 77f8368 (.)
 
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Session;
 use Modules\UI\Enums\TableLayout;
+<<<<<<< HEAD
+use Modules\UI\Traits\TableLayoutTrait;
+=======
 use Modules\UI\app\Traits\TableLayoutTrait;
+>>>>>>> 77f8368 (.)
 
 class TableLayoutToggleTableAction extends Action
 {
@@ -47,4 +55,12 @@ class TableLayoutToggleTableAction extends Action
     {
         return $this->getTableLayout();
     }
+<<<<<<< HEAD
+
+    public static function getDefaultName(): string
+    {
+        return 'table_layout_toggle';
+    }
+=======
+>>>>>>> 77f8368 (.)
 }

@@ -97,3 +97,14 @@ cache/
 .git-blame-ignore-revs
 .php-cs-fixer.cache
 .php-cs-fixer.cache
+<<<<<<< HEAD
+
+# Backup files
+*.bak
+# File di log
+*.log
+-e 
+# PHPStan documentation
+docs/phpstan/
+=======
+>>>>>>> c2eb445 (.)

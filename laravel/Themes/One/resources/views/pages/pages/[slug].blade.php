@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
+declare(strict_types=1);
+=======
 
+>>>>>>> 1b374b6 (.)
 use Modules\Cms\Models\Page;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;

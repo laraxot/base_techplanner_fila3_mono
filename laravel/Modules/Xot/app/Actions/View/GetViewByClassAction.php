@@ -30,32 +30,53 @@ class GetViewByClassAction
             if ($key > 0 && isset($after[$key - 1])) {
                 /** @var mixed $prevValue */
                 $prevValue = $after[$key - 1];
+<<<<<<< HEAD
+
+                // Gestione sicura delle conversioni di tipo per PHPStan level 10
+                $prevValueStr = '';
+
+=======
                 
                 // Gestione sicura delle conversioni di tipo per PHPStan level 10
                 $prevValueStr = '';
                 
+>>>>>>> 9d6070e (.)
                 if (is_string($prevValue)) {
                     $prevValueStr = $prevValue;
                 } elseif ($prevValue === null) {
                     $prevValueStr = '';
                 } elseif (is_scalar($prevValue)) {
                     // Cast sicuro per valori scalari (int, float, bool)
+<<<<<<< HEAD
+                    $prevValueStr = strval($prevValue);
+                }
+
+=======
                    // $prevValueStr = is_string($prevValue) ? $prevValue : (string) $prevValue;
                    $prevValueStr = strval( $prevValue);
                 }
                 
+>>>>>>> 9d6070e (.)
                 $singular = Str::of($prevValueStr)->singular()->toString();
                 if (Str::endsWith($value, $singular)) {
                     $value = Str::of($value)->beforeLast($singular)->toString();
                 }
             }
+<<<<<<< HEAD
+
+=======
             
+>>>>>>> 9d6070e (.)
             return Str::of($value)->slug()->toString();
         });
 
         $implode = implode('.', $mapped);
         $view = $module_low.'::'.$implode.$suffix;
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> 9d6070e (.)
         if (!view()->exists($view)) {
             throw new \Exception('View not found: '.$view);
         }

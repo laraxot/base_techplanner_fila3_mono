@@ -75,3 +75,22 @@ Now that you’ve edited your configuration variables and know how to customize 
 # options: dev, prod
 npm run dev
 ```
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di getting-started.md
+* [getting-started.md](../../../Gdpr/docs/getting-started.md)
+* [getting-started.md](../../../Xot/docs/getting-started.md)
+* [getting-started.md](../../../UI/docs/getting-started.md)
+* [getting-started.md](../../../Tenant/docs/it/getting-started.md)
+* [getting-started.md](../../../Cms/docs/getting-started.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

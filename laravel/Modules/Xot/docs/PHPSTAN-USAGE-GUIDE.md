@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+# Guida all'Utilizzo di PHPStan nel Framework Laraxot <nome progetto>
+
+## Introduzione
+
+PHPStan è uno strumento di analisi statica che aiuta a identificare errori nel codice senza doverlo eseguire. Questo documento fornisce informazioni dettagliate su come usare PHPStan nel contesto del framework Laraxot <nome progetto>.
+=======
 # Guida all'Utilizzo di PHPStan nel Framework Laraxot PTVX
 
 ## Introduzione
 
 PHPStan è uno strumento di analisi statica che aiuta a identificare errori nel codice senza doverlo eseguire. Questo documento fornisce informazioni dettagliate su come usare PHPStan nel contesto del framework Laraxot PTVX.
+>>>>>>> 9d6070e (.)
 
 ## Comando Base per Eseguire PHPStan
 
@@ -57,7 +65,11 @@ Per analizzare tutti i moduli (può richiedere molto tempo):
 
 ## Livelli di Analisi
 
+<<<<<<< HEAD
+PHPStan offre più livelli di rigore nell'analisi (da 0 a 10). Il framework Laraxot <nome progetto> mira a essere compatibile con:
+=======
 PHPStan offre più livelli di rigore nell'analisi (da 0 a 10). Il framework Laraxot PTVX mira a essere compatibile con:
+>>>>>>> 9d6070e (.)
 
 - **Livello 9:** Standard attuale del progetto
 - **Livello 10:** Obiettivo futuro (massima rigidità)
@@ -72,7 +84,11 @@ PHPStan offre più livelli di rigore nell'analisi (da 0 a 10). Il framework Lara
 
 ## Configurazione
 
+<<<<<<< HEAD
+La configurazione di PHPStan per Laraxot <nome progetto> si trova in:
+=======
 La configurazione di PHPStan per Laraxot PTVX si trova in:
+>>>>>>> 9d6070e (.)
 
 ```
 laravel/phpstan.neon
@@ -220,7 +236,11 @@ jobs:
 
 ## Conclusione
 
+<<<<<<< HEAD
+Seguendo questa guida, sarai in grado di utilizzare efficacemente PHPStan all'interno del framework Laraxot <nome progetto>. Ricorda che l'obiettivo è migliorare la qualità del codice e prevenire errori, non complicare lo sviluppo. Utilizzando PHPStan regolarmente, potrai identificare e correggere i problemi prima che diventino critici.
+=======
 Seguendo questa guida, sarai in grado di utilizzare efficacemente PHPStan all'interno del framework Laraxot PTVX. Ricorda che l'obiettivo è migliorare la qualità del codice e prevenire errori, non complicare lo sviluppo. Utilizzando PHPStan regolarmente, potrai identificare e correggere i problemi prima che diventino critici.
+>>>>>>> 9d6070e (.)
 
 ## Promemoria Rapido
 

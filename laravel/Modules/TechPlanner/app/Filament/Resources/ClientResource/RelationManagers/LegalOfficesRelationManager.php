@@ -19,9 +19,16 @@ class LegalOfficesRelationManager extends XotBaseRelationManager
 
     protected static string $resource = LegalOfficeResource::class;
 
+<<<<<<< HEAD
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+=======
     public function getFormSchema(): array
     {
         return [
+>>>>>>> b32e314 (.)
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(100),
@@ -45,7 +52,11 @@ class LegalOfficesRelationManager extends XotBaseRelationManager
                     ->maxLength(255),
                 Forms\Components\Textarea::make('notes')
                     ->maxLength(65535),
+<<<<<<< HEAD
+            ]);
+=======
             ];
+>>>>>>> b32e314 (.)
     }
 
     public function table(Table $table): Table

@@ -79,6 +79,39 @@ return new class extends XotBaseMigration
                 if (! $this->hasColumn('created_by')) {
                     $table->string('created_by')->nullable()->after('created_at');
                 }
+<<<<<<< HEAD
+
+                if (! $this->hasColumn('phone')) {
+                    $table->string('phone')->nullable();
+                }
+                if (! $this->hasColumn('website')) {
+                    $table->string('website')->nullable();
+                }
+                if (! $this->hasColumn('email')) {
+                    $table->string('email')->nullable();
+                }
+
+                if (! $this->hasColumn('formatted_address')) {
+                    $table->string('formatted_address')->nullable();
+                }
+                if (! $this->hasColumn('latitude')) {
+                    $table->decimal('latitude', 11, 8)->nullable();
+                }
+                if (! $this->hasColumn('longitude')) {
+                    $table->decimal('longitude', 11, 8)->nullable();
+                }
+                if (! $this->hasColumn('updated_at')) {
+                    $table->timestamps();
+                }
+                if (! $this->hasColumn('updated_by')) {
+                    $table->string('updated_by')->nullable()->after('updated_at');
+                }
+                if (! $this->hasColumn('created_by')) {
+                    $table->string('created_by')->nullable()->after('created_at');
+                }
+
+=======
+>>>>>>> b32e314 (.)
                 if (! $this->hasColumn('full_name')) {
                     $table->string('full_name')->nullable()->after('first_name');
                 }

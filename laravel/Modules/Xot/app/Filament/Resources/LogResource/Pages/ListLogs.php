@@ -19,7 +19,11 @@ class ListLogs extends XotBaseListRecords
 {
     protected static string $resource = LogResource::class;
 
+<<<<<<< HEAD
+    public function getTableColumns(): array
+=======
     public function getListTableColumns(): array
+>>>>>>> 9d6070e (.)
     {
         return [
             'id' => TextColumn::make('id')

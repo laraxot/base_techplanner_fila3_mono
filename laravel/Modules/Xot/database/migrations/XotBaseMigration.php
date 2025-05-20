@@ -138,6 +138,14 @@ abstract class XotBaseMigration extends Migration
         return $this->getConn()->hasColumn($this->getTable(), $column);
     }
 
+<<<<<<< HEAD
+    public function hasTable(string $table): bool
+    {
+        return $this->getConn()->hasTable($table);
+    }
+
+=======
+>>>>>>> 9d6070e (.)
     public function getColumnType(string $column): string
     {
         try {

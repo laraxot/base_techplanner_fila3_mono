@@ -12,10 +12,19 @@ use Filament\Support\Colors\Color;
 use Modules\Xot\Actions\File\AssetAction;
 use Modules\Tenant\Services\TenantService;
 use Spatie\LaravelData\Concerns\WireableData;
+<<<<<<< HEAD
+use Spatie\LaravelData\Attributes\WithTransformer;
+use Modules\Xot\Datas\Transformers\AssetTransformer;
+
+/**
+ * Class MetatagData
+ *
+=======
 
 /**
  * Class MetatagData
  * 
+>>>>>>> 9d6070e (.)
  * @property string $title
  * @property string $sitename
  * @property string $subtitle
@@ -92,6 +101,10 @@ class MetatagData extends Data implements Wireable
     public string $logo_square = '';
 
     /** @var string */
+<<<<<<< HEAD
+    #[WithTransformer(AssetTransformer::class)]
+=======
+>>>>>>> 9d6070e (.)
     public string $logo_header = '';
 
     /** @var string */
@@ -141,7 +154,11 @@ class MetatagData extends Data implements Wireable
 
     /** @var string */
     public string $favicon = '/favicon.ico';
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 9d6070e (.)
     /**
      * @var array<string, array{key?: string, color: string, hex?: string}>
      */
@@ -169,11 +186,33 @@ class MetatagData extends Data implements Wireable
     }
 
     /**
+<<<<<<< HEAD
+     * Get the brand name.
+     * This method reflects the semantic purpose of getting the brand name,
+     * which is the title of the page.
+     *
+     * @return string
+     */
+    public function getBrandName(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * Get the brand logo.
+     * This method reflects the semantic purpose of getting the brand logo,
+     * rather than exposing implementation details about where the logo is used.
+     *
+     * @return string
+     */
+    public function getBrandLogo(): string
+=======
      * Get the header logo URL.
      *
      * @return string
      */
     public function getLogoHeader(): string
+>>>>>>> 9d6070e (.)
     {
         try {
             /** @var string $path */
@@ -185,11 +224,20 @@ class MetatagData extends Data implements Wireable
     }
 
     /**
+<<<<<<< HEAD
+     * Get the dark mode brand logo.
+     * This method reflects the semantic purpose of getting the dark mode brand logo.
+     *
+     * @return string
+     */
+    public function getDarkModeBrandLogo(): string
+=======
      * Get the dark header logo URL.
      *
      * @return string
      */
     public function getLogoHeaderDark(): string
+>>>>>>> 9d6070e (.)
     {
         try {
             /** @var string $path */
@@ -201,16 +249,118 @@ class MetatagData extends Data implements Wireable
     }
 
     /**
+<<<<<<< HEAD
+     * Get the brand logo height.
+     * This method reflects the semantic purpose of getting the brand logo height.
+     *
+     * @return string
+     */
+    public function getBrandLogoHeight(): string
+=======
      * Get the logo height.
      *
      * @return string
      */
     public function getLogoHeight(): string
+>>>>>>> 9d6070e (.)
     {
         return $this->logo_height;
     }
 
     /**
+<<<<<<< HEAD
+     * Get the theme colors.
+     * This method reflects the semantic purpose of getting theme colors,
+     * rather than exposing the raw color data structure.
+     *
+     * @return array<string, string>
+     */
+    public function getThemeColors(): array
+    {
+        $defaults = $this->getFilamentColors();
+        $custom = [];
+        foreach ($this->colors as $key => $value) {
+            if (Arr::has($value, 'color')) {
+                $custom[$key] = (string) $value['color'];
+            }
+        }
+        return array_merge($defaults, $custom);
+    }
+
+    /**
+     * Get the theme settings.
+     * This method reflects the semantic purpose of getting theme settings.
+     *
+     * @return array<string, string>
+     */
+    public function getThemeSettings(): array
+    {
+        return [
+            'color_primary' => $this->color_primary,
+            'color_title' => $this->color_title,
+            'color_megamenu' => $this->color_megamenu,
+            'color_hamburger' => $this->color_hamburger,
+            'color_banner' => $this->color_banner,
+        ];
+    }
+
+    /**
+     * Get the brand description.
+     * This method reflects the semantic purpose of getting the brand description.
+     *
+     * @return string|null
+     */
+    public function getBrandDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Get the brand social links.
+     * This method reflects the semantic purpose of getting social media links.
+     *
+     * @return array<string, string>
+     */
+    public function getBrandSocialLinks(): array
+    {
+        return [
+            'facebook' => $this->facebook_href,
+            'twitter' => $this->twitter_href,
+            'youtube' => $this->youtube_href,
+        ];
+    }
+
+    /**
+     * Get the brand dimensions.
+     * This method reflects the semantic purpose of getting brand-related dimensions.
+     *
+     * @return array<string, string>
+     */
+    public function getBrandDimensions(): array
+    {
+        return [
+            'logo_height' => $this->logo_height,
+        ];
+    }
+
+    /**
+     * Get the brand settings.
+     * This method reflects the semantic purpose of getting brand-related settings.
+     *
+     * @return array<string, string>
+     */
+    public function getBrandSettings(): array
+    {
+        return [
+            'fastlink' => $this->fastlink,
+            'hide_megamenu' => $this->hide_megamenu,
+            'hero_type' => $this->hero_type,
+        ];
+    }
+
+    /**
+=======
+>>>>>>> 9d6070e (.)
      * Get the favicon URL.
      *
      * @return string
@@ -227,6 +377,17 @@ class MetatagData extends Data implements Wireable
     }
 
     /**
+<<<<<<< HEAD
+     * @deprecated Use getThemeColors() instead as it better reflects the semantic purpose
+     */
+    public function getColors(): array
+    {
+        return $this->getThemeColors();
+    }
+
+    /**
+=======
+>>>>>>> 9d6070e (.)
      * Get the default Filament colors configuration.
      *
      * @return array<string, array<int, string>>
@@ -248,6 +409,146 @@ class MetatagData extends Data implements Wireable
      *
      * @return array<string, array<int, string>>
      */
+<<<<<<< HEAD
+    public function getAllColors(): array
+    {
+        return array_merge($this->getFilamentColors(), $this->colors);
+    }
+
+    /**
+     * Get the icons array.
+     *
+     * @return array<string, string>
+     */
+    public function getIcons(): array
+    {
+        return [
+            'logo' => $this->logo,
+            'logo_square' => $this->logo_square,
+            'logo_header' => $this->logo_header,
+            'logo_header_dark' => $this->logo_header_dark,
+            'logo_footer' => $this->logo_footer,
+            'favicon' => $this->favicon,
+        ];
+    }
+
+    /**
+     * Get the alignment array.
+     *
+     * @return array<string, string>
+     */
+    public function getAlignment(): array
+    {
+        return [
+            'hide_megamenu' => $this->hide_megamenu,
+            'hero_type' => $this->hero_type,
+        ];
+    }
+
+    /**
+     * Get the settings array.
+     *
+     * @return array<string, string>
+     */
+    public function getSettings(): array
+    {
+        return $this->getBrandSettings();
+    }
+
+    /**
+     * Get the meta values array.
+     *
+     * @return array<string, string|null>
+     */
+    public function getMetaValues(): array
+    {
+        return [
+            'title' => $this->title,
+            'sitename' => $this->sitename,
+            'subtitle' => $this->subtitle,
+            'generator' => $this->generator,
+            'charset' => $this->charset,
+            'author' => $this->author,
+            'description' => $this->description,
+            'keywords' => $this->keywords,
+            'nome_regione' => $this->nome_regione,
+            'nome_comune' => $this->nome_comune,
+            'site_title' => $this->site_title,
+        ];
+    }
+
+    /**
+     * Get the social cards array.
+     *
+     * @return array<string, string>
+     */
+    public function getSocialCards(): array
+    {
+        return $this->getBrandSocialLinks();
+    }
+
+    /**
+     * Get the OpenGraph array.
+     *
+     * @return array<string, string|null>
+     */
+    public function getOpenGraph(): array
+    {
+        return [
+            'title' => $this->title,
+            'description' => $this->description,
+            'type' => 'website',
+            'url' => url()->current(),
+            'site_name' => $this->sitename,
+        ];
+    }
+
+    /**
+     * Get the Twitter Cards array.
+     *
+     * @return array<string, string|null>
+     */
+    public function getTwitterCards(): array
+    {
+        return [
+            'card' => 'summary_large_image',
+            'title' => $this->title,
+            'description' => $this->description,
+            'site' => $this->twitter_href,
+        ];
+    }
+
+    /**
+     * @deprecated Use getBrandName() instead as it better reflects the semantic purpose
+     */
+    public function getTitle(): string
+    {
+        return $this->getBrandName();
+    }
+
+    /**
+     * @deprecated Use getBrandLogo() instead as it better reflects the semantic purpose
+     */
+    public function getLogoHeader(): string
+    {
+        return $this->getBrandLogo();
+    }
+
+    /**
+     * @deprecated Use getDarkModeBrandLogo() instead as it better reflects the semantic purpose
+     */
+    public function getLogoHeaderDark(): string
+    {
+        return $this->getDarkModeBrandLogo();
+    }
+
+    /**
+     * @deprecated Use getBrandLogoHeight() instead as it better reflects the semantic purpose
+     */
+    public function getLogoHeight(): string
+    {
+        return $this->getBrandLogoHeight();
+=======
     public function getColors(): array
     {
         if (empty($this->colors)) {
@@ -276,5 +577,6 @@ class MetatagData extends Data implements Wireable
         );
         
         return $mapped;
+>>>>>>> 9d6070e (.)
     }
 }

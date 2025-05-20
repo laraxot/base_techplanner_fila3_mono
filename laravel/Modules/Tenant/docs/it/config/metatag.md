@@ -31,4 +31,21 @@ return [
     'color_megamenu' => '#d60021',
     'color_hamburger' => '#000',
     'color_banner' => '#000',
+<<<<<<< HEAD
+### Versione HEAD
+
 ];
+## Collegamenti tra versioni di metatag.md
+* [metatag.md](../../../Xot/docs/install/metatag.md)
+* [metatag.md](../../../Tenant/docs/it/config/metatag.md)
+
+
+### Versione Incoming
+
+];
+
+---
+
+=======
+];
+>>>>>>> 9bcd1bb (.)

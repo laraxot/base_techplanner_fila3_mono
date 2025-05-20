@@ -10,7 +10,11 @@ use Filament\Tables\Actions\ActionGroup;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Filament\Resources\HasMediaResource\Actions\AddAttachmentAction;
 use Modules\Media\Filament\Resources\MediaResource;
+<<<<<<< HEAD
+use Modules\Xot\Filament\Resources\XotBaseResource\RelationManagers\XotBaseRelationManager;
+=======
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+>>>>>>> c2eb445 (.)
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 
 class MediaRelationManager extends XotBaseRelationManager

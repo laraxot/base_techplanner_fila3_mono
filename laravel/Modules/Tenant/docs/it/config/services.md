@@ -35,3 +35,19 @@ return [
         'webhook' => env('TELEGRAM_BOT_WEBHOOK'),
     ],
 ];
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di services.md
+* [services.md](../../../Xot/docs/services.md)
+* [services.md](../../../Tenant/docs/it/config/services.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9bcd1bb (.)

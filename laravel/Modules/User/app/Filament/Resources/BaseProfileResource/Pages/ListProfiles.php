@@ -25,7 +25,11 @@ class ListProfiles extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+<<<<<<< HEAD
+    public function getTableColumns(): array
+=======
     public function getListTableColumns(): array
+>>>>>>> 0b525d2 (.)
     {
         return [
             'user.name' => TextColumn::make('user.name')

@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
+namespace Modules\User\Enums\Enums;
+=======
 namespace Modules\User\Enums;
+>>>>>>> 0b525d2 (.)
 
 use Filament\Support\Contracts\HasLabel;
 

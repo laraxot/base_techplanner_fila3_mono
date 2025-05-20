@@ -8,6 +8,15 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Modules\Xot\Datas\XotData;
+<<<<<<< HEAD
+use Modules\User\Http\Controllers\Auth\LogoutController;
+
+require 'socialite.php';
+
+
+if (XotData::make()->register_pub_theme) {
+    // require 'web_tall.php';
+=======
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +75,14 @@ Route::namespace('\\')
 
 if (XotData::make()->register_pub_theme) {
     require 'web_tall.php';
+>>>>>>> 0b525d2 (.)
 } else {
     Route::get('/login', static fn () => redirect('/admin/login'))->name('login');
 }
 
+<<<<<<< HEAD
+Route::post('/logout', LogoutController::class)->name('logout');
+//Route::get('/upgrade', 'UpgradeController');
+=======
 Route::get('/upgrade', 'UpgradeController');
+>>>>>>> 0b525d2 (.)

@@ -82,3 +82,20 @@ foreach ($dbs as $k => $v) {
 return $def1;
 
 ~~~
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di database.md
+* [database.md](docs/tecnico/database/database.md)
+* [database.md](../../../Xot/docs/install/database.md)
+* [database.md](../../../Tenant/docs/it/config/database.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

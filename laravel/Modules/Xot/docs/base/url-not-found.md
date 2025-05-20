@@ -34,4 +34,21 @@ define ROOT "C:/var/www/nome_giunzione/public"
 a  
 define ROOT "C:/var/www/nome_giunzione/public_html"  
 
+<<<<<<< HEAD
+### Versione HEAD
+
 **NB**: dopo aver fatto questa modifica, riavviare laragon
+## Collegamenti tra versioni di url-not-found.md
+* [url-not-found.md](../../../Xot/docs/base/url-not-found.md)
+* [url-not-found.md](../../../Xot/docs/errors/url-not-found.md)
+
+
+### Versione Incoming
+
+**NB**: dopo aver fatto questa modifica, riavviare laragon
+
+---
+
+=======
+**NB**: dopo aver fatto questa modifica, riavviare laragon
+>>>>>>> 9d6070e (.)

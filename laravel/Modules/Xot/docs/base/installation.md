@@ -130,3 +130,24 @@ se il branch di un modulo vuole essere pubblicato, eseguire nel modulo
 ```bash
 ../../../bascripts/git_init.sh nome_branch
 ```  
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di installation.md
+* [installation.md](../../../Xot/docs/filament/installation.md)
+* [installation.md](../../../Xot/docs/installation.md)
+* [installation.md](../../../Xot/docs/base/installation.md)
+* [installation.md](../../../User/docs/installation.md)
+* [installation.md](../../../Lang/docs/installation.md)
+* [installation.md](../../../Cms/docs/installation.md)
+* [installation.md](../../../../Themes/One/docs/installation.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

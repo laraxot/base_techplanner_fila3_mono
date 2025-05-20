@@ -24,3 +24,21 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/__php-code-analysis-tools
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/phpstan.txt}
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/phpstan_error.txt}
 ```
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di testing.md
+* [testing.md](../../../Xot/docs/packages/testing.md)
+* [testing.md](../../../Xot/docs/development/testing.md)
+* [testing.md](../../../Cms/docs/frontoffice/testing.md)
+* [testing.md](../../../../Themes/One/docs/testing.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

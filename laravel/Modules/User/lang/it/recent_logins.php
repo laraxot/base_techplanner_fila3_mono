@@ -33,5 +33,11 @@ return [
         'openFilters' => [
             'label' => 'openFilters',
         ],
+<<<<<<< HEAD
+        'user' => [
+            'label' => 'user',
+        ],
+=======
+>>>>>>> 0b525d2 (.)
     ],
 ];

@@ -343,4 +343,31 @@ class RetryTest extends TestCase {
    - Pulizia job vecchi
    - Ottimizzazione indici
    - Review configurazioni
+<<<<<<< HEAD
+### Versione HEAD
+
+### Versione HEAD
+
    - Aggiornamento strategie retry 
+## Collegamenti tra versioni di solutions.md
+* [solutions.md](../../../Gdpr/docs/solutions.md)
+* [solutions.md](../../../Xot/docs/solutions.md)
+* [solutions.md](../../../Job/docs/solutions.md)
+
+
+### Versione Incoming
+
+   - Aggiornamento strategie retry 
+
+---
+
+
+### Versione Incoming
+
+   - Aggiornamento strategie retry 
+
+---
+
+=======
+   - Aggiornamento strategie retry 
+>>>>>>> 61130fb (.)

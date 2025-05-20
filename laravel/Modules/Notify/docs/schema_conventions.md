@@ -51,4 +51,21 @@ Here's a complete example of a properly formatted schema:
         'updated_at' => TextEntry::make('updated_at')
             ->dateTime(),
     ])
+<<<<<<< HEAD
+### Versione HEAD
+
 ```
+## Collegamenti tra versioni di schema_conventions.md
+* [schema_conventions.md](docs/schema_conventions.md)
+* [schema_conventions.md](../../../Notify/docs/schema_conventions.md)
+
+
+### Versione Incoming
+
+```
+
+---
+
+=======
+```
+>>>>>>> c57e89d (.)

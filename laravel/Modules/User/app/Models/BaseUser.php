@@ -30,6 +30,11 @@ use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Models\Traits\RelationX;
 use Spatie\Permission\Traits\HasRoles;
+<<<<<<< HEAD
+use Parental\HasChildren;
+use Illuminate\Support\Facades\Schema;
+=======
+>>>>>>> 0b525d2 (.)
 
 /**
  * Modules\User\Models\User.
@@ -121,12 +126,21 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     use HasApiTokens;
     use HasFactory;
     use HasRoles;
+<<<<<<< HEAD
+=======
     use HasTeams;
+>>>>>>> 0b525d2 (.)
     use HasUuids;
     use Notifiable;
     use RelationX;
     use Traits\HasAuthenticationLogTrait;
     use Traits\HasTenants;
+<<<<<<< HEAD
+    use Traits\HasTeams;
+    use HasChildren;
+
+=======
+>>>>>>> 0b525d2 (.)
 
     public $incrementing = false;
 
@@ -139,6 +153,12 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     /** @var string */
     protected $keyType = 'string';
 
+<<<<<<< HEAD
+    /** @var string */
+    protected $childColumn = 'type';
+
+=======
+>>>>>>> 0b525d2 (.)
     /** @var list<string> */
     protected $fillable = [
         'id',
@@ -152,6 +172,10 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         'is_active',
         'is_otp', // is One Time Password
         'password_expires_at',
+<<<<<<< HEAD
+        'type',
+=======
+>>>>>>> 0b525d2 (.)
     ];
 
     /** @var list<string> */
@@ -172,6 +196,14 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         // 'profile_photo_url',
     ];
 
+<<<<<<< HEAD
+    /** @var array<string, class-string> */
+    protected $childTypes = [
+
+    ];
+
+=======
+>>>>>>> 0b525d2 (.)
     /** @var \Illuminate\Database\Eloquent\Relations\Pivot|null */
     public $pivot;
 
@@ -213,6 +245,20 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         return $this->hasOne($profileClass);
     }
 
+<<<<<<< HEAD
+    /**
+     * Verifica se l'utente ha il ruolo di super-admin.
+     *
+     * @return bool True se l'utente è super-admin, altrimenti false
+     */
+    public function isSuperAdmin(): bool
+    {
+        return $this->hasRole('super-admin');
+    }
+
+
+=======
+>>>>>>> 0b525d2 (.)
     public function canAccessPanel(Panel $panel): bool
     {
         // $panel->default('admin');
@@ -296,7 +342,11 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
      *
      * @return MorphMany<Notification, static|$this>
      */
+<<<<<<< HEAD
+    public function notifications()
+=======
     public function notifications(): MorphMany
+>>>>>>> 0b525d2 (.)
     {
         // @phpstan-ignore return.type
         return $this->morphMany(Notification::class, 'notifiable');
@@ -371,6 +421,9 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         ];
     }
 
+<<<<<<< HEAD
+
+=======
     /**
      * Check if the user has teams.
      */
@@ -405,6 +458,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         /** @var array<int, string> */
         return $role->permissions->pluck('name')->values()->toArray();
     }
+>>>>>>> 0b525d2 (.)
 
     /**
      * Get the role name for the current team.
@@ -413,7 +467,11 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
      */
     /**
      * Get all role names associated with the user.
+<<<<<<< HEAD
+     *
+=======
      * 
+>>>>>>> 0b525d2 (.)
      * @return array<int, string>
      */
     public function getRoleNames(): array
@@ -422,6 +480,11 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         return $this->roles()->pluck('name')->filter()->values()->toArray();
     }
 
+<<<<<<< HEAD
+
+
+
+=======
     public function personalTeam(): ?Team
     {
         /** @var Team|null */
@@ -559,6 +622,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     {
         return $this->belongsToMany(Tenant::class, 'tenant_user');
     }
+>>>>>>> 0b525d2 (.)
 
     public function authentications(): MorphMany
     {
@@ -576,7 +640,13 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     {
         // Se è una stringa semplice, utilizziamo il metodo interno tramite relazione roles
         if (is_string($roles)) {
+<<<<<<< HEAD
+            return once(function () use ($roles) {
+                return $this->roles()->where('name', $roles)->exists();
+            });
+=======
             return $this->roles()->where('name', $roles)->exists();
+>>>>>>> 0b525d2 (.)
         }
 
         // Per gli altri tipi, implementiamo una logica di base

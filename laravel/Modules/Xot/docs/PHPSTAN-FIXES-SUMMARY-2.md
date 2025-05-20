@@ -1,6 +1,10 @@
 # Riepilogo delle Soluzioni ai Problemi PHPStan Livello 9
 
+<<<<<<< HEAD
+Questo documento riassume le soluzioni implementate per risolvere i problemi più comuni di PHPStan a livello 9 nel progetto <nome progetto>. Serve come guida di riferimento rapido per sviluppatori che affrontano errori simili.
+=======
 Questo documento riassume le soluzioni implementate per risolvere i problemi più comuni di PHPStan a livello 9 nel progetto PTVX. Serve come guida di riferimento rapido per sviluppatori che affrontano errori simili.
+>>>>>>> 9d6070e (.)
 
 ## Problemi Principali Risolti
 

@@ -111,3 +111,20 @@ return [
 
 
 ~~~
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di auth.md
+* [auth.md](../../../Xot/docs/install/auth.md)
+* [auth.md](../../../User/docs/lang/en/auth.md)
+* [auth.md](../../../Tenant/docs/it/config/auth.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

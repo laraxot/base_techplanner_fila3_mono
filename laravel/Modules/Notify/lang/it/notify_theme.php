@@ -1,4 +1,9 @@
 <?php
+<<<<<<< HEAD
+declare(strict_types=1);
+
+=======
+>>>>>>> c57e89d (.)
 
 return [
     'navigation' => [
@@ -159,4 +164,10 @@ return [
             'message' => 'Il tema è stato impostato come predefinito',
         ],
     ],
+<<<<<<< HEAD
+    'model' => [
+        'label' => 'Tema Notifica',
+    ],
+=======
+>>>>>>> c57e89d (.)
 ];

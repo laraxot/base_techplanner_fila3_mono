@@ -4,6 +4,24 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
+<<<<<<< HEAD
+use Livewire\Wireable;
+use function Safe\realpath;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Spatie\LaravelData\Data;
+use Webmozart\Assert\Assert;
+use Modules\User\Models\Team;
+use Modules\User\Models\Membership;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Contracts\UserContract;
+use Modules\User\Contracts\TeamContract;
+use Modules\Tenant\Services\TenantService;
+use Modules\User\Contracts\TenantContract;
+
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\LaravelData\Concerns\WireableData;
+=======
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Livewire\Wireable;
@@ -19,6 +37,7 @@ use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 
 use function Safe\realpath;
+>>>>>>> 9d6070e (.)
 
 /**
  * Class Modules\Xot\Datas\XotData.
@@ -300,4 +319,32 @@ class XotData extends Data implements Wireable
             throw new \Exception('realpath not find dir['.$path0.']'.PHP_EOL.'['.$e->getMessage().']');
         }
     }
+<<<<<<< HEAD
+
+
+    /**
+     * @return class-string<Model&UserContract>
+     */
+    public function getUserTypeClass(string $type): string{
+        $user_class = $this->getUserClass();
+        $userInstance = app($user_class);
+        $types=$userInstance->getChildTypes();
+        $class=Arr::get($types, $type);
+        if(is_null($class)){
+            throw new \Exception('type '.$type.' not found in class '.$user_class);
+        }
+        return $class;
+    }
+
+    public function getUserTypeResourceClass(string $type): string{
+        $class=$this->getUserTypeClass($type);
+        $resourceClass=Str::of($class)
+            ->replace('\Models\\', '\Filament\Resources\\')
+            ->append('Resource')
+            ->toString();
+        return $resourceClass;
+    }
+
+=======
+>>>>>>> 9d6070e (.)
 }

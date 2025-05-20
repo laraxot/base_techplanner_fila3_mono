@@ -1,10 +1,15 @@
 <?php
 
+<<<<<<< HEAD
+namespace Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
+
+=======
 declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
 
 use Filament\Infolists\Components;
+>>>>>>> b32e314 (.)
 use Modules\TechPlanner\Filament\Resources\ClientResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 
@@ -12,6 +17,8 @@ class ViewClient extends XotBaseViewRecord
 {
     protected static string $resource = ClientResource::class;
 
+<<<<<<< HEAD
+=======
     protected function getInfolistSchema(): array
     {
         return [
@@ -48,6 +55,7 @@ class ViewClient extends XotBaseViewRecord
         ];
     }
 
+>>>>>>> b32e314 (.)
     protected function getHeaderActions(): array
     {
         return [

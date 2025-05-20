@@ -51,4 +51,24 @@ Il modulo UI fornisce componenti e layout standardizzati per l'interfaccia utent
 - TailwindCSS
 - Alpine.js
 - Filament
+<<<<<<< HEAD
+### Versione HEAD
+
 - Livewire 
+## Collegamenti tra versioni di readme.md
+* [readme.md](../../../Gdpr/docs/readme.md)
+* [readme.md](../../../UI/docs/readme.md)
+* [readme.md](../../../Lang/docs/readme.md)
+* [readme.md](../../../Activity/docs/readme.md)
+* [readme.md](../../../Cms/docs/readme.md)
+
+
+### Versione Incoming
+
+- Livewire 
+
+---
+
+=======
+- Livewire 
+>>>>>>> 77f8368 (.)

@@ -6,6 +6,37 @@
 - **Namespace**: `Modules\Lang`
 - **Repository**: https://github.com/laraxot/module_lang_fila3.git
 
+<<<<<<< HEAD
+### Versione HEAD
+
+## Collegamenti ai Moduli
+
+### Moduli con Traduzioni
+- [Modulo Patient](../../Patient/docs/translations.md) - Traduzioni per il modulo paziente
+- [Modulo User](../../User/docs/translations.md) - Traduzioni per la gestione utenti
+- [Modulo UI](../../UI/docs/translations.md) - Traduzioni per i componenti UI
+- [Modulo Cms](../../Cms/docs/translations.md) - Traduzioni per il CMS
+- [Modulo Media](../../Media/docs/translations.md) - Traduzioni per la gestione media
+- [Modulo Dental](../../Dental/docs/translations.md) - Traduzioni per il modulo dentale
+- [Modulo Activity](../../Activity/docs/translations.md) - Traduzioni per le attività
+- [Modulo Chart](../../Chart/docs/translations.md) - Traduzioni per i grafici
+- [Modulo Gdpr](../../Gdpr/docs/translations.md) - Traduzioni per la privacy
+- [Modulo Job](../../Job/docs/translations.md) - Traduzioni per i job
+- [Modulo Notify](../../Notify/docs/translations.md) - Traduzioni per le notifiche
+- [Modulo Reporting](../../Reporting/docs/translations.md) - Traduzioni per i report
+- [Modulo Tenant](../../Tenant/docs/translations.md) - Traduzioni per il multi-tenant
+
+### Regole Generali
+- [Regole Traduzioni](../../Xot/docs/translations.md) - Documentazione base sulle traduzioni
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 57d034b (.)
 ## Service Providers
 1. `Modules\Lang\Providers\LangServiceProvider`
 2. `Modules\Lang\Providers\Filament\AdminPanelProvider`
@@ -118,4 +149,164 @@ composer format        # Formatta il codice
 - Tutorial e esempi
 
 ## Changelog
+<<<<<<< HEAD
+### Versione HEAD
+
+Le modifiche vengono tracciate nel repository GitHub.
+
+## Nuove Best Practices
+
+### 1. Gestione Errori
+- Traduzioni per messaggi di errore
+- Codici errore standardizzati
+- Messaggi di errore descrittivi
+- Supporto multilingua per errori
+
+### 2. Validazione
+- Traduzioni per regole di validazione
+- Messaggi di validazione personalizzati
+- Supporto per regole custom
+- Coerenza nei messaggi
+
+### 3. SEO
+- Traduzioni per meta tag
+- Descrizioni multilingua
+- Keywords localizzate
+- URL localizzati
+
+### 4. Accessibilità
+- Testi alternativi per immagini
+- Descrizioni per elementi interattivi
+- Messaggi di stato
+- Supporto per screen reader
+
+### 5. Performance
+- Lazy loading traduzioni
+- Bundle per lingua
+- Preload traduzioni critiche
+- Ottimizzazione cache
+
+### 6. Testing
+- Verifica traduzioni mancanti
+- Test di coerenza
+- Validazione formati
+- Test di performance
+
+## Esempi di Implementazione
+
+### 1. Gestione Errori
+```php
+// Definizione errori
+'errors' => [
+    'validation' => [
+        'required' => 'Il campo :attribute è obbligatorio',
+        'email' => 'Inserisci un indirizzo email valido',
+    ],
+    'auth' => [
+        'failed' => 'Credenziali non valide',
+        'throttle' => 'Troppi tentativi di accesso',
+    ],
+],
+
+// Utilizzo
+throw new ValidationException($validator);
+```
+
+### 2. Validazione
+```php
+// Definizione regole
+'rules' => [
+    'email' => [
+        'required' => 'L\'email è obbligatoria',
+        'email' => 'Inserisci un\'email valida',
+    ],
+    'password' => [
+        'required' => 'La password è obbligatoria',
+        'min' => 'La password deve essere di almeno :min caratteri',
+    ],
+],
+
+// Utilizzo
+$validator = Validator::make($data, $rules);
+```
+
+### 3. SEO
+```php
+// Definizione meta
+'meta' => [
+    'title' => 'Titolo della Pagina',
+    'description' => 'Descrizione della pagina',
+    'keywords' => 'keyword1, keyword2, keyword3',
+],
+
+// Utilizzo
+<meta name="title" content="{{ __('meta.title') }}">
+```
+
+### 4. Accessibilità
+```php
+// Definizione accessibilità
+'accessibility' => [
+    'alt' => [
+        'logo' => 'Logo dell\'azienda',
+        'banner' => 'Banner promozionale',
+    ],
+    'aria' => [
+        'button' => 'Pulsante per :action',
+        'link' => 'Link a :destination',
+    ],
+],
+
+// Utilizzo
+<img src="logo.png" alt="{{ __('accessibility.alt.logo') }}">
+```
+
+### 5. Performance
+```php
+// Configurazione cache
+'cache' => [
+    'enabled' => true,
+    'key' => 'translations',
+    'duration' => 3600,
+],
+
+// Utilizzo
+Cache::remember('translations', 3600, function () {
+    return Lang::loadTranslations();
+});
+```
+
+### 6. Testing
+```php
+// Test traduzioni
+public function testTranslations()
+{
+    $this->assertTrue(Lang::has('errors.validation.required'));
+    $this->assertEquals(
+        'Il campo :attribute è obbligatorio',
+        Lang::get('errors.validation.required')
+    );
+}
+```
+
+## Collegamenti
+
+- [Modulo Patient](../../Patient/docs/translations.md) - Esempio di implementazione delle traduzioni
+- [Regole Generali Traduzioni](../../Xot/docs/translations.md)
+
+## Esempi
+
+```php
+// Accesso alle traduzioni
+$translation = Lang::get('patient.registration.label');
+``` 
+
+### Versione Incoming
+
 Le modifiche vengono tracciate nel repository GitHub. 
+
+---
+
+=======
+Le modifiche vengono tracciate nel repository GitHub. 
+>>>>>>> 57d034b (.)

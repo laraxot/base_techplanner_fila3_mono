@@ -68,7 +68,10 @@ class AutoLabelAction
     public function execute(Field|Component $component): Field|Component
     {
         Assert::isInstanceOf($component, Field::class, 'Il componente deve essere un\'istanza di Field o Component');
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9d6070e (.)
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 6);
 
         // Otteniamo il valore dalla backtrace

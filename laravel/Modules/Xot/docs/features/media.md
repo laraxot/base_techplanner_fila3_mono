@@ -24,3 +24,19 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/image.txt}
 ```txt
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/upload.txt}
 ```
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di media.md
+* [media.md](../../../Xot/docs/features/media.md)
+* [media.md](../../../Xot/docs/roadmap/bottlenecks/media.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

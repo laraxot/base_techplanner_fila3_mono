@@ -20,3 +20,20 @@ Tracker gathers a lot of information from your requests to identify and store:
 https://github.com/antonioribeiro/tracker
 
 ---
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di repositories.md
+* [repositories.md](docs/repositories.md)
+* [repositories.md](../../../Notify/docs/repositories.md)
+* [repositories.md](../../../User/docs/repositories.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 0b525d2 (.)

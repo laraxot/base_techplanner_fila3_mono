@@ -64,7 +64,10 @@ class ExportXlsStreamByLazyCollection
                         // Se non è né un oggetto con toArray né un array, saltiamo
                         continue;
                     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9d6070e (.)
                     // Convertiamo tutti i valori in stringhe o null
                     $safeRowData = array_map(function ($item) {
                         if ($item === null) {

@@ -237,4 +237,23 @@ class AdvancedForm extends Component
 - Descrizione chiara
 - Esempi di utilizzo
 - Configurazioni disponibili
+<<<<<<< HEAD
+### Versione HEAD
+
 - Breaking changes 
+## Collegamenti tra versioni di best-practices.md
+* [best-practices.md](docs/tecnico/filament/best-practices.md)
+* [best-practices.md](../../../Xot/docs/laraxot/best-practices.md)
+* [best-practices.md](../../../UI/docs/best-practices.md)
+* [best-practices.md](../../../../Themes/One/docs/best-practices.md)
+
+
+### Versione Incoming
+
+- Breaking changes 
+
+---
+
+=======
+- Breaking changes 
+>>>>>>> 77f8368 (.)

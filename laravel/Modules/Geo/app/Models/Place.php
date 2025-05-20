@@ -15,6 +15,8 @@ use function Safe\json_encode;
 
 class Place extends BaseModel implements HasGeolocation
 {
+<<<<<<< HEAD
+=======
     /**
      * List of address components used in the application.
      *
@@ -34,6 +36,7 @@ class Place extends BaseModel implements HasGeolocation
         'point_of_interest',
         'political'
     ];
+>>>>>>> 294f04a (.)
     use HasFactory;
 
     protected $fillable = [

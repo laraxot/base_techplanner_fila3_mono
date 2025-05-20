@@ -6,3 +6,11 @@ https://julienboyer.re/en/posts/how-to-generate-terms-and-conditions-pdf-and-sen
 https://julienboyer.re/plugins/filament-terms-guard/readme
 
 
+<<<<<<< HEAD
+
+## Collegamenti tra versioni di terms_conditions.md
+* [terms_conditions.md](laravel/Modules/Gdpr/docs/terms_conditions.md)
+* [terms_conditions.md](laravel/Modules/User/docs/terms_conditions.md)
+
+=======
+>>>>>>> 0f5e748 (.)

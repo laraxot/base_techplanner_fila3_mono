@@ -1,5 +1,28 @@
 <?php
 
+<<<<<<< HEAD
+return array (
+  'fields' => 
+  array (
+    'email' => 
+    array (
+      'label' => 'email',
+    ),
+    'password' => 
+    array (
+      'label' => 'password',
+      'description' => 'password',
+    ),
+    'remember' => 
+    array (
+      'label' => 'remember',
+      'description' => 'remember',
+      'helper_text' => 'remember',
+      'placeholder' => 'remember',
+    ),
+  ),
+);
+=======
 declare(strict_types=1);
 
 return [
@@ -15,3 +38,4 @@ return [
         ],
     ],
 ];
+>>>>>>> 0b525d2 (.)

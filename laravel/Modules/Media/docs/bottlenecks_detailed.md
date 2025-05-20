@@ -347,4 +347,22 @@ final class Media extends Model
         );
     }
 }
+<<<<<<< HEAD
+### Versione HEAD
+
 ``` 
+## Collegamenti tra versioni di bottlenecks_detailed.md
+* [bottlenecks_detailed.md](../../../Xot/docs/bottlenecks_detailed.md)
+* [bottlenecks_detailed.md](../../../Job/docs/bottlenecks_detailed.md)
+* [bottlenecks_detailed.md](../../../Media/docs/bottlenecks_detailed.md)
+
+
+### Versione Incoming
+
+``` 
+
+---
+
+=======
+``` 
+>>>>>>> c2eb445 (.)

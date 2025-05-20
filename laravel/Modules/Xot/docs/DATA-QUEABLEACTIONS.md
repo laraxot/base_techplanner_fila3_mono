@@ -1,6 +1,10 @@
 # Convenzioni per Data Objects e QueueableActions
 
+<<<<<<< HEAD
+Questo documento definisce le convenzioni per l'utilizzo dei Data Objects e QueueableActions nel framework Laraxot <nome progetto>, con una chiara preferenza per le librerie Spatie rispetto agli approcci tradizionali.
+=======
 Questo documento definisce le convenzioni per l'utilizzo dei Data Objects e QueueableActions nel framework Laraxot PTVX, con una chiara preferenza per le librerie Spatie rispetto agli approcci tradizionali.
+>>>>>>> 9d6070e (.)
 
 ## Data Objects con Spatie Laravel Data
 

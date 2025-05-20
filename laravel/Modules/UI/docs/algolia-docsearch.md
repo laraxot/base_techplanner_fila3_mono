@@ -69,3 +69,22 @@ If you'd like to customize the styling of the search results, Algolia exposes cu
 ---
 
 For more details, visit the [official Algolia DocSearch documentation.](https://community.algolia.com/docsearch/what-is-docsearch.html)
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di algolia-docsearch.md
+* [algolia-docsearch.md](../../../Chart/docs/algolia-docsearch.md)
+* [algolia-docsearch.md](../../../Gdpr/docs/algolia-docsearch.md)
+* [algolia-docsearch.md](../../../Xot/docs/algolia-docsearch.md)
+* [algolia-docsearch.md](../../../UI/docs/algolia-docsearch.md)
+* [algolia-docsearch.md](../../../Cms/docs/algolia-docsearch.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 77f8368 (.)

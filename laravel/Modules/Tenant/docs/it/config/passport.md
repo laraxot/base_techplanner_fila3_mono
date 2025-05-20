@@ -64,3 +64,18 @@ return [
     ],
 
 ];
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di passport.md
+* [passport.md](../../../../User/docs/passport.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9bcd1bb (.)

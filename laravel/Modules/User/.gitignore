@@ -27,3 +27,13 @@ cache/
 build
 *.exe
 *:Zone.Identifier
+<<<<<<< HEAD
+
+# Backup files
+*.bak
+# File di log
+*.log
+# PHPStan documentation
+docs/phpstan/
+=======
+>>>>>>> 0b525d2 (.)

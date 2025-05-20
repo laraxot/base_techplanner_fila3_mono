@@ -162,4 +162,21 @@ return [
 
         'store' => 'default',
     ],
+<<<<<<< HEAD
+### Versione HEAD
+
 ];
+## Collegamenti tra versioni di permission.md
+* [permission.md](../../../Xot/docs/install/permission.md)
+* [permission.md](../../../Tenant/docs/it/config/permission.md)
+
+
+### Versione Incoming
+
+];
+
+---
+
+=======
+];
+>>>>>>> 9bcd1bb (.)

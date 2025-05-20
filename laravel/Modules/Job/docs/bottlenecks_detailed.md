@@ -314,4 +314,31 @@ abstract class BaseJob
         }
     }
 }
+<<<<<<< HEAD
+### Versione HEAD
+
+### Versione HEAD
+
 ``` 
+## Collegamenti tra versioni di bottlenecks_detailed.md
+* [bottlenecks_detailed.md](../../../Xot/docs/bottlenecks_detailed.md)
+* [bottlenecks_detailed.md](../../../Job/docs/bottlenecks_detailed.md)
+* [bottlenecks_detailed.md](../../../Media/docs/bottlenecks_detailed.md)
+
+
+### Versione Incoming
+
+``` 
+
+---
+
+
+### Versione Incoming
+
+``` 
+
+---
+
+=======
+``` 
+>>>>>>> 61130fb (.)

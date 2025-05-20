@@ -5,6 +5,17 @@ declare(strict_types=1);
 namespace Modules\Xot\Console\Commands;
 
 use Illuminate\Console\Command;
+<<<<<<< HEAD
+use Modules\Xot\App\Helpers\ResourceFormSchemaGenerator;
+
+class GenerateResourceFormSchemaCommand extends Command
+{
+    protected $signature = 'xot:generate-resource-form-schema {--module=} {--resource=}';
+
+    protected $description = 'Genera gli schemi dei form per le risorse Filament';
+
+    public function handle(): int
+=======
 use Illuminate\Support\Facades\File;
 use Safe\Exceptions\FilesystemException;
 use Safe\Exceptions\PcreException;
@@ -30,10 +41,29 @@ class GenerateResourceFormSchemaCommand extends Command
      * @throws PcreException
      */
     public function handle(): void
+>>>>>>> 9d6070e (.)
     {
         $module = $this->option('module');
         $resource = $this->option('resource');
 
+<<<<<<< HEAD
+        $generator = new ResourceFormSchemaGenerator();
+
+        try {
+            if ($module) {
+                $generator->generateForModule($module, $resource);
+            } else {
+                $generator->generateForAllResources($resource);
+            }
+
+            $this->info('Schemi dei form generati con successo');
+            return Command::SUCCESS;
+        } catch (\Exception $e) {
+            $this->error('Errore durante la generazione degli schemi: ' . $e->getMessage());
+            return Command::FAILURE;
+        }
+    }
+=======
         $pattern = $module
             ? base_path("Modules/{$module}/app/Filament/Resources/*Resource.php")
             : base_path('app/Filament/Resources/*Resource.php');
@@ -125,4 +155,5 @@ class GenerateResourceFormSchemaCommand extends Command
 
 PHP;
     }
+>>>>>>> 9d6070e (.)
 }

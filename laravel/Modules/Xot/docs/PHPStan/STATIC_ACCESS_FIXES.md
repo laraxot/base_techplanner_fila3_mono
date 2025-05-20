@@ -4,7 +4,11 @@
 
 ### Error
 ```
+<<<<<<< HEAD
+Static access to instance property Modules\Xot\Filament\Resources\XotBaseResource\RelationManagers\XotBaseRelationManager::$resource.
+=======
 Static access to instance property Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager::$resource.
+>>>>>>> 9d6070e (.)
 ```
 
 ### Additional Error

@@ -42,4 +42,20 @@ class Slider
             )
             ->columns(1);
     }
+<<<<<<< HEAD
+
+    public static function getFormSchema(): array
+    {
+        return [
+            \Filament\Forms\Components\Select::make('layout')
+                ->options([
+                    'default' => 'Default',
+                    'fullscreen' => 'Fullscreen',
+                    'minimal' => 'Minimal',
+                ])
+                ->required(),
+        ];
+    }
+=======
+>>>>>>> 77f8368 (.)
 }

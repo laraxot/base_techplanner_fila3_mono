@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
+declare(strict_types=1);
+=======
 
+>>>>>>> 1b374b6 (.)
 use function Laravel\Folio\{middleware, name};
 use Filament\Notifications\Notification;
 use Filament\Notifications\Livewire\Notifications;
@@ -21,13 +25,25 @@ middleware($base_middleware);
 
 new class extends Component
 {
+<<<<<<< HEAD
+
+=======
    
+>>>>>>> 1b374b6 (.)
 };
 
 ?>
 
+<<<<<<< HEAD
+<x-layouts.app>
+    <div>
+       <x-page-content slug="home" />
+    </div>
+</x-layouts.app>
+=======
 <x-layouts.marketing>
     <div>
         {!! $_theme->showPageContent('home') !!}
     </div>
 </x-layouts.marketing>
+>>>>>>> 1b374b6 (.)

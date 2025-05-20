@@ -49,9 +49,15 @@ return new class() extends XotBaseMigration {
                 $table->integer('client_id')
                         ->nullable()
                         ->change();
+<<<<<<< HEAD
+                $table->integer('appointment_id')
+                        ->nullable()
+                        ->change();
+=======
                 //$table->integer('appointment_id')
                         //->nullable()
                         //->change();
+>>>>>>> b32e314 (.)
                 if ($this->hasColumn('status')) {
                     $table->string('status')->nullable()->change();
                 }

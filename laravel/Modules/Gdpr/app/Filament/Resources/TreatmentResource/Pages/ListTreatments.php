@@ -13,7 +13,11 @@ class ListTreatments extends XotBaseListRecords
 {
     protected static string $resource = TreatmentResource::class;
 
+<<<<<<< HEAD
+    public function getTableColumns(): array
+=======
     public function getListTableColumns(): array
+>>>>>>> 0f5e748 (.)
     {
         return [
             'id' => TextColumn::make('id')

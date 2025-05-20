@@ -1,5 +1,10 @@
 # Modulo Media
 
+<<<<<<< HEAD
+> **Collegamento globale:** Per le strategie generali e le best practices sulla risoluzione dei conflitti git, vedi [docs/git_conflict_resolution.md](../../../../docs/git_conflict_resolution.md).
+
+=======
+>>>>>>> c2eb445 (.)
 ## Informazioni Generali
 - **Nome**: `laraxot/module_media_fila3`
 - **Descrizione**: Modulo dedicato alla gestione di immagini e video
@@ -20,6 +25,26 @@ app/
 └── Services/       # Servizi media
 ```
 
+<<<<<<< HEAD
+## Aggiornamenti Recenti
+
+### Risoluzione Conflitti Git
+
+Sono stati risolti importanti conflitti di merge in diversi file critici del modulo:
+
+- **app/Actions/Image/Merge.php**: Risolti conflitti nelle importazioni e nella struttura del codice per la fusione di immagini
+- **app/Actions/Video/ConvertVideoAction.php**: Risolti conflitti di formattazione e corretto l'utilizzo del metodo Storage::disk()->path()
+- **app/Services/SubtitleService.php**: Risolti conflitti nel metodo `upateModel()`
+- **app/View/Components/_components.json**: Mantenuta versione con componente `video-player`
+- **app/Http/Livewire/_components.json**: Scelta formattazione più leggibile e strutturata
+- **app/Console/Commands/_components.json**: Uniformata formattazione con gli altri file di componenti
+
+La risoluzione ha puntato a mantenere la coerenza del codice, evitando duplicazioni e garantendo il corretto funzionamento delle funzionalità di gestione media e del sistema di registrazione componenti.
+
+Per maggiori dettagli, consultare la [documentazione locale sulla risoluzione dei conflitti](./conflitti_merge_risolti.md) e la [documentazione globale](../../../../docs/git_conflict_resolution.md).
+
+=======
+>>>>>>> c2eb445 (.)
 ## Dipendenze
 ### Pacchetti Required
 - PHP ^8.2
@@ -100,4 +125,12 @@ composer format        # Formatta il codice
    - Verificare supporto GD/Imagick
 
 ## Changelog
+<<<<<<< HEAD
+Le modifiche vengono tracciate nel repository GitHub.
+
+---
+
+> **Collegamento globale:** Questa documentazione locale dettaglia i casi concreti e le decisioni architetturali adottate nel modulo Media. Per le strategie generali e le best practices, consulta sempre anche la documentazione globale in [docs/git_conflict_resolution.md](../../../../docs/git_conflict_resolution.md).
+=======
 Le modifiche vengono tracciate nel repository GitHub. 
+>>>>>>> c2eb445 (.)

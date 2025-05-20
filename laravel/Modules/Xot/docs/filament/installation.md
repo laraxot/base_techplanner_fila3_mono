@@ -55,4 +55,26 @@ section: content
 - 
 - php artisan module:make-filament-context Filament
 
+<<<<<<< HEAD
+### Versione HEAD
+
 - php artisan make:filament-user per creare utente
+## Collegamenti tra versioni di installation.md
+* [installation.md](../../../Xot/docs/filament/installation.md)
+* [installation.md](../../../Xot/docs/installation.md)
+* [installation.md](../../../Xot/docs/base/installation.md)
+* [installation.md](../../../User/docs/installation.md)
+* [installation.md](../../../Lang/docs/installation.md)
+* [installation.md](../../../Cms/docs/installation.md)
+* [installation.md](../../../../Themes/One/docs/installation.md)
+
+
+### Versione Incoming
+
+- php artisan make:filament-user per creare utente
+
+---
+
+=======
+- php artisan make:filament-user per creare utente
+>>>>>>> 9d6070e (.)

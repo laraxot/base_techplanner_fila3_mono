@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+<?php return array (
+=======
 <?php
 
 return array (
+>>>>>>> b32e314 (.)
   'navigation' => 
   array (
     'label' => 'Chiamate',
@@ -11,7 +15,10 @@ return array (
       'name' => 'Admin',
     ),
     'sort' => 51,
+<<<<<<< HEAD
+=======
     'icon' => 'phone call.navigation',
+>>>>>>> b32e314 (.)
   ),
   'enums' => 
   array (
@@ -262,4 +269,8 @@ return array (
       'label' => 'Attività',
     ),
   ),
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> b32e314 (.)

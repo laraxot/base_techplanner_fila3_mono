@@ -17,6 +17,31 @@ class ListSnapshots extends XotBaseListRecords
 {
     protected static string $resource = SnapshotResource::class;
 
+<<<<<<< HEAD
+    /**
+     * Get the list table columns.
+     *
+     * @return array<string, Tables\Columns\Column>
+     */
+    public function getTableColumns(): array
+    {
+        return [
+            TextColumn::make('id')
+                ->sortable()
+                ->searchable(),
+            TextColumn::make('aggregate_uuid')
+                ->searchable(),
+            TextColumn::make('aggregate_version')
+                ->sortable(),
+            TextColumn::make('state')
+                ->searchable(),
+            TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable(),
+            TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable(),
+=======
     public function getListTableColumns(): array
     {
         return [
@@ -48,6 +73,7 @@ class ListSnapshots extends XotBaseListRecords
                 ->dateTime()
                 ->sortable()
                 ->label('Updated At'),
+>>>>>>> 6727cc6 (.)
         ];
     }
 

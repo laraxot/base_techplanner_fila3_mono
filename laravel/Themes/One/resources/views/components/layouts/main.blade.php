@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+
+
+        {!! $_theme->metatags() !!}
+=======
         <meta name="description" content="SaluteOra - La piattaforma per la gestione della tua salute">
         <meta name="keywords" content="salute, medici, studi, appuntamenti, prenotazioni">
         <meta name="author" content="SaluteOra">
@@ -10,6 +15,7 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
+>>>>>>> 1b374b6 (.)
         <!-- Used to add dark mode right away, adding here prevents any flicker -->
         <script>
             if (typeof(Storage) !== "undefined") {
@@ -18,6 +24,29 @@
                 }
             }
         </script>
+<<<<<<< HEAD
+        <style>
+			[x-cloak] {
+			display: none !important;
+			}
+		</style>
+		@filamentStyles
+
+
+        @vite(['resources/css/app.css'],'themes/One')
+
+
+    </head>
+    <body class="min-h-screen antialiased bg-white dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900">
+        {{ $slot }}
+        {{--
+        <livewire:toast />
+        --}}
+        @livewire('notifications')
+		@filamentScripts
+        @vite(['resources/js/app.js'],'themes/One')
+        <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
+=======
 
         <!-- Styles -->
         @filamentStyles
@@ -97,5 +126,6 @@
         @livewire('notifications')
         @filamentScripts
         @vite(['resources/js/app.js'],'themes/One')
+>>>>>>> 1b374b6 (.)
     </body>
 </html>

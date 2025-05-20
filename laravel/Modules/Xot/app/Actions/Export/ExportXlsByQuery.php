@@ -41,7 +41,10 @@ class ExportXlsByQuery
             transKey: null,
             fields: $stringFields
         );
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9d6070e (.)
         // Note: QueryExport doesn't accept a limit parameter directly
         // If limit is needed, apply it to the query before passing to the exporter
         if ($limit !== null) {

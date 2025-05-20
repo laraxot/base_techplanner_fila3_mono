@@ -18,3 +18,22 @@ use Laraxot\ModuleTenant\Facades\ModuleTenant;
 Il modulo include diverse funzionalità per la gestione del multitenant, come ad esempio il metodo addTenant() per aggiungere un nuovo tenant all'applicazione, o il metodo setCurrentTenant() per impostare il tenant corrente su cui verranno eseguite le operazioni.
 
 Per utilizzare il modulo, è necessario prima configurare l'applicazione per supportare il multitenant. La configurazione può essere eseguita tramite il comando Artisan php artisan tenant:install, che creerà le tabelle del database necessarie per gestire i tenant e aggiungerà le route e i controller per la gestione dei tenant all'applicazione.
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di getting-started.md
+* [getting-started.md](../../../Gdpr/docs/getting-started.md)
+* [getting-started.md](../../../Xot/docs/getting-started.md)
+* [getting-started.md](../../../UI/docs/getting-started.md)
+* [getting-started.md](../../../Tenant/docs/it/getting-started.md)
+* [getting-started.md](../../../Cms/docs/getting-started.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9bcd1bb (.)

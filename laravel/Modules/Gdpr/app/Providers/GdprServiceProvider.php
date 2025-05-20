@@ -11,9 +11,13 @@ use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
 class GdprServiceProvider extends XotBaseServiceProvider
 {
     public string $name = 'Gdpr';
+<<<<<<< HEAD
+    protected string $module_dir = __DIR__;
+=======
 
     protected string $module_dir = __DIR__;
 
+>>>>>>> 0f5e748 (.)
     protected string $module_ns = __NAMESPACE__;
 
     public function boot(): void

@@ -22,7 +22,11 @@ class ListMedia extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+<<<<<<< HEAD
+    public function getTableColumns(): array
+=======
     public function getListTableColumns(): array
+>>>>>>> c2eb445 (.)
     {
         return [
             'id' => TextColumn::make('id')

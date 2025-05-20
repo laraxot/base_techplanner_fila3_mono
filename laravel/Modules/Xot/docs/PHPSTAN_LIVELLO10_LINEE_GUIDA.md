@@ -102,6 +102,10 @@ Per le risorse PHP (file handles, connessioni di database, ecc.) che non possono
 private $fileHandle = null;
 ```
 
+<<<<<<< HEAD
+### 4. Pattern per Controller
+=======
+>>>>>>> 9d6070e (.)
 ### 4. Gestione delle API Fluenti di Librerie Esterne
 
 Le API fluenti (method chaining) di alcune librerie esterne come Laravel-FFMpeg possono causare problemi con PHPStan a livello 10, in particolare quando i metodi intermedi restituiscono tipi non standard o quando la catena è lunga e complessa.
@@ -159,6 +163,10 @@ public function show(string $id): \Illuminate\View\View|\Illuminate\Http\Redirec
 }
 ```
 
+<<<<<<< HEAD
+### 5. Gestione delle Proprietà Dinamiche
+=======
+>>>>>>> 9d6070e (.)
 ### 6. Gestione delle Proprietà Dinamiche
 
 Per le proprietà dinamiche nei modelli, utilizzare annotazioni PHPDoc complete:
@@ -175,6 +183,10 @@ class User extends Model
 }
 ```
 
+<<<<<<< HEAD
+### 6. Conversione Sicura da `mixed` a Tipi Scalari
+=======
+>>>>>>> 9d6070e (.)
 ### 7. Conversione Sicura da `mixed` a Tipi Scalari
 
 Quando si lavora con valori `mixed` da convertire in tipi scalari (string, int, float, bool), utilizzare controlli di tipo prima della conversione:
@@ -217,6 +229,10 @@ if ($value !== null) {
 }
 ```
 
+<<<<<<< HEAD
+### 7. Gestione Sicura di Array con Chiavi Miste
+=======
+>>>>>>> 9d6070e (.)
 ### 8. Gestione Sicura di Array con Chiavi Miste
 
 Quando si ottengono array da fonti esterne (es. funzioni Laravel che restituiscono array con chiavi miste):
@@ -234,6 +250,10 @@ foreach ($componentsWithMixedKeys as $key => $component) {
 }
 ```
 
+<<<<<<< HEAD
+### 8. Tipi Unione con Null
+=======
+>>>>>>> 9d6070e (.)
 ### 9. Tipi Unione con Null
 
 Preferire la sintassi nullable (`?tipo`) per i tipi che possono essere null:
@@ -245,6 +265,10 @@ public function findById(?int $id): ?User
 }
 ```
 
+<<<<<<< HEAD
+### 9. Parametri Variabili (Variadic)
+=======
+>>>>>>> 9d6070e (.)
 ### 10. Parametri Variabili (Variadic)
 
 Per i parametri variabili, specificare il tipo di ogni elemento nell'array risultante:
@@ -260,6 +284,10 @@ public function buildPath(string ...$segments): string
 }
 ```
 
+<<<<<<< HEAD
+### 10. Callback e Closure
+=======
+>>>>>>> 9d6070e (.)
 ### 11. Callback e Closure
 
 Per i callback e le closure, utilizzare `callable` con specifiche di tipo dettagliate:
@@ -492,12 +520,20 @@ Anche se i file sono fisicamente collocati nella directory `app` del modulo, il 
 Uno degli errori più frequenti riguarda il namespace delle Actions:
 
 - ✅ **CORRETTO**: `namespace Modules\Xot\Actions;`
+<<<<<<< HEAD
+- ❌ **ERRATO**: `namespace Modules\Xot\app\Actions;`
+=======
+>>>>>>> 9d6070e (.)
 - ❌ **ERRATO**: `namespace Modules\Xot\Actions;`
 
 Anche se il file Actions si trova fisicamente in `Modules/Xot/app/Actions/`, il namespace deve sempre essere `Modules\Xot\Actions` (senza il segmento `app`).
 
 Gli errori PHPStan relativi a questo problema sono spesso del tipo:
 ```
+<<<<<<< HEAD
+Class 'Modules\Xot\app\Actions\MyAction' not found.
+=======
+>>>>>>> 9d6070e (.)
 Class 'Modules\Xot\Actions\MyAction' not found.
 ```
 
@@ -520,7 +556,18 @@ Class 'Modules\Xot\Actions\MyAction' not found.
 namespace Modules\Xot\Console\Commands;
 
 // ERRATO
+<<<<<<< HEAD
+namespace Modules\Xot\app\Console\Commands;
+```
+
+Errori PHPStan come `Class Modules\Xot\app\Console\Commands\DatabaseSchemaExportCommand not found` indicano che è necessario rimuovere il segmento `app` dal namespace.
 namespace Modules\Xot\Console\Commands;
 ```
 
 Errori PHPStan come `Class Modules\Xot\Console\Commands\DatabaseSchemaExportCommand not found` indicano che è necessario rimuovere il segmento `app` dal namespace.
+=======
+namespace Modules\Xot\Console\Commands;
+```
+
+Errori PHPStan come `Class Modules\Xot\Console\Commands\DatabaseSchemaExportCommand not found` indicano che è necessario rimuovere il segmento `app` dal namespace.
+>>>>>>> 9d6070e (.)

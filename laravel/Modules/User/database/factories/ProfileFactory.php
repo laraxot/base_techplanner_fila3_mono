@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+declare(strict_types=1);
+=======
+>>>>>>> 0b525d2 (.)
 
 namespace Modules\User\Database\Factories;
 

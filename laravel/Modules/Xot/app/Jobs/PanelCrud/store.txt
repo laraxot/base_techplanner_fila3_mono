@@ -383,6 +383,10 @@ class StoreJob extends XotBaseJob {
     /**
      * Undocumented function.
      */
+<<<<<<< HEAD
+    public function storeRelationshipsbelongsToManyX(Model $model, string $name, array $data): void {
+=======
+>>>>>>> 9d6070e (.)
     public function storeRelationshipsBelongsToMany(Model $model, string $name, array $data): void {
         if (isset($data['from']) || isset($data['to'])) {
             $this->saveMultiselectTwoSides($model, $name, $data);

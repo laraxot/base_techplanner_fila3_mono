@@ -33,3 +33,19 @@ return [
     'color_banner' => '#000',
 ];
 ~~~
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di metatag.md
+* [metatag.md](../../../Xot/docs/install/metatag.md)
+* [metatag.md](../../../Tenant/docs/it/config/metatag.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

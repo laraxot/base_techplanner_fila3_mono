@@ -93,3 +93,11 @@ Now that you’ve edited your configuration variables and know how to customize 
 # options: dev, prod
 npm run dev
 ```
+
+## Collegamenti tra versioni di readme.md
+* [readme.md](laravel/Modules/Gdpr/docs/readme.md)
+* [readme.md](laravel/Modules/UI/docs/readme.md)
+* [readme.md](laravel/Modules/Lang/docs/readme.md)
+* [readme.md](laravel/Modules/Activity/docs/readme.md)
+* [readme.md](laravel/Modules/Cms/docs/readme.md)
+

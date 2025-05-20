@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+declare(strict_types=1);
+=======
+>>>>>>> 1b374b6 (.)
 use Modules\Cms\Models\Page;
 use Illuminate\View\View;
 use function Laravel\Folio\render;
@@ -72,7 +76,11 @@ render(function (View $view) {
                 Archivio Pagine
             </h1>
             <p class="text-lg text-gray-600 mb-6">
+<<<<<<< HEAD
+                Esplora tutte le pagine informative disponibili in il progetto
+=======
                 Esplora tutte le pagine informative disponibili in SaluteOra
+>>>>>>> 1b374b6 (.)
             </p>
 
             <div class="flex flex-col md:flex-row justify-between gap-4 mb-8">

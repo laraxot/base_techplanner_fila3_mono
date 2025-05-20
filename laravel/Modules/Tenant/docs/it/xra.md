@@ -49,3 +49,20 @@ Come il parametro 'home', anche il parametro **'adm_home'** indica la blade che 
 Di default viene utilizzata **laravel\Themes\adm_theme\Resources\views\admin\dashboard\01.blade.php**, blade importante perchè mette a disposizione l'utilizzo di blade personalizzate per ogni modulo utilizzato.
 
 **nome_modulo::admin.dashboard.item** è la blade che dovrà essere creata per ogni modulo.
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di xra.md
+* [xra.md](../../../Xot/docs/install/xra.md)
+* [xra.md](../../../Tenant/docs/it/xra.md)
+* [xra.md](../../../Tenant/docs/it/config/xra.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9bcd1bb (.)

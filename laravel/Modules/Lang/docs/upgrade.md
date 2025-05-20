@@ -27,4 +27,21 @@ Infine, se si sono pubblicati il file di configurazione o i modelli Blade, assic
 
 ```console
 php artisan module_lang:show-versions
+<<<<<<< HEAD
+### Versione HEAD
+
 ```
+## Collegamenti tra versioni di upgrade.md
+* [upgrade.md](../../../Lang/docs/upgrade.md)
+* [upgrade.md](../../../Cms/docs/upgrade.md)
+
+
+### Versione Incoming
+
+```
+
+---
+
+=======
+```
+>>>>>>> 57d034b (.)

@@ -600,4 +600,21 @@ public function getTableBulkActions(): array
 - Mantenere consistenza nei nomi delle chiavi tra diverse risorse
 - Utilizzare sempre la tipizzazione PHPDoc corretta
 
+<<<<<<< HEAD
+### Versione HEAD
+
 // ... existing code ... 
+## Collegamenti tra versioni di resource.md
+* [resource.md](../../../Xot/docs/filament/resource.md)
+* [resource.md](../../../Xot/docs/resource.md)
+
+
+### Versione Incoming
+
+// ... existing code ... 
+
+---
+
+=======
+// ... existing code ... 
+>>>>>>> 9d6070e (.)

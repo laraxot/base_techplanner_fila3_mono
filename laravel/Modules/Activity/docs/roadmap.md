@@ -32,6 +32,15 @@
 - [ ] Conformità GDPR
 - [ ] Alert automatici
 
+### 8. Event Sourcing e CQRS (Q1 2025)
+- [ ] Introduzione event store e aggregate
+- [ ] Implementazione projectors e reactors
+- [ ] Migrazione graduale da activitylog tradizionale
+- [ ] Documentazione pattern e best practice
+- [ ] Test di performance e consistenza
+- [ ] Integrazione con dashboard analytics
+- [ ] Collegamento a [ACTIVITY_EVENT_SOURCING_BEST_PRACTICES.mdc](../../.cursor/rules/ACTIVITY_EVENT_SOURCING_BEST_PRACTICES.mdc)
+
 ## Milestone Q2 2024
 
 ### Milestone 1: Logging Base
@@ -49,6 +58,13 @@
 ### Milestone 3: Storage Base
 - [ ] Schema ottimizzato
 - [ ] Indici performance
+
+## Collegamenti
+
+- [Torna a README](./README.md)
+- [Vai a Struttura](./structure.md)
+- [Vai a Bottlenecks](./bottlenecks.md)
+
 - [ ] Compressione base
 - [ ] Pulizia manuale
 
@@ -170,3 +186,21 @@
 3. [ ] Implementazione API
 4. [ ] Test performance
 5. [ ] Documentazione base 
+## Collegamenti tra versioni di roadmap.md
+* [roadmap.md](bashscripts/docs/roadmap.md)
+* [roadmap.md](docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Gdpr/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Notify/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Xot/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Dental/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/User/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/UI/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Lang/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Job/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Media/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Tenant/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Activity/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Patient/docs/roadmap.md)
+* [roadmap.md](laravel/Modules/Cms/docs/roadmap.md)
+* [roadmap.md](laravel/Themes/One/docs/roadmap.md)
+

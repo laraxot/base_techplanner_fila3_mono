@@ -53,4 +53,20 @@ class Image
             default => '',
         };
     }
+<<<<<<< HEAD
+
+    public static function getFormSchema(): array
+    {
+        return [
+            \Filament\Forms\Components\FileUpload::make('image')
+                ->required()
+                ->image()
+                ->maxSize(5120),
+            \Filament\Forms\Components\TextInput::make('url')
+                ->url()
+                ->maxLength(255),
+        ];
+    }
+=======
+>>>>>>> 77f8368 (.)
 }

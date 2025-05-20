@@ -38,3 +38,14 @@ cache/
 .php-cs-fixer.cache
 *.exe
 *:Zone.Identifier
+<<<<<<< HEAD
+
+# Backup files
+*.bak
+# File di log
+*.log
+-e 
+# PHPStan documentation
+docs/phpstan/
+=======
+>>>>>>> 77f8368 (.)

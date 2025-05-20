@@ -14,13 +14,24 @@ use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\Blade;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
+<<<<<<< HEAD
+use Filament\SpatieLaravelTranslatablePlugin;
+=======
+>>>>>>> c57e89d (.)
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Notify';
 
     public function panel(Panel $panel): Panel
+<<<<<<< HEAD
+    { 
+        $panel->plugins([
+            SpatieLaravelTranslatablePlugin::make(),
+        ]);
+=======
     {
+>>>>>>> c57e89d (.)
         if (! XotData::make()->disable_database_notifications) {
             DatabaseNotifications::trigger('notify::livewire.database-notifications-trigger');
             // DatabaseNotifications::databaseNotificationsPollingInterval('30s');
@@ -31,6 +42,15 @@ class AdminPanelProvider extends XotBasePanelProvider
             );
         }
 
+<<<<<<< HEAD
+       
+
         return parent::panel($panel);
     }
 }
+
+=======
+        return parent::panel($panel);
+    }
+}
+>>>>>>> c57e89d (.)

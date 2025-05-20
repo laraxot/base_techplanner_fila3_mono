@@ -1,6 +1,15 @@
 <?php
 
+<<<<<<< HEAD
+declare(strict_types=1);
+
 return [
+    'resource' => [
+        'name' => 'Notifica',
+    ],
+=======
+return [
+>>>>>>> c57e89d (.)
     'navigation' => [
         'name' => 'Notifica',              // Nome singolare
         'plural' => 'Notifiche',           // Nome plurale
@@ -212,4 +221,8 @@ return [
             ],
         ],
     ],
+<<<<<<< HEAD
+    'messages' => [],
+=======
+>>>>>>> c57e89d (.)
 ];

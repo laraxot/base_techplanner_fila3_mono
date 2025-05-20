@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+<div>
+    login
+</div>
+=======
 @section('title', 'Sign in to your account')
 
 <div>
@@ -79,3 +84,4 @@
         </div>
     </div>
 </div>
+>>>>>>> 1b374b6 (.)

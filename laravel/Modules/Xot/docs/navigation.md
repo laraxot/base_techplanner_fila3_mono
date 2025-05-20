@@ -32,3 +32,23 @@ return [
 // blade files
 $page->navigation
 ```
+<<<<<<< HEAD
+### Versione HEAD
+
+
+## Collegamenti tra versioni di navigation.md
+* [navigation.md](../../../Gdpr/docs/navigation.md)
+* [navigation.md](../../../Xot/docs/navigation.md)
+* [navigation.md](../../../UI/docs/navigation.md)
+* [navigation.md](../../../Cms/docs/blocks/navigation.md)
+* [navigation.md](../../../Cms/docs/navigation.md)
+* [navigation.md](../../../Cms/docs/components/navigation.md)
+
+
+### Versione Incoming
+
+
+---
+
+=======
+>>>>>>> 9d6070e (.)

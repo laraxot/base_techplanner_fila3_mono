@@ -230,4 +230,21 @@ return [
 4. **Testing**
    - Scrivere test unitari per ogni servizio
    - Utilizzare mock per le dipendenze
+<<<<<<< HEAD
+### Versione HEAD
+
    - Testare i casi limite 
+## Collegamenti tra versioni di services.md
+* [services.md](../../../Xot/docs/services.md)
+* [services.md](../../../Tenant/docs/it/config/services.md)
+
+
+### Versione Incoming
+
+   - Testare i casi limite 
+
+---
+
+=======
+   - Testare i casi limite 
+>>>>>>> 9d6070e (.)

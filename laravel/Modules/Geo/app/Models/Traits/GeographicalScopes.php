@@ -34,7 +34,11 @@ trait GeographicalScopes
                 cos(radians(longitude) - radians($longitude)) +
                 sin(radians($latitude)) *
                 sin(radians(latitude))
+<<<<<<< HEAD
+            ))
+=======
             )) 
+>>>>>>> 294f04a (.)
         ";
         if (null !== $alias) {
             $sql .= " AS $alias";

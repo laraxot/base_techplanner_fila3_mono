@@ -1,6 +1,15 @@
 <?php
 
+<<<<<<< HEAD
+declare(strict_types=1);
+
 return [
+    'resource' => [
+        'name' => 'Canale di Notifica',
+    ],
+=======
+return [
+>>>>>>> c57e89d (.)
     'navigation' => [
         'group' => 'Sistema',
         'label' => 'Canali di Notifica',
@@ -171,4 +180,8 @@ return [
             'message' => 'Impossibile inviare il messaggio di test: :error',
         ],
     ],
+<<<<<<< HEAD
+    'messages' => [],
+=======
+>>>>>>> c57e89d (.)
 ];
