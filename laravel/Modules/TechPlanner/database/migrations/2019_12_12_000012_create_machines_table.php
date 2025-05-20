@@ -9,12 +9,8 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
  * Class CreateWorkersTable.
  */
 return new class() extends XotBaseMigration {
-    /**
-     * db up.
-     *
-     * @return void
-     */
-    public function up()
+
+    public function up(): void
     {
         // -- CREATE --
         $this->tableCreate(

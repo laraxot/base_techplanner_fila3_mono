@@ -1,24 +1,4 @@
 {
-  "/js/app.js": "/js/app.js",
-  "/css/app.css": "/css/app.css",
-  "/js/chart.js": "/js/chart.js",
-  "/css/chart.css": "/css/chart.css",
-  "/js/vendor.js": "/js/vendor.js",
-  "/css/vendor.css": "/css/vendor.css",
-  "/js/filament-chart-js-plugins.js": "/js/filament-chart-js-plugins.js"
-}
-
-}
- 7d3b0bb (.)
-
-}
- 6440866 (.)
-
-}
- d2e74a3 (.)
-
-}
- dacab4a (.)
   "resources/css/app.css": {
     "file": "assets/app-NIGm4AA7.css",
     "src": "resources/css/app.css",

@@ -15,6 +15,25 @@ use function Safe\json_encode;
 
 class Place extends BaseModel implements HasGeolocation
 {
+    /**
+     * List of address components used in the application.
+     *
+     * @var array<string>
+     */
+    public static array $address_components = [
+        'premise',
+        'locality',
+        'postal_town',
+        'administrative_area_level_3',
+        'administrative_area_level_2',
+        'administrative_area_level_1',
+        'country',
+        'street_number',
+        'route',
+        'postal_code',
+        'point_of_interest',
+        'political'
+    ];
     use HasFactory;
 
     protected $fillable = [

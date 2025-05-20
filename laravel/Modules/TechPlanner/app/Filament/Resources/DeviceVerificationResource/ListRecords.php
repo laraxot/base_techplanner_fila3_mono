@@ -12,7 +12,7 @@ class ListRecords extends XotBaseListRecords
 {
     protected static string $resource = DeviceVerificationResource::class;
 
-    protected function getTableColumns(): array
+    public function getTableColumns(): array
     {
         return [
             Tables\Columns\TextColumn::make('device.name'), // Assuming you have a relationship defined
