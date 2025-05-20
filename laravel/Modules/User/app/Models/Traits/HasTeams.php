@@ -256,7 +256,7 @@ trait HasTeams
     {
         $xot = XotData::make();
         $teamClass = $xot->getTeamClass();
-        return $this->hasMany($teamClass, 'user_id'); 
+        return $this->hasMany($teamClass, 'user_id');
     }
 
     /**

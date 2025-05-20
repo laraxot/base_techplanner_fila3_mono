@@ -99,6 +99,7 @@ Il modulo Lang gestisce tutte le traduzioni, i messaggi e le notifiche del siste
 2. Seguire le convenzioni di naming
 3. Utilizzare i trait forniti
 4. Documentare il codice
+5. Il file `lang/it/lang_service.php` è stato risolto manualmente per conflitti git: rimossi duplicati, mantenute solo le chiavi effettive secondo le [best practices](./translatable/best-practices.md).
 
 ## Collegamenti Bidirezionali
 - [Modulo User](../User/docs/README.md)
