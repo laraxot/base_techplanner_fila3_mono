@@ -17,7 +17,6 @@ return [
     'providers' => [
         'Modules\\Notify\\Providers\\NotifyServiceProvider',
     ],
-<<<<<<< HEAD
     /*
     |--------------------------------------------------------------------------
     | Email Layout Configuration
@@ -67,6 +66,4 @@ return [
         'welcome' => 'notify::mail-layouts.templates.welcome',
         // Add more templates here
     ],
-=======
->>>>>>> c57e89d (.)
 ];

@@ -24,7 +24,6 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/__php-code-analysis-tools
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/phpstan.txt}
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/phpstan_error.txt}
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -40,5 +39,3 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/phpstan_error.txt}
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

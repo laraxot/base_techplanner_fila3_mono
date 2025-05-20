@@ -65,7 +65,6 @@ quindi le relazioni verranno create utilizzando il MorphMap, ovvero la stringa '
 'locale' => 'it',
 ```
 
-<<<<<<< HEAD
 ### Versione HEAD
 
 - altri files
@@ -94,6 +93,3 @@ quindi le relazioni verranno create utilizzando il MorphMap, ovvero la stringa '
 
 ---
 
-=======
-- altri files
->>>>>>> 9d6070e (.)

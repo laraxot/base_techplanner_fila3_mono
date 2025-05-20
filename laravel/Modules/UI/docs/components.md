@@ -1,6 +1,5 @@
 # Componenti UI
 
-<<<<<<< HEAD
 ## Indice
 
 ### Versione Dettagliata
@@ -606,8 +605,6 @@ Questa documentazione fornisce una panoramica dettagliata dei componenti disponi
 
 ### Versione Incoming
 
-=======
->>>>>>> 77f8368 (.)
 ## Form Components
 
 ### CustomSelect
@@ -846,7 +843,6 @@ PrintLayout::make()
 - Stili CSS print
 - No elementi UI
 
-<<<<<<< HEAD
 ### DarkModeSwitcher
 ```php
 // Livewire Component
@@ -868,33 +864,6 @@ Il componente utilizza la vista `ui::livewire.dark-mode.switcher` che contiene:
 - Button per il toggle tra tema chiaro/scuro
 - Script per la gestione del cookie e l'applicazione della classe CSS `.dark`
 - SVG icons per modalità chiara e scura
-=======
-## Componenti Base
-
-### Forms
-```blade
-<x-ui::form>
-  <x-ui::input name="email" type="email" />
-  <x-ui::button type="submit">Invia</x-ui::button>
-</x-ui::form>
-```
-
-### Tables
-```blade
-<x-ui::table>
-  <x-ui::th>Nome</x-ui::th>
-  <x-ui::td>{{ $user->name }}</x-ui::td>
-</x-ui::table>
-```
-
-### Cards
-```blade
-<x-ui::card>
-  <x-ui::card-header>Titolo</x-ui::card-header>
-  <x-ui::card-body>Contenuto</x-ui::card-body>
-</x-ui::card>
-```
->>>>>>> 77f8368 (.)
 
 ## Componenti Complessi
 
@@ -984,7 +953,6 @@ Modal::make('conferma')
 ```
 
 ## Best Practices
-<<<<<<< HEAD
 
 ### Gestione delle Rotte e dei Controller
 
@@ -1182,48 +1150,3 @@ Non è necessario:
 - Modificare file di routing
 - Creare controller personalizzati
 - Gestire manualmente le rotte
-=======
-1. Utilizzare i componenti esistenti invece di crearne di nuovi
-2. Mantenere la consistenza nelle props e negli slot
-3. Documentare eventuali modifiche o estensioni
-4. Testare la responsività su diversi dispositivi
-
-## Temi
-- I componenti supportano i temi tramite Tailwind
-- Utilizzare le classi di utility per personalizzazioni
-- Rispettare le variabili CSS definite nel tema 
-
-## Configurazione Globale
-
-### Tema
-```php
-// config/ui.php
-return [
-    'theme' => [
-        'colors' => [
-            'primary' => '#4CAF50',
-            'secondary' => '#2196F3',
-            'success' => '#4CAF50',
-            'danger' => '#F44336',
-            'warning' => '#FFC107'
-        ],
-        'fonts' => [
-            'base' => 'Inter',
-            'mono' => 'JetBrains Mono'
-        ]
-    ]
-];
-```
-
-### Personalizzazione
-```php
-// Pubblicare assets
-php artisan vendor:publish --tag=ui-assets
-
-// Pubblicare configurazione
-php artisan vendor:publish --tag=ui-config
-
-// Pubblicare views
-php artisan vendor:publish --tag=ui-views
-``` 
->>>>>>> 77f8368 (.)

@@ -2,11 +2,7 @@
 
 ## Introduzione
 
-<<<<<<< HEAD
 Il framework Laraxot <nome progetto> richiede una struttura di directory ben definita per garantire la corretta organizzazione del codice e il funzionamento ottimale del framework. Per facilitare l'adesione a queste convenzioni, è stato sviluppato uno script di correzione automatica che analizza e sistema la struttura delle directory dei moduli.
-=======
-Il framework Laraxot PTVX richiede una struttura di directory ben definita per garantire la corretta organizzazione del codice e il funzionamento ottimale del framework. Per facilitare l'adesione a queste convenzioni, è stato sviluppato uno script di correzione automatica che analizza e sistema la struttura delle directory dei moduli.
->>>>>>> 9d6070e (.)
 
 Questo documento fornisce una guida dettagliata all'utilizzo e al funzionamento dello script di autofix.
 
@@ -24,11 +20,7 @@ bashscripts/fix_directory_structure.sh
 
 Lo script esegue le seguenti operazioni:
 
-<<<<<<< HEAD
 1. **Analisi della struttura delle directory**: Identifica i file che non seguono le convenzioni di Laraxot <nome progetto>.
-=======
-1. **Analisi della struttura delle directory**: Identifica i file che non seguono le convenzioni di Laraxot PTVX.
->>>>>>> 9d6070e (.)
 2. **Correzione automatica**: Sposta i file nelle posizioni corrette.
 3. **Verifica finale**: Controlla che tutte le correzioni siano state applicate correttamente.
 
@@ -220,8 +212,4 @@ Durante lo sviluppo, è possibile eseguire lo script solo sul modulo in fase di 
 
 ## Conclusione
 
-<<<<<<< HEAD
 Lo script di correzione automatica della struttura delle directory è uno strumento essenziale per mantenere la coerenza e seguire le convenzioni del framework Laraxot <nome progetto>. Utilizzandolo regolarmente, è possibile garantire che il codice segua sempre la struttura richiesta, facilitando la manutenzione e l'interoperabilità tra i vari moduli. 
-=======
-Lo script di correzione automatica della struttura delle directory è uno strumento essenziale per mantenere la coerenza e seguire le convenzioni del framework Laraxot PTVX. Utilizzandolo regolarmente, è possibile garantire che il codice segua sempre la struttura richiesta, facilitando la manutenzione e l'interoperabilità tra i vari moduli. 
->>>>>>> 9d6070e (.)

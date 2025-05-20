@@ -35,7 +35,6 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/type_hinting.txt}
 ```txt
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/scope.txt}
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -48,5 +47,3 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/scope.txt}
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

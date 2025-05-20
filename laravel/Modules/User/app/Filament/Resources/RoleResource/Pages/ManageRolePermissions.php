@@ -14,11 +14,7 @@ use Modules\User\Filament\Resources\RoleResource;
 
 
 
-<<<<<<< HEAD
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManagers\XotBaseRelationManager;
-=======
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
->>>>>>> 0b525d2 (.)
 
 
 

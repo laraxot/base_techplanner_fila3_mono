@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### Versione HEAD
 
 # Analisi della Discrepanza tra Namespace e Struttura Directory nei Moduli Laraxot
@@ -243,8 +242,6 @@ laravel/Themes/[Nome]/
 =======
 b6f667c (.)
 
-=======
->>>>>>> 9d6070e (.)
 # Struttura del Modulo Xot
 
 ## Struttura delle Directory
@@ -281,7 +278,6 @@ Modules/Xot/
 3. **Best Practices**
    - Mantenere una struttura di directory pulita e organizzata
    - Seguire le convenzioni di Laravel per la struttura delle directory
-<<<<<<< HEAD
 ### Versione HEAD
 
    - Utilizzare i namespace appropriati che riflettono la struttura delle directory 
@@ -1070,6 +1066,3 @@ aurmich/dev
 - Aggiornare la documentazione del modulo con esempi e riferimenti.
 
 Vedi anche la documentazione specifica del modulo per dettagli e casi particolari.
-=======
-   - Utilizzare i namespace appropriati che riflettono la struttura delle directory 
->>>>>>> 9d6070e (.)

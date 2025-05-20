@@ -6,11 +6,7 @@ namespace Modules\Activity\Models;
 
 /**
  * Class Activity.
-<<<<<<< HEAD
  *
-=======
- * 
->>>>>>> 6727cc6 (.)
  * This class extends the BaseActivity model to represent activities in the application.
  *
  * @property int $id
@@ -30,11 +26,7 @@ namespace Modules\Activity\Models;
  * @property string|null $deleted_at
  * @property string|null $deleted_by
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $causer
-<<<<<<< HEAD
  * @property-read \Illuminate\Support\Collection<int, mixed> $changes
-=======
- * @property-read \Illuminate\Support\Collection $changes
->>>>>>> 6727cc6 (.)
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent|null $subject
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity causedBy(\Illuminate\Database\Eloquent\Model $causer)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity forBatch(string $batchUuid)

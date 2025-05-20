@@ -75,7 +75,6 @@ Now that you’ve edited your configuration variables and know how to customize 
 # options: dev, prod
 npm run dev
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -92,5 +91,3 @@ npm run dev
 
 ---
 
-=======
->>>>>>> 77f8368 (.)

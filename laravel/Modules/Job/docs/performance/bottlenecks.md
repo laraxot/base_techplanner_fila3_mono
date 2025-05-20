@@ -184,7 +184,6 @@ Implementare:
          );
    }
    ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 ### Versione HEAD
@@ -214,5 +213,3 @@ Implementare:
 
 ---
 
-=======
->>>>>>> 61130fb (.)

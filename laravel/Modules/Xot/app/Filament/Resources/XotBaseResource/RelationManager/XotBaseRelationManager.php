@@ -65,7 +65,6 @@ abstract class XotBaseRelationManager extends RelationManager
         return $this->getResource()::getFormSchema();
     }
 
-<<<<<<< HEAD
     /**
      * Get table columns.
      *
@@ -74,28 +73,6 @@ abstract class XotBaseRelationManager extends RelationManager
     public function getTableColumns(): array
     {
         return $this->getResource()::getTableColumns();
-=======
-    public function getListTableColumns(): array
-    {
-        $pages = $this->getResource()::getPages();
-        if (!is_array($pages) || !isset($pages['index'])) {
-            return [];
-        }
-
-        $index = $pages['index'];
-        if (!is_object($index) || !method_exists($index, 'getPage')) {
-            return [];
-        }
-
-        $index_page = $index->getPage();
-        if (!is_string($index_page) || !class_exists($index_page)) {
-            return [];
-        }
-
-        $columns = app($index_page)->getListTableColumns();
-
-        return $columns;
->>>>>>> 9d6070e (.)
     }
 
     // public function table(Table $table): Table
@@ -105,15 +82,9 @@ abstract class XotBaseRelationManager extends RelationManager
     //     $resource = $this->getResource();
     //     Assert::classExists($resource);
 
-<<<<<<< HEAD
     //     if (method_exists($resource, 'getTableColumns')) {
     //         /** @var array<string, Tables\Columns\Column> $columns */
     //         $columns = $resource::getTableColumns();
-=======
-    //     if (method_exists($resource, 'getListTableColumns')) {
-    //         /** @var array<string, Tables\Columns\Column> $columns */
-    //         $columns = $resource::getListTableColumns();
->>>>>>> 9d6070e (.)
 
     //         return $table->columns($columns);
     //     }

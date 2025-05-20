@@ -31,24 +31,13 @@ class Change extends Component
     public function mount(): void
     {
         $this->xot = XotData::make();
-<<<<<<< HEAD
         Assert::notNull($authUser = Filament::auth()->user(), '['.__LINE__.']['.class_basename($this).']');
 
-=======
-        Assert::notNull(Filament::auth()->user(), '['.__LINE__.']['.class_basename($this).']');
-        
-        $authUser = Filament::auth()->user();
-        
->>>>>>> 0b525d2 (.)
         // Verifica che l'utente implementi l'interfaccia UserContract
         if (!($authUser instanceof UserContract)) {
             throw new \InvalidArgumentException('L\'utente deve implementare l\'interfaccia UserContract');
         }
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 0b525d2 (.)
         $this->user = $authUser;
         $this->teams = $this->user->allTeams()->toArray();
     }

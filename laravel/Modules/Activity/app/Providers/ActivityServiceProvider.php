@@ -6,7 +6,6 @@ namespace Modules\Activity\Providers;
 
 use Modules\Xot\Providers\XotBaseServiceProvider;
 
-<<<<<<< HEAD
 /**
  * Service Provider per il modulo Activity.
  *
@@ -57,28 +56,11 @@ class ActivityServiceProvider extends XotBaseServiceProvider
      *
      * @return void
      */
-=======
-class ActivityServiceProvider extends XotBaseServiceProvider
-{
-    public string $name = 'Activity';
-
-    protected string $module_dir = __DIR__;
-
-    protected string $module_ns = __NAMESPACE__;
-
-    public function boot(): void
-    {
-        parent::boot();
-        // Additional boot logic can be added here
-    }
-
->>>>>>> 6727cc6 (.)
     public function register(): void
     {
         parent::register();
         // Additional register logic can be added here
     }
-<<<<<<< HEAD
     
     /**
      * Registra le configurazioni del modulo.
@@ -95,6 +77,4 @@ class ActivityServiceProvider extends XotBaseServiceProvider
             module_path($this->name, 'config/config.php'), 'activity'
         );
     }
-=======
->>>>>>> 6727cc6 (.)
 }

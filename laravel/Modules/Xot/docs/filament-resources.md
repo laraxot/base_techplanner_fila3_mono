@@ -87,7 +87,6 @@ return [
 - Rimossi i metodi ->label() dal SessionResource
 - Implementato il sistema di traduzioni per le label
 - Allineate le chiavi del form schema con il file di traduzioni
-<<<<<<< HEAD
 ### Versione HEAD
 
 - Mantenute le validazioni e la struttura del form 
@@ -105,6 +104,3 @@ return [
 
 ---
 
-=======
-- Mantenute le validazioni e la struttura del form 
->>>>>>> 9d6070e (.)

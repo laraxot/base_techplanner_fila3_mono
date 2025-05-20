@@ -1,37 +1,23 @@
-
-### Versione HEAD
-
-# Analisi PHPStan Livello 1 - Modulo Activity
-
-## Stato
-✅ Nessun errore rilevato
-
-## Data Analisi
-Data: $(date '+%Y-%m-%d')
-
-## Note
-- Il modulo supera l'analisi di livello 1 senza errori
-- Questo indica una buona base di tipizzazione e controlli di base
-- Il modulo gestisce correttamente il tracciamento delle attività senza problemi di tipo
-
-## Prossimi Passi
-1. Procedere con l'analisi di livello 2
-2. Mantenere questo standard nelle future modifiche
-3. Considerare l'aggiunta di test per mantenere la qualità del codice
-
-## Collegamenti
-- [Documentazione del Modulo](../README.md)
-- [Linee Guida PHPStan](../../../docs/phpstan/guidelines.md)
-- [Best Practices](../../../docs/best-practices.md)
-- [Activity Logging](../logging.md) 
-
-### Versione Alternativa
-
 # Rapporto PHPStan Livello 1 per il modulo Activity
 
 Data analisi: 2025-04-15 22:07:44
 
 🎉 **Congratulazioni!** Nessun errore trovato a questo livello.
 
----
+## Collegamenti tra versioni di level_1.md
+* [level_1.md](laravel/Modules/Chart/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Reporting/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Gdpr/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Notify/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Xot/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Dental/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/User/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/UI/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Lang/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Job/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Media/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Tenant/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Activity/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Patient/docs/phpstan/level_1.md)
+* [level_1.md](laravel/Modules/Cms/docs/phpstan/level_1.md)
 

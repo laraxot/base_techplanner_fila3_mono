@@ -15,11 +15,7 @@ class ListProfiles extends UserListProfiles
     /**
      * @return array<string, Tables\Columns\Column>
      */
-<<<<<<< HEAD
     public function getTableColumns(): array
-=======
-    public function getListTableColumns(): array
->>>>>>> 0f5e748 (.)
     {
         return [
             'id' => Tables\Columns\TextColumn::make('id')

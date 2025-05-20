@@ -111,7 +111,6 @@ composer format        # Formatta il codice
 - Debug problemi di invio
 
 ## Changelog
-<<<<<<< HEAD
 ### Versione HEAD
 
 Le modifiche vengono tracciate nel repository GitHub. 
@@ -126,6 +125,3 @@ Le modifiche vengono tracciate nel repository GitHub.
 
 ---
 
-=======
-Le modifiche vengono tracciate nel repository GitHub. 
->>>>>>> c57e89d (.)

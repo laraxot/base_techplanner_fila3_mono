@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 declare(strict_types=1);
 
 return [
@@ -75,42 +74,6 @@ return [
             'tooltip' => 'Canale di invio della notifica',
             'helper_text' => 'Seleziona il canale attraverso cui inviare la notifica',
             'placeholder' => 'Seleziona un canale',
-=======
-return [
-    'navigation' => [
-        'group' => 'Sistema',
-        'label' => 'Gestione Notifiche',
-        'icon' => 'notify-notification-animated',
-        'sort' => 46,
-        'description' => 'Gestione centralizzata delle notifiche di sistema',
-    ],
-    'fields' => [
-        'title' => 'Titolo',
-        'message' => 'Messaggio',
-        'type' => [
-            'label' => 'Tipo',
-            'system' => 'Sistema',
-            'alert' => 'Avviso',
-            'info' => 'Informazione',
-            'success' => 'Successo',
-            'warning' => 'Attenzione',
-            'error' => 'Errore',
-        ],
-        'status' => [
-            'label' => 'Stato',
-            'unread' => 'Non letta',
-            'read' => 'Letta',
-            'archived' => 'Archiviata',
-        ],
-        'recipient' => 'Destinatario',
-        'sent_at' => 'Inviata il',
-        'read_at' => 'Letta il',
-        'archived_at' => 'Archiviata il',
-        'channel' => [
-            'label' => 'Canale',
-            'tooltip' => 'Canale di invio della notifica',
-            'help' => 'Seleziona il canale attraverso cui inviare la notifica',
->>>>>>> c57e89d (.)
             'options' => [
                 'email' => [
                     'label' => 'Email',
@@ -133,12 +96,8 @@ return [
         'template' => [
             'label' => 'Template',
             'tooltip' => 'Template da utilizzare per la notifica',
-<<<<<<< HEAD
             'helper_text' => 'Scegli il modello predefinito per questa notifica',
             'placeholder' => 'Seleziona un template',
-=======
-            'help' => 'Scegli il modello predefinito per questa notifica',
->>>>>>> c57e89d (.)
             'options' => [
                 'subject' => [
                     'label' => 'Oggetto',
@@ -153,23 +112,15 @@ return [
                 'variables' => [
                     'label' => 'Variabili disponibili',
                     'tooltip' => 'Variabili che possono essere utilizzate nel template',
-<<<<<<< HEAD
                     'helper_text' => 'Usa {variable} per inserire valori dinamici',
-=======
-                    'help' => 'Usa {variable} per inserire valori dinamici',
->>>>>>> c57e89d (.)
                 ],
             ],
         ],
         'schedule' => [
             'label' => 'Programmazione',
             'tooltip' => 'Quando inviare la notifica',
-<<<<<<< HEAD
             'helper_text' => 'Imposta quando la notifica deve essere inviata',
             'placeholder' => 'Seleziona l\'opzione di programmazione',
-=======
-            'help' => 'Imposta quando la notifica deve essere inviata',
->>>>>>> c57e89d (.)
             'options' => [
                 'immediate' => [
                     'label' => 'Immediata',
@@ -193,7 +144,6 @@ return [
         ],
     ],
     'actions' => [
-<<<<<<< HEAD
         'mark_as_read' => [
             'label' => 'Segna come letta',
             'tooltip' => 'Marca la notifica come letta',
@@ -248,72 +198,5 @@ return [
         'batch_action_confirmation' => 'Sei sicuro di voler eseguire questa azione su tutte le notifiche selezionate?',
         'success' => 'Operazione completata con successo',
         'error' => 'Si è verificato un errore durante l\'operazione',
-=======
-        'mark_as_read' => 'Segna come letta',
-        'mark_as_unread' => 'Segna come non letta',
-        'archive' => 'Archivia',
-        'unarchive' => 'Ripristina',
-        'delete' => 'Elimina',
-        'send_test' => [
-            'label' => 'Invia test',
-            'tooltip' => 'Invia una notifica di test',
-            'icon' => 'heroicon-o-paper-airplane',
-            'color' => 'info',
-            'confirmation' => [
-                'title' => 'Conferma invio test',
-                'message' => 'Vuoi inviare una notifica di test?',
-                'confirm' => 'Sì, invia test',
-                'cancel' => 'No, annulla',
-            ],
-        ],
-        'preview' => [
-            'label' => 'Anteprima',
-            'tooltip' => 'Visualizza anteprima della notifica',
-            'icon' => 'heroicon-o-eye',
-            'color' => 'primary',
-        ],
-        'schedule' => [
-            'label' => 'Programma',
-            'tooltip' => 'Programma l\'invio della notifica',
-            'icon' => 'heroicon-o-clock',
-            'color' => 'success',
-            'confirmation' => [
-                'title' => 'Conferma programmazione',
-                'message' => 'Vuoi programmare l\'invio di questa notifica?',
-                'confirm' => 'Sì, programma',
-                'cancel' => 'No, annulla',
-            ],
-        ],
-    ],
-    'messages' => [
-        'no_notifications' => 'Nessuna notifica',
-        'mark_all_read' => 'Segna tutte come lette',
-        'archive_all' => 'Archivia tutte',
-        'delete_all' => 'Elimina tutte',
-        'test_sent' => [
-            'title' => 'Test Inviato',
-            'message' => 'La notifica di test è stata inviata con successo',
-        ],
-        'scheduled' => [
-            'title' => 'Programmazione Completata',
-            'message' => 'Notifica programmata per il :date alle :time',
-        ],
-    ],
-    'filters' => [
-        'all' => 'Tutte',
-        'unread' => 'Non lette',
-        'read' => 'Lette',
-        'archived' => 'Archiviate',
-        'type' => 'Tipo',
-        'date' => 'Data',
-    ],
-    'badges' => [
-        'unread' => 'Non letta',
-        'priority' => [
-            'high' => 'Alta priorità',
-            'medium' => 'Media priorità',
-            'low' => 'Bassa priorità',
-        ],
->>>>>>> c57e89d (.)
     ],
 ];

@@ -347,7 +347,6 @@ final class Media extends Model
         );
     }
 }
-<<<<<<< HEAD
 ### Versione HEAD
 
 ``` 
@@ -363,6 +362,3 @@ final class Media extends Model
 
 ---
 
-=======
-``` 
->>>>>>> c2eb445 (.)

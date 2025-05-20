@@ -30,11 +30,8 @@ use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Models\Traits\RelationX;
 use Spatie\Permission\Traits\HasRoles;
-<<<<<<< HEAD
 use Parental\HasChildren;
 use Illuminate\Support\Facades\Schema;
-=======
->>>>>>> 0b525d2 (.)
 
 /**
  * Modules\User\Models\User.
@@ -126,21 +123,14 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     use HasApiTokens;
     use HasFactory;
     use HasRoles;
-<<<<<<< HEAD
-=======
-    use HasTeams;
->>>>>>> 0b525d2 (.)
     use HasUuids;
     use Notifiable;
     use RelationX;
     use Traits\HasAuthenticationLogTrait;
     use Traits\HasTenants;
-<<<<<<< HEAD
     use Traits\HasTeams;
     use HasChildren;
 
-=======
->>>>>>> 0b525d2 (.)
 
     public $incrementing = false;
 
@@ -153,12 +143,9 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     /** @var string */
     protected $keyType = 'string';
 
-<<<<<<< HEAD
     /** @var string */
     protected $childColumn = 'type';
 
-=======
->>>>>>> 0b525d2 (.)
     /** @var list<string> */
     protected $fillable = [
         'id',
@@ -172,10 +159,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         'is_active',
         'is_otp', // is One Time Password
         'password_expires_at',
-<<<<<<< HEAD
         'type',
-=======
->>>>>>> 0b525d2 (.)
     ];
 
     /** @var list<string> */
@@ -196,14 +180,11 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         // 'profile_photo_url',
     ];
 
-<<<<<<< HEAD
     /** @var array<string, class-string> */
     protected $childTypes = [
 
     ];
 
-=======
->>>>>>> 0b525d2 (.)
     /** @var \Illuminate\Database\Eloquent\Relations\Pivot|null */
     public $pivot;
 
@@ -245,7 +226,6 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         return $this->hasOne($profileClass);
     }
 
-<<<<<<< HEAD
     /**
      * Verifica se l'utente ha il ruolo di super-admin.
      *
@@ -257,8 +237,6 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     }
 
 
-=======
->>>>>>> 0b525d2 (.)
     public function canAccessPanel(Panel $panel): bool
     {
         // $panel->default('admin');
@@ -342,11 +320,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
      *
      * @return MorphMany<Notification, static|$this>
      */
-<<<<<<< HEAD
     public function notifications()
-=======
-    public function notifications(): MorphMany
->>>>>>> 0b525d2 (.)
     {
         // @phpstan-ignore return.type
         return $this->morphMany(Notification::class, 'notifiable');
@@ -421,44 +395,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         ];
     }
 
-<<<<<<< HEAD
 
-=======
-    /**
-     * Check if the user has teams.
-     */
-    public function hasTeams(): bool
-    {
-        return true;
-    }
-
-    /**
-     * Check if the user belongs to any teams.
-     */
-    public function belongsToTeams(): bool
-    {
-        return true;
-    }
-
-
-    /**
-     * Get permissions for a specific team.
-     *
-     * @param \Modules\User\Contracts\TeamContract $team
-     * @return array<int, string>
-     */
-    public function teamPermissions(\Modules\User\Contracts\TeamContract $team): array
-    {
-        $role = $this->teamRole($team);
-
-        if ($role === null || !$role->permissions) {
-            return [];
-        }
-
-        /** @var array<int, string> */
-        return $role->permissions->pluck('name')->values()->toArray();
-    }
->>>>>>> 0b525d2 (.)
 
     /**
      * Get the role name for the current team.
@@ -467,11 +404,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
      */
     /**
      * Get all role names associated with the user.
-<<<<<<< HEAD
      *
-=======
-     * 
->>>>>>> 0b525d2 (.)
      * @return array<int, string>
      */
     public function getRoleNames(): array
@@ -480,149 +413,9 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         return $this->roles()->pluck('name')->filter()->values()->toArray();
     }
 
-<<<<<<< HEAD
 
 
 
-=======
-    public function personalTeam(): ?Team
-    {
-        /** @var Team|null */
-        return $this->ownedTeams()->first();
-    }
-
-    public function switchTeam(\Modules\User\Contracts\TeamContract $team): bool
-    {
-        if (! $this->belongsToTeam($team)) {
-            return false;
-        }
-
-        $this->current_team_id = (string) $team->id;
-        $this->save();
-
-        return true;
-    }
-
-    public function allTeams(): Collection
-    {
-        return $this->teams()->get();
-    }
-
-    public function belongsToTeam(\Modules\User\Contracts\TeamContract $team): bool
-    {
-        /** @var ?\Illuminate\Database\Eloquent\Model $found */
-        $found = $this->teams()->get()->first(function ($t) use ($team) {
-            // Accesso sicuro agli attributi
-            $teamId = $team->id ?? null;
-            $tId = $t->id ?? null;
-            $tTeamId = $t->team_id ?? null;
-
-            return ($tId !== null && $teamId !== null && $tId === $teamId) ||
-                ($tTeamId !== null && $teamId !== null && $tTeamId === $teamId);
-        });
-
-        return $found !== null;
-    }
-
-    public function ownsTeam(\Modules\User\Contracts\TeamContract $team): bool
-    {
-        /** @var ?\Illuminate\Database\Eloquent\Model $found */
-        $found = $this->ownedTeams()->get()->first(function ($t) use ($team) {
-            // Accesso sicuro agli attributi
-            $teamId = $team->id ?? null;
-            $tId = $t->id ?? null;
-
-            return $tId !== null && $teamId !== null && $tId === $teamId;
-        });
-
-        return $found !== null;
-    }
-
-    public function teamRole(\Modules\User\Contracts\TeamContract $team): ?Role
-    {
-        /** @var \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Relations\Pivot|null $teamUser */
-        $teamUser = $this->teams()->where('team_id', $team->id)->first();
-        if ($teamUser && method_exists($teamUser, 'getPivot') && $teamUser->getPivot() !== null && isset($teamUser->pivot->role)) {
-            return $teamUser->pivot->role;
-        }
-        return null;
-    }
-
-    public function hasTeamPermission(\Modules\User\Contracts\TeamContract $team, string $permission): bool
-    {
-        return $this->ownsTeam($team) || in_array($permission, $this->teamPermissions($team));
-    }
-
-    public function hasTeamRole(\Modules\User\Contracts\TeamContract $team, string $role): bool
-    {
-        if ($this->ownsTeam($team)) {
-            return true;
-        }
-
-        $teamRole = $this->teamRole($team);
-        return $teamRole !== null && isset($teamRole->name) && $teamRole->name === $role;
-    }
-
-    public function canManageTeam(Team $team): bool
-    {
-        return $this->ownsTeam($team);
-    }
-
-    public function canDeleteTeam(Team $team): bool
-    {
-        return $this->ownsTeam($team);
-    }
-
-    public function canLeaveTeam(Team $team): bool
-    {
-        return $this->belongsToTeam($team) && ! $this->ownsTeam($team);
-    }
-
-    public function canRemoveTeamMember(Team $team, User $user): bool
-    {
-        return $this->ownsTeam($team) || $this->hasTeamPermission($team, 'remove team member');
-    }
-
-    public function canAddTeamMember(Team $team): bool
-    {
-        return $this->ownsTeam($team) || $this->hasTeamPermission($team, 'add team member');
-    }
-
-    public function canUpdateTeamMember(Team $team, User $user): bool
-    {
-        return $this->ownsTeam($team) || $this->hasTeamPermission($team, 'update team member');
-    }
-
-    public function canUpdateTeam(Team $team): bool
-    {
-        return $this->ownsTeam($team) || $this->hasTeamPermission($team, 'update team');
-    }
-
-    public function canViewTeam(Team $team): bool
-    {
-        return $this->belongsToTeam($team) || $this->hasTeamPermission($team, 'view team');
-    }
-
-    public function canCreateTeam(): bool
-    {
-        return $this->hasPermissionTo('create team');
-    }
-
-    public function ownedTeams(): HasMany
-    {
-        return $this->hasMany(Team::class, 'owner_id');
-    }
-
-    public function currentTeam(): BelongsTo
-    {
-        return $this->belongsTo(Team::class, 'current_team_id');
-    }
-
-    public function tenants(): BelongsToMany
-    {
-        return $this->belongsToMany(Tenant::class, 'tenant_user');
-    }
->>>>>>> 0b525d2 (.)
 
     public function authentications(): MorphMany
     {
@@ -640,13 +433,9 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     {
         // Se è una stringa semplice, utilizziamo il metodo interno tramite relazione roles
         if (is_string($roles)) {
-<<<<<<< HEAD
             return once(function () use ($roles) {
                 return $this->roles()->where('name', $roles)->exists();
             });
-=======
-            return $this->roles()->where('name', $roles)->exists();
->>>>>>> 0b525d2 (.)
         }
 
         // Per gli altri tipi, implementiamo una logica di base

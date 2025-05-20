@@ -24,7 +24,6 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/star_rating.txt}
 ```txt
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/custom_errors.txt}
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -38,5 +37,3 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/custom_errors.txt}
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

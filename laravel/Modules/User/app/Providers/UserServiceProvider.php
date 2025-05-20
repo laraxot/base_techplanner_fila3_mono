@@ -24,11 +24,8 @@ use Modules\User\Models\OauthRefreshToken;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use SocialiteProviders\Manager\ServiceProvider as SocialiteServiceProvider;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-=======
->>>>>>> 0b525d2 (.)
 
 class UserServiceProvider extends XotBaseServiceProvider
 {
@@ -46,14 +43,11 @@ class UserServiceProvider extends XotBaseServiceProvider
         $this->registerMailsNotification();
     }
 
-<<<<<<< HEAD
     public function register(): void
     {
         parent::register();
     }
 
-=======
->>>>>>> 0b525d2 (.)
     public function registerMailsNotification(): void
     {
         $app_name = config('app.name');
@@ -119,14 +113,6 @@ class UserServiceProvider extends XotBaseServiceProvider
 
     private function registerPassport(): void
     {
-<<<<<<< HEAD
-=======
-        Passport::usePersonalAccessClientModel(OauthPersonalAccessClient::class);
-        Passport::useTokenModel(OauthAccessToken::class);
-        Passport::useRefreshTokenModel(OauthRefreshToken::class);
-        Passport::useAuthCodeModel(OauthAuthCode::class);
-        Passport::useClientModel(OauthClient::class);
->>>>>>> 0b525d2 (.)
         if (method_exists(Passport::class, 'routes')) {
             Passport::routes();
         }

@@ -14,11 +14,8 @@ use Modules\User\Actions\GetCurrentDeviceAction;
 use Modules\User\Models\AuthenticationLog;
 use Modules\User\Models\DeviceUser;
 use Modules\User\Contracts\HasAuthentications;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Log;
 use Modules\User\Traits\HasAuthentications as HasAuthenticationsTrait;
-=======
->>>>>>> 0b525d2 (.)
 
 class LogoutListener
 {
@@ -39,7 +36,6 @@ class LogoutListener
      */
     public function handle(Logout $event): void
     {
-<<<<<<< HEAD
         try {
             // Verifica se l'utente esiste prima di procedere
             if (!$event->user) {
@@ -114,62 +110,6 @@ class LogoutListener
                     'user_id' => $event->user->getAuthIdentifier()
                 ]);
             }
-=======
-        if (! config('authentication-log.logout_log', true)) {
-            return;
-        }
-
-        if ($event->user && $event->user instanceof HasAuthentications) {
-            $ip = $this->request->ip();
-            $userAgent = $this->request->userAgent();
-            // $location = optional(geoip()->getLocation($ip))->toArray();
-            $location = [];
-
-            $event->user->authentications()->create([
-                'ip_address' => $ip,
-                'user_agent' => $userAgent,
-                'logout_at' => now(),
-                'location' => $location,
-            ]);
-        }
-
-        // Session::flash('login-success', 'Hello ' . $event->user->name . ', welcome back!');
-        $device = app(GetCurrentDeviceAction::class)->execute();
-        $user = $event->user;
-        
-        $pivot = DeviceUser::firstOrCreate(['user_id' => $user->getAuthIdentifier(), 'device_id' => $device->id]);
-        $pivot->update(['logout_at' => now()]);
-
-        // ----------
-        if ($user instanceof HasAuthentications) {
-            $ip = $this->request->ip();
-            $userAgent = $this->request->userAgent();
-            $log = $user->authentications()
-                ->whereIpAddress($ip)
-                ->whereUserAgent($userAgent)
-                ->orderByDesc('login_at')
-                ->first();
-
-            if (! $log) {
-                $log = new AuthenticationLog([
-                    'ip_address' => $ip,
-                    'user_agent' => $userAgent,
-                ]);
-            }
-
-            $log->setAttribute('logout_at', now());
-
-            $user->authentications()->save($log);
-        }
-    }
-
-    public function forgetRememberTokens(Logout $event): void
-    {
-        if ($event->user && $event->user instanceof HasAuthentications) {
-            $event->user->authentications()->whereNotNull('remember_token')->update([
-                'remember_token' => null,
-            ]);
->>>>>>> 0b525d2 (.)
         }
     }
 }

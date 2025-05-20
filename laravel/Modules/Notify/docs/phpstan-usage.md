@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Utilizzo di PHPStan nel Progetto <nome progetto>
-=======
-# Utilizzo di PHPStan nel Progetto PTVX
->>>>>>> c57e89d (.)
 
 ## Esecuzione di PHPStan
 
@@ -116,7 +112,6 @@ parameters:
 ## Configurazione avanzata
 
 Il file `phpstan.neon` nella directory Laravel contiene le configurazioni personalizzate per il progetto.
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -129,5 +124,3 @@ Il file `phpstan.neon` nella directory Laravel contiene le configurazioni person
 
 ---
 
-=======
->>>>>>> c57e89d (.)

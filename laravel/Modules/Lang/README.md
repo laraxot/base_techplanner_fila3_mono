@@ -1,5 +1,4 @@
 # Module Lang
-<<<<<<< HEAD
 
 Modulo dedicato alla gestione delle traduzioni e localizzazione in applicazioni Laravel.
 
@@ -185,12 +184,6 @@ Este proyecto está distribuido bajo la licencia MIT. Ver el archivo [LICENSE](L
 
 ---
 
-=======
-Modulo dedicato alla gestione delle traduzioni
-
-## Aggiungere Modulo nella base del progetto
-Dentro la cartella laravel/Modules
->>>>>>> 57d034b (.)
 
 ```bash
 git submodule add https://github.com/laraxot/module_lang_fila3.git Lang
@@ -208,7 +201,6 @@ php artisan module:enable Lang
 ## Eseguire le migrazioni
 ```bash
 php artisan module:migrate Lang
-<<<<<<< HEAD
 ### Versione HEAD
 
 ```
@@ -220,6 +212,3 @@ php artisan module:migrate Lang
 
 ---
 
-=======
-```
->>>>>>> 57d034b (.)

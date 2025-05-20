@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 return array (
   'fields' => 
   array (
@@ -12,14 +11,3 @@ return array (
     ),
   ),
 );
-=======
-declare(strict_types=1);
-
-return [
-    'fields' => [
-        'view' => [
-            'label' => 'view',
-        ],
-    ],
-];
->>>>>>> 9d6070e (.)

@@ -42,12 +42,9 @@ cache/
 .git-blame-ignore-revs
 .php-cs-fixer.cache
 *.exe
-<<<<<<< HEAD
 
 # Backup files
 *.bak
 -e 
 # PHPStan documentation
 docs/phpstan/
-=======
->>>>>>> 9d6070e (.)

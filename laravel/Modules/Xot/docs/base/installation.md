@@ -130,7 +130,6 @@ se il branch di un modulo vuole essere pubblicato, eseguire nel modulo
 ```bash
 ../../../bascripts/git_init.sh nome_branch
 ```  
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -149,5 +148,3 @@ se il branch di un modulo vuole essere pubblicato, eseguire nel modulo
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

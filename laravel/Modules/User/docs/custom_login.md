@@ -5,7 +5,6 @@ https://www.codef.site/blog/laravel/how-to-customize-laravel-filament-login-page
 
 https://v2.filamentphp.com/tricks/customizing-filament-breezy-registration-profile-page
 
-<<<<<<< HEAD
 ### Versione HEAD
 
 # Implementazione Login Personalizzato
@@ -87,7 +86,5 @@ class LoginWidget extends XotBaseWidget
 
 ---
 
-=======
->>>>>>> 0b525d2 (.)
 
 

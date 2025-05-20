@@ -271,13 +271,9 @@ class AnonymizationTest extends TestCase {
    - Pulizia log periodica
    - Verifica consensi scaduti
    - Aggiornamento policy
-<<<<<<< HEAD
    - Review sicurezza 
 ## Collegamenti tra versioni di solutions.md
 * [solutions.md](laravel/Modules/Gdpr/docs/solutions.md)
 * [solutions.md](laravel/Modules/Xot/docs/solutions.md)
 * [solutions.md](laravel/Modules/Job/docs/solutions.md)
 
-=======
-   - Review sicurezza 
->>>>>>> 0f5e748 (.)

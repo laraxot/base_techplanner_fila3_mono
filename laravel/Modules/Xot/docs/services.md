@@ -230,7 +230,6 @@ return [
 4. **Testing**
    - Scrivere test unitari per ogni servizio
    - Utilizzare mock per le dipendenze
-<<<<<<< HEAD
 ### Versione HEAD
 
    - Testare i casi limite 
@@ -245,6 +244,3 @@ return [
 
 ---
 
-=======
-   - Testare i casi limite 
->>>>>>> 9d6070e (.)

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### Versione HEAD
 
 # Traduzioni
@@ -137,8 +136,6 @@ return [
 
 ### Versione Incoming
 
-=======
->>>>>>> 9d6070e (.)
 # Sistema di Traduzioni
 
 ## Struttura
@@ -189,12 +186,9 @@ return [
 ];
 ```
 
-<<<<<<< HEAD
 
 ---
 
-=======
->>>>>>> 9d6070e (.)
 ## Utilizzo
 
 ### In Filament Resources
@@ -330,7 +324,6 @@ TextInput::make('cognome')
 // Utilizzo in Actions
 Action::make('save')
 Action::make('delete')
-<<<<<<< HEAD
 ### Versione HEAD
 
 ```
@@ -398,6 +391,3 @@ Action::make('delete')
 
 ---
 
-=======
-``` 
->>>>>>> 9d6070e (.)

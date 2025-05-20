@@ -60,7 +60,6 @@ trait RelationX
             ->withTimestamps();
     }
 
-<<<<<<< HEAD
     /*
     public function ratings(): MorphToMany
     {
@@ -83,8 +82,6 @@ trait RelationX
     }
     */
 
-=======
->>>>>>> 9d6070e (.)
     /**
      * @return \Illuminate\Database\Eloquent\Relations\Pivot
      */
@@ -95,32 +92,23 @@ trait RelationX
             class_basename($related),
         ];
         sort($model_names);
-<<<<<<< HEAD
         $msg='';
-=======
->>>>>>> 9d6070e (.)
         $pivot_name = implode('', $model_names);
         $pivot_class = Str::of($this::class)
             ->beforeLast('\\')
             ->append('\\'.$pivot_name)
             ->toString();
         if (! class_exists($pivot_class)) {
-<<<<<<< HEAD
             $msg .= 'pivot['.$pivot_class.'] not exists';
-=======
->>>>>>> 9d6070e (.)
             $pivot_class = Str::of($related)
                 ->beforeLast('\\')
                 ->append('\\'.$pivot_name)
                 ->toString();
         }
-<<<<<<< HEAD
         if (! class_exists($pivot_class)) {
             $msg .= ' pivot['.$pivot_class.'] not exists';
             throw new \Exception($msg);
         }
-=======
->>>>>>> 9d6070e (.)
         $pivot = app($pivot_class);
         Assert::isInstanceOf($pivot, \Illuminate\Database\Eloquent\Relations\Pivot::class);
 

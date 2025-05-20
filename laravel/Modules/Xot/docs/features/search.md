@@ -16,7 +16,6 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/_elastic_links.txt}
 ```txt
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/Content_Selection_and_Highlighting.txt}
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -31,5 +30,3 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/Content_Selection_and_Hig
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 # Guida alla Localizzazione nel Framework Laraxot <nome progetto>
 
 ## Introduzione
 
 La localizzazione (l10n) è un aspetto fondamentale delle applicazioni modern, permettendo di offrire l'interfaccia e i contenuti in diverse lingue. Il framework Laraxot <nome progetto> segue le convenzioni di Laravel per la gestione della localizzazione, con alcune personalizzazioni specifiche.
-=======
-# Guida alla Localizzazione nel Framework Laraxot PTVX
-
-## Introduzione
-
-La localizzazione (l10n) è un aspetto fondamentale delle applicazioni modern, permettendo di offrire l'interfaccia e i contenuti in diverse lingue. Il framework Laraxot PTVX segue le convenzioni di Laravel per la gestione della localizzazione, con alcune personalizzazioni specifiche.
->>>>>>> 9d6070e (.)
 
 Questo documento fornisce una guida completa su come implementare e gestire correttamente la localizzazione nei moduli Laraxot.
 
@@ -132,11 +124,7 @@ if (App::isLocale('it')) {
 }
 ```
 
-<<<<<<< HEAD
 ## Implementazione in Laraxot <nome progetto>
-=======
-## Implementazione in Laraxot PTVX
->>>>>>> 9d6070e (.)
 
 ### Middleware per il Cambio Automatico della Lingua
 
@@ -183,10 +171,7 @@ protected $middlewareGroups = [
 È buona pratica utilizzare un Enum per gestire le lingue supportate:
 
 ```php
-<<<<<<< HEAD
 namespace Modules\Xot\app\Enums;
-=======
->>>>>>> 9d6070e (.)
 namespace Modules\Xot\Enums;
 
 enum SupportedLocale: string
@@ -310,8 +295,4 @@ php artisan lang:clear
 
 ## Conclusione
 
-<<<<<<< HEAD
 Seguendo queste linee guida, potrai implementare un sistema di localizzazione robusto e manutenibile all'interno del framework Laraxot <nome progetto>. Ricorda che i file di localizzazione devono rimanere nella directory `lang` alla radice del modulo, rispettando le convenzioni standard di Laravel. 
-=======
-Seguendo queste linee guida, potrai implementare un sistema di localizzazione robusto e manutenibile all'interno del framework Laraxot PTVX. Ricorda che i file di localizzazione devono rimanere nella directory `lang` alla radice del modulo, rispettando le convenzioni standard di Laravel. 
->>>>>>> 9d6070e (.)

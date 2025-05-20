@@ -33,7 +33,6 @@ return [
     'color_banner' => '#000',
 ];
 ~~~
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -47,5 +46,3 @@ return [
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

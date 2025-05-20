@@ -14,7 +14,6 @@
 ## Struttura
 ```
 app/
-<<<<<<< HEAD
 ### Versione HEAD
 
 ├── Filament/           # Componenti Filament
@@ -28,19 +27,14 @@ app/
 
 ### Versione Incoming
 
-=======
->>>>>>> 0b525d2 (.)
 ├── Filament/       # Componenti Filament
 ├── Http/           # Controllers e Middleware
 ├── Models/         # Modelli del dominio
 ├── Providers/      # Service Providers
 └── Services/       # Servizi utente
-<<<<<<< HEAD
 
 ---
 
-=======
->>>>>>> 0b525d2 (.)
 ```
 
 ## Dipendenze
@@ -91,7 +85,6 @@ composer format        # Formatta il codice
   AUTH0_CLIENT_ID=
   AUTH0_CLIENT_SECRET=
   ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 - Per dettagli completi sull'integrazione di Laravel Passport, vedere [documentazione dedicata](./passport.md)
@@ -101,8 +94,6 @@ composer format        # Formatta il codice
 
 ---
 
-=======
->>>>>>> 0b525d2 (.)
 
 ## Best Practices
 1. Seguire le convenzioni di naming Laravel
@@ -114,7 +105,6 @@ composer format        # Formatta il codice
 7. Gestire correttamente le password
 8. Proteggere i dati sensibili
 
-<<<<<<< HEAD
 ### Versione HEAD
 
 ### Filament
@@ -133,8 +123,6 @@ composer format        # Formatta il codice
 
 ---
 
-=======
->>>>>>> 0b525d2 (.)
 ## Troubleshooting
 ### Problemi Comuni
 1. **Errori di Autenticazione**
@@ -147,7 +135,6 @@ composer format        # Formatta il codice
    - Verificare la configurazione delle code
    - Controllare lo spazio disco
 
-<<<<<<< HEAD
 ### Versione HEAD
 
 3. **Problemi con i Widget Filament**
@@ -166,7 +153,3 @@ Le modifiche vengono tracciate nel repository GitHub.
 
 ---
 
-=======
-## Changelog
-Le modifiche vengono tracciate nel repository GitHub. 
->>>>>>> 0b525d2 (.)

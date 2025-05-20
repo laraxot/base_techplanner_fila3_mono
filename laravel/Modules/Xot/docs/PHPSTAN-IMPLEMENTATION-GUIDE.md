@@ -1,10 +1,6 @@
 # Guida Pratica all'Implementazione delle Soluzioni PHPStan
 
-<<<<<<< HEAD
 Questo documento fornisce una guida pratica su come implementare le soluzioni ai problemi più comuni rilevati da PHPStan a livello 9 nel framework Laraxot <nome progetto>.
-=======
-Questo documento fornisce una guida pratica su come implementare le soluzioni ai problemi più comuni rilevati da PHPStan a livello 9 nel framework Laraxot PTVX.
->>>>>>> 9d6070e (.)
 
 ## Approccio Metodico alla Correzione
 
@@ -296,8 +292,4 @@ Ogni modulo dovrebbe documentare le soluzioni ai problemi PHPStan specifici in `
 
 ---
 
-<<<<<<< HEAD
 Seguendo questa guida pratica, potrai affrontare e risolvere in modo metodico i problemi rilevati da PHPStan nel tuo codebase Laraxot <nome progetto>, migliorando la qualità complessiva del codice e riducendo gli errori a runtime. 
-=======
-Seguendo questa guida pratica, potrai affrontare e risolvere in modo metodico i problemi rilevati da PHPStan nel tuo codebase Laraxot PTVX, migliorando la qualità complessiva del codice e riducendo gli errori a runtime. 
->>>>>>> 9d6070e (.)

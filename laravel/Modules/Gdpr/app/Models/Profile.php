@@ -15,32 +15,6 @@ use Modules\User\Models\BaseProfile;
  * @property string|null                                                                                                   $last_name
  * @property string|null                                                                                                   $full_name
  * @property string|null                                                                                                   $email
-<<<<<<< HEAD
-=======
- * @property int                                                                                                           $id
- * @property string|null                                                                                                   $type
- * @property string|null                                                                                                   $first_name
- * @property string|null                                                                                                   $last_name
- * @property string|null                                                                                                   $full_name
- * @property string|null                                                                                                   $email
- *                                                                                                                                                    =======
- *                                                                                                                                                    > 76348cc6b642ef946f57e308db4e1c6210448bea
- * @property \Illuminate\Support\Carbon|null                                                                               $created_at
- * @property \Illuminate\Support\Carbon|null                                                                               $updated_at
- * @property string|null                                                                                                   $user_id
- * @property string|null                                                                                                   $updated_by
- * @property string|null                                                                                                   $created_by
- * @property \Illuminate\Support\Carbon|null                                                                               $deleted_at
- * @property string|null                                                                                                   $deleted_by
- * @property int                                                                                                           $is_active
- *                                                                                                                                                    =======
- * @property int                                                                                                           $id
- * @property string|null                                                                                                   $type
- * @property string|null                                                                                                   $first_name
- * @property string|null                                                                                                   $last_name
- * @property string|null                                                                                                   $full_name
- * @property string|null                                                                                                   $email
->>>>>>> 0f5e748 (.)
  * @property \Illuminate\Support\Carbon|null                                                                               $created_at
  * @property \Illuminate\Support\Carbon|null                                                                               $updated_at
  * @property string|null                                                                                                   $user_id

@@ -14,10 +14,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\BaseFilter;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
-<<<<<<< HEAD
-=======
-use Filament\Tables\Actions\Action;
->>>>>>> 9d6070e (.)
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Columns\Layout\Stack;
@@ -130,11 +126,7 @@ trait HasXotTable
     public function getGridTableColumns(): array
     {
         return [
-<<<<<<< HEAD
             Stack::make($this->getTableColumns()),
-=======
-            Stack::make($this->getListTableColumns()),
->>>>>>> 9d6070e (.)
         ];
     }
 
@@ -143,11 +135,7 @@ trait HasXotTable
      *
      * @return array<string, Tables\Columns\Column>
      */
-<<<<<<< HEAD
     public function getTableColumns(): array
-=======
-    public function getListTableColumns(): array
->>>>>>> 9d6070e (.)
     {
         return [];
     }
@@ -250,11 +238,8 @@ trait HasXotTable
             ->emptyStateActions($this->getTableEmptyStateActions())
             ->striped();
 
-<<<<<<< HEAD
         $table = $table
             ->paginated($this->getTablePaginated());
-=======
->>>>>>> 9d6070e (.)
         /*
             ->defaultSort(
                 column: $this->getDefaultTableSortColumn(),
@@ -264,14 +249,11 @@ trait HasXotTable
         return $table;
     }
 
-<<<<<<< HEAD
     protected function getTablePaginated(): bool
     {
         return true;
     }
 
-=======
->>>>>>> 9d6070e (.)
     /**
      * Get default table sort column.
      */
@@ -310,16 +292,11 @@ trait HasXotTable
     /**
      * Get table actions.
      *
-<<<<<<< HEAD
      * @return array<string, Action|ActionGroup>
-=======
-     * @return array<string, Tables\Actions\Action|Tables\Actions\ActionGroup>
->>>>>>> 9d6070e (.)
      */
     public function getTableActions(): array
     {
         $actions = [];
-<<<<<<< HEAD
         $resource = $this->getResource();
         
         if (method_exists($resource, 'canView')) {
@@ -343,25 +320,6 @@ trait HasXotTable
                 ->visible(fn (Model $record): bool => $resource::canDelete($record));
         }
         
-=======
-
-        if ($this->shouldShowViewAction()) {
-            $actions['view'] = Tables\Actions\ViewAction::make()
-                ->iconButton()
-                ->tooltip(__('user::actions.view'));
-        }
-
-        if ($this->shouldShowEditAction()) {
-            $actions['edit'] = Tables\Actions\EditAction::make()
-                ->iconButton()
-                ->tooltip(__('user::actions.edit'));
-        }
-
-        $actions['delete'] = Tables\Actions\DeleteAction::make()
-            ->iconButton()
-            ->tooltip(__('user::actions.delete'));
-
->>>>>>> 9d6070e (.)
         if ($this->shouldShowReplicateAction()) {
             $actions['replicate'] = Tables\Actions\ReplicateAction::make()
                 ->iconButton()

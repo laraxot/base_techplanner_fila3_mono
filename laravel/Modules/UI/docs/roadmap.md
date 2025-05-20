@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### Versione HEAD
 
 # Roadmap Modulo UI
@@ -278,8 +277,6 @@ Overall Module Completion: 60%
    - Query optimization
    - Cache implementation
    - Priority: High
-=======
->>>>>>> 77f8368 (.)
 # 🗺️ UI Module Roadmap
 
 ## 📊 Progress Overview
@@ -360,11 +357,7 @@ Overall Module Completion: 60%
 4. 📝 Accessibility documentation
 5. 🧪 A11y testing suite
 
-<<<<<<< HEAD
 [More details in docs/roadmap/weekly/week2.md] 
 
 ---
 
-=======
-[More details in docs/roadmap/weekly/week2.md] 
->>>>>>> 77f8368 (.)

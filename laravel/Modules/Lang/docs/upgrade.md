@@ -27,7 +27,6 @@ Infine, se si sono pubblicati il file di configurazione o i modelli Blade, assic
 
 ```console
 php artisan module_lang:show-versions
-<<<<<<< HEAD
 ### Versione HEAD
 
 ```
@@ -42,6 +41,3 @@ php artisan module_lang:show-versions
 
 ---
 
-=======
-```
->>>>>>> 57d034b (.)

@@ -14,11 +14,7 @@ class ListRoles extends XotBaseListRecords
 {
     protected static string $resource = RoleResource::class;
 
-<<<<<<< HEAD
     public function getTableColumns(): array
-=======
-    public function getListTableColumns(): array
->>>>>>> 0b525d2 (.)
     {
         return [
             'id' => TextColumn::make('id'),

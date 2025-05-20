@@ -4,7 +4,6 @@ https://github.com/codedor/filament-mail-templates/
 
 
 https://www.mailcoach.app/resources/blog/using-the-mailcoach-markdown-editor-in-filament
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -19,5 +18,3 @@ https://www.mailcoach.app/resources/blog/using-the-mailcoach-markdown-editor-in-
 
 ---
 
-=======
->>>>>>> c57e89d (.)

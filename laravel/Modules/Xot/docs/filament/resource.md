@@ -37,7 +37,6 @@ class UserResource extends \Modules\Xot\Filament\Resources\XotBaseResource
     //
 }
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -51,5 +50,3 @@ class UserResource extends \Modules\Xot\Filament\Resources\XotBaseResource
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

@@ -19,7 +19,6 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/_lazy.txt}
 ```txt
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/_performance.txt}
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -39,5 +38,3 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/_performance.txt}
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

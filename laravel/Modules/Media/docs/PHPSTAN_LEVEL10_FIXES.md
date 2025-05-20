@@ -1,10 +1,7 @@
 # Correzioni PHPStan Livello 10 - Modulo Media
 
-<<<<<<< HEAD
 > **Collegamento globale:** Per le strategie generali e le best practices sulla risoluzione dei conflitti git, vedi [docs/git_conflict_resolution.md](../../../../docs/git_conflict_resolution.md).
 
-=======
->>>>>>> c2eb445 (.)
 Questo documento traccia gli errori PHPStan di livello 10 identificati nel modulo Media e le relative soluzioni implementate.
 
 ## Errori Identificati
@@ -84,7 +81,6 @@ Il modello `Media.php` contiene diverse proprietà documentate con tipo `mixed`:
 
 Questa soluzione mantiene la funzionalità originale migliorando al contempo la chiarezza del codice e la compatibilità con l'analisi statica di PHPStan a livello 10.
 
-<<<<<<< HEAD
 ### 5. Risoluzione dei conflitti di merge nei file del modulo Media
 
 **Problema**: Diversi file del modulo Media contenevano conflitti di merge non risolti, indicati da marcatori git (`=======`, `>>>>>>>`, ecc.). Questi conflitti impedivano la corretta esecuzione del codice e causavano errori di sintassi.
@@ -102,8 +98,6 @@ Questa soluzione mantiene la funzionalità originale migliorando al contempo la 
 - `MediaRelationManager.php`
 - `PHPSTAN_LEVEL10_FIXES.md`
 
-=======
->>>>>>> c2eb445 (.)
 ## Principi Applicati
 
 1. **Uso appropriato di PHPDoc per tipi speciali**: Quando PHP non supporta nativamente un tipo (come `resource`), utilizzare annotazioni PHPDoc per fornire informazioni di tipo a PHPStan.
@@ -115,12 +109,8 @@ Questa soluzione mantiene la funzionalità originale migliorando al contempo la 
 1. Completare la revisione di `SubtitleService.php` per risolvere i problemi di tipo complessi.
 2. Aggiornare il modello `Media.php` per specificare tipi più precisi per le proprietà attualmente documentate come `mixed`.
 3. Eseguire l'analisi PHPStan a livello 10 per verificare che le correzioni risolvano effettivamente gli errori.
-<<<<<<< HEAD
 4. Documentare pattern e soluzioni standard per gestire risorse di file e altri tipi speciali nel progetto.
 
 ---
 
 > **Collegamento globale:** Questa documentazione locale dettaglia i casi concreti e le decisioni architetturali adottate nel modulo Media. Per le strategie generali e le best practices, consulta sempre anche la documentazione globale in [docs/git_conflict_resolution.md](../../../../docs/git_conflict_resolution.md). 
-=======
-4. Documentare pattern e soluzioni standard per gestire risorse di file e altri tipi speciali nel progetto. 
->>>>>>> c2eb445 (.)

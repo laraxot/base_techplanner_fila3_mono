@@ -17,10 +17,7 @@ use Filament\Tables\Filters\BaseFilter;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\View;
-<<<<<<< HEAD
 use Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider;
-=======
->>>>>>> 57d034b (.)
 use Modules\Lang\Actions\Filament\AutoLabelAction;
 use Modules\Lang\Services\TranslatorService;
 use Modules\Xot\Providers\XotBaseServiceProvider;
@@ -50,7 +47,6 @@ class LangServiceProvider extends XotBaseServiceProvider
     public function register(): void
     {
         parent::register();
-<<<<<<< HEAD
 
         // Registra il service provider di laravel-localization
         $this->app->register(LaravelLocalizationServiceProvider::class);
@@ -60,8 +56,6 @@ class LangServiceProvider extends XotBaseServiceProvider
         //    __DIR__.'/../config/laravel-localization.php', 'laravel-localization'
         //);
 
-=======
->>>>>>> 57d034b (.)
         // --dalla doc in register ... ma non funziona, funziona in boot
         // $this->registerTranslator();
     }
@@ -80,10 +74,7 @@ class LangServiceProvider extends XotBaseServiceProvider
 
     public function registerFilamentLabel(): void
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> 57d034b (.)
         Field::configureUsing(function (Field $component) {
             $component = app(AutoLabelAction::class)->execute($component);
             Assert::isInstanceOf($component, Field::class);
@@ -98,12 +89,9 @@ class LangServiceProvider extends XotBaseServiceProvider
                 }
                 $component->validationMessages($typedMessages);
             }
-<<<<<<< HEAD
             $component = app(AutoLabelAction::class)->execute($component,'placeholder');
             $component = app(AutoLabelAction::class)->execute($component,'helperText');
             $component = app(AutoLabelAction::class)->execute($component,'description');
-=======
->>>>>>> 57d034b (.)
 
             return $component;
         });

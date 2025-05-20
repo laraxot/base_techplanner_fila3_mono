@@ -1,6 +1,5 @@
 # Changelog
 
-<<<<<<< HEAD
 Tutte le modifiche notevoli a questo modulo saranno documentate in questo file.
 
 Il formato è basato su [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -33,10 +32,3 @@ e questo progetto aderisce al [Semantic Versioning](https://semver.org/spec/v2.0
 - Risorse Filament per Activity e Snapshot
 - Sistema di logging delle attività
 - Documentazione base del modulo
-=======
-All notable changes to `:package_name` will be documented in this file.
-
-## 1.0.0 - 202X-XX-XX
-
-- initial release
->>>>>>> 6727cc6 (.)

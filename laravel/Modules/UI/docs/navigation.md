@@ -32,7 +32,6 @@ return [
 // blade files
 $page->navigation
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -50,5 +49,3 @@ $page->navigation
 
 ---
 
-=======
->>>>>>> 77f8368 (.)

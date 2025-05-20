@@ -199,7 +199,6 @@ public function exportData()
     })->chunk(1000);
 }
 ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -221,5 +220,3 @@ public function exportData()
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

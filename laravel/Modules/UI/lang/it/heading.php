@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 return array (
   'fields' => 
   array (
@@ -18,17 +17,3 @@ return array (
     ),
   ),
 );
-=======
-declare(strict_types=1);
-
-return [
-    'fields' => [
-        'level' => [
-            'label' => 'level',
-        ],
-        'content' => [
-            'label' => 'content',
-        ],
-    ],
-];
->>>>>>> 77f8368 (.)

@@ -16,11 +16,7 @@ use Modules\Xot\Filament\Resources\ModuleResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Nwidart\Modules\Facades\Module;
 
-<<<<<<< HEAD
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManagers\XotBaseRelationManager;
-=======
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
->>>>>>> 9d6070e (.)
 
 class ListModules extends XotBaseListRecords
 {
@@ -31,22 +27,14 @@ class ListModules extends XotBaseListRecords
     public function getGridTableColumns(): array
     {
         return [
-<<<<<<< HEAD
             Stack::make($this->getTableColumns()),
-=======
-            Stack::make($this->getListTableColumns()),
->>>>>>> 9d6070e (.)
         ];
     }
 
     /**
      * @return array<string, Tables\Columns\Column>
      */
-<<<<<<< HEAD
     public function getTableColumns(): array
-=======
-    public function getListTableColumns(): array
->>>>>>> 9d6070e (.)
     {
         return [
             'name' => TextColumn::make('name')

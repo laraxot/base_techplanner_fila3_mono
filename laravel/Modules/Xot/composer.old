@@ -27,11 +27,7 @@
         "illuminate/contracts": "*",
         "illuminate/support": "*",
         "laravel/folio": "^1.1",
-<<<<<<< HEAD
-        "laravel/framework": "^12.0",
-=======
         "laravel/framework": "^11.9",
->>>>>>> 9d6070e (.)
         "laravel/pennant": "^1.11",
         "laravel/pulse": "^1.2",
         "livewire/livewire": "*",
@@ -57,11 +53,7 @@
         "tightenco/parental": "^1.4"
     },
     "require_comment": {
-<<<<<<< HEAD
-
-=======
         
->>>>>>> 9d6070e (.)
         "laraxot/module_tenant_fila3": "*"
     },
     "require-dev": {

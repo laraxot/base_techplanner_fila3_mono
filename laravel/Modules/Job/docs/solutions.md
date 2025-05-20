@@ -343,7 +343,6 @@ class RetryTest extends TestCase {
    - Pulizia job vecchi
    - Ottimizzazione indici
    - Review configurazioni
-<<<<<<< HEAD
 ### Versione HEAD
 
 ### Versione HEAD
@@ -368,6 +367,3 @@ class RetryTest extends TestCase {
 
 ---
 
-=======
-   - Aggiornamento strategie retry 
->>>>>>> 61130fb (.)

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Resources\XotBaseResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\ManageRelatedRecords as FilamentManageRelatedRecords;
@@ -17,50 +16,26 @@ use Illuminate\Support\Str;
 use Modules\Xot\Filament\Traits\HasXotTable;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 use Webmozart\Assert\Assert;
-=======
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Forms\Components\Component;
-use Filament\Tables\Actions\CreateAction;
-use Modules\Xot\Filament\Traits\HasXotTable;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Modules\Xot\Filament\Traits\NavigationLabelTrait;
-use Filament\Resources\Pages\ManageRelatedRecords as FilamentManageRelatedRecords;
->>>>>>> 9d6070e (.)
 
 /**
  * Classe base per la gestione delle relazioni nelle risorse Filament.
  * Estende la classe ManageRelatedRecords di Filament e fornisce funzionalità aggiuntive
  * specifiche per il framework Laraxot.
-<<<<<<< HEAD
  *
  * @template TModel of Model
  * @extends FilamentManageRelatedRecords<TModel>
  */
 abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
 {
-=======
- */
-abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
-{
-
->>>>>>> 9d6070e (.)
     use HasXotTable;
     use InteractsWithForms;
     use NavigationLabelTrait;
 
     // protected static string $resource;
 
-<<<<<<< HEAD
     /**
      * Restituisce il gruppo di navigazione (override opzionale).
      */
-=======
->>>>>>> 9d6070e (.)
     public static function getNavigationGroup(): string
     {
         return '';
@@ -77,11 +52,7 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
      *
      * @return array<string, TextColumn>
      */
-<<<<<<< HEAD
     public function getTableColumns(): array
-=======
-    public function getListTableColumns(): array
->>>>>>> 9d6070e (.)
     {
         return [
             'id' => TextColumn::make('id')
@@ -127,16 +98,11 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
             'edit' => Action::make('edit')
                 ->label('Modifica')
                 ->icon('heroicon-o-pencil')
-<<<<<<< HEAD
                 ->url(fn (Model $record): string => static::getResource()::getUrl('edit', ['record' => $record])),
-=======
-                ->url(fn (Model $record): string => $this->getResource()::getUrl('edit', ['record' => $record])),
->>>>>>> 9d6070e (.)
 
             'view' => Action::make('view')
                 ->label('Visualizza')
                 ->icon('heroicon-o-eye')
-<<<<<<< HEAD
                 ->url(fn (Model $record): string => static::getResource()::getUrl('view', ['record' => $record])),
         ];
     }
@@ -161,19 +127,6 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
     {
         return $table
             ->columns($this->getTableColumns())
-=======
-                ->url(fn (Model $record): string => $this->getResource()::getUrl('view', ['record' => $record])),
-        ];
-    }
-
-    /**
-     * Configura la tabella per la visualizzazione dei record correlati.
-     */
-    public function table(Table $table): Table
-    {
-        return $table
-            ->columns($this->getListTableColumns())
->>>>>>> 9d6070e (.)
             ->headerActions($this->getTableHeaderActions())
             ->actions($this->getTableActions())
             ->bulkActions([])
@@ -183,25 +136,16 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
                     ->disableCreateAnother(),
             ]);
     }
-<<<<<<< HEAD
     */
-=======
-
->>>>>>> 9d6070e (.)
     /**
      * Configura il form per la creazione/modifica dei record correlati.
      */
     public function form(Form $form): Form
     {
-<<<<<<< HEAD
         Assert::true(method_exists($this, 'getFormSchema'), 'Devi implementare getFormSchema() nella classe figlia.');
         /** @var array<\Filament\Forms\Components\Component> $schema */
         $schema = $this->getFormSchema();
         return $form->schema($schema);
-=======
-        return $form
-            ->schema($this->getFormSchema());
->>>>>>> 9d6070e (.)
     }
 
     /**

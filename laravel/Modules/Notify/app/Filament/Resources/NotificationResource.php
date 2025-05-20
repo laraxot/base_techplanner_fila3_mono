@@ -5,18 +5,11 @@ namespace Modules\Notify\Filament\Resources;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\TextInput;
-<<<<<<< HEAD
 use Filament\Forms\Components\Textarea;
 use Modules\Notify\Filament\Resources\NotificationResource\Pages;
 use Modules\Notify\Models\Notification;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManagers\XotBaseRelationManager;
-=======
-use Modules\Notify\Filament\Resources\NotificationResource\Pages;
-use Modules\Notify\Models\Notification;
-use Modules\Xot\Filament\Resources\XotBaseResource;
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
->>>>>>> c57e89d (.)
 
 class NotificationResource extends XotBaseResource
 {
@@ -38,15 +31,8 @@ class NotificationResource extends XotBaseResource
                 ->required()
                 ->numeric()
                 ->label('Notifiable ID'),
-<<<<<<< HEAD
             'data' => Textarea::make('data')
                 ->label('Notification Data')
-=======
-            'data' => KeyValue::make('data')
-                ->label('Notification Data')
-                ->keyLabel('Key')
-                ->valueLabel('Value')
->>>>>>> c57e89d (.)
                 ->columnSpanFull(),
 
             'read_at' => DateTimePicker::make('read_at')

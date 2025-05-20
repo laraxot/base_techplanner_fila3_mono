@@ -71,22 +71,17 @@ class Login extends Component implements HasForms
                 ->required()
                 ->label(__('Email'))
                 ->placeholder(__('Inserisci la tua email'))
-<<<<<<< HEAD
                 ->suffixIcon('heroicon-m-envelope')
                 ->autofocus()
                 ->live()
                 ->afterStateUpdated(fn ($state) => $this->validateEmail($state))
                 ->dehydrated(),
-=======
-                ->suffixIcon('heroicon-m-envelope'),
->>>>>>> 0b525d2 (.)
 
             TextInput::make('password')
                 ->password()
                 ->required()
                 ->label(__('Password'))
                 ->placeholder(__('Inserisci la tua password'))
-<<<<<<< HEAD
                 ->suffixIcon('heroicon-m-key')
                 ->revealable()
                 ->minLength(8)
@@ -97,12 +92,6 @@ class Login extends Component implements HasForms
                 ->label(__('Ricordami'))
                 ->default(false)
                 ->dehydrated(),
-=======
-                ->suffixIcon('heroicon-m-key'),
-
-            Checkbox::make('remember')
-                ->label(__('Ricordami')),
->>>>>>> 0b525d2 (.)
         ];
     }
 
@@ -122,7 +111,6 @@ class Login extends Component implements HasForms
      */
     public function authenticate()
     {
-<<<<<<< HEAD
         try {
             /** @var array{email: string, password: string, remember?: bool} $data */
             $data = $this->validate();
@@ -144,24 +132,6 @@ class Login extends Component implements HasForms
             $this->addError('email', __('Si è verificato un errore durante il login. Riprova più tardi.'));
             report($e);
         }
-=======
-        /** @var array{email: string, password: string, remember?: bool} $data */
-        $data = $this->validate();
-
-        // Estrai remember dal data array e assicurati che sia un booleano
-        $remember = $data['remember'] ?? false;
-        // Converto esplicitamente a bool per PHPStan livello 10
-        $remember = (bool) $remember;
-        unset($data['remember']);
-
-        if (Auth::attempt($data, $remember)) {
-            session()->regenerate();
-
-            return redirect()->intended();
-        }
-
-        $this->addError('email', __('Le credenziali fornite non sono corrette.'));
->>>>>>> 0b525d2 (.)
     }
 
     /**
@@ -171,22 +141,7 @@ class Login extends Component implements HasForms
      */
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
-<<<<<<< HEAD
         //app(ViewCopyAction::class)->execute('user::livewire.auth.login', 'pub_theme::livewire.auth.login');
         return view('user::livewire.auth.login');
-=======
-        app(ViewCopyAction::class)->execute('user::livewire.auth.login', 'pub_theme::livewire.auth.login');
-        app(ViewCopyAction::class)->execute('user::layouts.auth', 'pub_theme::layouts.auth');
-        app(ViewCopyAction::class)->execute('user::layouts.base', 'pub_theme::layouts.base');
-
-        /**
-         * @phpstan-var view-string
-         */
-        $view = 'pub_theme::livewire.auth.login';
-
-        return view($view, [
-            'layout' => 'pub_theme::layouts.auth'
-        ]);
->>>>>>> 0b525d2 (.)
     }
 }

@@ -6,7 +6,7 @@
 ```json
 {
     "require": {
-        "laravel/framework": "*",
+        "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.0"
     }

@@ -224,7 +224,6 @@ Implementare:
          );
    }
    ```
-<<<<<<< HEAD
 ### Versione HEAD
 
 
@@ -246,5 +245,3 @@ Implementare:
 
 ---
 
-=======
->>>>>>> c2eb445 (.)

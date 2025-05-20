@@ -51,7 +51,6 @@ Here's a complete example of a properly formatted schema:
         'updated_at' => TextEntry::make('updated_at')
             ->dateTime(),
     ])
-<<<<<<< HEAD
 ### Versione HEAD
 
 ```
@@ -66,6 +65,3 @@ Here's a complete example of a properly formatted schema:
 
 ---
 
-=======
-```
->>>>>>> c57e89d (.)

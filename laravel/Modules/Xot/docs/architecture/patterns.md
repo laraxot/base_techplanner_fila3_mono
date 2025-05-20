@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### Versione HEAD
 
 # Pattern Architetturali
@@ -89,8 +88,6 @@ Elenco di pratiche da evitare nello sviluppo.
 
 ### Versione Incoming
 
-=======
->>>>>>> 9d6070e (.)
 # Design Patterns and Architecture
 
 ## Clean Architecture
@@ -127,9 +124,6 @@ ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/presenter.txt}
 ```txt
 ${cat /mnt/f/var/www/quaeris/laravel/Modules/Xot/_docs/bad_practices.txt}
 ```
-<<<<<<< HEAD
 
 ---
 
-=======
->>>>>>> 9d6070e (.)

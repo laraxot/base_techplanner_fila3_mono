@@ -9,11 +9,7 @@ use Modules\Xot\Filament\Resources\CacheLockResource;
 
 
 
-<<<<<<< HEAD
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManagers\XotBaseRelationManager;
-=======
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
->>>>>>> 9d6070e (.)
 
 
 

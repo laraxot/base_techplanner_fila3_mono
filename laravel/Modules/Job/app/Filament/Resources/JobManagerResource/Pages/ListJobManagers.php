@@ -20,11 +20,7 @@ class ListJobManagers extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
-<<<<<<< HEAD
     public function getTableColumns(): array
-=======
-    public function getListTableColumns(): array
->>>>>>> 61130fb (.)
     {
         return [
             'id' => TextColumn::make('id')

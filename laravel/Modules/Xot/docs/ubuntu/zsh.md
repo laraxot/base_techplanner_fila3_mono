@@ -20,11 +20,8 @@ source ~/.zshrc
 usefull links:
 - https://zsh-prompt-generator.site/
 
-<<<<<<< HEAD
 
 ## Collegamenti tra versioni di zsh.md
 * [zsh.md](../../../Xot/docs/install/zsh.md)
 * [zsh.md](../../../Xot/docs/ubuntu/zsh.md)
 
-=======
->>>>>>> 9d6070e (.)
