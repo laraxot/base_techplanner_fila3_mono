@@ -3,7 +3,14 @@
 
 declare(strict_types=1);
 
-function checkFormSchemaMethod($file)
+use function Safe\file_get_contents;
+use function Safe\file_put_contents;
+use function Safe\preg_match;
+
+/**
+ * @return array{file: string, class: string, has_form_schema: bool}|null
+ */
+function checkFormSchemaMethod(string $file): ?array
 {
     $content = file_get_contents($file);
 
@@ -20,11 +27,14 @@ function checkFormSchemaMethod($file)
     return [
         'file' => $file,
         'class' => $className,
-        'has_form_schema' => $hasFormSchema,
+        'has_form_schema' => (bool) $hasFormSchema,
     ];
 }
 
-function findXotBaseResourceClasses($directory)
+/**
+ * @return array<array{file: string, class: string, has_form_schema: bool}>
+ */
+function findXotBaseResourceClasses(string $directory): array
 {
     $results = [];
 
@@ -36,11 +46,15 @@ function findXotBaseResourceClasses($directory)
     $phpFiles = new RegexIterator($iterator, '/\.php$/');
 
     foreach ($phpFiles as $file) {
+        if (!$file instanceof SplFileInfo) {
+            continue;
+        }
+
         $fileContent = file_get_contents($file->getPathname());
 
-        if (false !== strpos($fileContent, 'extends XotBaseResource')) {
+        if (strpos($fileContent, 'extends XotBaseResource') !== false) {
             $check = checkFormSchemaMethod($file->getPathname());
-            if ($check) {
+            if ($check !== null) {
                 $results[] = $check;
             }
         }
