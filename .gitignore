@@ -44,3 +44,4 @@ laravel/resources/lang/vendor/
 laravel/composer.lock
 public_html/css/
 public_html/js/
+public_html/vendor/
