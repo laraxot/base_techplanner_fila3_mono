@@ -1,4 +1,6 @@
-<?php return array (
+<?php
+
+return array (
   'fields' => 
   array (
     'id' => 
@@ -54,4 +56,9 @@
       'label' => 'transparency',
     ),
   ),
-);
+  'navigation' => 
+  array (
+    'sort' => 20,
+    'icon' => 'chart.navigation',
+  ),
+);

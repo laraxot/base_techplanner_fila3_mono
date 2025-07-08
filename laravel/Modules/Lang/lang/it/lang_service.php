@@ -552,153 +552,6 @@ return array (
       'helper_text' => 'test_date',
       'description' => 'test_date',
     ),
-<<<<<<< HEAD
-=======
-    'company_office' => 
-    array (
-      'label' => 'Sede aziendale',
-    ),
-    'business_closed' => 
-    array (
-      'label' => 'Attività chiusa',
-    ),
-    'company_name' => 
-    array (
-      'label' => 'Nome azienda',
-    ),
-    'street_number' => 
-    array (
-      'label' => 'Numero civico',
-    ),
-    'province' => 
-    array (
-      'label' => 'Provincia',
-    ),
-    'postal_code' => 
-    array (
-      'label' => 'CAP',
-    ),
-    'fax' => 
-    array (
-      'label' => 'Fax',
-    ),
-    'mobile' => 
-    array (
-      'label' => 'Cellulare',
-    ),
-    'notes' => 
-    array (
-      'label' => 'Note',
-    ),
-    'activity' => 
-    array (
-      'label' => 'Attività',
-    ),
-    'determina' => 
-    array (
-      'label' => 'Determina',
-    ),
-    'data_aggiudicazione' => 
-    array (
-      'label' => 'Data aggiudicazione',
-    ),
-    'updated_by' => 
-    array (
-      'description' => 'updated_by',
-      'helper_text' => 'updated_by',
-      'placeholder' => 'updated_by',
-      'label' => 'updated_by',
-    ),
-    'created_by' => 
-    array (
-      'description' => 'created_by',
-      'helper_text' => 'created_by',
-      'placeholder' => 'created_by',
-      'label' => 'created_by',
-    ),
-    'layout' => 
-    array (
-      'label' => 'layout',
-    ),
-    'newstate' => 
-    array (
-      'description' => 'newstate',
-      'helper_text' => 'newstate',
-      'placeholder' => 'newstate',
-      'label' => 'newstate',
-    ),
-    'icon' => 
-    array (
-      'description' => 'icon',
-      'label' => 'icon',
-      'placeholder' => 'icon',
-      'helper_text' => 'icon',
-    ),
-    'user' => 
-    array (
-      'label' => 'user',
-    ),
-    'attributes' => 
-    array (
-      'label' => 'attributes',
-    ),
-    '946595X2254X48249SQ01' => 
-    array (
-      'label' => '946595X2254X48249SQ01',
-    ),
-    '946595X2255X48257SQ01' => 
-    array (
-      'label' => '946595X2255X48257SQ01',
-    ),
-    '946595X2256X48262SQ01' => 
-    array (
-      'label' => '946595X2256X48262SQ01',
-    ),
-    '946595X2257X48264' => 
-    array (
-      'label' => '946595X2257X48264',
-    ),
-    '946595X2257X48265SQ01' => 
-    array (
-      'label' => '946595X2257X48265SQ01',
-    ),
-    '946595X2258X48268SQ01' => 
-    array (
-      'label' => '946595X2258X48268SQ01',
-    ),
-    '946595X2259X48269SQ01' => 
-    array (
-      'label' => '946595X2259X48269SQ01',
-    ),
-    '946595X2259X48843SQ01' => 
-    array (
-      'label' => '946595X2259X48843SQ01',
-    ),
-    '946595X2259X48847SQ01' => 
-    array (
-      'label' => '946595X2259X48847SQ01',
-    ),
-    '946595X2259X48270SQ01' => 
-    array (
-      'label' => '946595X2259X48270SQ01',
-    ),
-    '946595X2259X48850SQ01' => 
-    array (
-      'label' => '946595X2259X48850SQ01',
-    ),
-    '946595X2259X48852SQ01' => 
-    array (
-      'label' => '946595X2259X48852SQ01',
-    ),
-    '946595X2259X48271SQ01' => 
-    array (
-      'label' => '946595X2259X48271SQ01',
-    ),
-    '946595X2259X48869SQ01' => 
-    array (
-      'label' => '946595X2259X48869SQ01',
-    ),
->>>>>>> f731b93 (.)
   ),
   'actions' => 
   array (
@@ -809,7 +662,6 @@ return array (
       'helper_text' => '',
       'description' => '',
     ),
-<<<<<<< HEAD
     'createAnother' => 
     array (
       'label' => 'Crea Altro',
@@ -873,7 +725,5 @@ return array (
     'image' => 'Il campo :attribute deve essere un\'immagine valida',
     'mimes' => 'Il campo :attribute deve essere un file di tipo: :values',
     'size' => 'Il campo :attribute deve essere di :size MB',
-=======
->>>>>>> f731b93 (.)
   ),
 );

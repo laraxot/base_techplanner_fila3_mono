@@ -1,17 +1,21 @@
-# Best Practices per Filament Resources in Laraxot
+# Filament Best Practices (Moduli Riutilizzabili)
 
-Questo documento definisce le linee guida ufficiali e le best practices per l'implementazione delle risorse Filament all'interno del framework Laraxot.
+## Descrizione
+Best practice generiche per l'utilizzo di Filament in moduli Laravel riutilizzabili. Nessun riferimento a nomi di progetto o brand.
 
-## Regole Fondamentali
+## Regole principali
+- NON estendere mai direttamente le classi di Filament: creare sempre wrapper personalizzati
+- Utilizzare traits per funzionalità riutilizzabili
+- Seguire il pattern di composizione invece dell'ereditarietà
+- Mantenere la compatibilità con gli aggiornamenti di Filament
+- Centralizzare le configurazioni comuni nelle classi base
+- Non inserire proprietà statiche custom nei resource (es. $navigationIcon, $navigationGroup, $translationPrefix)
+- Non usare ->label() direttamente nei form: usare sempre i file di traduzione
 
-### 1. Utilizzo delle Classi Base Corrette
-
-#### ✅ DO - Estendere XotBaseResource
-
-È **obbligatorio** che tutte le risorse Filament estendano `XotBaseResource` invece della classe standard di Filament:
-
+## Esempi
 ```php
-use Modules\Xot\Filament\Resources\XotBaseResource;
+// ❌ Anti-pattern
+class MyResource extends \Filament\Resources\Resource {}
 
 class UserResource extends XotBaseResource
 {
@@ -49,93 +53,6 @@ public static function getFormSchema(): array
 }
 ```
 
-<<<<<<< HEAD
-=======
-### Versione HEAD
-
-
-### Versione Incoming
-
-### 3. Gestione delle Traduzioni
-
-#### ✅ DO - Utilizzare il Sistema di Traduzioni Automatiche
-
-**Non utilizzare mai** il metodo `->label()` nei componenti Filament. Le etichette vengono gestite automaticamente dal `LangServiceProvider` attraverso i file di traduzione.
-
-```php
-// ✅ CORRETTO: Non specificare l'etichetta
-Forms\Components\TextInput::make('first_name')
-    ->required();
-```
-
-#### ❌ DON'T - Non Specificare Manualmente le Etichette
-
-```php
-// ❌ ERRATO: Specificare manualmente l'etichetta
-Forms\Components\TextInput::make('first_name')
-    ->label('Nome')
-    ->required();
-```
-
-Per maggiori dettagli e motivazioni, consulta la [documentazione completa sulle traduzioni automatiche](../../Lang/docs/automatic-translations.md).
-
-### 4. Implementazione dei Wizard
-
-#### ✅ DO - Estrarre gli Step in Metodi Dedicati
-
-Quando si implementa un `Wizard` in Filament, ogni step deve essere definito in un metodo dedicato che restituisce un oggetto `Forms\Components\Wizard\Step`:
-
-```php
-// ✅ CORRETTO
-public static function getFormSchemaWidget(): array
-{
-    return [
-        Forms\Components\Wizard::make([
-            self::getPersonalDataStep(),
-            self::getContactsStep(),
-            self::getPrivacyStep(),
-        ])
-        ->skippable(false)
-    ];
-}
-
-protected static function getPersonalDataStep(): Forms\Components\Wizard\Step
-{
-    return Forms\Components\Wizard\Step::make('Dati Personali')
-        ->icon('heroicon-o-user')
-        ->description('Inserisci i tuoi dati personali')
-        ->schema([
-            // ...componenti del form
-        ]);
-}
-```
-
-#### ❌ DON'T - Non Definire gli Step Direttamente nel Wizard
-
-```php
-// ❌ ERRATO
-public static function getFormSchemaWidget(): array
-{
-    return [
-        Forms\Components\Wizard::make([
-            Forms\Components\Wizard\Step::make('Dati Personali')
-                ->icon('heroicon-o-user')
-                ->description('Inserisci i tuoi dati personali')
-                ->schema([
-                    // ...componenti del form
-                ]),
-            // ...altri step
-        ])
-    ];
-}
-```
-
-Per maggiori dettagli e motivazioni, consulta la [documentazione completa sulle best practices per i wizard](../../UI/docs/filament/wizard-best-practices.md).
-
-
----
-
->>>>>>> 7bf59db (.)
 #### ❌ DON'T - Non utilizzare il metodo form()
 
 ```php
@@ -148,7 +65,6 @@ public static function form(Form $form): Form
 }
 ```
 
-<<<<<<< HEAD
 ### 3. Proprietà e Metodi da NON Definire
 
 #### ✅ DO - Omettere proprietà e metodi gestiti dalla classe base
@@ -202,9 +118,6 @@ class DoctorResource extends XotBaseResource
 ```
 
 ### 4. Traduzioni e Label
-=======
-### 3. Traduzioni e Label
->>>>>>> 7bf59db (.)
 
 #### ✅ DO - Utilizzare i file di traduzione
 
@@ -262,14 +175,8 @@ class SocioResource extends XotBaseResource
 {
     protected static ?string $model = Socio::class;
     
-<<<<<<< HEAD
     // NON definire $navigationIcon quando si estende XotBaseResource
     // NON definire $navigationSort quando si estende XotBaseResource
-=======
-    protected static ?string $navigationIcon = 'heroicon-o-user';
-    
-    protected static ?int $navigationSort = 1;
->>>>>>> 7bf59db (.)
     
     // Form Schema - CORRETTO ✅
     public static function getFormSchema(): array
@@ -662,8 +569,9 @@ public static function table(Table $table): Table
 ```
 
 ## Troubleshooting
+- Se compare un errore di override di proprietà statiche, rimuovere la proprietà dal resource e centralizzare nella base
+- Se le traduzioni non vengono applicate, controllare la struttura dei file lang e l'assenza di ->label() hardcoded
 
-<<<<<<< HEAD
 ## Riferimenti
 
 - [Documentazione Filament](https://filamentphp.com/docs)
@@ -708,9 +616,6 @@ TextInput::make('location')->label(__('modulo::campo.label'))
 - [Ereditarietà modelli](../model-inheritance-best-practices.md)
 
 ## Problema: Form non visualizzato correttamente
-=======
-### Problema: Form non visualizzato correttamente
->>>>>>> 7bf59db (.)
 
 **Soluzione:** Assicurarsi di utilizzare `getFormSchema()` invece di `form()` e controllare che tutti i componenti siano configurati correttamente.
 
@@ -784,7 +689,6 @@ Consulta l'esempio completo all'inizio di questo documento per una implementazio
 - [Best Practices Laraxot](/var/www/html/exa/base_orisbroker_fila3/laravel/Modules/Xot/docs/best-practices.md)
 
 
-
 ## Regole per Widget Filament: Path View e Localizzazione
 
 - Tutti i widget Filament devono avere la view in `modulo::filament.widgets.nome-widget`.
@@ -835,12 +739,7 @@ class FindDoctorAndAppointmentWidget extends XotBaseWidget
 
 **Motivazione:** DRY, KISS, manutenzione, coerenza, evitare conflitti e ridondanza.
 
-<<<<<<< HEAD
 > Aggiornare sempre anche i file .mdc in .windsurf/rules e .cursor/rules
-=======
-**Vedi anche:**
-- [Best Practices Filament per il modulo Performance](../../Performance/docs/filament.md)
->>>>>>> 7bf59db (.)
 
 **Vedi anche:** [filament-best-practices.mdc](../../../.windsurf/rules/filament-best-practices.mdc)
 
@@ -860,4 +759,3 @@ Appointment::where('doctor_id', $doctorId)
 - Un solo punto di verità: nessuna duplicazione, nessun lock-in
 - DRY, KISS, serenità del codice
 - Refactoring sicuro, massima estendibilità
-

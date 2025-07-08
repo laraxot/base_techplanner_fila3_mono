@@ -22,12 +22,8 @@ return array (
     array (
       'label' => 'email',
       'description' => 'email',
-<<<<<<< HEAD
       'helper_text' => '',
       'placeholder' => 'email',
-=======
-      'helper_text' => 'email',
->>>>>>> 7bf59db (.)
     ),
     'password' => 
     array (

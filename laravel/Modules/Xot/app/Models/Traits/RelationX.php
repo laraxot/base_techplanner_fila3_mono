@@ -80,15 +80,6 @@ trait RelationX
             ->beforeLast('\\')
             ->append('\\'.$pivot_name)
             ->toString();
-
-        if (! class_exists($pivot_class)) {
-            $pivot_class = Str::of($related)
-            ->beforeLast('\\')
-            ->append('\\'.$pivot_name)
-            ->toString();
-        }
-<<<<<<< HEAD
-        
         if (! class_exists($pivot_class)) {
             /*
             //$pivot_class = 'Modules\Xot\Models\Pivot\\'.$pivot_name;
@@ -104,8 +95,6 @@ trait RelationX
             }
         }
         
-=======
->>>>>>> 7bf59db (.)
         $pivot = app($pivot_class);
         Assert::isInstanceOf($pivot, \Illuminate\Database\Eloquent\Relations\Pivot::class);
 

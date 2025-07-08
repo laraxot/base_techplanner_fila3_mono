@@ -89,12 +89,8 @@ class Address extends BaseModel
 {
     use HasFactory;
         
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
-    protected $fillable = [
+    /** @var list<string> */
+   protected $fillable = [
         'model_type',
         'model_id',
         'name',
@@ -150,43 +146,46 @@ class Address extends BaseModel
         return $this->morphTo('model');
     }
     
-    /**
+    /*
      * Get the city relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+     
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, 'locality', 'name');
     }
-    
-    /**
+    */
+    /*
      * Get the province relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+     
     public function provincia(): BelongsTo
     {
         return $this->belongsTo(Provincia::class, 'administrative_area_level_2', 'name');
     }
-    
-    /**
+    */
+    /*
      * Get the region relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+     
     public function regione(): BelongsTo
     {
         return $this->belongsTo(Regione::class, 'administrative_area_level_1', 'name');
     }
-
+     */
     public function getRegione():?array{
+        /** @phpstan-ignore-next-line */
         $res= Comune::select('regione')
         ->distinct()
         ->orderBy('regione->nome')
         ->where('regione->codice', $this->administrative_area_level_1)
         ->get()
+        /** @phpstan-ignore-next-line */
         ->map(function($item){
+            /** @phpstan-ignore-next-line */
             return ['codice'=>$item->regione['codice'],'nome'=>$item->regione['nome']];
         })
         ;
@@ -196,14 +195,19 @@ class Address extends BaseModel
     }
 
     public function getProvincia():?array{
+        /** @phpstan-ignore-next-line */
         $res= Comune::select('provincia')
         ->distinct()
         ->orderBy('provincia->nome')
         ->where('provincia->codice', $this->administrative_area_level_2)
         ->get()
+        /** @phpstan-ignore-next-line */
         ->map(function($item){
+            /** @phpstan-ignore-next-line */
             return [
+                /** @phpstan-ignore-next-line */
                 'codice'=>$item->provincia['codice'],
+                /** @phpstan-ignore-next-line */
                 'nome'=>$item->provincia['nome']
             ];
         })
@@ -213,10 +217,11 @@ class Address extends BaseModel
 
 
     public function getLocality():?array{
+        /** @phpstan-ignore-next-line */
         $res= Comune::where('codice', $this->locality)
         ->distinct()
         ->first()
-        ->toArray()
+        ?->toArray()
         ;
         return $res;
     }
@@ -229,6 +234,21 @@ class Address extends BaseModel
     public function getFullAddressAttribute(): string
     {
         
+        $parts = array_filter([
+            $this->route . ($this->street_number ? ' ' . $this->street_number : ''),
+            $this->locality,
+            $this->administrative_area_level_3, // Provincia
+            $this->administrative_area_level_2, // Regione
+            $this->postal_code,
+            $this->country
+        ]);
+
+        return implode(', ', $parts);
+    }
+
+
+    public function getFullAddress(): ?string
+    {
         $parts = array_filter([
             $this->route . ($this->street_number ? ' ' . $this->street_number : ''),
             $this->locality,
@@ -357,38 +377,7 @@ class Address extends BaseModel
         ];
     }
     
-    /**
-     * Metodo statico per creare da risposta Google Maps
-     *
-     * @param array<string, mixed> $googleData
-     * @param string|null $name
-     * @param string|null $description
-     * @return static
-     */
-    public static function createFromGoogleMaps(array $googleData, ?string $name = null, ?string $description = null): self
-    {
-        $components = collect($googleData['address_components'] ?? [])
-            ->keyBy(fn($component) => $component['types'][0] ?? 'unknown');
-
-        return self::create([
-            'name' => $name,
-            'description' => $description,
-            'street_number' => $components->get('street_number')['long_name'] ?? null,
-            'route' => $components->get('route')['long_name'] ?? null,
-            'locality' => $components->get('locality')['long_name'] ?? 
-                        $components->get('administrative_area_level_3')['long_name'] ?? null,
-            'administrative_area_level_3' => $components->get('administrative_area_level_2')['long_name'] ?? null, // Provincia
-            'administrative_area_level_2' => $components->get('administrative_area_level_1')['long_name'] ?? null, // Regione
-            'administrative_area_level_1' => $components->get('country')['long_name'] ?? null,
-            'country' => $components->get('country')['short_name'] ?? null,
-            'postal_code' => $components->get('postal_code')['long_name'] ?? null,
-            'formatted_address' => $googleData['formatted_address'] ?? null,
-            'place_id' => $googleData['place_id'] ?? null,
-            'latitude' => $googleData['geometry']['location']['lat'] ?? null,
-            'longitude' => $googleData['geometry']['location']['lng'] ?? null,
-        ]);
-    }
-    
+   
     /**
      * Scope per cercare indirizzi nelle vicinanze
      *

@@ -7,6 +7,7 @@ return array (
   array (
     'sort' => 96,
     'icon' => 'address.navigation',
+    'group' => 'address.navigation',
   ),
   'actions' => 
   array (
@@ -161,6 +162,12 @@ return array (
     array (
       'description' => 'map',
       'helper_text' => '',
+    ),
+    'aaa' => 
+    array (
+      'description' => 'aaa',
+      'helper_text' => 'aaa',
+      'placeholder' => 'aaa',
     ),
   ),
   'columns' => 

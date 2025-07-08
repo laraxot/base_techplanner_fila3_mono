@@ -8,11 +8,11 @@ use Filament\Forms;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Filament\Actions\Action;
-<<<<<<< HEAD
 use Webmozart\Assert\Assert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Modules\SaluteOra\Models\Patient;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Database\Eloquent\Model;
@@ -21,11 +21,6 @@ use Modules\Xot\Filament\Traits\TransTrait;
 use Filament\Widgets\Widget as FilamentWidget;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
-
-
-
-=======
->>>>>>> 7bf59db (.)
 
 /**
  * Classe base astratta per tutti i widget Filament.
@@ -43,30 +38,18 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
     use InteractsWithPageFilters;
     //use InteractsWithPageTable;
     use InteractsWithForms;
-    
+
     public string $title = '';
     public string $icon = '';
     protected int|string|array $columnSpan = 'full';
-<<<<<<< HEAD
 
-=======
->>>>>>> 7bf59db (.)
     /**
      * Lista degli eventi ascoltati dal widget.
      *
      * @var array<string, string>
      */
-<<<<<<< HEAD
     public array $listener = [
         'filters-updated' => 'filtersUpdated',
-=======
-    protected static string $view;
-    
-
-    public array $listener = [
-        'filters-updated' => 'filtersUpdated',
-      
->>>>>>> 7bf59db (.)
     ];
 
     /**
@@ -90,11 +73,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
     public function mount(): void
     {
         $this->form->fill();
-<<<<<<< HEAD
     }
-=======
-    }    
->>>>>>> 7bf59db (.)
     */
 
     /**
@@ -105,7 +84,6 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
      */
     abstract public function getFormSchema(): array;
 
-<<<<<<< HEAD
     /**
      * Configura il form del widget.
      *
@@ -113,10 +91,6 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
      * @return FilamentForm Il form configurato
      */
     public function form(FilamentForm $form): FilamentForm
-=======
-    /*
-    final public function form(Form $form): Form
->>>>>>> 7bf59db (.)
     {
         $form = $form->schema($this->getFormSchema());
         $form->statePath('data');
@@ -132,7 +106,6 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
 
         return $form;
     }
-<<<<<<< HEAD
 
     public function getFormFill(): array
     {
@@ -203,11 +176,6 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
      * @return array<int|string, Action>
      */
     protected function getFormActions(): array
-=======
-    */
-    
-     protected function getFormActions(): array
->>>>>>> 7bf59db (.)
     {
         return [
             Action::make('save')
@@ -235,11 +203,8 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms
      */
     public function save(): void
     {
-<<<<<<< HEAD
         // Implementare nelle classi figlie
     }
-=======
->>>>>>> 7bf59db (.)
 
     /**
      * Eseguito quando i filtri vengono aggiornati.

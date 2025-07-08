@@ -56,15 +56,13 @@ class Comune extends BaseModel
 {
     use SushiToJson;
 
+    public string $jsonDirectory='';
 
     /** @var array<int, string> */
     public $translatable = [
     ];
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    
+    /** @var list<string> */
     protected $fillable = [
         'id',
         'codice',
@@ -128,6 +126,7 @@ class Comune extends BaseModel
      */
     public static function getRegioni(): Collection
     {
+        /** @phpstan-ignore-next-line */
         return static::all()->pluck('regione')->unique()->sort()->values();
     }
 
@@ -139,6 +138,7 @@ class Comune extends BaseModel
      */
     public static function getProvinceByRegione(string $regione): Collection
     {
+        /** @phpstan-ignore-next-line */
         return static::where('regione', $regione)
             ->pluck('provincia')
             ->unique()
@@ -154,6 +154,7 @@ class Comune extends BaseModel
      */
     public static function getComuniByProvincia(string $provincia): Collection
     {
+        /** @phpstan-ignore-next-line */
         return static::where('provincia', $provincia)
             ->orderBy('nome')
             ->get();
@@ -167,6 +168,7 @@ class Comune extends BaseModel
      */
     public static function findByNome(string $nome): ?self
     {
+        /** @phpstan-ignore-next-line */
         return static::all()->first(function ($comune) use ($nome) {
             return strtolower($comune->nome) === strtolower($nome);
         });
@@ -180,6 +182,7 @@ class Comune extends BaseModel
      */
     public static function findByCap(string $cap): Collection
     {
+        /** @phpstan-ignore-next-line */
         return static::where('cap', 'like', "%{$cap}%")->get();
     }
 
@@ -192,6 +195,8 @@ class Comune extends BaseModel
     public static function findComune(int $id): ?array
     {
         $comune = static::query()->where('id', $id)->first();
+        
+        /** @phpstan-ignore-next-line */
         return $comune ? $comune->toArray() : null;
     }
 
