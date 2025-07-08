@@ -16,7 +16,7 @@ class LoginWidget extends XotBaseWidget
 {
     public ?array $data = [];
 
-    protected static string $view = 'pub_theme::filament.widgets.auth.login';
+    protected static string $view = 'zero::filament.widgets.auth.login';
 
     public function getFormSchema(): array
     {
