@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\UI\Enums;
 
-use Filament\Resources\Pages\ListRecords;
-use Filament\Support\Contracts\HasColor;
-use Filament\Support\Contracts\HasIcon;
-use Filament\Support\Contracts\HasLabel;
 use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
+use Filament\Support\Contracts\HasIcon;
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+use Filament\Resources\Pages\ListRecords;
 
 enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
 {
@@ -74,7 +74,7 @@ enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
         return $res;
     }
 
-    /**
+     /**
      * Undocumented function.
      *
      * @return array<\Filament\Tables\Columns\Column|\Filament\Tables\Columns\ColumnGroup|\Filament\Tables\Columns\Layout\Component>
@@ -94,6 +94,7 @@ enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
 
         $columns = $this->isGridLayout()
             ? $caller->getGridTableColumns()
+            /** @phpstan-ignore-next-line */
             : $caller->getTableColumns();
 
         Assert::isArray($columns);

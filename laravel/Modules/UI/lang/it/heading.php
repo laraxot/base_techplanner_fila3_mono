@@ -14,6 +14,8 @@ return array (
     array (
       'label' => 'content',
       'description' => 'content',
+      'helper_text' => 'content',
+      'placeholder' => 'content',
     ),
   ),
 );

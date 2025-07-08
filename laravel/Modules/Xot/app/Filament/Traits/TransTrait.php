@@ -7,6 +7,7 @@ namespace Modules\Xot\Filament\Traits;
 use TypeError;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 use Modules\Lang\Actions\SaveTransAction;
 use Modules\Xot\Actions\GetTransKeyAction;
 
@@ -70,6 +71,34 @@ trait TransTrait
         $key = $transKey . '.' . $key;
         $key = Str::of($key)->replace('.cluster.pages.', '.')->toString();
         return $key;
+    }
+
+    /**
+     * Get translation key for a given class name.
+     */
+    public static function getKeyTransClass(string $class): string
+    {
+        $piece=Str::of($class)->explode('\\')->toArray();
+        Assert::string($type=$piece[2]);
+        $module=Str::of($class)->between('Modules\\','\\'.$type.'\\')->toString();
+
+        $module_low=Str::of($module)->lower()->toString();
+
+        $model=Str::of($class)->between('\\'.$type.'\\','\\')->toString();
+        $model_snake=Str::of($model)->snake()->toString();
+        $key=$module_low.'::'.$model_snake;
+
+        return $key;
+    }
+
+    /**
+     * Get translation for a given class name.
+     */
+    public static function transClass(string $class, string $key): string
+    {
+        $class_key = static::getKeyTransClass($class);
+        $key_full=$class_key.'.'.$key;
+        return trans($key_full);
     }
 
     /**

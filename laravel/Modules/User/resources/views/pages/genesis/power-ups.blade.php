@@ -1,79 +1,4 @@
-<?php
-
-use Illuminate\Support\Facades\Http;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Artisan;
-use function Laravel\Folio\{name};
-use Livewire\Volt\Component;
-
-new class extends Component
-{
-    public $powerups = [];
-    public $powerupsJSON = null;
-
-    public function mount()
-    {
-        $this->powerupsJSON = json_decode(file_get_contents(public_path('/genesis/power-ups.json')));
-        foreach ($this->powerupsJSON as $powerup) {
-            $repo = key($powerup);
-            $installed = $powerup->{$repo};
-            $this->powerups[] = $this->fetchPowerup($repo, $installed);
-        }
-    }
-
-    protected function fetchPowerup($repo, $installed)
-    {
-        $response = Http::get('https://raw.githubusercontent.com/' . $repo . '/main/powerup.json');
-        if ($response->successful()) {
-            $powerup = (object) $response->json();
-            $powerup->repo = $repo;
-            $powerup->installed = $installed;
-            return $powerup;
-        }
-        return [];
-    }
-
-    public function install($repo, $index)
-    {
-        foreach ($this->powerupsJSON as $powerUpIndex => $powerup) {
-            if (key($powerup) == $repo) {
-                $this->powerupsJSON[$powerUpIndex]->{$repo} = true;
-            }
-        }
-
-        $filePath = public_path('/genesis/power-ups.json');
-        File::put($filePath, json_encode($this->powerupsJSON, JSON_PRETTY_PRINT));
-
-        Artisan::call('powerup:install ' . $repo);
-
-        $run = $this->powerups[$index]->run_after_install;
-        if (isset($run['commands'])) {
-            foreach ($run['commands'] as $command) {
-                Artisan::call($command);
-            }
-        }
-
-        if (isset($run['factories'])) {
-            foreach ($run['factories'] as $factory) {
-                $model = $factory['model'];
-                $count = $factory['count'];
-                call_user_func("{$model}::factory", $count)->create();
-            }
-        }
-
-        session()->flash('power-up-install', 'success');
-
-        return redirect()->to('/genesis/power-ups');
-    }
-};
-
-name('genesis.power-ups');
-
-?>
-
 <x-layouts.marketing>
-
 
     @volt('genesis-powerups')
     <div class="w-full ">
@@ -101,7 +26,6 @@ name('genesis.power-ups');
             @endif
 
             <div class="grid w-full grid-cols-3 gap-8 mt-8">
-
                 @foreach ($powerups as $index => $powerup)
                 <x-ui.slide-over title="{{ $powerup->name }}" name="power-up-details" focusable>
                     <x-slot:trigger>
@@ -132,20 +56,17 @@ name('genesis.power-ups');
                     <div class="relative space-y-4">
                         <img src="{{ $powerup->cover }}" class="w-full h-auto rounded-md" />
                         <div class="flex items-center justify-start space-x-2">
-
                             @if (in_array('pages', $powerup->includes))
                             <x-ui.badge background="bg-blue-100 dark:bg-blue-600" color="text-blue-600 dark:text-white"><svg class="relative w-3.5 h-3.5 mr-1 opacity-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z" clip-rule="evenodd" />
                                     <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
                                 </svg><span>Pages</span></x-ui.badge>
                             @endif
-
                             @if (in_array('models', $powerup->includes))
                             <x-ui.badge background="bg-purple-100 dark:bg-purple-600" color="text-purple-600 dark:text-white"><svg class="relative w-3.5 h-3.5 mr-1 opacity-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path fill-rule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zM10.875 18.75a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5zM3.375 15h7.5a.375.375 0 00.375-.375v-1.5a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375zm0-3.75h7.5a.375.375 0 00.375-.375v-1.5A.375.375 0 0010.875 9h-7.5A.375.375 0 003 9.375v1.5c0 .207.168.375.375.375z" clip-rule="evenodd" />
                                 </svg><span>Models</span></x-ui.badge>
                             @endif
-
                             @if (in_array('migrations', $powerup->includes))
                             <x-ui.badge background="bg-amber-100 dark:bg-amber-600" color="text-amber-600 dark:text-white"><svg class="relative w-3.5 h-3.5 mr-0.5 opacity-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875z" />
@@ -191,7 +112,6 @@ name('genesis.power-ups');
                         <div class="fixed bottom-0 right-0 z-30 w-full max-w-md p-4 bg-white border-t border-gray-200 dark:border-gray-800 dark:bg-gray-900">
                             <x-ui.button wire:click="install('{{ $powerup->repo }}', '{{ $index }}')" type="success" rounded="md">
                                 <span class="mr-1.5">
-                                    <svg wire:loading class="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                         </path>

@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\User\Models;
 
 /**
+ * DeviceProfile Model
  * 
+ * Represents the relationship between a device and a user profile.
+ * Extends the base DeviceUser model to add specific functionality.
  *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property Device|null $device
@@ -17,4 +20,15 @@ namespace Modules\User\Models;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DeviceProfile query()
  * @mixin \Eloquent
  */
-class DeviceProfile extends DeviceUser {}
+class DeviceProfile extends DeviceUser
+{
+    /**
+     * Create a new model instance.
+     *
+     * @param array<string, mixed> $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+}

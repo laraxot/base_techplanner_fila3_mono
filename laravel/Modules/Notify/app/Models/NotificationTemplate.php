@@ -6,6 +6,13 @@ namespace Modules\Notify\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Notify\Enums\NotificationTypeEnum;
+use Modules\Xot\Traits\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Class NotificationTemplate.
@@ -30,12 +37,33 @@ use Illuminate\Support\Facades\Blade;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Notify\Models\NotificationTemplateVersion> $versions
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Notify\Models\NotificationLog> $logs
  * @property-read string $channels_label
+ * @property NotificationTypeEnum $type
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
+ * @property-read int|null $logs_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read mixed $translations
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
+ * @property-read int|null $versions_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate active()
+ * @method static \Modules\Notify\Database\Factories\NotificationTemplateFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate forCategory(string $category)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate forChannel(string $channel)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate whereJsonContainsLocale(string $column, string $locale, ?mixed $value, string $operand = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate whereJsonContainsLocales(string $column, array $locales, ?mixed $value, string $operand = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate whereLocale(string $column, string $locale)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate whereLocales(string $column, array $locales)
+ * @mixin \Eloquent
  */
-class NotificationTemplate extends BaseModel
+class NotificationTemplate extends BaseModel implements HasMedia
 {
+    use HasTranslations;
+    use InteractsWithMedia;
+
     protected $fillable = [
         'name',
         'code',
@@ -53,23 +81,34 @@ class NotificationTemplate extends BaseModel
         'version',
         'tenant_id',
         'grapesjs_data',
+        'type',
     ];
 
-    public function casts(): array
-    {
-        return array_merge(parent::casts(), [
-            'preview_data' => 'array',
-            'body_html' => 'string',
-            'body_text' => 'string',
-            'channels' => 'array',
-            'variables' => 'array',
-            'conditions' => 'array',
-            'metadata' => 'array',
-            'is_active' => 'boolean',
-            'grapesjs_data' => 'array',
-        ]);
-    }
+    protected $casts = [
+        'type' => NotificationTypeEnum::class,
+        'preview_data' => 'array',
+        'body_html' => 'string',
+        'body_text' => 'string',
+        'channels' => 'array',
+        'variables' => 'array',
+        'conditions' => 'array',
+        'metadata' => 'array',
+        'is_active' => 'boolean',
+        'grapesjs_data' => 'array',
+    ];
 
+    public array $translatable = [
+        'subject',
+        'body_text',
+        'body_html',
+    ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('attachments')
+            ->singleFile();
+    }
+/*
     public function versions(): HasMany
     {
         return $this->hasMany(NotificationTemplateVersion::class, 'template_id')
@@ -80,14 +119,14 @@ class NotificationTemplate extends BaseModel
     {
         return $this->hasMany(NotificationLog::class, 'template_id');
     }
-
-    /**
+*/
+    /*
      * Create a new version of the template.
      *
      * @param string $createdBy The user who created the version
      * @param string|null $notes Optional notes about the changes
      * @return self
-     */
+     
     public function createNewVersion(string $createdBy, ?string $notes = null): self
     {
         $this->versions()->create([
@@ -105,7 +144,7 @@ class NotificationTemplate extends BaseModel
         $this->increment('version');
         return $this;
     }
-
+*/
     /**
      * Compile the template with the given data.
      *
@@ -119,7 +158,7 @@ class NotificationTemplate extends BaseModel
         $bodyText = $this->compileString($this->body_text, $data);
 
         return [
-            'subject' => $subject,
+            'subject' => $subject ?? '',
             'body_html' => $bodyHtml,
             'body_text' => $bodyText,
         ];
@@ -245,4 +284,27 @@ class NotificationTemplate extends BaseModel
         $this->grapesjs_data = $data;
         return $this;
     }
-} 
+
+    public function getPreviewData(): array
+    {
+        return $this->preview_data ?? [];
+    }
+
+    public function getPreviewSubject(): string
+    {
+        $result = $this->getTranslation('subject', app()->getLocale());
+        return is_string($result) ? $result : '';
+    }
+
+    public function getPreviewBodyText(): string
+    {
+        $result = $this->getTranslation('body_text', app()->getLocale());
+        return is_string($result) ? $result : '';
+    }
+
+    public function getPreviewBodyHtml(): string
+    {
+        $result = $this->getTranslation('body_html', app()->getLocale());
+        return is_string($result) ? $result : '';
+    }
+}

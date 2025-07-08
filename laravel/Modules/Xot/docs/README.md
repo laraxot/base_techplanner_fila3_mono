@@ -1,50 +1,106 @@
-# Modulo Xot
+# Documentazione Modulo Xot
 
+<<<<<<< HEAD
+Il modulo Xot fornisce funzionalità di base per il framework Laraxot, incluse azioni, servizi, e componenti fondamentali.
+=======
 ### Versione HEAD
 
 ## Introduzione
 Il modulo Xot è il modulo base che fornisce le classi e le funzionalità fondamentali per gli altri moduli. Gestisce l'integrazione con Filament, Livewire e Volt, fornendo una base solida per lo sviluppo di applicazioni modulari.
+>>>>>>> 7bf59db (.)
 
-## Indice
+## Struttura della Documentazione
 
-### Architettura e Componenti Base
-- [Architecture](./architecture.md) - Architettura del modulo
-- [Base Classes](./base_classes.md) - Classi base
-- [Service Providers](./service_providers.md) - Provider di servizi
-- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
-- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
+### Core Features
+- [Development Rules](development-rules.md) - Regole di sviluppo per il modulo
+- [Code Quality](code_quality.md) - Standard di qualità del codice
+- [Best Practices](best-practices.md) - Pratiche consigliate
 
-- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
-- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Foliob6f667c (.)
+### Testing
+- [Testing Guidelines](testing.md) - ⭐ **IMPORTANTE** - Regole per organizzazione test del modulo Xot
+- Regola fondamentale: **TUTTI i test che verificano codice `Modules\Xot\*` DEVONO essere in `Modules/Xot/tests/`**
 
-- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Folio
-- [Volt Folio Best Practices](./VOLT_FOLIO_BEST_PRACTICES.md) - Best practices per Volt e Foliob6f667c (.)
+### PHPStan e Qualità del Codice
+- [PHPStan Level 10 Guide](phpstan_livello10_linee_guida.md) - Guida completa per PHPStan livello 10
+- [PHPStan Level 9 Guide](phpstan-level9-guide.md) - Guida per PHPStan livello 9
+- [PHPStan Generic Types](phpstan-generic-types.md) - Gestione tipi generici
+- [PHPStan Collection Types](phpstan-collection-types.md) - ⭐ **NUOVO** - Gestione incompatibilità tipi Collection
+- [PHPStan Fixes Gennaio 2025](phpstan-fixes-gennaio-2025.md) - ⭐ **COMPLETATO** - Log dettagliato correzioni PHPStan
 
-### Filament
-- [Filament Integration](./filament_integration.md) - Integrazione con Filament
-- [Widgets](./widgets.md) - Sistema widget
-- [Resources](./resources.md) - Gestione risorse
+### Exception Handling
+- [Exception Handler Decorator](exceptions/handler-decorator.md) - Pattern decorator per gestione eccezioni
+- [Exception Handler Types](exceptions/exception-handler-types.md) - ⭐ **NUOVO** - Tipizzazione corretta ExceptionHandler
 
-### Service Providers
-- [Provider Structure](./provider_structure.md) - Struttura provider
-- [Provider Traits](./provider_traits.md) - Trait per provider
-- [Provider Best Practices](./provider_best_practices.md) - Best practices
+### UI Components
+- [Filament Integration](filament-integration.md) - Integrazione con Filament
+- [Form Components](form-components.md) - Componenti per form
+- [Blade Components](blade-components.md) - Componenti Blade personalizzati
 
-### Testing e Quality
-- [Testing](./testing.md) - Testing e quality assurance
-- [Best Practices](./BEST-PRACTICES.md) - Linee guida generali
-- [Security](./security.md) - Sicurezza e hardening
+### File Management
+- [Asset Management](asset-management.md) - Gestione asset e risorse
+- [Export System](export-system.md) - Sistema di esportazione dati
 
-### Documentazione Tecnica
-- [Roadmap](./roadmap.md) - Piano di sviluppo futuro
-- [Bottlenecks](./bottlenecks.md) - Analisi performance e ottimizzazioni
-- [Module Structure](./MODULE_STRUCTURE.md) - Struttura moduli
+### Utilities
+- [Helper Functions](helpers.md) - Funzioni di utilità
+- [Data Transfer Objects](dtos.md) - Pattern DTO con Spatie Laravel Data
+- [Actions](actions.md) - Azioni asincroni con Spatie QueueableAction
 
-### Link Esterni
-- [Laravel Framework](https://laravel.com/docs/12.x)
+## Modifiche Recenti
+
+### Gennaio 2025 - Testing Organization ⭐ **NUOVO**
+
+**Stato**: **IMPLEMENTATO** - Sistema di organizzazione test modularizzato
+
+**Regola chiave**: 
+- ✅ Test del modulo Xot SOLO in `Modules/Xot/tests/`
+- ❌ MAI test del modulo Xot in `/tests/` (cartella root)
+
+**Motivazione**: Prevenire sovrascritture durante aggiornamenti Laravel
+
+**Test esistenti nel modulo**:
+- ✅ `MetatagDataTest.php` - Test per `Modules\Xot\Datas\MetatagData`
+- ✅ `HasXotTableTest.php` - Test per trait `HasXotTable`
+
+### Gennaio 2025 - PHPStan Level 9 Compliance ✅
+
+**Stato**: **COMPLETATO** - Tutti gli errori PHPStan livello 9 del modulo Xot sono stati risolti
+
+**Errori risolti**: 9 errori principali
+- ✅ ExceptionHandler::handles() - Missing return type
+- ✅ Collection type incompatibility in Export actions
+- ✅ PathHelper::getModules() - Array type inference
+- ✅ DownloadZipByPathsDiskAction - Missing return type e null handling
+- ✅ GetViewByClassAction - view-string type compliance
+- ✅ SendMailByRecordAction - Model property/method safety
+- ✅ PdfByHtmlAction - Syntax errors e return type
+- ✅ MetatagData::getThemeColors() - Array type mismatch
+
+**Files modificati**: 6 files core + documentazione aggiornata
+**PHPStan status**: `[OK] No errors` per tutto il modulo Xot
+
+Vedi [phpstan-fixes-gennaio-2025.md](phpstan-fixes-gennaio-2025.md) per dettagli completi.
+
+## Guide di Riferimento
+
+### Sviluppo
+- [Coding Standards](coding-standards.md) - Standard di codifica del modulo
+- [Testing Guidelines](testing.md) - Linee guida per i test
+- [Deployment](deployment.md) - Procedure di deployment
+
+### Troubleshooting
+- [Common Issues](troubleshooting.md) - Problemi comuni e soluzioni
+- [Debug Guide](debug-guide.md) - Guida al debugging
+
+## Links Utili
+
+- [Laravel Documentation](https://laravel.com/docs)
 - [Filament Documentation](https://filamentphp.com/docs)
-- [Livewire Documentation](https://livewire.laravel.com/docs)
+- [PHPStan Documentation](https://phpstan.org/user-guide)
+- [Spatie Laravel Data](https://spatie.be/docs/laravel-data)
 
+<<<<<<< HEAD
+*Ultimo aggiornamento: Gennaio 2025* 
+=======
 ## Note Importanti
 
 ### Estensione Classi
@@ -549,3 +605,4 @@ Consulta le [best practices aggiornate](./providers/service_provider_best_practi
 ## Backlink
 - [Collegamento a docs/links.md della root](../../../../docs/links.md)
 - **Zen**: Semplicità, concentrazione sul presente, armonia e serenità nello sviluppo.
+>>>>>>> 7bf59db (.)

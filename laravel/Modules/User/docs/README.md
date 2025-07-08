@@ -31,6 +31,118 @@ Il modulo User gestisce l'autenticazione, l'autorizzazione e la gestione degli u
 - Profili
 - Impostazioni
 - Notifiche
+- Team Management
+- Tenant Management
+
+### 4. Comandi Console
+- [AssignModuleCommand](console_commands/assign-module-command.md) - Assegnazione/revoca moduli con multiselect interattivo
+- [AssignRoleCommand](console_commands/assign-role-command.md) - Assegnazione ruoli
+- [RemoveRoleCommand](console_commands/remove-role-command.md) - Rimozione ruoli
+- [SuperAdminCommand](console_commands/super-admin-command.md) - Gestione super admin
+
+## Widget Filament
+
+### Widget di Autenticazione
+- [RegisterWidget](filament/widgets/registration-widget.md) - Registrazione utenti
+- [ResetPasswordWidget](filament/widgets/reset-password-widget.md) - Reset password
+- [LogoutWidget](filament/widgets/logout-widget.md) - Logout utente
+
+### Architettura Widget
+- Estendono `XotBaseWidget`
+- Namespace: `Modules\User\Filament\Widgets\Auth`
+- View path: `user::widgets.auth.*`
+- Traduzioni centralizzate
+
+## Modelli e Relazioni
+
+### BaseUser
+- Estende `Authenticatable`
+- Implementa `UserContract`
+- Trait: `HasRoles`, `HasTeams`, `HasTenants`
+
+### Role
+- Estende `SpatieRole`
+- Pattern ruoli: `{module}::admin`
+- Relazioni: `permissions()`, `team()`
+
+### Permission
+- Estende `SpatiePermission`
+- Gestione permessi granulari
+
+## Traduzioni
+
+### Struttura File
+```
+lang/
+├── it/
+│   ├── actions.php
+│   ├── fields.php
+│   ├── messages.php
+│   └── filament/
+│       └── resources/
+└── en/
+    └── ...
+```
+
+### Best Practices
+- Struttura espansa per campi e azioni
+- Nessuna stringa hardcoded
+- Traduzioni centralizzate
+
+## Bug Fixes
+
+### ParseError - Metodi Orfani (2025-01-27)
+- **Problema**: Metodi rimasti fuori dalla classe durante refactoring
+- **Soluzione**: Pulizia cache opcache + verifica sintassi
+- **Prevenzione**: Controlli obbligatori post-modifica
+- [Dettagli completi](bug-fixes/parse-error-orphan-methods-2025-01-27.md)
+
+## Comandi Console Aggiornati
+
+### AssignModuleCommand - Versione 2025-01-27
+**Nuove Funzionalità:**
+- ✅ **Multiselect con Pre-checked**: I moduli già assegnati sono pre-checked
+- ✅ **Revoca Moduli**: Possibilità di revocare moduli dechecking
+- ✅ **Feedback Migliorato**: Messaggi chiari per assegnazioni e revoche
+- ✅ **Gestione Errori**: Controlli preventivi per utenti non trovati
+
+**Utilizzo:**
+```bash
+php artisan user:assign-module
+```
+
+**Esempio Output:**
+```
+email ? admin@example.com
+Current modules for admin@example.com: User, Xot, UI
+
+Select modules (checked = assigned, unchecked = will be revoked):
+ ◉ User
+ ◉ Xot  
+ ◉ UI
+ ◯ Performance
+ ◯ Patient
+
+✓ Assigned module: Performance
+✗ Revoked module: UI
+Module assignment updated for admin@example.com
+```
+
+## Collegamenti
+- [Console Commands Philosophy](console_commands_philosophy.md)
+- [Bug Fixing Guidelines](../../../docs/bug-fixing-guidelines.md)
+- [Filament Best Practices](../../../docs/FILAMENT-BEST-PRACTICES.md)
+- [Translation Standards](../../../docs/translation-standards.md)
+
+## Aggiornamenti Recenti
+
+### 2025-01-27
+- ✅ **AssignModuleCommand**: Multiselect con pre-checked e revoca moduli
+- ✅ **Widget Auth**: Refactoring completo con architettura XotBaseWidget
+- ✅ **Bug Fixes**: Risoluzione ParseError metodi orfani
+- ✅ **Documentazione**: Aggiornamento completo con esempi pratici
+
+*Ultimo aggiornamento: 2025-01-27*
 
 ## Best Practices
 
@@ -103,6 +215,26 @@ User/
 - [Validation](./validation.md)
 - [Linee guida Actions](./actions.mdc)
 - [Linee guida Activitylog](./activitylog.mdc)
+- [Bug Fixes](./bug-fixes/) - Raccolta bug fixes e soluzioni
+
+## Console Commands Philosophy
+
+Il modulo User definisce lo **standard supremo** per i Console Commands in Laraxot attraverso il capolavoro `ChangeTypeCommand.php`.
+
+### Principi Fondamentali
+- **Laravel Prompts Only**: `text()`, `select()`, `confirm()` - mai `ask()` o `choice()`
+- **XotData e Contracts**: Accesso ai dati sempre tramite `XotData::make()` e `UserContract`
+- **Error Handling Robusto**: Controlli preventivi con `method_exists()`, feedback chiari
+- **Enum Handling Moderno**: `tryFrom()`, `getLabel()`, type safety completa
+- **Array Helpers Eleganti**: `Arr::mapWithKeys()` per manipolazioni funzionali
+
+### Religione dei Command
+- *"Non avrai altro prompting all'infuori di Laravel Prompts"*
+- *"Non avrai altro data access all'infuori di XotData e Contracts"*
+
+### Documentazione Completa
+- [Console Commands Philosophy](console_commands_philosophy.md) - Standard completo estratto dal capolavoro
+- [ChangeTypeCommand.php](../app/Console/Commands/ChangeTypeCommand.php) - Il comando di riferimento supremo
 
 ## Collegamenti Bidirezionali
 - [Modulo Xot](../Xot/docs/README.md)
@@ -475,6 +607,13 @@ class UserServiceProvider extends XotBaseServiceProvider
 2. Controlla i log
 3. Consulta la documentazione
 
+## Widget Filament
+
+### Widget Disponibili
+- [RegistrationWidget](./filament/widgets/registration-widget.md) - Widget generico per registrazione utente
+- [EditUserWidget](./filament/widgets/edit-user-widget.md) - Widget generico per modifica dati utente
+- [Widget Responsive Layout](./filament/widgets-responsive-layout.md) - Layout responsive per widget
+
 ## Riferimenti
 
 ### Documentazione
@@ -679,6 +818,7 @@ Schema::table('users', function ($table) {
 ### 2. Model States (spatie/laravel-model-states)
 - **Colonna obbligatoria:** `state` (e NON `moderation_status` o simili)
 - **Motivazione:** Segue la convenzione spatie/laravel-model-states ([vedi doc](https://spatie.be/docs/laravel-model-states/v2/working-with-states/01-configuring-states))
+- **Motivazione:** Segue la convenzione spatie/laravel-model-states ([vedi doc](https://spatie.be/docs/laravel-model-states/v2/working-with-states))
 - **Esempio migrazione:**
 ```php
 Schema::table('users', function ($table) {
@@ -711,6 +851,7 @@ abstract class UserState extends State {
 - Riferimenti:
   - [tighten/parental - Accessing Child Models from Parents](https://github.com/tighten/parental)
   - [spatie/laravel-model-states - Configuring States](https://spatie.be/docs/laravel-model-states/v2/working-with-states/01-configuring-states)
+  - [spatie/laravel-model-states - Configuring States](https://spatie.be/docs/laravel-model-states/v2/working-with-states)
 
 ---
 

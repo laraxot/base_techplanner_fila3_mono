@@ -84,14 +84,20 @@ class GetComponentsAction
                 if ($reflection->isAbstract()) {
                     continue;
                 }
-
+                
                 $comps[] = ComponentFileData::from([
                     'name' => $comp_name,
                     'class' => $class_name,
                     'ns' => $comp_ns,
                 ])->toArray();
+<<<<<<< HEAD
+                
+            } catch (\Exception $e) {
+                /*
+=======
 
             } catch (\Exception $e) {
+>>>>>>> 7bf59db (.)
                 dddx([
                     'comp_name' => $comp_name,
                     'class_name' => $class_name,
@@ -101,6 +107,11 @@ class GetComponentsAction
                     'prefix' => $prefix,
                     'message' => $e->getMessage(),
                 ]);
+<<<<<<< HEAD
+                */
+                throw $e;
+=======
+>>>>>>> 7bf59db (.)
             }
         }
 

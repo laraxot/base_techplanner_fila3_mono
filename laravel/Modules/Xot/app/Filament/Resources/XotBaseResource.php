@@ -4,15 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Resources;
 
-use Filament\Forms\Form;
-use Filament\Pages\SubNavigationPosition;
-use Filament\Resources\Resource as FilamentResource;
-use Illuminate\Support\Str;
-use Modules\Xot\Actions\ModelClass\CountAction;
-use Modules\Xot\Filament\Traits\NavigationLabelTrait;
-use Webmozart\Assert\Assert;
-
+use Filament\Forms;
+use Filament\Forms\Set;
 use function Safe\glob;
+use Filament\Forms\Form;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
+use Illuminate\Support\HtmlString;
+
+use Illuminate\Contracts\View\View;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Pages\SubNavigationPosition;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Contracts\Support\Renderable;
+use Modules\Xot\Actions\ModelClass\CountAction;
+use Filament\Resources\Resource as FilamentResource;
+use Modules\Xot\Filament\Traits\NavigationLabelTrait;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 /**
  * @method static string getUrl(string $name, array<string, mixed> $parameters = [], bool $isAbsolute = true)
@@ -42,14 +52,19 @@ abstract class XotBaseResource extends FilamentResource
         return true;
     }
 
+
+
+
     /**
      * @return class-string<\Illuminate\Database\Eloquent\Model>
      */
     public static function getModel(): string
     {
-        // if (null != static::$model) {
-        //    return static::$model;
-        // }
+        if (null != static::$model) {
+            $res = static::$model;
+            Assert::subclassOf($res, \Illuminate\Database\Eloquent\Model::class, sprintf('Class %s must extend Eloquent Model', $res));
+            return $res;
+        }
         $moduleName = static::getModuleName();
         $modelName = Str::before(class_basename(static::class), 'Resource');
         $res = 'Modules\\'.$moduleName.'\Models\\'.$modelName;
@@ -63,7 +78,10 @@ abstract class XotBaseResource extends FilamentResource
     /**
      * @return array<string|int,\Filament\Forms\Components\Component>
      */
-    abstract public static function getFormSchema(): array;
+    public static function getFormSchema(): array
+    {
+        return [];
+    }
 
     final public static function form(Form $form): Form
     {
@@ -118,7 +136,7 @@ abstract class XotBaseResource extends FilamentResource
         $edit = $edit;
         /** @var class-string<\Filament\Resources\Pages\Page> $view */
         $view = $view;
-        
+
         /** @var array<string, \Filament\Resources\Pages\PageRegistration> $pages */
         $pages = [
             'index' => $index::route('/'),
@@ -142,7 +160,7 @@ abstract class XotBaseResource extends FilamentResource
         $reflector = new \ReflectionClass(static::class);
         $filename = $reflector->getFileName();
         Assert::string($filename);
-        
+
         $path = Str::of($filename)
             ->before('.php')
             ->append(DIRECTORY_SEPARATOR)
@@ -151,7 +169,7 @@ abstract class XotBaseResource extends FilamentResource
 
         $files = glob($path.DIRECTORY_SEPARATOR.'*RelationManager.php');
         Assert::isArray($files);
-        
+
         /** @var array<class-string<\Filament\Resources\RelationManagers\RelationManager>> $res */
         $res = [];
         foreach ($files as $file) {
@@ -160,7 +178,7 @@ abstract class XotBaseResource extends FilamentResource
                 ->before('.php')
                 ->prepend(static::class.'\RelationManagers\\')
                 ->toString();
-            
+
             if (class_exists($className)) {
                 Assert::subclassOf($className, \Filament\Resources\RelationManagers\RelationManager::class);
                 $res[] = $className;
@@ -168,5 +186,77 @@ abstract class XotBaseResource extends FilamentResource
         }
 
         return $res;
+    }
+
+    public static function getWizardSubmitAction():Htmlable
+    {
+        $submit_view = 'pub_theme::filament.wizard.submit-button';
+        $render= view($submit_view)->render();
+        return new HtmlString($render);
+    }
+
+    public static function getAttachmentsSchema(bool $multiple=true): array{
+        $model = static::getModel();
+        if(!method_exists($model,'getAttachments')){
+            return [];
+        }
+        $attachments = $model::getAttachments();
+        $uuid = Str::uuid()->toString();
+        $schema = [];
+        $sessionId = session()->getId();
+        $sessionDir = "session-uploads/{$sessionId}";
+        foreach ($attachments as $attachment) {
+            $schema[$attachment]=FileUpload::make($attachment)
+            //$schema[$attachment]=SpatieMediaLibraryFileUpload::make($attachment)
+            ->directory($sessionDir)
+            ->disk('local')
+            ->acceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'])
+            ->maxSize(5120*2)
+            ->preserveFilenames()
+            ->required()
+            //->saveUploadedFiles()
+            ->afterStateUpdated(function ($state, Set $set) use ($attachment,$sessionDir) {
+                if (!$state) return;
+                $state=Arr::wrap($state);
+                
+                $sessionFiles = [];
+                
+                foreach ($state as $file) {
+                    if ($file instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
+                        // Salva direttamente nella directory di sessione
+                        $fileName = time() . '_' . $file->getClientOriginalName();
+                        $sessionPath = $file->storeAs($sessionDir, $fileName, 'local');
+                        $sessionFiles[] = $sessionPath;
+                    } else {
+                        // È già un percorso salvato
+                        $sessionFiles[] = $file;
+                    }
+                }
+                
+                $set($attachment, $sessionFiles);
+            })
+            ;
+            
+            /*
+            ->afterStateUpdated(function (FileUpload $component) use ($attachment) {
+                $component->saveUploadedFiles($component);
+                //$this->updateMedia();
+            });
+            */
+
+            
+        }
+        
+        return $schema;
+    }
+
+    
+
+    protected static function getStepByName(string $name): Forms\Components\Wizard\Step
+    {
+        $schema=Str::of($name)->snake()->studly()->prepend('get')->append('Schema')->toString();
+        
+        return Forms\Components\Wizard\Step::make($name)
+            ->schema(static::$schema());
     }
 }

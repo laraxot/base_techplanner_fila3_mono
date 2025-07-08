@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Modules\Tenant\Models\Traits\HasTenant;
 use Modules\Xot\Traits\Updater;
-
+use Modules\User\Models\Traits\HasTenants;
 /**
  * Modello per il logging delle notifiche inviate.
  */
 class NotificationLog extends Model
 {
     use HasFactory;
-    use HasTenant;
+    use HasTenants;
     use Updater;
 
     public const STATUS_PENDING = 'pending';

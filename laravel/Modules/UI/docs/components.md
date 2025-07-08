@@ -1,1152 +1,383 @@
 # Componenti UI
 
-## Indice
+## Componenti Form Avanzati
 
-### Versione Dettagliata
-- [Panoramica](#panoramica)
-- [Componenti Filament](#componenti-filament)
-  - [Componenti UI di Base](#componenti-ui-di-base)
-  - [Componenti per le Azioni](#componenti-per-le-azioni)
-  - [Componenti per i Form](#componenti-per-i-form)
-  - [Componenti per le Tabelle](#componenti-per-le-tabelle)
-- [Componenti Personalizzati](#componenti-personalizzati)
-  - [Form Components](#form-components)
-  - [Table Components](#table-components)
-  - [Chart Components](#chart-components)
-  - [Layout Components](#layout-components)
-- [Best Practices](#best-practices)
-- [Traduzioni](#traduzioni)
-- [Temi e Stili](#temi-e-stili)
-- [Collegamenti](#collegamenti)
+### InlineDatePicker
 
-### Versione Alternativa
-- [Componenti Base](#componenti-base)
-- [Form Components](#form-components)
-- [Table Components](#table-components)
-- [Chart Components](#chart-components)
-- [Layout Components](#layout-components)
-- [Traduzioni](#traduzioni)
+Componente Filament Form per la selezione di date con calendario inline sempre visibile e controllo granulare delle date selezionabili.
 
-## Decisione Architetturale
-Questa documentazione integra entrambe le versioni emerse dal conflitto per fornire sia una panoramica rapida sia una guida dettagliata, facilitando la consultazione a diversi livelli di approfondimento.
+#### Utilizzo Base
+```php
+use Modules\UI\Filament\Forms\Components\InlineDatePicker;
 
-## Backlink
-- [Torna a docs/links.md](../../../../docs/links.md)
-- [Vedi anche: UI/docs/README.md](./README.md)
-- [Vedi anche: Xot/docs/README.md](../../Xot/docs/README.md)
+InlineDatePicker::make('appointment_date')
+    ->enabledDates(['2025-06-05', '2025-06-21'])
+    ->highlightColor('bg-indigo-600 text-white')
+    ->compactMode()
+    ->required();
+```
 
-## Panoramica
-Il modulo UI fornisce un set di componenti personalizzati che estendono i componenti base di Filament. Tutti i componenti sono progettati per essere accessibili, responsive e facilmente personalizzabili.
+#### Caratteristiche
+- **Design Inline**: Calendario sempre visibile senza popup
+- **Date Selettive**: Solo date specifiche sono cliccabili e evidenziate
+- **Tema Coerente**: Basato sul design One theme con Tailwind CSS
+- **Alpine.js**: Interattività fluida senza page reload
+- **Accessibilità**: Supporto completo keyboard navigation e screen reader
 
-### Principi Fondamentali
-1. **Accessibilità**
-   - Supporto completo per ARIA
-   - Navigazione da tastiera
-   - Contrasto adeguato
-   - Test con screen reader
+#### Metodi Principali
+```php
+// Date abilitate (array o Closure dinamica)
+->enabledDates(['2025-06-05', '2025-06-21'])
+->enabledDates(fn () => $this->getAvailableDates())
 
-2. **Responsive Design**
-   - Layout fluido
-   - Breakpoints standard
-   - Mobile-first approach
-   - Touch-friendly
+// Personalizzazione colori
+->highlightColor('bg-green-600 text-white')
+
+// Layout compatto
+->compactMode()
+
+// Controlli navigazione
+->showNavigation(false)
+```
+
+#### Integrazione con Wizard
+```php
+InlineDatePicker::make('date')
+    ->enabledDates(fn () => $this->getDoctorAvailableDates())
+    ->live()
+    ->afterStateUpdated(fn ($state) => $this->loadTimeSlots($state))
+```
+
+[**📖 Documentazione Completa**](./components/inline-date-picker.md)
+
+### StudioCardSelector
+
+Componente Filament Form per la selezione di studi medici attraverso interfaccia card visuale.
+
+#### Utilizzo Base
+```php
+use Modules\UI\Forms\Components\StudioCardSelector;
+
+StudioCardSelector::make('selected_studio')
+    ->studios(fn (Get $get) => $this->getStudiosForLocation($get))
+    ->required();
+```
+
+#### Caratteristiche
+- **Layout Responsive**: Card stack verticali su mobile, orizzontali su desktop
+- **Accessibilità**: Supporto completo keyboard navigation e screen reader
+- **Personalizzazione**: Varianti compact/default/detailed
+- **Interattività**: Selezione radio con feedback visivo
+- **Alpine.js**: Interazioni fluide senza page reload
+
+#### Varianti Layout
+```php
+// Layout compatto
+StudioCardSelector::make('studio')->compact();
+
+// Layout dettagliato con info extra
+StudioCardSelector::make('studio')
+    ->detailed()
+    ->showDistance()
+    ->showSpecializations()
+    ->showPhone();
+```
+
+#### Features Opzionali
+- `showDistance()`: Badge distanza con icona mappa
+- `showSpecializations()`: Tag specializzazioni mediche  
+- `showPhone()`: Numero telefono con icona
+
+[**📖 Documentazione Completa**](./studio-card-selector-implementation.md)
+
+## Componenti Form Filament
+
+### RadioCollection
+
+Componente per la selezione mutuamente esclusiva con interfaccia card personalizzabile.
+
+#### Utilizzo Base
+```php
+use Modules\UI\Filament\Forms\Components\RadioCollection;
+
+RadioCollection::make('selection')
+    ->options(collect([
+        (object)['id' => 1, 'name' => 'Opzione 1', 'description' => 'Descrizione 1'],
+        (object)['id' => 2, 'name' => 'Opzione 2', 'description' => 'Descrizione 2'],
+    ]))
+    ->valueKey('id')
+    ->itemView('custom.item-template')
+    ->required();
+```
+
+#### Caratteristiche Avanzate
+- **Type Safety**: Comparazione type-safe tra valori per evitare problemi di type coercion
+- **Accessibilità**: Supporto completo per screen reader e navigazione keyboard
+- **Reattività**: Alpine.js + Livewire per feedback immediato
+- **Personalizzazione**: Template item completamente personalizzabile
+
+#### Features Filosofiche
+- **Fisica Quantistica**: Ogni opzione esiste in superposizione fino alla selezione
+- **Fenomenologia**: Interfaccia progettata per minimizzare interruzioni cognitive
+- **Gestalt**: Rispetta principi di prossimità, somiglianza e chiusura
+- **Zen**: Design minimalista che riduce all'essenziale
+
+[**📖 Documentazione Filosofica Completa**](./components/radio-collection-component.md)
+
+### LocationSelector
+
+Componente per la selezione gerarchica di dati geografici (Regione → Provincia → CAP).
+
+#### Utilizzo
+```php
+use Modules\UI\Filament\Forms\Components\LocationSelector;
+
+LocationSelector::make()
+    ->regionField('region')
+    ->provinceField('province')
+    ->capField('cap')
+    ->required()
+    ->searchable()
+```
+
+#### Caratteristiche
+- Selezione gerarchica con dipendenze automatiche
+- Integrazione con modulo Geo
+- Live updates tra i campi
+- Validazione cascata
+- Gestione errori con logging
+
+## Componenti Blade UI
+
+### StudioSelector
+
+Componente semplificato per la selezione di uno studio odontoiatrico tramite pulsanti radio-style.
+
+#### Utilizzo
+```blade
+<x-ui::ui.studio-selector 
+    :studios="$studios"
+    :selected-studio="$selectedStudioId"
+    target-field="selected_studio"
+/>
+```
+
+#### Caratteristiche
+- Pulsanti radio-style per selezione singola
+- Visual feedback per stato selezionato
+- Informazioni compatte (nome, indirizzo, contatti)
+- Empty states integrati
+- Integrazione Livewire automatica
+- Layout responsive
+
+### StudioCard (Completa)
+
+Componente avanzato per la visualizzazione dettagliata di uno studio (per liste, dashboard, dettagli).
+
+#### Utilizzo
+```blade
+<x-ui::ui.studio-card 
+    :studio="$studio"
+    :show-distance="true"
+    :show-rating="true"
+    :show-services="true"
+    :actions="['book', 'details', 'contact']"
+/>
+```
+
+#### Caratteristiche
+- Layout responsive completo
+- Rating con stelle
+- Informazioni di contatto estese
+- Servizi offerti
+- Azioni personalizzabili
+- Orari di apertura
+
+## Componenti SVG
+
+### Bandiere (Flags)
+
+I componenti SVG per le bandiere sono registrati automaticamente e possono essere utilizzati con il prefisso `ui-flags`. 
+
+#### Utilizzo
+```blade
+{{-- Bandiera italiana --}}
+<x-ui-flags.it class="w-6 h-4" />
+
+{{-- Bandiera inglese --}}
+<x-ui-flags.gb class="w-6 h-4" />
+```
+
+#### Caratteristiche
+- Registrazione automatica dei componenti
+- Supporto per tutte le bandiere del mondo
+- Dimensioni ottimizzate
+- Colori ufficiali
+- ViewBox corretto per il mantenimento delle proporzioni
+
+#### Best Practices
+1. **Dimensioni**
+   - Utilizzare classi Tailwind per le dimensioni
+   - Mantenere le proporzioni originali (3:2)
+   - Esempio: `class="w-6 h-4"`
+
+2. **Accessibilità**
+   - Aggiungere attributi `aria-label` quando necessario
+   - Fornire testo alternativo per screen reader
+   - Esempio:
+     ```blade
+     <x-ui-flags.it class="w-6 h-4" aria-label="Bandiera italiana" />
+     ```
 
 3. **Performance**
-   - Lazy loading
-   - Bundle splitting
-   - Caching ottimizzato
-   - Asset optimization
+   - Gli SVG sono ottimizzati
+   - Non richiedono richieste HTTP aggiuntive
+   - Caching automatico
 
-## Componenti Filament
+4. **Personalizzazione**
+   - Possibilità di modificare i colori via CSS
+   - Supporto per classi Tailwind
+   - Esempio:
+     ```blade
+     <x-ui-flags.it class="w-6 h-4 text-primary-600" />
+     ```
 
-### Componenti UI di Base
+## Collegamenti Correlati
+- [Documentazione SVG](./SVG.md)
+- [Best Practices UI](./UI_BEST_PRACTICES.md)
+- [Guida Componenti](./COMPONENTS_GUIDE.md) 
 
-#### Avatar
+# Componenti UI - Documentazione Generale
+
+Questo documento descrive i componenti UI disponibili nel modulo UI e le loro funzionalità principali.
+
+## Componenti Form
+
+### RadioCollection - Selettori Radio Personalizzabili
+
+Il componente `RadioCollection` offre un'alternativa avanzata ai radio button standard di Filament, permettendo visualizzazioni ricche e personalizzabili per ogni opzione.
+
+#### Caratteristiche Principali
+- **Template Personalizzabili**: Ogni opzione può avere un template visivo personalizzato
+- **Accessibilità Completa**: Supporto completo per screen reader e navigazione da tastiera
+- **Alpine.js Integration**: Feedback visivo immediato con Alpine.js
+- **Performance Ottimizzate**: Rendering efficiente anche con molte opzioni
+- **Type Safety**: Comparazione type-safe per evitare problemi di type coercion
+
+#### Utilizzo Base
 ```php
-// Avatar Base
-<x-filament::avatar
-    src="https://example.com/avatar.jpg"
-    alt="User Avatar"
-/>
+use Modules\UI\Filament\Forms\Components\RadioCollection;
 
-// Avatar con Fallback
-<x-filament::avatar
-    src="https://example.com/avatar.jpg"
-    alt="User Avatar"
-    fallback="JD"
-/>
-
-// Avatar con Badge
-<x-filament::avatar
-    src="https://example.com/avatar.jpg"
-    alt="User Avatar"
->
-    <x-slot name="badge">
-        <x-filament::badge color="success">Online</x-filament::badge>
-    </x-slot>
-</x-filament::avatar>
+RadioCollection::make('selection')
+    ->options(collect([
+        (object)['id' => 1, 'name' => 'Opzione 1', 'description' => 'Descrizione 1'],
+        (object)['id' => 2, 'name' => 'Opzione 2', 'description' => 'Descrizione 2'],
+    ]))
+    ->valueKey('id')
+    ->itemView('custom.item-template')
+    ->required();
 ```
 
-#### Badge
+#### Personalizzazione Template
 ```php
-// Badge Base
-<x-filament::badge
-    color="success"
-    size="sm"
->
-    Badge Text
-</x-filament::badge>
-
-// Badge con Icona
-<x-filament::badge
-    color="warning"
-    icon="heroicon-o-exclamation"
->
-    Warning
-</x-filament::badge>
-
-// Badge Dismissible
-<x-filament::badge
-    color="info"
-    :dismissible="true"
->
-    Dismissible Badge
-</x-filament::badge>
+// Template item personalizzato: resources/views/custom/item-template.blade.php
+<div class="space-y-1">
+    <h4 class="font-medium text-gray-900 dark:text-gray-100">
+        {{ $item->name }}
+    </h4>
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+        {{ $item->description }}
+    </p>
+</div>
 ```
 
-#### Breadcrumbs
+#### API Methods
+- `options(Collection $options)` - Imposta la collezione di opzioni
+- `valueKey(string $key)` - Imposta la chiave da usare come valore (default: 'id')
+- `itemView(string $view)` - Imposta il template personalizzato per ogni item
+
+#### Features Filosofiche
+- **Fisica Quantistica**: Ogni opzione esiste in superposizione fino alla selezione
+- **Fenomenologia**: Interfaccia progettata per minimizzare interruzioni cognitive
+- **Gestalt**: Rispetta principi di prossimità, somiglianza e chiusura
+- **Zen**: Design minimalista che riduce all'essenziale
+
+[**📖 Documentazione Filosofica Completa**](./components/radio-collection-component.md)
+
+## Componenti Form Filament
+
+### RadioCollection
+
+Componente per la selezione mutuamente esclusiva con interfaccia card personalizzabile.
+
+#### Utilizzo Base
 ```php
-// Breadcrumbs Base
-<x-filament::breadcrumbs
-    :items="[
-        ['label' => 'Home', 'url' => '/'],
-        ['label' => 'Current Page']
-    ]"
-/>
+use Modules\UI\Filament\Forms\Components\RadioCollection;
 
-// Breadcrumbs con Icone
-<x-filament::breadcrumbs
-    :items="[
-        ['label' => 'Home', 'url' => '/', 'icon' => 'heroicon-o-home'],
-        ['label' => 'Settings', 'url' => '/settings', 'icon' => 'heroicon-o-cog'],
-        ['label' => 'Profile']
-    ]"
-/>
-
-// Breadcrumbs Personalizzati
-<x-filament::breadcrumbs
-    :items="[
-        ['label' => 'Home', 'url' => '/', 'icon' => 'heroicon-o-home'],
-        ['label' => 'Settings', 'url' => '/settings', 'icon' => 'heroicon-o-cog'],
-        ['label' => 'Profile']
-    ]"
-    separator="/"
-    class="text-sm"
-/>
+RadioCollection::make('selection')
+    ->options(collect([
+        (object)['id' => 1, 'name' => 'Opzione 1', 'description' => 'Descrizione 1'],
+        (object)['id' => 2, 'name' => 'Opzione 2', 'description' => 'Descrizione 2'],
+    ]))
+    ->valueKey('id')
+    ->itemView('custom.item-template')
+    ->required();
 ```
 
-### Componenti per le Azioni
+#### Caratteristiche Avanzate
+- **Type Safety**: Comparazione type-safe tra valori per evitare problemi di type coercion
+- **Accessibilità**: Supporto completo per screen reader e navigazione keyboard
+- **Reattività**: Alpine.js + Livewire per feedback immediato
+- **Personalizzazione**: Template item completamente personalizzabile
 
-#### Button
+#### Features Filosofiche
+- **Fisica Quantistica**: Ogni opzione esiste in superposizione fino alla selezione
+- **Fenomenologia**: Interfaccia progettata per minimizzare interruzioni cognitive
+- **Gestalt**: Rispetta principi di prossimità, somiglianza e chiusura
+- **Zen**: Design minimalista che riduce all'essenziale
+
+[**📖 Documentazione Filosofica Completa**](./components/radio-collection-component.md)
+
+### LocationSelector
+
+Il componente `LocationSelector` facilita la selezione di posizioni geografiche con supporto per autocompletamento e validazione.
+
+#### Caratteristiche
+- Autocompletamento integrato
+- Validazione coordinate
+- Supporto mappe integrate
+- Geocoding automatico
+
+#### Esempi di Utilizzo
 ```php
-// Button Base
-<x-filament::button
-    color="primary"
-    size="sm"
-    :disabled="false"
-    :loading="false"
->
-    Button Text
-</x-filament::button>
-
-// Button con Icona
-<x-filament::button
-    color="success"
-    icon="heroicon-o-save"
-    :loading="false"
->
-    Save Changes
-</x-filament::button>
-
-// Button con Tooltip
-<x-filament::button
-    color="danger"
-    :tooltip="['text' => 'Delete this item', 'position' => 'top']"
->
-    Delete
-</x-filament::button>
-
-// Button con Confirmation
-<x-filament::button
-    color="warning"
-    :confirm="[
-        'title' => 'Are you sure?',
-        'description' => 'This action cannot be undone.',
-        'confirmButtonText' => 'Yes, proceed',
-        'cancelButtonText' => 'No, cancel'
-    ]"
->
-    Proceed
-</x-filament::button>
+LocationSelector::make('address')
+    ->enableMap()
+    ->required();
 ```
 
-#### Dropdown
-```php
-// Dropdown Base
-<x-filament::dropdown>
-    <x-slot name="trigger">
-        <x-filament::button>
-            Open Menu
-        </x-filament::button>
-    </x-slot>
+## Best Practice
 
-    <x-filament::dropdown.item
-        icon="heroicon-o-pencil"
-        :href="route('edit')"
-    >
-        Edit
-    </x-filament::dropdown.item>
+1. **Riutilizzabilità**: Progettare componenti modulari e riutilizzabili
+2. **Accessibilità**: Seguire sempre le linee guida WCAG 2.1
+3. **Performance**: Ottimizzare il rendering e la reattività
+4. **Documentazione**: Mantenere documentazione aggiornata con esempi
 
-    <x-filament::dropdown.separator />
+## Struttura File
 
-    <x-filament::dropdown.item
-        icon="heroicon-o-trash"
-        color="danger"
-        :href="route('delete')"
-    >
-        Delete
-    </x-filament::dropdown.item>
-</x-filament::dropdown>
-
-// Dropdown con Gruppi
-<x-filament::dropdown>
-    <x-filament::dropdown.group label="Account">
-        <x-filament::dropdown.item>Profile</x-filament::dropdown.item>
-        <x-filament::dropdown.item>Settings</x-filament::dropdown.item>
-    </x-filament::dropdown.group>
-
-    <x-filament::dropdown.group label="Actions">
-        <x-filament::dropdown.item>Logout</x-filament::dropdown.item>
-    </x-filament::dropdown.group>
-</x-filament::dropdown>
+```
+Modules/UI/resources/views/components/ui/
+├── buttons/
+├── cards/
+├── forms/
+└── layout/
 ```
 
-### Componenti per i Form
-
-#### Input
-```php
-// Input Base
-<x-filament::input
-    type="text"
-    name="field_name"
-    :label="['label' => 'Input Label']"
-    :placeholder="['placeholder' => 'Input Placeholder']"
-/>
-
-// Input con Validazione
-<x-filament::input
-    type="email"
-    name="email"
-    :label="['label' => 'Email']"
-    :rules="['required', 'email']"
-    :error="$errors->first('email')"
-/>
-
-// Input con Maschera
-<x-filament::input
-    type="tel"
-    name="phone"
-    :label="['label' => 'Phone Number']"
-    :mask="['pattern' => '+39 999 999 9999']"
-/>
-
-// Input con Autocomplete
-<x-filament::input
-    type="text"
-    name="address"
-    :label="['label' => 'Address']"
-    :autocomplete="[
-        'source' => $addresses,
-        'minLength' => 3
-    ]"
-/>
-```
-
-#### Select
-```php
-// Select Base
-<x-filament::select
-    name="country"
-    :label="['label' => 'Country']"
-    :options="[
-        'it' => 'Italy',
-        'fr' => 'France',
-        'de' => 'Germany'
-    ]"
-/>
-
-// Select con Ricerca
-<x-filament::select
-    name="user"
-    :label="['label' => 'User']"
-    :options="$users"
-    :searchable="true"
-    :search-column="'name'"
-/>
-
-// Select Multipla
-<x-filament::select
-    name="roles"
-    :label="['label' => 'Roles']"
-    :options="$roles"
-    :multiple="true"
-    :max-items="3"
-/>
-
-// Select con Relazione
-<x-filament::select
-    name="department"
-    :label="['label' => 'Department']"
-    :relationship="[
-        'name' => 'department',
-        'label' => 'name',
-        'value' => 'id'
-    ]"
-/>
-```
-
-## Componenti Personalizzati
-
-### Form Components
-
-#### CustomSelect
-```php
-use Modules\UI\Forms\Components\CustomSelect;
-
-// Select Base con Relazione
-CustomSelect::make('field_name')
-    ->label('trans.key')
-    ->relationship('relation', 'column')
-    ->searchable()
-    ->preload()
-    ->required()
-
-// Select con Validazione Personalizzata
-CustomSelect::make('field_name')
-    ->label('trans.key')
-    ->relationship('relation', 'column')
-    ->rules([
-        'required',
-        'exists:table,id'
-    ])
-    ->validationMessages([
-        'required' => 'This field is required',
-        'exists' => 'Selected value is invalid'
-    ])
-
-// Select con Callback di Formattazione
-CustomSelect::make('field_name')
-    ->label('trans.key')
-    ->relationship('relation', 'column')
-    ->formatStateUsing(fn ($state) => strtoupper($state))
-    ->formatStateLabelUsing(fn ($state) => "Selected: {$state}")
-```
-
-#### MoneyInput
-```php
-use Modules\UI\Forms\Components\MoneyInput;
-
-// Input Base
-MoneyInput::make('premio_lordo')
-    ->currency('EUR')
-    ->step(0.01)
-    ->minValue(0)
-    ->required()
-
-// Input con Formattazione Personalizzata
-MoneyInput::make('premio_lordo')
-    ->currency('EUR')
-    ->formatStateUsing(fn ($state) => number_format($state, 2, ',', '.'))
-    ->parseStateUsing(fn ($state) => str_replace(['.', ','], ['', '.'], $state))
-
-// Input con Validazione Avanzata
-MoneyInput::make('premio_lordo')
-    ->currency('EUR')
-    ->rules([
-        'required',
-        'numeric',
-        'min:0',
-        'max:1000000'
-    ])
-    ->validationMessages([
-        'required' => 'Il premio è obbligatorio',
-        'min' => 'Il premio deve essere maggiore di 0',
-        'max' => 'Il premio non può superare 1.000.000'
-    ])
-```
-
-### Table Components
-
-#### CustomDataTable
-```php
-use Modules\UI\Tables\Components\CustomDataTable;
-
-// Tabella Base
-CustomDataTable::make()
-    ->paginated(true)
-    ->searchable(['nome', 'email'])
-    ->sortable(['created_at'])
-    ->bulkActions([
-        'delete' => 'Elimina',
-        'export' => 'Esporta'
-    ])
-
-// Tabella con Filtri
-CustomDataTable::make()
-    ->filters([
-        'status' => [
-            'label' => 'Status',
-            'options' => [
-                'active' => 'Active',
-                'inactive' => 'Inactive'
-            ]
-        ],
-        'date_range' => [
-            'label' => 'Date Range',
-            'type' => 'date_range'
-        ]
-    ])
-
-// Tabella con Azioni Personalizzate
-CustomDataTable::make()
-    ->actions([
-        'view' => [
-            'icon' => 'heroicon-o-eye',
-            'url' => fn ($record) => route('view', $record),
-            'color' => 'primary'
-        ],
-        'edit' => [
-            'icon' => 'heroicon-o-pencil',
-            'url' => fn ($record) => route('edit', $record),
-            'color' => 'warning'
-        ],
-        'delete' => [
-            'icon' => 'heroicon-o-trash',
-            'url' => fn ($record) => route('delete', $record),
-            'color' => 'danger',
-            'confirm' => [
-                'title' => 'Are you sure?',
-                'description' => 'This action cannot be undone.'
-            ]
-        ]
-    ])
-```
-
-## Best Practices
-
-### 1. Utilizzo dei Componenti Filament
-
-#### Preferire i Componenti Filament
-```php
-// ❌ Non fare così
-<x-ui::button>Click me</x-ui::button>
-
-// ✅ Fare così
-<x-filament::button>Click me</x-filament::button>
-```
-
-#### Estendere i Componenti Filament
-```php
-// ❌ Non fare così
-class CustomButton extends Component
-{
-    // ...
-}
-
-// ✅ Fare così
-class CustomButton extends \Filament\Forms\Components\Button
-{
-    // ...
-}
-```
-
-#### Mantenere la Coerenza
-```php
-// ❌ Non fare così
-<x-filament::button color="primary">Save</x-filament::button>
-<x-ui::button variant="success">Cancel</x-ui::button>
-
-// ✅ Fare così
-<x-filament::button color="primary">Save</x-filament::button>
-<x-filament::button color="secondary">Cancel</x-filament::button>
-```
-
-### 2. Accessibilità
-
-#### Utilizzare gli Attributi ARIA
-```php
-// ❌ Non fare così
-<button>Click me</button>
-
-// ✅ Fare così
-<x-filament::button
-    aria-label="Save changes"
-    aria-describedby="save-description"
->
-    Save
-</x-filament::button>
-```
-
-#### Supporto per la Tastiera
-```php
-// ❌ Non fare così
-<div onclick="handleClick()">Click me</div>
-
-// ✅ Fare così
-<x-filament::button
-    tabindex="0"
-    role="button"
-    @keydown.enter="handleClick"
->
-    Click me
-</x-filament::button>
-```
-
-### 3. Performance
-
-#### Lazy Loading
-```php
-// ❌ Non fare così
-<x-filament::modal>
-    <x-heavy-component />
-</x-filament::modal>
-
-// ✅ Fare così
-<x-filament::modal>
-    <x-lazy-component />
-</x-filament::modal>
-```
-
-#### Caching
-```php
-// ❌ Non fare così
-@foreach($items as $item)
-    <x-filament::card>{{ $item->name }}</x-filament::card>
-@endforeach
-
-// ✅ Fare così
-@cache('items-list')
-    @foreach($items as $item)
-        <x-filament::card>{{ $item->name }}</x-filament::card>
-    @endforeach
-@endcache
-```
-
-## Temi e Stili
-
-### Configurazione del Tema
-```php
-// config/filament.php
-return [
-    'theme' => [
-        'colors' => [
-            'primary' => [
-                50 => '#f0f9ff',
-                100 => '#e0f2fe',
-                // ...
-            ],
-            'secondary' => [
-                // ...
-            ],
-        ],
-        'fonts' => [
-            'heading' => 'Inter',
-            'body' => 'Inter',
-        ],
-    ],
-];
-```
-
-### Personalizzazione dei Componenti
-```php
-// resources/views/vendor/filament/components/button.blade.php
-@props([
-    'color' => 'primary',
-    'size' => 'md',
-])
-
-<button
-    {{ $attributes->class([
-        'filament-button',
-        "filament-button-{$color}",
-        "filament-button-{$size}",
-    ]) }}
->
-    {{ $slot }}
-</button>
-```
+Tutti i componenti UI condivisi devono essere posizionati in `Modules/UI/resources/views/components/ui/` seguendo la struttura modulare.
 
 ## Collegamenti
-- [README](README.md)
-- [Design System](design-system.md)
-- [Layout](layouts-and-themes.md)
-- [Filament Components](https://filamentphp.com/docs/3.x/support/blade-components/overview)
-- [Filament Forms](https://filamentphp.com/docs/3.x/forms/installation)
-- [Filament Tables](https://filamentphp.com/docs/3.x/tables/installation)
 
-## Note
-Questa documentazione fornisce una panoramica dettagliata dei componenti disponibili. Per i dettagli completi, consultare la documentazione specifica nei moduli e la documentazione ufficiale di Filament.
+- [RadioCollection Debugging](./components/radio-collection-debugging.md)
+- [RadioCollection Examples](./components/radio-collection-usage-examples.md)
+- [UI Components Architecture](../README.md)
 
-## Collegamenti tra versioni di components.md
-* [components.md](../../../UI/docs/components.md)
-* [components.md](../../../UI/docs/themes/components.md)
-* [components.md](../../../Cms/docs/components.md)
-* [components.md](../../../../Themes/One/docs/components.md)
-
-### Versione Incoming
-
-## Form Components
-
-### CustomSelect
-```php
-CustomSelect::make('field_name')
-    ->label('trans.key')
-    ->relationship('relation', 'column')
-    ->searchable()
-    ->preload()
-    ->required()
-```
-
-#### Caratteristiche
-- Ricerca asincrona
-- Precaricamento opzionale
-- Supporto per relazioni multiple
-- Validazione integrata
-- Cache dei risultati
-
-### MoneyInput
-```php
-use Modules\UI\Forms\Components\MoneyInput;
-
-MoneyInput::make('premio_lordo')
-    ->currency('EUR')
-    ->step(0.01)
-    ->minValue(0)
-    ->required()
-```
-
-#### Caratteristiche
-- Formattazione automatica
-- Supporto multi valuta
-- Validazione numerica
-- Gestione decimali
-- Maschere di input
-
-### DateRangePicker
-```php
-use Modules\UI\Forms\Components\DateRangePicker;
-
-DateRangePicker::make('periodo')
-    ->displayFormat('d/m/Y')
-    ->minDate(today())
-    ->required()
-```
-
-#### Caratteristiche
-- Selezione range date
-- Formati personalizzabili
-- Localizzazione
-- Validazione range
-- Calendario popup
-
-### FileUpload
-```php
-use Modules\UI\Forms\Components\FileUpload;
-
-FileUpload::make('documento')
-    ->disk('s3')
-    ->directory('documenti')
-    ->acceptedFileTypes(['application/pdf'])
-    ->maxSize(5120) // 5MB
-```
-
-## Table Components
-
-### CustomDataTable
-```php
-use Modules\UI\Tables\Components\CustomDataTable;
-
-CustomDataTable::make()
-    ->paginated(true)
-    ->searchable(['nome', 'email'])
-    ->sortable(['created_at'])
-    ->bulkActions([
-        'delete' => 'Elimina',
-        'export' => 'Esporta'
-    ])
-```
-
-#### Caratteristiche
-- Ordinamento colonne
-- Filtri avanzati
-- Azioni personalizzabili
-- Paginazione
-- Export dati
-
-### StatusBadge
-```php
-use Modules\UI\Tables\Components\StatusBadge;
-
-StatusBadge::make('stato')
-    ->colors([
-        'danger' => 'annullato',
-        'warning' => 'sospeso',
-        'success' => 'attivo'
-    ])
-```
-
-#### Caratteristiche
-- Colori dinamici
-- Icone integrate
-- Stati personalizzabili
-- Tooltips
-- Animazioni
-
-### ActionButtons
-```php
-use Modules\UI\Tables\Components\ActionButtons;
-
-ActionButtons::make()
-    ->actions([
-        'view' => [
-            'icon' => 'heroicon-o-eye',
-            'url' => fn ($record) => route('view', $record)
-        ],
-        'edit' => [
-            'icon' => 'heroicon-o-pencil',
-            'url' => fn ($record) => route('edit', $record)
-        ]
-    ])
-```
-
-## Chart Components
-
-### LineChart
-```php
-use Modules\UI\Charts\Components\LineChart;
-
-LineChart::make()
-    ->datasets([
-        [
-            'label' => 'Vendite',
-            'data' => [10, 20, 30],
-            'borderColor' => '#4CAF50'
-        ]
-    ])
-    ->labels(['Gen', 'Feb', 'Mar'])
-    ->options([
-        'responsive' => true,
-        'maintainAspectRatio' => false
-    ])
-```
-
-#### Caratteristiche
-- Dati dinamici
-- Zoom e pan
-- Tooltips interattivi
-- Responsive
-- Temi personalizzabili
-
-### PieChart
-```php
-use Modules\UI\Charts\Components\PieChart;
-
-PieChart::make()
-    ->datasets([
-        [
-            'data' => [30, 50, 20],
-            'backgroundColor' => ['#4CAF50', '#2196F3', '#FFC107']
-        ]
-    ])
-    ->labels(['A', 'B', 'C'])
-```
-
-#### Caratteristiche
-- Legenda interattiva
-- Animazioni
-- Doughnut mode
-- Labels personalizzabili
-- Export immagine
-
-### StatsOverview
-```php
-use Modules\UI\Charts\Components\StatsOverview;
-
-StatsOverview::make()
-    ->stats([
-        [
-            'label' => 'Totale Polizze',
-            'value' => 1234,
-            'icon' => 'heroicon-o-document-text',
-            'color' => 'primary'
-        ],
-        [
-            'label' => 'Premi Totali',
-            'value' => '€ 123.456',
-            'icon' => 'heroicon-o-currency-euro',
-            'color' => 'success'
-        ]
-    ])
-```
-
-## Layout Components
-
-### AdminLayout
-```php
-use Modules\UI\Layouts\Components\AdminLayout;
-
-AdminLayout::make()
-    ->title('Dashboard')
-    ->breadcrumbs([
-        'Home' => route('home'),
-        'Dashboard' => null
-    ])
-    ->notifications(true)
-```
-
-#### Caratteristiche
-- Sidebar collassabile
-- Breadcrumbs
-- Notifiche
-- Tema dark/light
-- Responsive
-
-### PrintLayout
-```php
-use Modules\UI\Layouts\Components\PrintLayout;
-
-PrintLayout::make()
-    ->orientation('portrait')
-    ->pageSize('a4')
-    ->margins([
-        'top' => 20,
-        'right' => 15,
-        'bottom' => 20,
-        'left' => 15
-    ])
-```
-
-#### Caratteristiche
-- Ottimizzato per stampa
-- Header/footer personalizzabili
-- Paginazione
-- Stili CSS print
-- No elementi UI
-
-### DarkModeSwitcher
-```php
-// Livewire Component
-use Modules\Ui\Http\Livewire\DarkModeSwitcher;
-
-// In una blade template:
-<livewire:ui::dark-mode-switcher />
-```
-
-#### Caratteristiche
-- Toggle tema chiaro/scuro
-- Persistenza con cookie
-- Icone dinamiche per modalità chiaro/scuro
-- Compatibilità con Tailwind Dark Mode
-- Integrazione con Livewire 3
-
-#### View
-Il componente utilizza la vista `ui::livewire.dark-mode.switcher` che contiene:
-- Button per il toggle tra tema chiaro/scuro
-- Script per la gestione del cookie e l'applicazione della classe CSS `.dark`
-- SVG icons per modalità chiara e scura
-
-## Componenti Complessi
-
-### Modal
-```blade
-<x-ui::modal id="my-modal">
-  <x-slot name="title">Titolo Modal</x-slot>
-  <x-slot name="content">Contenuto Modal</x-slot>
-</x-ui::modal>
-```
-
-### Dropdown
-```blade
-<x-ui::dropdown>
-  <x-ui::dropdown-item>Opzione 1</x-ui::dropdown-item>
-  <x-ui::dropdown-item>Opzione 2</x-ui::dropdown-item>
-</x-ui::dropdown>
-```
-
-## Layout
-
-### Grid
-```blade
-<x-ui::grid cols="3">
-  <div>Colonna 1</div>
-  <div>Colonna 2</div>
-  <div>Colonna 3</div>
-</x-ui::grid>
-```
-
-### Container
-```blade
-<x-ui::container>
-  <x-ui::row>
-    <x-ui::col>Contenuto</x-ui::col>
-  </x-ui::row>
-</x-ui::container>
-```
-
-## Utility
-
-### Alert
-```blade
-<x-ui::alert type="success">
-  Operazione completata con successo!
-</x-ui::alert>
-```
-
-### Badge
-```blade
-<x-ui::badge type="warning">
-  Nuovo
-</x-ui::badge>
-```
-
-### FilterDropdown
-```php
-use Modules\UI\Components\FilterDropdown;
-
-FilterDropdown::make('stato')
-    ->options([
-        'attivo' => 'Attivo',
-        'sospeso' => 'Sospeso',
-        'annullato' => 'Annullato'
-    ])
-    ->multiple()
-    ->searchable()
-```
-
-### Modal
-```php
-use Modules\UI\Components\Modal;
-
-Modal::make('conferma')
-    ->title('Conferma Operazione')
-    ->content('Sei sicuro di voler procedere?')
-    ->actions([
-        'confirm' => [
-            'label' => 'Conferma',
-            'color' => 'primary'
-        ],
-        'cancel' => [
-            'label' => 'Annulla',
-            'color' => 'secondary'
-        ]
-    ])
-```
-
-## Best Practices
-
-### Gestione delle Rotte e dei Controller
-
-1. **Non creare rotte manualmente**
-   - Utilizzare Filament e Folio per la gestione automatica delle rotte
-   - Le rotte vengono generate automaticamente in base alle risorse e alle pagine
-   - Non aggiungere rotte in `web.php` o altri file di routing
-
-2. **Non creare controller manualmente**
-   - Utilizzare Filament per la gestione delle risorse
-   - Utilizzare Folio per la gestione delle pagine
-   - I controller vengono generati automaticamente
-
-3. **Componenti Blade**
-   - Creare componenti Blade riutilizzabili
-   - Utilizzare i componenti per la gestione dell'UI
-   - I componenti possono essere utilizzati sia in Filament che in Folio
-
-4. **Gestione delle Lingue**
-   - Utilizzare il componente `language-switcher` per il cambio lingua
-   - La localizzazione viene gestita automaticamente da Filament e Folio
-   - Non è necessario creare controller o rotte specifiche per la gestione delle lingue
-
-## Componenti Disponibili
-
-### Language Switcher
-
-```blade
-<x-ui::language-switcher />
-```
-
-Il componente gestisce automaticamente:
-- Cambio lingua
-- Persistenza della selezione
-- Traduzioni
-- UI/UX
-
-Non è necessario:
-- Creare controller
-- Aggiungere rotte
-- Gestire la logica di cambio lingua
-
-### User Menu
-
-```blade
-<x-ui::user-menu />
-```
-
-Il componente gestisce automaticamente:
-- Menu utente
-- Autenticazione
-- Profilo utente
-- Logout
-
-Non è necessario:
-- Creare controller
-- Aggiungere rotte
-- Gestire la logica di autenticazione
-
-## Utilizzo dei Componenti
-
-1. **Importazione**
-   ```blade
-   @php
-   use Modules\UI\View\Components\LanguageSwitcher;
-   @endphp
-   ```
-
-2. **Utilizzo**
-   ```blade
-   <x-ui::language-switcher />
-   ```
-
-Il componente gestisce automaticamente:
-- Menu utente
-- Autenticazione
-- Profilo utente
-- Logout
-
-## Best Practices
-
-### Gestione delle Rotte e dei Controller
-
-1. **Non creare rotte manualmente**
-   - Utilizzare Filament e Folio per la gestione automatica delle rotte
-   - Le rotte vengono generate automaticamente in base alle risorse e alle pagine
-   - Non aggiungere rotte in `web.php` o altri file di routing
-
-2. **Non creare controller manualmente**
-   - Utilizzare Filament per la gestione delle risorse
-   - Utilizzare Folio per la gestione delle pagine
-   - I controller vengono generati automaticamente
-
-3. **Componenti Blade**
-   - Creare componenti Blade riutilizzabili
-   - Utilizzare i componenti per la gestione dell'UI
-   - I componenti possono essere utilizzati sia in Filament che in Folio
-
-4. **Gestione delle Lingue**
-   - Utilizzare il componente `language-switcher` per il cambio lingua
-   - La localizzazione viene gestita automaticamente da Filament e Folio
-   - Non è necessario creare controller o rotte specifiche per la gestione delle lingue
-
-## Componenti Disponibili
-
-### Language Switcher
-
-```blade
-<x-ui::language-switcher />
-```
-
-Il componente gestisce automaticamente:
-- Cambio lingua
-- Persistenza della selezione
-- Traduzioni
-- UI/UX
-
-Non è necessario:
-- Creare controller
-- Aggiungere rotte
-- Gestire la logica di cambio lingua
-
-### User Menu
-
-```blade
-<x-ui::user-menu />
-```
-
-Il componente gestisce automaticamente:
-- Menu utente
-- Autenticazione
-- Profilo utente
-- Logout
-Non è necessario:
-- Creare controller
-- Aggiungere rotte
-- Gestire la logica di autenticazione
-   ```blade
-   <x-ui::language-switcher />
-   ```
-
-## Regola fondamentale: Posizionamento dei componenti Blade UI
-
-3. **Personalizzazione**
-   ```blade
-   <x-ui::language-switcher
-       :languages="['it', 'en']"
-       :show-flags="true"
-       :show-names="true"
-   />
-   ```
-
-## Configurazione
-
-La configurazione viene gestita attraverso:
-- File di configurazione di Filament
-- File di configurazione di Folio
-- Configurazioni del modulo UI
-
-=======
-
-## Utilizzo dei Componenti
-
-1. **Importazione**
-   ```blade
-   @php
-   use Modules\UI\View\Components\LanguageSwitcher;
-   @endphp
-   ```
-
-2. **Utilizzo**
-   ```blade
-   <x-ui::language-switcher />
-   ```
-
-=======
-3. **Personalizzazione**
-   ```blade
-   <x-ui::language-switcher
-       :languages="['it', 'en']"
-       :show-flags="true"
-       :show-names="true"
-   />
-   ```
-
-## Configurazione
-
-La configurazione viene gestita attraverso:
-- File di configurazione di Filament
-- File di configurazione di Folio
-- Configurazioni del modulo UI
-
->>>>>>> 9138ec4 (.)
-Non è necessario:
-- Modificare file di routing
-- Creare controller personalizzati
-- Gestire manualmente le rotte
+*Documentazione aggiornata: Dicembre 2024* 

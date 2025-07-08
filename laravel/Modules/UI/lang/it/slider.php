@@ -8,6 +8,7 @@ return array (
       'label' => 'method',
       'description' => 'method',
       'helper_text' => 'method',
+      'placeholder' => 'method',
     ),
     '_tpl' => 
     array (

@@ -185,7 +185,6 @@ return [
         'verification_failed' => [
             'title' => 'Errore Verifica',
             'message' => 'Impossibile verificare il contatto: :error',
-        ],
-    ],
-    'messages' => [],
+        ]
+    ]
 ];

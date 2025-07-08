@@ -4,41 +4,44 @@ declare(strict_types=1);
 
 namespace Modules\User\Models;
 
-use Filament\Models\Contracts\HasName;
-use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
+use Parental\HasChildren;
+use Illuminate\Support\Str;
+use Modules\Xot\Datas\XotData;
+use Spatie\MediaLibrary\HasMedia;
+use Laravel\Passport\HasApiTokens;
+use Filament\Models\Contracts\HasName;
+use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Contracts\UserContract;
+use Illuminate\Notifications\Notifiable;
+use Modules\User\Models\Traits\HasTeams;
+use Modules\Xot\Models\Traits\RelationX;
+use Filament\Models\Contracts\HasTenants;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Collection;
+use Modules\User\Database\Factories\UserFactory;
+use Modules\Xot\Actions\Factory\GetFactoryAction;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\DatabaseNotificationCollection;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
-use Laravel\Passport\HasApiTokens;
-use Modules\User\Database\Factories\UserFactory;
-use Modules\User\Models\Traits\HasTeams;
-use Modules\Xot\Contracts\UserContract;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Models\Traits\RelationX;
-use Spatie\Permission\Traits\HasRoles;
-use Parental\HasChildren;
-use Illuminate\Support\Facades\Schema;
 
 /**
- * Modules\User\Models\User.
+ * Base User Model
  *
- * @template TModel of \Illuminate\Database\Eloquent\Model
- * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
- *
+ * This is the base user model that provides the core authentication and authorization
+ * functionality for the application. It extends Laravel's Authenticatable class
+ * and implements the required interfaces for Filament and multi-tenancy.
  * @property Collection<int, OauthClient> $clients
  * @property int|null $clients_count
  * @property Team|null $currentTeam
@@ -60,7 +63,7 @@ use Illuminate\Support\Facades\Schema;
  * @property int|null $tenants_count
  * @property Collection<int, OauthAccessToken> $tokens
  * @property int|null $tokens_count
- * @property string $surname
+ * @property string $last_name
  * @property string|null $facebook_id
  * @property Collection<int, SocialiteUser> $socialiteUsers
  * @property int|null $socialite_users_count
@@ -118,11 +121,14 @@ use Illuminate\Support\Facades\Schema;
  *
  * @mixin \Eloquent
  */
-abstract class BaseUser extends Authenticatable implements HasName, HasTenants, UserContract
+abstract class BaseUser extends Authenticatable implements HasName, HasTenants, UserContract,HasMedia
 {
+
+
     use HasApiTokens;
     use HasFactory;
     use HasRoles;
+    // Guard coerente con Spatie/Permission
     use HasUuids;
     use Notifiable;
     use RelationX;
@@ -130,6 +136,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     use Traits\HasTenants;
     use Traits\HasTeams;
     use HasChildren;
+    use InteractsWithMedia;
 
 
     public $incrementing = false;
@@ -185,8 +192,31 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
 
     ];
 
+    /** @var array<string, mixed>  */
+    protected $attributes = [
+        //'state' => Pending::class,
+        //'state' => 'pending',
+        'is_otp'=>false,
+        'is_active'=>true,
+    ];
+
+    /**
+     * Guard coerente con Spatie/Permission: deve essere 'web'.
+     * @var string
+     */
+    protected $guard_name = 'web';
+
     /** @var \Illuminate\Database\Eloquent\Relations\Pivot|null */
     public $pivot;
+
+    public function __construct(array $attributes = [])
+    {
+        // Concateno i fillable del parent con quelli della classe corrente
+        // array_values() garantisce che sia un array indicizzato (list<string>)
+        $this->fillable = array_values(array_merge(parent::getFillable(), $this->getFillable()));
+
+        parent::__construct($attributes);
+    }
 
     public function canAccessFilament(?Panel $panel = null): bool
     {
@@ -290,7 +320,9 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     }
 
     /**
-     * @return BelongsToMany<Device, static|$this>
+     * Get the devices associated with the user.
+     *
+     * @return BelongsToMany<Device, static>
      */
     public function devices(): BelongsToMany
     {
@@ -298,10 +330,14 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
             ->belongsToManyX(Device::class);
     }
 
+    /**
+     * Get the socialite users associated with the user.
+     *
+     * @return HasMany<SocialiteUser, $this>
+     */
     public function socialiteUsers(): HasMany
     {
-        return $this
-            ->hasMany(SocialiteUser::class);
+        return $this->hasMany(SocialiteUser::class);
     }
 
     public function getProviderField(string $provider, string $field): string
@@ -367,7 +403,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
      */
     protected static function newFactory()
     {
-        return UserFactory::new();
+        return app(GetFactoryAction::class)->execute(static::class);
     }
 
     /** @return array<string, string> */
@@ -394,25 +430,6 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
             'deleted_by' => 'string',
         ];
     }
-
-
-
-    /**
-     * Get the role name for the current team.
-     *
-     * @return array<int, string>
-     */
-    /**
-     * Get all role names associated with the user.
-     *
-     * @return array<int, string>
-     */
-    public function getRoleNames(): array
-    {
-        /** @var array<int, string> */
-        return $this->roles()->pluck('name')->filter()->values()->toArray();
-    }
-
 
 
 
@@ -459,26 +476,5 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         return false;
     }
 
-    /**
-     * Get all permission names associated with the user's roles.
-     *
-     * @return array<int, string>
-     */
-    public function getPermissionNames(): array
-    {
-        $roles = $this->roles()->with('permissions')->get();
-        if ($roles->isEmpty()) {
-            return [];
-        }
 
-        $permissions = collect();
-        foreach ($roles as $role) {
-            if (isset($role->permissions) && $role->permissions !== null) {
-                $permissions = $permissions->merge($role->permissions);
-            }
-        }
-
-        /** @var array<int, string> */
-        return $permissions->pluck('name')->values()->toArray();
-    }
 }

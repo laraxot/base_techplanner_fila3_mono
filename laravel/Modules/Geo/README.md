@@ -1,4 +1,5 @@
 # :package_description
+# Geo Module
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laraxot/module_geo_fila3.svg?style=flat-square)](https://packagist.org/packages/laraxot/module_geo_fila3)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/laraxot/module_geo_fila3/run-tests?label=tests)](https://github.com/laraxot/module_geo_fila3/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -46,6 +47,113 @@ php artisan vendor:publish --tag="module_geo_fila3-config"
 ```
 
 This is the contents of the published config file:
+
+## Overview
+
+The Geo module is a central repository for all geographical data and functionality within the application. It provides a consistent way to manage locations, addresses, and geographical hierarchies across all modules.
+
+## Features
+
+- **Geographical Hierarchy Management**: Handle regions, provinces, cities, and postal codes (CAPs)
+- **Address Management**: Store and manage complete address information
+- **Reusable Address Components**: AddressesField component for DRY address management
+- **Location Services**: Work with geographical coordinates and points of interest
+- **Data Consistency**: Single source of truth for all geographical data
+- **API Ready**: Easily expose geographical data through APIs
+
+## Installation
+
+1. Install the package via Composer:
+
+   ```bash
+   composer require laraxot/module_geo_fila3
+   ```
+
+2. Publish and run the migrations:
+
+   ```bash
+   php artisan vendor:publish --tag="module_geo_fila3-migrations"
+   php artisan migrate
+   ```
+
+3. (Optional) Publish the configuration file:
+
+   ```bash
+   php artisan vendor:publish --tag="module_geo_fila3-config"
+   ```
+
+## Usage
+
+### Basic Usage
+
+```php
+use Modules\Geo\Models\Region;
+use Modules\Geo\Models\Province;
+use Modules\Geo\Models\City;
+use Modules\Geo\Models\Cap;
+
+// Get all regions with their provinces
+$regions = Region::with('provinces')->get();
+
+// Get all cities in a province
+$province = Province::find(1);
+$cities = $province->cities;
+
+// Get CAPs for a city
+$city = City::find(1);
+$caps = $city->caps;
+```
+
+### AddressesField Component
+
+The Geo module provides a reusable `AddressesField` component for managing multiple addresses in Filament forms:
+
+```php
+use Modules\Geo\Filament\Forms\Components\AddressesField;
+
+// Basic usage in a Filament Resource
+AddressesField::make('addresses')
+    ->relationship('addresses')
+    ->minItems(1)
+    ->addActionLabel('Add Address')
+    ->columnSpanFull()
+
+// Advanced configuration
+AddressesField::make('addresses')
+    ->relationship('addresses')
+    ->minItems(1)
+    ->maxItems(5)
+    ->reorderable(true)
+    ->managePrimary(true)
+    ->addActionLabel('Add Location')
+```
+
+**Features:**
+- **Multiple Addresses**: Manage collections of addresses with repeater
+- **Conditional Visibility**: Name field appears only with multiple addresses
+- **Primary Address Logic**: Automatic exclusive primary address management
+- **Complete Italian Schema**: Full cascade selection (Region → Province → City → CAP)
+- **Configurable**: Flexible API for different use cases
+```
+
+### Relationships
+
+- **Region** has many **Provinces**
+- **Province** belongs to a **Region** and has many **Cities**
+- **City** belongs to a **Province** and has many **CAPs**
+- **Cap** belongs to a **City**
+
+## Documentation
+
+For detailed documentation, please see the [documentation](docs/architecture.md).
+
+## Migration Guide
+
+If you're migrating from another module (like SaluteOra) that had its own geographical models, please see the [migration guide](docs/migration-guide.md).
+
+## Module Configuration
+
+The default configuration is as follows:
 
 ```php
 return [

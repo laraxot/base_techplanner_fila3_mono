@@ -69,7 +69,11 @@ abstract class XotBaseServiceProvider extends ServiceProvider
         $this->callAfterResolving(BladeIconsFactory::class, function (BladeIconsFactory $factory) {
             $assetsPath = app(GetModulePathByGeneratorAction::class)->execute($this->name, 'assets');
             $svgPath=$assetsPath.'/../svg';
-            $factory->add( $this->nameLower, ['path' => $svgPath,'prefix' => $this->nameLower]);
+            try {
+                $factory->add( $this->nameLower, ['path' => $svgPath,'prefix' => $this->nameLower]);
+            } catch (\Throwable $e) {
+                // Ignore missing SVG path
+            }
         });
         //$svgPath = app(GetModulePathByGeneratorAction::class)->execute($this->name, 'svg');
         /*
@@ -107,9 +111,9 @@ abstract class XotBaseServiceProvider extends ServiceProvider
         }
 
         $viewPath = module_path($this->name, 'resources/views');
-        if (! is_string($viewPath)) {
-            throw new \Exception('Invalid view path');
-        }
+        //if (! is_string($viewPath)) {
+        //    throw new \Exception('Invalid view path');
+        //}
 
         $this->loadViewsFrom($viewPath, $this->nameLower);
     }

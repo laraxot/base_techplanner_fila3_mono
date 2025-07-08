@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets;
 
+use Exception;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
+use Filament\Forms\Form as FilamentForm;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
-use Exception;
-use Illuminate\Http\RedirectResponse;
-use Livewire\Attributes\Layout;
-use Filament\Forms\Components\TextInput as FormsTextInput;
-use Filament\Forms\Components\Checkbox as FormsCheckbox;
 
 /**
  * LoginWidget: Widget di login conforme alle regole Windsurf/Xot.
@@ -23,9 +20,8 @@ use Filament\Forms\Components\Checkbox as FormsCheckbox;
  * - Validazione e sicurezza integrate
  * - Facilmente estendibile (2FA, captcha, login social)
  *
- * @property-read static string $view La view del widget segue il pattern {module}::filament.widgets.{type}
+ * @property array<string, mixed>|null $data
  */
-
 class LoginWidget extends XotBaseWidget
 {
     /**
@@ -34,53 +30,83 @@ class LoginWidget extends XotBaseWidget
      * il path deve essere senza il namespace del modulo (senza "user::").
      * 
      * @see \Modules\User\docs\WIDGETS_STRUCTURE.md - Sezione B
+     * @var view-string
      */
     protected static string $view = 'user::filament.widgets.login';
     
-    protected int | string | array $columnSpan = 'full';
-    
-    /**
-     * Dati del form per il login
-     */
-    public ?array $data = [];
-
+   
     /**
      * Inizializza il widget quando viene montato.
+     *
+     * @return void
      */
     public function mount(): void
     {
         $this->form->fill();
     }
-
+    
     /**
-     * Definisce lo schema del form di login.
+     * Get the form schema for the login form.
      *
-     * @return array<string, \Filament\Forms\Components\Component>
+     * @return array<int, \Filament\Forms\Components\Component>
      */
     public function getFormSchema(): array
     {
         return [
-            'email' => TextInput::make('email')
+            TextInput::make('email')
                 ->email()
                 ->required()
                 ->autofocus(),
-            'password' => TextInput::make('password')
+            TextInput::make('password')
                 ->password()
                 ->required(),
-            'remember' => Toggle::make('remember')
-                ->label('Ricordami'),
+            Toggle::make('remember')
+            ->visible(false),
         ];
     }
 
+    /**
+     * Get the form model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    protected function getFormModel(): ?\Illuminate\Database\Eloquent\Model
+    {
+        return null;
+    }
+    
+    /**
+     * Get the form fill data.
+     *
+     * @return array<string, mixed>
+     */
+    public function getFormFill(): array
+    {
+        return [
+            'email' => old('email'),
+            'remember' => true,
+        ];
+    }
+
+
+
+    /**
+     * Handle login form submission.
+     *
+     * @return void
+     */
     public function save(): void
     {
         try {
             $data = $this->form->getState();
             
+            // Cast esplicito per type safety PHPStan
+            $remember = (bool) ($data['remember'] ?? false);
+            
             if (!Auth::attempt([
-                'email' => $data['email'],
-                'password' => $data['password']
-            ], $data['remember'] ?? false)) {
+                'email' => (string) $data['email'],
+                'password' => (string) $data['password']
+            ], $remember)) {
                 throw ValidationException::withMessages([
                     'email' => [__('Le credenziali fornite non sono corrette.')],
                 ]);
@@ -88,12 +114,46 @@ class LoginWidget extends XotBaseWidget
 
             session()->regenerate();
             
-            redirect()->intended(route('home'));
+            Notification::make()
+                ->title('Accesso effettuato con successo')
+                ->success()
+                ->send();
+                
+            $this->redirect(route('home'));
+            
         } catch (ValidationException $e) {
-            $this->addError('email', $e->getMessage());
+            Notification::make()
+                ->title('Errore di validazione')
+                ->body($e->getMessage())
+                ->danger()
+                ->send();
+                
+            $this->form->fill();
+            $this->form->saveRelationships();
+            //$this->form->callAfter();
+            
+            foreach ($e->errors() as $field => $messages) {
+                $this->form->getComponent($field)?->getContainer()->getParentComponent()?->getStatePath()
+                    ? $this->addError($field, implode(' ', $messages))
+                    : $this->addError('email', implode(' ', $messages));
+            }
+            
         } catch (Exception $e) {
             report($e);
+            
+            Notification::make()
+                ->title('Errore durante il login')
+                ->body(__('Si è verificato un errore durante il login. Riprova più tardi.'))
+                ->danger()
+                ->send();
+                
+            $this->form->fill();
+            $this->form->saveRelationships();
+            //$this->form->callAfter();
+            
             $this->addError('email', __('Si è verificato un errore durante il login. Riprova più tardi.'));
         }
     }
+    
+
 }

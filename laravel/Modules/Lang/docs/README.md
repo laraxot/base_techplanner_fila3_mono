@@ -1,26 +1,24 @@
-# Modulo Lang
+https://github.com/dimsav/laravel-translatable
 
-## Introduzione
-Il modulo Lang gestisce tutte le traduzioni, i messaggi e le notifiche del sistema, fornendo un sistema centralizzato per la gestione delle stringhe multilingua e l'internazionalizzazione dell'applicazione.
+https://github.com/Astrotomic/laravel-translatable !!
 
-## Indice
-- [Architettura e Componenti](#architettura-e-componenti)
-- [Translation Management](#translation-management)
-- [Message System](#message-system)
-- [Notification System](#notification-system)
-- [Best Practices](#best-practices)
-- [Documentazione Tecnica](#documentazione-tecnica)
-- [Note Importanti](#note-importanti)
-### Versione HEAD
+https://github.com/spatie/laravel-translatable
 
-- [Collegamenti Bidirezionali](#collegamenti-bidirezionali)
+https://blog.quickadminpanel.com/10-best-laravel-packages-for-multi-language-translations/
 
-### Versione Incoming
 
-- [Collegamenti correlati](#collegamenti-correlati)
+## Collegamenti tra versioni di readme.md
+* [readme.md](../../../Gdpr/docs/readme.md)
+* [readme.md](../../../UI/docs/readme.md)
+* [readme.md](../../../Lang/docs/readme.md)
+* [readme.md](../../../Activity/docs/readme.md)
+* [readme.md](../../../Cms/docs/readme.md)
 
----
+## Extra risorse da _docs
 
+<<<<<<< HEAD
+(Nessun nuovo link da aggiungere: i link di _docs/readme.txt sono già presenti in questo file)
+=======
 - [Documentazione](#documentazione)
 - [Dipendenze](#dipendenze)
 - [Utilizzo](#utilizzo)
@@ -936,3 +934,4 @@ Tutti i comandi console del modulo sono autoregistrati tramite `XotBaseServicePr
 
 > Qualsiasi registrazione manuale è un errore e va rimossa.
 
+>>>>>>> f731b93 (.)

@@ -1,1 +1,146 @@
-Please remember ___ @Memory . Prima di correggere un errore, comprendi la causa, aggiorna la documentazione nella cartella docs più vicina all'errore (esclusa la cartella docs della root), crea collegamenti bidirezionali ai file della cartella docs principale, studia approfonditamente le cartelle docs coinvolte prima di implementare qualsiasi correzione; procedi con le correzioni secondo un ordine di priorità che ritieni opportuno; ricorda che il namespace corretto è Modules<nome modulo>\Filament e non Modules<nome modulo>\App\Filament anche quando lavori nella cartella laravel/Modules/<nome modulo>/app/Filament; utilizza i file di traduzione del modulo dentro Modules/<nome modulo>/lang/<lingua> anziché ->label(); le regole generali vanno documentate nella cartella docs del modulo Xot con collegamenti bidirezionali dagli altri moduli; gli elementi frontend vanno nel modulo Cms; ogni modulo ha uno scopo specifico; aggiorna continuamente la tua comprensione delle cartelle docs, delle regole e delle memorie; quando modifichi file, progettali pensando che dovranno superare controlli di qualità elevati in futuro; segui i principi DRY (Don't Repeat Yourself) e KISS (Keep It Simple, Stupid); considera sempre le implicazioni di politica, filosofia, religione e zen nelle tue soluzioni; quando trovi un errore, correggi tutti i file che contengono lo stesso problema.
+# Bug Fixing Guidelines and Best Practices
+
+## Core Principles
+- Always analyze the root cause through thorough code and context analysis
+- Follow a systematic approach to bug resolution
+- Maintain documentation integrity throughout the process
+- Respect module boundaries and responsibilities
+
+## Documentation Process
+1. **Before Making Changes**
+   - Study the documentation in the module's `docs` folder (not the root `docs`)
+   - Create bidirectional links between module and root documentation
+   - Update relevant documentation before implementing fixes
+
+## Code Organization
+- **Namespace Structure**:
+  - Use `Modules\<module>\` (NOT `Modules\<module>\App\`)
+  - Filament components: `Modules\<module>\Filament`
+  - Never extend Filament classes directly - use XotBase classes
+
+## Translation Guidelines
+- **Never** use `->label()` directly
+- Use the LangServiceProvider for all translations
+- Store translations in: `Modules/<module>/lang/<language>/`
+- Follow the expanded translation structure
+
+## Common Fix Patterns
+1. **Resource Classes**:
+   - Remove `getTableColumn`, `getTableFilters`, `getBulkActions` if empty
+   - Remove `getPages` if it only returns default pages
+   - Use associative arrays with string keys for all methods
+
+2. **Form Handling**:
+   - Convert array options to enums for type safety
+   - Use proper validation rules
+   - Implement proper error handling
+
+## Implementation Strategy
+1. **Analysis Phase**:
+   - Understand the error context
+   - Check related components
+   - Review recent changes
+
+2. **Documentation Update**:
+   - Update module documentation
+   - Create/update root documentation
+   - Add bidirectional links
+
+3. **Implementation**:
+   - Follow DRY and KISS principles
+   - Consider architectural implications
+   - Maintain backward compatibility
+
+4. **Testing**:
+   - Test the fix
+   - Check for regressions
+   - Update tests if needed
+
+## Quality Assurance
+- Run PHPStan (level 10)
+- Ensure PSR-12 compliance
+- Verify type safety
+- Check for security implications
+
+## Best Practices
+- Keep changes minimal and focused
+- Document decisions and rationale
+- Consider performance implications
+- Follow the principle of least surprise
+
+## Common Pitfalls to Avoid
+- Direct Filament class extensions
+- Hardcoded strings and labels
+- Ignoring module boundaries
+- Skipping documentation updates
+
+## Review Process
+- Self-review changes
+- Check for similar issues in the codebase
+- Update relevant documentation
+- Consider creating automated tests
+
+# Gestione ParseError: metodi fuori dalla classe in PHP
+
+## Causa
+Un errore di tipo `ParseError: syntax error, unexpected token "protected", expecting end of file` si verifica quando una funzione (es. `protected function getUserTypeOptions()`) viene dichiarata **fuori dal blocco della classe**. Questo accade spesso dopo una parentesi graffa di chiusura `}` della classe, lasciando il metodo "orfano".
+
+## Soluzione
+- Spostare sempre i metodi all'interno della classe corretta.
+- Verificare che la parentesi graffa di chiusura della classe sia l'ultima istruzione del file.
+- Se il metodo non serve più, eliminarlo.
+
+## Best Practice
+- Ogni funzione/membro deve essere dichiarato **all'interno** della classe.
+- La chiusura della classe (`}`) deve essere l'ultima istruzione del file.
+- Dopo ogni refactor, controllare che non restino metodi orfani.
+- Usare sempre editor con linting attivo per prevenire errori di sintassi.
+
+## Esempio (corretto)
+```php
+class Example {
+    public function foo() {}
+    // ...
+} // <--- questa DEVE essere l'ultima parentesi graffa
+```
+
+## Caso reale
+- Errore su `Modules/User/app/Filament/Widgets/Auth/RegisterWidget.php` risolto spostando la funzione orfana all'interno della classe o eliminandola se non più necessaria.
+
+## Filosofia
+- La coerenza strutturale del codice è fondamentale per la manutenibilità e la prevenzione di bug sistemici.
+- Ogni correzione va documentata nella cartella docs più vicina e nel knowledge base dei bugfix.
+
+# Gestione ParseError: metodi fuori dalla classe in PHP
+
+## Causa
+Un errore di tipo `ParseError: syntax error, unexpected token "protected", expecting end of file` si verifica quando una funzione (es. `protected function getUserTypeOptions()`) viene dichiarata **fuori dal blocco della classe**. Questo accade spesso dopo una parentesi graffa di chiusura `}` della classe, lasciando il metodo "orfano".
+
+## Soluzione
+- Spostare sempre i metodi all'interno della classe corretta.
+- Verificare che la parentesi graffa di chiusura della classe sia l'ultima istruzione del file.
+- Se il metodo non serve più, eliminarlo.
+
+## Best Practice
+- Ogni funzione/membro deve essere dichiarato **all'interno** della classe.
+- La chiusura della classe (`}`) deve essere l'ultima istruzione del file.
+- Dopo ogni refactor, controllare che non restino metodi orfani.
+- Usare sempre editor con linting attivo per prevenire errori di sintassi.
+
+## Esempio (corretto)
+```php
+class Example {
+    public function foo() {}
+    // ...
+} // <--- questa DEVE essere l'ultima parentesi graffa
+```
+
+## Caso reale
+- Errore su `Modules/User/app/Filament/Widgets/Auth/RegisterWidget.php` risolto spostando la funzione orfana all'interno della classe o eliminandola se non più necessaria.
+
+## Filosofia
+- La coerenza strutturale del codice è fondamentale per la manutenibilità e la prevenzione di bug sistemici.
+- Ogni correzione va documentata nella cartella docs più vicina e nel knowledge base dei bugfix.
+
+
+dentro le cartelle docs i files e le cartelle non devono contenere caratteri maiuscoli ad eccezzione di README.md controlla e sistema

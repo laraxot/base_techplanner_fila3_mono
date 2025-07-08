@@ -39,9 +39,7 @@ trait HasXotTable
     public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
 
     protected static bool $canReplicate = false;
-
     protected static bool $canView = true;
-
     protected static bool $canEdit = true;
 
     /**
@@ -135,10 +133,8 @@ trait HasXotTable
      *
      * @return array<string, Tables\Columns\Column>
      */
-    public function getTableColumns(): array
-    {
-        return [];
-    }
+    abstract public function getTableColumns(): array;
+    
 
     /**
      * Get table filters form columns.
@@ -213,32 +209,21 @@ trait HasXotTable
         $table = $table
             ->recordTitleAttribute($this->getTableRecordTitleAttribute())
             ->heading($this->getTableHeading())
-            ->columns($this->layoutView->getTableColumns())
+            ->columns($this->layoutView->getTableColumns(
+                $this->getTableColumns(),
+                $this->getGridTableColumns()
+            ))
             ->contentGrid($this->layoutView->getTableContentGrid())
             ->filters($this->getTableFilters())
             ->filtersLayout(FiltersLayout::AboveContent)
             ->filtersFormColumns($this->getTableFiltersFormColumns())
-            ->persistFiltersInSession();
-
-        // Verifica i metodi disponibili prima di chiamarli
-        if (method_exists($this, 'getTableHeaderActions')) {
-            $table = $table->headerActions($this->getTableHeaderActions());
-        }
-
-        if (method_exists($this, 'getTableActions')) {
-            $table = $table->actions($this->getTableActions());
-        }
-
-        if (method_exists($this, 'getTableBulkActions')) {
-            $table = $table->bulkActions($this->getTableBulkActions());
-        }
-
-        $table = $table
+            ->persistFiltersInSession()
+            ->headerActions($this->getTableHeaderActions())
+            ->actions($this->getTableActions())
+            ->bulkActions($this->getTableBulkActions())
             ->actionsPosition(ActionsPosition::BeforeColumns)
             ->emptyStateActions($this->getTableEmptyStateActions())
-            ->striped();
-
-        $table = $table
+            ->striped()
             ->paginated($this->getTablePaginated());
         /*
             ->defaultSort(

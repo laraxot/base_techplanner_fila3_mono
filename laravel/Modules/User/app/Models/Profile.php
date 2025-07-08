@@ -4,12 +4,39 @@ declare(strict_types=1);
 
 namespace Modules\User\Models;
 
+use Modules\User\Contracts\UserContract;
+use Modules\User\Database\Factories\ProfileFactory;
+use Modules\User\Models\Pivots\DeviceProfile;
+use Modules\User\Models\Pivots\ProfileTeam;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\SchemalessAttributes\SchemalessAttributesTrait as HasSchemalessAttributes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 /**
+ * User Profile Model
  * 
+ * Represents a user profile with relationships to devices, teams, and roles.
  *
+ * @property int $id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $user_name
+ * @property string $email
+ * @property string|null $phone
+ * @property string|null $bio
+ * @property string|null $avatar
+ * @property string|null $timezone
+ * @property string|null $locale
+ * @property array $preferences
+ * @property string $status
  * @property \Spatie\SchemalessAttributes\SchemalessAttributes $extra
  * @property-read string $avatar
- * @property-read \Modules\Broker\Models\Profile|null $creator
+ * @property-read ProfileContract|null $creator
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\DeviceUser> $deviceUsers
  * @property-read int|null $device_users_count
  * @property-read \Modules\User\Models\ProfileTeam|\Modules\User\Models\DeviceProfile|null $pivot
@@ -32,8 +59,8 @@ namespace Modules\User\Models;
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team> $teams
  * @property-read int|null $teams_count
- * @property-read \Modules\Broker\Models\Profile|null $updater
- * @property-read \Modules\Broker\Models\User|null $user
+ * @property-read ProfileContract|null $updater
+ * @property-read UserContract|null $user
  * @property-read string|null $user_name
  * @method static \Modules\User\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile newModelQuery()
@@ -46,4 +73,25 @@ namespace Modules\User\Models;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile withoutRole($roles, $guard = null)
  * @mixin \Eloquent
  */
-class Profile extends BaseProfile {}
+class Profile extends BaseProfile implements HasMedia
+{
+    use HasRoles;
+    use InteractsWithMedia;
+    use HasSchemalessAttributes;
+
+    /**
+     * The schemaless attributes.
+     *
+     * @var list<string>
+     */
+    protected $schemalessAttributes = [
+        'extra',
+    ];
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'profiles';
+}

@@ -6,16 +6,23 @@ namespace Modules\User\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
-use Modules\User\Enums\UserType;
+use Modules\User\Enums\UserTypeEnum;
 use Modules\User\Models\Role;
 
 class RolesSeeder extends Seeder
 {
+    /**
+     * Table headers for output display.
+     *
+     * @var array<int, string>
+     */
     private static array $OUTPUT_TABLE_HEADERS = [
         '#',
         'Name',
         'Guard',
     ];
+
+    
 
     /**
      * Run the database seeds.
@@ -24,29 +31,26 @@ class RolesSeeder extends Seeder
     {
         $roles = [];
 
-        Collection::make(UserType::cases())
-            ->each(
-                static function (UserType $userType) use (&$roles): void {
-                    $roles[] = Role::firstOrCreate(
-                        [
-                            'name' => $userType->value,
-                            'guard_name' => $userType->getDefaultGuard(),
-                        ]
-                    );
-                },
-            );
 
-        $this->command->getOutput()->comment('<info>Newly created roles</info>');
-        $this->command->getOutput()->table(
-            self::$OUTPUT_TABLE_HEADERS,
-            array_map(
-                static fn (Role $role): array => [
-                    $role->id,
-                    $role->name,
-                    $role->guard_name,
-                ],
-                $roles,
-            ),
-        );
+
+        // Display results in a table format
+        $this->displayResults($roles);
+    }
+
+    /**
+     * Display the seeding results in a table format.
+     *
+     * @param array<int, Role> $roles
+     */
+    private function displayResults(array $roles): void
+    {
+        $this->command->info('Roles seeded successfully:');
+        $this->command->table(self::$OUTPUT_TABLE_HEADERS, collect($roles)->map(function (Role $role, int $index) {
+            return [
+                $index + 1,
+                $role->name,
+                $role->guard_name,
+            ];
+        })->toArray());
     }
 }

@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Volt\Routing\Attribute\Post;
 
+/*
+Attribute class Volt\Routing\Attribute\Post does not exist.
+
 #[Post('/logout', name: 'logout', middleware: ['web', 'auth'])]
+*/
 final class LogoutAction
 {
     public function __invoke(): RedirectResponse

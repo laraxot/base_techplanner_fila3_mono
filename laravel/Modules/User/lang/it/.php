@@ -6,6 +6,9 @@ return array (
     'startDate' => 
     array (
       'label' => 'startDate',
+      'description' => 'startDate',
+      'helper_text' => 'startDate',
+      'placeholder' => 'startDate',
     ),
     'endDate' => 
     array (

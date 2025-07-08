@@ -1,6 +1,6 @@
 {
     "name": "laraxot/module_ui_fila3",
-    "description": "",
+    "description": "UI Module for Laraxot applications with Filament integration",
     "homepage": "https://github.com/laraxot/module_ui_fila3.git",
     "license": "MIT",
     "authors": [
@@ -26,9 +26,12 @@
         }
     },
     "require": {
-        "owenvoke/blade-fontawesome": "*"
+        "owenvoke/blade-fontawesome": "*",
+        "saade/filament-fullcalendar": "^3.2"
     },
-    "require-dev": {},
+    "require_comment": {
+        "coolsam/flatpickr": "*"
+    },
     "repositories": [
         {
             "type": "path",
