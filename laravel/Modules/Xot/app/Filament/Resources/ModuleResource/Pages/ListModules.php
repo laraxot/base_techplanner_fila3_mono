@@ -66,5 +66,15 @@ class ListModules extends XotBaseListRecords
         ];
     }
 
+    /**
+     * @return array<string, Tables\Actions\BulkAction>
+     */
+    public function getTableBulkActions(): array
+    {
+        return [
+            'delete' => DeleteBulkAction::make(),
+        ];
+    }
+
     
 }
