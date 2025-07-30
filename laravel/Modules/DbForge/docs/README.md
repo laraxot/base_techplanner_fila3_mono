@@ -192,10 +192,10 @@ MIT License - vedere il file LICENSE per i dettagli.
 ### File di Documentazione
 
 - [README.md](README.md) - Documentazione principale del modulo
-- [api-documentation.md](api-documentation.md) - Documentazione API completa
-- [best-practices.md](best-practices.md) - Best practices per l'utilizzo
-- [database-structure.md](database-structure.md) - Struttura del database
-- [filament-integration.md](filament-integration.md) - Integrazione con Filament
+- [api_documentation.md](api_documentation.md) - Documentazione API completa
+- [best_practices.md](best_practices.md) - Best practices per l'utilizzo
+- [database_structure.md](database_structure.md) - Struttura del database
+- [filament_integration.md](filament_integration.md) - Integrazione con Filament
 
 ### Integrazione Filament
 
@@ -206,7 +206,7 @@ Il modulo DbForge si integra con Filament attraverso l'`AdminPanelProvider` che 
 - **Widget personalizzati** per statistiche e monitoring
 - **Pagine specializzate** per ispezione schema e query builder
 
-Vedere [filament-integration.md](filament-integration.md) per dettagli completi.
+Vedere [filament_integration.md](filament_integration.md) per dettagli completi.
 
 ## Supporto
 

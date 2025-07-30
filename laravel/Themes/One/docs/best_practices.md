@@ -1,342 +1,199 @@
-# Best Practices
+# Best Practices per lo Sviluppo del Tema
 
-## Introduzione
+## 1. Gestione dei Dati
 
-Questo documento raccoglie le best practices per lo sviluppo e la manutenzione del tema "One". Queste linee guida sono basate sui principi di minimalismo, performance e accessibilità.
+### Validazione Input
+```php
+// Validare sempre i tipi di dati
+$value = is_string($input) ? $input : '';
+$items = is_array($data) ? $data : [];
 
-## Sviluppo
+// Utilizzare operatore null coalescing con valori predefiniti
+$type = $item['type'] ?? 'default';
+$style = $item['style'] ?? 'primary';
+```
 
-### Struttura del Codice
+### Gestione Array
+```php
+// Controllo sicuro per array nidificati
+$hasChildren = isset($item['children']) && 
+              is_array($item['children']) && 
+              count($item['children']) > 0;
 
-#### HTML
-```html
-<!-- Struttura base -->
-<!DOCTYPE html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- Contenuto -->
-  </body>
-</html>
+// Accesso sicuro a proprietà nidificate
+$nestedValue = $data['parent']['child']['value'] ?? 
+               $data['parent']['child'] ?? 
+               $data['parent'] ?? 
+               null;
+```
 
-<!-- Componenti -->
-<div class="component">
-  <div class="component__header">
-    <h2 class="component__title">Titolo</h2>
-  </div>
-  <div class="component__body">
-    <p class="component__content">Contenuto</p>
-  </div>
-  <div class="component__footer">
-    <button class="button">Azione</button>
-  </div>
+## 2. Componenti Blade
+
+### Struttura Component
+```blade
+@props(['data'])
+
+@php
+    // 1. Validazione input
+    $items = $data['items'] ?? [];
+    
+    // 2. Preparazione dati
+    $processedItems = collect($items)->map(...);
+    
+    // 3. Definizione classi
+    $classes = [
+        'base' => 'sempre-presente',
+        'conditional' => $condition ? 'attiva' : ''
+    ];
+@endphp
+
+<div class="{{ $classes['base'] }}">
+    {{-- Contenuto --}}
 </div>
 ```
 
-#### CSS
-```css
-/* Organizzazione */
-:root {
-  /* Variabili */
+### Gestione Traduzioni
+```php
+// Supporto multilingua per stringhe
+$label = is_array($item['label']) 
+    ? ($item['label'][$locale] ?? '') 
+    : ($item['label'] ?? '');
+
+// Supporto multilingua per URL
+$url = is_array($item['url'])
+    ? ($item['url'][$locale] ?? '#')
+    : ($item['url'] ?? '#');
+```
+
+## 3. CSS e Stili
+
+### Organizzazione Classi
+```php
+// Definire array di classi per varianti
+$buttonClasses = [
+    'primary' => 'bg-primary-600 text-white',
+    'secondary' => 'bg-gray-200 text-gray-800'
+];
+
+// Utilizzare @class per classi condizionali
+@class([
+    'base-class',
+    'conditional' => $condition,
+    $variantClasses[$style] ?? $variantClasses['default']
+])
+```
+
+### Responsive Design
+```blade
+<div class="
+    base-mobile-first
+    sm:tablet-style
+    md:desktop-style
+    lg:large-screen
+    xl:extra-large
+">
+```
+
+## 4. Sicurezza
+
+### XSS Prevention
+```blade
+{{-- Sempre usare {{ }} per escape automatico --}}
+{{ $userInput }}
+
+{{-- Mai usare {!! !!} senza sanitizzazione --}}
+{!! clean($htmlContent) !!}
+```
+
+### Validazione Componenti
+```php
+// Verificare esistenza componenti
+if (View::exists($component)) {
+    // Render safe
 }
 
-/* Reset */
-* {
-  /* Reset base */
-}
-
-/* Layout */
-.container {
-  /* Layout base */
-}
-
-/* Componenti */
-.component {
-  /* Stili base */
-}
-
-.component__header {
-  /* Stili header */
-}
-
-/* Stati */
-.component--active {
-  /* Stili stato attivo */
-}
-
-/* Media Queries */
-@media (min-width: 768px) {
-  /* Stili responsive */
+// Verificare permessi
+if (auth()->user()->can('view', $component)) {
+    // Render authorized
 }
 ```
 
-#### JavaScript
-```javascript
-// Organizzazione
-class Component {
-  constructor(element) {
-    this.element = element;
-    this.init();
-  }
+## 5. Performance
 
-  init() {
-    // Inizializzazione
-  }
+### Lazy Loading
+```blade
+{{-- Immagini --}}
+<img loading="lazy" src="{{ $src }}" alt="{{ $alt }}">
 
-  // Metodi
-  method() {
-    // Implementazione
-  }
-}
+{{-- Componenti --}}
+@if($shouldLoad)
+    <x-heavy-component />
+@endif
+```
 
-// Utilizzo
-document.querySelectorAll('.component').forEach(element => {
-  new Component(element);
+### Caching
+```php
+// Cache per dati frequenti
+$data = Cache::remember('key', $ttl, function () {
+    return expensive_operation();
 });
+
+// Cache per view
+@cache(['key' => $cacheKey])
+    {{-- Contenuto cacheable --}}
+@endcache
 ```
 
-### Naming Convention
+## 6. Manutenibilità
 
-#### BEM (Block Element Modifier)
-```css
-/* Block */
-.component {}
-
-/* Element */
-.component__title {}
-
-/* Modifier */
-.component--active {}
+### Documentazione
+```php
+/**
+ * @param array $data I dati del blocco
+ * @param string $locale La lingua corrente
+ * @return array Dati processati
+ */
+function processBlockData(array $data, string $locale): array
 ```
 
-#### Utility Classes
-```css
-/* Spaziatura */
-.mt-1 { margin-top: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
+### Logging
+```php
+// Log per debugging
+Log::debug('Processing block:', ['type' => $type, 'data' => $data]);
 
-/* Display */
-.d-flex { display: flex; }
-.d-none { display: none; }
-
-/* Posizionamento */
-.text-center { text-align: center; }
-.float-right { float: right; }
+// Log per errori
+Log::error('Block error:', ['error' => $e->getMessage()]);
 ```
 
-## Performance
-
-### Ottimizzazione CSS
-- Utilizzare CSS custom properties
-- Minimizzare selettori nidificati
-- Evitare selettori complessi
-- Utilizzare shorthand properties
-- Organizzare media queries
-
-### Ottimizzazione JavaScript
-- Utilizzare event delegation
-- Implementare debounce/throttle
-- Minimizzare DOM manipulation
-- Utilizzare requestAnimationFrame
-- Implementare lazy loading
-
-### Ottimizzazione Immagini
-- Utilizzare formati moderni (WebP)
-- Implementare lazy loading
-- Ottimizzare dimensioni
-- Utilizzare srcset
-- Implementare placeholder
-
-## Accessibilità
-
-### HTML Semantico
-```html
-<!-- Struttura semantica -->
-<header>
-  <nav>
-    <ul>
-      <li><a href="#">Link</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <article>
-    <h1>Titolo</h1>
-    <p>Contenuto</p>
-  </article>
-</main>
-
-<footer>
-  <p>Copyright</p>
-</footer>
-```
-
-### ARIA
-```html
-<!-- Ruoli -->
-<div role="navigation">
-  <!-- Menu -->
-</div>
-
-<!-- Stati -->
-<button aria-expanded="false">
-  <!-- Contenuto -->
-</button>
-
-<!-- Labels -->
-<button aria-label="Chiudi">
-  <!-- Icona -->
-</button>
-```
-
-### Keyboard Navigation
-- Implementare focus management
-- Gestire tabindex
-- Fornire focus styles
-- Implementare skip links
-- Gestire modali
-
-## Responsive Design
-
-### Mobile First
-```css
-/* Base */
-.component {
-  /* Stili mobile */
-}
-
-/* Breakpoints */
-@media (min-width: 768px) {
-  .component {
-    /* Stili tablet */
-  }
-}
-
-@media (min-width: 1024px) {
-  .component {
-    /* Stili desktop */
-  }
-}
-```
-
-### Fluid Typography
-```css
-/* Typography fluida */
-:root {
-  --min-font-size: 16px;
-  --max-font-size: 20px;
-  --min-viewport: 320px;
-  --max-viewport: 1200px;
-}
-
-.component {
-  font-size: clamp(
-    var(--min-font-size),
-    calc(var(--min-font-size) + (var(--max-font-size) - var(--min-font-size)) * ((100vw - var(--min-viewport)) / (var(--max-viewport) - var(--min-viewport))),
-    var(--max-font-size)
-  );
-}
-```
-
-### Responsive Images
-```html
-<!-- Picture element -->
-<picture>
-  <source srcset="image.webp" type="image/webp">
-  <source srcset="image.jpg" type="image/jpeg">
-  <img src="image.jpg" alt="Descrizione">
-</picture>
-
-<!-- Srcset -->
-<img 
-  src="image.jpg"
-  srcset="image-320w.jpg 320w,
-          image-480w.jpg 480w,
-          image-800w.jpg 800w"
-  sizes="(max-width: 320px) 280px,
-         (max-width: 480px) 440px,
-         800px"
-  alt="Descrizione"
->
-```
-
-## Testing
+## 7. Testing
 
 ### Unit Testing
-```javascript
-// Esempio test
-describe('Component', () => {
-  it('should initialize correctly', () => {
-    const component = new Component(document.createElement('div'));
-    expect(component).toBeDefined();
-  });
-});
+```php
+// Test componenti
+public function test_block_renders_correctly()
+{
+    $data = ['type' => 'button', 'label' => 'Test'];
+    $view = $this->blade('<x-block :data="$data"/>');
+    $view->assertSee('Test');
+}
 ```
 
 ### Integration Testing
-```javascript
-// Esempio test
-describe('Component Integration', () => {
-  it('should work with other components', () => {
-    // Test integration
-  });
-});
-```
+```php
+// Test interazioni
+public function test_navigation_dropdown_works()
+{
+    $this->browse(function ($browser) {
+        $browser->visit('/')
+                ->click('@dropdown-trigger')
+                ->assertVisible('@dropdown-content');
+    });
+}
+``` 
 
-### Accessibility Testing
-- Testare con screen reader
-- Verificare contrasto
-- Testare keyboard navigation
-- Verificare ARIA
-- Testare responsive
+## Collegamenti tra versioni di best-practices.md
+* [best-practices.md](docs/tecnico/filament/best-practices.md)
+* [best-practices.md](laravel/Modules/Xot/docs/laraxot/best-practices.md)
+* [best-practices.md](laravel/Modules/UI/docs/best-practices.md)
+* [best-practices.md](laravel/Themes/One/docs/best-practices.md)
 
-## Deployment
-
-### Build Process
-- Minificare CSS/JS
-- Ottimizzare immagini
-- Generare source maps
-- Implementare versioning
-- Gestire cache
-
-### Monitoring
-- Implementare error tracking
-- Monitorare performance
-- Tracciare analytics
-- Monitorare accessibilità
-- Gestire feedback
-
-## Metriche di Successo
-
-### Performance
-- First Contentful Paint < 1.5s
-- Time to Interactive < 3.5s
-- Speed Index < 3.0s
-- Largest Contentful Paint < 2.5s
-- Cumulative Layout Shift < 0.1
-
-### Accessibilità
-- WCAG 2.1 AA compliance
-- Screen reader compatibility
-- Keyboard navigation
-- Color contrast
-- Semantic HTML
-
-### Usabilità
-- Task completion rate
-- Error rate
-- Time on task
-- User satisfaction
-- Conversion rate
-
-## Collegamenti
-
-- [Sistema di Design](../design_system.md)
-- [Componenti](../components.md)
-- [Guida allo Stile](../style_guide.md)
-- [Roadmap](../roadmap.md) 

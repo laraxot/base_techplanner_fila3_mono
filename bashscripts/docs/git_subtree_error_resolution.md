@@ -20,6 +20,36 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
   2. Pull subtree
 
 ### 2. Push Script (`git_push_subtree.sh`)
+
+```bash
+# 1. Inizializzazione
+git init
+git checkout -b "$BRANCH"
+
+# 2. Configurazione remoto
+git remote add origin "$REMOTE_REPO"
+git fetch --all
+
+# 3. Commit e push
+git add -A
+git commit -am "🔧 Aggiornamento subtree"
+git merge origin/"$BRANCH" --allow-unrelated-histories"
+git push -u origin "$BRANCH"
+```
+
+### 3. Pull Script (`git_pull_subtree.sh`)
+```bash
+# 1. Pull standard
+git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH" --squash
+
+# 2. Fallback 1
+git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH"
+
+# 3. Fallback 2
+git fetch "$REMOTE_REPO" "$BRANCH" --depth=1
+git merge -s subtree FETCH_HEAD --allow-unrelated-histories
+```
+
 Esegue una sequenza complessa di operazioni:
 ```bash
 1. git add -A && git commit -am "."
@@ -33,7 +63,6 @@ Esegue una sequenza complessa di operazioni:
 9. git rebase --rebase-merges --strategy subtree $REMOTE_BRANCH
 ```
 
-### 3. Pull Script (`git_pull_subtree.sh`)
 Esegue una sequenza con fallback:
 ```bash
 1. git subtree pull -P $LOCAL_PATH $REMOTE_REPO $REMOTE_BRANCH --squash
@@ -67,48 +96,77 @@ fi
 ! [rejected] dev -> dev (non-fast-forward)
 ```
 
-**Causa**: Questo errore si verifica nella sequenza di push quando ci sono divergenze tra il repository locale e remoto.
+**Causa**: Divergenze tra repository locale e remoto
 
 **Soluzione**:
-1. Prima del push, assicurarsi che il repository locale sia aggiornato:
 ```bash
-git fetch origin $REMOTE_BRANCH
-git merge origin/$REMOTE_BRANCH --allow-unrelated-histories
-```
+# Aggiorna repository locale
+git fetch origin "$BRANCH"
+git merge origin/"$BRANCH" --allow-unrelated-histories"
 
-2. Modificare la sequenza di push per gestire meglio i conflitti:
-```bash
-if ! git push -u origin "$REMOTE_BRANCH"; then
-    git pull --rebase origin "$REMOTE_BRANCH"
-    git push -u origin "$REMOTE_BRANCH"
+# Riprova push
+if ! git push -u origin "$BRANCH"; then
+    git pull --rebase origin "$BRANCH"
+    git push -u origin "$BRANCH"
 fi
 ```
 
-## Best Practices per l'Uso
+## 🛠️ Best Practices
 
-1. **Prima dell'Esecuzione**:
-   - Committare o stashare modifiche pendenti
-   - Assicurarsi di essere sul branch corretto
-   - Verificare lo stato del repository remoto
+### 1. Prima dell'Esecuzione
+- ✔️ Commit/stash delle modifiche pendenti
+- ✔️ Verifica branch corrente
+- ✔️ Controllo stato repository
 
-2. **Durante l'Esecuzione**:
-   - Monitorare l'output per errori specifici
-   - Non interrompere gli script durante l'esecuzione
+### 2. Durante l'Esecuzione
+- 👀 Monitora l'output
+- ⏳ Non interrompere gli script
+- 📝 Controlla i log
 
-3. **Dopo l'Esecuzione**:
-   - Verificare lo stato del subtree
-   - Controllare la storia dei commit
-   - Verificare la sincronizzazione con il remote
+### 3. Dopo l'Esecuzione
+- 🔍 Verifica stato subtree
+- 📊 Controlla storia commit
+- 🔄 Verifica sincronizzazione
 
-## Note sulla Manutenzione
+## 📝 Note sulla Manutenzione
 
-1. Gli script utilizzano una strategia aggressiva con `--force` push in alcuni casi
-2. Il rebase viene utilizzato per mantenere una storia pulita
-3. Sono implementati meccanismi di fallback per il pull
-4. La gestione degli errori potrebbe essere migliorata con più logging
+1. **Strategia Push**:
+   - Utilizzo di `--force` push in casi specifici
+   - Rebase per storia pulita
+   - Meccanismi di fallback per pull
 
-## Suggerimenti per il Debugging
+2. **Gestione Errori**:
+   - Logging dettagliato
+   - Verifica permessi
+   - Controlli pre-esecuzione
 
-1. Aggiungere `set -x` all'inizio degli script per debug verbose
-2. Implementare logging più dettagliato
-3. Verificare i permessi degli script
+## 🔍 Suggerimenti per il Debugging
+
+1. **Debug Verbose**:
+   ```bash
+   set -x  # Attiva debug verbose
+   ```
+
+2. **Logging Dettagliato**:
+   ```bash
+   log() {
+       echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"
+   }
+   ```
+
+3. **Verifica Permessi**:
+   ```bash
+   chmod +x *.sh
+   ```
+
+## 📚 Documentazione Aggiuntiva
+
+- [Git Subtree Documentation](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging)
+- [Git Subtree Tutorial](https://www.atlassian.com/git/tutorials/git-subtree)
+- [Git Subtree vs Submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by the development team</sub>
+</div>

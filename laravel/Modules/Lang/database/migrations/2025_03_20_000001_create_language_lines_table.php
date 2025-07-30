@@ -2,32 +2,35 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Modules\Lang\Models\Translation;
+use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-return new class() extends Migration {
+return new class extends XotBaseMigration {
+    protected ?string $model_class = Translation::class;
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('language_lines', function (Blueprint $table): void {
-            $table->id();
-            $table->string('group')->index();
-            $table->string('key');
-            $table->json('text');
-            $table->string('locale')->index();
-            $table->timestamps();
-            $table->unique(['group', 'key', 'locale']);
-        });
-    }
+        // -- CREATE --
+        $this->tableCreate(
+            function (Blueprint $table): void {
+                $table->id();
+                $table->string('group')->index()->comment('Translation group (e.g., validation, auth)');
+                $table->string('key')->comment('Translation key');
+                $table->json('text')->comment('Translation text in JSON format');
+                $table->string('locale')->index()->comment('Language locale (e.g., en, it, de)');
+                $table->unique(['group', 'key', 'locale'], 'language_lines_unique');
+            }
+        );
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('language_lines');
+        // -- UPDATE --
+        $this->tableUpdate(
+            function (Blueprint $table): void {
+                $this->updateTimestamps($table, true);
+            }
+        );
     }
 };

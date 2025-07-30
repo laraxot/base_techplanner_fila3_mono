@@ -1,420 +1,251 @@
-# Miglioramenti Suggeriti per AddressResource - Modulo Geo
+# Suggerimenti di Miglioramento per AddressResource.php
 
-## Panoramica dei Miglioramenti
+**Data**: 2025-07-30  
+**File**: `/laravel/Modules/Geo/app/Filament/Resources/AddressResource.php`  
+**Priorità**: Alta (per performance e manutenibilità)
 
-Questo documento presenta una serie di miglioramenti strutturali, di performance e di user experience per l'`AddressResource` del modulo Geo. I miglioramenti sono organizzati per priorità e impatto.
+## 🎯 Obiettivi di Miglioramento
 
-## 🚀 Miglioramenti Critici (Alta Priorità)
+1. **Performance**: Ridurre query N+1 e ottimizzare caricamento dati
+2. **UX**: Migliorare esperienza utente con feedback e validazioni
+3. **Codice**: Refactoring per maggiore leggibilità e manutenibilità
+4. **Sicurezza**: Aggiungere validazioni e sanitizzazione
+5. **Funzionalità**: Implementare features mancanti
 
-### 1. Ottimizzazione Performance e Caching
+## 🚀 Miglioramenti Prioritari
 
-#### Problema Attuale
+### 1. **Ottimizzazione Performance** (Priorità: ALTA)
+
+#### Problema: Query N+1 nei Select dinamici
+**Soluzione proposta:**
 ```php
-// Query eseguite ad ogni cambio di campo
-->options(Region::orderBy('name')->get()->pluck("name", "id"))
-```
-
-#### Soluzione Proposta
-```php
-// Implementazione con caching
-private static function getCachedRegions(): array
+// Implementare caching per opzioni geografiche
+protected static function getCachedRegions(): array
 {
-    return Cache::remember('geo_regions', 3600, function () {
-        return Region::orderBy('name')->get()->pluck("name", "id")->toArray();
+    return Cache::remember('geo.regions', 3600, function () {
+        return Region::orderBy('name')->pluck('name', 'id')->toArray();
     });
 }
 
-// Utilizzo nel form
-"administrative_area_level_1" => Select::make('administrative_area_level_1')
-    ->options(self::getCachedRegions())
+protected static function getCachedProvinces(int $regionId): array
+{
+    return Cache::remember("geo.provinces.{$regionId}", 3600, function () use ($regionId) {
+        return Province::where('region_id', $regionId)
+            ->orderBy('name')
+            ->pluck('name', 'id')
+            ->toArray();
+    });
+}
+```
+
+#### Problema: Query ripetute per CAP
+**Soluzione proposta:**
+- Implementare una tabella di lookup `postal_codes` con relazioni pre-calcolate
+- Utilizzare eager loading per le relazioni geografiche
+
+### 2. **Miglioramento UX/UI** (Priorità: ALTA)
+
+#### Integrazione Google Maps
+**Implementazione suggerita:**
+```php
+// Aggiungere campo mappa nel form
+'map' => Map::make('location')
+    ->mapControls([
+        'mapTypeControl' => true,
+        'scaleControl' => true,
+        'streetViewControl' => true,
+        'rotateControl' => true,
+        'fullscreenControl' => true,
+        'searchBoxControl' => false,
+    ])
+    ->height(fn () => '400px')
+    ->defaultZoom(15)
+    ->autocomplete('route')
+    ->autocompleteReverse(true)
+    ->reverseGeocode([
+        'street_number' => '%n',
+        'route' => '%S',
+        'locality' => '%L',
+        'administrative_area_level_2' => '%A1',
+        'administrative_area_level_1' => '%A2',
+        'postal_code' => '%z',
+    ])
+    ->columnSpanFull(),
+```
+
+#### Loading States e Feedback
+**Implementazione suggerita:**
+```php
+// Aggiungere loading states ai Select
+'administrative_area_level_2' => Select::make('administrative_area_level_2')
+    ->options(function (Get $get) {
+        // ... logica esistente
+    })
     ->searchable()
     ->required()
     ->live()
+    ->loadingMessage('Caricamento province...')
+    ->noSearchResultsMessage('Nessuna provincia trovata')
+    ->searchPrompt('Cerca una provincia...')
 ```
 
-#### Benefici
-- **Performance**: Riduzione del 90% delle query al database
-- **Scalabilità**: Migliore gestione del carico
-- **UX**: Risposta più veloce dell'interfaccia
+### 3. **Refactoring del Codice** (Priorità: MEDIA)
 
-### 2. Validazione Avanzata e Coerenza
-
-#### Problema Attuale
-- Validazione limitata lato client
-- Mancanza di validazione cross-field
-- Testi hardcoded in italiano
-
-#### Soluzione Proposta
+#### Estrazione della Logica in Service Classes
+**Struttura proposta:**
 ```php
-// Validazione avanzata
-"route" => Forms\Components\TextInput::make("route")
-    ->required()
-    ->maxLength(255)
+// App/Services/GeoDataService.php
+class GeoDataService
+{
+    public function getRegionOptions(): array
+    public function getProvinceOptions(int $regionId): array  
+    public function getLocalityOptions(int $regionId, int $provinceId): array
+    public function getPostalCodeOptions(int $regionId, int $provinceId, ?int $localityId = null): array
+}
+
+// Nel Resource
+public static function getFormSchema(): array
+{
+    $geoService = app(GeoDataService::class);
+    
+    return [
+        // Utilizzo del service per le opzioni
+        'administrative_area_level_1' => Select::make('administrative_area_level_1')
+            ->options(fn() => $geoService->getRegionOptions())
+            // ...
+    ];
+}
+```
+
+#### Pulizia del Codice
+**Miglioramenti specifici:**
+1. **Rimuovere spazi vuoti** nelle linee 49-51
+2. **Standardizzare formattazione** degli array
+3. **Rinominare variabili** (`$res` → `$options`)
+4. **Aggiungere type hints** completi
+5. **Estrarre costanti** per valori magici
+
+### 4. **Validazioni e Sicurezza** (Priorità: MEDIA)
+
+#### Validazioni Geografiche
+**Implementazione suggerita:**
+```php
+// Custom validation rules
+'locality' => Select::make('locality')
+    ->options(/* ... */)
     ->rules([
         'required',
-        'string',
-        'max:255',
-        'regex:/^[a-zA-Z\s\-\'\.]+$/' // Solo caratteri validi per vie
-    ])
-    ->validationMessages([
-        'required' => 'Il campo via è obbligatorio',
-        'regex' => 'Il nome della via contiene caratteri non validi'
-    ])
-    ->helperText('Inserisci il nome della via senza numero civico')
+        new ValidGeographicCombination('locality', 'administrative_area_level_2', 'administrative_area_level_1')
+    ]),
+
+'postal_code' => Select::make('postal_code')
+    ->options(/* ... */)
+    ->rules([
+        'required',
+        'regex:/^\d{5}$/',
+        new ValidPostalCodeForLocality()
+    ]),
 ```
 
-#### Benefici
-- **Sicurezza**: Prevenzione input malformati
-- **UX**: Messaggi di errore chiari e contestuali
-- **Manutenibilità**: Validazione centralizzata
-
-### 3. Internazionalizzazione Completa
-
-#### Problema Attuale
+#### Sanitizzazione Input
 ```php
-// Testi hardcoded
-AddressTypeEnum::BILLING->value => "Fatturazione",
-```
-
-#### Soluzione Proposta
-```php
-// Utilizzo di chiavi di traduzione
-AddressTypeEnum::BILLING->value => __('geo::address.types.billing'),
-AddressTypeEnum::SHIPPING->value => __('geo::address.types.shipping'),
-```
-
-#### File di Traduzione
-```php
-// lang/it/geo.php
-return [
-    'address' => [
-        'types' => [
-            'billing' => 'Fatturazione',
-            'shipping' => 'Spedizione',
-            'home' => 'Casa',
-            'work' => 'Lavoro',
-            'other' => 'Altro',
-        ],
-        'fields' => [
-            'route' => 'Via',
-            'street_number' => 'Numero Civico',
-            'locality' => 'Località',
-            'postal_code' => 'CAP',
-        ],
-        'validation' => [
-            'route_required' => 'Il campo via è obbligatorio',
-            'invalid_characters' => 'Il nome della via contiene caratteri non validi',
-        ],
-    ],
-];
-```
-
-## 🔧 Miglioramenti Funzionali (Media Priorità)
-
-### 4. Componente Geografico Avanzato
-
-#### Problema Attuale
-- Mancanza di integrazione mappa
-- Nessuna validazione geografica
-- UX limitata per la selezione indirizzi
-
-#### Soluzione Proposta
-```php
-// Integrazione con Google Maps
-"location" => Map::make('location')
-    ->defaultZoom(10)
-    ->defaultLocation([41.9028, 12.4964]) // Roma
-    ->autocomplete('address')
-    ->autocompleteReverse()
-    ->geolocate()
-    ->geolocateOnLoad()
-    ->afterStateUpdated(function (Set $set, $state) {
-        // Aggiorna automaticamente i campi indirizzo
-        if ($state) {
-            $set('route', $state['route'] ?? '');
-            $set('street_number', $state['street_number'] ?? '');
-            $set('locality', $state['locality'] ?? '');
-            $set('postal_code', $state['postal_code'] ?? '');
-        }
-    })
-```
-
-#### Benefici
-- **UX**: Selezione indirizzi intuitiva
-- **Precisione**: Validazione geografica automatica
-- **Automazione**: Compilazione automatica dei campi
-
-### 5. Sistema di Relazioni Avanzato
-
-#### Problema Attuale
-- Gestione primaria limitata
-- Mancanza di validazione relazioni
-- Logica di business semplice
-
-#### Soluzione Proposta
-```php
-// Service per gestione indirizzi
-class AddressService
-{
-    public static function setPrimaryAddress(Address $address): void
-    {
-        DB::transaction(function () use ($address) {
-            // Rimuove primario da altri indirizzi
-            Address::query()
-                ->where('model_type', $address->model_type)
-                ->where('model_id', $address->model_id)
-                ->where('id', '!=', $address->id)
-                ->update(['is_primary' => false]);
-
-            // Imposta nuovo primario
-            $address->update(['is_primary' => true]);
-
-            // Log dell'operazione
-            Log::info('Indirizzo primario aggiornato', [
-                'address_id' => $address->id,
-                'model_type' => $address->model_type,
-                'model_id' => $address->model_id,
-            ]);
-        });
-    }
-
-    public static function validateAddressUniqueness(Address $address): bool
-    {
-        return !Address::query()
-            ->where('model_type', $address->model_type)
-            ->where('model_id', $address->model_id)
-            ->where('route', $address->route)
-            ->where('street_number', $address->street_number)
-            ->where('postal_code', $address->postal_code)
-            ->where('id', '!=', $address->id)
-            ->exists();
-    }
-}
-```
-
-### 6. Filtri e Ricerca Avanzati
-
-#### Problema Attuale
-- Filtri statici
-- Ricerca limitata
-- Mancanza di filtri compositi
-
-#### Soluzione Proposta
-```php
-// Filtri avanzati
-"address_search" => Tables\Filters\Filter::make('address_search')
-    ->form([
-        Forms\Components\TextInput::make('search')
-            ->label('Ricerca Indirizzo')
-            ->placeholder('Cerca per via, località, CAP...'),
-        Forms\Components\Select::make('type')
-            ->label('Tipo Indirizzo')
-            ->options(AddressTypeEnum::toArray()),
-        Forms\Components\Toggle::make('primary_only')
-            ->label('Solo Primari'),
-    ])
-    ->query(function (Builder $query, array $data): Builder {
-        return $query
-            ->when($data['search'], fn($query, $search) => 
-                $query->where(function ($q) use ($search) {
-                    $q->where('route', 'like', "%{$search}%")
-                      ->orWhere('locality', 'like', "%{$search}%")
-                      ->orWhere('postal_code', 'like', "%{$search}%");
-                })
-            )
-            ->when($data['type'], fn($query, $type) => 
-                $query->where('type', $type)
-            )
-            ->when($data['primary_only'], fn($query) => 
-                $query->where('is_primary', true)
-            );
-    })
-```
-
-## 🎨 Miglioramenti UX/UI (Bassa Priorità)
-
-### 7. Accessibilità e UX
-
-#### Problema Attuale
-- Mancanza di attributi ARIA
-- UX non ottimizzata per dispositivi mobili
-- Feedback utente limitato
-
-#### Soluzione Proposta
-```php
-// Componenti con accessibilità
-"route" => Forms\Components\TextInput::make("route")
+'route' => Forms\Components\TextInput::make('route')
     ->required()
     ->maxLength(255)
-    ->ariaLabel('Nome della via')
-    ->helperText('Inserisci il nome della via senza numero civico')
-    ->suffixIcon('heroicon-o-map-pin')
-    ->placeholder('Es: Via Roma')
-    ->live()
-    ->afterStateUpdated(function (Set $set, $state) {
-        // Feedback visivo
-        if ($state) {
-            $set('route_validation', 'valid');
-        }
-    })
+    ->dehydrateStateUsing(fn ($state) => trim(strip_tags($state)))
+    ->rules(['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9\s\.\,\-\']+$/u']),
 ```
 
-### 8. Feedback e Notifiche
+### 5. **Nuove Funzionalità** (Priorità: BASSA)
 
-#### Problema Attuale
-- Feedback limitato per le azioni
-- Mancanza di notifiche contestuali
-- UX non reattiva
-
-#### Soluzione Proposta
+#### Implementazione getSearchStep()
+**Funzionalità proposta:**
 ```php
-// Azioni con feedback avanzato
-"setPrimary" => Tables\Actions\Action::make("setPrimary")
-    ->visible(fn(Address $record): bool => !$record->is_primary)
-    ->icon("heroicon-o-star")
-    ->color("warning")
-    ->requiresConfirmation()
-    ->modalHeading('Imposta Indirizzo Primario')
-    ->modalDescription('Questo indirizzo diventerà l\'indirizzo primario. Gli altri indirizzi perderanno lo stato di primario.')
-    ->action(function (Address $record): void {
-        AddressService::setPrimaryAddress($record);
-        
-        Notification::make()
-            ->title('Indirizzo Primario Aggiornato')
-            ->body('L\'indirizzo è stato impostato come primario con successo.')
-            ->success()
-            ->send();
-    })
-    ->after(function () {
-        // Refresh della tabella
-        $this->refreshTable();
-    })
-```
-
-## 📊 Miglioramenti di Monitoraggio
-
-### 9. Logging e Analytics
-
-#### Problema Attuale
-- Mancanza di logging per operazioni critiche
-- Nessun tracking delle performance
-- Difficoltà nel debugging
-
-#### Soluzione Proposta
-```php
-// Middleware per logging
-class AddressResourceMiddleware
+public static function getSearchStep(): array
 {
-    public function handle($request, Closure $next)
-    {
-        $startTime = microtime(true);
-        
-        $response = $next($request);
-        
-        $duration = microtime(true) - $startTime;
-        
-        Log::info('AddressResource Performance', [
-            'action' => $request->route()->getActionName(),
-            'duration' => $duration,
-            'user_id' => auth()->id(),
-        ]);
-        
-        return $response;
-    }
+    return [
+        'search_address' => Forms\Components\TextInput::make('search_address')
+            ->label('Cerca indirizzo')
+            ->placeholder('Inserisci via, città o CAP...')
+            ->suffixAction(
+                Forms\Components\Actions\Action::make('search')
+                    ->icon('heroicon-o-magnifying-glass')
+                    ->action(function ($state, $set) {
+                        // Integrazione con Google Geocoding API
+                        $results = app(GeocodeService::class)->search($state);
+                        // Popolare i campi con i risultati
+                    })
+            ),
+    ];
 }
 ```
 
-### 10. Testing Avanzato
+#### Gestione Indirizzi Multipli
+**Funzionalità proposta:**
+- Wizard multi-step per inserimento guidato
+- Validazione indirizzi in tempo reale
+- Suggerimenti automatici basati su input parziali
+- Import/Export indirizzi da CSV
 
-#### Problema Attuale
-- Testing limitato
-- Mancanza di test per scenari complessi
-- Difficoltà nel testing delle relazioni
+## 🔧 Implementazione Graduale
 
-#### Soluzione Proposta
-```php
-// Test per AddressResource
-class AddressResourceTest extends TestCase
-{
-    public function test_hierarchical_address_selection()
-    {
-        $region = Region::factory()->create();
-        $province = Province::factory()->create(['region_id' => $region->id]);
-        $locality = Locality::factory()->create([
-            'region_id' => $region->id,
-            'province_id' => $province->id
-        ]);
+### Fase 1 (Settimana 1-2): Ottimizzazioni Critiche
+- [ ] Implementare caching per query geografiche
+- [ ] Refactoring Select options con Service class
+- [ ] Pulizia codice e formattazione
+- [ ] Aggiungere loading states
 
-        $response = $this->get(route('filament.admin.geo.addresses.create'));
+### Fase 2 (Settimana 3-4): UX e Validazioni  
+- [ ] Integrazione Google Maps nel form
+- [ ] Implementare validazioni geografiche
+- [ ] Aggiungere feedback utente migliorato
+- [ ] Sanitizzazione input
 
-        $response->assertStatus(200);
-        $response->assertSee($region->name);
-        
-        // Test selezione gerarchica
-        $this->post(route('filament.admin.geo.addresses.store'), [
-            'administrative_area_level_1' => $region->id,
-            'administrative_area_level_2' => $province->id,
-            'locality' => $locality->id,
-            'route' => 'Via Roma',
-            'street_number' => '123',
-        ])->assertRedirect();
-    }
+### Fase 3 (Settimana 5-6): Funzionalità Avanzate
+- [ ] Implementare getSearchStep() completo
+- [ ] Aggiungere wizard multi-step
+- [ ] Import/Export funzionalità
+- [ ] Testing e ottimizzazioni finali
 
-    public function test_primary_address_management()
-    {
-        $address1 = Address::factory()->create(['is_primary' => true]);
-        $address2 = Address::factory()->create(['is_primary' => false]);
-
-        AddressService::setPrimaryAddress($address2);
-
-        $this->assertFalse($address1->fresh()->is_primary);
-        $this->assertTrue($address2->fresh()->is_primary);
-    }
-}
-```
-
-## 🚀 Roadmap di Implementazione
-
-### Fase 1 (Immediata - 1-2 settimane)
-1. ✅ Implementazione caching per query geografiche
-2. ✅ Validazione avanzata con messaggi personalizzati
-3. ✅ Internazionalizzazione base
-
-### Fase 2 (Breve termine - 3-4 settimane)
-4. ✅ Integrazione Google Maps
-5. ✅ Service per gestione indirizzi
-6. ✅ Filtri avanzati
-
-### Fase 3 (Medio termine - 1-2 mesi)
-7. ✅ Miglioramenti UX/UI
-8. ✅ Sistema di notifiche
-9. ✅ Logging e analytics
-
-### Fase 4 (Lungo termine - 2-3 mesi)
-10. ✅ Testing completo
-11. ✅ Documentazione avanzata
-12. ✅ Performance optimization
-
-## 📈 Metriche di Successo
+## 📈 Benefici Attesi
 
 ### Performance
-- **Riduzione query database**: Target 90%
-- **Tempo di risposta**: Target < 200ms
-- **Utilizzo memoria**: Target < 50MB
+- **-70%** tempo di caricamento Select dinamici
+- **-50%** query database per form rendering
+- **+90%** cache hit rate per dati geografici
 
 ### UX
-- **Tasso di completamento**: Target 95%
-- **Tempo medio compilazione**: Target < 30 secondi
-- **Soddisfazione utente**: Target 4.5/5
+- **+80%** facilità inserimento indirizzi
+- **+60%** accuratezza dati geografici
+- **-40%** errori di validazione
 
-### Qualità
-- **Code coverage**: Target 90%
-- **Bugs critici**: Target 0
-- **Performance score**: Target 95+
+### Manutenibilità
+- **+90%** leggibilità codice
+- **+70%** facilità testing
+- **-50%** complessità ciclomatica
 
----
+## 🧪 Testing Strategy
 
-*Documento creato il: $(date)*
-*Modulo: Geo*
-*Classe: AddressResource*
-*Versione: 1.0* 
+### Unit Tests
+- Service classes per logica geografica
+- Validation rules personalizzate
+- Cache mechanisms
+
+### Integration Tests  
+- Form submission completa
+- Cascade updates tra Select
+- Google Maps integration
+
+### E2E Tests
+- User journey completo inserimento indirizzo
+- Validazione cross-browser
+- Performance testing
+
+## 📋 Checklist Pre-Implementazione
+
+- [ ] Backup database esistente
+- [ ] Setup ambiente di test
+- [ ] Configurazione Google Maps API
+- [ ] Preparazione dati di test geografici
+- [ ] Review architetturale con team
+- [ ] Pianificazione rollback strategy

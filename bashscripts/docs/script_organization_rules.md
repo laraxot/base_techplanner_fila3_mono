@@ -42,3 +42,20 @@ chmod +x bashscripts/utils/script.sh
 ---
 
 *Regole create il: $(date)*
+## Docs Naming Convention
+
+**REGOLA CRITICA**: Nelle cartelle docs, né i nomi dei file né i nomi delle cartelle devono contenere caratteri maiuscoli.
+
+- **UNICA ECCEZIONE**: README.md (deve rimanere in maiuscolo)
+- Tutti gli altri file e cartelle devono essere in minuscolo
+- Questa regola ha priorità assoluta e deve essere sempre rispettata
+- Esempi corretti:
+  - ✅ README.md
+  - ✅ api-documentation.md
+  - ✅ best-practices.md
+  - ✅ database-structure.md
+- Esempi sbagliati:
+  - ❌ AddressResource_Analysis.md
+  - ❌ API-Documentation.md
+  - ❌ BestPractices.md
+
