@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Lang\Actions\Filament;
 
-use Filament\Actions\Action;
-use Filament\Forms\Components\Field;
-use Filament\Forms\Components\Wizard\Step;
-use Filament\Tables\Actions\Action as TableAction;
-use Filament\Tables\Columns\Column;
-use Filament\Tables\Filters\BaseFilter;
+use ReflectionClass;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Filament\Actions\Action;
+use Webmozart\Assert\Assert;
+use Filament\Tables\Columns\Column;
+use Filament\Forms\Components\Field;
+use Filament\Tables\Filters\BaseFilter;
 use Modules\Lang\Actions\SaveTransAction;
+use Filament\Forms\Components\Wizard\Step;
 use Modules\Xot\Actions\GetTransKeyAction;
 use Spatie\QueueableAction\QueueableAction;
-use Webmozart\Assert\Assert;
+use Filament\Tables\Actions\Action as TableAction;
 
 class AutoLabelAction
 {
@@ -33,21 +34,31 @@ class AutoLabelAction
     {
         $backtrace = debug_backtrace();
         $backtrace_slice = array_slice($backtrace, 2);
-        $class = Arr::first($backtrace_slice, function ($item) {
-            if(isset($item['object']) && Str::startsWith($item['object']::class, 'Modules\\')){
-                return true;
+        $class = Arr::first($backtrace_slice, function ($item) use($component){
+            if($item['function'] == 'execute'){
+                return false;
             }
-            if(isset($item['class']) && Str::startsWith($item['class'], 'Modules\\')){
-                return true;
+            
+           if(isset($item['object']) && Str::startsWith($item['object']::class, 'Modules\\') && $item['object'] != $component  ){
+              return true;
+            }
+
+            if(isset($item['class']) && Str::startsWith($item['class'], 'Modules\\') ){
+                $reflection_class = new ReflectionClass($item['class'] );
+                if (!$reflection_class->isAbstract()) {
+                    return true;
+                }
+                
             }
             return false;
         });
+       
         if (is_array($class)) {
             $object_class = null;
             if(isset($class['object'])){
                 $object_class = $class['object']::class;
             }
-            if(isset($class['class'])){
+            if(isset($class['class']) && $object_class == null){
                 $object_class = $class['class'];
             }
             if(is_null($object_class)){
@@ -58,6 +69,7 @@ class AutoLabelAction
             $trans_key = 'lang::txt';
         }
 
+        
         if ($component instanceof Step) {
             Assert::string($val = $component->getLabel());
             $label_tkey = $trans_key.'.steps.'.$val.'';
@@ -72,8 +84,22 @@ class AutoLabelAction
 
         $label_key = $label_tkey.'.'.Str::snake($type);
 
+        if(Str::startsWith($label_key,'media::attachments_schema')){
+            dddx([
+                'message'=>'preso',
+                'label_key'=>$label_key,
+                'label_tkey'=>$label_tkey,
+                'val'=>$val,
+                'type'=>$type,
+                'component'=>$component,
+                'class'=>$class,
+                'backtrace'=>$backtrace,
+            ]);
+        }
+
         $label = trans($label_key);
         if (is_string($label) && $label_key == $label) { //se non esiste la traduzione, la salvo
+            
             app(SaveTransAction::class)->execute($label_key, $val);
         }
         if (is_string($label) && $label_key != $label) { //se esiste la traduzione, la aggiorno

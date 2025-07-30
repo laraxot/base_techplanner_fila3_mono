@@ -15,6 +15,7 @@ class RecordNotification extends Notification
     protected Model $record;
     protected string $slug;
     public array $data=[];
+    public array $attachments=[];
 
     public function __construct(Model $record, string $slug)
     {
@@ -49,9 +50,12 @@ class RecordNotification extends Notification
      */
     public function toMail($notifiable): SpatieEmail
     {
+        
         $email = new SpatieEmail($this->record, $this->slug);
         $email=$email->mergeData($this->data);
-
+        
+        $email=$email->addAttachments($this->attachments);
+        
         // Importante: garantisci che ci sia sempre un destinatario
         if (method_exists($notifiable, 'routeNotificationFor')) {
             // Ottieni l'email dal notifiable
@@ -61,7 +65,7 @@ class RecordNotification extends Notification
                 $email->setRecipient($to);
             }
         }
-
+        
         return $email;
     }
 
@@ -74,15 +78,9 @@ class RecordNotification extends Notification
     public function toSms(object $notifiable): ?SmsData
     {
         $email = new SpatieEmail($this->record, $this->slug);
-        /*
-        dddx([
-            'methods' => get_class_methods($email),
-           // 'text' => $email->text(),
-           'getHtmlLayout' => $email->getHtmlLayout(),
-
-
-        ]);
-        */
+        
+        $email=$email->mergeData($this->data);
+       
         // If the notifiable entity has a routeNotificationForSms method,
         // we'll use that to get the destination phone number
         //dddx($notifiable);//Illuminate\Notifications\AnonymousNotifiable
@@ -94,7 +92,11 @@ class RecordNotification extends Notification
             return null;
         }
 
-        $smsData = SmsData::from(['from'=>'Xot','to'=>$to,'body'=>'test']);
+        $smsData = SmsData::from([
+            'from'=>'Xot',
+            'to'=>$to,
+            'body'=>$email->buildSms(),
+        ]);
 
 
         return $smsData;
@@ -103,6 +105,12 @@ class RecordNotification extends Notification
     public function mergeData(array $data): self
     {
         $this->data=array_merge($this->data,$data);
+        return $this;
+    }
+
+    public function addAttachments(array $attachments): self
+    {
+        $this->attachments=array_merge($this->attachments,$attachments);
         return $this;
     }
 }

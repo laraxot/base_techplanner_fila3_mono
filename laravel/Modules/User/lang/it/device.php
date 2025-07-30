@@ -90,6 +90,10 @@ return array (
     array (
       'label' => 'openFilters',
     ),
+    'login_at' => 
+    array (
+      'label' => 'login_at',
+    ),
   ),
   'actions' => 
   array (
@@ -113,5 +117,9 @@ return array (
     array (
       'label' => 'create',
     ),
+  ),
+  'model' => 
+  array (
+    'label' => 'device.model',
   ),
 );

@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Modules\Tenant\Models\Traits\HasTenant;
 use Modules\Xot\Traits\Updater;
-use Modules\User\Models\Traits\HasTenants;
+
 /**
  * Modello per il logging delle notifiche inviate.
  */
 class NotificationLog extends Model
 {
     use HasFactory;
-    use HasTenants;
+    use HasTenant;
     use Updater;
 
     public const STATUS_PENDING = 'pending';
@@ -37,7 +38,7 @@ class NotificationLog extends Model
     /**
      * Gli attributi che sono assegnabili in massa.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'template_id',
@@ -119,7 +120,7 @@ class NotificationLog extends Model
      * Scope per filtrare per tipo di notificabile.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param Model $notifiable
+     * @param string $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeForNotifiable($query, Model $notifiable)
@@ -148,7 +149,7 @@ class NotificationLog extends Model
         return $this;
     }
 
-    public function markAsFailed(?string $message = null): self
+    public function markAsFailed(string $message = null): self
     {
         $this->update([
             'status' => self::STATUS_FAILED,

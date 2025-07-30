@@ -54,7 +54,35 @@ Restituisce il percorso del favicon.
 Restituisce l'altezza configurata per il logo.
 
 ### getBrandName(): string
-Restituisce il nome del brand, che corrisponde al titolo della pagina.
+Restituisce il nome del brand (title).
+
+### getBrandLogo(): string  
+Restituisce il percorso del logo del brand principale.
+
+### getDarkModeBrandLogo(): string
+Restituisce il percorso del logo del brand per tema scuro.
+
+### getBrandLogoHeight(): string
+Restituisce l'altezza configurata per il logo del brand.
+
+### getBrandLogoBase64(): string
+**🆕 NUOVO METODO**
+Restituisce il logo del brand come data URI base64 per embedding inline.
+
+**Utilizzi principali:**
+- Email HTML con logo incorporato
+- Generazione PDF con logo embedded  
+- Riduzione richieste HTTP
+- Utilizzo offline senza dipendenze esterne
+
+**Esempio output:**
+```
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+```
+
+**Gestione errori:** Restituisce stringa vuota se il file non esiste, con logging degli errori.
+
+**Formati supportati:** PNG, JPG, JPEG, GIF, SVG, WebP, BMP, ICO
 
 ## Utilizzo con Filament Panel
 
@@ -104,6 +132,6 @@ Restituisce il percorso del favicon.
    - **Soluzione**: Utilizzare `getFilamentColors()` per i colori formattati per Filament o `getAllColors()` per i colori non formattati
 
 ## Collegamenti
-- [Filament Best Practices](../FILAMENT-BEST-PRACTICES.md)
+- [Filament Best Practices](../filament-best-practices.md)
 - [PHPStan Common Exceptions](../PHPSTAN-COMMON-EXCEPTIONS.md)
 - [Data Queableactions](../DATA-QUEABLEACTIONS.md) 

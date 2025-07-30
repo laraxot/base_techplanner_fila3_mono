@@ -1,0 +1,60 @@
+<?php
+
+namespace Modules\Lang\Filament\Resources\TranslationFileResource\Pages;
+
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+use Modules\Lang\Filament\Resources\TranslationFileResource;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\KeyValueEntry;
+use Filament\Infolists\Infolist;
+
+class ViewTranslationFile extends ViewRecord
+{
+    protected static string $resource = TranslationFileResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make(),
+        ];
+    }
+
+    public function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Section::make('Informazioni File')
+                    ->schema([
+                        TextEntry::make('key')
+                            ->label('Chiave File'),
+                        TextEntry::make('name')
+                            ->label('Nome File'),
+                        TextEntry::make('path')
+                            ->label('Percorso File'),
+                        TextEntry::make('file_size')
+                            ->label('Dimensione')
+                            ->formatStateUsing(function ($record) {
+                                $size = $record->getFileSize();
+                                return $size > 0 ? number_format($size / 1024, 2) . ' KB' : '0 KB';
+                            }),
+                        TextEntry::make('modified_at')
+                            ->label('Ultima Modifica')
+                            ->formatStateUsing(function ($record) {
+                                return $record->getModifiedAt()?->format('d/m/Y H:i:s');
+                            }),
+                    ])
+                    ->columns(2),
+
+                Section::make('Traduzioni')
+                    ->schema([
+                        KeyValueEntry::make('content')
+                            ->label('Chiavi e Valori')
+                            ->keyLabel('Chiave')
+                            ->valueLabel('Valore'),
+                    ])
+                    ->collapsible(),
+            ]);
+    }
+} 

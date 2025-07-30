@@ -145,6 +145,33 @@ return array (
       'placeholder' => 'name, email, date, company',
       'description' => 'Parametri disponibili per il template email',
     ),
+    'delete' => 
+    array (
+      'label' => 'delete',
+    ),
+    'sms_template' => 
+    array (
+      'description' => 'sms_template',
+      'helper_text' => 'sms_template',
+      'placeholder' => 'sms_template',
+      'label' => 'sms_template',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'counter' => 
+    array (
+      'label' => 'counter',
+    ),
   ),
   'actions' => 
   array (
@@ -182,6 +209,10 @@ return array (
       'tooltip' => 'Importa un template da un file JSON',
       'success_message' => 'Template importato con successo',
       'error_message' => 'Errore nell\'importazione del template',
+    ),
+    'activeLocale' => 
+    array (
+      'label' => 'activeLocale',
     ),
   ),
   'messages' => 

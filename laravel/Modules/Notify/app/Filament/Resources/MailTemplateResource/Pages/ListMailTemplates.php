@@ -14,6 +14,7 @@ class ListMailTemplates extends LangBaseListRecords
 {
     protected static string $resource = MailTemplateResource::class;
 
+    
     public function getTableColumns(): array
     {
         return [
@@ -32,11 +33,11 @@ class ListMailTemplates extends LangBaseListRecords
                 ->sortable()
                 ,
 
-            Tables\Columns\TextColumn::make('layout')
+            Tables\Columns\TextColumn::make('counter')
                 ->searchable()
                 ->sortable()
                 ,
-
+            
         ];
     }
 
