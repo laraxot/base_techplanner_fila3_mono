@@ -1,5 +1,95 @@
 # Implementazione Corretta delle Pagine di Autenticazione con Volt e Folio
 
+## ⚠️ REGOLA CRITICA: Usare Filament Widgets per i Form di Autenticazione
+
+**IMPORTANTE**: Per tutti i form di autenticazione (login, register, password reset, etc.) utilizzare **SEMPRE** i Filament Widgets dedicati:
+
+```php
+@livewire(\Modules\User\Filament\Widget\Auth\Login::class)
+```
+
+### Perché Filament Widgets?
+- **Consistenza**: Architettura uniforme in tutto il progetto
+- **Manutenibilità**: Logica centralizzata e riutilizzabile
+- **Sicurezza**: Validazione e protezioni integrate
+- **Estendibilità**: Facile aggiunta di 2FA, captcha, login social
+- **Performance**: Ottimizzazioni Filament native
+
+### Quando NON usare Volt/Blade manuale
+- ❌ Form di login/registrazione
+- ❌ Reset password
+- ❌ Verifica email
+- ❌ Qualsiasi form con validazione complessa
+
+### Quando usare Volt
+- ✅ Pagine semplici (logout, conferme)
+- ✅ Componenti UI senza form
+- ✅ Logica di presentazione minima
+
+## ⚠️ REGOLA CRITICA: Verificare SEMPRE i Componenti Filament
+
+**ERRORE GRAVE**: Non usare MAI componenti Filament senza verificarne l'esistenza!
+
+### Componenti che NON esistono (errori comuni)
+- ❌ `x-filament::layouts.card`
+- ❌ `x-filament::section` (non verificato)
+- ❌ `x-filament::input.wrapper` (non verificato)
+- ❌ `x-filament::input` (non verificato)
+
+### Componenti verificati e funzionanti
+- ✅ `x-filament::page`
+- ✅ `x-filament::button`
+- ✅ `x-filament::icon`
+- ✅ `x-filament::dropdown`
+- ✅ `x-filament::avatar`
+- ✅ `x-filament::link`
+
+### Prima di usare un componente Filament
+1. **Verificare** nella [documentazione ufficiale Filament](https://filamentphp.com/docs)
+2. **Cercare** esempi nel codebase esistente
+3. **Testare** in ambiente di sviluppo
+4. **Consultare** [Riferimento Componenti](./filament_components_reference.md)
+
+**Riferimento completo**: [filament_components_reference.md](./filament_components_reference.md)
+
+## ⚠️ REGOLA CRITICA: Namespace Corretto per Componenti Blade dei Temi
+
+**ERRORE GRAVE**: Non assumere mai che il namespace dei componenti corrisponda al nome del tema!
+
+### Regola Fondamentale
+- Il tema "Sixteen" usa il namespace **`pub_theme`**, NON `x-sixteen`
+- Il tema "One" usa il namespace **`pub_theme`**, NON `x-one`
+- Il tema "Zero" usa il namespace **`pub_theme`**, NON `x-zero`
+
+### Esempi Corretti vs Errati
+
+#### ✅ CORRETTO
+```blade
+<x-pub_theme::ui.logo />
+<x-pub_theme::components.button />
+<x-pub_theme::layouts.main />
+```
+
+#### ❌ ERRATO
+```blade
+<x-sixteen::ui.logo />     <!-- NON ESISTE -->
+<x-ui.logo />              <!-- NAMESPACE MANCANTE -->
+<x-theme::ui.logo />       <!-- NAMESPACE SBAGLIATO -->
+```
+
+### Come Verificare il Namespace Corretto
+1. **Controllare la configurazione**: `config/localhost/xra.php` → `'pub_theme' => 'Sixteen'`
+2. **Cercare esempi esistenti**: `grep -r "x-pub_theme" Themes/`
+3. **Verificare la registrazione**: ServiceProvider del tema
+4. **Testare sempre** prima di implementare
+
+### Conseguenze degli Errori di Namespace
+- ❌ "Unable to locate a class or view for component"
+- ❌ Internal Server Error 500
+- ❌ Applicazione completamente bloccata
+
+**SEMPRE verificare il namespace prima dell'uso!**
+
 ## Collegamenti correlati
 - [README modulo User](./README.md)
 - [Convenzioni Path](./PATH_CONVENTIONS.md)
@@ -8,7 +98,7 @@
 
 ## Introduzione
 
-Questo documento descrive l'implementazione corretta delle pagine di autenticazione (login, logout, registrazione, ecc.) utilizzando Laravel Folio e Volt . Seguendo queste linee guida, garantirai che le tue implementazioni siano conformi alle convenzioni del progetto e sfruttino al meglio le capacità di Volt e Folio.
+Questo documento descrive l'implementazione corretta delle pagine di autenticazione (login, logout, registrazione, ecc.) utilizzando Laravel Folio e Volt. **Per i form di autenticazione, utilizzare sempre i Filament Widgets dedicati.** Seguendo queste linee guida, garantirai che le tue implementazioni siano conformi alle convenzioni del progetto e sfruttino al meglio le capacità di Volt e Folio.
 
 ## Cos'è Volt e Folio?
 

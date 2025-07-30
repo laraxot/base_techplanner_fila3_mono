@@ -14,5 +14,6 @@
     "Chart": true,
     "Cms": true,
     "DbForge": true,
-    "FormBuilder": true
+    "FormBuilder": true,
+    "Employee": true
 }

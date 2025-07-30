@@ -1,4 +1,25 @@
-# Implementazione Corretta delle Pagine Auth 
+# Implementazione Corretta delle Pagine di Autenticazione
+
+## REGOLA CRITICA - PRIORITÀ ASSOLUTA
+
+**Per i form di autenticazione utilizzare SEMPRE widget Filament, NON Volt!**
+
+```blade
+{{-- CORRETTO: Usa widget Filament per form di autenticazione --}}
+@livewire(Modules\User\Filament\Widgets\Auth\LoginWidget::class)
+@livewire(Modules\User\Filament\Widgets\Auth\RegisterWidget::class)
+
+{{-- ERRATO: Non usare Volt per form complessi di autenticazione --}}
+@volt('auth.login')
+@volt('auth.register')
+```
+
+### Motivazioni:
+- I widget Filament offrono maggiore controllo e validazione
+- Migliore integrazione con l'ecosistema Filament
+- Facilmente estendibili (2FA, captcha, login social)
+- Gestione errori e sicurezza integrate
+- Volt deve essere usato solo per pagine semplici e logica, NON per form complessi
 
 ## Collegamenti correlati
 - [Documentazione centrale](../../../docs/README.md)

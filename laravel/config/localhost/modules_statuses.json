@@ -34,5 +34,6 @@
     "Shop": true,
     "RealEstate": true,
     "AI": true,
+    "Employee":true,
     "TechPlanner": true
 }
