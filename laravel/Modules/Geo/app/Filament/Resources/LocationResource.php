@@ -10,10 +10,7 @@ use Cheesegrits\FilamentGoogleMaps\Filters\RadiusFilter;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Tables;
-<<<<<<< HEAD
-=======
 use Filament\Tables\Enums\FiltersLayout;
->>>>>>> 3c5e1ea (.)
 use Filament\Tables\Table;
 use Modules\Geo\Filament\Resources\LocationResource\Pages;
 use Modules\Geo\Models\Location;
@@ -25,14 +22,6 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
  * Questa classe gestisce l'interfaccia amministrativa per i luoghi,
  * fornendo funzionalità per la creazione, modifica e visualizzazione dei luoghi
  * sulla mappa.
-<<<<<<< HEAD
- *
- * @property string|null $model           La classe del modello associato (Location)
- * @property string|null $navigationIcon  L'icona da mostrare nel menu di navigazione
- * @property string|null $navigationGroup Il gruppo di navigazione a cui appartiene
- * @property int|null    $navigationSort  L'ordine di visualizzazione nel menu
-=======
->>>>>>> 3c5e1ea (.)
  */
 class LocationResource extends XotBaseResource
 {

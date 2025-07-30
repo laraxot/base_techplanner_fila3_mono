@@ -34,10 +34,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property array                $location
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
-<<<<<<< HEAD
- *
-=======
->>>>>>> 3c5e1ea (.)
  * @method static \Illuminate\Database\Eloquent\Builder|Location query()
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereCity(string $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereLat(float $value)
@@ -45,9 +41,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereProcessed(bool $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereState(string $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereZip(string $value)
-<<<<<<< HEAD
- *
-=======
  * @method static Builder<static>|Location newModelQuery()
  * @method static Builder<static>|Location newQuery()
  * @method static Builder<static>|Location withinDistance(float $latitude, float $longitude, float $distanceInKm)
@@ -64,7 +57,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|Location whereStreet($value)
  * @method static Builder<static>|Location whereUpdatedAt($value)
  * @method static Builder<static>|Location whereUpdatedBy($value)
->>>>>>> 3c5e1ea (.)
  * @mixin \Eloquent
  */
 class Location extends BaseModel

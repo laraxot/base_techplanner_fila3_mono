@@ -39,8 +39,6 @@ Namespace: `Modules\Geo\Database\Factories`
 ### Seeders
 Namespace: `Modules\Geo\Database\Seeders`
 
-<<<<<<< HEAD
-=======
 ---
 
 ## Gestione dati geografici statici (GeoJsonModel readonly)
@@ -55,7 +53,6 @@ Per tutti i dati statici (regioni, province, comuni, cap) di dimensioni ridotte,
 
 ---
 
->>>>>>> 3c5e1ea (.)
 ## Testing
 Comandi disponibili:
 ```bash

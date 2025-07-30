@@ -36,28 +36,6 @@ trait GeographicalScopes
      */
     public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): \Illuminate\Contracts\Database\Query\Expression
     {
-<<<<<<< HEAD
-        $sql = "
-            (6371 * acos(
-                cos(radians($latitude)) *
-                cos(radians(latitude)) *
-                cos(radians(longitude) - radians($longitude)) +
-                sin(radians($latitude)) *
-                sin(radians(latitude))
-<<<<<<< HEAD
-            )) 
-=======
-            ))
->>>>>>> 3c5e1ea (.)
-        ";
-        if (null !== $alias) {
-            $sql .= " AS $alias";
-        }
-
-        return \DB::raw($sql);
-        // AS distance
-=======
         return app(GetDistanceExpressionAction::class)->execute($latitude, $longitude, $alias);
->>>>>>> 0119f2f (.)
     }
 }

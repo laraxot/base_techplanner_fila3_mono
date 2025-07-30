@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Modules\Geo\Datas\AddressData;
 
 use function Safe\json_decode;
-<<<<<<< HEAD
-=======
 use function Safe\preg_match;
->>>>>>> 3c5e1ea (.)
 
 use Webmozart\Assert\Assert;
 

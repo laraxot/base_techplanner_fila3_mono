@@ -30,10 +30,6 @@ class GetAddressFromBingMapsAction
         return $this->mapResponseToAddressData($data);
     }
 
-<<<<<<< HEAD
-    private function getApiKey(): string
-    {
-=======
     /**
      * Get the Bing Maps API key from configuration.
      *
@@ -43,18 +39,12 @@ class GetAddressFromBingMapsAction
     private function getApiKey(): string
     {
         /** @var string|null $apiKey */
->>>>>>> 3c5e1ea (.)
         $apiKey = config('services.bing.maps_api_key');
 
         if (empty($apiKey)) {
             throw InvalidLocationException::invalidData('API key di Bing Maps non configurata');
         }
 
-<<<<<<< HEAD
-        return $apiKey;
-    }
-
-=======
         // We've already checked that $apiKey is not empty
         /** @var non-empty-string $apiKey */
         return $apiKey;
@@ -69,7 +59,6 @@ class GetAddressFromBingMapsAction
      * @return array<string, mixed>
      * @throws InvalidLocationException
      */
->>>>>>> 3c5e1ea (.)
     private function makeApiRequest(float $latitude, float $longitude, string $apiKey): array
     {
         $response = Http::get(self::BASE_URL, [
@@ -83,13 +72,9 @@ class GetAddressFromBingMapsAction
             throw InvalidLocationException::invalidData('Richiesta a Bing Maps fallita');
         }
 
-<<<<<<< HEAD
-        return $response->json();
-=======
         /** @var array<string, mixed> $jsonResponse */
         $jsonResponse = $response->json();
         return $jsonResponse;
->>>>>>> 3c5e1ea (.)
     }
 
     private function parseResponse(array $response): BingMapData
