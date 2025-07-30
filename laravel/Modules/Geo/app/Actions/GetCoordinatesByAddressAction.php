@@ -164,8 +164,8 @@ class GetCoordinatesByAddressAction
         }
 
         return new CoordinatesData(
-            latitude: (float) ($coordinates[0] ?? 0),
-            longitude: (float) ($coordinates[1] ?? 0)
+            latitude: is_numeric($coordinates[0]) ? (float) $coordinates[0] : 0.0,
+            longitude: is_numeric($coordinates[1]) ? (float) $coordinates[1] : 0.0
         );
     }
 

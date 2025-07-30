@@ -39,6 +39,9 @@ class RegistrationWidget extends XotBaseWidget
     public string $action;
     public Model $record;
     
+    /**
+     * @var view-string
+     */
     protected static string $view = 'pub_theme::filament.widgets.registration';
 
     public function mount(string $type, Request $request): void
@@ -110,18 +113,5 @@ class RegistrationWidget extends XotBaseWidget
         return redirect()->route('pages.view', ['slug' => $this->type . '_register_complete']);
     }
 
-    /**
-     * Invia l'email di conferma della registrazione.
-     */
-    protected function sendConfirmationEmail(\Modules\SaluteOra\Models\Doctor $doctor): void
-    {
-        $email = new \Modules\Notify\Emails\SpatieEmail($doctor, 'registration_pending');
-
-        \Illuminate\Support\Facades\Mail::to($doctor->email)
-            ->locale(app()->getLocale())
-            ->send($email);
-        
-        session()->flash('message', 'Registrazione completata con successo. La tua richiesta è in attesa di moderazione.');
-        $this->form->fill();
-    }
+   
 }

@@ -18,9 +18,9 @@ class ListStoredEvents extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('id'),
-            Tables\Columns\TextColumn::make('event_class'),
-            Tables\Columns\ViewColumn::make('event_properties')
+            'id' => Tables\Columns\TextColumn::make('id'),
+            'event_class' => Tables\Columns\TextColumn::make('event_class'),
+            'event_properties' => Tables\Columns\ViewColumn::make('event_properties')
                 ->view('activity::filament.tables.columns.event-properties'),
         ];
     }

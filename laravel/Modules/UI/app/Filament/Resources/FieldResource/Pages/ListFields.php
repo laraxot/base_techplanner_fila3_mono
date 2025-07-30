@@ -15,7 +15,7 @@ class ListFields extends LangBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            Columns\TextColumn::make('name'),
+            'name' => Columns\TextColumn::make('name'),
         ];
     }
 }

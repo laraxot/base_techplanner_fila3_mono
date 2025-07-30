@@ -8,22 +8,22 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\FormBuilder\Models\FormSubmission;
+use Modules\FormBuilder\Models\Response;
 
 /**
- * Widget per mostrare le submission recenti.
+ * Widget per mostrare le risposte recenti.
  * 
  * Mostra:
- * - Ultime submission ricevute
+ * - Ultime risposte ricevute
  * - Form associati
- * - Data e ora submission
- * - Stato submission
+ * - Data e ora risposta
+ * - Stato risposta
  * 
  * @see \Modules\FormBuilder\docs\filament\widgets\recent-submissions-widget.md Documentazione
  */
 class RecentSubmissionsWidget extends BaseWidget
 {
-    protected static ?string $heading = 'Submission Recenti';
+    protected static ?string $heading = 'Risposte Recenti';
     protected int|string|array $columnSpan = 'full';
 
     public function table(Table $table): Table
@@ -36,14 +36,14 @@ class RecentSubmissionsWidget extends BaseWidget
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('submitted_at')
-                    ->label('Data Submission')
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Data Risposta')
                     ->dateTime()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('data_count')
                     ->label('Campi Compilati')
-                    ->getStateUsing(fn (FormSubmission $record): int => count($record->data))
+                    ->getStateUsing(fn (Response $record): int => count($record->data ?? []))
                     ->sortable(),
 
                 Tables\Columns\BadgeColumn::make('status')
@@ -54,15 +54,15 @@ class RecentSubmissionsWidget extends BaseWidget
                         'danger' => 'failed',
                     ]),
             ])
-            ->defaultSort('submitted_at', 'desc')
+            ->defaultSort('created_at', 'desc')
             ->paginated(false);
     }
 
     protected function getTableQuery(): Builder
     {
-        return FormSubmission::query()
+        return Response::query()
             ->with('form')
-            ->latest('submitted_at')
+            ->latest('created_at')
             ->limit(10);
     }
 }

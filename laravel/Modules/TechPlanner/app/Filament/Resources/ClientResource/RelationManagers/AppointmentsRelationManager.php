@@ -14,13 +14,17 @@ class AppointmentsRelationManager extends XotBaseRelationManager
 
     protected static string $resource = AppointmentResource::class;
 
-    public function getListTableColumns(): array
+    /**
+     * Get table columns for the relation manager.
+     *
+     * @return array<string, \Filament\Tables\Columns\Column>
+     */
+    public function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('date')->label('Date')->sortable(),
-            Tables\Columns\TextColumn::make('notes')->limit(50),
-
-            Tables\Columns\TextColumn::make('machines_count')
+            'date' => Tables\Columns\TextColumn::make('date')->label('Date')->sortable(),
+            'notes' => Tables\Columns\TextColumn::make('notes')->limit(50),
+            'machines_count' => Tables\Columns\TextColumn::make('machines_count')
                 ->label('Machines Checked')
                 ->counts('machines'),
         ];

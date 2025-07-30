@@ -375,10 +375,10 @@ abstract class XotBaseMigration extends Migration
     {
         return DB::connection($this->getConnection())->getDriverName();
     }
-    public function foreignIdFor($table, $class) {
+    public function foreignIdFor(\Illuminate\Database\Schema\Blueprint $table, string $class): void {
         $table->foreignIdFor($class);
     } 
-    public function hasTable($table) {
+    public function hasTable(string $table): bool {
         return $this->getConn()->hasTable($table);
     } 
 }// end XotBaseMigration

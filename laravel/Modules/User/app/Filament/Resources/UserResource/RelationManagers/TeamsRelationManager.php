@@ -60,12 +60,12 @@ class TeamsRelationManager extends RelationManager
     public function getTableColumns(): array
     {
         return [
-            TextColumn::make('name')
+            'name' => TextColumn::make('name')
                 ->searchable()
                 ->sortable(),
-            TextColumn::make('personal_team')
+            'personal_team' => TextColumn::make('personal_team')
                 ->sortable(),
-            TextColumn::make('created_at')
+            'created_at' => TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable(),
         ];

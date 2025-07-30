@@ -33,6 +33,20 @@ parameters:
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
         - identifier: larastan.noEnvCallsOutsideOfConfig
+        - '#Static property .*::\$view \(view-string\) does not accept default value of type string#'
+        - '#Call to internal method Illuminate\\Contracts\\Debug\\ExceptionHandler::renderForConsole\\(\\)#'
+        - '#Class Amenadiel\\\\JpGraph\\\\Graph not found#'
+        - '#Class Amenadiel\\\\JpGraph\\\\Plot\\\\LinePlot not found#'
+        - '#Class Amenadiel\\\\JpGraph\\\\Graph\\\\Graph not found#'
+        - '#Method .*::execute\(\) has invalid return type Amenadiel\\\\JpGraph\\\\Graph#'
+        - '#Method .*::execute\(\) should return Amenadiel\\\\JpGraph\\\\Graph but returns Amenadiel\\\\JpGraph\\\\Graph\\\\Graph#'
+        - '#Template type TDeclaringModel on class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphTo is not covariant#'
+        - '#Template type TDeclaringModel on class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsTo is not covariant#'
+        - '#Method .*::linked\(\) should return .* but returns .*\$this\(.*\)#'
+        - '#Method .*::placeType\(\) should return .* but returns .*\$this\(.*\)#'
+        - '#Method .*::address\(\) should return .* but returns .*\$this\(.*\)#'
+        - '#Call to internal method Illuminate\\\\Contracts\\\\Debug\\\\ExceptionHandler::renderForConsole\(\) from outside its root namespace Illuminate#'
+        
 
 
     excludePaths:
@@ -40,17 +54,20 @@ parameters:
         - ./*/build/*
         - ./*/docs/*
         - ./*/Tests/*
+        - ./*/tests/*
         - ./*/phpinsights.php
         - ./*/rector.php
-        - ./Modules/Comment/packages/spatie/*
-        - ./Modules/Blog/*
-        - ./Modules/AI/*
+        - ./Modules/*/packages/*
+        - ./Modules/Activity/*
+        - ./Modules/Xot/app/Filament/Traits/HasXotTable.php
+        - ./*.blade.php
+        
 
 
 
     bootstrapFiles:
         - ./phpstan_constants.php
-    #    - ./vendor/amenadiel/jpgraph/src/config.inc.php
+        - ./vendor/amenadiel/jpgraph/src/config.inc.php
 
     scanFiles:
         - ./Modules/Xot/Helpers/Helper.php

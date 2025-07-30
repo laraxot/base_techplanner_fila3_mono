@@ -70,5 +70,9 @@ return array (
     array (
       'label' => 'resetFilters',
     ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
   ),
 );

@@ -71,10 +71,17 @@ class Chart extends BaseModel
         'plot_value_color' => '#000000',
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
-        'colors' => 'array',
-    ];
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return array_merge(parent::casts(), [
+            'colors' => 'array',
+        ]);
+    }
 
     // /**
     //  * @return int|string|null

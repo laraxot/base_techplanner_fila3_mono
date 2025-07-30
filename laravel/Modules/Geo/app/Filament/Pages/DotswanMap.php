@@ -30,7 +30,7 @@ class DotswanMap extends XotBasePage
         return $places->map(fn (Place $place): array => [
             'lat' => (float) $place->latitude,
             'lng' => (float) $place->longitude,
-            'title' => (string) ($place->getAttribute('name') ?? 'Unnamed Place'),
+            'title' => is_string($place->getAttribute('name')) ? $place->getAttribute('name') : 'Unnamed Place',
         ]);
     }
 

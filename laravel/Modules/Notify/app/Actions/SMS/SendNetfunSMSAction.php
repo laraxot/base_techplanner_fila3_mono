@@ -55,7 +55,8 @@ final class SendNetfunSMSAction implements SmsActionContract
         $sender = config('sms.from');
         $this->defaultSender = is_string($sender) ? $sender : null;
         $this->debug = (bool) config('sms.debug', false);
-        $this->timeout = (int) config('sms.timeout', 30);
+        $timeoutConfig = config('sms.timeout', 30);
+        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
     }
 
     /**

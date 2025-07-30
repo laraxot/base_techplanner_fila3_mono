@@ -39,17 +39,7 @@ class UserCalendarWidget extends FullCalendarWidget
 
         $action=$this->getActionName(__FUNCTION__);
         return app($action)->execute();
-        //*
-        return [
-            TextInput::make('title'),
- 
-            Grid::make()
-                ->schema([
-                    DateTimePicker::make('starts_at'),
-                    DateTimePicker::make('ends_at'),
-                ]),
-        ];
-        //*/
+
     }
 
    

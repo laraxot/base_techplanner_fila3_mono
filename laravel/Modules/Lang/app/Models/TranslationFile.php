@@ -34,9 +34,17 @@ class TranslationFile extends BaseModel
         'content' => 'json',
     ];
 
-    protected $casts = [
-        'content' => 'array',
-    ];
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return array_merge(parent::casts(), [
+            'content' => 'array',
+        ]);
+    }
 
     public function getRows(): array
     {
