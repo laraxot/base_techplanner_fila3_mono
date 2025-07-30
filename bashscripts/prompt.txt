@@ -668,6 +668,9 @@ non voglio  ->label(   le label son gestite tramite langserviceprovider coi file
 - Non definire table() (gestito dalla pagina index)
 
 ## PAGINE DI LISTA
+- Usare metodi specifici: getTableColumns(), getTableFilters(), getTableActions()
+- Usare array associativi con chiavi string per componenti
+
 - Usare metodi specifici: getListTableColumns(), getTableFilters(), getTableActions()
 - Usare array associativi con chiavi string per componenti
 
@@ -735,6 +738,30 @@ non voglio  ->label(   le label son gestite tramite langserviceprovider coi file
 - Focalizzarsi sullo scopo, non solo sulla correzione
 - Seguire convenzioni del framework
 
+## REGOLE IMPORTANTI
+- getInfolistSchema restituisce un array con chiavi stringhe
+- Aggiornare la cartella "docs" più vicina e studiarla
+- Aggiornare rules e memories
+- Fields: `'source' => ['label'=>'Sorgente']` (non `'source' => 'Sorgente'`)
+- Aggiungere tooltip, placeholder, icon e color dove appropriato
+
+## PROCESSO DI CORREZIONE
+- Eseguire PHPStan a livello 7 su tutto Modules
+- Aggiornare la cartella docs più vicina all'errore
+- Studiare la documentazione aggiornata
+- Implementare la soluzione
+- Procedere con gli altri errori
+- Continuare finché PHPStan non segnala zero errori in tutto Modules
+
+## APPROCCIO GENERALE
+- Pensare ad alta voce
+- Analizzare la richiesta
+- Scomporre i concetti chiave
+- Formulare un ragionamento passo passo
+- La memoria è nella cartella docs
+- Aggiornare e studiare continuamente la documentazione
+- Consultare la documentazione prima di ogni azione
+- Ogni modulo ha la sua cartella docs da studiare e aggiornare
 
 ## MEMORIA E AGGIORNAMENTO
 - La cartella "docs" è la memoria principale

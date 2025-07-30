@@ -10,5 +10,9 @@
     "Tenant": true,
     "UI": true,
     "User": true,
-    "Xot": true
+    "Xot": true,
+    "Chart": true,
+    "Cms": true,
+    "DbForge": true,
+    "FormBuilder": true
 }

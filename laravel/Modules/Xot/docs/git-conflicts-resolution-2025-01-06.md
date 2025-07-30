@@ -92,11 +92,6 @@ $res=Locality::query()
 
 ## Verifiche Post-Correzione
 
-### 1. Controllo Conflitti
-```bash
-grep -r "<<<<<<< HEAD" laravel/
-```
-**Risultato**: Nessun conflitto rimanente
 
 ### 2. Validazione PHPStan
 ```bash

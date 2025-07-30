@@ -39,10 +39,8 @@ return [
             'connection' => env('DB_QUEUE_CONNECTION'),
             'table' => env('DB_QUEUE_TABLE', 'jobs'),
             'queue' => env('DB_QUEUE', 'default'),
-            'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 300), // Aumentato a 5 minuti
+            'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 90),
             'after_commit' => false,
-            'max_attempts' => (int) env('DB_QUEUE_MAX_ATTEMPTS', 5), // Aggiunto numero massimo di tentativi
-            'backoff' => [60, 120, 300, 600, 1200], // Aggiunto backoff progressivo tra i tentativi
         ],
 
         'beanstalkd' => [

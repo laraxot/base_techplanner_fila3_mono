@@ -34,7 +34,6 @@ class Locality extends BaseModel
                 $row->postal_code=$postal_code;
                 return $row;
             });
-            
        
         return $rows->toArray();
     }

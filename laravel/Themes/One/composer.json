@@ -19,5 +19,6 @@
         "filament/filament": "^3.3",
         "filament/tables": "^3.3",
         "filament/forms": "^3.3"
-    }
+    },
+    "minimum-stability": "dev"
 }

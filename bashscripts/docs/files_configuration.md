@@ -309,18 +309,6 @@ I pattern di esclusione definiti in questo file sono fondamentali per:
 
 Per aggiungere nuovi pattern di esclusione, si consiglia di:
 1. Identificare chiaramente la categoria a cui appartiene il pattern
-2. Aggiungere il pattern nella sezione appropriata
-3. Documentare il cambiamento se introduce un nuovo tipo di esclusione
-
-## Documentazione Correlata
-- [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
-f000df5 (.)
-
-
-Questa documentazione descrive i file di configurazione utilizzati nel progetto.
-
-## .gitignore
-
 ### Descrizione
 Il file `.gitignore` specifica i file e le directory che Git dovrebbe ignorare durante le operazioni di commit e sincronizzazione.
 
@@ -394,7 +382,6 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 
 ## Documentazione Correlata
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
->>>>>>> f000df5 (.)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -474,8 +461,4 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 
 ## Documentazione Correlata
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
-=======
->>>>>>> 4d4d6cb7 (.)
-=======
->>>>>>> d83fe8da (.)
 - [Conflitti di Merge](/bashscripts/docs/CONFLICT_RESOLUTION_BASH.md) 

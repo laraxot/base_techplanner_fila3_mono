@@ -1,8 +1,11 @@
 {
+    "minimum-stability": "dev",
     "require": {
+    "minimum-stability": "dev",
         "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
+    "minimum-stability": "dev",
         "laravel/pint": "^1.13",
         "nunomaduro/phpinsights": "^2.9",
         "larastan/larastan": "^2.6",
@@ -15,7 +18,9 @@
         "thecodingmachine/phpstan-safe-rule": "^1.2"
     },
     "config": {
+    "minimum-stability": "dev",
         "allow-plugins": {
+    "minimum-stability": "dev",
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
