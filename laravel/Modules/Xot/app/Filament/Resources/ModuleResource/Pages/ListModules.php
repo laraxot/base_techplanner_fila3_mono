@@ -66,31 +66,5 @@ class ListModules extends XotBaseListRecords
         ];
     }
 
-    /**
-     * Undocumented function.
-     *
-     * @return array<Tables\Actions\Action|Tables\Actions\ActionGroup>
-     */
-    public function getTableActions(): array
-    {
-        return [
-            ViewAction::make()
-                ,
-            EditAction::make()
-                ,
-            DeleteAction::make()
-
-                ->requiresConfirmation(),
-        ];
-    }
-
-    /**
-     * @return array<string, Tables\Actions\BulkAction>
-     */
-    public function getTableBulkActions(): array
-    {
-        return [
-            'delete' => DeleteBulkAction::make(),
-        ];
-    }
+    
 }

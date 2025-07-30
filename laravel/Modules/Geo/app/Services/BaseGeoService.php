@@ -26,7 +26,10 @@ abstract class BaseGeoService
      */
     protected function getApiKey(): string
     {
+<<<<<<< HEAD
+=======
         /** @var string|null $apiKey */
+>>>>>>> 3c5e1ea (.)
         $apiKey = config("geo.api_keys.{$this->getServiceName()}");
 
         if (empty($apiKey)) {
@@ -53,7 +56,10 @@ abstract class BaseGeoService
         $cacheKey = $this->getCacheKey($method, $url, $params);
 
         if ($useCache && config('geo.cache.enabled')) {
+<<<<<<< HEAD
+=======
             /** @var array<string, mixed>|null $cached */
+>>>>>>> 3c5e1ea (.)
             $cached = Cache::get($cacheKey);
             if (null !== $cached) {
                 return $cached;
@@ -61,11 +67,17 @@ abstract class BaseGeoService
         }
 
         // Rate limiting
+<<<<<<< HEAD
+        RateLimiter::attempt(
+            $this->getServiceName(),
+            config("geo.rate_limits.{$this->getServiceName()}.requests_per_second", 50),
+=======
         /** @var int $maxAttempts */
         $maxAttempts = config("geo.rate_limits.{$this->getServiceName()}.requests_per_second", 50);
         RateLimiter::attempt(
             $this->getServiceName(),
             $maxAttempts,
+>>>>>>> 3c5e1ea (.)
             function () {
                 return true;
             }
@@ -80,6 +92,14 @@ abstract class BaseGeoService
             }
 
             $data = $response->json();
+<<<<<<< HEAD
+
+            if ($useCache && config('geo.cache.enabled')) {
+                Cache::put($cacheKey, $data, config('geo.cache.ttl', 86400));
+            }
+
+            return $data;
+=======
             
             // Validazione tipo di ritorno per PHPStan level 9 compliance
             if (!is_array($data)) {
@@ -97,6 +117,7 @@ abstract class BaseGeoService
             }
 
             return $validatedData;
+>>>>>>> 3c5e1ea (.)
         } catch (\Throwable $e) {
             throw new \RuntimeException("Errore durante la richiesta a {$this->getServiceName()}: ".$e->getMessage(), 0, $e);
         }
@@ -107,6 +128,15 @@ abstract class BaseGeoService
      */
     protected function buildHttpClient(): PendingRequest
     {
+<<<<<<< HEAD
+        return Http::timeout(config('geo.http_client.timeout', 5.0))
+            ->retry(
+                config('geo.http_client.retry.times', 3),
+                config('geo.http_client.retry.sleep', 100),
+                function ($exception) {
+                    $whenTypes = config('geo.http_client.retry.when', []);
+
+=======
         /** @var float $timeout */
         $timeout = config('geo.http_client.timeout', 5.0);
         /** @var int $retryTimes */
@@ -121,6 +151,7 @@ abstract class BaseGeoService
                 $retryTimes,
                 $retrySleep,
                 function ($exception) use ($whenTypes) {
+>>>>>>> 3c5e1ea (.)
                     foreach ($whenTypes as $type) {
                         if (is_a($exception, "\\GuzzleHttp\\Exception\\{$type}")) {
                             return true;
@@ -141,7 +172,10 @@ abstract class BaseGeoService
      */
     protected function getCacheKey(string $method, string $url, array $params): string
     {
+<<<<<<< HEAD
+=======
         /** @var string $prefix */
+>>>>>>> 3c5e1ea (.)
         $prefix = config('geo.cache.prefix', 'geo_');
         $hash = md5($method.$url.serialize($params));
 

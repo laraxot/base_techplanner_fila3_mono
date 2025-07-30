@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+declare(strict_types=1);
+
+=======
+>>>>>>> 3c5e1ea (.)
 return [
     'navigation' => [
         'icons' => [
@@ -44,31 +49,56 @@ return [
             'location-map' => [
                 'label' => 'Location Map',
                 'description' => 'View and manage locations on the map',
+<<<<<<< HEAD
+                'sort' => 1,
+=======
                 'sort' => '1',
+>>>>>>> 3c5e1ea (.)
             ],
             'lat-lng' => [
                 'label' => 'Coordinates',
                 'description' => 'Geographic coordinates management',
+<<<<<<< HEAD
+                'sort' => 2,
+=======
                 'sort' => '2',
+>>>>>>> 3c5e1ea (.)
             ],
             'webbingbrasil-map' => [
                 'label' => 'Webbingbrasil Map',
                 'description' => 'Map view with Webbingbrasil',
+<<<<<<< HEAD
+                'sort' => 3,
+=======
                 'sort' => '3',
+>>>>>>> 3c5e1ea (.)
             ],
             'osm-map' => [
                 'label' => 'OSM Map',
                 'description' => 'OpenStreetMap view',
+<<<<<<< HEAD
+                'sort' => 4,
+=======
                 'sort' => '4',
+>>>>>>> 3c5e1ea (.)
             ],
             'dotswan-map' => [
                 'label' => 'Dotswan Map',
                 'description' => 'Map view with Dotswan',
+<<<<<<< HEAD
+                'sort' => 5,
+=======
                 'sort' => '5',
+>>>>>>> 3c5e1ea (.)
             ],
             'setting-page' => [
                 'label' => 'Settings',
                 'description' => 'Geo module configuration',
+<<<<<<< HEAD
+                'sort' => 6,
+            ],
+        ],
+=======
                 'sort' => '6',
             ],
         ],
@@ -80,6 +110,7 @@ return [
             'color' => 'success',
             'label' => 'Online',
         ],
+>>>>>>> 3c5e1ea (.)
     ],
     'status' => [
         'waiting' => 'Waiting...',
@@ -99,6 +130,8 @@ return [
         'deleted' => 'Successfully deleted',
         'error' => 'An error occurred',
     ],
+<<<<<<< HEAD
+=======
     'sections' => [
         'map' => [
             'navigation' => [
@@ -188,4 +221,5 @@ return [
             'date_range' => 'Periodo',
         ],
     ],
+>>>>>>> 3c5e1ea (.)
 ];

@@ -12,7 +12,11 @@ class ListLocations extends XotBaseListRecords
 {
     protected static string $resource = LocationResource::class;
 
+<<<<<<< HEAD
+    public function getListTableColumns(): array
+=======
     public function getTableComumns(): array
+>>>>>>> 3c5e1ea (.)
     {
         return [
             Tables\Columns\TextColumn::make('name')

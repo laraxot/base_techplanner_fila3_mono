@@ -10,6 +10,8 @@ use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 class ViewLocation extends XotBaseViewRecord
 {
     protected static string $resource = LocationResource::class;
+<<<<<<< HEAD
+=======
 
     protected function getInfolistSchema(): array
     {
@@ -30,4 +32,5 @@ class ViewLocation extends XotBaseViewRecord
                 ->columns(2),
         ];
     }
+>>>>>>> 3c5e1ea (.)
 }

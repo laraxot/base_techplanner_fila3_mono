@@ -13,6 +13,10 @@ use Modules\Geo\Database\Factories\PlaceFactory;
 
 use function Safe\json_encode;
 
+<<<<<<< HEAD
+class Place extends BaseModel implements HasGeolocation
+{
+=======
 /**
  * 
  *
@@ -75,6 +79,7 @@ class Place extends BaseModel implements HasGeolocation
         'point_of_interest',
         'political'
     ];
+>>>>>>> 3c5e1ea (.)
     use HasFactory;
 
     protected $fillable = [

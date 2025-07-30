@@ -7,7 +7,10 @@ namespace Modules\Geo\Actions\GoogleMaps;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Modules\Geo\Datas\AddressData;
+<<<<<<< HEAD
+=======
 use Modules\Geo\Datas\GoogleMaps\GoogleMapAddressComponentData;
+>>>>>>> 3c5e1ea (.)
 use Modules\Geo\Datas\GoogleMaps\GoogleMapResponseData;
 use Modules\Geo\Datas\GoogleMaps\GoogleMapResultData;
 use Modules\Geo\Exceptions\GoogleMaps\GoogleMapsApiException;
@@ -20,6 +23,21 @@ final class GetAddressFromGoogleMapsAction
 {
     private const BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 
+<<<<<<< HEAD
+    private const REQUIRED_ADDRESS_COMPONENTS = [
+        'country',
+        'administrative_area_level_3',
+        'postal_code',
+        'locality',
+        'administrative_area_level_2',
+        'route',
+        'street_number',
+        'sublocality_level_1',
+        'administrative_area_level_1',
+    ];
+
+=======
+>>>>>>> 3c5e1ea (.)
     /**
      * @throws GoogleMapsApiException Se la richiesta fallisce o i dati non sono validi
      */
@@ -38,7 +56,11 @@ final class GetAddressFromGoogleMapsAction
     {
         $apiKey = config('services.google.maps_api_key');
 
+<<<<<<< HEAD
+        if (empty($apiKey)) {
+=======
         if (empty($apiKey) || !is_string($apiKey)) {
+>>>>>>> 3c5e1ea (.)
             throw GoogleMapsApiException::missingApiKey();
         }
 
@@ -71,15 +93,23 @@ final class GetAddressFromGoogleMapsAction
         return $responseData;
     }
 
+<<<<<<< HEAD
+=======
     /**
      * @throws GoogleMapsApiException
      */
+>>>>>>> 3c5e1ea (.)
     private function getFirstResult(GoogleMapResponseData $responseData): GoogleMapResultData
     {
         $firstResult = $responseData->results->first();
 
+<<<<<<< HEAD
+        if (null === $firstResult->geometry?->location) {
+            throw GoogleMapsApiException::invalidLocationData();
+=======
         if (!$firstResult instanceof GoogleMapResultData) {
             throw GoogleMapsApiException::noResultsFound();
+>>>>>>> 3c5e1ea (.)
         }
 
         return $firstResult;
@@ -104,6 +134,22 @@ final class GetAddressFromGoogleMapsAction
     }
 
     /**
+<<<<<<< HEAD
+     * Ottiene un componente dell'indirizzo dal risultato di Google Maps.
+     *
+     * @param DataCollection $components Componenti dell'indirizzo
+     * @param array<string>  $types      Tipi di componente da cercare
+     * @param bool           $short      Se true, restituisce il nome breve invece di quello lungo
+     */
+    private function getComponent(DataCollection $components, array $types, bool $short = false): ?string
+    {
+        $component = $components->toCollection()->first(function ($component) use ($types) {
+            return ! empty($component->types)
+                && count(array_intersect($component->types, $types)) > 0;
+        });
+
+        return $component?->{$short ? 'short_name' : 'long_name'};
+=======
      * @param DataCollection<GoogleMapAddressComponentData> $components
      * @param array<string> $types
      */
@@ -124,5 +170,6 @@ final class GetAddressFromGoogleMapsAction
 
         // Le proprietà short_name e long_name sono sempre string nei Data Objects
         return $short ? $component->short_name : $component->long_name;
+>>>>>>> 3c5e1ea (.)
     }
 }

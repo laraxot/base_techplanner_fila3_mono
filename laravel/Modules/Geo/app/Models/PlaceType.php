@@ -6,6 +6,8 @@ namespace Modules\Geo\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+<<<<<<< HEAD
+=======
 /**
  * 
  *
@@ -14,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PlaceType query()
  * @mixin \Eloquent
  */
+>>>>>>> 3c5e1ea (.)
 class PlaceType extends Model
 {
     protected $fillable = [

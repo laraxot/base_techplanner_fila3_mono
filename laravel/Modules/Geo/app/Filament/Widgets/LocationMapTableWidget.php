@@ -96,7 +96,7 @@ class LocationMapTableWidget extends MapTableWidget
         return Location::query()->latest();
     }
 
-    protected function getTableColumns(): array
+    public function getTableColumns(): array
     {
         return [
             TextColumn::make('name')
@@ -164,17 +164,27 @@ class LocationMapTableWidget extends MapTableWidget
 
         foreach ($locations as $location) {
             if ($location->latitude && $location->longitude) {
+<<<<<<< HEAD
+=======
                 $iconUrl = $this->getMarkerIcon($location);
                 
+>>>>>>> 3c5e1ea (.)
                 $data[] = [
                     'location' => [
                         'lat' => (float) $location->latitude,
                         'lng' => (float) $location->longitude,
                     ],
+<<<<<<< HEAD
+                    'label' => $location->name,
+                    'id' => $location->id,
+                    'icon' => [
+                        'url' => $this->getMarkerIcon($location),
+=======
                     'label' => (string) $location->name,
                     'id' => (int) $location->id,
                     'icon' => [
                         'url' => is_string($iconUrl) ? $iconUrl : '',
+>>>>>>> 3c5e1ea (.)
                         'type' => 'url',
                         'scale' => [32, 32],
                     ],
@@ -206,6 +216,22 @@ class LocationMapTableWidget extends MapTableWidget
             ->modalSubmitAction(false);
     }
 
+<<<<<<< HEAD
+    public function getMarkerIcon(Place $place): ?array
+    {
+        $type = $place->placeType->slug ?? 'default';
+        $markerConfig = config("geo.markers.types.{$type}");
+
+        if (! is_array($markerConfig)) {
+            $markerConfig = config('geo.markers.types.default');
+        }
+
+        if (! is_array($markerConfig)) {
+            return null;
+        }
+
+        return $markerConfig['icon'] ?? null;
+=======
     /**
      * @return string|null
      */
@@ -237,5 +263,6 @@ class LocationMapTableWidget extends MapTableWidget
         $iconUrl = $iconConfig['url'] ?? null;
         
         return is_string($iconUrl) ? $iconUrl : null;
+>>>>>>> 3c5e1ea (.)
     }
 }
