@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Modules\Tenant\Services\TenantService;
+// use Modules\Tenant\Services\TenantService;
 
 return [
     'default' => env('ORBIT_DEFAULT_DRIVER', 'md'),
@@ -14,7 +14,7 @@ return [
     ],
 
     'paths' => [
-        'content' => TenantService::filePath('database/content'),
-        'cache' => TenantService::filePath(''),
+        'content' => base_path('config/database/content'),
+        'cache' => base_path('config'),
     ],
 ];

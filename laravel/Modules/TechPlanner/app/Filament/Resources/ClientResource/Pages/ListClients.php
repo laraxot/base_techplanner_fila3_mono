@@ -311,15 +311,21 @@ class ListClients extends XotBaseListRecords
         $this->applySort('distance');
     }
 
+    
+
     protected function getTableQuery(): Builder
     {
         $query = parent::getTableQuery();
         $latitude = Session::get('user_latitude');
         $longitude = Session::get('user_longitude');
 
-        // Remove distance functionality as withDistance() method doesn't exist
-        // This would need a proper geo package like spatie/laravel-distance or custom implementation
-        return $query ?? static::getModel()::query();
+        return $query
+            ->when($latitude && $longitude,
+                function (Builder $query) use ($latitude, $longitude) {
+                    $query->withDistance($latitude, $longitude)
+                      ->orderByDistance($latitude, $longitude);
+                }
+            );
     }
 
 }
