@@ -68,7 +68,7 @@ Strategia: DRY, KISS, analisi contestuale
 - **Coerenza architetturale**: Rispettare pattern Laraxot
 
 ## Status Risoluzione
-- [ ] Modelli (2/8) - ✅ Address.php, County.php risolti
+- [ ] Modelli (3/8) - ✅ Address.php, County.php, GeographicalScopes.php risolti
 - [ ] Actions (0/12) 
 - [ ] Filament (0/5)
 - [ ] Data Objects (0/2)
@@ -86,6 +86,15 @@ Strategia: DRY, KISS, analisi contestuale
   - Scope per ricerche geografiche
   - Implementazione Schema.org PostalAddress
 - **Motivazione**: Versione avanzata segue best practice Laraxot
+
+### GeographicalScopes.php ✅
+- **Conflitto**: Già risolto correttamente
+- **Stato**: Utilizza correttamente `GetDistanceExpressionAction` centralizzata
+- **Implementazione**: 
+  - Scope `scopeWithDistance` per calcolo distanza
+  - Scope `scopeOrderByDistance` per ordinamento geografico
+  - Metodo `getDistanceExpression` che delega all'action
+- **Motivazione**: Segue principi DRY e KISS, action centralizzata
 
 ## Note Tecniche
 - Tutti i conflitti sembrano essere nel modulo Geo
