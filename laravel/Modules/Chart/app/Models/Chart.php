@@ -15,6 +15,30 @@ use Webmozart\Assert\Assert;
  * @property int|null $height
  * @property string|null $type
  * @property int|null $width
+ * @property string|null $color
+ * @property string|null $bg_color
+ * @property int|null $font_family
+ * @property int|null $font_size
+ * @property int|null $font_style
+ * @property int|null $y_grace
+ * @property bool|null $yaxis_hide
+ * @property string|null $list_color
+ * @property int|null $grace
+ * @property int|null $x_label_angle
+ * @property bool|null $show_box
+ * @property int|null $x_label_margin
+ * @property int|null $plot_perc_width
+ * @property int|null $plot_value_show
+ * @property string|null $plot_value_format
+ * @property int|null $plot_value_pos
+ * @property string|null $plot_value_color
+ * @property string|null $group_by
+ * @property string|null $sort_by
+ * @property int|null $transparency
+ * @property array|null $colors
+ * @property string|null $post_id
+ * @property string|null $post_type
+ * @property string|null $chart_type
  * @method static \Modules\Chart\Database\Factories\ChartFactory factory($count = null, $state = [])
  * @method static Builder|Chart newModelQuery()
  * @method static Builder|Chart newQuery()
@@ -71,17 +95,10 @@ class Chart extends BaseModel
         'plot_value_color' => '#000000',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return array_merge(parent::casts(), [
-            'colors' => 'array',
-        ]);
-    }
+    /** @var array<string, string> */
+    protected $casts = [
+        'colors' => 'array',
+    ];
 
     // /**
     //  * @return int|string|null
@@ -210,7 +227,7 @@ class Chart extends BaseModel
             return $value;
         }
 
-        $res= $this->attributes['type'] ?? (string) $this->getPanelRow('chart_type', 'type');
+        $res = $this->attributes['type'] ?? (string) $this->getPanelRow('chart_type', 'type');
         Assert::string($res);
         return $res;
     }
