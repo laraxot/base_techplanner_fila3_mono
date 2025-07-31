@@ -79,9 +79,7 @@ class GenericNotification extends Notification implements ShouldQueue
 
         // Aggiungi eventuali azioni se specificate nei dati
         if (isset($this->data['action_text']) && isset($this->data['action_url'])) {
-            $actionText = is_string($this->data['action_text']) ? $this->data['action_text'] : '';
-            $actionUrl = is_string($this->data['action_url']) ? $this->data['action_url'] : '';
-            $mail->action($actionText, $actionUrl);
+            $mail->action((string) $this->data['action_text'], (string) $this->data['action_url']);
         }
 
         // Aggiungi eventuali linee aggiuntive

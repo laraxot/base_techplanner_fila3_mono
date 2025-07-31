@@ -13,6 +13,58 @@ use Modules\Geo\Database\Factories\PlaceFactory;
 
 use function Safe\json_encode;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+/**
+ * 
+ *
+ * @property-read \Modules\Geo\Models\Address|null $address
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
+ * @property-read string $formatted_address
+ * @property-read float|null $latitude
+ * @property-read float|null $longitude
+ * @property-read \Illuminate\Database\Eloquent\Model $linked
+ * @property-read \Modules\Geo\Models\PlaceType|null $placeType
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
+ * @method static \Modules\Geo\Database\Factories\PlaceFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place query()
+ * @property int $id
+ * @property string|null $model_type
+ * @property int|null $model_id
+ * @property string|null $nearest_street
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property string|null $deleted_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $post_type
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereFormattedAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereModelType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereNearestStreet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place wherePostType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
+class Place extends BaseModel implements HasGeolocation
+{
+=======
+class Place extends BaseModel implements HasGeolocation
+{
+=======
+=======
+>>>>>>> 6f0eea5 (.)
 /**
  * 
  *
@@ -56,6 +108,7 @@ use function Safe\json_encode;
  */
 class Place extends BaseModel implements HasGeolocation
 {
+>>>>>>> 0e7ec50 (.)
     /**
      * List of address components used in the application.
      *
@@ -75,6 +128,17 @@ class Place extends BaseModel implements HasGeolocation
         'point_of_interest',
         'political'
     ];
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+class Place extends BaseModel implements HasGeolocation
+{
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+>>>>>>> 6f0eea5 (.)
     use HasFactory;
 
     protected $fillable = [

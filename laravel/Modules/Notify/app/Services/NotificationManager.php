@@ -14,7 +14,7 @@ use Modules\Notify\Models\NotificationTemplate;
 class NotificationManager
 {
     /**
-     * Invia una notifica a un destinatario.
+     * Invia una notifica utilizzando un template.
      *
      * @param Model $recipient Il destinatario della notifica
      * @param string $templateCode Il codice del template da utilizzare
@@ -22,7 +22,7 @@ class NotificationManager
      * @param array $channels I canali da utilizzare (opzionale)
      * @param array $options Opzioni aggiuntive per l'invio
      * 
-     * @return array
+     * @return NotificationLog
      */
     public function send(
         Model $recipient,
@@ -30,29 +30,26 @@ class NotificationManager
         array $data = [],
         array $channels = [],
         array $options = []
-    ): array {
-        $template = $this->getTemplate($templateCode);
-
-        if (!$template) {
-            throw new \Exception("Template not found: {$templateCode}");
-        }
-
-        $action = app(SendNotificationAction::class);
-        $action->execute($recipient, $templateCode, $data, $channels, $options);
-
-        return [];
+    ): NotificationLog {
+        return app(SendNotificationAction::class)->execute(
+            $recipient,
+            $templateCode,
+            $data,
+            $channels,
+            $options
+        );
     }
 
     /**
      * Invia una notifica a più destinatari.
      *
-     * @param array $recipients I destinatari delle notifiche
+     * @param array $recipients Array di destinatari
      * @param string $templateCode Il codice del template da utilizzare
      * @param array $data I dati per compilare il template
      * @param array $channels I canali da utilizzare (opzionale)
      * @param array $options Opzioni aggiuntive per l'invio
      * 
-     * @return array<array>
+     * @return array<NotificationLog>
      */
     public function sendMultiple(
         array $recipients,
@@ -117,24 +114,15 @@ class NotificationManager
      */
     public function getTemplateStats(NotificationTemplate $template): array
     {
-        // $logs = $template->logs();
-        //
-        // return [
-        //     'total' => $logs->count(),
-        //     'sent' => $logs->where('status', NotificationLog::STATUS_SENT)->count(),
-        //     'delivered' => $logs->where('status', NotificationLog::STATUS_DELIVERED)->count(),
-        //     'failed' => $logs->where('status', NotificationLog::STATUS_FAILED)->count(),
-        //     'opened' => $logs->where('status', NotificationLog::STATUS_OPENED)->count(),
-        //     'clicked' => $logs->where('status', NotificationLog::STATUS_CLICKED)->count(),
-        // ];
+        $logs = $template->logs();
 
         return [
-            'total' => 0,
-            'sent' => 0,
-            'delivered' => 0,
-            'failed' => 0,
-            'opened' => 0,
-            'clicked' => 0,
+            'total' => $logs->count(),
+            'sent' => $logs->where('status', NotificationLog::STATUS_SENT)->count(),
+            'delivered' => $logs->where('status', NotificationLog::STATUS_DELIVERED)->count(),
+            'failed' => $logs->where('status', NotificationLog::STATUS_FAILED)->count(),
+            'opened' => $logs->where('status', NotificationLog::STATUS_OPENED)->count(),
+            'clicked' => $logs->where('status', NotificationLog::STATUS_CLICKED)->count(),
         ];
     }
 
@@ -146,24 +134,15 @@ class NotificationManager
      */
     public function getRecipientStats(Model $recipient): array
     {
-        // $logs = NotificationLog::forNotifiable($recipient)->get();
-        //
-        // return [
-        //     'total' => $logs->count(),
-        //     'sent' => $logs->where('status', NotificationLog::STATUS_SENT)->count(),
-        //     'delivered' => $logs->where('status', NotificationLog::STATUS_DELIVERED)->count(),
-        //     'failed' => $logs->where('status', NotificationLog::STATUS_FAILED)->count(),
-        //     'opened' => $logs->where('status', NotificationLog::STATUS_OPENED)->count(),
-        //     'clicked' => $logs->where('status', NotificationLog::STATUS_CLICKED)->count(),
-        // ];
+        $logs = NotificationLog::forNotifiable($recipient)->get();
 
         return [
-            'total' => 0,
-            'sent' => 0,
-            'delivered' => 0,
-            'failed' => 0,
-            'opened' => 0,
-            'clicked' => 0,
+            'total' => $logs->count(),
+            'sent' => $logs->where('status', NotificationLog::STATUS_SENT)->count(),
+            'delivered' => $logs->where('status', NotificationLog::STATUS_DELIVERED)->count(),
+            'failed' => $logs->where('status', NotificationLog::STATUS_FAILED)->count(),
+            'opened' => $logs->where('status', NotificationLog::STATUS_OPENED)->count(),
+            'clicked' => $logs->where('status', NotificationLog::STATUS_CLICKED)->count(),
         ];
     }
 } 

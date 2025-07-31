@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Console\Commands;
 
 use Illuminate\Console\Command;
-// use Modules\TechPlanner\Models\Apparecchio;
-// use Modules\TechPlanner\Models\Cliente;
+use Modules\TechPlanner\Models\Apparecchio;
+use Modules\TechPlanner\Models\Cliente;
 use Webmozart\Assert\Assert;
 
 use function Safe\shell_exec;
@@ -39,19 +39,19 @@ class ImportAccessDataCommand extends Command
                 return 1;
             }
 
-            $clientiRows = array_filter(explode("\n", $clientiOutput ?? ''));
+            $clientiRows = array_filter(explode("\n", $clientiOutput));
 
-            // foreach ($clientiRows as $row) {
-            //     $data = str_getcsv($row);
-            //     if (count($data) > 1) { // Skip header
-            //         Cliente::create([
-            //             'id_cliente' => $data[0],
-            //             'cessato' => $data[1],
-            //             'ditta' => $data[2],
-            //             // ... map other fields
-            //         ]);
-            //     }
-            // }
+            foreach ($clientiRows as $row) {
+                $data = str_getcsv($row);
+                if (count($data) > 1) { // Skip header
+                    Cliente::create([
+                        'id_cliente' => $data[0],
+                        'cessato' => $data[1],
+                        'ditta' => $data[2],
+                        // ... map other fields
+                    ]);
+                }
+            }
 
             // Import Apparecchi
             $this->info('Importing Apparecchi...');
@@ -63,19 +63,19 @@ class ImportAccessDataCommand extends Command
                 return 1;
             }
 
-            $apparecchiRows = array_filter(explode("\n", $apparecchiOutput ?? ''));
+            $apparecchiRows = array_filter(explode("\n", $apparecchiOutput));
 
-            // foreach ($apparecchiRows as $row) {
-            //     $data = str_getcsv($row);
-            //     if (count($data) > 1) { // Skip header
-            //         Apparecchio::create([
-            //             'id_cliente' => $data[0],
-            //             'id_apparecchio' => $data[1],
-            //             'tipo_apparecchio' => $data[2],
-            //             // ... map other fields
-            //         ]);
-            //     }
-            // }
+            foreach ($apparecchiRows as $row) {
+                $data = str_getcsv($row);
+                if (count($data) > 1) { // Skip header
+                    Apparecchio::create([
+                        'id_cliente' => $data[0],
+                        'id_apparecchio' => $data[1],
+                        'tipo_apparecchio' => $data[2],
+                        // ... map other fields
+                    ]);
+                }
+            }
 
             // Continue with other tables...
 

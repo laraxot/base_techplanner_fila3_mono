@@ -39,12 +39,12 @@ use Spatie\Translatable\HasTranslations;
  * @property \Carbon\Carbon|null $deleted_at
  * @property-read string $channels_label
  * @property NotificationTypeEnum $type
- * @property-read \Modules\User\Models\Profile|null $creator
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
  * @property-read int|null $logs_count
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read mixed $translations
- * @property-read \Modules\User\Models\Profile|null $updater
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
  * @property-read int|null $versions_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplate active()
  * @method static \Modules\Notify\Database\Factories\NotificationTemplateFactory factory($count = null, $state = [])
@@ -84,26 +84,18 @@ class NotificationTemplate extends BaseModel implements HasMedia
         'type',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'type' => NotificationTypeEnum::class,
-            'preview_data' => 'array',
-            'body_html' => 'string',
-            'body_text' => 'string',
-            'channels' => 'array',
-            'variables' => 'array',
-            'conditions' => 'array',
-            'metadata' => 'array',
-            'is_active' => 'boolean',
-            'grapesjs_data' => 'array',
-        ];
-    }
+    protected $casts = [
+        'type' => NotificationTypeEnum::class,
+        'preview_data' => 'array',
+        'body_html' => 'string',
+        'body_text' => 'string',
+        'channels' => 'array',
+        'variables' => 'array',
+        'conditions' => 'array',
+        'metadata' => 'array',
+        'is_active' => 'boolean',
+        'grapesjs_data' => 'array',
+    ];
 
     public array $translatable = [
         'subject',

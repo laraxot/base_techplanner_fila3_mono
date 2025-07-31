@@ -6,7 +6,6 @@ namespace Modules\TechPlanner\Filament\Widgets;
 
 use Filament\Notifications\Notification;
 use Filament\Widgets\Widget;
-use Modules\Xot\Actions\Cast\SafeFloatCastAction;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
@@ -21,8 +20,8 @@ class CoordinatesWidget extends Widget
 
     public function mount(): void
     {
-        $this->latitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_latitude', Cookie::get('user_latitude', 0)));
-        $this->longitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_longitude', Cookie::get('user_longitude', 0)));
+        $this->latitude = (float) Session::get('user_latitude', Cookie::get('user_latitude', 0));
+        $this->longitude = (float) Session::get('user_longitude', Cookie::get('user_longitude', 0));
     }
 
     public function updateCoordinates(): void
@@ -48,19 +47,7 @@ class CoordinatesWidget extends Widget
     #[On('coordinates-updated')]
     public function refreshCoordinates(): void
     {
-        $this->latitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_latitude', Cookie::get('user_latitude', 0)));
-        $this->longitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_longitude', Cookie::get('user_longitude', 0)));
+        $this->latitude = (float) Session::get('user_latitude', Cookie::get('user_latitude', 0));
+        $this->longitude = (float) Session::get('user_longitude', Cookie::get('user_longitude', 0));
     }
-
-    /**
-     * Get the form schema for the widget.
-     *
-     * @return array<int, \Filament\Forms\Components\Component>
-     */
-    public function getFormSchema(): array
-    {
-        return [];
-    }
-
-
 }

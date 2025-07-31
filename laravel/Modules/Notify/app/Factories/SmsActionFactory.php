@@ -60,16 +60,14 @@ final class SmsActionFactory
      */
     public function create(?string $driver = null): SmsActionContract
     {
-        $defaultDriver = Config::get('sms.default', 'netfun');
-        $driver = $driver ?? $defaultDriver;
+        $driver = $driver ?? Config::get('sms.default', 'netfun');
 
         // Normalizza il nome del driver e assicura formato camelCase
-        $driverString = is_string($driver) ? $driver : '';
-        $normalizedDriver = $this->normalizeDriverName($driverString);
+        $normalizedDriver = $this->normalizeDriverName((string) $driver);
 
         // Avvisa per driver non standard
         if (!in_array($normalizedDriver, $this->supportedDrivers)) {
-            Log::warning("Attempting to use non-standard SMS driver: " . $driverString);
+            Log::warning("Attempting to use non-standard SMS driver: " . (string) $driver);
         }
 
         // Costruisci il nome della classe seguendo la convenzione
@@ -83,7 +81,7 @@ final class SmsActionFactory
                 'className' => $className
             ]);
 
-            throw new Exception("Unsupported SMS driver: " . $driverString . ". Class {$className} not found.");
+            throw new Exception("Unsupported SMS driver: " . (string) $driver . ". Class {$className} not found.");
         }
 
         $instance = app($className);
@@ -97,13 +95,18 @@ final class SmsActionFactory
     }
 
     /**
-     * Normalizza il nome del driver usando l'action centralizzata.
+     * Normalizza il nome del driver eliminando trattini e underscore
+     * e gestendo eventuali casi speciali/alias.
      *
      * @param string $driver Nome del driver da normalizzare
      * @return string Nome normalizzato
      */
     private function normalizeDriverName(string $driver): string
     {
-        return app(\Modules\Xot\Actions\String\NormalizeDriverNameAction::class)->execute($driver);
+        // Rimuovi trattini e underscore
+        $normalized = str_replace(['-', '_', ' '], '', strtolower($driver));
+
+        // Gestisci casi speciali e alias tramite la mappa di alias
+        return $this->driverAliases[$normalized] ?? $normalized;
     }
 }

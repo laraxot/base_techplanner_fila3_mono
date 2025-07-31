@@ -11,11 +11,11 @@ use Modules\Xot\Traits\Updater;
 /**
  * 
  *
- * @property-read \Modules\User\Models\Profile|null $creator
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Modules\Notify\Models\NotificationTemplate|null $template
- * @property-read \Modules\User\Models\Profile|null $updater
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
  * @method static \Modules\Notify\Database\Factories\NotificationTemplateVersionFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplateVersion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplateVersion newQuery()
@@ -39,19 +39,11 @@ class NotificationTemplateVersion extends BaseModel
         'change_notes',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'channels' => 'array',
-            'variables' => 'array',
-            'conditions' => 'array',
-        ];
-    }
+    protected $casts = [
+        'channels' => 'array',
+        'variables' => 'array',
+        'conditions' => 'array',
+    ];
 
     public function template(): BelongsTo
     {
@@ -62,17 +54,13 @@ class NotificationTemplateVersion extends BaseModel
     {
         $template = $this->template;
         
-        if (!$template) {
-            throw new \RuntimeException('Template not found for version ' . $this->id);
-        }
-        
         $template->update([
-            'subject' => $this->subject ?? null,
-            'body_html' => $this->body_html ?? null,
-            'body_text' => $this->body_text ?? null,
-            'channels' => $this->channels ?? null,
-            'variables' => $this->variables ?? null,
-            'conditions' => $this->conditions ?? null,
+            'subject' => $this->subject,
+            'body_html' => $this->body_html,
+            'body_text' => $this->body_text,
+            'channels' => $this->channels,
+            'variables' => $this->variables,
+            'conditions' => $this->conditions,
         ]);
 
         return $template;

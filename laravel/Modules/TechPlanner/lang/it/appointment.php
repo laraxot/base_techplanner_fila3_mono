@@ -1,75 +1,58 @@
-<?php
+<?php 
 
-return array (
-  'navigation' => 
-  array (
+
+
+return [
+  'navigation' => [
     'group' => 'techplanner',
     'label' => 'Appuntamenti',
     'icon' => 'techplanner-appointment',
-    'sort' => 10,
-  ),
-  'fields' => 
-  array (
-    'id' => 
-    array (
-      'label' => 'ID',
-    ),
-    'client_id' => 
-    array (
-      'label' => 'Cliente',
-    ),
-    'date' => 
-    array (
-      'label' => 'Data',
-    ),
-    'time' => 
-    array (
-      'label' => 'Ora',
-    ),
-    'status' => 
-    array (
+    'sort' => 10
+  ],
+  'fields' => [
+    'id' => [
+      'label' => 'ID'
+    ],
+    'client_id' => [
+      'label' => 'Cliente'
+    ],
+    'date' => [
+      'label' => 'Data'
+    ],
+    'time' => [
+      'label' => 'Ora'
+    ],
+    'status' => [
       'label' => 'Stato',
-      'options' => 
-      array (
+      'options' => [
         'scheduled' => 'Programmato',
         'confirmed' => 'Confermato',
         'completed' => 'Completato',
-        'cancelled' => 'Annullato',
-      ),
-    ),
-    'notes' => 
-    array (
-      'label' => 'Note',
-    ),
-    'toggleColumns' => 
-    array (
-      'label' => 'toggleColumns',
-    ),
-  ),
-  'actions' => 
-  array (
-    'create' => 
-    array (
-      'label' => 'Nuovo Appuntamento',
-    ),
-    'edit' => 
-    array (
-      'label' => 'Modifica Appuntamento',
-    ),
-    'delete' => 
-    array (
-      'label' => 'Elimina Appuntamento',
-    ),
-  ),
-  'messages' => 
-  array (
+        'cancelled' => 'Annullato'
+      ]
+    ],
+    'notes' => [
+      'label' => 'Note'
+    ]
+  ],
+  'actions' => [
+    'create' => [
+      'label' => 'Nuovo Appuntamento'
+    ],
+    'edit' => [
+      'label' => 'Modifica Appuntamento'
+    ],
+    'delete' => [
+      'label' => 'Elimina Appuntamento'
+    ]
+  ],
+  'messages' => [
     'created' => 'Appuntamento creato con successo',
     'updated' => 'Appuntamento aggiornato con successo',
-    'deleted' => 'Appuntamento eliminato con successo',
-  ),
-  'model' => 
-  array (
+    'deleted' => 'Appuntamento eliminato con successo'
+  ],
+  'model' => [
     'label' => 'Appuntamento',
-    'plural' => 'Appuntamenti',
-  ),
-);
+    'plural' => 'Appuntamenti'
+  ]
+];

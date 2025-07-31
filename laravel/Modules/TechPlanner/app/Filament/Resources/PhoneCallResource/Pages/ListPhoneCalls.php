@@ -12,7 +12,7 @@ class ListPhoneCalls extends XotBaseListRecords
 {
     protected static string $resource = PhoneCallResource::class;
 
-    public function getTableColumns(): array
+    public function getListTableColumns(): array
     {
         return [
             Tables\Columns\TextColumn::make('date')

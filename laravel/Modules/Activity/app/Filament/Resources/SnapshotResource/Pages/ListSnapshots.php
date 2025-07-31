@@ -20,24 +20,24 @@ class ListSnapshots extends XotBaseListRecords
     /**
      * Get the list table columns.
      *
-     * @return array<string, Tables\Columns\Column>
+     * @return array<Tables\Columns\Column>
      */
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
+            TextColumn::make('id')
                 ->sortable()
                 ->searchable(),
-            'aggregate_uuid' => TextColumn::make('aggregate_uuid')
+            TextColumn::make('aggregate_uuid')
                 ->searchable(),
-            'aggregate_version' => TextColumn::make('aggregate_version')
+            TextColumn::make('aggregate_version')
                 ->sortable(),
-            'state' => TextColumn::make('state')
+            TextColumn::make('state')
                 ->searchable(),
-            'created_at' => TextColumn::make('created_at')
+            TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable(),
-            'updated_at' => TextColumn::make('updated_at')
+            TextColumn::make('updated_at')
                 ->dateTime()
                 ->sortable(),
         ];

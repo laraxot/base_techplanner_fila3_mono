@@ -20,18 +20,10 @@ class Event extends Model
         'end_date',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return array_merge(parent::casts(), [
-            'start_date' => 'datetime',
-            'end_date' => 'datetime',
-        ]);
-    }
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 
     protected static function newFactory(): EventFactoryFactory
     {

@@ -47,26 +47,21 @@ class Attendance extends XotBaseModel
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * The attributes that should be cast.
      */
-    protected function casts(): array
-    {
-        return [
-            'date' => 'date',
-            'time_in' => 'datetime',
-            'time_out' => 'datetime',
-            'total_hours' => 'decimal:2',
-            'overtime_hours' => 'decimal:2',
-            'break_hours' => 'decimal:2',
-            'location' => 'array',
-            'device_info' => 'array',
-            'approved_at' => 'datetime',
-            'is_remote' => 'boolean',
-            'location_validated' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'date' => 'date',
+        'time_in' => 'datetime',
+        'time_out' => 'datetime',
+        'total_hours' => 'decimal:2',
+        'overtime_hours' => 'decimal:2',
+        'break_hours' => 'decimal:2',
+        'location' => 'array',
+        'device_info' => 'array',
+        'approved_at' => 'datetime',
+        'is_remote' => 'boolean',
+        'location_validated' => 'boolean',
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

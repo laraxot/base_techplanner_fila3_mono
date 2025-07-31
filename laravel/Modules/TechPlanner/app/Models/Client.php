@@ -43,7 +43,9 @@ class Client extends BaseModel
         'competent_health_unit', // az_ulss_competente
         'tax_code',              // cf
         'vat_number',            // partita_iva
+        'company_office',        // sede_ditta
         'address',               // indirizzo
+        'street_number',         // numero_civico
         'province',              // provincia
         'postal_code',           // cap
         'phone',                 // telefono
@@ -62,10 +64,11 @@ class Client extends BaseModel
             return $value;
         }
         $address = sprintf(
-            '%s, %s, %s (%s)',
+            '%s %s, %s, %s (%s)',
             $this->address,
+            $this->street_number,
             $this->postal_code,
-            $this->city,
+            $this->company_office,
             $this->province
         );
 

@@ -23,7 +23,7 @@ class ListDevices extends XotBaseListRecords
         ];
     }
 
-    public function getTableColumns(): array
+    public function getListTableColumns(): array
     {
         return [
             'id' => TextColumn::make('id')

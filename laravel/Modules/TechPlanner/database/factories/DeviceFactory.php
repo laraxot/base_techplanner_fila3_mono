@@ -13,8 +13,7 @@ class DeviceFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'client_id' => Client::factory(),
-            'client_id' => 1, // Placeholder
+            'client_id' => Client::factory(),
             'device_type' => $this->faker->randomElement(['X-Ray', 'MRI', 'CT', 'Ultrasound']),
             'brand' => $this->faker->company(),
             'model' => $this->faker->word().' '.$this->faker->numberBetween(1000, 9999),

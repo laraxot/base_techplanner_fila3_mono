@@ -205,10 +205,6 @@ return array (
     array (
       'label' => 'create',
     ),
-    'delete' => 
-    array (
-      'label' => 'delete',
-    ),
   ),
   'import' => 
   array (
@@ -265,9 +261,5 @@ return array (
     array (
       'label' => 'Attività',
     ),
-  ),
-  'model' => 
-  array (
-    'label' => 'phone call.model',
   ),
 );

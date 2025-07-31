@@ -1,5 +1,18 @@
 # :package_description
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 # Geo Module
+=======
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+=======
+# Geo Module
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+# Geo Module
+>>>>>>> 6f0eea5 (.)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laraxot/module_geo_fila3.svg?style=flat-square)](https://packagist.org/packages/laraxot/module_geo_fila3)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/laraxot/module_geo_fila3/run-tests?label=tests)](https://github.com/laraxot/module_geo_fila3/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -48,6 +61,14 @@ php artisan vendor:publish --tag="module_geo_fila3-config"
 
 This is the contents of the published config file:
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 0e7ec50 (.)
+=======
+>>>>>>> 6f0eea5 (.)
 ## Overview
 
 The Geo module is a central repository for all geographical data and functionality within the application. It provides a consistent way to manage locations, addresses, and geographical hierarchies across all modules.
@@ -155,6 +176,15 @@ If you're migrating from another module (like SaluteOra) that had its own geogra
 
 The default configuration is as follows:
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+>>>>>>> 6f0eea5 (.)
 ```php
 return [
 ];

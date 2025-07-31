@@ -17,14 +17,9 @@ class DeviceVerificationFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'device_id' => Device::factory(),
-            'device_id' => 1, // Placeholder
-            'verification_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'next_verification_date' => $this->faker->dateTimeBetween('now', '+1 year'),
-            'verification_type' => $this->faker->randomElement(['Annual', 'Biannual', 'Quarterly']),
-            'status' => $this->faker->randomElement(['Passed', 'Failed', 'Pending']),
-            'notes' => $this->faker->optional()->paragraph(),
-            'verified_by' => $this->faker->name,
+            'device_id' => \Modules\TechPlanner\Models\Device::factory(), // Assuming you have a Device model
+            'verification_date' => $this->faker->date(),
+            'status' => $this->faker->randomElement(['pending', 'verified', 'failed']),
         ];
     }
 }

@@ -11,7 +11,7 @@ class ListAppointments extends XotBaseListRecords
 {
     protected static string $resource = AppointmentResource::class;
 
-    public function getTableColumns(): array
+    public function getListTableColumns(): array
     {
         return [
             'client.name' => Tables\Columns\TextColumn::make('client.name')

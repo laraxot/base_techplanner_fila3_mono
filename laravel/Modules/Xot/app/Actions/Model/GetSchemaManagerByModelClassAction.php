@@ -26,17 +26,14 @@ class GetSchemaManagerByModelClassAction
         Assert::isInstanceOf($model = app($modelClass), EloquentModel::class);
         $connection = $model->getConnection();
         
-        // In Laravel 10+ usiamo il metodo moderno per ottenere lo schema manager
-        if (method_exists($connection, 'getDoctrineConnection')) {
-            return $connection->getDoctrineConnection()->createSchemaManager();
-        }
-
-        // Fallback per versioni precedenti
+        // In Laravel 9+ il metodo getDoctrineSchemaManager è stato deprecato
+        // ma getDoctrineConnection() non esiste, dobbiamo usare getDoctrineSchemaManager direttamente
         if (method_exists($connection, 'getDoctrineSchemaManager')) {
             /** @phpstan-ignore deprecated.method */
             return $connection->getDoctrineSchemaManager();
         }
 
+        // Se in futuro il metodo getDoctrineConnection diventa disponibile, possiamo usare questo
         throw new \RuntimeException('Non è possibile ottenere lo schema manager Doctrine per questo modello.');
     }
 }

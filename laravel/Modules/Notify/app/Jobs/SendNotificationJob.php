@@ -49,14 +49,9 @@ class SendNotificationJob implements ShouldQueue
         protected array $channels = [],
         protected array $options = []
     ) {
-        $triesConfig = config('notify.queue.tries', 3);
-        $this->tries = is_numeric($triesConfig) ? (int) $triesConfig : 3;
-        
-        $timeoutConfig = config('notify.queue.retry_after', 60);
-        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 60;
-        
-        $queueConfig = config('notify.queue.queue', 'notifications');
-        $this->onQueue(is_string($queueConfig) ? $queueConfig : 'notifications');
+        $this->tries = config('notify.queue.tries', 3);
+        $this->timeout = config('notify.queue.retry_after', 60);
+        $this->onQueue(config('notify.queue.queue', 'notifications'));
     }
 
     /**

@@ -1,62 +1,37 @@
 <?php
 
-return array (
-  'navigation' => 
-  array (
-    'group' => 'techplanner',
-    'label' => 'Direttori Sanitari',
-    'icon' => 'techplanner-medical-director',
-    'sort' => 40,
-  ),
-  'fields' => 
-  array (
-    'name' => 
-    array (
-      'label' => 'Nome',
-    ),
-    'license_number' => 
-    array (
-      'label' => 'Numero Licenza',
-    ),
-    'specialization' => 
-    array (
-      'label' => 'Specializzazione',
-    ),
-    'email' => 
-    array (
-      'label' => 'Email',
-    ),
-    'phone' => 
-    array (
-      'label' => 'Telefono',
-    ),
-    'license_expiry' => 
-    array (
-      'label' => 'Scadenza Licenza',
-    ),
-    'notes' => 
-    array (
-      'label' => 'Note',
-    ),
-    'applyFilters' => 
-    array (
-      'label' => 'applyFilters',
-    ),
-  ),
-  'model' => 
-  array (
-    'label' => 'Direttore Sanitario',
-    'plural' => 'Direttori Sanitari',
-  ),
-  'actions' => 
-  array (
-    'downloadExample' => 
-    array (
-      'label' => 'downloadExample',
-    ),
-    'importMedicalDirector' => 
-    array (
-      'label' => 'importMedicalDirector',
-    ),
-  ),
-);
+return [
+    'navigation' => [
+        'group' => 'techplanner',
+        'label' => 'Direttori Sanitari',
+        'icon' => 'techplanner-medical-director',
+        'sort' => 40
+    ],
+    'fields' => [
+        'name' => [
+            'label' => 'Nome'
+        ],
+        'license_number' => [
+            'label' => 'Numero Licenza'
+        ],
+        'specialization' => [
+            'label' => 'Specializzazione'
+        ],
+        'email' => [
+            'label' => 'Email'
+        ],
+        'phone' => [
+            'label' => 'Telefono'
+        ],
+        'license_expiry' => [
+            'label' => 'Scadenza Licenza'
+        ],
+        'notes' => [
+            'label' => 'Note'
+        ]
+    ],
+    'model' => [
+        'label' => 'Direttore Sanitario',
+        'plural' => 'Direttori Sanitari'
+    ]
+];

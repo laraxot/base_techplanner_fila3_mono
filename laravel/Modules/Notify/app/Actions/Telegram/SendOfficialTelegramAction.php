@@ -44,8 +44,7 @@ final class SendOfficialTelegramAction
         $parseMode = config('telegram.parse_mode');
         $this->parseMode = $parseMode;
         $this->debug = (bool) config('telegram.debug', false);
-        $timeoutConfig = config('telegram.timeout', 30);
-        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
+        $this->timeout = (int) config('telegram.timeout', 30);
     }
 
     /**

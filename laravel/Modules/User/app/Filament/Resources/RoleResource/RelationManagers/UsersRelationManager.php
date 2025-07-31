@@ -64,22 +64,26 @@ final class UsersRelationManager extends XotBaseRelationManager
     public function getTableColumns(): array
     {
         return [
-            'name' => TextColumn::make('name')
+            TextColumn::make('name')
+
                 ->searchable()
                 ->sortable()
                 ->copyable(),
 
-            'email' => TextColumn::make('email')
+            TextColumn::make('email')
+
                 ->searchable()
                 ->sortable()
                 ->copyable(),
 
-            'created_at' => TextColumn::make('created_at')
+            TextColumn::make('created_at')
+
                 ->dateTime()
                 ->sortable()
                 ->toggleable(),
 
-            'updated_at' => TextColumn::make('updated_at')
+            TextColumn::make('updated_at')
+
                 ->dateTime()
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),

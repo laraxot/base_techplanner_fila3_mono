@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Modules\Notify\Actions;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Modules\Notify\Models\NotificationLog;
 use Modules\Notify\Models\NotificationTemplate;
 use Modules\Notify\Notifications\GenericNotification;
 use Spatie\QueueableAction\QueueableAction;
@@ -28,7 +29,7 @@ class SendNotificationAction
      * @param array $channels I canali da utilizzare (opzionale, usa quelli del template se non specificati)
      * @param array $options Opzioni aggiuntive per l'invio
      * 
-     * @return bool
+     * @return NotificationLog
      * @throws \Exception Se il template non esiste o non è attivo
      */
     public function execute(
@@ -37,7 +38,7 @@ class SendNotificationAction
         array $data = [],
         array $channels = [],
         array $options = []
-    ): bool {
+    ): NotificationLog {
         // Recupera il template
         $template = NotificationTemplate::where('code', $templateCode)
             ->where('is_active', true)
@@ -49,7 +50,7 @@ class SendNotificationAction
 
         // Verifica condizioni di invio
         if (!$template->shouldSend($data)) {
-            return false;
+            return $this->createSkippedNotification($recipient, $template, $data);
         }
 
         // Compila il template
@@ -58,18 +59,27 @@ class SendNotificationAction
         // Determina i canali da utilizzare
         $effectiveChannels = $channels ?: $template->channels;
 
+        // Crea il log della notifica
+        $log = NotificationLog::create([
+            'template_id' => $template->id,
+            'notifiable_type' => get_class($recipient),
+            'notifiable_id' => $recipient->getKey(),
+            'status' => NotificationLog::STATUS_PROCESSING,
+            'data' => $data,
+            'tenant_id' => $template->tenant_id,
+        ]);
+
         // Processa ogni canale
         foreach ($effectiveChannels as $channel) {
             try {
-                $this->sendViaChannel($recipient, $channel, $compiled, $options);
+                $this->sendViaChannel($recipient, $channel, $compiled, $options, $log);
             } catch (\Exception $e) {
-                // Log dell'errore ma continua con altri canali
-                Log::error("Errore invio notifica via {$channel}: " . $e->getMessage());
+                $log->markAsFailed($e->getMessage());
                 continue;
             }
         }
 
-        return true;
+        return $log;
     }
 
     /**
@@ -79,23 +89,27 @@ class SendNotificationAction
      * @param string $channel
      * @param array $compiled
      * @param array $options
+     * @param NotificationLog $log
      * @return void
      */
     protected function sendViaChannel(
         Model $recipient,
         string $channel,
         array $compiled,
-        array $options
+        array $options,
+        NotificationLog $log
     ): void {
+        $log->update(['channel' => $channel]);
+
         switch ($channel) {
             case 'mail':
-                $this->sendMail($recipient, $compiled, $options);
+                $this->sendMail($recipient, $compiled, $options, $log);
                 break;
             case 'database':
-                $this->sendDatabase($recipient, $compiled, $options);
+                $this->sendDatabase($recipient, $compiled, $options, $log);
                 break;
             case 'sms':
-                $this->sendSms($recipient, $compiled, $options);
+                $this->sendSms($recipient, $compiled, $options, $log);
                 break;
             default:
                 throw new \Exception("Canale {$channel} non supportato");
@@ -105,7 +119,7 @@ class SendNotificationAction
     /**
      * Invia una notifica via email.
      */
-    protected function sendMail(Model $recipient, array $compiled, array $options): void
+    protected function sendMail(Model $recipient, array $compiled, array $options, NotificationLog $log): void
     {
         if (!method_exists($recipient, 'routeNotificationForMail')) {
             throw new \Exception('Il destinatario non supporta le notifiche email');
@@ -116,33 +130,23 @@ class SendNotificationAction
             throw new \Exception('Email destinatario non disponibile');
         }
 
-        // Usa il sistema di notifiche di Laravel
-        if (method_exists($recipient, 'notify')) {
-            $recipient->notify(new GenericNotification(
-                $compiled['subject'],
-                $compiled['body_html'] ?? $compiled['body_text'],
-                ['mail'],
-                array_merge($options, [
-                    'text_view' => $compiled['body_text'],
-                ])
-            ));
-        } else {
-            // Fallback per modelli che non implementano Notifiable
-            Notification::send($recipient, new GenericNotification(
-                $compiled['subject'],
-                $compiled['body_html'] ?? $compiled['body_text'],
-                ['mail'],
-                array_merge($options, [
-                    'text_view' => $compiled['body_text'],
-                ])
-            ));
-        }
+        Mail::to($email)->send(new GenericNotification(
+            $compiled['subject'],
+            $compiled['body_html'] ?? $compiled['body_text'],
+            ['mail'],
+            array_merge($options, [
+                'text_view' => $compiled['body_text'],
+                'tracking_pixel_url' => route('notify.track.open', ['id' => $log->id]),
+            ])
+        ));
+
+        $log->markAsSent();
     }
 
     /**
      * Invia una notifica nel database.
      */
-    protected function sendDatabase(Model $recipient, array $compiled, array $options): void
+    protected function sendDatabase(Model $recipient, array $compiled, array $options, NotificationLog $log): void
     {
         Notification::send($recipient, new GenericNotification(
             $compiled['subject'],
@@ -150,12 +154,14 @@ class SendNotificationAction
             ['database'],
             $options
         ));
+
+        $log->markAsSent();
     }
 
     /**
      * Invia una notifica via SMS.
      */
-    protected function sendSms(Model $recipient, array $compiled, array $options): void
+    protected function sendSms(Model $recipient, array $compiled, array $options, NotificationLog $log): void
     {
         if (!method_exists($recipient, 'routeNotificationForSms')) {
             throw new \Exception('Il destinatario non supporta le notifiche SMS');
@@ -180,5 +186,26 @@ class SendNotificationAction
             ['sms'],
             $options
         ));
+
+        $log->markAsSent();
+    }
+
+    /**
+     * Crea un log per una notifica saltata a causa delle condizioni.
+     */
+    protected function createSkippedNotification(
+        Model $recipient,
+        NotificationTemplate $template,
+        array $data
+    ): NotificationLog {
+        return NotificationLog::create([
+            'template_id' => $template->id,
+            'notifiable_type' => get_class($recipient),
+            'notifiable_id' => $recipient->getKey(),
+            'status' => NotificationLog::STATUS_FAILED,
+            'status_message' => 'Saltata per condizioni non soddisfatte',
+            'data' => $data,
+            'tenant_id' => $template->tenant_id,
+        ]);
     }
 }

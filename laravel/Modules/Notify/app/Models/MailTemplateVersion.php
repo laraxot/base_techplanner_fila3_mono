@@ -25,11 +25,11 @@ use Modules\Xot\Traits\Updater;
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $updated_by
  * @property string|null $deleted_by
- * @property-read \Modules\User\Models\Profile|null $creator
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Modules\Notify\Models\MailTemplate|null $template
- * @property-read \Modules\User\Models\Profile|null $updater
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
  * @method static \Modules\Notify\Database\Factories\MailTemplateVersionFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MailTemplateVersion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MailTemplateVersion newQuery()
@@ -72,20 +72,13 @@ class MailTemplateVersion extends BaseModel
         'change_notes',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'metadata' => 'array',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'deleted_at' => 'datetime',
-        ];
-    }
+    /** @var array<string, string> */
+    protected $casts = [
+        'metadata' => 'array',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
 
     public function template(): BelongsTo
     {

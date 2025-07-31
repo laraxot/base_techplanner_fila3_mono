@@ -6,7 +6,6 @@ namespace Modules\Xot\Exceptions\Handlers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class HandlerDecorator implements ExceptionHandler
 {
@@ -51,10 +50,7 @@ class HandlerDecorator implements ExceptionHandler
 
         return $this->defaultHandler->render($request, $e);
     }
-    
-    /**
-     * @phpstan-ignore method.internal
-     */
+
     public function renderForConsole($output, \Throwable $e): void
     {
         foreach ($this->repository->getConsoleRenderersByException($e) as $renderer) {
@@ -63,9 +59,9 @@ class HandlerDecorator implements ExceptionHandler
             }
         }
 
-        /** @phpstan-ignore-next-line */
         $this->defaultHandler->renderForConsole($output, $e);
     }
+
     public function reporter(callable $reporter): int
     {
         return $this->repository->addReporter($reporter);

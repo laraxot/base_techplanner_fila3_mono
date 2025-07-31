@@ -136,7 +136,22 @@ class LocationMapTableWidget extends MapTableWidget
         ];
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public function getTableActions(): array
+=======
+    protected function getTableActions(): array
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+    protected function getTableActions(): array
+=======
+    public function getTableActions(): array
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+    public function getTableActions(): array
+>>>>>>> 6f0eea5 (.)
     {
         return [
             Tables\Actions\ViewAction::make()
@@ -164,17 +179,57 @@ class LocationMapTableWidget extends MapTableWidget
 
         foreach ($locations as $location) {
             if ($location->latitude && $location->longitude) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
                 $iconUrl = $this->getMarkerIcon($location);
                 
+=======
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+=======
+                $iconUrl = $this->getMarkerIcon($location);
+                
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+                $iconUrl = $this->getMarkerIcon($location);
+                
+>>>>>>> 6f0eea5 (.)
                 $data[] = [
                     'location' => [
                         'lat' => (float) $location->latitude,
                         'lng' => (float) $location->longitude,
                     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
                     'label' => (string) $location->name,
                     'id' => (int) $location->id,
                     'icon' => [
                         'url' => is_string($iconUrl) ? $iconUrl : '',
+=======
+=======
+>>>>>>> 0e7ec50 (.)
+                    'label' => $location->name,
+                    'id' => $location->id,
+                    'icon' => [
+                        'url' => $this->getMarkerIcon($location),
+<<<<<<< HEAD
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+=======
+=======
+>>>>>>> 6f0eea5 (.)
+                    'label' => (string) $location->name,
+                    'id' => (int) $location->id,
+                    'icon' => [
+                        'url' => is_string($iconUrl) ? $iconUrl : '',
+<<<<<<< HEAD
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+>>>>>>> 6f0eea5 (.)
                         'type' => 'url',
                         'scale' => [32, 32],
                     ],
@@ -206,6 +261,9 @@ class LocationMapTableWidget extends MapTableWidget
             ->modalSubmitAction(false);
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * @return string|null
      */
@@ -237,5 +295,64 @@ class LocationMapTableWidget extends MapTableWidget
         $iconUrl = $iconConfig['url'] ?? null;
         
         return is_string($iconUrl) ? $iconUrl : null;
+=======
+=======
+>>>>>>> 0e7ec50 (.)
+    public function getMarkerIcon(Place $place): ?array
+    {
+        $type = $place->placeType->slug ?? 'default';
+        $markerConfig = config("geo.markers.types.{$type}");
+
+        if (! is_array($markerConfig)) {
+            $markerConfig = config('geo.markers.types.default');
+        }
+
+        if (! is_array($markerConfig)) {
+            return null;
+        }
+
+        return $markerConfig['icon'] ?? null;
+<<<<<<< HEAD
+>>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
+=======
+=======
+=======
+>>>>>>> 6f0eea5 (.)
+    /**
+     * @return string|null
+     */
+    public function getMarkerIcon(Place $place): ?string
+    {
+        $type = $place->placeType->slug ?? 'default';
+        /** @var array<string, mixed>|null $markerConfig */
+        $markerConfig = config("geo.markers.types.{$type}");
+
+        if (!is_array($markerConfig)) {
+            /** @var array<string, mixed>|null $defaultConfig */
+            $defaultConfig = config('geo.markers.types.default');
+            $markerConfig = $defaultConfig;
+        }
+
+        if (!is_array($markerConfig)) {
+            return null;
+        }
+
+        // Validazione sicura per accesso nested all'icona
+        /** @var mixed $iconConfig */
+        $iconConfig = $markerConfig['icon'] ?? null;
+        
+        if (!is_array($iconConfig)) {
+            return null;
+        }
+
+        /** @var string|null $iconUrl */
+        $iconUrl = $iconConfig['url'] ?? null;
+        
+        return is_string($iconUrl) ? $iconUrl : null;
+<<<<<<< HEAD
+>>>>>>> 3c5e1ea (.)
+>>>>>>> 0e7ec50 (.)
+=======
+>>>>>>> 6f0eea5 (.)
     }
 }

@@ -12,7 +12,6 @@ use Modules\Notify\Actions\WhatsApp\SendTwilioWhatsAppAction;
 use Modules\Notify\Actions\WhatsApp\SendVonageWhatsAppAction;
 use Modules\Notify\Contracts\WhatsAppProviderActionInterface;
 use function Safe\preg_replace;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Factory per la creazione di azioni WhatsApp.
@@ -23,21 +22,15 @@ use Illuminate\Support\Facades\Log;
 final class WhatsAppActionFactory
 {
     /**
-     * Lista dei provider WhatsApp supportati ufficialmente.
+     * Crea un'azione WhatsApp basata sul driver specificato o su quello predefinito.
      *
-     * @var array<string>
+     * @param string|null $driver Driver WhatsApp da utilizzare (se null, viene utilizzato quello predefinito)
+     * @return WhatsAppProviderActionInterface Azione WhatsApp corrispondente al driver
+     * @throws Exception Se il driver specificato non è supportato
      */
-    protected array $supportedDrivers = [
-        'twilio',
-        'vonage',
-        '360dialog',
-        'messagebird',
-    ];
-
     /**
      * Crea un'azione WhatsApp basata sul driver specificato o su quello predefinito.
-     * Utilizza una risoluzione dinamica delle classi basata sulla convenzione di naming
-     * per istanziare l'action corretta.
+     * Utilizza una formula per calcolare il nome della classe dell'azione.
      *
      * @param string|null $driver Driver WhatsApp da utilizzare (se null, viene utilizzato quello predefinito)
      * @return WhatsAppProviderActionInterface Azione WhatsApp corrispondente al driver
@@ -45,50 +38,24 @@ final class WhatsAppActionFactory
      */
     public function create(?string $driver = null): WhatsAppProviderActionInterface
     {
-        $defaultDriver = Config::get('whatsapp.default', 'twilio');
-        $driver = $driver ?? $defaultDriver;
+        $driver = $driver ?? Config::get('whatsapp.default', 'twilio');
         
-        // Normalizza il nome del driver e assicura formato camelCase
-        $driverString = is_string($driver) ? $driver : '';
-        $normalizedDriver = $this->normalizeDriverName($driverString);
-
-        // Avvisa per driver non standard
-        if (!in_array($normalizedDriver, $this->supportedDrivers)) {
-            Log::warning("Attempting to use non-standard WhatsApp driver: " . $driverString);
-        }
-
-        // Costruisci il nome della classe seguendo la convenzione
-        $className = "Modules\\Notify\\Actions\\WhatsApp\\Send" . ucfirst($normalizedDriver) . "WhatsAppAction";
-
+        // Gestione speciale per driver con caratteri non alfanumerici (es. 360dialog)
+        $normalizedDriver = preg_replace('/[^a-zA-Z0-9]/', '', ucfirst(strtolower((string) $driver)));
+        
+        // Costruisci il nome completo della classe
+        $className = "\\Modules\\Notify\\Actions\\WhatsApp\\Send{$normalizedDriver}WhatsAppAction";
+        
         // Verifica se la classe esiste
         if (!class_exists($className)) {
-            Log::error("WhatsApp driver class not found", [
-                'driver' => $driver,
-                'normalized' => $normalizedDriver,
-                'className' => $className
-            ]);
-
-            throw new Exception("Unsupported WhatsApp driver: " . $driverString . ". Class {$className} not found.");
+            throw new Exception("Unsupported WhatsApp driver: " . (string) $driver . ". Class {$className} not found.");
         }
         
-        $instance = app($className);
-        
-        // Verifica che l'istanza implementi l'interfaccia corretta
-        if (!($instance instanceof WhatsAppProviderActionInterface)) {
+        // Verifica se la classe implementa l'interfaccia richiesta
+        if (!is_subclass_of($className, WhatsAppProviderActionInterface::class)) {
             throw new Exception("Class {$className} does not implement WhatsAppProviderActionInterface.");
         }
         
-        return $instance;
-    }
-
-    /**
-     * Normalizza il nome del driver usando l'action centralizzata.
-     *
-     * @param string $driver Nome del driver da normalizzare
-     * @return string Nome normalizzato
-     */
-    private function normalizeDriverName(string $driver): string
-    {
-        return app(\Modules\Xot\Actions\String\NormalizeDriverNameAction::class)->execute($driver);
+        return app($className);
     }
 }

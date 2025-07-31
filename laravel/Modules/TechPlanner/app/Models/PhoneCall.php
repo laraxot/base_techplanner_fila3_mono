@@ -14,15 +14,7 @@ class PhoneCall extends BaseModel
         'call_type',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return array_merge(parent::casts(), [
-            'date' => 'datetime',
-        ]);
-    }
+    protected $casts = [
+        'date' => 'datetime',
+    ];
 }

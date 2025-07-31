@@ -10,7 +10,7 @@ class ListDevices extends XotBaseListRecords
 {
     protected static string $resource = DeviceResource::class;
 
-    public function getTableColumns(): array
+    public function getListTableColumns(): array
     {
         return [
             Tables\Columns\TextColumn::make('name')

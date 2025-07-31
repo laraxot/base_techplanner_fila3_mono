@@ -141,27 +141,24 @@ class InformationSchemaTable extends Model
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'TABLE_ROWS' => 'integer',
-            'AVG_ROW_LENGTH' => 'integer',
-            'DATA_LENGTH' => 'integer',
-            'MAX_DATA_LENGTH' => 'integer',
-            'INDEX_LENGTH' => 'integer',
-            'DATA_FREE' => 'integer',
-            'AUTO_INCREMENT' => 'integer',
-            'CHECKSUM' => 'integer',
-            'CREATE_TIME' => 'datetime',
-            'UPDATE_TIME' => 'datetime',
-            'CHECK_TIME' => 'datetime',
-            'VERSION' => 'integer',
-        ];
-    }
+    protected $casts = [
+        'TABLE_ROWS' => 'integer',
+        'AVG_ROW_LENGTH' => 'integer',
+        'DATA_LENGTH' => 'integer',
+        'MAX_DATA_LENGTH' => 'integer',
+        'INDEX_LENGTH' => 'integer',
+        'DATA_FREE' => 'integer',
+        'AUTO_INCREMENT' => 'integer',
+        'CHECKSUM' => 'integer',
+        'CREATE_TIME' => 'datetime',
+        'UPDATE_TIME' => 'datetime',
+        'CHECK_TIME' => 'datetime',
+        'VERSION' => 'integer',
+    ];
 
     /**
      * Get the rows array for the Sushi model.

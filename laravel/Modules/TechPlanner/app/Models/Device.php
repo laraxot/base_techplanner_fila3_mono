@@ -31,21 +31,13 @@ class Device extends BaseModel
 {
     protected $table = 'machines';
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'client_id' => 'integer',
-            'first_verification_date' => 'datetime',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'deleted_at' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'client_id' => 'integer',
+        'first_verification_date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
 
     protected $fillable = [
         'id', // IDApparecchio
@@ -96,12 +88,6 @@ class Device extends BaseModel
             return true;
         }
 
-        // Verifica se la data di prossima verifica è passata
-        $nextVerificationDate = $this->latest_verification->getAttribute('next_verification_date');
-        if (!$nextVerificationDate) {
-            return true;
-        }
-
-        return $nextVerificationDate <= now();
+        return $this->latest_verification->next_verification_date <= now();
     }
 }

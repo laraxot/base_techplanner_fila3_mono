@@ -18,25 +18,25 @@ class ListMedicalDirectors extends XotBaseListRecords
 {
     protected static string $resource = MedicalDirectorResource::class;
 
-    public function getTableColumns(): array
+    public function getListTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
+            TextColumn::make('id')
                 ->sortable()
                 ->searchable(),
-            'name' => TextColumn::make('name')
+            TextColumn::make('name')
                 ->sortable()
                 ->searchable(),
-            'email' => TextColumn::make('email')
+            TextColumn::make('email')
                 ->sortable()
                 ->searchable(),
-            'phone' => TextColumn::make('phone')
+            TextColumn::make('phone')
                 ->sortable()
                 ->searchable(),
-            'created_at' => TextColumn::make('created_at')
+            TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable(),
-            'updated_at' => TextColumn::make('updated_at')
+            TextColumn::make('updated_at')
                 ->dateTime()
                 ->sortable(),
         ];
@@ -50,6 +50,21 @@ class ListMedicalDirectors extends XotBaseListRecords
                     ->distinct()
                     ->pluck('date', 'date')
                     ->toArray()),
+        ];
+    }
+
+    public function getTableActions(): array
+    {
+        return [
+            EditAction::make(),
+            DeleteAction::make(),
+        ];
+    }
+
+    public function getTableBulkActions(): array
+    {
+        return [
+            DeleteBulkAction::make(),
         ];
     }
 

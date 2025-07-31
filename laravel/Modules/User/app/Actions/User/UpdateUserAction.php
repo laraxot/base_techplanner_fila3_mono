@@ -7,7 +7,6 @@ namespace Modules\User\Actions\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
@@ -99,13 +98,13 @@ class UpdateUserAction
                 unset($updateData['password']);
             } else {
                 // Hash della password se presente
-                $updateData['password'] = Hash::make(app(SafeStringCastAction::class)->execute($updateData['password']));
+                $updateData['password'] = Hash::make((string) $updateData['password']);
             }
         }
         
         // Gestione dell'email per evitare duplicati
         if (isset($updateData['email'])) {
-            $updateData['email'] = strtolower(app(SafeStringCastAction::class)->execute($updateData['email']));
+            $updateData['email'] = strtolower((string) $updateData['email']);
         }
         
         return $updateData;
@@ -157,6 +156,4 @@ class UpdateUserAction
         // - Registrare log di audit
         // - Gestire relazioni
     }
-
-
 } 
