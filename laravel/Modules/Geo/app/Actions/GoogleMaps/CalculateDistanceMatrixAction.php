@@ -40,7 +40,7 @@ class CalculateDistanceMatrixAction
             'key' => $apiKey,
         ]);
 
-        if (!$response->successful()) {
+        if (! $response->successful()) {
             throw GoogleMapsApiException::requestFailed((string) $response->status());
         }
 
@@ -48,52 +48,34 @@ class CalculateDistanceMatrixAction
         $data = $response->json();
 
         if (!is_array($data) || 'OK' !== ($data['status'] ?? null)) {
-            throw GoogleMapsApiException::requestFailed('Risposta API non valida');
+            throw GoogleMapsApiException::requestFailed('Stato della risposta non valido: '.($data['status'] ?? 'sconosciuto'));
         }
 
-        return $this->parseResponse($data);
+        if (empty($data['rows'])) {
+            throw GoogleMapsApiException::noResultsFound();
+        }
+
+        return array_map(
+            fn (array $row): array => array_map(
+                fn (array $element): array => [
+                    'distance' => $element['distance'] ?? ['text' => '0 km', 'value' => 0],
+                    'duration' => $element['duration'] ?? ['text' => '0 min', 'value' => 0],
+                    'status' => $element['status'] ?? 'ZERO_RESULTS',
+                ],
+                $row['elements'] ?? []
+            ),
+            $data['rows'] ?? []
+        );
     }
 
-    /**
-     * Ottiene la chiave API di Google Maps.
-     *
-     * @throws GoogleMapsApiException Se la chiave API non è configurata
-     */
     private function getApiKey(): string
     {
         $apiKey = config('services.google.maps_api_key');
 
-        if (empty($apiKey)) {
+        if (empty($apiKey) || !is_string($apiKey)) {
             throw GoogleMapsApiException::missingApiKey();
         }
 
         return $apiKey;
-    }
-
-    /**
-     * Parsa la risposta dell'API.
-     *
-     * @param array{status?: string, rows?: array<int, array{elements?: array<int, array{distance?: array{text: string, value: int}, duration?: array{text: string, value: int}, status?: string}>}>} $data
-     * @return array<array<array{
-     *     distance: array{text: string, value: int},
-     *     duration: array{text: string, value: int},
-     *     status: string
-     * }>>
-     */
-    private function parseResponse(array $data): array
-    {
-        $rows = $data['rows'] ?? [];
-
-        return array_map(function (array $row): array {
-            $elements = $row['elements'] ?? [];
-
-            return array_map(function (array $element): array {
-                return [
-                    'distance' => $element['distance'] ?? ['text' => '', 'value' => 0],
-                    'duration' => $element['duration'] ?? ['text' => '', 'value' => 0],
-                    'status' => $element['status'] ?? 'NOT_FOUND',
-                ];
-            }, $elements);
-        }, $rows);
     }
 }

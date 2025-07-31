@@ -88,57 +88,9 @@ class GoogleMapsService extends BaseGeoService
         }
     }
 
-    /**
-     * Ottiene le coordinate per un indirizzo.
-     *
-     * @throws GoogleMapsApiException Se la richiesta fallisce
-     *
-     * @return array<string, mixed>|null
-     */
-    public function getCoordinatesByAddress(string $address): ?array
-    {
-        try {
-            $response = $this->makeRequest('GET', self::GEOCODING_URL, [
-                'address' => $address,
-                'key' => $this->getApiKey(),
-                'language' => 'it',
-            ]);
 
-            if (empty($response['results'])) {
-                return null;
-            }
 
-            $location = $response['results'][0]['geometry']['location'];
 
-            return [
-                'latitude' => $location['lat'],
-                'longitude' => $location['lng'],
-                'formatted_address' => $response['results'][0]['formatted_address'],
-            ];
-        } catch (\Throwable $e) {
-            throw GoogleMapsApiException::requestFailed($e->getMessage());
-        }
-    }
 
-    /**
-     * Ottiene l'indirizzo formattato per coordinate.
-     *
-     * @throws GoogleMapsApiException Se la richiesta fallisce
-     *
-     * @return string|null
-     */
-    public function getAddressByCoordinates(float $latitude, float $longitude): ?string
-    {
-        try {
-            $response = $this->reverseGeocode($latitude, $longitude);
 
-            if (empty($response['results'])) {
-                return null;
-            }
-
-            return $response['results'][0]['formatted_address'];
-        } catch (\Throwable $e) {
-            throw GoogleMapsApiException::requestFailed($e->getMessage());
-        }
-    }
 }

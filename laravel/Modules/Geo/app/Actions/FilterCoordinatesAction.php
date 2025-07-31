@@ -17,11 +17,10 @@ class FilterCoordinatesAction
     /**
      * Filtra le coordinate che si trovano entro un certo raggio da un punto.
      *
-     * @param array<array{latitude: float|string, longitude: float|string}> $coordinates Lista delle coordinate da filtrare
-     * @param float                                                         $centerLat   Latitudine del punto centrale
-     * @param float                                                         $centerLng   Longitudine del punto centrale
-     * @param float                                                         $radiusKm    Raggio in chilometri
-     *
+     * @param  array<array{latitude: float|string, longitude: float|string}>  $coordinates  Lista delle coordinate da filtrare
+     * @param  float  $centerLat  Latitudine del punto centrale
+     * @param  float  $centerLng  Longitudine del punto centrale
+     * @param  float  $radiusKm  Raggio in chilometri
      * @return array<array{latitude: float, longitude: float, distance: float}> Coordinate filtrate con distanza
      *
      * @throws \InvalidArgumentException Se le coordinate non sono valide
@@ -52,10 +51,6 @@ class FilterCoordinatesAction
 
     /**
      * Valida i dati di input.
-     *
-     * @param float $latitude  Latitudine del punto centrale
-     * @param float $longitude Longitudine del punto centrale
-     * @param float $radius    Raggio in chilometri
      *
      * @throws \InvalidArgumentException Se i dati non sono validi
      */

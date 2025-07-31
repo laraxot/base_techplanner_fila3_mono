@@ -67,36 +67,84 @@ abstract class BaseGeoService
             $this->getServiceName(),
             $maxAttempts,
             function () {
-                // Rate limit exceeded
-                throw new \RuntimeException('Rate limit exceeded');
+                return true;
             }
         );
 
-        // Esegui la richiesta
-        $response = Http::timeout(config('geo.timeout', 30))
-            ->retry(config('geo.retry_attempts', 3), config('geo.retry_delay', 1000))
-            ->$method($url, $params);
+        try {
+            $response = $this->buildHttpClient()
+                ->{strtolower($method)}($url, $params);
 
-        if (!$response->successful()) {
-            throw new \RuntimeException("HTTP request failed: {$response->status()}");
+            if (! $response->successful()) {
+                throw new \RuntimeException("Richiesta fallita a {$this->getServiceName()}: ".$response->status());
+            }
+
+            $data = $response->json();
+            
+            // Validazione tipo di ritorno per PHPStan level 9 compliance
+            if (!is_array($data)) {
+                throw new \RuntimeException("Risposta API non valida: atteso array, ricevuto " . gettype($data));
+            }
+            
+            // Assicura che sia array<string, mixed> come richiesto dalla signature
+            /** @var array<string, mixed> $validatedData */
+            $validatedData = $data;
+
+            if ($useCache && config('geo.cache.enabled')) {
+                /** @var int $ttl */
+                $ttl = config('geo.cache.ttl', 86400);
+                Cache::put($cacheKey, $validatedData, $ttl);
+            }
+
+            return $validatedData;
+        } catch (\Throwable $e) {
+            throw new \RuntimeException("Errore durante la richiesta a {$this->getServiceName()}: ".$e->getMessage(), 0, $e);
         }
-
-        /** @var array<string, mixed> $data */
-        $data = $response->json();
-
-        // Cache del risultato
-        if ($useCache && config('geo.cache.enabled')) {
-            Cache::put($cacheKey, $data, config('geo.cache.ttl', 3600));
-        }
-
-        return $data;
     }
 
     /**
-     * Genera una chiave di cache univoca per la richiesta.
+     * Costruisce il client HTTP con timeout e retry configurati.
+     */
+    protected function buildHttpClient(): PendingRequest
+    {
+        /** @var float $timeout */
+        $timeout = config('geo.http_client.timeout', 5.0);
+        /** @var int $retryTimes */
+        $retryTimes = config('geo.http_client.retry.times', 3);
+        /** @var int $retrySleep */
+        $retrySleep = config('geo.http_client.retry.sleep', 100);
+        /** @var array<string> $whenTypes */
+        $whenTypes = config('geo.http_client.retry.when', []);
+
+        return Http::timeout($timeout)
+            ->retry(
+                $retryTimes,
+                $retrySleep,
+                function ($exception) use ($whenTypes) {
+                    foreach ($whenTypes as $type) {
+                        if (is_a($exception, "\\GuzzleHttp\\Exception\\{$type}")) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+            );
+    }
+
+    /**
+     * Genera una chiave di cache per la richiesta.
+     *
+     * @param string               $method Metodo HTTP
+     * @param string               $url    URL della richiesta
+     * @param array<string, mixed> $params Parametri della richiesta
      */
     protected function getCacheKey(string $method, string $url, array $params): string
     {
-        return "geo_{$this->getServiceName()}_" . md5($method . $url . serialize($params));
+        /** @var string $prefix */
+        $prefix = config('geo.cache.prefix', 'geo_');
+        $hash = md5($method.$url.serialize($params));
+
+        return "{$prefix}{$this->getServiceName()}_{$hash}";
     }
 }

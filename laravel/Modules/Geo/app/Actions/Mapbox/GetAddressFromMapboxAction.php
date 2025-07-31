@@ -89,53 +89,71 @@ class GetAddressFromMapboxAction
     }
 
     /**
-     * Parsa la risposta dell'API e restituisce i dati dell'indirizzo.
+     * Elabora la risposta dell'API.
+     *
+     * @throws \RuntimeException Se la risposta non è valida
      */
     private function parseResponse(string $response): ?AddressData
     {
-        /** @var array<string, mixed> $data */
+        /** @var array{
+         *     features: array<array{
+         *         center: array<float>,
+         *         context: array<array{
+         *             id: string,
+         *             text: string,
+         *             short_code?: string
+         *         }>,
+         *         place_name: string,
+         *         address?: string,
+         *         text: string
+         *     }>
+         * } $data */
         $data = json_decode($response, true);
 
-        if (!isset($data['features']) || empty($data['features'])) {
+        if (empty($data['features'][0])) {
             return null;
         }
 
         $feature = $data['features'][0];
-        $coordinates = $feature['center'] ?? [];
         $context = $feature['context'] ?? [];
-        $properties = $feature['properties'] ?? [];
 
-        if (empty($coordinates) || count($coordinates) < 2) {
-            return null;
-        }
+        // Estrai informazioni dal contesto
+        $city = '';
+        $province = '';
+        $postalCode = '';
+        $country = 'Italia';
 
-        return new AddressData(
-            latitude: (float) $coordinates[1],
-            longitude: (float) $coordinates[0],
-            country: $this->extractContextValue($context, 'country'),
-            city: $this->extractContextValue($context, 'place'),
-            country_code: strtoupper($this->extractContextValue($context, 'country') ?? 'IT'),
-            postal_code: (int) ($this->extractContextValue($context, 'postcode') ?? 0),
-            locality: $this->extractContextValue($context, 'locality'),
-            county: $this->extractContextValue($context, 'region'),
-            street: $properties['address'] ?? null,
-            street_number: $properties['housenumber'] ?? null,
-            district: $this->extractContextValue($context, 'neighborhood'),
-            state: $this->extractContextValue($context, 'region'),
-        );
-    }
-
-    /**
-     * Estrae un valore dal contesto dell'indirizzo.
-     */
-    private function extractContextValue(array $context, string $type): ?string
-    {
         foreach ($context as $item) {
-            if (isset($item['id']) && str_starts_with($item['id'], $type)) {
-                return $item['text'] ?? null;
+            $id = $item['id'] ?? '';
+            if (str_starts_with($id, 'place')) {
+                $city = $item['text'];
+            } elseif (str_starts_with($id, 'region')) {
+                $province = $item['short_code'] ?? '';
+                // Rimuovi il prefisso IT- se presente
+                $province = str_replace('IT-', '', $province);
+            } elseif (str_starts_with($id, 'postcode')) {
+                $postalCode = $item['text'];
             }
         }
 
-        return null;
+        // Estrai numero civico e via dal place_name
+        $addressParts = explode(',', $feature['place_name']);
+        $streetAddress = trim($addressParts[0]);
+
+        // Tenta di separare il numero civico dalla via
+        preg_match('/^(.*?)\s*(\d+\w*)?$/', $streetAddress, $matches);
+        $street = trim($matches[1] ?? $streetAddress);
+        $streetNumber = trim($matches[2] ?? '');
+
+        return AddressData::from([
+            'latitude' => (float) ($feature['center'][1] ?? 0),
+            'longitude' => (float) ($feature['center'][0] ?? 0),
+            'country' => $country,
+            'city' => $city,
+            'postal_code' => (int) ($postalCode ?: 0),
+            'street' => $street,
+            'street_number' => $streetNumber,
+            'province' => $province,
+        ]);
     }
 }

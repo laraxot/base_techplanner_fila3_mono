@@ -15,8 +15,6 @@ use Webbingbrasil\FilamentMaps\Widgets\MapWidget;
  */
 class OSMMapWidget extends MapWidget
 {
-    protected static string $view = 'geo::filament.widgets.osm-map-widget';
-
     protected int|string|array $columnSpan = 'full';
 
     protected function getData(): array
@@ -67,22 +65,20 @@ class OSMMapWidget extends MapWidget
 
     /**
      * @param  Collection<int, Place>  $places
+     * @return array{lat: float, lng: float}
      */
     protected function getMapCenter(Collection $places): array
     {
         if ($places->isEmpty()) {
-            return [
-                'lat' => 41.9028,
-                'lng' => 12.4964,
-            ];
+            return ['lat' => 41.9028, 'lng' => 12.4964]; // Rome, Italy
         }
 
-        $avgLat = $places->avg('latitude');
-        $avgLng = $places->avg('longitude');
+        $latitudes = $places->pluck('latitude')->filter(fn ($lat) => is_float($lat));
+        $longitudes = $places->pluck('longitude')->filter(fn ($lng) => is_float($lng));
 
         return [
-            'lat' => (float) $avgLat,
-            'lng' => (float) $avgLng,
+            'lat' => $latitudes->average() ?? 0.0,
+            'lng' => $longitudes->average() ?? 0.0,
         ];
     }
 
@@ -92,49 +88,51 @@ class OSMMapWidget extends MapWidget
     protected function getMapZoom(Collection $places): int
     {
         if ($places->count() <= 1) {
-            return 10;
+            return 13;
         }
 
-        return 8;
+        return 10;
     }
 
-    /**
-     * Genera il contenuto della finestra informativa per un luogo.
-     */
     protected function getInfoWindowContent(Place $place): string
     {
-        $content = "<div class='marker-info'>";
-        $content .= "<h3>{$place->name}</h3>";
-
-        if ($place->address) {
-            $content .= "<p><strong>Indirizzo:</strong> {$place->address->formatted_address}</p>";
-        }
-
-        if ($place->placeType) {
-            $content .= "<p><strong>Tipo:</strong> {$place->placeType->name}</p>";
-        }
-
-        $content .= "</div>";
-
-        return $content;
+        /** @var view-string $viewName */
+        $viewName = 'geo::filament.widgets.osm-map-info-window';
+        
+        return view($viewName, [
+            'place' => $place,
+        ])->render();
     }
 
     /**
-     * Ottiene l'icona del marker per un luogo.
+     * @return array{url: string, scaledSize: array{width: int, height: int}}|null
      */
     protected function getMarkerIcon(Place $place): ?array
     {
+        // Uso placeType invece di type per evitare relazioni mancanti
         $type = $place->placeType->slug ?? 'default';
-        $markerConfig = config("geo.markers.types.{$type}");
 
-        if (!is_array($markerConfig)) {
-            $markerConfig = config('geo.markers.types.default');
-        }
-
-        if (!is_array($markerConfig)) {
+        $iconPath = resource_path("images/markers/{$type}.png");
+        if (! file_exists($iconPath)) {
             return null;
         }
 
-        return $markerConfig['icon'] ?? null;
+        return [
+            'url' => asset("images/markers/{$type}.png"),
+            'scaledSize' => [
+                'width' => 32,
+                'height' => 32,
+            ],
+        ];
+    }
+
+    public function render(): View
+    {
+        /** @var view-string $viewName */
+        $viewName = 'geo::filament.widgets.osm-map-widget';
+        
+        return view($viewName, [
+            'data' => $this->getData(),
+        ]);
     }
 }

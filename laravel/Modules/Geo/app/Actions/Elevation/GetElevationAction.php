@@ -58,8 +58,12 @@ class GetElevationAction
             }
 
             return (float) $firstResult['elevation'];
-        } catch (\Exception $e) {
-            throw ElevationException::requestFailed($e->getMessage());
+        } catch (\Throwable $e) {
+            if ($e instanceof ElevationException) {
+                throw $e;
+            }
+
+            throw ElevationException::serviceError('Errore nel recupero dell\'elevazione: '.$e->getMessage(), $e);
         }
     }
 
@@ -68,32 +72,28 @@ class GetElevationAction
      *
      * @param float $meters Elevazione in metri
      *
-     * @return string Elevazione formattata
+     * @return string Elevazione formattata con unità di misura
      */
     public function formatElevation(float $meters): string
     {
-        if ($meters < 0) {
-            return sprintf('%.1f m sotto il livello del mare', abs($meters));
-        }
-
-        return sprintf('%.1f m sopra il livello del mare', $meters);
+        return sprintf('%.1f m s.l.m.', $meters);
     }
 
     /**
-     * Valida le coordinate geografiche.
+     * Valida le coordinate di una posizione.
      *
-     * @param LocationData $location
+     * @param LocationData $location Posizione da validare
      *
      * @throws \InvalidArgumentException Se le coordinate non sono valide
      */
     private function validateCoordinates(LocationData $location): void
     {
         if ($location->latitude < -90 || $location->latitude > 90) {
-            throw new \InvalidArgumentException('Latitudine non valida: deve essere compresa tra -90 e 90');
+            throw new \InvalidArgumentException(sprintf('Latitudine non valida: %f', $location->latitude));
         }
 
         if ($location->longitude < -180 || $location->longitude > 180) {
-            throw new \InvalidArgumentException('Longitudine non valida: deve essere compresa tra -180 e 180');
+            throw new \InvalidArgumentException(sprintf('Longitudine non valida: %f', $location->longitude));
         }
     }
 }

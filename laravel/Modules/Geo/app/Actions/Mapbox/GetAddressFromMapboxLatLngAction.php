@@ -62,7 +62,7 @@ class GetAddressFromMapboxLatLngAction
             'language' => 'it',
         ]);
 
-        if (!$response->successful()) {
+        if (! $response->successful()) {
             throw InvalidLocationException::invalidData('Richiesta a Mapbox fallita');
         }
 
@@ -77,30 +77,82 @@ class GetAddressFromMapboxLatLngAction
 
     private function parseResponse(array $response): MapboxMapData
     {
-        if (!isset($response['features']) || empty($response['features'])) {
-            throw InvalidLocationException::invalidData('Nessun risultato trovato per le coordinate fornite');
+        /** @var array<int, array{center?: array{float, float}, text?: string, address?: string, context?: array<int, array{id?: string, text?: string, short_code?: string}>}> $features */
+        $features = $response['features'] ?? [];
+        $location = $features[0] ?? [];
+
+        if (empty($location)) {
+            throw InvalidLocationException::invalidData('Nessun risultato trovato');
         }
 
-        $feature = $response['features'][0];
+        // Estrai il contesto dal risultato
+        /** @var array<int, array{id?: string, text?: string, short_code?: string}> $contextItems */
+        $contextItems = $location['context'] ?? [];
         
-        return MapboxMapData::from($feature);
+        $context = [];
+        foreach ($contextItems as $item) {
+            $id = $item['id'] ?? '';
+            $text = $item['text'] ?? '';
+            $shortCode = $item['short_code'] ?? '';
+
+            // Determina il tipo di contesto dal prefisso dell'ID
+            $type = explode('.', $id)[0] ?? '';
+
+            if (!empty($type)) {
+                $context[$type] = [
+                    'text' => $text,
+                    'short_code' => $shortCode,
+                ];
+            }
+        }
+
+        // Costruisce la struttura dati richiesta da MapboxMapData
+        $center = $location['center'] ?? [0.0, 0.0];
+        
+        // Validazione del tipo e dell'array center
+        if (!is_array($center) || count($center) < 2) {
+            $center = [0.0, 0.0];
+        }
+        
+        /** @var array{center: array{float, float}, text: string, address: string|null, context: array{country: string|null, country_code: string|null, place: string|null, postcode: string|null, locality: string|null, region: string|null, neighborhood: string|null}} $mappedData */
+        $mappedData = [
+            'center' => [
+                (float) ($center[0] ?? 0.0),
+                (float) ($center[1] ?? 0.0)
+            ],
+            'text' => (string) ($location['text'] ?? ''),
+            'address' => isset($location['address']) ? (string) $location['address'] : null,
+            'context' => [
+                'country' => $context['country']['text'] ?? null,
+                'country_code' => $context['country']['short_code'] ?? 'it',
+                'place' => $context['place']['text'] ?? null,
+                'postcode' => $context['postcode']['text'] ?? null,
+                'locality' => $context['locality']['text'] ?? null,
+                'region' => $context['region']['text'] ?? null,
+                'neighborhood' => $context['neighborhood']['text'] ?? null,
+            ],
+        ];
+
+        return new MapboxMapData($mappedData);
     }
 
     private function mapResponseToAddressData(MapboxMapData $data): AddressData
     {
+        $res = $data->toArray();
+
         return new AddressData(
-            latitude: $data->latitude ?? 0.0,
-            longitude: $data->longitude ?? 0.0,
-            country: $data->country ?? null,
-            city: $data->city ?? null,
-            country_code: strtoupper($data->countryCode ?? 'IT'),
-            postal_code: (int) ($data->postalCode ?? 0),
-            locality: $data->locality ?? null,
-            county: $data->county ?? null,
-            street: $data->street ?? null,
-            street_number: $data->streetNumber ?? null,
-            district: $data->district ?? null,
-            state: $data->state ?? null,
+            latitude: (float) ($res['center'][1] ?? 0),
+            longitude: (float) ($res['center'][0] ?? 0),
+            country: $res['context']['country'] ?? null,
+            city: $res['context']['place'] ?? null,
+            country_code: strtoupper($res['context']['country_code'] ?? 'IT'),
+            postal_code: (int) ($res['context']['postcode'] ?? 0),
+            locality: $res['context']['locality'] ?? null,
+            county: $res['context']['region'] ?? null,
+            street: $res['text'] ?? null,
+            street_number: $res['address'] ?? null,
+            district: $res['context']['neighborhood'] ?? null,
+            state: $res['context']['region'] ?? null,
         );
     }
 }

@@ -24,18 +24,11 @@ use Webbingbrasil\FilamentMaps\Widgets\MapWidget;
  */
 class LocationMapWidget extends MapWidget
 {
-    protected static string $view = 'geo::filament.widgets.location-map-widget';
-
     protected int|string|array $columnSpan = 'full';
 
     public Htmlable|string|null $heading = 'Mappa';
 
     protected const CACHE_TTL = 3600;
-
-    protected function getView(): string
-    {
-        return static::$view;
-    }
 
     protected function getViewData(): array
     {
@@ -69,22 +62,27 @@ class LocationMapWidget extends MapWidget
             'zoom' => is_numeric($config['zoom'] ?? null) ? (int) $config['zoom'] : 12,
             'center' => $this->getMapCenter(),
             'mapTypeId' => is_string($config['type'] ?? null) ? $config['type'] : 'roadmap',
-            'scrollwheel' => $config['scrollwheel'] ?? true,
-            'streetViewControl' => $config['streetViewControl'] ?? true,
-            'mapTypeControl' => $config['mapTypeControl'] ?? true,
-            'fullscreenControl' => $config['fullscreenControl'] ?? true,
+            'mapTypeControl' => true,
+            'streetViewControl' => true,
+            'fullscreenControl' => true,
+            'zoomControl' => true,
+            'styles' => [],
         ];
     }
 
     /**
-     * Restituisce la collezione di luoghi da visualizzare sulla mappa.
+     * Restituisce i luoghi da visualizzare sulla mappa.
+     *
+     * @return Collection<int, Place>
+     */
+    /** @return Collection<int, Place> */
+    /**
+     * @return Collection<int, Place>
      */
     public function getPlaces(): Collection
     {
-        return Place::with(['address', 'placeType'])
-            ->whereNotNull('latitude')
-            ->whereNotNull('longitude')
-            ->get();
+        /* @var Collection<int, Place> */
+        return Place::with(['placeType'])->get();
     }
 
     /**
@@ -93,16 +91,12 @@ class LocationMapWidget extends MapWidget
      * @return array<int, array{
      *     position: array{lat: float, lng: float},
      *     title: string,
-     *     content: string,
      *     icon?: array{url: string, scaledSize: array{width: int, height: int}}
      * }>
      */
     public function getMarkers(): array
     {
-        /** @var Collection<int, Place> $places */
-        $places = $this->getPlaces();
-
-        return $places
+        return $this->getPlaces()
             ->filter(fn(Place $place) => $place->latitude !== null && $place->longitude !== null)
             ->map(function (Place $place): array {
                 $marker = [
@@ -111,7 +105,6 @@ class LocationMapWidget extends MapWidget
                         'lng' => (float) $place->longitude,
                     ],
                     'title' => (string) ($place->name ?? 'Unnamed Place'),
-                    'content' => $this->getInfoWindowContent($place),
                 ];
 
                 $icon = $this->getMarkerIcon($place);
@@ -124,67 +117,83 @@ class LocationMapWidget extends MapWidget
     }
 
     /**
-     * Genera il contenuto della finestra informativa per un luogo.
-     */
-    protected function getInfoWindowContent(Place $place): string
-    {
-        $content = "<div class='marker-info'>";
-        $content .= "<h3>{$place->name}</h3>";
-
-        if ($place->address) {
-            $content .= "<p><strong>Indirizzo:</strong> {$place->address->formatted_address}</p>";
-        }
-
-        if ($place->placeType) {
-            $content .= "<p><strong>Tipo:</strong> {$place->placeType->name}</p>";
-        }
-
-        $content .= "</div>";
-
-        return $content;
-    }
-
-    /**
-     * Ottiene l'icona del marker per un luogo.
-     */
-    protected function getMarkerIcon(Place $place): ?array
-    {
-        $type = $place->placeType->slug ?? 'default';
-        $markerConfig = config("geo.markers.types.{$type}");
-
-        if (!is_array($markerConfig)) {
-            $markerConfig = config('geo.markers.types.default');
-        }
-
-        if (!is_array($markerConfig)) {
-            return null;
-        }
-
-        return $markerConfig['icon'] ?? null;
-    }
-
-    /**
      * Restituisce il centro della mappa.
      *
      * @return array{lat: float, lng: float}
      */
     protected function getMapCenter(): array
     {
-        $places = $this->getPlaces();
+        /** @var array<string, mixed> $config */
+        $config = Config::get('maps', []);
+        $defaultLat = 45.4642;
+        $defaultLng = 9.1900;
 
-        if ($places->isEmpty()) {
-            return [
-                'lat' => 41.9028,
-                'lng' => 12.4964,
-            ];
-        }
-
-        $avgLat = $places->avg('latitude');
-        $avgLng = $places->avg('longitude');
+        /** @var array<string, mixed>|null $centerConfig */
+        $centerConfig = $config['center'] ?? null;
 
         return [
-            'lat' => (float) $avgLat,
-            'lng' => (float) $avgLng,
+            'lat' => is_array($centerConfig) && is_numeric($centerConfig['lat'] ?? null) 
+                ? (float) $centerConfig['lat'] 
+                : $defaultLat,
+            'lng' => is_array($centerConfig) && is_numeric($centerConfig['lng'] ?? null) 
+                ? (float) $centerConfig['lng'] 
+                : $defaultLng,
         ];
+    }
+
+    /**
+     * Restituisce l'icona per un marker.
+     *
+     * @return array{url: string, scaledSize: array{width: int, height: int}}|null
+     */
+    protected function getMarkerIcon(Place $place): ?array
+    {
+        /** @var array{
+         *     icons?: array<string, array{
+         *         url: string,
+         *         size: array{int, int}
+         *     }>
+         * } $config */
+        $config = Config::get('maps.markers', []);
+
+        $placeType = $place->placeType;
+        if (!$placeType) {
+            return null;
+        }
+
+        // Verifico che la proprietà slug esista sul placeType
+        if (!property_exists($placeType, 'slug')) {
+            return null;
+        }
+
+        /** @var string|null $slug */
+        $slug = $placeType->slug;
+
+        if (!is_string($slug) || !isset($config['icons'][$slug])) {
+            return null;
+        }
+
+        /** @var array{url: string, size: array{int, int}} $icon */
+        $icon = $config['icons'][$slug];
+
+        if (!isset($icon['url']) || !is_string($icon['url'])) {
+            return null;
+        }
+
+        return [
+            'url' => asset($icon['url']),
+            'scaledSize' => [
+                'width' => (int) ($icon['size'][0] ?? 32),
+                'height' => (int) ($icon['size'][1] ?? 32),
+            ],
+        ];
+    }
+
+    public function render(): View
+    {
+        /** @var view-string $viewName */
+        $viewName = 'geo::filament.widgets.location-map-widget';
+        
+        return ViewFacade::make($viewName, $this->getViewData());
     }
 }

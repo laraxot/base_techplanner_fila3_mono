@@ -6,9 +6,6 @@ namespace Modules\Geo\Datas;
 
 use Spatie\LaravelData\Data;
 
-/**
- * DTO per le coordinate geografiche.
- */
 class CoordinatesData extends Data
 {
     public function __construct(

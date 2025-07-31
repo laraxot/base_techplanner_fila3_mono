@@ -61,10 +61,7 @@ use Modules\Xot\Contracts\ProfileContract;
  */
 class Location extends BaseModel
 {
-    /** @var list<string> */
     protected $fillable = [
-        'model_type',
-        'model_id',
         'name',
         'lat',
         'lng',
@@ -73,69 +70,52 @@ class Location extends BaseModel
         'state',
         'zip',
         'formatted_address',
-        'description',
         'processed',
+        'description',
+    ];
+
+    protected $appends = [
+        'location',
+    ];
+
+    protected $casts = [
+        'lat' => 'float',
+        'lng' => 'float',
+        'processed' => 'bool',
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'lat' => 'float',
-            'lng' => 'float',
-            'processed' => 'boolean',
-            'location' => 'array',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
-    }
-
-    /**
-     * Get the location attribute.
-     *
-     * @return Attribute
+     * Accessor for the "location" attribute.
      */
     protected function location(): Attribute
     {
         return Attribute::make(
-            get: function ($value) {
-                if (is_string($value)) {
-                    return json_decode($value, true);
-                }
-
-                return $value;
-            },
-            set: function ($value) {
+            get: fn (): array => [
+                'lat' => (float) $this->lat,
+                'lng' => (float) $this->lng,
+            ],
+            set: function (?array $value): void {
                 if (is_array($value)) {
-                    return json_encode($value);
+                    $this->attributes['lat'] = $value['lat'] ?? null;
+                    $this->attributes['lng'] = $value['lng'] ?? null;
                 }
-
-                return $value;
             }
         );
     }
 
     /**
      * Get the latitude and longitude attributes.
-     *
-     * @return array<string, string>
      */
     public static function getLatLngAttributes(): array
     {
         return [
-            'lat' => 'latitude',
-            'lng' => 'longitude',
+            'lat' => 'lat',
+            'lng' => 'lng',
         ];
     }
 
     /**
-     * Get the computed location.
-     *
-     * @return string
+     * Get the computed location attribute name.
      */
     public static function getComputedLocation(): string
     {
@@ -143,19 +123,12 @@ class Location extends BaseModel
     }
 
     /**
-     * Scope for locations within a certain distance.
-     *
-     * @param Builder<static> $query
-     * @param float $latitude
-     * @param float $longitude
-     * @param float $distanceInKm
-     * @return Builder<static>
+     * Scope to filter by a specific distance from a given point.
      */
     public function scopeWithinDistance(Builder $query, float $latitude, float $longitude, float $distanceInKm): Builder
     {
-        return $query->whereRaw(
-            'ST_Distance_Sphere(POINT(lng, lat), POINT(?, ?)) <= ?',
-            [$longitude, $latitude, $distanceInKm * 1000]
-        );
+        $haversine = "(6371 * acos(cos(radians($latitude)) * cos(radians(lat)) * cos(radians(lng) - radians($longitude)) + sin(radians($latitude)) * sin(radians(lat))))";
+
+        return $query->whereRaw("$haversine <= ?", [$distanceInKm]);
     }
 }

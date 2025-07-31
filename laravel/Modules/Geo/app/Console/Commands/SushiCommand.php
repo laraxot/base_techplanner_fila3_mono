@@ -100,19 +100,14 @@ class SushiCommand extends Command
                 /** @var array<string, mixed> $validComune */
                 $validComune = $arrayComune;
                 
-                $regione = $this->safeStringCast($validComune['regione']);
-                $provincia = $this->safeStringCast($validComune['provincia']);
-                $comune = $this->safeStringCast($validComune['comune']);
-                $cap = $this->safeStringCast($validComune['cap']);
-                
                 DB::table('comuni')->insert([
                     'id' => $validComune['id'],
-                    'regione' => $regione,
-                    'provincia' => $provincia,
-                    'comune' => $comune,
-                    'cap' => $cap,
-                    'lat' => is_numeric($validComune['lat']) ? (float) $validComune['lat'] : 0.0,
-                    'lng' => is_numeric($validComune['lng']) ? (float) $validComune['lng'] : 0.0,
+                    'regione' => (string) $validComune['regione'],
+                    'provincia' => (string) $validComune['provincia'],
+                    'comune' => (string) $validComune['comune'],
+                    'cap' => (string) $validComune['cap'],
+                    'lat' => (float) $validComune['lat'],
+                    'lng' => (float) $validComune['lng'],
                     'created_at' => $validComune['created_at'] ?? now(),
                     'updated_at' => $validComune['updated_at'] ?? now(),
                 ]);
@@ -196,16 +191,5 @@ class SushiCommand extends Command
             $this->error('Errore durante la verifica dello stato del database: ' . $e->getMessage());
             return 1;
         }
-    }
-    
-    /**
-     * Converte in modo sicuro un valore mixed in string usando l'action centralizzata.
-     *
-     * @param mixed $value Il valore da convertire
-     * @return string Il valore convertito in string
-     */
-    private function safeStringCast(mixed $value): string
-    {
-        return app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($value);
     }
 } 

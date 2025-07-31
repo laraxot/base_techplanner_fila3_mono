@@ -26,9 +26,8 @@ class GetAddressDataFromFullAddressAction
     /**
      * Ottiene i dati dell'indirizzo da un indirizzo completo.
      *
-     * @param string $fullAddress L'indirizzo da cercare
-     *
-     * @return AddressData|null I dati dell'indirizzo trovato o null se non trovato
+     * @param  string  $fullAddress  L'indirizzo da cercare
+     * @return AddressData I dati dell'indirizzo trovato
      *
      * @throws \RuntimeException Se la richiesta fallisce o l'indirizzo non viene trovato
      */
@@ -72,11 +71,6 @@ class GetAddressDataFromFullAddressAction
         return null;
     }
 
-    /**
-     * Restituisce la collezione degli errori raccolti durante l'esecuzione.
-     *
-     * @return Collection Collezione degli errori
-     */
     public function getErrors(): Collection
     {
         return $this->errors;

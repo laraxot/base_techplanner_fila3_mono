@@ -55,77 +55,58 @@ class GetAddressFromBingMapsAction
      *
      * @param float $latitude
      * @param float $longitude
-     * @param string $apiKey
-     * @return array
+     * @param non-empty-string $apiKey
+     * @return array<string, mixed>
      * @throws InvalidLocationException
      */
     private function makeApiRequest(float $latitude, float $longitude, string $apiKey): array
     {
         $response = Http::get(self::BASE_URL, [
-            'q' => "{$latitude},{$longitude}",
+            'point' => "{$latitude},{$longitude}",
             'key' => $apiKey,
-            'o' => 'json',
+            'includeEntityTypes' => 'Address',
+            'maxResults' => 1,
         ]);
 
-        if (!$response->successful()) {
-            throw InvalidLocationException::invalidData('Richiesta API Bing Maps fallita');
+        if (! $response->successful()) {
+            throw InvalidLocationException::invalidData('Richiesta a Bing Maps fallita');
         }
 
-        /** @var array $data */
-        $data = $response->json();
-
-        if (empty($data) || !isset($data['resourceSets'])) {
-            throw InvalidLocationException::invalidData('Risposta API Bing Maps non valida');
-        }
-
-        return $data;
+        /** @var array<string, mixed> $jsonResponse */
+        $jsonResponse = $response->json();
+        return $jsonResponse;
     }
 
-    /**
-     * Parse the API response.
-     *
-     * @param array $response
-     * @return BingMapData
-     * @throws InvalidLocationException
-     */
     private function parseResponse(array $response): BingMapData
     {
         $resourceSets = $response['resourceSets'] ?? [];
-        
-        if (empty($resourceSets)) {
-            throw InvalidLocationException::invalidData('Nessun risultato trovato per le coordinate fornite');
-        }
-
         $resources = $resourceSets[0]['resources'] ?? [];
-        
-        if (empty($resources)) {
-            throw InvalidLocationException::invalidData('Nessuna risorsa trovata per le coordinate fornite');
+        $location = $resources[0] ?? null;
+
+        if (empty($location)) {
+            throw InvalidLocationException::invalidData('Nessun risultato trovato');
         }
 
-        return BingMapData::from($resources[0]);
+        return new BingMapData($location);
     }
 
-    /**
-     * Map the Bing Maps response to AddressData.
-     *
-     * @param BingMapData $data
-     * @return AddressData
-     */
     private function mapResponseToAddressData(BingMapData $data): AddressData
     {
+        $res = $data->toArray();
+
         return new AddressData(
-            latitude: $data->latitude ?? 0.0,
-            longitude: $data->longitude ?? 0.0,
-            country: $data->countryRegion ?? null,
-            city: $data->locality ?? null,
-            country_code: strtoupper($data->countryRegionIso2 ?? 'IT'),
-            postal_code: (int) ($data->postalCode ?? 0),
-            locality: $data->locality ?? null,
-            county: $data->adminDistrict2 ?? null,
-            street: $data->addressLine ?? null,
-            street_number: $data->houseNumber ?? null,
-            district: $data->neighborhood ?? null,
-            state: $data->adminDistrict ?? null,
+            latitude: (float) ($res['point']['coordinates'][0] ?? 0),
+            longitude: (float) ($res['point']['coordinates'][1] ?? 0),
+            country: $res['address']['countryRegion'] ?? null,
+            city: $res['address']['locality'] ?? null,
+            country_code: strtoupper($res['address']['countryRegionIso2'] ?? 'IT'),
+            postal_code: (int) ($res['address']['postalCode'] ?? 0),
+            locality: $res['address']['locality'] ?? null,
+            county: $res['address']['adminDistrict2'] ?? null,
+            street: $res['address']['addressLine'] ?? null,
+            street_number: $res['address']['houseNumber'] ?? null,
+            district: $res['address']['neighborhood'] ?? null,
+            state: $res['address']['adminDistrict'] ?? null,
         );
     }
 }

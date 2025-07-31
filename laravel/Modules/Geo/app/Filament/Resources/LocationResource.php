@@ -33,6 +33,21 @@ class LocationResource extends XotBaseResource
 
     protected static ?int $navigationSort = 2;
 
+    /**
+     * Converte le coordinate in formato float.
+     *
+     * @param array{lat?: string|float|null, lng?: string|float|null} $coordinates Le coordinate da convertire
+     *
+     * @return array{lat: float, lng: float} Le coordinate convertite in float
+     */
+    private static function formatCoordinates(array $coordinates): array
+    {
+        return [
+            'lat' => (float) ($coordinates['lat'] ?? 0),
+            'lng' => (float) ($coordinates['lng'] ?? 0),
+        ];
+    }
+
     public static function getFormSchema(): array
     {
         return [
@@ -66,67 +81,91 @@ class LocationResource extends XotBaseResource
                 ->defaultLocation([39.526610, -107.727261])
                 ->mapControls([
                     'zoomControl' => true,
-                    'mapTypeControl' => true,
-                    'scaleControl' => true,
-                    'streetViewControl' => true,
-                    'rotateControl' => true,
-                    'fullscreenControl' => true,
                 ])
+                ->debug()
+                ->clickable()
                 ->autocomplete('formatted_address')
                 ->autocompleteReverse()
                 ->reverseGeocode([
-                    'street' => 'street_number|route',
-                    'city' => 'locality',
-                    'state' => 'administrative_area_level_1',
-                    'zip' => 'postal_code',
-                ]),
+                    'city' => '%L',
+                    'zip' => '%z',
+                    'state' => '%A1',
+                    'street' => '%n %S',
+                ])
+                ->geolocate()
+                ->columnSpan(2),
         ];
     }
 
+    /**
+     * Definisce la tabella per la visualizzazione dei luoghi.
+     *
+     * La tabella include colonne per:
+     * - Nome del luogo
+     * - Indirizzo
+     * - Città
+     * - Stato
+     * - CAP
+     * Con funzionalità di ricerca e ordinamento per ogni colonna
+     *
+     * @param Table $table La tabella da configurare
+     *
+     * @return Table La tabella configurata
+     */
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('street')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('street'),
                 Tables\Columns\TextColumn::make('city')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('state')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('zip')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('zip'),
             ])
             ->filters([
-                RadiusFilter::make('location')
-                    ->section('Radius Filter')
-                    ->selectUnit(),
-            ], layout: FiltersLayout::AboveContent)
+                Tables\Filters\TernaryFilter::make('processed'),
+                RadiusFilter::make('radius')
+                    ->latitude('lat')
+                    ->longitude('lng')
+                    ->selectUnit()
+                    ->section('Radius Search'),
+            ]
+            )
+            ->filtersLayout(FiltersLayout::Dropdown)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                RadiusAction::make('location'),
+                RadiusAction::make('radius'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
+    /**
+     * Definisce le relazioni disponibili per questo resource.
+     *
+     * @return array Le relazioni configurate
+     */
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 
+    /**
+     * Definisce le pagine disponibili per questo resource.
+     *
+     * Include le pagine per:
+     * - Lista dei luoghi
+     * - Creazione nuovo luogo
+     * - Modifica luogo esistente
+     *
+     * @return array Le pagine configurate
+     */
     public static function getPages(): array
     {
         return [

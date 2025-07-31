@@ -7,7 +7,7 @@ namespace Modules\Geo\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * State model for geographical states.
+ * 
  *
  * @method static \Illuminate\Database\Eloquent\Builder|State newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|State newQuery()
@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class State extends Model
 {
-    /** @var list<string> */
     protected $fillable = [
         'state',
         'state_code',

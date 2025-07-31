@@ -12,29 +12,21 @@ use Modules\Geo\Datas\LocationData;
  * Questa action prende un punto centrale (latitudine e longitudine) e un array di coordinate,
  * e restituisce solo le coordinate che si trovano entro il raggio specificato dal punto centrale.
  *
- * @param float                                             $centerLatitude  La latitudine del punto centrale
- * @param float                                             $centerLongitude La longitudine del punto centrale
- * @param array<array{latitude: string, longitude: string}> $coordinates     Array di coordinate da filtrare
- * @param int                                               $radius          Raggio in metri entro cui filtrare le coordinate
- *
+ * @param  float  $centerLatitude  La latitudine del punto centrale
+ * @param  float  $centerLongitude  La longitudine del punto centrale
+ * @param  array<array{latitude: string, longitude: string}>  $coordinates  Array di coordinate da filtrare
+ * @param  int  $radius  Raggio in metri entro cui filtrare le coordinate
  * @return array<array{latitude: string, longitude: string}> Le coordinate filtrate
  */
 class FilterCoordinatesInRadiusAction
 {
     public function __construct(
         private readonly CalculateDistanceAction $calculateDistanceAction,
-    ) {
-    }
+    ) {}
 
     /**
-     * Filtra le coordinate entro il raggio specificato.
-     *
-     * @param float                                             $centerLatitude  Latitudine del punto centrale
-     * @param float                                             $centerLongitude Longitudine del punto centrale
-     * @param array<array{latitude: string, longitude: string}> $coordinates     Array di coordinate da filtrare
-     * @param int                                               $radius          Raggio in metri
-     *
-     * @return array<array{latitude: string, longitude: string}> Coordinate filtrate
+     * @param  array<array{latitude: string, longitude: string}>  $coordinates
+     * @return array<array{latitude: string, longitude: string}>
      */
     public function execute(
         float $centerLatitude,

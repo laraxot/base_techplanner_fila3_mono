@@ -6,7 +6,6 @@ namespace Modules\Geo\Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
-use Modules\Xot\Actions\Geo\GetDistanceExpressionAction;
 
 trait GeographicalScopes
 {
@@ -26,16 +25,22 @@ trait GeographicalScopes
         return $query->orderBy($this->getDistanceExpression($latitude, $longitude));
     }
 
-    /**
-     * Genera l'espressione SQL per il calcolo della distanza usando l'action centralizzata.
-     *
-     * @param float $latitude Latitudine del punto di riferimento
-     * @param float $longitude Longitudine del punto di riferimento
-     * @param string|null $alias Alias per l'espressione (opzionale)
-     * @return \Illuminate\Contracts\Database\Query\Expression Espressione SQL per il calcolo della distanza
-     */
-    public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): \Illuminate\Contracts\Database\Query\Expression
+    public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): Expression
     {
-        return app(GetDistanceExpressionAction::class)->execute($latitude, $longitude, $alias);
+        $sql = "
+            (6371 * acos(
+                cos(radians($latitude)) *
+                cos(radians(latitude)) *
+                cos(radians(longitude) - radians($longitude)) +
+                sin(radians($latitude)) *
+                sin(radians(latitude))
+            ))
+        ";
+        if (null !== $alias) {
+            $sql .= " AS $alias";
+        }
+
+        return \DB::raw($sql);
+        // AS distance
     }
 }

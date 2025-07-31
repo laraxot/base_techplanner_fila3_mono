@@ -7,7 +7,7 @@ namespace Modules\Geo\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * County model for geographical counties.
+ * 
  *
  * @method static \Illuminate\Database\Eloquent\Builder|County newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|County newQuery()
@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class County extends Model
 {
-    /** @var list<string> */
     protected $fillable = [
         'state_id',
         'county',

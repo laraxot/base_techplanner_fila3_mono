@@ -1,0 +1,83 @@
+# Regola: Documentazione Risoluzione Conflitti Git
+
+## Principio Fondamentale
+La documentazione di risoluzione conflitti Git **NON** deve mai rimanere nella root del progetto. Deve essere organizzata secondo la struttura corretta di Laraxot.
+
+## Struttura Corretta
+
+### ✅ DO - Posizionamento Corretto
+```
+# Documentazione specifica del modulo
+laravel/Modules/{ModuleName}/docs/git-conflicts/
+
+# Documentazione generale (se necessaria)
+docs/git-conflict-resolution/
+```
+
+### ❌ DON'T - Posizionamento Errato
+```
+# MAI nella root del progetto
+conflict-resolution-docs/
+temp-docs/
+```
+
+## Regole di Organizzazione
+
+1. **Documentazione Specifica Modulo**
+   - Posizionare in `Modules/{ModuleName}/docs/git-conflicts/`
+   - Include dettagli specifici del modulo
+   - Collegamenti bidirezionali con documentazione del modulo
+
+2. **Documentazione Generale**
+   - Posizionare in `docs/git-conflict-resolution/`
+   - Include best practices generali
+   - Riferimenti ai moduli specifici
+
+3. **Pulizia Post-Risoluzione**
+   - Rimuovere cartelle temporanee dalla root
+   - Aggiornare collegamenti e riferimenti
+   - Verificare che la documentazione sia accessibile
+
+## Best Practices
+
+1. **Durante la Risoluzione**
+   - Creare documentazione temporanea se necessario
+   - Documentare ogni decisione importante
+   - Mantenere traccia delle modifiche
+
+2. **Post-Risoluzione**
+   - Spostare documentazione nella struttura corretta
+   - Aggiornare collegamenti
+   - Rimuovere file temporanei
+   - Verificare conformità PHPStan
+
+3. **Manutenzione**
+   - Aggiornare documentazione quando necessario
+   - Mantenere collegamenti funzionanti
+   - Seguire convenzioni di naming
+
+## Esempio di Implementazione
+
+```bash
+# Durante la risoluzione (temporaneo)
+mkdir temp-conflict-docs
+# ... risoluzione conflitti ...
+
+# Post-risoluzione (permanente)
+mkdir -p laravel/Modules/Geo/docs/git-conflicts/
+mv temp-conflict-docs/* laravel/Modules/Geo/docs/git-conflicts/
+rm -rf temp-conflict-docs
+```
+
+## Collegamenti
+
+- [Regole Laraxot](../laraxot_conventions.mdc)
+- [Best Practices Git](../git-best-practices.mdc)
+- [Struttura Documentazione](../documentation-structure.mdc)
+
+---
+*Ultimo aggiornamento: 2025-07-31*
+description:
+globs:
+alwaysApply: false
+---

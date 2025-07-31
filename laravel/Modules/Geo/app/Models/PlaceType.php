@@ -7,7 +7,7 @@ namespace Modules\Geo\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * PlaceType model for geographical place types.
+ * 
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PlaceType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PlaceType newQuery()
@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PlaceType extends Model
 {
-    /** @var list<string> */
     protected $fillable = [
         'name',
         'description',
