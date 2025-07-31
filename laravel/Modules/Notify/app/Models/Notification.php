@@ -26,6 +26,7 @@ use Modules\Xot\Models\BaseModel;
  * @property array<string>|string|null $channels
  * @property string|null $status
  * @property \Illuminate\Support\Carbon|null $sent_at
+ * @property string|null $message
  * @property-read \Illuminate\Database\Eloquent\Model|null $creator
  * @property-read \Illuminate\Database\Eloquent\Model|null $updater
  * @method static \Modules\Notify\Database\Factories\NotificationFactory factory($count = null, $state = [])
