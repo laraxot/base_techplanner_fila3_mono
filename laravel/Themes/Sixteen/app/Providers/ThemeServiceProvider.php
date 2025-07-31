@@ -46,6 +46,9 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
         $this->publishes([
             __DIR__ . '/../../config' => config_path('themes/sixteen'),
         ], 'sixteen-config');
+        
+        // Registrazione Layout Shortcuts AGID
+        $this->registerLayoutShortcuts();
     }
 
     /**
@@ -61,6 +64,24 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
         });
     }
 
+    /**
+     * Registra i layout shortcuts AGID per il tema.
+     */
+    protected function registerLayoutShortcuts(): void
+    {
+        // Registrazione dei layout shortcuts per facilitare l'uso
+        $this->app['view']->addNamespace('layouts', __DIR__ . '/../../resources/views/layouts');
+        
+        // Alias per layout AGID-compliant
+        $this->app['view']->composer('layouts.guest-agid', function ($view) {
+            $view->with([
+                'theme_name' => 'Sixteen',
+                'agid_compliant' => true,
+                'accessibility_level' => 'WCAG 2.1 AA'
+            ]);
+        });
+    }
+    
     /**
      * Carica le configurazioni del tema.
      */
