@@ -62,15 +62,12 @@ class OptimizeRouteAction
         $shortestDistance = PHP_FLOAT_MAX;
 
         foreach ($locations as $location) {
-            $distanceResult = $this->calculateDistance->execute(
+            $distance = $this->calculateDistance->execute(
                 origin: $currentLocation,
                 destination: $location
             );
 
-            // Estrai il valore numerico della distanza
-            $distance = (float) ($distanceResult['distance']['value'] ?? PHP_FLOAT_MAX);
-
-            if ($distance < $shortestDistance) {
+            if (is_numeric($distance) && $distance < $shortestDistance) {
                 $shortestDistance = $distance;
                 $nearestLocation = $location;
             }

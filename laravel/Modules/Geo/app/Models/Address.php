@@ -40,7 +40,6 @@ use Modules\Geo\Enums\AddressTypeEnum;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * // implements HasGeolocation
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property string|null $deleted_by

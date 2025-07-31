@@ -299,6 +299,8 @@ class ListClients extends XotBaseListRecords
         $this->applySort('distance');
     }
 
+    
+
     protected function getTableQuery(): Builder
     {
         $query = parent::getTableQuery();

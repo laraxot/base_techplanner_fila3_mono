@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'navigation' => [
         'icons' => [
@@ -44,37 +46,37 @@ return [
             'location-map' => [
                 'label' => 'Location Map',
                 'description' => 'View and manage locations on the map',
-                'sort' => '1',
+                'sort' => 1,
             ],
             'lat-lng' => [
                 'label' => 'Coordinates',
                 'description' => 'Geographic coordinates management',
-                'sort' => '2',
+                'sort' => 2,
             ],
             'webbingbrasil-map' => [
                 'label' => 'Webbingbrasil Map',
                 'description' => 'Map view with Webbingbrasil',
-                'sort' => '3',
+                'sort' => 3,
             ],
             'osm-map' => [
                 'label' => 'OSM Map',
                 'description' => 'OpenStreetMap view',
-                'sort' => '4',
+                'sort' => 4,
             ],
             'dotswan-map' => [
                 'label' => 'Dotswan Map',
                 'description' => 'Map view with Dotswan',
-                'sort' => '5',
+                'sort' => 5,
             ],
             'setting-page' => [
                 'label' => 'Settings',
                 'description' => 'Geo module configuration',
-                'sort' => '6',
+                'sort' => 6,
             ],
         ],
         'name' => 'Geo',
         'group' => 'Mappe',
-        'sort' => '20',
+        'sort' => 20,
         'icon' => 'geo-menu',
         'badge' => [
             'color' => 'success',
@@ -104,7 +106,7 @@ return [
             'navigation' => [
                 'name' => 'Mappa',
                 'group' => 'Geo',
-                'sort' => '10',
+                'sort' => 10,
                 'icon' => 'geo-map',
                 'badge' => [
                     'color' => 'info',
@@ -129,7 +131,7 @@ return [
             'navigation' => [
                 'name' => 'Posizioni',
                 'group' => 'Geo',
-                'sort' => '20',
+                'sort' => 20,
                 'icon' => 'geo-location',
                 'badge' => [
                     'color' => 'warning',

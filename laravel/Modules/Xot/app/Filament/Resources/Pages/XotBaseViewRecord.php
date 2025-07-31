@@ -11,7 +11,7 @@ use Filament\Resources\Pages\ViewRecord as FilamentViewRecord;
 abstract class XotBaseViewRecord extends FilamentViewRecord
 {
     // Aggiungi qui eventuali metodi o proprietà comuni a tutte le pagine di visualizzazione
-    final public function infolist(Infolist $infolist): Infolist
+    public function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema($this->getInfolistSchema());
     }

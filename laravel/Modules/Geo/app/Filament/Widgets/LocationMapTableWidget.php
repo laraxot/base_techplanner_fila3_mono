@@ -96,7 +96,7 @@ class LocationMapTableWidget extends MapTableWidget
         return Location::query()->latest();
     }
 
-    protected function getTableColumns(): array
+    public function getTableColumns(): array
     {
         return [
             TextColumn::make('name')
@@ -236,6 +236,6 @@ class LocationMapTableWidget extends MapTableWidget
         /** @var string|null $iconUrl */
         $iconUrl = $iconConfig['url'] ?? null;
         
-        return is_string($iconUrl) ? $iconUrl : null;
+                return is_string($iconUrl) ? $iconUrl : null;
     }
 }

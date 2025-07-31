@@ -37,6 +37,5 @@ node_modules
 vendor
 vendor/
 build/
--e 
 # PHPStan documentation
 docs/phpstan/

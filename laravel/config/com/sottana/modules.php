@@ -1,13 +1,13 @@
 <?php
 
-use Modules\Tenant\Services\TenantService;
+// use Modules\Tenant\Services\TenantService;
 use Nwidart\Modules\Activators\FileActivator;
 
 return [
     'activators' => [
         'file' => [
             'class' => FileActivator::class,
-            'statuses-file' => TenantService::filePath('modules_statuses.json'),
+            'statuses-file' => base_path('config/modules_statuses.json'),
         ],
     ],
 ];
