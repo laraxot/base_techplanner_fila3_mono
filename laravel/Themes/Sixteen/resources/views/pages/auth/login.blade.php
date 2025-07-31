@@ -9,32 +9,43 @@ name('login');
 
 ?>
 
-<x-pub_theme::layouts.main>
+<x-layouts.guest>
     <x-slot name="title">
-        {{ __('auth.login.title') }}
+        {{ __('auth.login.title') }} - {{ config('app.name') }}
     </x-slot>
 
-    <div class="flex flex-col items-center justify-center min-h-screen py-10">
-        
-        <div class="w-full max-w-md">
-            <x-pub_theme::ui.logo class="w-auto h-10 text-gray-700 fill-current dark:text-gray-100 mx-auto mb-6" />
-
-            <h2 class="mt-5 text-2xl font-extrabold leading-9 text-center text-gray-800 dark:text-gray-200">
-                {{ __('auth.login.title') }}
-            </h2>
-            <div class="text-sm leading-5 text-center text-gray-600 dark:text-gray-400 space-x-0.5">
-                <span>{{ __('auth.login.or') }}</span>
-                <x-pub_theme::ui.text-link href="{{ url('/' . app()->getLocale() . '/auth/register') }}">
-                    {{ __('auth.login.create_account') }}
-                </x-pub_theme::ui.text-link>
-            </div>
-        </div>
-
-        <div class="mt-8 w-full max-w-md">
-            <div class="px-10 py-8 bg-white dark:bg-gray-950/50 border border-gray-200/60 dark:border-gray-200/10 rounded-lg shadow-sm">
-                @livewire(\Modules\User\Http\Livewire\Auth\Login::class)
-            </div>
-        </div>
-
+    <!-- Skip Links for Accessibility (AGID Compliant) -->
+    <div class="sr-only focus:not-sr-only">
+        <a href="#main-content" 
+           class="absolute top-0 left-0 bg-blue-600 text-white px-4 py-2 z-50 focus:relative">
+            Salta al contenuto principale
+        </a>
+        <a href="#login-form" 
+           class="absolute top-0 left-0 bg-blue-600 text-white px-4 py-2 z-50 focus:relative">
+            Vai al modulo di accesso
+        </a>
     </div>
-</x-pub_theme::layouts.main>
+
+    <!-- AGID Institutional Header -->
+    <div class="bg-blue-600 text-white py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <x-pub_theme::ui.logo class="h-8 w-auto text-white" />
+                    <span class="font-semibold">{{ config('app.institution_name', 'Ente di appartenenza') }}</span>
+                </div>
+                @if(config('app.institution_url'))
+                    <a href="{{ config('app.institution_url') }}" 
+                       class="text-white hover:text-blue-200 transition-colors"
+                       target="_blank" rel="noopener noreferrer">
+                        Vai al sito dell'ente
+                    </a>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation (AGID Compliant) -->
+    <nav class="bg-gray-50 py-3 border-b border-gray-200" aria-label="Percorso di navigazione">
+        <div class="container mx-auto px-4">
+            <ol class="flex items-center space-x-2 text-sm">

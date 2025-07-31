@@ -8,7 +8,28 @@
 
 ## Service Providers
 - XotBaseServiceProvider: Core service registration
+- XotBaseMainPanelProvider: **CRITICO** - Base Panel Provider per Filament
 - GeoService: Location-based services
+
+### Regola Critica: Panel Provider Filament
+**CRITICO**: Il file `laravel/app/Providers/Filament/AdminPanelProvider.php` deve **SEMPRE** estendere `Modules\Xot\Providers\Filament\XotBaseMainPanelProvider`, **MAI** direttamente `Filament\PanelProvider`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Providers\Filament;
+
+use Modules\Xot\Providers\Filament\XotBaseMainPanelProvider;
+
+class AdminPanelProvider extends XotBaseMainPanelProvider
+{
+    // Implementazione specifica se necessaria
+}
+```
+
+**Motivazione**: Centralizzazione configurazione, coerenza tra progetti, manutenibilità, funzionalità core incluse.
 
 ## Data Transfer Objects
 - LocationDTO: Represents geographic locations

@@ -1,0 +1,61 @@
+# Regola Critica: Panel Provider Filament
+
+## Regola Fondamentale
+**CRITICO**: Il file `laravel/app/Providers/Filament/AdminPanelProvider.php` deve **SEMPRE** estendere `Modules\Xot\Providers\Filament\XotBaseMainPanelProvider`, **MAI** direttamente `Filament\PanelProvider`.
+
+## Pattern Corretto
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Providers\Filament;
+
+use Modules\Xot\Providers\Filament\XotBaseMainPanelProvider;
+
+class AdminPanelProvider extends XotBaseMainPanelProvider
+{
+    // Implementazione specifica se necessaria
+}
+```
+
+## Anti-pattern (MAI USARE)
+```php
+<?php
+
+namespace App\Providers\Filament;
+
+use Filament\PanelProvider;
+
+class AdminPanelProvider extends PanelProvider
+{
+    // ERRORE: Non estende XotBaseMainPanelProvider
+}
+```
+
+## Motivazione
+1. **Centralizzazione**: XotBaseMainPanelProvider contiene tutta la configurazione base
+2. **Coerenza**: Garantisce configurazione uniforme in tutti i progetti Laraxot
+3. **Manutenibilità**: Modifiche base applicate automaticamente
+4. **Funzionalità**: Include middleware, autenticazione, navigazione core
+
+## Errori Comuni
+- `Class "Modules\Xot\Providers\Filament\XotBaseMainPanelProvider" not found`
+- Funzionalità mancanti (autenticazione, navigazione)
+- Duplicazione di configurazione
+
+## Soluzioni
+1. Verificare esistenza file `XotBaseMainPanelProvider.php`
+2. Eseguire `composer dump-autoload`
+3. Verificare modulo Xot attivo
+4. Controllare namespace corretto
+
+## Collegamenti
+- [docs/filament_panel_provider_rules.md](mdc:../../docs/filament_panel_provider_rules.md)
+- [Modules/Xot/docs/PANEL_PROVIDER.md](mdc:../../laravel/Modules/Xot/docs/PANEL_PROVIDER.md)
+
+*Ultimo aggiornamento: 2025-01-06*
+description:
+globs:
+alwaysApply: false
+---

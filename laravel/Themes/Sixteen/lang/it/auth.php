@@ -3,53 +3,40 @@
 declare(strict_types=1);
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines - Tema Sixteen
-    |--------------------------------------------------------------------------
-    |
-    | Le seguenti righe di lingua sono utilizzate durante l'autenticazione
-    | per vari messaggi che dobbiamo mostrare all'utente. Puoi modificare
-    | liberamente queste righe di lingua in base alle esigenze della tua applicazione.
-    |
-    */
-
-    // Messaggi generali di autenticazione
-    'failed' => 'Le credenziali fornite non sono corrette.',
-    'password' => 'La password inserita non è corretta.',
-    'throttle' => 'Troppi tentativi di accesso. Riprova fra :seconds secondi.',
-    'general_error' => 'Si è verificato un errore. Riprova più tardi.',
-    'unauthorized' => 'Non hai i permessi necessari per questa operazione.',
-
-    // Login
     'login' => [
-        'title' => 'Accedi',
-        'email' => 'Email',
+        'title' => 'Accesso ai servizi',
+        'description' => 'Inserisci le tue credenziali per accedere a :service',
+        'no_account' => 'Non hai un account?',
+        'create_account' => 'Registrati',
+        'security_title' => 'Connessione sicura',
+        'security_message' => 'I tuoi dati sono protetti con crittografia SSL',
+        'accessibility_info' => 'Questo servizio è accessibile secondo le linee guida WCAG 2.1 AA.',
+        'accessibility_declaration' => 'Dichiarazione di accessibilità',
+        'keyboard_navigation' => 'Usa Tab per navigare tra i campi e Invio per inviare il modulo.',
+        'or' => 'oppure',
+        'email' => 'Indirizzo email',
         'password' => 'Password',
         'remember_me' => 'Ricordami',
         'forgot_password' => 'Password dimenticata?',
         'submit' => 'Accedi',
-        'or' => 'oppure',
-        'create_account' => 'crea un account',
-        'link' => 'Accedi',
-        'success' => 'Accesso effettuato con successo',
-        'error' => 'Errore durante il login',
-        'error_message' => 'Si è verificato un errore durante il login. Riprova più tardi.',
-        'validation_error' => 'Errore di validazione',
-        'invalid_credentials' => 'Le credenziali fornite non sono corrette.',
+        'help' => 'Hai bisogno di aiuto?',
     ],
-
-    // Registrazione
     'register' => [
-        'title' => 'Registrati',
-        'name' => 'Nome',
-        'email' => 'Email',
+        'title' => 'Registrazione',
+        'description' => 'Crea il tuo account per accedere ai servizi',
+        'name' => 'Nome completo',
+        'email' => 'Indirizzo email',
         'password' => 'Password',
-        'password_confirmation' => 'Conferma Password',
+        'password_confirmation' => 'Conferma password',
         'submit' => 'Registrati',
         'already_registered' => 'Hai già un account?',
-        'link' => 'Registrati',
+        'login' => 'Accedi',
     ],
+    'failed' => 'Le credenziali fornite non corrispondono ai nostri record.',
+    'password' => 'La password fornita non è corretta.',
+    'throttle' => 'Troppi tentativi di accesso. Riprova tra :seconds secondi.',
+    'general_error' => 'Si è verificato un errore. Riprova più tardi.',
+    'unauthorized' => 'Non hai i permessi necessari per questa operazione.',
 
     // Logout
     'logout' => [

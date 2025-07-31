@@ -1,5 +1,45 @@
 # Correzione Implementazione Login - Tema Sixteen
 
+## 🚨 REGOLA CRITICA FONDAMENTALE
+
+### AdminPanelProvider - LEGGE ASSOLUTA
+
+**`AdminPanelProvider` deve SEMPRE estendere `XotBaseMainPanelProvider`**
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Providers\Filament;
+
+use Modules\Xot\Providers\Filament\XotBaseMainPanelProvider;
+
+class AdminPanelProvider extends XotBaseMainPanelProvider
+{
+    // Implementazione specifica del progetto
+}
+```
+
+**❌ MAI FARE**:
+```php
+// ERRATO - NON USARE MAI
+class AdminPanelProvider extends PanelProvider
+{
+    // Questo è SBAGLIATO!
+}
+```
+
+**✅ SEMPRE FARE**:
+```php
+// CORRETTO - USARE SEMPRE
+class AdminPanelProvider extends XotBaseMainPanelProvider
+{
+    // Questo è GIUSTO!
+}
+```
+
+---
+
 ## Problema Identificato
 
 Il tema Sixteen non era configurato correttamente per funzionare con il sistema di autenticazione. Inoltre, non ho seguito la **REGOLA CRITICA** per l'autenticazione: **per i form di autenticazione utilizzare SEMPRE widget Filament, NON Volt!**

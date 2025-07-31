@@ -1,0 +1,62 @@
+# Memoria: Panel Provider Filament - Regola Critica
+
+## Regola Fondamentale (LEGGE)
+**CRITICO**: Il file `laravel/app/Providers/Filament/AdminPanelProvider.php` deve **SEMPRE** estendere `Modules\Xot\Providers\Filament\XotBaseMainPanelProvider`, **MAI** direttamente `Filament\PanelProvider`.
+
+## Pattern Corretto (SEMPRE USARE)
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Providers\Filament;
+
+use Modules\Xot\Providers\Filament\XotBaseMainPanelProvider;
+
+class AdminPanelProvider extends XotBaseMainPanelProvider
+{
+    // Implementazione specifica se necessaria
+}
+```
+
+## Anti-pattern (MAI USARE)
+```php
+<?php
+
+namespace App\Providers\Filament;
+
+use Filament\PanelProvider;
+
+class AdminPanelProvider extends PanelProvider
+{
+    // ERRORE: Non estende XotBaseMainPanelProvider
+}
+```
+
+## Motivazione
+1. **Centralizzazione**: XotBaseMainPanelProvider contiene tutta la configurazione base di Filament
+2. **Coerenza**: Garantisce che tutti i progetti Laraxot abbiano la stessa configurazione di base
+3. **Manutenibilità**: Le modifiche alla configurazione base vengono applicate automaticamente
+4. **Funzionalità**: Include middleware, autenticazione, navigazione e altre funzionalità core
+
+## Errori Comuni da Evitare
+- `Class "Modules\Xot\Providers\Filament\XotBaseMainPanelProvider" not found`
+- Funzionalità mancanti (autenticazione, navigazione)
+- Duplicazione di configurazione
+
+## Soluzioni Immediate
+1. Verificare esistenza file `XotBaseMainPanelProvider.php` in `Modules/Xot/app/Providers/Filament/`
+2. Eseguire `composer dump-autoload`
+3. Verificare che il modulo Xot sia attivo
+4. Controllare che il namespace sia corretto
+
+## Documentazione Correlata
+- [docs/filament_panel_provider_rules.md](mdc:../../docs/filament_panel_provider_rules.md)
+- [Modules/Xot/docs/PANEL_PROVIDER.md](mdc:../../laravel/Modules/Xot/docs/PANEL_PROVIDER.md)
+
+*Questa è LEGGE - Non dimenticare mai!*
+*Ultimo aggiornamento: 2025-01-06*
+description:
+globs:
+alwaysApply: false
+---

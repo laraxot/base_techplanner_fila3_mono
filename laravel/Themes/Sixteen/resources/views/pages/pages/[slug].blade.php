@@ -6,7 +6,7 @@ use Illuminate\View\View;
 use function Laravel\Folio\{withTrashed,middleware, name,render};
 
 withTrashed();
-name('page_slug.view');
+name('pages.view');
 //middleware(['auth', 'verified']);
 
 render(function (View $view, string $slug) {

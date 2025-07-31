@@ -1,5 +1,57 @@
 # Regole Critiche di Sviluppo - TechPlanner
 
+## ⚠️ LEGGE ARCHITETTONICA CRITICA: AdminPanelProvider Extension
+
+### 🚨 REGOLA OBBLIGATORIA NON NEGOZIABILE
+**AdminPanelProvider DEVE SEMPRE estendere XotBaseMainPanelProvider**
+
+**File**: `/app/Providers/Filament/AdminPanelProvider.php`  
+**DEVE estendere**: `Modules\Xot\Providers\Filament\XotBaseMainPanelProvider`
+
+### Implementazione Corretta OBBLIGATORIA:
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Providers\Filament;
+
+use Modules\Xot\Providers\Filament\XotBaseMainPanelProvider;
+
+class AdminPanelProvider extends XotBaseMainPanelProvider
+{
+    // Implementazione segue i pattern XotBase
+}
+```
+
+### Perché Questa Regola È LEGGE:
+1. **Coerenza Architettonica**: Garantisce che tutti i progetti Laraxot seguano la stessa struttura base
+2. **Ereditarietà Funzionalità**: Eredita tutte le funzionalità e pattern XotBase
+3. **Manutenibilità**: Aggiornamenti e miglioramenti centralizzati attraverso la classe base
+4. **Conformità Standard**: Impone le convenzioni del framework Laraxot
+
+### Verifica Compliance:
+```bash
+# Verifica implementazione corrente
+grep -n "extends" /var/www/html/_bases/base_techplanner_fila3_mono/laravel/app/Providers/Filament/AdminPanelProvider.php
+
+# Verifica import namespace
+grep -n "XotBaseMainPanelProvider" /var/www/html/_bases/base_techplanner_fila3_mono/laravel/app/Providers/Filament/AdminPanelProvider.php
+```
+
+### ❌ ANTI-PATTERN VIETATI:
+```php
+// ❌ MAI FARE QUESTO
+class AdminPanelProvider extends PanelProvider
+{
+    // Questo viola l'architettura Laraxot
+}
+```
+
+**Status Progetto Corrente**: ✅ CONFORME - AdminPanelProvider estende correttamente XotBaseMainPanelProvider
+
+---
+
 ## Regola Fondamentale: Verifica Componenti Prima dell'Uso
 
 ### ⚠️ REGOLA OBBLIGATORIA - Mai Usare Componenti Senza Verifica
