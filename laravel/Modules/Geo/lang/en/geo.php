@@ -1,20 +1,7 @@
 <?php
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 declare(strict_types=1);
 
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-declare(strict_types=1);
-
-=======
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
 return [
     'navigation' => [
         'icons' => [
@@ -59,148 +46,42 @@ return [
             'location-map' => [
                 'label' => 'Location Map',
                 'description' => 'View and manage locations on the map',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                'sort' => '1',
-=======
                 'sort' => 1,
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-                'sort' => 1,
-=======
-                'sort' => '1',
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-                'sort' => '1',
->>>>>>> 6f0eea5 (.)
             ],
             'lat-lng' => [
                 'label' => 'Coordinates',
                 'description' => 'Geographic coordinates management',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                'sort' => '2',
-=======
                 'sort' => 2,
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-                'sort' => 2,
-=======
-                'sort' => '2',
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-                'sort' => '2',
->>>>>>> 6f0eea5 (.)
             ],
             'webbingbrasil-map' => [
                 'label' => 'Webbingbrasil Map',
                 'description' => 'Map view with Webbingbrasil',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                'sort' => '3',
-=======
                 'sort' => 3,
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-                'sort' => 3,
-=======
-                'sort' => '3',
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-                'sort' => '3',
->>>>>>> 6f0eea5 (.)
             ],
             'osm-map' => [
                 'label' => 'OSM Map',
                 'description' => 'OpenStreetMap view',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                'sort' => '4',
-=======
                 'sort' => 4,
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-                'sort' => 4,
-=======
-                'sort' => '4',
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-                'sort' => '4',
->>>>>>> 6f0eea5 (.)
             ],
             'dotswan-map' => [
                 'label' => 'Dotswan Map',
                 'description' => 'Map view with Dotswan',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                'sort' => '5',
-=======
                 'sort' => 5,
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-                'sort' => 5,
-=======
-                'sort' => '5',
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-                'sort' => '5',
->>>>>>> 6f0eea5 (.)
             ],
             'setting-page' => [
                 'label' => 'Settings',
                 'description' => 'Geo module configuration',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                'sort' => '6',
+                'sort' => 6,
             ],
         ],
         'name' => 'Geo',
-        'group' => 'Mappe',
-        'sort' => '20',
+        'group' => 'Maps',
+        'sort' => 20,
         'icon' => 'geo-menu',
         'badge' => [
             'color' => 'success',
             'label' => 'Online',
         ],
-=======
-                'sort' => 6,
-            ],
-        ],
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-                'sort' => 6,
-            ],
-        ],
-=======
-=======
->>>>>>> 6f0eea5 (.)
-                'sort' => '6',
-            ],
-        ],
-        'name' => 'Geo',
-        'group' => 'Mappe',
-        'sort' => '20',
-        'icon' => 'geo-menu',
-        'badge' => [
-            'color' => 'success',
-            'label' => 'Online',
-        ],
-<<<<<<< HEAD
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
     ],
     'status' => [
         'waiting' => 'Waiting...',
@@ -220,49 +101,41 @@ return [
         'deleted' => 'Successfully deleted',
         'error' => 'An error occurred',
     ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
     'sections' => [
         'map' => [
             'navigation' => [
-                'name' => 'Mappa',
+                'name' => 'Map',
                 'group' => 'Geo',
-                'sort' => '10',
+                'sort' => 10,
                 'icon' => 'geo-map',
                 'badge' => [
                     'color' => 'info',
-                    'label' => 'Interattiva',
+                    'label' => 'Interactive',
                 ],
             ],
             'fields' => [
-                'zoom' => 'Livello Zoom',
-                'center' => 'Centro Mappa',
-                'type' => 'Tipo Mappa',
-                'markers' => 'Marcatori',
-                'bounds' => 'Confini',
+                'zoom' => 'Zoom Level',
+                'center' => 'Map Center',
+                'type' => 'Map Type',
+                'markers' => 'Markers',
+                'bounds' => 'Bounds',
             ],
             'types' => [
-                'roadmap' => 'Stradale',
+                'roadmap' => 'Road',
                 'satellite' => 'Satellite',
-                'hybrid' => 'Ibrida',
-                'terrain' => 'Terreno',
+                'hybrid' => 'Hybrid',
+                'terrain' => 'Terrain',
             ],
         ],
         'location' => [
             'navigation' => [
-                'name' => 'Posizioni',
+                'name' => 'Locations',
                 'group' => 'Geo',
-                'sort' => '20',
+                'sort' => 20,
                 'icon' => 'geo-location',
                 'badge' => [
                     'color' => 'warning',
-                    'label' => 'Da Verificare',
+                    'label' => 'To Verify',
                 ],
             ],
             'fields' => [
@@ -311,19 +184,10 @@ return [
             ],
         ],
         'filters' => [
-            'radius' => 'Raggio',
-            'category' => 'Categoria',
-            'status' => 'Stato',
-            'date_range' => 'Periodo',
+            'radius' => 'Radius',
+            'category' => 'Category',
+            'status' => 'Status',
+            'date_range' => 'Date Range',
         ],
     ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
 ];

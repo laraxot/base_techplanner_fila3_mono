@@ -13,60 +13,8 @@ use Modules\Geo\Database\Factories\PlaceFactory;
 
 use function Safe\json_encode;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 /**
- * 
- *
- * @property-read \Modules\Geo\Models\Address|null $address
- * @property-read \Modules\SaluteOra\Models\Profile|null $creator
- * @property-read string $formatted_address
- * @property-read float|null $latitude
- * @property-read float|null $longitude
- * @property-read \Illuminate\Database\Eloquent\Model $linked
- * @property-read \Modules\Geo\Models\PlaceType|null $placeType
- * @property-read \Modules\SaluteOra\Models\Profile|null $updater
- * @method static \Modules\Geo\Database\Factories\PlaceFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place query()
- * @property int $id
- * @property string|null $model_type
- * @property int|null $model_id
- * @property string|null $nearest_street
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property string|null $deleted_by
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $post_type
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereFormattedAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereLatitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereLongitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereModelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereModelType($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereNearestStreet($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place wherePostType($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedBy($value)
- * @mixin \Eloquent
- */
-class Place extends BaseModel implements HasGeolocation
-{
-=======
-class Place extends BaseModel implements HasGeolocation
-{
-=======
-=======
->>>>>>> 6f0eea5 (.)
-/**
- * 
+ * Place model for geographical locations.
  *
  * @property-read \Modules\Geo\Models\Address|null $address
  * @property-read \Modules\User\Models\Profile|null $creator
@@ -108,7 +56,8 @@ class Place extends BaseModel implements HasGeolocation
  */
 class Place extends BaseModel implements HasGeolocation
 {
->>>>>>> 0e7ec50 (.)
+    use HasFactory;
+
     /**
      * List of address components used in the application.
      *
@@ -128,19 +77,8 @@ class Place extends BaseModel implements HasGeolocation
         'point_of_interest',
         'political'
     ];
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-class Place extends BaseModel implements HasGeolocation
-{
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
-    use HasFactory;
 
+    /** @var list<string> */
     protected $fillable = [
         'id', 'post_id', 'post_type', 'model_id', 'model_type',
         'premise', 'locality', 'postal_town', 'administrative_area_level_3',
@@ -163,23 +101,25 @@ class Place extends BaseModel implements HasGeolocation
             'latitude' => 'float',
             'longitude' => 'float',
             'extra_data' => 'array',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 
     /**
-     * @return MorphTo<Model, self>
+     * Get the linked model.
      *
-     * @phpstan-ignore-next-line
+     * @return MorphTo<Model, self>
      */
     public function linked(): MorphTo
     {
-        return $this->morphTo('post');
+        return $this->morphTo();
     }
 
     /**
-     * @return BelongsTo<PlaceType, self>
+     * Get the place type.
      *
-     * @phpstan-ignore-next-line
+     * @return BelongsTo<PlaceType, self>
      */
     public function placeType(): BelongsTo
     {
@@ -187,106 +127,130 @@ class Place extends BaseModel implements HasGeolocation
     }
 
     /**
-     * @return BelongsTo<Address, self>
+     * Get the address.
      *
-     * @phpstan-ignore-next-line
+     * @return BelongsTo<Address, self>
      */
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
     }
 
+    /**
+     * Get the latitude.
+     *
+     * @return float|null
+     */
     public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
+    /**
+     * Get the longitude.
+     *
+     * @return float|null
+     */
     public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
+    /**
+     * Get the formatted address.
+     *
+     * @return string
+     */
     public function getFormattedAddress(): string
     {
         return (string) ($this->formatted_address ?? $this->address->formatted_address ?? '');
     }
 
+    /**
+     * Get the latitude attribute.
+     *
+     * @return float|null
+     */
     public function getLatitudeAttribute(): ?float
     {
-        if (! isset($this->attributes['latitude'])) {
-            return null;
+        if (isset($this->attributes['latlng'])) {
+            $latlng = json_decode($this->attributes['latlng'], true);
+
+            return $latlng['lat'] ?? null;
         }
 
-        $latitude = $this->attributes['latitude'];
-        if (! is_numeric($latitude)) {
-            return null;
-        }
-
-        $latitude = (float) $latitude;
-
-        return is_finite($latitude) && $latitude >= -90 && $latitude <= 90 ? $latitude : null;
+        return $this->attributes['latitude'] ?? null;
     }
 
+    /**
+     * Get the longitude attribute.
+     *
+     * @return float|null
+     */
     public function getLongitudeAttribute(): ?float
     {
-        if (! isset($this->attributes['longitude'])) {
-            return null;
+        if (isset($this->attributes['latlng'])) {
+            $latlng = json_decode($this->attributes['latlng'], true);
+
+            return $latlng['lng'] ?? null;
         }
 
-        $longitude = $this->attributes['longitude'];
-        if (! is_numeric($longitude)) {
-            return null;
-        }
-
-        $longitude = (float) $longitude;
-
-        return is_finite($longitude) && $longitude >= -180 && $longitude <= 180 ? $longitude : null;
+        return $this->attributes['longitude'] ?? null;
     }
 
+    /**
+     * Get the formatted address attribute.
+     *
+     * @return string
+     */
     public function getFormattedAddressAttribute(): string
     {
-        $address = $this->attributes['formatted_address'] ?? '';
-
-        return is_string($address) ? $address : '';
+        return $this->getFormattedAddress();
     }
 
+    /**
+     * Check if the place has valid coordinates.
+     *
+     * @return bool
+     */
     public function hasValidCoordinates(): bool
     {
-        return null !== $this->latitude
-            && null !== $this->longitude
-            && $this->latitude >= -90
-            && $this->latitude <= 90
-            && $this->longitude >= -180
-            && $this->longitude <= 180;
+        return $this->latitude !== null && $this->longitude !== null;
     }
 
+    /**
+     * Get the map icon.
+     *
+     * @return string|null
+     */
     public function getMapIcon(): ?string
     {
-        $type = $this->placeType->slug ?? 'default';
-        $markerConfig = config("geo.markers.types.{$type}");
-
-        if (! is_array($markerConfig)) {
-            $markerConfig = config('geo.markers.types.default');
+        if ($this->placeType) {
+            return $this->placeType->icon;
         }
 
-        if (! is_array($markerConfig)) {
-            return null;
-        }
-
-        $icon = $markerConfig['icon'] ?? null;
-
-        if (is_array($icon)) {
-            return json_encode($icon);
-        }
-
-        return is_string($icon) ? $icon : null;
+        return null;
     }
 
+    /**
+     * Get the location type.
+     *
+     * @return string|null
+     */
     public function getLocationType(): ?string
     {
-        return $this->placeType->name ?? null;
+        if ($this->placeType) {
+            return $this->placeType->name;
+        }
+
+        return null;
     }
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return PlaceFactory
+     */
     protected static function newFactory(): PlaceFactory
     {
         return PlaceFactory::new();

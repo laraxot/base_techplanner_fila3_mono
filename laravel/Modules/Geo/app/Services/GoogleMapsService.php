@@ -88,141 +88,57 @@ class GoogleMapsService extends BaseGeoService
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-
-
-
-=======
-=======
->>>>>>> 0e7ec50 (.)
     /**
-     * @return array{
-     *     results: array<array{
-     *         elevation: float,
-     *         location: array{lat: float, lng: float},
-     *         resolution: float
-     *     }>,
-     *     status: string
-     * }
-     */
-    public function getElevation(float $latitude, float $longitude): array
-    {
-        $cacheKey = "elevation:{$latitude},{$longitude}";
-
-        return Cache::remember($cacheKey, now()->addDay(), function () use ($latitude, $longitude) {
-            $response = Http::get("{$this->baseUrl}/elevation/json", [
-                'locations' => "{$latitude},{$longitude}",
-                'key' => $this->apiKey,
-            ]);
-
-            if (! $response->successful() || 'OK' !== $response->json('status')) {
-                throw new \RuntimeException('Failed to get elevation data');
-            }
-
-            return $response->json();
-        });
-    }
-
-    /**
-     * @return array{
-     *     destination_addresses: array<string>,
-     *     origin_addresses: array<string>,
-     *     rows: array<array{
-     *         elements: array<array{
-     *             distance?: array{text: string, value: int},
-     *             duration?: array{text: string, value: int},
-     *             status: string
-     *         }>
-     *     }>,
-     *     status: string
-     * }|null
-     */
-    public function getDistanceMatrix(string $origins, string $destinations): ?array
-    {
-        $cacheKey = "distance_matrix:{$origins}:{$destinations}";
-
-        /** @var array|null $result */
-        $result = Cache::remember($cacheKey, now()->addDay(), function () use ($origins, $destinations) {
-            $response = Http::get("{$this->baseUrl}/distancematrix/json", [
-                'origins' => $origins,
-                'destinations' => $destinations,
-                'key' => $this->apiKey,
-            ]);
-
-            if (! $response->successful() || 'OK' !== $response->json('status')) {
-                return null;
-            }
-
-            /** @var array{
-             * destination_addresses: array<string>,
-             * origin_addresses: array<string>,
-             * rows: array<array{
-             * elements: array<array{
-             * distance?: array{text: string, value: int},
-             * duration?: array{text: string, value: int},
-             * status: string
-             * }>
-             * }>,
-             * status: string
-             * }|null $data */
-            $data = $response->json();
-
-            return $data;
-        });
-
-        return $result;
-    }
-
-    /**
-     * @return array{lat: float, lng: float}|null
+     * Ottiene le coordinate per un indirizzo.
+     *
+     * @throws GoogleMapsApiException Se la richiesta fallisce
+     *
+     * @return array<string, mixed>|null
      */
     public function getCoordinatesByAddress(string $address): ?array
     {
-        $cacheKey = 'geocode:'.md5($address);
-
-        /** @var array{lat: float, lng: float}|null $result */
-        $result = Cache::remember($cacheKey, now()->addWeek(), function () use ($address) {
-            $response = Http::get("{$this->baseUrl}/geocode/json", [
+        try {
+            $response = $this->makeRequest('GET', self::GEOCODING_URL, [
                 'address' => $address,
-                'key' => $this->apiKey,
+                'key' => $this->getApiKey(),
+                'language' => 'it',
             ]);
 
-            if (! $response->successful()
-                || 'OK' !== $response->json('status')
-                || empty($response->json('results'))) {
+            if (empty($response['results'])) {
                 return null;
             }
 
-            /** @var array{results: array<array{geometry: array{location: array{lat: float, lng: float}}}>} $data */
-            $data = $response->json();
+            $location = $response['results'][0]['geometry']['location'];
 
-            if (empty($data['results'][0]['geometry']['location'])) {
-                return null;
-            }
-
-            return $data['results'][0]['geometry']['location'];
-        });
-
-        return $result;
+            return [
+                'latitude' => $location['lat'],
+                'longitude' => $location['lng'],
+                'formatted_address' => $response['results'][0]['formatted_address'],
+            ];
+        } catch (\Throwable $e) {
+            throw GoogleMapsApiException::requestFailed($e->getMessage());
+        }
     }
-<<<<<<< HEAD
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-=======
->>>>>>> 6f0eea5 (.)
 
+    /**
+     * Ottiene l'indirizzo formattato per coordinate.
+     *
+     * @throws GoogleMapsApiException Se la richiesta fallisce
+     *
+     * @return string|null
+     */
+    public function getAddressByCoordinates(float $latitude, float $longitude): ?string
+    {
+        try {
+            $response = $this->reverseGeocode($latitude, $longitude);
 
+            if (empty($response['results'])) {
+                return null;
+            }
 
-
-
-<<<<<<< HEAD
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
+            return $response['results'][0]['formatted_address'];
+        } catch (\Throwable $e) {
+            throw GoogleMapsApiException::requestFailed($e->getMessage());
+        }
+    }
 }

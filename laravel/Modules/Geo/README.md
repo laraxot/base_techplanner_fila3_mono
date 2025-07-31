@@ -1,74 +1,10 @@
-# :package_description
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Geo Module
-=======
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-# Geo Module
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-# Geo Module
->>>>>>> 6f0eea5 (.)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laraxot/module_geo_fila3.svg?style=flat-square)](https://packagist.org/packages/laraxot/module_geo_fila3)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/laraxot/module_geo_fila3/run-tests?label=tests)](https://github.com/laraxot/module_geo_fila3/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/laraxot/module_geo_fila3/Check%20&%20fix%20styling?label=code%20style)](https://github.com/laraxot/module_geo_fila3/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/laraxot/module_geo_fila3.svg?style=flat-square)](https://packagist.org/packages/laraxot/module_geo_fila3)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
-## Installation
-
-You can install the package via composer:
-
-```bash
-composer require laraxot/module_geo_fila3
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="module_geo_fila3-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="module_geo_fila3-config"
-```
-
-This is the contents of the published config file:
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
 ## Overview
 
 The Geo module is a central repository for all geographical data and functionality within the application. It provides a consistent way to manage locations, addresses, and geographical hierarchies across all modules.
@@ -155,7 +91,6 @@ AddressesField::make('addresses')
 - **Primary Address Logic**: Automatic exclusive primary address management
 - **Complete Italian Schema**: Full cascade selection (Region → Province → City → CAP)
 - **Configurable**: Flexible API for different use cases
-```
 
 ### Relationships
 
@@ -176,15 +111,6 @@ If you're migrating from another module (like SaluteOra) that had its own geogra
 
 The default configuration is as follows:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
 ```php
 return [
 ];
@@ -194,13 +120,6 @@ Optionally, you can publish the views using
 
 ```bash
 php artisan vendor:publish --tag="module_geo_fila3-views"
-```
-
-## Usage
-
-```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
 ```
 
 ## Testing

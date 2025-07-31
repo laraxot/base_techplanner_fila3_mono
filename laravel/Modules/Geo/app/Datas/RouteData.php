@@ -57,32 +57,9 @@ class RouteData extends Data
         return sprintf('%d min', $minutes);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    /*
-     * Verifica se il percorso è stato ottimizzato.
-     
-=======
     /**
      * Verifica se il percorso è stato ottimizzato.
      */
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-    /**
-     * Verifica se il percorso è stato ottimizzato.
-     */
-=======
-    /*
-     * Verifica se il percorso è stato ottimizzato.
-     
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-    /*
-     * Verifica se il percorso è stato ottimizzato.
-     
->>>>>>> 6f0eea5 (.)
     public function isOptimized(): bool
     {
         return ! $this->waypoints->isEmpty() && ! $this->originalWaypoints->isEmpty()
@@ -91,77 +68,19 @@ class RouteData extends Data
                 fn (array $pair): bool => $pair[0]->equals($pair[1])
             );
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    */
-=======
 
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-
-=======
-    */
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-    */
->>>>>>> 6f0eea5 (.)
     /**
-     * Ottiene un riepilogo del percorso.
-     *
-     * @return array{
-     *     distance: string,
-     *     duration: string,
-     *     steps: int,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-     *     waypoints: int
-=======
-     *     waypoints: int,
-     *     optimized: bool
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-     *     waypoints: int,
-     *     optimized: bool
-=======
-     *     waypoints: int
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-     *     waypoints: int
->>>>>>> 6f0eea5 (.)
-     * }
+     * Restituisce un riepilogo del percorso.
      */
     public function getSummary(): array
     {
         return [
-            'distance' => $this->getFormattedDistance(),
-            'duration' => $this->getFormattedDuration(),
-            'steps' => count($this->steps),
-            'waypoints' => $this->waypoints->count(),
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            //'optimized' => $this->isOptimized(),
-=======
-            'optimized' => $this->isOptimized(),
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-            'optimized' => $this->isOptimized(),
-=======
-            //'optimized' => $this->isOptimized(),
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-            //'optimized' => $this->isOptimized(),
->>>>>>> 6f0eea5 (.)
+            'total_distance' => $this->totalDistance,
+            'total_duration' => $this->totalDuration,
+            'formatted_distance' => $this->getFormattedDistance(),
+            'formatted_duration' => $this->getFormattedDuration(),
+            'waypoints_count' => $this->waypoints->count(),
+            'is_optimized' => $this->isOptimized(),
         ];
-    }
-
-    public function validateRouteData(Collection $routeData): bool
-    {
-        return $routeData->every(fn (array $data): bool => isset($data['key']));
     }
 }

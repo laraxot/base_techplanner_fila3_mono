@@ -41,7 +41,7 @@ class OptimizeRouteAction
         }
 
         $apiKey = config('services.google.maps.key');
-        if (! $apiKey) {
+        if (!$apiKey) {
             throw new \RuntimeException('Google Maps API key not found');
         }
 
@@ -55,13 +55,13 @@ class OptimizeRouteAction
             'key' => $apiKey,
         ]);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             throw new \RuntimeException('Failed to get directions from Google Maps API');
         }
 
         /** @var array{routes?: array<int, array{legs: array<int, array{distance: array{text: string, value: int}, duration: array{text: string, value: int}, start_location: array{lat: float, lng: float}, end_location: array{lat: float, lng: float}, steps: array<int, array{distance: array{text: string, value: int}, duration: array{text: string, value: int}, start_location: array{lat: float, lng: float}, end_location: array{lat: float, lng: float}, html_instructions: string, travel_mode: string}>}>, overview_polyline: array{points: string}, summary: string, warnings: array<int, string>, waypoint_order: array<int, int>}>} $data */
         $data = $response->json();
-        if (! isset($data['routes'][0])) {
+        if (!isset($data['routes'][0])) {
             return [];
         }
 
@@ -123,57 +123,53 @@ class OptimizeRouteAction
      */
     private function parseRoutes(array $routes, Collection $originalLocations): array
     {
-        return array_map(
-            function (array $route) use ($originalLocations): RouteData {
-                $waypoints = collect();
-                $steps = [];
-                $totalDistance = 0;
-                $totalDuration = 0;
+        return collect($routes)->map(function (array $route) use ($originalLocations): RouteData {
+            $legs = $route['legs'] ?? [];
+            $waypointOrder = $route['waypoint_order'] ?? [];
 
-                foreach ($route['legs'] as $leg) {
-                    $waypoints->push(new LocationData(
-                        latitude: $leg['start_location']['lat'],
-                        longitude: $leg['start_location']['lng'],
-                        address: null
-                    ));
+            // Riorganizza le location secondo l'ordine ottimizzato
+            $optimizedLocations = $this->reorderLocations($originalLocations, $waypointOrder);
 
-                    $totalDistance += $leg['distance']['value'];
-                    $totalDuration += $leg['duration']['value'];
+            // Calcola le statistiche totali
+            $totalDistance = collect($legs)->sum(fn (array $leg) => $leg['distance']['value'] ?? 0);
+            $totalDuration = collect($legs)->sum(fn (array $leg) => $leg['duration']['value'] ?? 0);
 
-                    foreach ($leg['steps'] as $step) {
-                        $steps[] = [
-                            'distance' => [
-                                'text' => $step['distance']['text'],
-                                'value' => $step['distance']['value'],
-                            ],
-                            'duration' => [
-                                'text' => $step['duration']['text'],
-                                'value' => $step['duration']['value'],
-                            ],
-                            'instructions' => $step['html_instructions'],
-                        ];
-                    }
-                }
+            // Estrae i passi del percorso
+            $steps = collect($legs)->flatMap(function (array $leg): array {
+                return $leg['steps'] ?? [];
+            })->all();
 
-                // Aggiungi l'ultima posizione
-                if (! empty($route['legs'])) {
-                    $lastLeg = end($route['legs']);
-                    $waypoints->push(new LocationData(
-                        latitude: $lastLeg['end_location']['lat'],
-                        longitude: $lastLeg['end_location']['lng'],
-                        address: null
-                    ));
-                }
+            return new RouteData(
+                waypoints: $optimizedLocations,
+                originalWaypoints: $originalLocations,
+                totalDistance: $totalDistance,
+                totalDuration: $totalDuration,
+                steps: $steps,
+            );
+        })->all();
+    }
 
-                return new RouteData(
-                    waypoints: $waypoints,
-                    originalWaypoints: $originalLocations,
-                    totalDistance: $totalDistance,
-                    totalDuration: $totalDuration,
-                    steps: $steps
-                );
-            },
-            $routes
-        );
+    /**
+     * Riorganizza le location secondo l'ordine ottimizzato.
+     *
+     * @param Collection<int, LocationData> $locations
+     * @param array<int, int> $waypointOrder
+     *
+     * @return Collection<int, LocationData>
+     */
+    private function reorderLocations(Collection $locations, array $waypointOrder): Collection
+    {
+        if (empty($waypointOrder)) {
+            return $locations;
+        }
+
+        $reordered = collect();
+        foreach ($waypointOrder as $index) {
+            if ($locations->has($index)) {
+                $reordered->push($locations->get($index));
+            }
+        }
+
+        return $reordered;
     }
 }

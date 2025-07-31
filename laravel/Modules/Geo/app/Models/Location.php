@@ -34,19 +34,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property array                $location
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
- *
-=======
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|Location query()
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereCity(string $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereLat(float $value)
@@ -54,9 +41,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereProcessed(bool $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereState(string $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereZip(string $value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
  * @method static Builder<static>|Location newModelQuery()
  * @method static Builder<static>|Location newQuery()
  * @method static Builder<static>|Location withinDistance(float $latitude, float $longitude, float $distanceInKm)
@@ -73,40 +57,14 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|Location whereStreet($value)
  * @method static Builder<static>|Location whereUpdatedAt($value)
  * @method static Builder<static>|Location whereUpdatedBy($value)
-=======
- *
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
- *
-=======
-=======
->>>>>>> 6f0eea5 (.)
- * @method static Builder<static>|Location newModelQuery()
- * @method static Builder<static>|Location newQuery()
- * @method static Builder<static>|Location withinDistance(float $latitude, float $longitude, float $distanceInKm)
- * @method static Builder<static>|Location whereCreatedAt($value)
- * @method static Builder<static>|Location whereCreatedBy($value)
- * @method static Builder<static>|Location whereDeletedAt($value)
- * @method static Builder<static>|Location whereDeletedBy($value)
- * @method static Builder<static>|Location whereDescription($value)
- * @method static Builder<static>|Location whereFormattedAddress($value)
- * @method static Builder<static>|Location whereId($value)
- * @method static Builder<static>|Location whereModelId($value)
- * @method static Builder<static>|Location whereModelType($value)
- * @method static Builder<static>|Location whereName($value)
- * @method static Builder<static>|Location whereStreet($value)
- * @method static Builder<static>|Location whereUpdatedAt($value)
- * @method static Builder<static>|Location whereUpdatedBy($value)
-<<<<<<< HEAD
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
  * @mixin \Eloquent
  */
 class Location extends BaseModel
 {
+    /** @var list<string> */
     protected $fillable = [
+        'model_type',
+        'model_id',
         'name',
         'lat',
         'lng',
@@ -115,12 +73,8 @@ class Location extends BaseModel
         'state',
         'zip',
         'formatted_address',
-        'processed',
         'description',
-    ];
-
-    protected $appends = [
-        'location',
+        'processed',
     ];
 
     /**
@@ -130,45 +84,58 @@ class Location extends BaseModel
      */
     protected function casts(): array
     {
-        return array_merge(parent::casts(), [
+        return [
             'lat' => 'float',
             'lng' => 'float',
-            'processed' => 'bool',
-        ]);
+            'processed' => 'boolean',
+            'location' => 'array',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
     }
 
     /**
-     * Accessor for the "location" attribute.
+     * Get the location attribute.
+     *
+     * @return Attribute
      */
     protected function location(): Attribute
     {
         return Attribute::make(
-            get: fn (): array => [
-                'lat' => (float) $this->lat,
-                'lng' => (float) $this->lng,
-            ],
-            set: function (?array $value): void {
-                if (is_array($value)) {
-                    $this->attributes['lat'] = $value['lat'] ?? null;
-                    $this->attributes['lng'] = $value['lng'] ?? null;
+            get: function ($value) {
+                if (is_string($value)) {
+                    return json_decode($value, true);
                 }
+
+                return $value;
+            },
+            set: function ($value) {
+                if (is_array($value)) {
+                    return json_encode($value);
+                }
+
+                return $value;
             }
         );
     }
 
     /**
      * Get the latitude and longitude attributes.
+     *
+     * @return array<string, string>
      */
     public static function getLatLngAttributes(): array
     {
         return [
-            'lat' => 'lat',
-            'lng' => 'lng',
+            'lat' => 'latitude',
+            'lng' => 'longitude',
         ];
     }
 
     /**
-     * Get the computed location attribute name.
+     * Get the computed location.
+     *
+     * @return string
      */
     public static function getComputedLocation(): string
     {
@@ -176,12 +143,19 @@ class Location extends BaseModel
     }
 
     /**
-     * Scope to filter by a specific distance from a given point.
+     * Scope for locations within a certain distance.
+     *
+     * @param Builder<static> $query
+     * @param float $latitude
+     * @param float $longitude
+     * @param float $distanceInKm
+     * @return Builder<static>
      */
     public function scopeWithinDistance(Builder $query, float $latitude, float $longitude, float $distanceInKm): Builder
     {
-        $haversine = "(6371 * acos(cos(radians($latitude)) * cos(radians(lat)) * cos(radians(lng) - radians($longitude)) + sin(radians($latitude)) * sin(radians(lat))))";
-
-        return $query->whereRaw("$haversine <= ?", [$distanceInKm]);
+        return $query->whereRaw(
+            'ST_Distance_Sphere(POINT(lng, lat), POINT(?, ?)) <= ?',
+            [$longitude, $latitude, $distanceInKm * 1000]
+        );
     }
 }

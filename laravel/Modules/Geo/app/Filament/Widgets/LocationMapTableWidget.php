@@ -47,18 +47,6 @@ class LocationMapTableWidget extends MapTableWidget
     {
         $config = parent::getConfig();
 
-        // Disable points of interest
-        //        $config['mapConfig']['styles'] = [
-        //            [
-        //                'featureType' => 'poi',
-        //                'elementType' => 'labels',
-        //                'stylers' => [
-        //                    ['visibility' => 'off'],
-        //                ],
-        //            ],
-        //        ];
-
-        //        $config['zoom'] = 5;
         $config['center'] = [
             'lat' => 34.730369,
             'lng' => -86.586104,
@@ -100,67 +88,51 @@ class LocationMapTableWidget extends MapTableWidget
     {
         return [
             TextColumn::make('name')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
             TextColumn::make('street')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
             TextColumn::make('city')
                 ->searchable()
                 ->sortable(),
             TextColumn::make('state')
                 ->searchable()
                 ->sortable(),
-            TextColumn::make('zip'),
+            TextColumn::make('zip')
+                ->searchable()
+                ->sortable(),
         ];
     }
 
     protected function getTableFilters(): array
     {
         return [
-            RadiusFilter::make('location')
-                ->section('Radius Filter')
-                ->selectUnit(),
-            MapIsFilter::make('map'),
+            MapIsFilter::make(),
+            RadiusFilter::make(),
         ];
     }
 
     protected function getTableRecordAction(): ?string
     {
-        return 'edit';
+        return 'markerAction';
     }
 
     protected function getTableHeaderActions(): array
     {
         return [
             CreateAction::make()
-                ->form($this->getFormSchema()),
+                ->label('Create Location'),
         ];
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public function getTableActions(): array
-=======
     protected function getTableActions(): array
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-    protected function getTableActions(): array
-=======
-    public function getTableActions(): array
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-    public function getTableActions(): array
->>>>>>> 6f0eea5 (.)
     {
         return [
-            Tables\Actions\ViewAction::make()
-                ->form($this->getFormSchema()),
-            Tables\Actions\EditAction::make()
-                ->form($this->getFormSchema()),
             GoToAction::make()
-                ->zoom(fn () => 14),
-            RadiusAction::make('location'),
+                ->label('Go to Location'),
+            RadiusAction::make()
+                ->label('Radius Search'),
         ];
     }
 
@@ -169,190 +141,8 @@ class LocationMapTableWidget extends MapTableWidget
         return [10, 25, 50, 100];
     }
 
-    /**
-     * @return array<int, array{location: array{lat: float, lng: float}, label: string, id: int, icon: array{url: string, type: string, scale: array<int, int>}}>
-     */
-    public function getData(): array
+    public function markerAction(): void
     {
-        $locations = $this->getRecords();
-        $data = [];
-
-        foreach ($locations as $location) {
-            if ($location->latitude && $location->longitude) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                $iconUrl = $this->getMarkerIcon($location);
-                
-=======
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-                $iconUrl = $this->getMarkerIcon($location);
-                
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-                $iconUrl = $this->getMarkerIcon($location);
-                
->>>>>>> 6f0eea5 (.)
-                $data[] = [
-                    'location' => [
-                        'lat' => (float) $location->latitude,
-                        'lng' => (float) $location->longitude,
-                    ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    'label' => (string) $location->name,
-                    'id' => (int) $location->id,
-                    'icon' => [
-                        'url' => is_string($iconUrl) ? $iconUrl : '',
-=======
-=======
->>>>>>> 0e7ec50 (.)
-                    'label' => $location->name,
-                    'id' => $location->id,
-                    'icon' => [
-                        'url' => $this->getMarkerIcon($location),
-<<<<<<< HEAD
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-=======
->>>>>>> 6f0eea5 (.)
-                    'label' => (string) $location->name,
-                    'id' => (int) $location->id,
-                    'icon' => [
-                        'url' => is_string($iconUrl) ? $iconUrl : '',
-<<<<<<< HEAD
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
-                        'type' => 'url',
-                        'scale' => [32, 32],
-                    ],
-                ];
-            }
-        }
-
-        return $data;
-    }
-
-    public function markerAction(): Action
-    {
-        return Action::make('markerAction')
-            ->label('Details')
-            ->infolist([
-                Section::make([
-                    TextEntry::make('name'),
-                    TextEntry::make('street'),
-                    TextEntry::make('city'),
-                    TextEntry::make('state'),
-                    TextEntry::make('zip'),
-                    TextEntry::make('formatted_address'),
-                ])
-                    ->columns(3),
-            ])
-            ->record(function (array $arguments) {
-                return array_key_exists('model_id', $arguments) ? Location::find($arguments['model_id']) : null;
-            })
-            ->modalSubmitAction(false);
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    /**
-     * @return string|null
-     */
-    public function getMarkerIcon(Place $place): ?string
-    {
-        $type = $place->placeType->slug ?? 'default';
-        /** @var array<string, mixed>|null $markerConfig */
-        $markerConfig = config("geo.markers.types.{$type}");
-
-        if (!is_array($markerConfig)) {
-            /** @var array<string, mixed>|null $defaultConfig */
-            $defaultConfig = config('geo.markers.types.default');
-            $markerConfig = $defaultConfig;
-        }
-
-        if (!is_array($markerConfig)) {
-            return null;
-        }
-
-        // Validazione sicura per accesso nested all'icona
-        /** @var mixed $iconConfig */
-        $iconConfig = $markerConfig['icon'] ?? null;
-        
-        if (!is_array($iconConfig)) {
-            return null;
-        }
-
-        /** @var string|null $iconUrl */
-        $iconUrl = $iconConfig['url'] ?? null;
-        
-        return is_string($iconUrl) ? $iconUrl : null;
-=======
-=======
->>>>>>> 0e7ec50 (.)
-    public function getMarkerIcon(Place $place): ?array
-    {
-        $type = $place->placeType->slug ?? 'default';
-        $markerConfig = config("geo.markers.types.{$type}");
-
-        if (! is_array($markerConfig)) {
-            $markerConfig = config('geo.markers.types.default');
-        }
-
-        if (! is_array($markerConfig)) {
-            return null;
-        }
-
-        return $markerConfig['icon'] ?? null;
-<<<<<<< HEAD
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-=======
->>>>>>> 6f0eea5 (.)
-    /**
-     * @return string|null
-     */
-    public function getMarkerIcon(Place $place): ?string
-    {
-        $type = $place->placeType->slug ?? 'default';
-        /** @var array<string, mixed>|null $markerConfig */
-        $markerConfig = config("geo.markers.types.{$type}");
-
-        if (!is_array($markerConfig)) {
-            /** @var array<string, mixed>|null $defaultConfig */
-            $defaultConfig = config('geo.markers.types.default');
-            $markerConfig = $defaultConfig;
-        }
-
-        if (!is_array($markerConfig)) {
-            return null;
-        }
-
-        // Validazione sicura per accesso nested all'icona
-        /** @var mixed $iconConfig */
-        $iconConfig = $markerConfig['icon'] ?? null;
-        
-        if (!is_array($iconConfig)) {
-            return null;
-        }
-
-        /** @var string|null $iconUrl */
-        $iconUrl = $iconConfig['url'] ?? null;
-        
-        return is_string($iconUrl) ? $iconUrl : null;
-<<<<<<< HEAD
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
+        // Implementazione dell'azione marker
     }
 }

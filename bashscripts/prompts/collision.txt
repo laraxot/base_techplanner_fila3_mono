@@ -260,3 +260,6 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 
 Dentro le cartelle docs , i files e le sottocartelle non devono contenere caratteri maiuscoli ad eccezzione di README.md
 Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’altro, senza chiedere nulla e senza fermarmi !
+
+
+cerca i files con dentro "<<< HEAD" crea un elenco di questi file dentro una cartella docs, non la cartella docs della root del progetto che quella ha un altro scopo , poi prendi file per file e lo sistemi, per sistemarlo devi analizzare e ragionare a fondo sul codice , leggere e studiare le cartelle docs e poi implementare correzione 

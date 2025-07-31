@@ -42,28 +42,12 @@ class GetElevationAction
         $this->validateCoordinates($location);
 
         try {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             /** @var array<string, mixed> $response */
-=======
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-            /** @var array<string, mixed> $response */
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-            /** @var array<string, mixed> $response */
->>>>>>> 6f0eea5 (.)
             $response = $this->googleMapsService->getElevation(
                 $location->latitude,
                 $location->longitude
             );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             if (!isset($response['results']) || !is_array($response['results']) || empty($response['results'])) {
                 throw ElevationException::invalidResponse();
             }
@@ -74,51 +58,8 @@ class GetElevationAction
             }
 
             return (float) $firstResult['elevation'];
-=======
-=======
->>>>>>> 0e7ec50 (.)
-            if (empty($response['results']) || ! isset($response['results'][0]['elevation'])) {
-                throw ElevationException::invalidResponse();
-            }
-
-            return (float) $response['results'][0]['elevation'];
-<<<<<<< HEAD
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-=======
->>>>>>> 6f0eea5 (.)
-            if (!isset($response['results']) || !is_array($response['results']) || empty($response['results'])) {
-                throw ElevationException::invalidResponse();
-            }
-
-            $firstResult = $response['results'][0] ?? null;
-            if (!is_array($firstResult) || !isset($firstResult['elevation'])) {
-                throw ElevationException::invalidResponse();
-            }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            return (float) $firstResult['elevation'];
->>>>>>> 3c5e1ea (.)
-<<<<<<< HEAD
->>>>>>> 0e7ec50 (.)
-=======
-=======
-            $elevation = $firstResult['elevation'];
-            return is_numeric($elevation) ? (float) $elevation : 0.0;
->>>>>>> 0119f2f (.)
->>>>>>> c14279a (.)
-=======
-            $elevation = $firstResult['elevation'];
-            return is_numeric($elevation) ? (float) $elevation : 0.0;
->>>>>>> 6f0eea5 (.)
-        } catch (\Throwable $e) {
-            if ($e instanceof ElevationException) {
-                throw $e;
-            }
-
-            throw ElevationException::serviceError('Errore nel recupero dell\'elevazione: '.$e->getMessage(), $e);
+        } catch (\Exception $e) {
+            throw ElevationException::requestFailed($e->getMessage());
         }
     }
 
@@ -127,28 +68,32 @@ class GetElevationAction
      *
      * @param float $meters Elevazione in metri
      *
-     * @return string Elevazione formattata con unità di misura
+     * @return string Elevazione formattata
      */
     public function formatElevation(float $meters): string
     {
-        return sprintf('%.1f m s.l.m.', $meters);
+        if ($meters < 0) {
+            return sprintf('%.1f m sotto il livello del mare', abs($meters));
+        }
+
+        return sprintf('%.1f m sopra il livello del mare', $meters);
     }
 
     /**
-     * Valida le coordinate di una posizione.
+     * Valida le coordinate geografiche.
      *
-     * @param LocationData $location Posizione da validare
+     * @param LocationData $location
      *
      * @throws \InvalidArgumentException Se le coordinate non sono valide
      */
     private function validateCoordinates(LocationData $location): void
     {
         if ($location->latitude < -90 || $location->latitude > 90) {
-            throw new \InvalidArgumentException(sprintf('Latitudine non valida: %f', $location->latitude));
+            throw new \InvalidArgumentException('Latitudine non valida: deve essere compresa tra -90 e 90');
         }
 
         if ($location->longitude < -180 || $location->longitude > 180) {
-            throw new \InvalidArgumentException(sprintf('Longitudine non valida: %f', $location->longitude));
+            throw new \InvalidArgumentException('Longitudine non valida: deve essere compresa tra -180 e 180');
         }
     }
 }

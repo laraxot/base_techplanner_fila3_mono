@@ -10,20 +10,7 @@ use Cheesegrits\FilamentGoogleMaps\Filters\RadiusFilter;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Tables;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Filament\Tables\Enums\FiltersLayout;
-=======
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
-use Filament\Tables\Enums\FiltersLayout;
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
-use Filament\Tables\Enums\FiltersLayout;
->>>>>>> 6f0eea5 (.)
 use Filament\Tables\Table;
 use Modules\Geo\Filament\Resources\LocationResource\Pages;
 use Modules\Geo\Models\Location;
@@ -35,25 +22,6 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
  * Questa classe gestisce l'interfaccia amministrativa per i luoghi,
  * fornendo funzionalità per la creazione, modifica e visualizzazione dei luoghi
  * sulla mappa.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0e7ec50 (.)
- *
- * @property string|null $model           La classe del modello associato (Location)
- * @property string|null $navigationIcon  L'icona da mostrare nel menu di navigazione
- * @property string|null $navigationGroup Il gruppo di navigazione a cui appartiene
- * @property int|null    $navigationSort  L'ordine di visualizzazione nel menu
-<<<<<<< HEAD
->>>>>>> 008ac07 (Merge commit 'b61ed6096ef292b50d6f8751d28a19fbee500bc4' as 'laravel/Modules/Geo')
-=======
-=======
->>>>>>> 3c5e1ea (.)
->>>>>>> 0e7ec50 (.)
-=======
->>>>>>> 6f0eea5 (.)
  */
 class LocationResource extends XotBaseResource
 {
@@ -98,91 +66,67 @@ class LocationResource extends XotBaseResource
                 ->defaultLocation([39.526610, -107.727261])
                 ->mapControls([
                     'zoomControl' => true,
+                    'mapTypeControl' => true,
+                    'scaleControl' => true,
+                    'streetViewControl' => true,
+                    'rotateControl' => true,
+                    'fullscreenControl' => true,
                 ])
-                ->debug()
-                ->clickable()
                 ->autocomplete('formatted_address')
                 ->autocompleteReverse()
                 ->reverseGeocode([
-                    'city' => '%L',
-                    'zip' => '%z',
-                    'state' => '%A1',
-                    'street' => '%n %S',
-                ])
-                ->geolocate()
-                ->columnSpan(2),
+                    'street' => 'street_number|route',
+                    'city' => 'locality',
+                    'state' => 'administrative_area_level_1',
+                    'zip' => 'postal_code',
+                ]),
         ];
     }
 
-    /**
-     * Definisce la tabella per la visualizzazione dei luoghi.
-     *
-     * La tabella include colonne per:
-     * - Nome del luogo
-     * - Indirizzo
-     * - Città
-     * - Stato
-     * - CAP
-     * Con funzionalità di ricerca e ordinamento per ogni colonna
-     *
-     * @param Table $table La tabella da configurare
-     *
-     * @return Table La tabella configurata
-     */
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('street'),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('street')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('city')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('state')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('zip'),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('zip')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('processed'),
-                RadiusFilter::make('radius')
-                    ->latitude('lat')
-                    ->longitude('lng')
-                    ->selectUnit()
-                    ->section('Radius Search'),
-            ]
-            )
-            ->filtersLayout(FiltersLayout::Dropdown)
+                RadiusFilter::make('location')
+                    ->section('Radius Filter')
+                    ->selectUnit(),
+            ], layout: FiltersLayout::AboveContent)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                RadiusAction::make('radius'),
+                RadiusAction::make('location'),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
     }
 
-    /**
-     * Definisce le relazioni disponibili per questo resource.
-     *
-     * @return array Le relazioni configurate
-     */
     public static function getRelations(): array
     {
         return [
+            //
         ];
     }
 
-    /**
-     * Definisce le pagine disponibili per questo resource.
-     *
-     * Include le pagine per:
-     * - Lista dei luoghi
-     * - Creazione nuovo luogo
-     * - Modifica luogo esistente
-     *
-     * @return array Le pagine configurate
-     */
     public static function getPages(): array
     {
         return [
