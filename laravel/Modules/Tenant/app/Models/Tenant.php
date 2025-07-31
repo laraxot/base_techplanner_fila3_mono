@@ -14,15 +14,10 @@ use Modules\User\Models\User;
  */
 class Tenant extends BaseModel
 {
-    // use SoftDeletes;
+    
 
 
-
-    /**
-     * Gli attributi che sono mass assignable.
-     *
-     * @var array<int, string>
-     */
+    /** @var list<string> */
     protected $fillable = [
         'name',
         'domain',

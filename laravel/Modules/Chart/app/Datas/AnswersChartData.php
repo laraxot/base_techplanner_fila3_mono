@@ -99,7 +99,7 @@ class AnswersChartData extends Data
         } else {
             $data = $this->answers->toCollection()->pluck('avg')->all();
             foreach ($data as $key => $item) {
-                $data[$key] = number_format((float) $item, 2, '.', '');
+                $data[$key] = number_format(is_numeric($item) ? (float) $item : 0.0, 2, '.', '');
             }
 
             if (isset($this->chart->max)) {

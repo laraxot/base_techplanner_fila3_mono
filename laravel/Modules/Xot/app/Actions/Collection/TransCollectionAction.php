@@ -33,7 +33,7 @@ class TransCollectionAction
         ?string $transKey,
     ): Collection {
         if (null === $transKey) {
-            return $collection->map(fn (mixed $item): string => (string) $item);
+            return $collection->map(fn (mixed $item): string => app(SafeStringAction::class)->execute($item));
         }
 
         $this->transKey = $transKey;

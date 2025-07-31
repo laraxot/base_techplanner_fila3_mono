@@ -23,6 +23,7 @@ interface StateContract
 {
     public function label(): string;
     public function color(): string;
+    public function bgColor(): string;
     public function icon(): string;
     public function modalHeading(): string;
     public function modalDescription(): string;

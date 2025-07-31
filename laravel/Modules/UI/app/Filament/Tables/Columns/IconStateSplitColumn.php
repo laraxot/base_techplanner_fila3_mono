@@ -7,6 +7,7 @@ namespace Modules\UI\Filament\Tables\Columns;
 
 use Closure;
 use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\Column;
 use Filament\Support\Enums\ActionSize;
@@ -15,6 +16,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
+use Modules\Xot\Contracts\StateContract;
 use Filament\Tables\Columns\Layout\Split;
 
 /**
@@ -62,6 +64,7 @@ class IconStateSplitColumn extends Column
         foreach ($states as $stateKey => $stateClass) {
             try {
                 $stateInstance = new $stateClass($record);
+                Assert::isInstanceOf($stateInstance, StateContract::class);
                 $result[$stateKey] = [
                     'class' => $stateInstance,
                     'icon' => $stateInstance->icon(),
