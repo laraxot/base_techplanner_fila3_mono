@@ -142,7 +142,7 @@ class Timbratura extends BaseModel
      */
     public function scopeValid($query)
     {
-        return $query->where('stato', 'valid');
+        return $query->where('stato', 'valida');
     }
 
     /**
