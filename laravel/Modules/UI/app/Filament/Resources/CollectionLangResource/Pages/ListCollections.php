@@ -15,13 +15,13 @@ class ListCollections extends LangBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            Columns\TextColumn::make('name')
+            'name' => Columns\TextColumn::make('name')
                     ->forceSearchCaseInsensitive()
                     ->label(__('Collections Name'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
-            Columns\TextColumn::make('values-list')
+            'values-list' => Columns\TextColumn::make('values-list')
                     ->badge()
                     ->separator(',')
                     ->label(__('Collections Values'))

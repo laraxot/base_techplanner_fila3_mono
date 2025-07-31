@@ -2,7 +2,7 @@
 
 namespace Modules\TechPlanner\Actions;
 
-use Modules\Geo\Actions\UpdateCoordinatesAction;
+use Modules\Geo\Actions\GetCoordinatesAction;
 use Modules\TechPlanner\Models\Client;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -11,7 +11,7 @@ class UpdateAllClientCoordinatesAction
     use QueueableAction;
 
     public function __construct(
-        private readonly UpdateCoordinatesAction $updateCoordinatesAction
+        private readonly GetCoordinatesAction $getCoordinatesAction
     ) {}
 
     public function execute(): bool
@@ -21,10 +21,16 @@ class UpdateAllClientCoordinatesAction
             ->get();
 
         foreach ($clients as $client) {
-            $coordinates = $this->updateCoordinatesAction->execute($client->full_address);
+            // Usa l'azione per ottenere le coordinate dall'indirizzo
+            if ($client->full_address) {
+                $coordinates = $this->getCoordinatesAction->execute($client->full_address);
 
-            if ($coordinates) {
-                $client->update($coordinates);
+                if ($coordinates) {
+                    $client->update([
+                        'latitude' => $coordinates->latitude,
+                        'longitude' => $coordinates->longitude,
+                    ]);
+                }
             }
         }
 

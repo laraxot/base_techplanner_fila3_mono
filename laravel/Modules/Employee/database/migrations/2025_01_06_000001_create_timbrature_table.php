@@ -11,7 +11,7 @@ return new class extends XotBaseMigration
     /**
      * Nome della tabella.
      */
-    protected string $table_name = 'timbrature';
+    protected string $table_name = 'attendances';
 
     /**
      * Esegue la migrazione.
@@ -25,37 +25,37 @@ return new class extends XotBaseMigration
             return;
         }
 
-        // Crea la tabella timbrature
+        // Crea la tabella attendances
         Schema::create($this->table_name, function (Blueprint $table) {
             $table->id();
 
             // Chiave esterna verso la tabella users
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             
-            // Data e ora della timbratura
-            $table->dateTime('data_timbratura');
+            // Data e ora della presenza
+            $table->dateTime('timestamp');
             
-            // Tipo di timbratura (entrata/uscita)
-            $table->enum('tipo', ['entrata', 'uscita']);
+            // Tipo di presenza (entry/exit)
+            $table->enum('type', ['entry', 'exit']);
             
-            // Metodo di timbratura
-            $table->enum('metodo', ['badge', 'pin', 'biometrico', 'app', 'web'])->default('badge');
+            // Metodo di registrazione
+            $table->enum('method', ['badge', 'pin', 'biometric', 'app', 'web'])->default('badge');
             
             // Localizzazione (opzionale)
-            $table->string('latitudine')->nullable();
-            $table->string('longitudine')->nullable();
-            $table->string('indirizzo')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('address')->nullable();
             
             // Note aggiuntive
-            $table->text('note')->nullable();
+            $table->text('notes')->nullable();
             
-            // Stato della timbratura
-            $table->enum('stato', ['valida', 'corretta', 'annullata'])->default('valida');
+            // Stato della presenza
+            $table->enum('status', ['valid', 'corrected', 'cancelled'])->default('valid');
             
-            // Flag per timbrature manuali
-            $table->boolean('is_manuale')->default(false);
+            // Flag per registrazioni manuali
+            $table->boolean('is_manual')->default(false);
             
-            // Utente che ha creato/modificato la timbratura
+            // Utente che ha creato/modificato la presenza
             $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
             
@@ -63,10 +63,10 @@ return new class extends XotBaseMigration
             $table->timestamps();
             
             // Indici per migliorare le performance
-            $table->index(['user_id', 'data_timbratura']);
-            $table->index(['data_timbratura']);
-            $table->index(['tipo']);
-            $table->index(['stato']);
+            $table->index(['user_id', 'timestamp']);
+            $table->index(['timestamp']);
+            $table->index(['type']);
+            $table->index(['status']);
         });
 
         echo 'Tabella ['.$this->table_name.'] creata con successo!';

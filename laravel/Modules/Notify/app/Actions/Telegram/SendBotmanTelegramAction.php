@@ -43,7 +43,8 @@ final class SendBotmanTelegramAction
         $parseMode = config('telegram.parse_mode');
         $this->parseMode = $parseMode;
         $this->debug = (bool) config('telegram.debug', false);
-        $this->timeout = (int) config('telegram.timeout', 30);
+        $timeoutConfig = config('telegram.timeout', 30);
+        $this->timeout = \Modules\Xot\Actions\Cast\SafeIntCastAction::cast($timeoutConfig, 30);
     }
 
     /**

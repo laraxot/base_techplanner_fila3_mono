@@ -22,6 +22,7 @@ use Modules\TechPlanner\Filament\Imports\ClientImporter;
 use Modules\TechPlanner\Filament\Resources\ClientResource;
 use Modules\TechPlanner\Models\Client;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Webmozart\Assert\Assert;
 
 /**
@@ -32,7 +33,7 @@ class ListClients extends XotBaseListRecords
     protected static string $resource = ClientResource::class;
 
     public ?int $selectedClientId = null;
-    protected $tableQuery;
+    protected ?\Illuminate\Database\Eloquent\Builder $tableQuery = null;
 
     /**
      * Configura i widget dell'header della pagina.
@@ -47,7 +48,7 @@ class ListClients extends XotBaseListRecords
     /**
      * Summary of getListTableColumns.
      */
-    public function getListTableColumns(): array
+    public function getTableColumns(): array
     {
         $columns = [
             'distance' => TextColumn::make('distance')
@@ -102,7 +103,7 @@ class ListClients extends XotBaseListRecords
                 ->sortable(),
         ];
 
-        return array_filter($columns);
+        return $columns;
     }
 
     public function getTableFilters(): array
@@ -111,8 +112,12 @@ class ListClients extends XotBaseListRecords
             ->whereNotNull('activity')
             ->distinct()
             ->pluck('activity', 'activity')
-            ->map(fn ($value) => (string) $value)
+            ->map(function ($value) {
+                return app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($value);
+            })
             ->toArray();
+
+        /** @var array<string, string> $activities */
 
         return [
             ...parent::getTableFilters(),
@@ -148,7 +153,7 @@ class ListClients extends XotBaseListRecords
     public function getTableBulkActions(): array
     {
         return [
-            BulkAction::make('updateCoordinates')
+            'updateCoordinates' => BulkAction::make('updateCoordinates')
                 ->icon('heroicon-o-map-pin')
                 ->action(function (Collection $records) {
                     $action = app(GetAddressDataFromFullAddressAction::class);
@@ -204,14 +209,15 @@ class ListClients extends XotBaseListRecords
                 foreach ($clients as $client) {
                     try {
                         $addressData = app(GetAddressDataFromFullAddressAction::class)
-                            ->execute($client->full_address);
+                            ->execute($client->full_address ?? '');
 
                         if ($addressData) {
                             $client->update($addressData->toArray());
                             ++$totalSuccess;
                         }
                     } catch (\Throwable $e) {
-                        $errors[] = "Error updating {$client->company_name}: {$e->getMessage()}";
+                        $clientName = $client->company_name ?? $client->name ?? 'Unknown';
+                        $errors[] = "Error updating {$clientName}: {$e->getMessage()}";
                     }
                     ++$totalProcessed;
                 }
@@ -246,9 +252,13 @@ class ListClients extends XotBaseListRecords
     //     }
     // }
 
+    /**
+     * @return array<int|string, \Filament\Tables\Actions\Action|\Filament\Tables\Actions\ActionGroup>
+     */
     public function getTableActions(): array
     {
-        return [
+        /** @var array<int|string, \Filament\Tables\Actions\Action|\Filament\Tables\Actions\ActionGroup> $actions */
+        $actions = [
             ...parent::getTableActions(),
             Action::make('sortByDistance')
                 ->icon('heroicon-o-map')
@@ -284,9 +294,11 @@ class ListClients extends XotBaseListRecords
                 })
                 ->label('Ordina per distanza'),
         ];
+        
+        return $actions;
     }
 
-    public function applySort($field): void
+    public function applySort(mixed $field): void
     {
         if ('distance' === $field) {
             $this->resetTable();
@@ -304,15 +316,20 @@ class ListClients extends XotBaseListRecords
     protected function getTableQuery(): Builder
     {
         $query = parent::getTableQuery();
+        if($query==null){
+            throw new \Exception('Query is null');
+        }
         $latitude = Session::get('user_latitude');
         $longitude = Session::get('user_longitude');
 
         return $query
             ->when($latitude && $longitude,
                 function (Builder $query) use ($latitude, $longitude) {
+                    /** @phpstan-ignore-next-line */
                     $query->withDistance($latitude, $longitude)
                       ->orderByDistance($latitude, $longitude);
                 }
             );
     }
+
 }

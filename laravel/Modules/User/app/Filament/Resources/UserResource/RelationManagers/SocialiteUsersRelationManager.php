@@ -84,24 +84,19 @@ class SocialiteUsersRelationManager extends XotBaseRelationManager
     public function getTableColumns(): array
     {
         return [
-            TextColumn::make('provider')
-
+            'provider' => TextColumn::make('provider')
                 ->searchable(),
 
-            TextColumn::make('provider_id')
-
+            'provider_id' => TextColumn::make('provider_id')
                 ->searchable(),
 
-            TextColumn::make('name')
-
+            'name' => TextColumn::make('name')
                 ->searchable(),
 
-            TextColumn::make('email')
-
+            'email' => TextColumn::make('email')
                 ->searchable(),
 
-            ImageColumn::make('avatar')
-
+            'avatar' => ImageColumn::make('avatar')
                 ->size(40),
         ];
     }

@@ -20,7 +20,7 @@ class OSMMapWidget extends MapWidget
     protected function getData(): array
     {
         /** @var Collection<int, Place> $places */
-        $places = Place::with(['address', 'placeType'])->get();
+        $places = Place::all();
 
         return [
             'markers' => $this->getMarkers(),
@@ -40,7 +40,7 @@ class OSMMapWidget extends MapWidget
     public function getMarkers(): array
     {
         /** @var Collection<int, Place> $places */
-        $places = Place::with(['address', 'placeType'])->get();
+        $places = Place::all();
 
         return $places
             ->filter(fn(Place $place) => $place->latitude !== null && $place->longitude !== null)
@@ -109,8 +109,8 @@ class OSMMapWidget extends MapWidget
      */
     protected function getMarkerIcon(Place $place): ?array
     {
-        // Uso placeType invece di type per evitare relazioni mancanti
-        $type = $place->placeType->slug ?? 'default';
+        // Per ora usiamo un'icona di default
+        $type = 'default';
 
         $iconPath = resource_path("images/markers/{$type}.png");
         if (! file_exists($iconPath)) {

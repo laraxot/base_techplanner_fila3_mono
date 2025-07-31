@@ -60,14 +60,16 @@ final class SmsActionFactory
      */
     public function create(?string $driver = null): SmsActionContract
     {
-        $driver = $driver ?? Config::get('sms.default', 'netfun');
+        $defaultDriver = Config::get('sms.default', 'netfun');
+        $driver = $driver ?? $defaultDriver;
 
         // Normalizza il nome del driver e assicura formato camelCase
-        $normalizedDriver = $this->normalizeDriverName((string) $driver);
+        $driverString = is_string($driver) ? $driver : '';
+        $normalizedDriver = $this->normalizeDriverName($driverString);
 
         // Avvisa per driver non standard
         if (!in_array($normalizedDriver, $this->supportedDrivers)) {
-            Log::warning("Attempting to use non-standard SMS driver: " . (string) $driver);
+            Log::warning("Attempting to use non-standard SMS driver: " . $driverString);
         }
 
         // Costruisci il nome della classe seguendo la convenzione
@@ -81,7 +83,7 @@ final class SmsActionFactory
                 'className' => $className
             ]);
 
-            throw new Exception("Unsupported SMS driver: " . (string) $driver . ". Class {$className} not found.");
+            throw new Exception("Unsupported SMS driver: " . $driverString . ". Class {$className} not found.");
         }
 
         $instance = app($className);
@@ -95,18 +97,13 @@ final class SmsActionFactory
     }
 
     /**
-     * Normalizza il nome del driver eliminando trattini e underscore
-     * e gestendo eventuali casi speciali/alias.
+     * Normalizza il nome del driver usando l'action centralizzata.
      *
      * @param string $driver Nome del driver da normalizzare
      * @return string Nome normalizzato
      */
     private function normalizeDriverName(string $driver): string
     {
-        // Rimuovi trattini e underscore
-        $normalized = str_replace(['-', '_', ' '], '', strtolower($driver));
-
-        // Gestisci casi speciali e alias tramite la mappa di alias
-        return $this->driverAliases[$normalized] ?? $normalized;
+        return app(\Modules\Xot\Actions\String\NormalizeDriverNameAction::class)->execute($driver);
     }
 }

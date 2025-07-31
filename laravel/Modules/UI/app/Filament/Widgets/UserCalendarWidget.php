@@ -39,7 +39,7 @@ class UserCalendarWidget extends FullCalendarWidget
 
         $action=$this->getActionName(__FUNCTION__);
         return app($action)->execute();
-        
+
     }
 
    

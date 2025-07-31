@@ -37,7 +37,8 @@ final class Send360dialogWhatsAppAction
 
         // Parametri a livello di root
         $this->debug = (bool) config('whatsapp.debug', false);
-        $this->timeout = (int) config('whatsapp.timeout', 30);
+        $timeoutConfig = config('whatsapp.timeout', 30);
+        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
     }
 
     /**

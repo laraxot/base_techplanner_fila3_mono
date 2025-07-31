@@ -12,6 +12,5 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string|null $title
  * @property string|null $subtitle
  * @property PivotContract|null $pivot
- * @property Collection|ProductCatContract[] $productCats
  */
 interface WorkerContract {}

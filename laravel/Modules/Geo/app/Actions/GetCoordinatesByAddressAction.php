@@ -164,8 +164,8 @@ class GetCoordinatesByAddressAction
         }
 
         return new CoordinatesData(
-            latitude: (float) ($coordinates[0] ?? 0),
-            longitude: (float) ($coordinates[1] ?? 0)
+            latitude: \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($coordinates[0], -90.0, 90.0, 0.0),
+            longitude: \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($coordinates[1], -180.0, 180.0, 0.0)
         );
     }
 

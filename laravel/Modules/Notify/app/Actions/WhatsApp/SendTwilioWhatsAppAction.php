@@ -48,7 +48,8 @@ final class SendTwilioWhatsAppAction implements WhatsAppProviderActionInterface
         $sender = config('whatsapp.from');
         $this->defaultSender = is_string($sender) ? $sender : null;
         $this->debug = (bool) config('whatsapp.debug', false);
-        $this->timeout = (int) config('whatsapp.timeout', 30);
+        $timeoutConfig = config('whatsapp.timeout', 30);
+        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
     }
 
     /**

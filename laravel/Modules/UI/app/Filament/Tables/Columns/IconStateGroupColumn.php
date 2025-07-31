@@ -48,9 +48,9 @@ class IconStateGroupColumn extends ColumnGroup
             $this->data[$state.'-visible']=true;
                 
             $column = IconColumn::make($state.'-icon')
-                ->icon(fn()=>$stateInstance->icon())
-                ->color(fn()=>$stateInstance->color())
-                ->tooltip(fn()=>$stateInstance->label())
+                ->icon(fn()=> $stateInstance->icon())
+                ->color(fn()=> $stateInstance->color())
+                ->tooltip(fn()=> $stateInstance->label())
                 ->extraAttributes([
                     'class' => 'w-auto min-w-0 px-0',
                     'style' => 'width: fit-content !important;'
@@ -67,10 +67,10 @@ class IconStateGroupColumn extends ColumnGroup
                 });
             $column->action(Action::make($state.'-action')
                     ->requiresConfirmation()
-                    ->modalHeading(fn($record)=>$stateInstance->modalHeading())
-                    ->modalDescription(fn($record)=>$stateInstance->modalDescription())
-                    ->form(fn($record)=>$stateInstance->modalFormSchema())
-                    ->fillForm(fn($record)=>$stateInstance->modalFillFormByRecord($record))
+                    ->modalHeading(fn($record)=> $stateInstance->modalHeading())
+                    ->modalDescription(fn($record)=> $stateInstance->modalDescription())
+                    ->form(fn($record)=> $stateInstance->modalFormSchema())
+                    ->fillForm(fn($record)=> $stateInstance->modalFillFormByRecord($record))
                     ->action(function($record,$data) use ($stateInstance){
                         $stateInstance->modalActionByRecord($record,$data);
                         //$this->invalidateCache();

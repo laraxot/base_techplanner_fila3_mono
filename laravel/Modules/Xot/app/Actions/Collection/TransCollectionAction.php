@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Collection;
 
-// use Modules\Xot\Services\ArrayService;
-
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
+use function Safe\json_encode;
 
 /**
  * Action per la traduzione di elementi di una collezione.
@@ -33,7 +33,7 @@ class TransCollectionAction
         ?string $transKey,
     ): Collection {
         if (null === $transKey) {
-            return $collection->map(fn (mixed $item): string => app(SafeStringAction::class)->execute($item));
+            return $collection->map(fn (mixed $item): string => app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($item));
         }
 
         $this->transKey = $transKey;
@@ -52,7 +52,7 @@ class TransCollectionAction
     {
         // Converte l'item in stringa se non lo è già
         if (!\is_string($item)) {
-            $item = (string) $item;
+            $item = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($item);
         }
 
         if (empty($item) || null === $this->transKey) {
@@ -81,4 +81,6 @@ class TransCollectionAction
         // Se nessuna traduzione è stata trovata, restituisce l'elemento originale
         return $item;
     }
+
+
 }

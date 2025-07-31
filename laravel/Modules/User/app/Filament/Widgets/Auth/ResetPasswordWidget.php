@@ -12,6 +12,7 @@ use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Facades\Password;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
@@ -101,10 +102,10 @@ class ResetPasswordWidget extends XotBaseWidget
 
         $status = Password::reset(
             [
-                'email' => (string) $data['email'],
-                'password' => (string) $data['password'],
-                'password_confirmation' => (string) $data['password_confirmation'],
-                'token' => (string) request()->route('token'),
+                'email' => app(SafeStringCastAction::class)->execute($data['email'] ?? ''),
+                'password' => app(SafeStringCastAction::class)->execute($data['password'] ?? ''),
+                'password_confirmation' => app(SafeStringCastAction::class)->execute($data['password_confirmation'] ?? ''),
+                'token' => app(SafeStringCastAction::class)->execute(request()->route('token')),
             ],
             function ($user, $password): void {
                 $user->forceFill([
@@ -115,10 +116,12 @@ class ResetPasswordWidget extends XotBaseWidget
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            session()->flash('status', __((string) $status));
+            session()->flash('status', __(app(SafeStringCastAction::class)->execute($status)));
             return redirect()->route('login');
         } else {
-            $this->addError('email', __((string) $status));
+            $this->addError('email', __(app(SafeStringCastAction::class)->execute($status)));
         }
     }
+
+
 }

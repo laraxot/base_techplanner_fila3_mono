@@ -100,14 +100,19 @@ class SushiCommand extends Command
                 /** @var array<string, mixed> $validComune */
                 $validComune = $arrayComune;
                 
+                $regione = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['regione']);
+                $provincia = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['provincia']);
+                $comune = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['comune']);
+                $cap = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['cap']);
+                
                 DB::table('comuni')->insert([
                     'id' => $validComune['id'],
-                    'regione' => (string) $validComune['regione'],
-                    'provincia' => (string) $validComune['provincia'],
-                    'comune' => (string) $validComune['comune'],
-                    'cap' => (string) $validComune['cap'],
-                    'lat' => (float) $validComune['lat'],
-                    'lng' => (float) $validComune['lng'],
+                    'regione' => $regione,
+                    'provincia' => $provincia,
+                    'comune' => $comune,
+                    'cap' => $cap,
+                    'lat' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($validComune['lat'], -90.0, 90.0, 0.0),
+                    'lng' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($validComune['lng'], -180.0, 180.0, 0.0),
                     'created_at' => $validComune['created_at'] ?? now(),
                     'updated_at' => $validComune['updated_at'] ?? now(),
                 ]);
@@ -192,4 +197,6 @@ class SushiCommand extends Command
             return 1;
         }
     }
+    
+   
 } 

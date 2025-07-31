@@ -16,21 +16,7 @@ use Modules\Xot\Traits\Updater;
 /**
  * Class BaseModelLang.
  *
- * @property string $id
- * @property string|null $uuid
- * @property \Illuminate\Support\Carbon|null $published_at
- * @property \Illuminate\Support\Carbon|null $verified_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $updated_by
- * @property string|null $created_by
- * @property string|null $deleted_by
  * @property string|null $post_type
- * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang query()
- * @mixin \Eloquent
  */
 abstract class BaseModelLang extends Model
 {
@@ -86,7 +72,7 @@ abstract class BaseModelLang extends Model
      *
      * @return Factory
      */
-    protected static function newFactory(): Factory
+    protected static function newFactory()
     {
         return app(GetFactoryAction::class)->execute(static::class);
     }

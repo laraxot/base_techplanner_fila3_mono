@@ -227,7 +227,7 @@ class Chart extends BaseModel
             return $value;
         }
 
-        $res= $this->attributes['type'] ?? (string) $this->getPanelRow('chart_type', 'type');
+        $res = $this->attributes['type'] ?? (string) $this->getPanelRow('chart_type', 'type');
         Assert::string($res);
         return $res;
     }

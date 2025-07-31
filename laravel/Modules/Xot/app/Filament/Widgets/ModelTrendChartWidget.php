@@ -38,6 +38,7 @@ class ModelTrendChartWidget extends XotBaseChartWidget
                 'datasets' => [
                     [
                         'label' => __('salutemo::widgets.appointment_creation_chart.label'),
+                        /** @phpstan-ignore-next-line */
                         'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                         'backgroundColor' => 'rgba(139, 92, 246, 0.5)',
                         'borderColor' => 'rgb(139, 92, 246)',
@@ -45,6 +46,7 @@ class ModelTrendChartWidget extends XotBaseChartWidget
                         'tension' => 0.4,
                     ],
                 ],
+                /** @phpstan-ignore-next-line */
                 'labels' => $data->map(fn (TrendValue $value) => \Carbon\Carbon::parse($value->date)->format('d/m')),
             ];
         } catch (\Exception $e) {

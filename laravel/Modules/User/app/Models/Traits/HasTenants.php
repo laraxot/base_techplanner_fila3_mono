@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\User\Contracts\TeamContract;
 use Modules\Xot\Actions\Panel\ApplyTenancyToPanelAction;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Modules\Xot\Models\Traits\RelationX;
 
 /**
  * Trait HasTenants
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 trait HasTenants
 {
+    use RelationX;
     /**
      * Check if the user can access a specific tenant.
      *

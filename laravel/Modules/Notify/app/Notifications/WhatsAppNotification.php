@@ -48,10 +48,12 @@ class WhatsAppNotification extends Notification implements ShouldQueue
             $to = $config['to'] ?? '';
             $from = $config['from'] ?? null;
             
+            $toString = is_string($to) ? $to : '';
+            $fromString = $from !== null && is_string($from) ? $from : null;
             $this->whatsappData = new WhatsAppData(
-                to: (string) $to,
+                to: $toString,
                 body: $content,
-                from: $from !== null ? (string) $from : null
+                from: $fromString
             );
         }
         

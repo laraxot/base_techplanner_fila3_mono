@@ -18,6 +18,7 @@ use Illuminate\Validation\ValidationException;
 use Modules\User\Models\User;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 
 class RegisterWidget extends XotBaseWidget
 {
@@ -146,12 +147,13 @@ class RegisterWidget extends XotBaseWidget
     protected function validateForm(): array
     {
         $data = $this->form->getState();
+        $safeStringCastAction = app(SafeStringCastAction::class);
         
         return [
-            'first_name' => (string) ($data['first_name'] ?? ''),
-            'last_name' => (string) ($data['last_name'] ?? ''),
-            'email' => (string) ($data['email'] ?? ''),
-            'password' => Hash::make((string) ($data['password'] ?? '')),
+            'first_name' => $safeStringCastAction->execute($data['first_name'] ?? ''),
+            'last_name' => $safeStringCastAction->execute($data['last_name'] ?? ''),
+            'email' => $safeStringCastAction->execute($data['email'] ?? ''),
+            'password' => Hash::make($safeStringCastAction->execute($data['password'] ?? '')),
             'type' => 'standard',
             'state' => 'pending',
             'email_verified_at' => null,
@@ -213,4 +215,6 @@ class RegisterWidget extends XotBaseWidget
 
         throw new \RuntimeException(__('user::auth.registration.error_occurred'));
     }
+
+
 }

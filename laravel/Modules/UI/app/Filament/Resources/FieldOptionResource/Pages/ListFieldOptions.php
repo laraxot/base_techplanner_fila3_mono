@@ -15,9 +15,9 @@ class ListFieldOptions extends LangBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            Columns\TextColumn::make('name'),
-            Columns\TextColumn::make('key'),
-            Columns\TextColumn::make('type')
+            'name' => Columns\TextColumn::make('name'),
+            'key' => Columns\TextColumn::make('key'),
+            'type' => Columns\TextColumn::make('type')
         ];
     }
 }

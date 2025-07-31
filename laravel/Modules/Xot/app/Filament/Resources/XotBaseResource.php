@@ -191,7 +191,7 @@ abstract class XotBaseResource extends FilamentResource
     {
         $submit_view = 'pub_theme::filament.wizard.submit-button';
         if(!view()->exists($submit_view)){
-            throw new \Exception('View '.$submit_view.' does not exist');
+            throw new \Exception("View {$submit_view} does not exist");
         }
         $render= view($submit_view)->render();
         return new HtmlString($render);

@@ -87,9 +87,7 @@ class Post extends Model
     // use Searchable;
     use Cachable;
 
-    /**
-     * @var string[]
-     */
+    /**  @var list<string>     */
     protected $fillable = [
         'id', 'post_id', 'post_type', 'lang', 'title', 'subtitle', 'guid',
         'txt', 'image_src', 'image_alt', 'image_title', 'meta_description', 'meta_keywords',

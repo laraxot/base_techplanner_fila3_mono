@@ -69,8 +69,8 @@ class Login extends Component implements HasForms
             TextInput::make('email')
                 ->email()
                 ->required()
-                ->label(__('Email'))
-                ->placeholder(__('Inserisci la tua email'))
+                ->label(__('auth.login.email'))
+                ->placeholder(__('auth.login.email_placeholder'))
                 ->suffixIcon('heroicon-m-envelope')
                 ->autofocus()
                 ->live()
@@ -80,8 +80,8 @@ class Login extends Component implements HasForms
             TextInput::make('password')
                 ->password()
                 ->required()
-                ->label(__('Password'))
-                ->placeholder(__('Inserisci la tua password'))
+                ->label(__('auth.login.password'))
+                ->placeholder(__('auth.login.password_placeholder'))
                 ->suffixIcon('heroicon-m-key')
                 ->revealable()
                 ->minLength(8)
@@ -89,7 +89,7 @@ class Login extends Component implements HasForms
                 ->dehydrated(),
 
             Checkbox::make('remember')
-                ->label(__('Ricordami'))
+                ->label(__('auth.login.remember_me'))
                 ->default(false)
                 ->dehydrated(),
         ];
@@ -127,9 +127,9 @@ class Login extends Component implements HasForms
                 return redirect()->intended();
             }
 
-            $this->addError('email', __('Le credenziali fornite non sono corrette.'));
+            $this->addError('email', __('auth.login.credentials_error'));
         } catch (\Exception $e) {
-            $this->addError('email', __('Si è verificato un errore durante il login. Riprova più tardi.'));
+            $this->addError('email', __('auth.login.login_error'));
             report($e);
         }
     }

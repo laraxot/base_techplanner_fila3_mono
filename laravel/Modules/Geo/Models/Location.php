@@ -59,8 +59,8 @@ use Modules\Xot\Traits\Updater;
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereZip($value)
  *
- * @property \Modules\Fixcity\Models\Profile|null $creator
- * @property \Modules\Fixcity\Models\Profile|null $updater
+ * @property \Modules\User\Models\User|null $creator
+ * @property \Modules\User\Models\User|null $updater
  *
  * @mixin \Eloquent
  */
@@ -118,6 +118,16 @@ class Location extends Model
             'lat' => 'lat',
             'lng' => 'lng',
         ];
+    }
+
+    /**
+     * Get the value attribute for display purposes.
+     *
+     * @return string
+     */
+    public function getValueAttribute(): string
+    {
+        return $this->name ?? $this->address ?? '';
     }
 
     /**

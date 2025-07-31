@@ -20,6 +20,7 @@ use Filament\Widgets\Widget;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\Rules\Password as PasswordRule;
 use Modules\User\Datas\PasswordData;
@@ -110,8 +111,9 @@ class PasswordExpiredWidget extends XotBaseWidget implements HasForms
         }
 
         // Cast e verifica esistenza dei dati del form
-        $currentPassword = (string) ($this->data['current_password'] ?? '');
-        $newPassword = (string) ($this->data['password'] ?? '');
+        $safeStringCastAction = app(SafeStringCastAction::class);
+        $currentPassword = $safeStringCastAction->execute($this->data['current_password'] ?? '');
+        $newPassword = $safeStringCastAction->execute($this->data['password'] ?? '');
         
         if (empty($currentPassword) || empty($newPassword)) {
             $this->addError('current_password', __('user::auth.password_fields_required'));
@@ -120,7 +122,7 @@ class PasswordExpiredWidget extends XotBaseWidget implements HasForms
 
         $userPassword = $user->getAttribute('password');
         // Cast esplicito di mixed a string per PHPStan
-        $userPasswordString = (string) ($userPassword ?? '');
+        $userPasswordString = $safeStringCastAction->execute($userPassword);
         
         if (!Hash::check($currentPassword, $userPasswordString)) {
             $this->addError('current_password', __('user::auth.password_current_incorrect'));
@@ -197,4 +199,6 @@ class PasswordExpiredWidget extends XotBaseWidget implements HasForms
             $this->getResetPasswordFormAction(),
         ];
     }
+
+
 }

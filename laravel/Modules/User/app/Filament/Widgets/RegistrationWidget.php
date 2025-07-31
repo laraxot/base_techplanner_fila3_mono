@@ -39,6 +39,9 @@ class RegistrationWidget extends XotBaseWidget
     public string $action;
     public Model $record;
     
+    /**
+     * @var view-string
+     */
     protected static string $view = 'pub_theme::filament.widgets.registration';
 
     public function mount(string $type, Request $request): void
