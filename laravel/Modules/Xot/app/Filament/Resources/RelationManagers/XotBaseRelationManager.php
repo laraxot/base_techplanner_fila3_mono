@@ -36,7 +36,7 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
         return $module_name;
     }
 
-    final public function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form->schema(
             $this->getFormSchema()
