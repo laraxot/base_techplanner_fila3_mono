@@ -169,11 +169,6 @@ return [
 
 ## Verifiche Post-Correzione
 
-### 1. Controllo Conflitti
-```bash
-grep -r "<<<<<<< HEAD" laravel/Themes/Two/lang/
-```
-**Risultato**: Nessun conflitto rimanente
 
 ### 2. Validazione Struttura
 ```bash

@@ -1,7 +1,7 @@
 # Risoluzione Conflitti di Merge - Modulo Geo
 
 ## Problema Identificato (2025-01-06)
-Diversi file nel modulo Geo contengono conflitti di merge con `<<<<<<< HEAD` che devono essere risolti.
+Diversi file nel modulo Geo contengono conflitti di merge che devono essere risolti.
 
 ## File con Conflitti
 
