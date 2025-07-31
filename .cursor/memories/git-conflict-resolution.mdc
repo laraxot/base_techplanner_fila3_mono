@@ -1,0 +1,55 @@
+# Memoria: Gestione Documentazione Risoluzione Conflitti Git
+
+## Errore Corretto (2025-07-31)
+**Problema**: Cartella `conflict-resolution-docs` creata nella root del progetto durante la risoluzione dei conflitti Git del modulo Geo.
+
+**Soluzione Applicata**:
+1. Spostata la documentazione specifica del modulo in `laravel/Modules/Geo/docs/git-conflicts/`
+2. Creata documentazione generale in `docs/git-conflict-resolution/`
+3. Rimossa la cartella temporanea dalla root
+4. Aggiornate le regole per prevenire questo errore
+
+## Regole Apprese
+
+### ❌ MAI Fare
+- Creare cartelle di documentazione temporanea nella root del progetto
+- Lasciare file di risoluzione conflitti fuori dalla struttura corretta
+- Dimenticare di pulire dopo la risoluzione
+
+### ✅ SEMPRE Fare
+- Posizionare documentazione specifica del modulo in `Modules/{ModuleName}/docs/`
+- Creare documentazione generale in `docs/` se necessaria
+- Rimuovere file temporanei dopo la risoluzione
+- Aggiornare collegamenti e riferimenti
+
+## Struttura Corretta
+```
+# Documentazione specifica modulo
+laravel/Modules/Geo/docs/git-conflicts/
+├── git-conflicts-list.md
+├── git-conflicts-resolution-complete.md
+└── place-resolution.md
+
+# Documentazione generale (se necessaria)
+docs/git-conflict-resolution/
+└── README.md
+```
+
+## Best Practices Implementate
+1. **Organizzazione**: Documentazione specifica nel modulo, generale nella root docs
+2. **Pulizia**: Rimozione automatica di file temporanei
+3. **Collegamenti**: Aggiornamento di tutti i riferimenti
+4. **Verifica**: Controllo che la documentazione sia accessibile
+
+## Collegamenti Correlati
+- [Regole Git Conflict Resolution](../rules/git-conflict-resolution.mdc)
+- [Struttura Documentazione Laraxot](../rules/documentation-structure.mdc)
+- [Best Practices Git](../rules/git-best-practices.mdc)
+
+---
+*Memoria creata: 2025-07-31*
+*Errore corretto: Posizionamento errato documentazione risoluzione conflitti*
+description:
+globs:
+alwaysApply: false
+---

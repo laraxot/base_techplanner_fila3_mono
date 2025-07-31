@@ -58,7 +58,7 @@ class GetElevationAction
             }
 
             $elevation = $firstResult['elevation'];
-            return is_numeric($elevation) ? (float) $elevation : 0.0;
+            return \Modules\Xot\Actions\Cast\SafeFloatCastAction::cast($elevation, 0.0);
         } catch (\Throwable $e) {
             if ($e instanceof ElevationException) {
                 throw $e;

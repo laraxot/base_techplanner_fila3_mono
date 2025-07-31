@@ -100,10 +100,10 @@ class SushiCommand extends Command
                 /** @var array<string, mixed> $validComune */
                 $validComune = $arrayComune;
                 
-                $regione = $this->safeStringCast($validComune['regione']);
-                $provincia = $this->safeStringCast($validComune['provincia']);
-                $comune = $this->safeStringCast($validComune['comune']);
-                $cap = $this->safeStringCast($validComune['cap']);
+                $regione = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['regione']);
+                $provincia = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['provincia']);
+                $comune = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['comune']);
+                $cap = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['cap']);
                 
                 DB::table('comuni')->insert([
                     'id' => $validComune['id'],
@@ -111,8 +111,8 @@ class SushiCommand extends Command
                     'provincia' => $provincia,
                     'comune' => $comune,
                     'cap' => $cap,
-                    'lat' => is_numeric($validComune['lat']) ? (float) $validComune['lat'] : 0.0,
-                    'lng' => is_numeric($validComune['lng']) ? (float) $validComune['lng'] : 0.0,
+                    'lat' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($validComune['lat'], -90.0, 90.0, 0.0),
+                    'lng' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($validComune['lng'], -180.0, 180.0, 0.0),
                     'created_at' => $validComune['created_at'] ?? now(),
                     'updated_at' => $validComune['updated_at'] ?? now(),
                 ]);
@@ -198,14 +198,5 @@ class SushiCommand extends Command
         }
     }
     
-    /**
-     * Converte in modo sicuro un valore mixed in string usando l'action centralizzata.
-     *
-     * @param mixed $value Il valore da convertire
-     * @return string Il valore convertito in string
-     */
-    private function safeStringCast(mixed $value): string
-    {
-        return app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($value);
-    }
+   
 } 

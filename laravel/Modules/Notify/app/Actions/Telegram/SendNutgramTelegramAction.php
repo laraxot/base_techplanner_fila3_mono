@@ -45,7 +45,7 @@ final class SendNutgramTelegramAction
         $this->parseMode = $parseMode;
         $this->debug = (bool) config('telegram.debug', false);
         $timeoutConfig = config('telegram.timeout', 30);
-        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
+        $this->timeout = \Modules\Xot\Actions\Cast\SafeIntCastAction::cast($timeoutConfig, 30);
     }
 
     /**

@@ -4,329 +4,213 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Models;
 
-use Modules\Xot\Models\XotBaseModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\User\Models\User;
 
 /**
  * Class Attendance.
- * 
- * Modello per la gestione delle presenze dei dipendenti.
- * Gestisce timbrature, calcolo ore, approvazioni e geolocalizzazione.
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property Carbon $timestamp
+ * @property string $type
+ * @property string $method
+ * @property string|null $latitude
+ * @property string|null $longitude
+ * @property string|null $address
+ * @property string|null $notes
+ * @property string $status
+ * @property bool $is_manual
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read User $user
+ * @property-read User|null $createdBy
+ * @property-read User|null $updatedBy
  */
-class Attendance extends XotBaseModel
+class Attendance extends BaseModel
 {
     /**
-     * The table associated with the model.
-     */
-    protected $table = 'attendances';
-
-    /**
      * The attributes that are mass assignable.
+     *
+     * @var list<string>
      */
     protected $fillable = [
-        'employee_id',           // ID del dipendente
-        'date',                  // Data della presenza
-        'time_in',               // Orario di entrata
-        'time_out',              // Orario di uscita
-        'total_hours',           // Ore totali lavorate
-        'overtime_hours',        // Ore straordinarie
-        'break_hours',           // Ore di pausa
-        'type',                  // Tipo: normale, straordinario, permesso, malattia
-        'location',              // Posizione timbratura (JSON)
-        'device_info',           // Informazioni dispositivo (JSON)
-        'notes',                 // Note aggiuntive
-        'status',                // Stato: registrata, approvata, rifiutata
-        'approved_by',           // ID approvatore
-        'approved_at',           // Data approvazione
-        'rejection_reason',      // Motivo rifiuto
-        'work_schedule_id',      // ID orario di lavoro
-        'is_remote',             // Lavoro da remoto
-        'location_validated',    // Posizione validata
+        'user_id',
+        'timestamp',
+        'type',
+        'method',
+        'latitude',
+        'longitude',
+        'address',
+        'notes',
+        'status',
+        'is_manual',
+        'created_by',
+        'updated_by',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
-            'date' => 'date',
-            'time_in' => 'datetime',
-            'time_out' => 'datetime',
-            'total_hours' => 'decimal:2',
-            'overtime_hours' => 'decimal:2',
-            'break_hours' => 'decimal:2',
-            'location' => 'array',
-            'device_info' => 'array',
-            'approved_at' => 'datetime',
-            'is_remote' => 'boolean',
-            'location_validated' => 'boolean',
+            'timestamp' => 'datetime',
+            'is_manual' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Get the user that owns the attendance record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, \Modules\Employee\Models\Attendance>
      */
-    protected $hidden = [
-        'device_info',           // Nascondi info dispositivo per privacy
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     */
-    protected $appends = [
-        'duration_formatted',
-        'is_complete',
-        'is_overtime',
-        'status_color',
-    ];
-
-    /**
-     * Get the employee that owns the attendance.
-     */
-    public function employee(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * Get the approver of the attendance.
+     * Get the user that created the attendance record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, \Modules\Employee\Models\Attendance>
      */
-    public function approver(): BelongsTo
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(Employee::class, 'approved_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     /**
-     * Get the work schedule for this attendance.
+     * Get the user that updated the attendance record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, \Modules\Employee\Models\Attendance>
      */
-    public function workSchedule(): BelongsTo
+    public function updatedBy(): BelongsTo
     {
-        return $this->belongsTo(WorkSchedule::class);
+        return $this->belongsTo(User::class, 'updated_by');
     }
 
     /**
-     * Get the time entries for this attendance.
+     * Scope a query to only include attendance records for a specific user.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param int $userId
+     * @return \Illuminate\Database\Eloquent\Builder<static>
      */
-    public function timeEntries(): HasMany
+    public function scopeForUser($query, int $userId)
     {
-        return $this->hasMany(TimeEntry::class);
+        return $query->where('user_id', $userId);
     }
 
     /**
-     * Calculate the total hours worked.
+     * Scope a query to only include attendance records of a specific type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param string $type
+     * @return \Illuminate\Database\Eloquent\Builder<static>
      */
-    public function calculateHours(): void
+    public function scopeOfType($query, string $type)
     {
-        if ($this->time_in && $this->time_out) {
-            $start = Carbon::parse($this->time_in);
-            $end = Carbon::parse($this->time_out);
-            
-            // Calcola ore totali (escludendo pause)
-            $totalMinutes = $end->diffInMinutes($start);
-            $this->total_hours = round($totalMinutes / 60, 2);
-            
-            // Calcola straordinari (oltre 8 ore)
-            $standardHours = config('employee.work_hours_standard', 8);
-            if ($this->total_hours > $standardHours) {
-                $this->overtime_hours = round($this->total_hours - $standardHours, 2);
-            } else {
-                $this->overtime_hours = 0;
-            }
-        }
+        return $query->where('type', $type);
     }
 
     /**
-     * Check if the attendance is complete (has both time_in and time_out).
+     * Scope a query to only include attendance records for a specific date.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param Carbon $date
+     * @return \Illuminate\Database\Eloquent\Builder<static>
      */
-    public function isComplete(): bool
+    public function scopeForDate($query, Carbon $date)
     {
-        return $this->time_in && $this->time_out;
+        return $query->whereDate('timestamp', $date);
     }
 
     /**
-     * Check if the attendance has overtime.
+     * Scope a query to only include valid attendance records.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @return \Illuminate\Database\Eloquent\Builder<static>
      */
-    public function isOvertime(): bool
+    public function scopeValid($query)
     {
-        return $this->overtime_hours > 0;
+        return $query->where('status', 'valid');
     }
 
     /**
-     * Get the formatted duration.
+     * Get the formatted timestamp.
+     *
+     * @return string
      */
-    public function getDurationFormattedAttribute(): string
+    public function getFormattedTimestampAttribute(): string
     {
-        if ($this->time_in && $this->time_out) {
-            $start = Carbon::parse($this->time_in);
-            $end = Carbon::parse($this->time_out);
-            $hours = $end->diffInHours($start);
-            $minutes = $end->diffInMinutes($start) % 60;
-            return "{$hours}h {$minutes}m";
-        }
-        return 'N/A';
+        return $this->timestamp->format('d/m/Y H:i:s');
     }
 
     /**
-     * Get the is_complete attribute.
+     * Get the formatted time only.
+     *
+     * @return string
      */
-    public function getIsCompleteAttribute(): bool
+    public function getFormattedTimeAttribute(): string
     {
-        return $this->isComplete();
+        return $this->timestamp->format('H:i:s');
     }
 
     /**
-     * Get the is_overtime attribute.
+     * Get the formatted date only.
+     *
+     * @return string
      */
-    public function getIsOvertimeAttribute(): bool
+    public function getFormattedDateAttribute(): string
     {
-        return $this->isOvertime();
+        return $this->timestamp->format('d/m/Y');
     }
 
     /**
-     * Get the status color for display.
+     * Check if the attendance record is an entry.
+     *
+     * @return bool
      */
-    public function getStatusColorAttribute(): string
+    public function isEntry(): bool
     {
-        return match($this->status) {
-            'registrata' => 'warning',
-            'approvata' => 'success',
-            'rifiutata' => 'danger',
-            default => 'gray'
-        };
+        return $this->type === 'entry';
     }
 
     /**
-     * Get the type label for display.
+     * Check if the attendance record is an exit.
+     *
+     * @return bool
      */
-    public function getTypeLabelAttribute(): string
+    public function isExit(): bool
     {
-        return match($this->type) {
-            'normale' => 'Normale',
-            'straordinario' => 'Straordinario',
-            'permesso' => 'Permesso',
-            'malattia' => 'Malattia',
-            'smart_working' => 'Smart Working',
-            default => 'Non specificato'
-        };
+        return $this->type === 'exit';
     }
 
     /**
-     * Check if the attendance is pending approval.
+     * Check if the attendance record is manual.
+     *
+     * @return bool
      */
-    public function isPending(): bool
+    public function isManual(): bool
     {
-        return $this->status === 'registrata';
+        return $this->is_manual;
     }
 
     /**
-     * Check if the attendance is approved.
+     * Check if the attendance record has location data.
+     *
+     * @return bool
      */
-    public function isApproved(): bool
+    public function hasLocation(): bool
     {
-        return $this->status === 'approvata';
-    }
-
-    /**
-     * Check if the attendance is rejected.
-     */
-    public function isRejected(): bool
-    {
-        return $this->status === 'rifiutata';
-    }
-
-    /**
-     * Get the location coordinates.
-     */
-    public function getLocationCoordinates(): ?array
-    {
-        if (!$this->location || !isset($this->location['lat']) || !isset($this->location['lng'])) {
-            return null;
-        }
-
-        return [
-            'lat' => $this->location['lat'],
-            'lng' => $this->location['lng'],
-        ];
-    }
-
-    /**
-     * Validate location against company premises.
-     */
-    public function validateLocation(): bool
-    {
-        if (!$this->location_validated) {
-            // Implementa logica di validazione posizione
-            $this->location_validated = true;
-            $this->save();
-        }
-
-        return $this->location_validated;
-    }
-
-    /**
-     * Scope for pending attendances.
-     */
-    public function scopePending($query)
-    {
-        return $query->where('status', 'registrata');
-    }
-
-    /**
-     * Scope for approved attendances.
-     */
-    public function scopeApproved($query)
-    {
-        return $query->where('status', 'approvata');
-    }
-
-    /**
-     * Scope for today's attendances.
-     */
-    public function scopeToday($query)
-    {
-        return $query->where('date', today());
-    }
-
-    /**
-     * Scope for this month's attendances.
-     */
-    public function scopeThisMonth($query)
-    {
-        return $query->whereMonth('date', now()->month)
-                    ->whereYear('date', now()->year);
-    }
-
-    /**
-     * Scope for overtime attendances.
-     */
-    public function scopeOvertime($query)
-    {
-        return $query->where('overtime_hours', '>', 0);
-    }
-
-    /**
-     * Scope for remote work attendances.
-     */
-    public function scopeRemote($query)
-    {
-        return $query->where('is_remote', true);
-    }
-
-    /**
-     * Boot the model.
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        // Calcola automaticamente le ore quando viene salvato
-        static::saving(function ($attendance) {
-            $attendance->calculateHours();
-        });
+        return !empty($this->latitude) && !empty($this->longitude);
     }
 } 

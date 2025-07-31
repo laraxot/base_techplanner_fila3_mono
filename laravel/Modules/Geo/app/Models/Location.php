@@ -10,37 +10,30 @@ use Illuminate\Support\Carbon;
 use Modules\Xot\Contracts\ProfileContract;
 
 /**
- * Class Location.
+ * Modules\Geo\Models\Location.
  *
- * @property int                  $id
- * @property string|null          $model_type
- * @property string|null          $model_id
- * @property string|null          $name
- * @property float|null           $lat
- * @property float|null           $lng
- * @property string|null          $street
- * @property string|null          $city
- * @property string|null          $state
- * @property string|null          $zip
- * @property string|null          $formatted_address
- * @property string|null          $description
- * @property bool|null            $processed
- * @property Carbon|null          $created_at
- * @property Carbon|null          $updated_at
- * @property string|null          $updated_by
- * @property string|null          $created_by
- * @property string|null          $deleted_at
- * @property string|null          $deleted_by
- * @property array                $location
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- * @method static \Illuminate\Database\Eloquent\Builder|Location query()
- * @method static \Illuminate\Database\Eloquent\Builder|Location whereCity(string $value)
- * @method static \Illuminate\Database\Eloquent\Builder|Location whereLat(float $value)
- * @method static \Illuminate\Database\Eloquent\Builder|Location whereLng(float $value)
- * @method static \Illuminate\Database\Eloquent\Builder|Location whereProcessed(bool $value)
- * @method static \Illuminate\Database\Eloquent\Builder|Location whereState(string $value)
- * @method static \Illuminate\Database\Eloquent\Builder|Location whereZip(string $value)
+ * @property int $id
+ * @property string|null $model_type
+ * @property int|null $model_id
+ * @property string|null $name
+ * @property float|null $lat
+ * @property float|null $lng
+ * @property string|null $street
+ * @property string|null $city
+ * @property string|null $state
+ * @property string|null $zip
+ * @property string|null $formatted_address
+ * @property bool|null $processed
+ * @property string|null $description
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property string|null $deleted_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read array<string, float> $location
+ * @property-read \Modules\User\Models\User|null $creator
+ * @property-read \Modules\User\Models\User|null $updater
  * @method static Builder<static>|Location newModelQuery()
  * @method static Builder<static>|Location newQuery()
  * @method static Builder<static>|Location withinDistance(float $latitude, float $longitude, float $distanceInKm)
@@ -99,8 +92,8 @@ class Location extends BaseModel
     {
         return Attribute::make(
             get: fn (): array => [
-                'lat' => (float) $this->lat,
-                'lng' => (float) $this->lng,
+                'lat' => (float) ($this->lat ?? 0.0),
+                'lng' => (float) ($this->lng ?? 0.0),
             ],
             set: function (?array $value): void {
                 if (is_array($value)) {

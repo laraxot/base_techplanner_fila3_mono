@@ -99,8 +99,8 @@ use Modules\Xot\Traits\Updater;
  * @method static Builder|Place whereModelId($value)
  * @method static Builder|Place whereModelType($value)
  *
- * @property \Modules\Fixcity\Models\Profile|null $creator
- * @property \Modules\Fixcity\Models\Profile|null $updater
+ * @property \Modules\Xot\Contracts\UserContract|null $creator
+ * @property \Modules\Xot\Contracts\UserContract|null $updater
  *
  * @mixin \Eloquent
  */
@@ -214,7 +214,9 @@ class Place extends Model
      */
     public function getFormattedAddressAttribute(): string
     {
-        return $this->attributes['formatted_address'] ?? $this->getValueAttribute();
+        return \Modules\Xot\Actions\Cast\SafeStringCastAction::cast(
+            $this->attributes['formatted_address'] ?? $this->getValueAttribute()
+        );
     }
 
     /**

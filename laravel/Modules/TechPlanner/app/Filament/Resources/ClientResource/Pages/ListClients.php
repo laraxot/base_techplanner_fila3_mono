@@ -316,12 +316,16 @@ class ListClients extends XotBaseListRecords
     protected function getTableQuery(): Builder
     {
         $query = parent::getTableQuery();
+        if($query==null){
+            throw new \Exception('Query is null');
+        }
         $latitude = Session::get('user_latitude');
         $longitude = Session::get('user_longitude');
 
         return $query
             ->when($latitude && $longitude,
                 function (Builder $query) use ($latitude, $longitude) {
+                    /** @phpstan-ignore-next-line */
                     $query->withDistance($latitude, $longitude)
                       ->orderByDistance($latitude, $longitude);
                 }
