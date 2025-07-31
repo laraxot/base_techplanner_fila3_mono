@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\FormBuilder\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
-use Modules\FormBuilder\Models\Field;
-use Modules\UI\Enums\FieldTypeEnum;
+use Modules\FormBuilder\Models\FormField;
+use Modules\FormBuilder\Enums\FieldTypeEnum;
 
 /**
  * Widget per la distribuzione dei tipi di campo nei form.
@@ -25,12 +25,12 @@ class FormFieldsDistributionWidget extends ChartWidget
 
     protected function getData(): array
     {
-        $fieldTypes = collect(FieldTypeEnum::cases())->map(function ($type) {
+        $fieldTypes = collect(FieldTypeEnum::cases())->map(function (FieldTypeEnum $type) {
             return [
                 'type' => $type->getLabel(),
-                'count' => Field::where('type', $type->value)->count(),
+                'count' => FormField::where('type', '=', $type->value)->count(),
             ];
-        })->filter(fn ($item) => $item['count'] > 0);
+        })->filter(fn (array $item) => $item['count'] > 0);
 
         return [
             'datasets' => [

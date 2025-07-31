@@ -57,8 +57,7 @@ class GetElevationAction
                 throw ElevationException::invalidResponse();
             }
 
-            $elevation = $firstResult['elevation'];
-            return \Modules\Xot\Actions\Cast\SafeFloatCastAction::cast($elevation, 0.0);
+            return (float) $firstResult['elevation'];
         } catch (\Throwable $e) {
             if ($e instanceof ElevationException) {
                 throw $e;

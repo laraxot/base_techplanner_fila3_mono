@@ -4,18 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\UI\Filament\Widgets;
 
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Filament\Widgets\Widget as BaseWidget;
 use Illuminate\Contracts\Support\Htmlable;
 
-/**
- * Widget per statistiche con icona per il modulo UI.
- * 
- * Estende XotBaseWidget che gestisce automaticamente:
- * - Configurazioni base del widget
- * - Integrazione con il sistema Xot
- * - Pattern uniformi con altri widget
- */
-class StatWithIconWidget extends XotBaseWidget
+class StatWithIconWidget extends BaseWidget
 {
     protected static string $view = 'ui::filament.widgets.stat-with-icon';
 
@@ -31,15 +23,5 @@ class StatWithIconWidget extends XotBaseWidget
         dddx($this->label);
 
         return [];
-    }
-
-    /**
-     * Schema del form per il widget.
-     */
-    public function getFormSchema(): array
-    {
-        return [
-            // Schema vuoto per widget di statistiche
-        ];
     }
 }

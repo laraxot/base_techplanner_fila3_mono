@@ -49,7 +49,7 @@ abstract class XotBaseRelationManager extends RelationManager
         return static::transFunc(__FUNCTION__);
     }
 
-    public function form(Form $form): Form
+    final public function form(Form $form): Form
     {
         return $form
             ->schema($this->getFormSchema());

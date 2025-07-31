@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
- * 
- *
  * @property-read \Modules\User\Models\Profile|null $creator
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $mailable
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
@@ -39,23 +37,15 @@ class MailTemplateLog extends BaseModel
         'clicked_at',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'data' => 'array',
-            'metadata' => 'array',
-            'sent_at' => 'datetime',
-            'delivered_at' => 'datetime',
-            'failed_at' => 'datetime',
-            'opened_at' => 'datetime',
-            'clicked_at' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'data' => 'array',
+        'metadata' => 'array',
+        'sent_at' => 'datetime',
+        'delivered_at' => 'datetime',
+        'failed_at' => 'datetime',
+        'opened_at' => 'datetime',
+        'clicked_at' => 'datetime',
+    ];
 
     public function template(): BelongsTo
     {

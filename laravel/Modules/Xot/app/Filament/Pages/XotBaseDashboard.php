@@ -15,7 +15,7 @@ abstract class XotBaseDashboard extends FilamentDashboard
     protected static ?int $navigationSort = 1;
     protected bool $persistsFiltersInSession = true;
 
-    public function filtersForm(Form $form): Form
+    final public function filtersForm(Form $form): Form
     {
         return $form
             ->schema([

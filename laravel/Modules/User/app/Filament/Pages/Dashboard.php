@@ -11,31 +11,18 @@ namespace Modules\User\Filament\Pages;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Pages\Dashboard as BaseBashboard;
+use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Widgets\Widget;
 use Filament\Widgets\WidgetConfiguration;
-use Modules\Xot\Filament\Pages\XotBaseDashboard;
 use Modules\User\Filament\Widgets;
 
-/**
- * Dashboard per il modulo User.
- * 
- * Estende XotBaseDashboard che gestisce automaticamente:
- * - Navigazione (icon, title, label, sort)
- * - Filtri del dashboard
- * - Struttura base del dashboard
- * 
- * REGOLA CRITICA: NON ridefinire proprietà di navigazione
- * che sono già gestite centralmente da XotBaseDashboard.
- */
-class Dashboard extends XotBaseDashboard
+class Dashboard extends BaseBashboard
 {
-    // ❌ NON ridefinire queste proprietà (gestite da XotBaseDashboard):
-    // protected static ?string $navigationIcon
-    // protected static ?string $title
-    // protected static ?string $navigationLabel
-    // protected static ?int $navigationSort
-    
-    // ✅ XotBaseDashboard auto-configura tutto basandosi sul modulo
+    use HasFiltersForm;
+
+    protected static ?string $navigationIcon = 'heroicon-o-home';
     // protected static string $routePath = 'finance';
     // protected static ?string $title = 'Finance dashboard';
     // protected static ?int $navigationSort = 15;
@@ -54,24 +41,23 @@ class Dashboard extends XotBaseDashboard
         ];
     }
 
-    /**
-     * Schema dei filtri specifici per il modulo User.
-     * 
-     * Questo metodo è chiamato da XotBaseDashboard::filtersForm()
-     * per personalizzare i filtri del dashboard.
-     *
-     * @return array<int, \Filament\Forms\Components\Component>
-     */
-    public function getFiltersFormSchema(): array
+    public function filtersForm(Form $form): Form
     {
-        return [
-            DatePicker::make('startDate')
-                ->native(false),
-                // ->maxDate(fn (Get $get) => $get('endDate') ?: now()),
-            DatePicker::make('endDate')
-                ->native(false),
-                // ->minDate(fn (Get $get) => $get('startDate') ?: now())
-                // ->maxDate(now()),
-        ];
+        return $form
+            ->schema([
+                Section::make()
+                    ->schema([
+                        DatePicker::make('startDate')
+                            ->native(false)
+                        // ->maxDate(fn (Get $get) => $get('endDate') ?: now()),
+                        ,
+                        DatePicker::make('endDate')
+                            ->native(false)
+                        // ->minDate(fn (Get $get) => $get('startDate') ?: now())
+                        // ->maxDate(now()),
+                        ,
+                    ])
+                    ->columns(3),
+            ]);
     }
 }

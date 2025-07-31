@@ -643,7 +643,7 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
-
+>>>>>>> f000df5 (.)
 # Risoluzione dei Conflitti negli Script Git Subtree
 
 ## Problema
@@ -775,4 +775,8 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
+=======
+>>>>>>> 4d4d6cb7 (.)
+=======
+>>>>>>> d83fe8da (.)
 - [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 

@@ -28,6 +28,7 @@ interface StateContract
     public function modalHeading(): string;
     public function modalDescription(): string;
     public function modalFormSchema(): array;
-    public function modalFillFormByRecord(\Illuminate\Database\Eloquent\Model $record): array;
-    public function modalActionByRecord(\Illuminate\Database\Eloquent\Model $record, array $data): void;
+    public function modalFillFormByRecord(Model $record): array;
+    public function modalActionByRecord(Model $record,array $data): void;
+
 }

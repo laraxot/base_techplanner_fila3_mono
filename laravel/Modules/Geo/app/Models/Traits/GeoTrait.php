@@ -161,12 +161,12 @@ where zone_polygon IS NOT NULL
         if (null !== $value) {
             return $value;
         }
-        $address = $this->getAttribute('address');
+        $address = $this->address;
         if (null === $address) {
             return null;
         }
-        if (is_string($address) && isJson($address)) {
-            $geo = GeoData::from(json_decode($address, true, 512, JSON_THROW_ON_ERROR));
+        if (isJson($address)) {
+            $geo = GeoData::from(json_decode((string) $address, true, 512, JSON_THROW_ON_ERROR));
             $latlng = $geo->latlng;
             $lat = $latlng['lat'];
             $lng = $latlng['lng'];
@@ -178,6 +178,24 @@ where zone_polygon IS NOT NULL
 
             return $lat;
         }
+        // call to function is_object() with string will always evaluate to false
+        // if (\is_object($address)) {
+        //    dddx($address);
+        // }
+        // Call to function is_array() with string will always evaluate to false
+        /*
+        if (\is_array($address)) {
+            $lat = $address['latlng']['lat'];
+            $lng = $address['latlng']['lng'];
+            $this->update([
+                'latitude' => $lat,
+                'longitude' => $lng,
+            ]);
+            $this->save();
+
+            return $lat;
+        }
+        */
 
         return null;
     }
@@ -185,7 +203,7 @@ where zone_polygon IS NOT NULL
     /**
      * Undocumented function.
      */
-    public function setAddressAttribute(mixed $value): void
+    public function setAddressAttribute($value): void
     {
         // *
 
@@ -272,14 +290,25 @@ where zone_polygon IS NOT NULL
      */
     public function getFullAddressAttribute(?string $value): ?string
     {
-        $address = $this->getAttribute('address');
-        if (null === $address) {
+        if (null === $this->address) {
             return null;
         }
-        if (is_string($address) && isJson($address)) {
-            $geo = GeoData::from(json_decode($address, true, 512, JSON_THROW_ON_ERROR));
+        if (isJson($this->address)) {
+            /*
+            $addr = json_decode($this->address);
+            if (\is_object($addr)) {
+                $addr = get_object_vars($addr);
+            }
+
+            extract($addr);
+            */
+            $geo = GeoData::from(json_decode($this->address, true, 512, JSON_THROW_ON_ERROR));
 
             $value = str_ireplace(', Italia', '', $geo->value);
+            // Call to function is_array() with string will always evaluate to false.
+            // if (\is_array($value)) {
+            //    $value = implode(' ', $value);
+            // }
             if (isset($geo->street_number)) {
                 $str = $geo->street_number.', ';
                 $before = Str::before($geo->value, $str);
@@ -295,7 +324,32 @@ where zone_polygon IS NOT NULL
                 return $before.', '.($geo->postal_code ?? '').''.$str.''.$after;
             }
         }
-        
+        // Call to function is_object() with string|null will always evaluate to false.
+        /*
+        if (\is_object($this->address)) {
+            $address = collect($this->address)->except(['value', 'latlng']);
+            $up = false;
+            foreach ($address->all() as $k => $v) {
+                if ($this->$k !== $v) {
+                    $up = true;
+                    break;
+                }
+            }
+            if ($up) {
+                $this->update($address->all());
+            }
+
+            $tmp = [];
+            $tmp[] = $address->get('route');
+            $tmp[] = $address->get('street_number');
+            $tmp[] = $address->get('postal_code');
+            $tmp[] = $address->get('administrative_area_level_3');
+            $tmp[] = $address->get('administrative_area_level_2_short');
+            $value = implode(', ', $tmp);
+
+            return $value;
+        }
+        */
         $tmp = [];
         $tmp[] = $this->route;
         $tmp[] = $this->street_number;

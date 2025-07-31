@@ -1,7 +1,7 @@
 # Analisi Conflitti di Merge - Modulo Geo
 
 ## Panoramica
-Questo documento elenca tutti i file che contengono conflitti di merge (`<<< HEAD`) nel modulo Geo e fornisce una strategia per la loro risoluzione sistematica.
+Questo documento elenca tutti i file che contengono conflitti di merge  nel modulo Geo e fornisce una strategia per la loro risoluzione sistematica.
 
 ## File con Conflitti di Merge
 

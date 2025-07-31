@@ -28,9 +28,9 @@ class DotswanMap extends XotBasePage
             ->get();
 
         return $places->map(fn (Place $place): array => [
-            'lat' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($place->latitude, -90.0, 90.0, 0.0),
-            'lng' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($place->longitude, -180.0, 180.0, 0.0),
-            'title' => is_string($place->getAttribute('name')) ? $place->getAttribute('name') : 'Unnamed Place',
+            'lat' => (float) $place->latitude,
+            'lng' => (float) $place->longitude,
+            'title' => (string) ($place->getAttribute('name') ?? 'Unnamed Place'),
         ]);
     }
 

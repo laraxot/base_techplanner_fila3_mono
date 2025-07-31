@@ -100,46 +100,8 @@ class Chart extends BaseModel
         'colors' => 'array',
     ];
 
-    // /**
-    //  * @return int|string|null
-    //  */
-    // public function getParentStyle(string $name)
-    // {
-    //     $panel = PanelService::make()->getRequestPanel();
-
-    //     if (null === $panel) {
-    //         return $this->attributes[$name] ?? null;
-    //     }
-    //     $parent = $panel->getParent();
-
-    //     if (null === $parent) {
-    //         return $this->attributes[$name] ?? null;
-    //     }
-    //     $parent = $parent->getRow();
-    //     if (! method_exists($parent, 'chart')) {
-    //         return $this->attributes[$name] ?? null;
-    //     }
-    //     // dddx([$name, $panel->row, $parent->{$name}]);
-    //     // $value = $parent->chart->{$name};
-
-    //     $value = $parent->chart->attributes[$name] ?? null;
-
-    //     $this->{$name} = $value;
-    //     $this->save();
-    //     if (! \is_string($value) && ! \is_int($value)) {
-    //         return null;
-    //     }
-
-    //     return $value;
-    // }
-
     public function getPanelRow(string $parent_field, string $my_field): int|string|null
     {
-        // $panel = PanelService::make()->getRequestPanel();
-        // if (! \is_object($panel)) {
-        //     return null;
-        // }
-        // $panel_row = $panel->row;
         $panel_row = $this;
 
         try {
@@ -153,73 +115,11 @@ class Chart extends BaseModel
                 'file' => $errorException->getFile(),
                 'panel_row_class' => $panel_row::class,
             ];
-            // echo '<pre>'.print_r($msg,true).'</pre>';
             $value = null;
         }
 
         return $value;
     }
-
-    // ---------- Getter
-    // public function getColorAttribute(?string $value): ?string
-    // {
-    //     if (null !== $value) {
-    //         // return $value;
-    //     }
-
-    //     return (string) $this->getParentStyle('color');
-    // }
-
-    // public function getListColorAttribute(?string $value): ?string
-    // {
-    //     if (null !== $value) {
-    //         return $value;
-    //     }
-
-    //     return (string) $this->getParentStyle('list_color');
-    // }
-
-    //     public function getXLabelAngleAttribute(?string $value): ?string
-    //     {
-    //         if (null !== $value) {
-    //             return $value;
-    //         }
-    //         /*
-    //         $this->x_label_angle = 0;
-    //         $this->save();
-    //         $value = $this->x_label_angle;
-
-    //         return $value;
-    // */
-    //         return (string) $this->getParentStyle('x_label_angle');
-    //     }
-
-    // public function getFontFamilyAttribute(?int $value): int
-    // {
-    //     if (null !== $value && 0 !== $value) {
-    //         return (int) $value;
-    //     }
-
-    //     return (int) $this->getParentStyle('font_family');
-    // }
-
-    // public function getFontStyleAttribute(?int $value): int
-    // {
-    //     if (null !== $value && 0 !== $value) {
-    //         return (int) $value;
-    //     }
-
-    //     return (int) $this->getParentStyle('font_style');
-    // }
-
-    // public function getFontSizeAttribute(?int $value): int
-    // {
-    //     if (null !== $value && 0 !== $value) {
-    //         return (int) $value;
-    //     }
-
-    //     return (int) $this->getParentStyle('font_size');
-    // }
 
     public function getTypeAttribute(?string $value): ?string
     {
@@ -272,4 +172,4 @@ class Chart extends BaseModel
 
         return [$this->toArray()];
     }
-}
+} 

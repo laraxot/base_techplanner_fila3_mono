@@ -44,8 +44,7 @@ final class SendFacebookWhatsAppAction
 
         // Parametri a livello di root
         $this->debug = (bool) config('whatsapp.debug', false);
-        $timeoutConfig = config('whatsapp.timeout', 30);
-        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
+        $this->timeout = is_numeric(config('whatsapp.timeout', 30)) ? (int) config('whatsapp.timeout', 30) : 30;
     }
 
     /**

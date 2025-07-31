@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'navigation' => [
         'icons' => [
@@ -46,37 +44,37 @@ return [
             'location-map' => [
                 'label' => 'Location Map',
                 'description' => 'View and manage locations on the map',
-                'sort' => 1,
+                'sort' => '1',
             ],
             'lat-lng' => [
                 'label' => 'Coordinates',
                 'description' => 'Geographic coordinates management',
-                'sort' => 2,
+                'sort' => '2',
             ],
             'webbingbrasil-map' => [
                 'label' => 'Webbingbrasil Map',
                 'description' => 'Map view with Webbingbrasil',
-                'sort' => 3,
+                'sort' => '3',
             ],
             'osm-map' => [
                 'label' => 'OSM Map',
                 'description' => 'OpenStreetMap view',
-                'sort' => 4,
+                'sort' => '4',
             ],
             'dotswan-map' => [
                 'label' => 'Dotswan Map',
                 'description' => 'Map view with Dotswan',
-                'sort' => 5,
+                'sort' => '5',
             ],
             'setting-page' => [
                 'label' => 'Settings',
                 'description' => 'Geo module configuration',
-                'sort' => 6,
+                'sort' => '6',
             ],
         ],
         'name' => 'Geo',
         'group' => 'Mappe',
-        'sort' => 20,
+        'sort' => '20',
         'icon' => 'geo-menu',
         'badge' => [
             'color' => 'success',
@@ -106,7 +104,7 @@ return [
             'navigation' => [
                 'name' => 'Mappa',
                 'group' => 'Geo',
-                'sort' => 10,
+                'sort' => '10',
                 'icon' => 'geo-map',
                 'badge' => [
                     'color' => 'info',
@@ -131,7 +129,7 @@ return [
             'navigation' => [
                 'name' => 'Posizioni',
                 'group' => 'Geo',
-                'sort' => 20,
+                'sort' => '20',
                 'icon' => 'geo-location',
                 'badge' => [
                     'color' => 'warning',
@@ -140,17 +138,17 @@ return [
             ],
             'fields' => [
                 'name' => 'Name',
-                'address' => 'Address',
-                'latitude' => 'Latitude',
-                'longitude' => 'Longitude',
-                'category' => 'Category',
-                'status' => 'Status',
+                'address' => 'Indirizzo',
+                'latitude' => 'Latitudine',
+                'longitude' => 'Longitudine',
+                'category' => 'Categoria',
+                'status' => 'Stato',
             ],
             'categories' => [
-                'business' => 'Business',
-                'residence' => 'Residence',
-                'point_of_interest' => 'Point of Interest',
-                'public_service' => 'Public Service',
+                'business' => 'Attività',
+                'residence' => 'Residenza',
+                'point_of_interest' => 'Punto di Interesse',
+                'public_service' => 'Servizio Public',
             ],
         ],
     ],
@@ -158,16 +156,16 @@ return [
         'status' => [
             'active' => 'Active',
             'inactive' => 'Inactive',
-            'pending' => 'Pending',
+            'pending' => 'In Attesa',
             'verified' => 'Verified',
         ],
         'actions' => [
-            'locate' => 'Locate',
-            'center' => 'Center Map',
+            'locate' => 'Localizza',
+            'center' => 'Centra Mappa',
             'zoom' => 'Zoom',
-            'pan' => 'Pan',
-            'measure' => 'Measure',
-            'directions' => 'Directions',
+            'pan' => 'Sposta',
+            'measure' => 'Misura',
+            'directions' => 'Indicazioni',
         ],
         'messages' => [
             'success' => [

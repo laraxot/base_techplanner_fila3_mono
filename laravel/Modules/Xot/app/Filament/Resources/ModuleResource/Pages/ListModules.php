@@ -48,7 +48,49 @@ class ListModules extends XotBaseListRecords
         ];
     }
 
-   
+    /**
+     * Undocumented function.
+     *
+     * @return array<Tables\Filters\BaseFilter>
+     */
+    public function getTableFilters(): array
+    {
+        return [
+            // Tables\Filters\SelectFilter::make('name')->options(
+            //    Module::pluck('name', 'name')->toArray()
+            // ),
+            // Tables\Filters\SelectFilter::make('status')->options([
+            //    'enabled' => 'Enabled',
+            //    'disabled' => 'Disabled',
+            // ])->default('enabled'),
+        ];
+    }
 
-    
+    /**
+     * Undocumented function.
+     *
+     * @return array<Tables\Actions\Action|Tables\Actions\ActionGroup>
+     */
+    public function getTableActions(): array
+    {
+        return [
+            ViewAction::make()
+                ,
+            EditAction::make()
+                ,
+            DeleteAction::make()
+
+                ->requiresConfirmation(),
+        ];
+    }
+
+    /**
+     * @return array<string, Tables\Actions\BulkAction>
+     */
+    public function getTableBulkActions(): array
+    {
+        return [
+            'delete' => DeleteBulkAction::make(),
+        ];
+    }
 }

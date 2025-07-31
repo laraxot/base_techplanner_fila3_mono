@@ -75,10 +75,14 @@ class LocationMapWidget extends MapWidget
      *
      * @return Collection<int, Place>
      */
+    /** @return Collection<int, Place> */
+    /**
+     * @return Collection<int, Place>
+     */
     public function getPlaces(): Collection
     {
         /* @var Collection<int, Place> */
-        return Place::all();
+        return Place::with(['placeType'])->get();
     }
 
     /**
@@ -152,9 +156,37 @@ class LocationMapWidget extends MapWidget
          * } $config */
         $config = Config::get('maps.markers', []);
 
-        // Per ora restituiamo null, in futuro si potrà implementare
-        // la logica per le icone basata su altri criteri
-        return null;
+        $placeType = $place->placeType;
+        if (!$placeType) {
+            return null;
+        }
+
+        // Verifico che la proprietà slug esista sul placeType
+        if (!property_exists($placeType, 'slug')) {
+            return null;
+        }
+
+        /** @var string|null $slug */
+        $slug = $placeType->slug;
+
+        if (!is_string($slug) || !isset($config['icons'][$slug])) {
+            return null;
+        }
+
+        /** @var array{url: string, size: array{int, int}} $icon */
+        $icon = $config['icons'][$slug];
+
+        if (!isset($icon['url']) || !is_string($icon['url'])) {
+            return null;
+        }
+
+        return [
+            'url' => asset($icon['url']),
+            'scaledSize' => [
+                'width' => (int) ($icon['size'][0] ?? 32),
+                'height' => (int) ($icon['size'][1] ?? 32),
+            ],
+        ];
     }
 
     public function render(): View

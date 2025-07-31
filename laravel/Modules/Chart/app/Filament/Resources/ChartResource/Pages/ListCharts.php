@@ -71,4 +71,4 @@ class ListCharts extends XotBaseListRecords
                 ->sortable(),
         ];
     }
-}
+} 
