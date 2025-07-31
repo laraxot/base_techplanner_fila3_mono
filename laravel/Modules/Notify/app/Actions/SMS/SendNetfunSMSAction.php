@@ -55,8 +55,7 @@ final class SendNetfunSMSAction implements SmsActionContract
         $sender = config('sms.from');
         $this->defaultSender = is_string($sender) ? $sender : null;
         $this->debug = (bool) config('sms.debug', false);
-        $timeoutConfig = config('sms.timeout', 30);
-        $this->timeout = \Modules\Xot\Actions\Cast\SafeIntCastAction::cast($timeoutConfig, 30);
+        $this->timeout = is_numeric(config('sms.timeout', 30)) ? (int) config('sms.timeout', 30) : 30;
     }
 
     /**

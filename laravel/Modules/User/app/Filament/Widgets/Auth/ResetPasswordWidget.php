@@ -6,13 +6,13 @@ namespace Modules\User\Filament\Widgets\Auth;
 
 use Filament\Forms;
 use Filament\Forms\Form;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Facades\Password;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
@@ -100,13 +100,8 @@ class ResetPasswordWidget extends XotBaseWidget
     {
         $data = $this->form->getState();
 
-        $status = Password::reset(
-            [
-                'email' => app(SafeStringCastAction::class)->execute($data['email'] ?? ''),
-                'password' => app(SafeStringCastAction::class)->execute($data['password'] ?? ''),
-                'password_confirmation' => app(SafeStringCastAction::class)->execute($data['password_confirmation'] ?? ''),
-                'token' => app(SafeStringCastAction::class)->execute(request()->route('token')),
-            ],
+        $reset_data =Arr::only($data,['email','password','password_confirmation','token']);
+        $status = Password::reset( $reset_data,
             function ($user, $password): void {
                 $user->forceFill([
                     'password' => Hash::make($password),
@@ -116,12 +111,11 @@ class ResetPasswordWidget extends XotBaseWidget
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            session()->flash('status', __(app(SafeStringCastAction::class)->execute($status)));
+            session()->flash('status', __($status));
             return redirect()->route('login');
         } else {
-            $this->addError('email', __(app(SafeStringCastAction::class)->execute($status)));
+            /** @phpstan-ignore-next-line */
+            $this->addError('email', __($status));
         }
     }
-
-
 }

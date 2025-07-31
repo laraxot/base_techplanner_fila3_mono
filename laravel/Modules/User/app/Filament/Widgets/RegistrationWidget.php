@@ -40,7 +40,8 @@ class RegistrationWidget extends XotBaseWidget
     public Model $record;
     
     /**
-     * @var view-string
+     * @phpstan-var class-string
+     * @phpstan-ignore-next-line
      */
     protected static string $view = 'pub_theme::filament.widgets.registration';
 
@@ -113,5 +114,5 @@ class RegistrationWidget extends XotBaseWidget
         return redirect()->route('pages.view', ['slug' => $this->type . '_register_complete']);
     }
 
-   
+    
 }

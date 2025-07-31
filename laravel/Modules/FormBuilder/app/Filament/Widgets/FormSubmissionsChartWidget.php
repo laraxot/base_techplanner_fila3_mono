@@ -6,13 +6,13 @@ namespace Modules\FormBuilder\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
 use Illuminate\Support\Carbon;
-use Modules\FormBuilder\Models\Response;
+use Modules\FormBuilder\Models\FormSubmission;
 
 /**
- * Widget per il grafico delle risposte dei form.
+ * Widget per il grafico delle submission dei form.
  * 
  * Mostra:
- * - Trend risposte nel tempo
+ * - Trend submission nel tempo
  * - Confronto periodi
  * - Previsioni future
  * 
@@ -20,7 +20,7 @@ use Modules\FormBuilder\Models\Response;
  */
 class FormSubmissionsChartWidget extends ChartWidget
 {
-    protected static ?string $heading = 'Risposte Form';
+    protected static ?string $heading = 'Submission Form';
     protected static ?int $sort = 2;
 
     protected function getData(): array
@@ -30,15 +30,15 @@ class FormSubmissionsChartWidget extends ChartWidget
             
             return [
                 'date' => $date->format('M d'),
-                'responses' => Response::whereDate('created_at', $date)->count(),
+                'submissions' => FormSubmission::where('submitted_at', '>=', $date->startOfDay())->where('submitted_at', '<=', $date->endOfDay())->count(),
             ];
         });
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Risposte',
-                    'data' => $days->pluck('responses')->toArray(),
+                    'label' => 'Submission',
+                    'data' => $days->pluck('submissions')->toArray(),
                     'borderColor' => '#10B981',
                     'backgroundColor' => '#10B981',
                     'fill' => false,

@@ -34,8 +34,8 @@ class SyncTranslationsAction
         foreach ($modules as $module) {
             $moduleResults = $this->syncModule($module, $sourceLang, $targetLangs);
             $results['modules'][$module] = $moduleResults;
-            $results['total_files'] += \Modules\Xot\Actions\Cast\SafeIntCastAction::cast($moduleResults['files_processed'] ?? 0);
-            $results['total_translations'] += \Modules\Xot\Actions\Cast\SafeIntCastAction::cast($moduleResults['translations_added'] ?? 0);
+            $results['total_files'] += is_numeric($moduleResults['files_processed'] ?? null) ? (int) $moduleResults['files_processed'] : 0;
+            $results['total_translations'] += is_numeric($moduleResults['translations_added'] ?? null) ? (int) $moduleResults['translations_added'] : 0;
             $results['total_modules']++;
         }
 
@@ -239,7 +239,8 @@ class SyncTranslationsAction
                 $content .= $this->arrayToPhp($this->filterStringKeyArray($value), $indent + 1);
                 $content .= $indentStr . "],\n";
             } else {
-                $content .= "'" . addslashes(app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($value)) . "',\n";
+                /** @phpstan-ignore-next-line */
+                $content .= "'" . addslashes((string) $value) . "',\n";
             }
         }
 

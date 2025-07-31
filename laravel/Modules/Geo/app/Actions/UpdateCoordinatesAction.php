@@ -23,22 +23,14 @@ class UpdateCoordinatesAction
      */
     public function execute(Place $place): void
     {
-        $address = $place->address;
-        
-        if (!$address || !is_object($address) || !property_exists($address, 'formatted_address')) {
+        if (! $place->address || ! is_string($place->address->formatted_address)) {
             throw new \RuntimeException('Place address is required');
         }
-        
-        $formattedAddress = $address->formatted_address;
-        
-        if (!is_string($formattedAddress) || empty($formattedAddress)) {
-            throw new \RuntimeException('Place address formatted_address is required');
-        }
 
-        $location = $this->getCoordinates->execute($formattedAddress);
+        $location = $this->getCoordinates->execute($place->address->formatted_address);
 
-        if (!$location) {
-            throw new \RuntimeException('Could not get coordinates for address: '.$formattedAddress);
+        if (! $location) {
+            throw new \RuntimeException('Could not get coordinates for address: '.$place->address->formatted_address);
         }
 
         $place->update([

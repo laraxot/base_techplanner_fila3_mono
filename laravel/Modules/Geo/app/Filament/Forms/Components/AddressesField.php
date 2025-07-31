@@ -9,7 +9,6 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Components\Component;
 use Modules\Geo\Filament\Resources\AddressResource;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use function Safe\preg_match;
 
 /**
@@ -88,9 +87,10 @@ class AddressesField extends Forms\Components\Repeater
                         // Disattiva is_primary negli altri elementi
                         /** @phpstan-ignore foreach.nonIterable */
                         foreach ($addresses as $index => $address) {
-                            if (app(SafeStringCastAction::class)->execute($index) !== app(SafeStringCastAction::class)->execute($currentIndex)) {
-                                $indexString = app(SafeStringCastAction::class)->execute($index);
-                                $set("../../addresses.{$indexString}.is_primary", false);
+                            $indexStr = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($index);
+                            $currentIndexStr = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($currentIndex);
+                            if ($indexStr !== $currentIndexStr) {
+                                $set("../../addresses." . $indexStr . ".is_primary", false);
                             }
                         }
                     }
@@ -109,6 +109,4 @@ class AddressesField extends Forms\Components\Repeater
 
         return $baseSchema;
     }
-
-
 } 

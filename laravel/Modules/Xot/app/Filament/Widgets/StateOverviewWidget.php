@@ -114,7 +114,7 @@ class StateOverviewWidget extends XotBaseWidget
            
                 
                 $state = new $stateClass($modelInstance);
-                Assert::isInstanceOf($state, StateContract::class);
+                Assert::isInstanceOf($state, StateContract::class);                
                 $states[] = [
                     'name' => $name,
                     'label' => $state->label(),

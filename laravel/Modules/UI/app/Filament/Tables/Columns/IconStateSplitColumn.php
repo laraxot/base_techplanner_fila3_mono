@@ -85,7 +85,11 @@ class IconStateSplitColumn extends Column
     {  
         $record = $this->modelClass::find($recordId);
         
-        if (!$record || !$record->state) {
+        if (!$record) {
+            return false;
+        }
+        
+        if (!$record->state) {
             return false;
         }
         
@@ -100,13 +104,15 @@ class IconStateSplitColumn extends Column
         // Logica per testare l'azione
         \Filament\Notifications\Notification::make()
             ->title('Test Azione')
-            ->body("Record ID: " . (string) $recordId)
+            ->body("Record ID: {$recordId}")
             ->success()
             ->send();
     }
 
     /**
      * Restituisce le azioni per gli stati
+     * 
+     * @return array<string, \Filament\Tables\Actions\Action>
      */
     public function getStateActions(): array
     {
@@ -115,29 +121,25 @@ class IconStateSplitColumn extends Column
         
         $actions = [];
         
-        // Check if record exists
-        if (!$record) {
-            return $actions;
-        }
-        
         // Aggiungi azione di test
-        $actions[] = \Filament\Tables\Actions\Action::make('prova')
+        $actions['prova'] = \Filament\Tables\Actions\Action::make('prova')
             ->icon('heroicon-m-plus')
             ->color('primary')
             ->tooltip('Test Prova')
             ->action(function () use ($record) {
+                $recordId = $record && property_exists($record, 'id') ? (string) $record->id : 'N/A';
                 \Filament\Notifications\Notification::make()
                     ->title('Prova funziona!')
-                    ->body('Record ID: ' . ($record->id ?? 'unknown'))
+                    ->body('Record ID: ' . $recordId)
                     ->success()
                     ->send();
             });
         
         // Aggiungi azioni per gli stati
         foreach ($states as $stateKey => $state) {
-            $recordId = $record->id ?? null;
-            if ($recordId && $this->canTransitionTo($recordId, $state['class']::class)) {
-                $actions[] = \Filament\Tables\Actions\Action::make("transition_to_{$stateKey}")
+            $recordId = $record && property_exists($record, 'id') ? $record->id : null;
+            if ($recordId !== null && $this->canTransitionTo($recordId, $state['class']::class)) {
+                $actions["transition_to_{$stateKey}"] = \Filament\Tables\Actions\Action::make("transition_to_{$stateKey}")
                     ->icon($state['icon'])
                     ->color($state['color'])
                     ->label($state['label'])

@@ -47,8 +47,7 @@ final class SendVonageWhatsAppAction
         $defaultSender = config('whatsapp.from');
         $this->defaultSender = $defaultSender;
         $this->debug = (bool) config('whatsapp.debug', false);
-        $timeoutConfig = config('whatsapp.timeout', 30);
-        $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 30;
+        $this->timeout = is_numeric(config('whatsapp.timeout', 30)) ? (int) config('whatsapp.timeout', 30) : 30;
     }
 
     /**

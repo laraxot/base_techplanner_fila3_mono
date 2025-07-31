@@ -79,9 +79,8 @@ class GenericNotification extends Notification implements ShouldQueue
 
         // Aggiungi eventuali azioni se specificate nei dati
         if (isset($this->data['action_text']) && isset($this->data['action_url'])) {
-            $actionText = is_string($this->data['action_text']) ? $this->data['action_text'] : '';
-            $actionUrl = is_string($this->data['action_url']) ? $this->data['action_url'] : '';
-            $mail->action($actionText, $actionUrl);
+            /** @phpstan-ignore-next-line */
+            $mail->action((string) $this->data['action_text'], (string) $this->data['action_url']);
         }
 
         // Aggiungi eventuali linee aggiuntive
@@ -113,7 +112,8 @@ class GenericNotification extends Notification implements ShouldQueue
         // TODO: Implementare TwilioSmsMessage quando disponibile
         $to = '';
         if (is_object($notifiable) && method_exists($notifiable, 'routeNotificationForTwilio')) {
-            $to = (string) $notifiable->routeNotificationForTwilio($this);
+            $routeResult = $notifiable->routeNotificationForTwilio($this);
+            $to = (string) ($routeResult ?? '');
         }
         
         return [
@@ -152,15 +152,15 @@ class GenericNotification extends Notification implements ShouldQueue
         }
         
         if (is_object($notifiable) && property_exists($notifiable, 'full_name') && $notifiable->full_name) {
-            return (string) $notifiable->full_name;
+            return (string) ($notifiable->full_name ?? '');
         }
         
         if (is_object($notifiable) && property_exists($notifiable, 'first_name') && $notifiable->first_name) {
-            return (string) $notifiable->first_name;
+            return (string) ($notifiable->first_name ?? '');
         }
         
         if (is_object($notifiable) && property_exists($notifiable, 'name') && $notifiable->name) {
-            return (string) $notifiable->name;
+            return (string) ($notifiable->name ?? '');
         }
         
         return 'Utente';

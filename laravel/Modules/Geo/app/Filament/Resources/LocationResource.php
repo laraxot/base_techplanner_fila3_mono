@@ -33,6 +33,21 @@ class LocationResource extends XotBaseResource
 
     protected static ?int $navigationSort = 2;
 
+    /**
+     * Converte le coordinate in formato float.
+     *
+     * @param array{lat?: string|float|null, lng?: string|float|null} $coordinates Le coordinate da convertire
+     *
+     * @return array{lat: float, lng: float} Le coordinate convertite in float
+     */
+    private static function formatCoordinates(array $coordinates): array
+    {
+        return [
+            'lat' => (float) ($coordinates['lat'] ?? 0),
+            'lng' => (float) ($coordinates['lng'] ?? 0),
+        ];
+    }
+
     public static function getFormSchema(): array
     {
         return [

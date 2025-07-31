@@ -41,15 +41,8 @@ abstract class BaseModel extends Model
     /** @var list<string> */
     protected $fillable = ['id'];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return ['published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
-    }
+    /** @var array<string, string> */
+    protected $casts = ['published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
     /** @var string */
     protected $primaryKey = 'id';

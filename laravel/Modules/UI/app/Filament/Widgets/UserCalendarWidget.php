@@ -36,10 +36,22 @@ class UserCalendarWidget extends FullCalendarWidget
 
     public function getFormSchema(): array
     {
-
-        $action=$this->getActionName(__FUNCTION__);
-        return app($action)->execute();
-
+        $action = $this->getActionName(__FUNCTION__);
+        
+        if (class_exists($action)) {
+            return app($action)->execute();
+        }
+        
+        // Fallback schema
+        return [
+            TextInput::make('title'),
+ 
+            Grid::make()
+                ->schema([
+                    DateTimePicker::make('starts_at'),
+                    DateTimePicker::make('ends_at'),
+                ]),
+        ];
     }
 
    
@@ -55,7 +67,8 @@ class UserCalendarWidget extends FullCalendarWidget
 
     public function onDateSelect(string $start, ?string $end, bool $allDay, ?array $view, ?array $resource): void
     {
-      dd('test');
+        // TODO: Implementare la logica per la selezione della data
+        // dd('test');
     }
 
     

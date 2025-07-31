@@ -15,8 +15,11 @@ class GenerateResourceFormSchemaCommand extends Command
 
     public function handle(): int
     {
-        $module = $this->option('module');
-        $resource = $this->option('resource');
+        $moduleOption = $this->option('module');
+        $resourceOption = $this->option('resource');
+        
+        $module = is_string($moduleOption) ? $moduleOption : '';
+        $resource = is_string($resourceOption) ? $resourceOption : '';
 
         try {
             if ($module && $resource) {
@@ -58,10 +61,10 @@ class GenerateResourceFormSchemaCommand extends Command
                     }
                 }
             }
-
+            
             return Command::SUCCESS;
         } catch (\Exception $e) {
-            $this->error('Errore durante la generazione degli schemi: ' . $e->getMessage());
+            $this->error('Errore durante la generazione: ' . $e->getMessage());
             return Command::FAILURE;
         }
     }

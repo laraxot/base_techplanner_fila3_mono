@@ -67,12 +67,11 @@ class OptimizeRouteAction
                 destination: $location
             );
 
-            // Estrai il valore numerico della distanza dall'array
-            $distance = $distanceResult['distance']['value'] ?? PHP_FLOAT_MAX;
-            $numericDistance = \Modules\Xot\Actions\Cast\SafeFloatCastAction::cast($distance, PHP_FLOAT_MAX);
+            // Estrai il valore numerico della distanza
+            $distance = (float) ($distanceResult['distance']['value'] ?? PHP_FLOAT_MAX);
 
-            if ($numericDistance < $shortestDistance) {
-                $shortestDistance = $numericDistance;
+            if ($distance < $shortestDistance) {
+                $shortestDistance = $distance;
                 $nearestLocation = $location;
             }
         }

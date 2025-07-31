@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Themes\Sixteen\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Modules\Xot\Providers\XotBaseThemeServiceProvider;
 
 /**
  * Service Provider per il tema Sixteen.
@@ -15,29 +15,23 @@ use Illuminate\Support\ServiceProvider;
  * IMPORTANTE: Il tema Sixteen usa il namespace 'pub_theme' per le viste,
  * non 'sixteen', per essere compatibile con il sistema di temi.
  */
-class ThemeServiceProvider extends ServiceProvider
+class ThemeServiceProvider extends XotBaseThemeServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        // Registrazione dei servizi del tema
-        $this->app->singleton('sixteen.theme', function ($app) {
-            return new \Themes\Sixteen\Services\ThemeService();
-        });
-    }
+    public string $name = 'Sixteen';
+    public string $nameLower = 'sixteen';
+    protected string $module_dir = __DIR__ . '/../../';
+    protected string $module_ns = __NAMESPACE__;
 
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-        // Caricamento delle viste del tema con namespace pub_theme
+        parent::boot();
+        
+        // Caricamento specifico per pub_theme namespace
         // IMPORTANTE: pub_theme è il namespace standard per i temi
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'pub_theme');
-        
-        // Caricamento delle traduzioni del tema con namespace pub_theme
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'pub_theme');
         
         // Caricamento delle configurazioni del tema
@@ -52,6 +46,19 @@ class ThemeServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config' => config_path('themes/sixteen'),
         ], 'sixteen-config');
+    }
+
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        parent::register();
+        
+        // Registrazione dei servizi del tema
+        $this->app->singleton('sixteen.theme', function ($app) {
+            return new \Themes\Sixteen\Services\ThemeService();
+        });
     }
 
     /**

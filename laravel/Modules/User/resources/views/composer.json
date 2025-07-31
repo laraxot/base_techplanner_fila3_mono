@@ -1,28 +1,22 @@
 {
-    "minimum-stability": "dev",
     "name": "laraxot/theme-one",
     "description": "Tema One",
     "type": "library",
     "license": "MIT",
     "autoload": {
-    "minimum-stability": "dev",
         "psr-4": {
-    "minimum-stability": "dev",
             "Themes\\One\\": "app/"
         }
     },
     "extra": {
-    "minimum-stability": "dev",
         "laravel": {
-    "minimum-stability": "dev",
             "providers": [
                 "Themes\\One\\Providers\\ThemeServiceProvider"
             ]
         }
     },
     "require": {
-    "minimum-stability": "dev",
-        "filament/filament": "*",
-        "filament/tables": "*"
+        "filament/filament": "^3.4",
+        "filament/tables": "^3.4"
     }
 }

@@ -100,19 +100,14 @@ class SushiCommand extends Command
                 /** @var array<string, mixed> $validComune */
                 $validComune = $arrayComune;
                 
-                $regione = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['regione']);
-                $provincia = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['provincia']);
-                $comune = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['comune']);
-                $cap = \Modules\Xot\Actions\Cast\SafeStringCastAction::cast($validComune['cap']);
-                
                 DB::table('comuni')->insert([
-                    'id' => $validComune['id'],
-                    'regione' => $regione,
-                    'provincia' => $provincia,
-                    'comune' => $comune,
-                    'cap' => $cap,
-                    'lat' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($validComune['lat'], -90.0, 90.0, 0.0),
-                    'lng' => \Modules\Xot\Actions\Cast\SafeFloatCastAction::castWithRange($validComune['lng'], -180.0, 180.0, 0.0),
+                    'id' => is_string($validComune['id'] ?? null) ? $validComune['id'] : '',
+                    'regione' => is_string($validComune['regione'] ?? null) ? $validComune['regione'] : '',
+                    'provincia' => is_string($validComune['provincia'] ?? null) ? $validComune['provincia'] : '',
+                    'comune' => is_string($validComune['comune'] ?? null) ? $validComune['comune'] : '',
+                    'cap' => is_string($validComune['cap'] ?? null) ? $validComune['cap'] : '',
+                    'lat' => is_numeric($validComune['lat'] ?? null) ? (float) $validComune['lat'] : 0.0,
+                    'lng' => is_numeric($validComune['lng'] ?? null) ? (float) $validComune['lng'] : 0.0,
                     'created_at' => $validComune['created_at'] ?? now(),
                     'updated_at' => $validComune['updated_at'] ?? now(),
                 ]);
@@ -197,6 +192,4 @@ class SushiCommand extends Command
             return 1;
         }
     }
-    
-   
 } 

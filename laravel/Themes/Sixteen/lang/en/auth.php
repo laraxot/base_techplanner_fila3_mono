@@ -3,53 +3,40 @@
 declare(strict_types=1);
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines - Sixteen Theme
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    // General authentication messages
+    'login' => [
+        'title' => 'Service Access',
+        'description' => 'Enter your credentials to access :service',
+        'no_account' => 'Don\'t have an account?',
+        'create_account' => 'Register',
+        'security_title' => 'Secure Connection',
+        'security_message' => 'Your data is protected with SSL encryption',
+        'accessibility_info' => 'This service is accessible according to WCAG 2.1 AA guidelines.',
+        'accessibility_declaration' => 'Accessibility Declaration',
+        'keyboard_navigation' => 'Use Tab to navigate between fields and Enter to submit the form.',
+        'or' => 'or',
+        'email' => 'Email address',
+        'password' => 'Password',
+        'remember_me' => 'Remember me',
+        'forgot_password' => 'Forgot your password?',
+        'submit' => 'Login',
+        'help' => 'Need help?',
+    ],
+    'register' => [
+        'title' => 'Registration',
+        'description' => 'Create your account to access services',
+        'name' => 'Full name',
+        'email' => 'Email address',
+        'password' => 'Password',
+        'password_confirmation' => 'Confirm password',
+        'submit' => 'Register',
+        'already_registered' => 'Already have an account?',
+        'login' => 'Login',
+    ],
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'general_error' => 'An error occurred. Please try again later.',
     'unauthorized' => 'You do not have the necessary permissions for this operation.',
-
-    // Login
-    'login' => [
-        'title' => 'Sign in',
-        'email' => 'Email',
-        'password' => 'Password',
-        'remember_me' => 'Remember me',
-        'forgot_password' => 'Forgot your password?',
-        'submit' => 'Sign in',
-        'or' => 'or',
-        'create_account' => 'create an account',
-        'link' => 'Sign in',
-        'success' => 'Login successful',
-        'error' => 'Login error',
-        'error_message' => 'An error occurred during login. Please try again later.',
-        'validation_error' => 'Validation error',
-        'invalid_credentials' => 'The provided credentials are incorrect.',
-    ],
-
-    // Register
-    'register' => [
-        'title' => 'Register',
-        'name' => 'Name',
-        'email' => 'Email',
-        'password' => 'Password',
-        'password_confirmation' => 'Confirm Password',
-        'submit' => 'Register',
-        'already_registered' => 'Already have an account?',
-        'link' => 'Register',
-    ],
 
     // Logout
     'logout' => [
@@ -57,11 +44,11 @@ return [
         'confirm_message' => 'Are you sure you want to logout?',
         'confirm_button' => 'Confirm Logout',
         'cancel_button' => 'Cancel',
-        'success_title' => 'Logged Out',
+        'success_title' => 'Logout successful',
         'success_message' => 'You have been successfully logged out.',
-        'error_title' => 'Logout Error',
+        'error_title' => 'Logout error',
         'error_message' => 'An error occurred during logout.',
-        'try_again' => 'Try Again',
+        'try_again' => 'Try again',
         'back_to_home' => 'Back to Home',
     ],
 
@@ -89,11 +76,11 @@ return [
         'reset_link' => 'Reset Password',
     ],
 
-    // Email Verification
+    // Verify Email
     'verify' => [
         'title' => 'Verify Email',
         'message' => 'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you?',
-        'resend' => 'If you didn\'t receive the email, we can resend it.',
+        'resend' => 'If you didn\'t receive the email, we will gladly send you another.',
         'submit' => 'Resend verification email',
     ],
 
@@ -113,7 +100,7 @@ return [
         'profile' => 'Profile',
         'settings' => 'Settings',
         'logout' => 'Logout',
-        'login_link' => 'Sign in',
+        'login_link' => 'Login',
         'register_link' => 'Register',
     ],
 

@@ -5,64 +5,125 @@ declare(strict_types=1);
 namespace Modules\Geo\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Geo\Models\Address as Model;
 use Modules\Geo\Enums\AddressTypeEnum;
-use Modules\Geo\Models\Address;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
-use Modules\Xot\Actions\Cast\SafeFloatCastAction;
 
 /**
- * Class AddressFactory.
+ * AddressFactory
+ * 
+ * Factory per generare indirizzi di test per il modello Address
  */
 class AddressFactory extends Factory
 {
-    protected $model = Address::class;
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     */
+    protected $model = Model::class;
 
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition(): array
     {
+        // Coordinate per alcune città italiane principali
+        $italianCities = [
+            'Milano' => ['lat' => 45.4642, 'lng' => 9.1900, 'province' => 'Milano', 'region' => 'Lombardia', 'postal' => '20100'],
+            'Roma' => ['lat' => 41.9028, 'lng' => 12.4964, 'province' => 'Roma', 'region' => 'Lazio', 'postal' => '00100'],
+            'Napoli' => ['lat' => 40.8518, 'lng' => 14.2681, 'province' => 'Napoli', 'region' => 'Campania', 'postal' => '80100'],
+            'Torino' => ['lat' => 45.0703, 'lng' => 7.6869, 'province' => 'Torino', 'region' => 'Piemonte', 'postal' => '10100'],
+            'Palermo' => ['lat' => 38.1157, 'lng' => 13.3613, 'province' => 'Palermo', 'region' => 'Sicilia', 'postal' => '90100'],
+            'Genova' => ['lat' => 44.4056, 'lng' => 8.9463, 'province' => 'Genova', 'region' => 'Liguria', 'postal' => '16100'],
+            'Bologna' => ['lat' => 44.4949, 'lng' => 11.3426, 'province' => 'Bologna', 'region' => 'Emilia-Romagna', 'postal' => '40100'],
+            'Firenze' => ['lat' => 43.7696, 'lng' => 11.2558, 'province' => 'Firenze', 'region' => 'Toscana', 'postal' => '50100'],
+            'Venezia' => ['lat' => 45.4408, 'lng' => 12.3155, 'province' => 'Venezia', 'region' => 'Veneto', 'postal' => '30100'],
+            'Bari' => ['lat' => 41.1171, 'lng' => 16.8719, 'province' => 'Bari', 'region' => 'Puglia', 'postal' => '70100'],
+        ];
+
+        // Seleziona una città casuale
+        /** @var string $cityName */
+        $cityName = $this->faker->randomElement(array_keys($italianCities));
+        $cityData = $italianCities[$cityName];
+        
+        // Aggiungi variazione alle coordinate (±0.05 gradi per simulare diversi indirizzi nella stessa città)
+        /** @var float $lat */
+        $lat = (float) $cityData['lat'];
+        /** @var float $lng */
+        $lng = (float) $cityData['lng'];
+        $latitude = $lat + $this->faker->randomFloat(4, -0.05, 0.05);
+        $longitude = $lng + $this->faker->randomFloat(4, -0.05, 0.05);
+        
+        $streetName = $this->faker->streetName();
+        $streetNumber = $this->faker->buildingNumber();
+        $route = "Via {$streetName}";
+
         return [
-            'name' => $this->faker->word,
+            'name' => $this->faker->optional(0.7)->randomElement([
+                'Casa',
+                'Ufficio',
+                'Sede Principale',
+                'Filiale',
+                'Magazzino',
+                'Studio',
+            ]),
+            'description' => $this->faker->optional(0.5)->sentence(),
+            'route' => $route,
+            'street_number' => $streetNumber,
+            'locality' => $cityName,
+            'administrative_area_level_3' => $cityData['province'], // Provincia
+            'administrative_area_level_2' => $cityData['region'], // Regione
+            'administrative_area_level_1' => 'Italia',
+            'country' => 'IT',
+            'postal_code' => $this->faker->randomElement([
+                $cityData['postal'],
+                substr((string) $cityData['postal'], 0, 3) . $this->faker->numberBetween(10, 99),
+            ]),
+            'formatted_address' => "{$route} {$streetNumber}, {$cityData['postal']} {$cityName} ({$cityData['province']}), Italia",
+            'place_id' => $this->faker->optional(0.8)->regexify('ChIJ[A-Za-z0-9_-]{20,30}'),
+            'latitude' => $latitude,
+            'longitude' => $longitude,
             'type' => $this->faker->randomElement(AddressTypeEnum::cases()),
-            'route' => $this->faker->streetName,
-            'street_number' => $this->faker->buildingNumber,
-            'postal_code' => $this->faker->postcode,
-            'locality' => $this->faker->city,
-            //'administrative_area_level_3' => $this->faker->state,
-          //  'administrative_area_level_2' => $this->faker->state,
-            //'administrative_area_level_2_short' => $this->faker->stateAbbr,
-            'country' => $this->faker->country,
-            'country_short' => $this->faker->countryCode,
-            'latitude' => $this->faker->latitude,
-            'longitude' => $this->faker->longitude,
-            'formatted_address' => $this->faker->address,
-            'is_primary' => $this->faker->boolean(20), // 20% di probabilità di essere primario
-            'addressable_type' => null,
-            'addressable_id' => null,
+            'is_primary' => $this->faker->boolean(30), // 30% probabilità di essere primario
+            'extra_data' => $this->faker->optional(0.4)->randomElements([
+                'provincia_sigla' => substr((string) $cityData['province'], 0, 2),
+                'google_rating' => $this->faker->randomFloat(1, 3.0, 5.0),
+                'google_reviews_count' => $this->faker->numberBetween(10, 500),
+                'verified' => $this->faker->boolean(80),
+                'notes' => $this->faker->sentence(),
+            ], $this->faker->numberBetween(1, 3), true),
         ];
     }
 
     /**
-     * Generate a primary address.
+     * Indicate that the address is primary.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
     public function primary(): Factory
     {
-        return $this->state([
-            'is_primary' => true,
-        ]);
+        return $this->state(function (array $attributes) {
+            return [
+                'is_primary' => true,
+            ];
+        });
     }
 
     /**
-     * Generate an address of a specific type.
+     * Indicate that the address is of a specific type.
      *
      * @param AddressTypeEnum $type
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
     public function ofType(AddressTypeEnum $type): Factory
     {
-        return $this->state([
-            'type' => $type,
-        ]);
+        return $this->state(function (array $attributes) use ($type) {
+            return [
+                'type' => $type,
+            ];
+        });
     }
 
     /**
@@ -135,9 +196,9 @@ class AddressFactory extends Factory
 
         return $this->state(function (array $attributes) use ($city, $cityInfo) {
             /** @var float $baseLat */
-            $baseLat = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute($cityInfo['lat'] ?? 45.4642);
+            $baseLat = is_numeric($cityInfo['lat'] ?? null) ? (float) $cityInfo['lat'] : 45.4642;
             /** @var float $baseLng */
-            $baseLng = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute($cityInfo['lng'] ?? 9.1900);
+            $baseLng = is_numeric($cityInfo['lng'] ?? null) ? (float) $cityInfo['lng'] : 9.1900;
             
             $latitude = $baseLat + $this->faker->randomFloat(4, -0.05, 0.05);
             $longitude = $baseLng + $this->faker->randomFloat(4, -0.05, 0.05);
@@ -146,11 +207,11 @@ class AddressFactory extends Factory
             $route = "Via {$streetName}";
 
             /** @var string $postal */
-            $postal = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($cityInfo['postal'] ?? '20100');
+            $postal = is_string($cityInfo['postal'] ?? null) ? $cityInfo['postal'] : '20100';
             /** @var string $province */
-            $province = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($cityInfo['province'] ?? $city);
+            $province = is_string($cityInfo['province'] ?? null) ? $cityInfo['province'] : $city;
             /** @var string $region */
-            $region = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($cityInfo['region'] ?? 'Lombardia');
+            $region = is_string($cityInfo['region'] ?? null) ? $cityInfo['region'] : 'Lombardia';
 
             return [
                 'locality' => $city,
@@ -165,5 +226,4 @@ class AddressFactory extends Factory
             ];
         });
     }
-
 } 

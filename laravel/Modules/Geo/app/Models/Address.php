@@ -40,6 +40,7 @@ use Modules\Geo\Enums\AddressTypeEnum;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * // implements HasGeolocation
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property string|null $deleted_by
@@ -112,20 +113,17 @@ class Address extends BaseModel
     ];
     
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'latitude' => 'float',
-            'longitude' => 'float',
-            'is_primary' => 'boolean',
-            'extra_data' => 'array',
-            'type' => AddressTypeEnum::class,
-        ];
-    }
+    protected $casts = [
+        'latitude' => 'float',
+        'longitude' => 'float',
+        'is_primary' => 'boolean',
+        'extra_data' => 'array',
+        'type' => AddressTypeEnum::class,
+    ];
     
     
     /**

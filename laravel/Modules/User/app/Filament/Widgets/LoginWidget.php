@@ -104,7 +104,8 @@ class LoginWidget extends XotBaseWidget
             
             // Cast esplicito per type safety PHPStan
             $remember = (bool) ($data['remember'] ?? false);
-            $attempt_data=Arr::only($data, ['email', 'password']);
+            $attempt_data =Arr::only($data,['email','password']);
+            
             if (!Auth::attempt($attempt_data, $remember)) {
                 throw ValidationException::withMessages([
                     'email' => [__('Le credenziali fornite non sono corrette.')],
