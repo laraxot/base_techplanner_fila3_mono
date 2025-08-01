@@ -167,7 +167,7 @@ class ListClients extends XotBaseListRecords
                     return '<span class="text-gray-400 text-xs">Nessun contatto</span>';
                 }
                 
-                return '<div class="flex flex-wrap">' . implode('', $contacts) . '</div>';
+                return '<div class="flex flex-wrap">' . implode('', $contacts) . '</div>!';
             })
             ->searchable(['phone', 'email', 'pec', 'whatsapp'])
             ->sortable(false);
