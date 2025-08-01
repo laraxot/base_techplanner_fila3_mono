@@ -1,7 +1,7 @@
 @props([
     'title' => 'Accedi ai servizi',
     'subtitle' => 'Utilizza le tue credenziali per accedere all\'area riservata',
-    'widgetClass' => '\Modules\User\Filament\Widgets\Auth\LoginWidget'
+    'widgetClass' => \Modules\User\Filament\Widgets\Auth\LoginWidget::class
 ])
 
 <div class="max-w-md mx-auto">
@@ -15,7 +15,7 @@
         
         <!-- Body Card -->
         <div class="px-6 py-8">
-            <!-- Filament Login Widget (OBBLIGATORIO - NON MODIFICARE) -->
+            <!-- Filament Login Widget (ARCHITETTURA CORRETTA) -->
             @livewire($widgetClass)
         </div>
         
