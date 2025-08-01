@@ -15,7 +15,7 @@ name('login');
     </x-slot>
 
     <!-- Login Card AGID-Compliant -->
-    <x-pub_theme::blocks.forms.login-card-agid 
+    <x-blocks.forms.login-card-agid 
         title="Accedi ai servizi digitali"
         subtitle="Utilizza le tue credenziali per accedere all'area riservata dei servizi online"
         livewire-component="\Modules\User\Http\Livewire\Auth\Login"
