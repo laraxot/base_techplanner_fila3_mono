@@ -97,13 +97,15 @@ class ListClients extends XotBaseListRecords
             'contacts' => TextColumn::make('contacts')
                 ->label('Contatti')
                 ->formatStateUsing(function ($record) {
-                    return $this->formatContacts($record);
+                    return '!!'.$this->formatContacts($record);
                     
                 })
                 ->html()
                 ->wrap()
                 ->searchable(['phone', 'email', 'pec', 'whatsapp', 'mobile', 'fax'])
                 ->sortable(false),
+
+            'contacts1' => $this->getContactsColumn(),
         ];
 
         return $columns;
