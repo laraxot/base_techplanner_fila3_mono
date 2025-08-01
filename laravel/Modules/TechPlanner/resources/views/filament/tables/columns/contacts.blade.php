@@ -11,6 +11,7 @@
 --}}
 
 @php
+    $record=$getRecord();
     $contacts = [];
     
     // Phone (landline)
