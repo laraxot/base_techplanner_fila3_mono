@@ -87,7 +87,6 @@ use Modules\Geo\Enums\AddressTypeEnum;
  */
 class Address extends BaseModel 
 {
-    use HasFactory;
         
     /** @var list<string> */
    protected $fillable = [
