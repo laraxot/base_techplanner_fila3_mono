@@ -96,8 +96,9 @@ class ListClients extends XotBaseListRecords
                 ->toggleable(isToggledHiddenByDefault: true),
 
             'contacts' => TextColumn::make('contacts')
-                ->label('Contatti')
+                
                 ->badge()
+                /*
                 ->formatStateUsing(function ($record): array {
                     return [
                         'email' => $record->email,
@@ -108,6 +109,7 @@ class ListClients extends XotBaseListRecords
                         'fax' => $record->fax,
                     ];
                 })
+                    */
                 ->default(function ($record) {
                     return 'bb';
                 })
@@ -116,7 +118,7 @@ class ListClients extends XotBaseListRecords
                 ->searchable(['phone', 'email', 'pec', 'whatsapp', 'mobile', 'fax'])
                 ->sortable(false),
 
-            'contacts1' => $this->getContactsColumn(),
+            
         ];
 
         return $columns;
@@ -129,8 +131,8 @@ class ListClients extends XotBaseListRecords
      */
     private function getContactsColumn(): TextColumn
     {
-        return TextColumn::make('contatti')
-            ->label('Contatti')
+        return TextColumn::make('contacts')
+            
             ->html()
             ->formatStateUsing(function (Client $record): string {
                 $contacts = [];
