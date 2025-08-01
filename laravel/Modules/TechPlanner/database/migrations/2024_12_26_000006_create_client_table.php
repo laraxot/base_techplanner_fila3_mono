@@ -84,6 +84,12 @@ return new class extends XotBaseMigration
                 if (! $this->hasColumn('email')) {
                     $table->string('email')->nullable(); // email
                 }
+                if (! $this->hasColumn('pec')) {
+                    $table->string('pec')->nullable(); // pec
+                }
+                if (! $this->hasColumn('whatsapp')) {
+                    $table->string('whatsapp')->nullable(); // whatsapp
+                }
                 if (! $this->hasColumn('notes')) {
                     $table->text('notes')->nullable(); // note
                 }

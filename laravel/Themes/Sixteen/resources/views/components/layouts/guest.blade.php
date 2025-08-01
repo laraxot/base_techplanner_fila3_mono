@@ -14,6 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'], 'themes/Sixteen')
     </head>
+    
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
@@ -22,7 +23,8 @@
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <!-- MIGLIORE SOLUZIONE UI/UX: Responsive ottimizzata per leggibilità -->
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-lg mt-6 px-8 py-6 bg-white dark:bg-gray-800 shadow-lg overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
                 {{ $slot }}
             </div>
         </div>
