@@ -394,14 +394,14 @@ class ListClients extends XotBaseListRecords
      */
     private function formatContacts(Client $record): string
     {
-        return 'aa<b>Ciao</b> Mondo !';
+        
         $contacts = [];
         
         // Telefono
         if ($record->phone) {
             $contacts[] = '<i class="heroicon-o-phone text-blue-500 w-4 h-4 inline mr-1" title="Telefono"></i> ' . $record->phone;
         }
-        
+        return implode('<br class="my-1">', $contacts);
         // Cellulare
         if ($record->mobile) {
             $contacts[] = '<i class="heroicon-o-device-phone-mobile text-purple-500 w-4 h-4 inline mr-1" title="Cellulare"></i> ' . $record->mobile;
