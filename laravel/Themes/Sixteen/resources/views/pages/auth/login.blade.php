@@ -9,7 +9,7 @@ name('login');
 
 ?>
 
-<x-layouts.guest-institutional>
+<x-layouts.guest>
     <x-slot name="title">
         {{ __('auth.login.title') }}
     </x-slot>
