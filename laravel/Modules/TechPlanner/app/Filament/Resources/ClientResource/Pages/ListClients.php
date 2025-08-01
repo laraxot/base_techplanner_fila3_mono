@@ -397,39 +397,15 @@ class ListClients extends XotBaseListRecords
         
         $contacts = [];
         
-        // Telefono
-        if ($record->phone) {
-            $contacts[] = '<i class="heroicon-o-phone text-blue-500 w-4 h-4 inline mr-1" title="Telefono"></i> ' . $record->phone;
-        }
+        $contacts[] = '<i class="heroicon-o-phone text-blue-500 w-4 h-4 inline mr-1" title="Telefono"></i> ' . $record->phone;
+        $contacts[] = '<i class="heroicon-o-device-phone-mobile text-purple-500 w-4 h-4 inline mr-1" title="Cellulare"></i> ' . $record->mobile;
+        $contacts[] = '<i class="heroicon-o-envelope text-green-500 w-4 h-4 inline mr-1" title="Email"></i> ' . $record->email;
+    
+        $contacts[] = '<i class="heroicon-o-shield-check text-orange-500 w-4 h-4 inline mr-1" title="PEC"></i> ' . $record->pec;
+    
+        $contacts[] = '<i class="fab fa-whatsapp text-green-600 w-4 h-4 inline mr-1" title="WhatsApp"></i> ' . $record->whatsapp;
+        $contacts[] = '<i class="heroicon-o-printer text-gray-500 w-4 h-4 inline mr-1" title="Fax"></i> ' . $record->fax;
         return implode('<br class="my-1">', $contacts);
-        // Cellulare
-        if ($record->mobile) {
-            $contacts[] = '<i class="heroicon-o-device-phone-mobile text-purple-500 w-4 h-4 inline mr-1" title="Cellulare"></i> ' . $record->mobile;
-        }
-        
-        // Email
-        if ($record->email) {
-            $contacts[] = '<i class="heroicon-o-envelope text-green-500 w-4 h-4 inline mr-1" title="Email"></i> ' . $record->email;
-        }
-        
-        // PEC
-        if ($record->pec) {
-            $contacts[] = '<i class="heroicon-o-shield-check text-orange-500 w-4 h-4 inline mr-1" title="PEC"></i> ' . $record->pec;
-        }
-        
-        // WhatsApp
-        if ($record->whatsapp) {
-            $contacts[] = '<i class="fab fa-whatsapp text-green-600 w-4 h-4 inline mr-1" title="WhatsApp"></i> ' . $record->whatsapp;
-        }
-        
-        // Fax
-        if ($record->fax) {
-            $contacts[] = '<i class="heroicon-o-printer text-gray-500 w-4 h-4 inline mr-1" title="Fax"></i> ' . $record->fax;
-        }
-        return 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOO';
-        return empty($contacts) 
-            ? '<span class="text-gray-400">Nessun contatto</span>' 
-            : implode('<br class="my-1">', $contacts);
     }
 
     protected function getTableQuery(): Builder
