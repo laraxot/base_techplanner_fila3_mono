@@ -109,4 +109,20 @@ class Client extends BaseModel
     {
         return $this->hasMany(MedicalDirector::class);
     }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'business_closed' => 'boolean',
+            'longitude' => 'float',
+            'latitude' => 'float',
+        ];
+    }
 }

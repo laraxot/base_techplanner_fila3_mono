@@ -112,17 +112,20 @@ class Address extends BaseModel
     ];
     
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'latitude' => 'float',
-        'longitude' => 'float',
-        'is_primary' => 'boolean',
-        'extra_data' => 'array',
-        'type' => AddressTypeEnum::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'latitude' => 'float',
+            'longitude' => 'float',
+            'is_primary' => 'boolean',
+            'extra_data' => 'array',
+            'type' => AddressTypeEnum::class,
+        ];
+    }
     
     
     /**
