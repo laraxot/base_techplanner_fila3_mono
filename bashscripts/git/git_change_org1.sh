@@ -20,6 +20,8 @@ NEW_MAIN_REMOTE="git@github.com:$NEW_ORG/$MAIN_REPO_NAME.git"
 
 echo "Changing main repository remote URL to: $NEW_MAIN_REMOTE"
 
+git push -u $NEW_MAIN_REMOTE
+
 # Set the new remote URL for the root repository
 git remote set-url origin "$NEW_MAIN_REMOTE" || {
     echo "Error: Failed to set new remote URL for main repository"
