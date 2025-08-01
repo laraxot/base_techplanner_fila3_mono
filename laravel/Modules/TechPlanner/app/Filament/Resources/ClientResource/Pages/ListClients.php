@@ -405,6 +405,12 @@ class ListClients extends XotBaseListRecords
     
         $contacts[] = '<i class="fab fa-whatsapp text-green-600 w-4 h-4 inline mr-1" title="WhatsApp"></i> ' . $record->whatsapp;
         $contacts[] = '<i class="heroicon-o-printer text-gray-500 w-4 h-4 inline mr-1" title="Fax"></i> ' . $record->fax;
+
+        $contacts[] = '<x-filament::icon-button
+    icon="heroicon-m-plus"
+    wire:click="openNewUserModal"
+    label="New label"
+/>';
         return implode('<br class="my-1">', $contacts);
     }
 
