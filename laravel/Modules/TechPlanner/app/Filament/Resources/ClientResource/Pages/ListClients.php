@@ -97,7 +97,10 @@ class ListClients extends XotBaseListRecords
             'contacts' => TextColumn::make('contacts')
                 ->label('Contatti')
                 ->formatStateUsing(function ($record) {
-                    return $this->formatContacts($record);
+                    //return $this->formatContacts($record);
+                    return 'aaa';
+                })->default(function ($record){
+                    return 'bbbb';
                 })
                 ->html()
                 ->wrap()
@@ -118,7 +121,7 @@ class ListClients extends XotBaseListRecords
         return TextColumn::make('contatti')
             ->label('Contatti')
             ->html()
-            ->default(function (Client $record): string {
+            ->formatStateUsing(function (Client $record): string {
                 $contacts = [];
                 
                 // Telefono
