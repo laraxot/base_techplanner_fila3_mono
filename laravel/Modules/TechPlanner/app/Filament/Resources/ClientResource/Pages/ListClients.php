@@ -23,6 +23,7 @@ use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Modules\TechPlanner\Filament\Imports\ClientImporter;
+use Modules\Notify\Filament\Tables\Columns\ContactColumn;
 use Modules\TechPlanner\Filament\Resources\ClientResource;
 use Modules\Geo\Actions\GetAddressDataFromFullAddressAction;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
@@ -96,9 +97,18 @@ class ListClients extends XotBaseListRecords
             'country' => TextColumn::make('country')
                 ->toggleable(isToggledHiddenByDefault: true),
 
-            'contacts'=>ViewColumn::make('contacts')->view('techplanner::filament.tables.columns.contacts')
-
-            
+            /*
+            'contacts' => TextColumn::make('contacts')
+                ->label('Contatti')
+                ->formatStateUsing(function ($record) {
+                    return $this->formatContacts($record);
+                })
+                ->html()
+                ->wrap()
+                ->searchable(['phone', 'email', 'pec', 'whatsapp', 'mobile', 'fax'])
+                ->sortable(false),
+            */
+            'contacts' => ContactColumn::make('contacts'),
         ];
 
         return $columns;
@@ -227,7 +237,7 @@ class ListClients extends XotBaseListRecords
                         Assert::isInstanceOf($client, Client::class);
                         $addressData = $action->execute($client->full_address);
 
-                        if ($addressData) {
+                        if ($addressData && method_exists($addressData, 'toArray')) {
                             $up = Arr::only($addressData->toArray(), ['latitude', 'longitude']);
 
                             $client->update($up);
@@ -274,7 +284,7 @@ class ListClients extends XotBaseListRecords
                         $addressData = app(GetAddressDataFromFullAddressAction::class)
                             ->execute($client->full_address ?? '');
 
-                        if ($addressData) {
+                        if ($addressData && method_exists($addressData, 'toArray')) {
                             $client->update($addressData->toArray());
                             ++$totalSuccess;
                         }
@@ -382,26 +392,49 @@ class ListClients extends XotBaseListRecords
      * @param \Modules\TechPlanner\Models\Client $record
      * @return string
      */
+        /**
+     * Formatta i contatti del cliente con icone appropriate.
+     *
+     * @param \Modules\TechPlanner\Models\Client $record
+     * @return string
+     */
     private function formatContacts(Client $record): string
     {
-        
         $contacts = [];
         
-        $contacts[] = '<i class="heroicon-o-phone text-blue-500 w-4 h-4 inline mr-1" title="Telefono"></i> ' . $record->phone;
-        $contacts[] = '<i class="heroicon-o-device-phone-mobile text-purple-500 w-4 h-4 inline mr-1" title="Cellulare"></i> ' . $record->mobile;
-        $contacts[] = '<i class="heroicon-o-envelope text-green-500 w-4 h-4 inline mr-1" title="Email"></i> ' . $record->email;
-    
-        $contacts[] = '<i class="heroicon-o-shield-check text-orange-500 w-4 h-4 inline mr-1" title="PEC"></i> ' . $record->pec;
-    
-        $contacts[] = '<i class="fab fa-whatsapp text-green-600 w-4 h-4 inline mr-1" title="WhatsApp"></i> ' . $record->whatsapp;
-        $contacts[] = '<i class="heroicon-o-printer text-gray-500 w-4 h-4 inline mr-1" title="Fax"></i> ' . $record->fax;
-
-        $contacts[] = '<x-filament::icon-button
-    icon="heroicon-m-plus"
-    wire:click="openNewUserModal"
-    label="New label"
-/>';
-        return implode('<br class="my-1">', $contacts);
+        // Telefono
+        if ($record->phone) {
+            $contacts[] = '<i class="heroicon-o-phone text-blue-500 w-4 h-4 inline mr-1" title="Telefono"></i> ' . $record->phone;
+        }
+        
+        // Cellulare
+        if ($record->mobile) {
+            $contacts[] = '<i class="heroicon-o-device-phone-mobile text-purple-500 w-4 h-4 inline mr-1" title="Cellulare"></i> ' . $record->mobile;
+        }
+        
+        // Email
+        if ($record->email) {
+            $contacts[] = '<i class="heroicon-o-envelope text-green-500 w-4 h-4 inline mr-1" title="Email"></i> ' . $record->email;
+        }
+        
+        // PEC
+        if ($record->pec) {
+            $contacts[] = '<i class="heroicon-o-shield-check text-orange-500 w-4 h-4 inline mr-1" title="PEC"></i> ' . $record->pec;
+        }
+        
+        // WhatsApp
+        if ($record->whatsapp) {
+            $contacts[] = '<i class="fab fa-whatsapp text-green-600 w-4 h-4 inline mr-1" title="WhatsApp"></i> ' . $record->whatsapp;
+        }
+        
+        // Fax
+        if ($record->fax) {
+            $contacts[] = '<i class="heroicon-o-printer text-gray-500 w-4 h-4 inline mr-1" title="Fax"></i> ' . $record->fax;
+        }
+        
+        return empty($contacts) 
+            ? '<span class="text-gray-400">Nessun contatto</span>' 
+            : implode('<br class="my-1">', $contacts);
     }
 
     protected function getTableQuery(): Builder
