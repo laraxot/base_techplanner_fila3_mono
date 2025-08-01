@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Enums;
 
+use Illuminate\Support\Arr;
 use Filament\Support\Contracts\HasIcon;
+use Filament\Forms\Components\TextInput;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 use Modules\Xot\Filament\Traits\TransTrait;
@@ -44,6 +46,23 @@ enum ContactTypeEnum: string implements HasLabel, HasIcon, HasColor
     public function getDescription(): string
     {
         return $this->transClass(self::class,$this->value.'.description');
+    }
+
+
+    public static function getSearchable(): array
+    {
+        return array_map(fn($item)=>$item->value,ContactTypeEnum::cases());
+    }
+
+
+    public static function getFormSchema(): array
+    {
+        $res=Arr::map(ContactTypeEnum::cases(), function($item){
+            return TextInput::make($item->value)
+            ->prefixIcon($item->getIcon());
+
+        });
+        return $res;
     }
     
    

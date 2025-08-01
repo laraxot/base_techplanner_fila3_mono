@@ -5,23 +5,22 @@ declare(strict_types=1);
 namespace Modules\Notify\Filament\Tables\Columns;
 
 use Filament\Tables\Columns\ViewColumn;
+use Modules\Notify\Enums\ContactTypeEnum;
 
 /**
  * ContactColumn - Colonna Filament riutilizzabile per rendering contatti
  * 
- * Utilizza ViewColumn + Blade view + ContactTypeEnum per separare
- * completamente logica e presentazione seguendo i principi DRY/KISS
+ * Utilizza ViewColumn + Blade view per separare completamente 
+ * logica e presentazione seguendo i principi DRY/KISS
  * 
  * PATTERN CORRETTO:
  * - ViewColumn per layout complessi
  * - Blade view separata per HTML
- * - ContactTypeEnum come single source of truth
- * - Helper nel modello per dati
  * - Accessibilità WCAG 2.1 AA compliant
  * 
  * @author Laraxot Team
  * @version 2.0 - REFACTOR COMPLETO
- * @since 2025-08-01
+ * @since 2025-01-06
  */
 class ContactColumn extends ViewColumn
 {
@@ -32,14 +31,17 @@ class ContactColumn extends ViewColumn
     
     protected function setUp(): void
     {
+        parent::setUp();
         
-            $this->view(static::getView())
-            ->searchable(['phone', 'mobile', 'email', 'pec', 'whatsapp', 'fax'])
+        // Passa i tipi di contatto alla view
+        $contact_types = ContactTypeEnum::cases();
+        
+        $this->view(static::getView(), [
+                'contact_types' => $contact_types,
+            ])
+            ->label(__('notify::columns.contact.label'))
+            ->searchable(ContactTypeEnum::getSearchable())
             ->sortable(false)
-            
-            ->toggleable(isToggledHiddenByDefault: false)
-            ;
+            ->toggleable(isToggledHiddenByDefault: false);
     }
-    
-    
 }

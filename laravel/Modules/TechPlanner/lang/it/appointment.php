@@ -45,6 +45,22 @@ return array (
     array (
       'label' => 'toggleColumns',
     ),
+    'layout' => 
+    array (
+      'label' => 'layout',
+    ),
+    'attach' => 
+    array (
+      'label' => 'attach',
+    ),
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'machines_count' => 
+    array (
+      'label' => 'machines_count',
+    ),
   ),
   'actions' => 
   array (

@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Model;
-use Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
-use Modules\TechPlanner\Models\Client;
-use Modules\Xot\Filament\Resources\XotBaseResource;
 use Filament\Forms;
+use Modules\TechPlanner\Models\Client;
+use Filament\Forms\Components\Textarea;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TextInput;
+use Modules\Xot\Filament\Resources\XotBaseResource;
+
+use Modules\Notify\Filament\Forms\Components\ContactSection;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
+use Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
 
 /**
  * @property ClientResource $resource
@@ -36,10 +38,13 @@ class ClientResource extends XotBaseResource
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
+            'contacts' => ContactSection::make('contacts'),
+            /*
             'phone' => TextInput::make('phone')->nullable(),
             'mobile' => TextInput::make('mobile'),                // cellulare
             'fax' => TextInput::make('fax'),                   // fax
             'email' => TextInput::make('email')->nullable(),
+            */
             // --------------------------------------
             'competent_health_unit' => TextInput::make('competent_health_unit'), // az_ulss_competente
             'company_office' => TextInput::make('company_office'),        // sede_ditta

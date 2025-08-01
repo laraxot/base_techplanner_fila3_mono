@@ -48,6 +48,9 @@ return array (
     'business_closed' => 
     array (
       'label' => 'Attività Cessata',
+      'description' => 'business_closed',
+      'helper_text' => 'business_closed',
+      'placeholder' => 'business_closed',
     ),
     'company_name' => 
     array (
@@ -56,10 +59,16 @@ return array (
     'latitude' => 
     array (
       'label' => 'Latitudine',
+      'description' => 'latitude',
+      'helper_text' => 'latitude',
+      'placeholder' => 'latitude',
     ),
     'longitude' => 
     array (
       'label' => 'Longitudine',
+      'description' => 'longitude',
+      'helper_text' => 'longitude',
+      'placeholder' => 'longitude',
     ),
     'distance' => 
     array (
@@ -80,6 +89,9 @@ return array (
     'country' => 
     array (
       'label' => 'Paese',
+      'description' => 'country',
+      'helper_text' => 'country',
+      'placeholder' => 'country',
     ),
     'tax_code' => 
     array (
@@ -92,10 +104,14 @@ return array (
     'fiscal_code' => 
     array (
       'label' => 'Codice Fiscale',
+      'description' => 'fiscal_code',
+      'helper_text' => 'fiscal_code',
+      'placeholder' => 'fiscal_code',
     ),
     'competent_health_unit' => 
     array (
       'label' => 'ASL Competente',
+      'description' => 'competent_health_unit',
     ),
     'address' => 
     array (
@@ -108,10 +124,15 @@ return array (
     'postal_code' => 
     array (
       'label' => 'CAP',
+      'description' => 'postal_code',
+      'helper_text' => 'postal_code',
     ),
     'province' => 
     array (
       'label' => 'Provincia',
+      'description' => 'province',
+      'helper_text' => 'province',
+      'placeholder' => 'province',
     ),
     'phone' => 
     array (
@@ -132,6 +153,9 @@ return array (
     'notes' => 
     array (
       'label' => 'Note',
+      'description' => 'notes',
+      'helper_text' => 'notes',
+      'placeholder' => 'notes',
     ),
     'activity' => 
     array (
@@ -144,10 +168,16 @@ return array (
     'city' => 
     array (
       'label' => 'Città',
+      'description' => 'city',
+      'helper_text' => 'city',
+      'placeholder' => 'city',
     ),
     'company_office' => 
     array (
       'label' => 'Sede Legale',
+      'description' => 'company_office',
+      'helper_text' => 'company_office',
+      'placeholder' => 'company_office',
     ),
     'sortByDistance' => 
     array (
@@ -176,6 +206,9 @@ return array (
     'value' => 
     array (
       'label' => 'Valore',
+      'description' => 'value',
+      'helper_text' => 'value',
+      'placeholder' => 'value',
     ),
     'delete' => 
     array (
@@ -207,6 +240,17 @@ return array (
     'distance_calc' => 
     array (
       'label' => 'distance_calc',
+    ),
+    'contacts' => 
+    array (
+      'label' => 'contacts',
+      'description' => 'contacts',
+      'helper_text' => 'contacts',
+      'placeholder' => 'contacts',
+    ),
+    'layout' => 
+    array (
+      'label' => 'layout',
     ),
   ),
   'import' => 

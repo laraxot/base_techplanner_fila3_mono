@@ -3,11 +3,18 @@
 ## 🎯 Obiettivo
 Implementare `ContactColumn.php` come colonna Filament riutilizzabile che utilizza `ContactTypeEnum` per il rendering centralizzato dei contatti seguendo i principi DRY e KISS.
 
+## 🚨 **PROBLEMA CRITICO IDENTIFICATO** (2025-08-01)
+**ICONE NON VISIBILI**: La sintassi `@svg()` nel template Blade non è compatibile con Filament 3.x
+- 📋 **Analisi Completa**: [contact-column-icon-issue-analysis.md](./contact-column-icon-issue-analysis.md)
+- 🛠️ **Soluzione**: Sostituire `@svg()` con `<x-filament::icon>`
+- ⚡ **Priorità**: ALTA (Funzionalità core non funzionante)
+
 ## ✅ **COMPLETATO**: Refactor DRY/KISS
 - [x] Integrazione ContactTypeEnum per icone/colori/etichette centralizzate
 - [x] Eliminazione duplicazione codice (da 79 a 46 righe PHP)
 - [x] Pattern unificato per tutti i tipi di contatto
 - [x] Single source of truth per proprietà UI
+- [ ] **PENDING**: Fix icone non visibili (Filament 3.x compatibility)
 
 ## 🏗️ Architettura della Soluzione
 
