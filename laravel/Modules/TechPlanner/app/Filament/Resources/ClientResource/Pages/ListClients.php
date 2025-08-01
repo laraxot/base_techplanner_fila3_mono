@@ -111,7 +111,14 @@ class ListClients extends XotBaseListRecords
                 })
                     */
                 ->default(function ($record) {
-                    return 'bb';
+                    return [
+                        'email' => $record->email,
+                        'phone' => $record->phone,
+                        'pec' => $record->pec,
+                        'whatsapp' => $record->whatsapp,
+                        'mobile' => $record->mobile,
+                        'fax' => $record->fax,
+                    ];
                 })
                 ->html()
                 ->wrap()
