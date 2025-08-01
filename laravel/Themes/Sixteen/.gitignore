@@ -1,14 +1,42 @@
+# Node.js
 node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Vendor (per PHP, Composer, ecc.)
 vendor/
-.git-blame-ignore-revs
+
+# Build outputs (per progetti frontend, React, Angular, Vue, ecc.)
 build/
-cache/
-docs/cache/
-node_modules
-vendor
-vendor/
-.git-blame-ignore-revs
-build/
-cache/
+dist/
+
+
+# Cache e temporary files
+.cache/
+tmp/
+temp/
+
+# IDEs e editor (Visual Studio Code, JetBrains, ecc.)
+.vscode/
+.idea/
+
+# Sistema operativo (macOS, Windows, Linux)
+.DS_Store
+Thumbs.db
+*.bak
+
+# Log files
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Documentation Cache (siti generati da strumenti come Jekyll, Hugo, ecc.)
 docs/cache/
 
+# Git-specific
+.git-blame-ignore-revs
