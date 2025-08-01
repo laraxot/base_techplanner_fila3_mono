@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Notify\Enums\ContactTypeEnum;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 return new class extends XotBaseMigration
@@ -29,6 +30,14 @@ return new class extends XotBaseMigration
         // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table): void {
+                $contact_types = ContactTypeEnum::cases();
+                foreach ($contact_types as $contact_type) {
+                    if(!$this->hasColumn($contact_type->value)){
+                        $table->string($contact_type->value)->nullable();
+                    }
+                }
+
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
