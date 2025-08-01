@@ -5,26 +5,27 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
 
 use Filament\Actions;
-use Filament\Notifications\Notification;
+use Illuminate\Support\Arr;
+use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
+use Illuminate\Support\HtmlString;
 use Filament\Tables\Actions\Action;
+use Illuminate\Support\Facades\Cookie;
+use Modules\TechPlanner\Models\Client;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TernaryFilter;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cookie;
+use Filament\Tables\Columns\ViewColumn;
 use Illuminate\Support\Facades\Session;
-use Livewire\Attributes\On;
-use Modules\Geo\Actions\GetAddressDataFromFullAddressAction;
+use Filament\Notifications\Notification;
+use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TernaryFilter;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Modules\TechPlanner\Filament\Imports\ClientImporter;
 use Modules\TechPlanner\Filament\Resources\ClientResource;
-use Modules\TechPlanner\Models\Client;
+use Modules\Geo\Actions\GetAddressDataFromFullAddressAction;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
-use Illuminate\Support\HtmlString;
-use Webmozart\Assert\Assert;
 
 /**
  * @property ClientResource $resource
@@ -95,35 +96,7 @@ class ListClients extends XotBaseListRecords
             'country' => TextColumn::make('country')
                 ->toggleable(isToggledHiddenByDefault: true),
 
-            'contacts' => TextColumn::make('contacts')
-                
-                ->badge()
-                /*
-                ->formatStateUsing(function ($record): array {
-                    return [
-                        'email' => $record->email,
-                        'phone' => $record->phone,
-                        'pec' => $record->pec,
-                        'whatsapp' => $record->whatsapp,
-                        'mobile' => $record->mobile,
-                        'fax' => $record->fax,
-                    ];
-                })
-                    */
-                ->default(function ($record) {
-                    return [
-                        'email' => $record->email,
-                        'phone' => $record->phone,
-                        'pec' => $record->pec,
-                        'whatsapp' => $record->whatsapp,
-                        'mobile' => $record->mobile,
-                        'fax' => $record->fax,
-                    ];
-                })
-                ->html()
-                ->wrap()
-                ->searchable(['phone', 'email', 'pec', 'whatsapp', 'mobile', 'fax'])
-                ->sortable(false),
+            'contacts'=>ViewColumn::make('contacts')->view('techplanner::filament.tables.columns.contacts')
 
             
         ];
