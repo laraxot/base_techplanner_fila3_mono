@@ -98,7 +98,7 @@ class ListClients extends XotBaseListRecords
                 ->label('Contatti')
                 ->formatStateUsing(function ($record) {
                     //return '!!'.$this->formatContacts($record);
-                    return 'aa';
+                    return 'aa<b>Ciao</b> Mondo !';
                 })
                 ->default(function ($record) {
                     return 'bb';
