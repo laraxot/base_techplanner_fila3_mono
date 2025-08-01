@@ -11,12 +11,20 @@ Il tema Sixteen è **completamente AGID-compliant per default**. Tutti i compone
 - `pub_theme::blocks.forms.login-card-agid`
 - `pub_theme::layouts.auth-agid`
 - `pub_theme::components.button-agid`
+- `components/agid/breadcrumb.blade.php`
+- `components/agid/footer-institutional.blade.php`
+- `components/agid/header-institutional.blade.php`
+- `components/agid/login-form.blade.php`
 
 ✅ **CORRETTO**: Usare i nomi standard dei componenti
 ✅ **ESEMPI CORRETTI**:
 - `pub_theme::blocks.forms.login-card`
 - `pub_theme::layouts.guest`
 - `pub_theme::components.button`
+- `components/blocks/navigation/breadcrumb.blade.php`
+- `components/layout/footer.blade.php`
+- `components/layout/header.blade.php`
+- `components/blocks/forms/login-card.blade.php`
 
 ## 🧠 **LOGICA DEL SISTEMA**
 

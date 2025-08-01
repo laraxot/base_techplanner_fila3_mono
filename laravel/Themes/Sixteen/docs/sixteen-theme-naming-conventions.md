@@ -4,6 +4,12 @@
 
 **Il tema Sixteen è completamente AGID-centric per design. TUTTI i componenti sono già AGID-compliant per default.**
 
+### ⚠️ REGOLA ASSOLUTA: MAI usare "agid" nei nomi dei file
+
+**VIETATO ASSOLUTO**: Usare "agid" in qualsiasi nome di file, cartella, o riferimento nel tema Sixteen.
+
+**MOTIVAZIONE**: Tutto il tema è già AGID-compliant, quindi aggiungere "agid" è ridondante e crea confusione.
+
 ### ✅ Convenzioni di Naming Corrette
 
 #### Principio Base

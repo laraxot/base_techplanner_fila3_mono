@@ -86,8 +86,8 @@
         :tagline="config('app.tagline', 'Servizi digitali per i cittadini')"
     />
     
-    <!-- Breadcrumb AGID -->
-    <x-pub_theme::blocks.navigation.breadcrumb-agid 
+    <!-- Breadcrumb -->
+    <x-pub_theme::blocks.navigation.breadcrumb 
         :items="[
             ['url' => route('home'), 'text' => 'Home'],
             ['text' => 'Accesso']
