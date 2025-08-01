@@ -10,6 +10,14 @@
 
 **MOTIVAZIONE**: Tutto il tema è già AGID-compliant, quindi aggiungere "agid" è ridondante e crea confusione.
 
+### ⚠️ REGOLA ASSOLUTA: Usare SOLO layout generici
+
+**LAYOUT UNICO**: Usare SEMPRE e SOLO `<x-layouts.guest>` per tutte le pagine pubbliche/auth.
+
+**VIETATO**: Creare layout aggiuntivi come `guest-institutional`, `guest-agid`, `guest-pa`, ecc.
+
+**MOTIVAZIONE**: Il layout `guest` è già AGID-compliant per default. Creare varianti è ridondante.
+
 ### ✅ Convenzioni di Naming Corrette
 
 #### Principio Base
