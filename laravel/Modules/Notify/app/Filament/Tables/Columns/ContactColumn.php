@@ -36,8 +36,9 @@ class ContactColumn extends ViewColumn
             $this->view(static::getView())
             ->searchable(['phone', 'mobile', 'email', 'pec', 'whatsapp', 'fax'])
             ->sortable(false)
-            ->wrap()
-            ->toggleable(isToggledHiddenByDefault: false);
+            
+            ->toggleable(isToggledHiddenByDefault: false)
+            ;
     }
     
     
