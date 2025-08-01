@@ -16,12 +16,12 @@
 
 @props([
     'variant' => 'default',
-    'logo-src' => '/images/logo.svg',
-    'logo-alt' => 'Logo Ente',
-    'ente-name' => 'Nome Ente',
-    'service-tagline' => 'Servizi digitali per i cittadini',
-    'home-url' => '/',
-    'show-navigation' => false,
+    'logoSrc' => '/images/logo.svg',
+    'logoAlt' => 'Logo Ente',
+    'enteName' => 'Nome Ente',
+    'serviceTagline' => 'Servizi digitali per i cittadini',
+    'homeUrl' => '/',
+    'showNavigation' => false,
     'position' => 'static'
 ])
 
@@ -43,25 +43,25 @@ $headerClasses = collect([
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-4">
-                <a href="{{ $home-url }}" class="flex items-center space-x-4 group">
-                    @if($logo-src)
-                        <img src="{{ $logo-src }}" 
-                             alt="{{ $logo-alt }}" 
+                <a href="{{ $homeUrl }}" class="flex items-center space-x-4 group">
+                    @if($logoSrc)
+                        <img src="{{ $logoSrc }}" 
+                             alt="{{ $logoAlt }}" 
                              class="h-12 w-auto transition-transform group-hover:scale-105">
                     @endif
                     
                     <div>
                         <h1 class="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                            {{ $ente-name }}
+                            {{ $enteName }}
                         </h1>
-                        @if($service-tagline)
-                            <p class="text-gray-600 text-sm">{{ $service-tagline }}</p>
+                        @if($serviceTagline)
+                            <p class="text-gray-600 text-sm">{{ $serviceTagline }}</p>
                         @endif
                     </div>
                 </a>
             </div>
             
-            @if($show-navigation)
+            @if($showNavigation)
                 <nav role="navigation" aria-label="Navigazione principale" class="hidden md:flex items-center space-x-6">
                     {{ $slot }}
                 </nav>

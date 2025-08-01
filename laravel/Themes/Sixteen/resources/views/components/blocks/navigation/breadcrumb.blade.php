@@ -16,10 +16,10 @@
 @props([
     'variant' => 'default',
     'items' => [],
-    'current-page' => 'Pagina corrente',
-    'home-url' => '/',
+    'currentPage' => 'Pagina corrente',
+    'homeUrl' => '/',
     'separator' => '/',
-    'show-home' => true,
+    'showHome' => true,
     'background' => 'light'
 ])
 
@@ -41,9 +41,9 @@ $breadcrumbClasses = collect([
 <nav class="{{ $breadcrumbClasses }}" aria-label="Percorso di navigazione" role="navigation">
     <div class="container mx-auto px-4">
         <ol class="flex items-center space-x-2 text-sm">
-            @if($show-home)
+            @if($showHome)
                 <li>
-                    <a href="{{ $home-url }}" 
+                    <a href="{{ $homeUrl }}" 
                        class="text-blue-600 hover:text-blue-800 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1"
                        aria-label="Torna alla home">
                         <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
@@ -52,7 +52,7 @@ $breadcrumbClasses = collect([
                         Home
                     </a>
                 </li>
-                @if(count($items) > 0 || $current-page)
+                @if(count($items) > 0 || $currentPage)
                     <li class="text-gray-400" aria-hidden="true">{{ $separator }}</li>
                 @endif
             @endif
@@ -62,20 +62,20 @@ $breadcrumbClasses = collect([
                     @if(isset($item['url']) && $item['url'])
                         <a href="{{ $item['url'] }}" 
                            class="text-blue-600 hover:text-blue-800 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1">
-                            {{ $item['title'] }}
+                            {{ $item['title'] ?? $item['text'] ?? $item['label'] ?? 'Item' }}
                         </a>
                     @else
-                        <span class="text-gray-700">{{ $item['title'] }}</span>
+                        <span class="text-gray-700">{{ $item['title'] ?? $item['text'] ?? $item['label'] ?? 'Item' }}</span>
                     @endif
                 </li>
-                @if($index < count($items) - 1 || $current-page)
+                @if($index < count($items) - 1 || $currentPage)
                     <li class="text-gray-400" aria-hidden="true">{{ $separator }}</li>
                 @endif
             @endforeach
             
-            @if($current-page)
+            @if($currentPage)
                 <li class="text-gray-700 font-medium" aria-current="page">
-                    {{ $current-page }}
+                    {{ $currentPage }}
                 </li>
             @endif
         </ol>

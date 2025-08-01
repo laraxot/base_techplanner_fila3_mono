@@ -14,9 +14,9 @@
 
 @props([
     'variant' => 'default',
-    'ente-name' => 'Ente di appartenenza',
-    'ente-url' => '#',
-    'show-links' => true,
+    'enteName' => 'Ente di appartenenza',
+    'enteUrl' => '#',
+    'showLinks' => true,
     'position' => 'static',
     'background' => 'primary'
 ])
@@ -46,15 +46,15 @@ $headerClasses = collect([
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                @if($show-links)
-                    <span class="hidden md:inline">{{ $ente-name }}</span>
-                    <span class="md:hidden">{{ Str::limit($ente-name, 20) }}</span>
+                @if($showLinks)
+                    <span class="hidden md:inline">{{ $enteName }}</span>
+                    <span class="md:hidden">{{ Str::limit($enteName, 20) }}</span>
                 @endif
             </div>
             
             <div class="flex items-center space-x-4">
-                @if($ente-url && $ente-url !== '#')
-                    <a href="{{ $ente-url }}" 
+                @if($enteUrl && $enteUrl !== '#')
+                    <a href="{{ $enteUrl }}" 
                        class="hover:underline transition-colors"
                        title="Vai al sito dell'ente"
                        target="_blank"

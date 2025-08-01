@@ -50,6 +50,8 @@ class Client extends BaseModel
         'fax',                   // fax
         'mobile',                // cellulare
         'email',                 // email
+        'pec',
+        'whatsapp',
         'notes',                 // note
         'activity',              // attivita
         'longitude',

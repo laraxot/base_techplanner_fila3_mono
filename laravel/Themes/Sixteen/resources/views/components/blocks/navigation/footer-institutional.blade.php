@@ -16,13 +16,13 @@
 
 @props([
     'variant' => 'default',
-    'logo-src' => '/images/logo-white.svg',
-    'logo-alt' => 'Logo Ente',
-    'ente-name' => 'Nome Ente',
-    'ente-description' => 'Servizi digitali per i cittadini',
-    'show-links' => true,
+    'logoSrc' => '/images/logo-white.svg',
+    'logoAlt' => 'Logo Ente',
+    'enteName' => 'Nome Ente',
+    'enteDescription' => 'Servizi digitali per i cittadini',
+    'showLinks' => true,
     'background' => 'dark',
-    'custom-links' => []
+    'customLinks' => []
 ])
 
 @php
@@ -46,7 +46,7 @@ $defaultLinks = [
     ['title' => 'Assistenza', 'url' => '/help']
 ];
 
-$allLinks = array_merge($defaultLinks, $custom-links);
+$allLinks = array_merge($defaultLinks, $customLinks);
 @endphp
 
 <footer role="contentinfo" class="{{ $footerClasses }}">
@@ -54,22 +54,22 @@ $allLinks = array_merge($defaultLinks, $custom-links);
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Institution Info -->
             <div class="flex items-center space-x-4">
-                @if($logo-src)
-                    <img src="{{ $logo-src }}" 
-                         alt="{{ $logo-alt }}" 
+                @if($logoSrc)
+                    <img src="{{ $logoSrc }}" 
+                         alt="{{ $logoAlt }}" 
                          class="h-10 w-auto">
                 @endif
                 
                 <div>
-                    <h3 class="text-lg font-semibold">{{ $ente-name }}</h3>
-                    @if($ente-description)
-                        <p class="text-sm opacity-80 mt-1">{{ $ente-description }}</p>
+                    <h3 class="text-lg font-semibold">{{ $enteName }}</h3>
+                    @if($enteDescription)
+                        <p class="text-sm opacity-80 mt-1">{{ $enteDescription }}</p>
                     @endif
                 </div>
             </div>
             
             <!-- Institutional Links -->
-            @if($show-links && count($allLinks) > 0)
+            @if($showLinks && count($allLinks) > 0)
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Link utili</h4>
                     <ul class="space-y-2 text-sm">
@@ -105,7 +105,7 @@ $allLinks = array_merge($defaultLinks, $custom-links);
         
         <!-- Copyright -->
         <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm opacity-80">
-            <p>&copy; {{ date('Y') }} {{ $ente-name }}. Tutti i diritti riservati.</p>
+            <p>&copy; {{ date('Y') }} {{ $enteName }}. Tutti i diritti riservati.</p>
         </div>
     </div>
 </footer>
