@@ -420,7 +420,7 @@ class ListClients extends XotBaseListRecords
         if ($record->fax) {
             $contacts[] = '<i class="heroicon-o-printer text-gray-500 w-4 h-4 inline mr-1" title="Fax"></i> ' . $record->fax;
         }
-        
+        return 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOO';
         return empty($contacts) 
             ? '<span class="text-gray-400">Nessun contatto</span>' 
             : implode('<br class="my-1">', $contacts);
