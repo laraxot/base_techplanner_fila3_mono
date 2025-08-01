@@ -41,7 +41,7 @@ class ListClients extends XotBaseListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            // \Modules\TechPlanner\Filament\Widgets\ClientMapWidget::class,
+            // \Modules\TechPlanner\Filament\Widgets\ClientMapWidget::class, //WIP 
         ];
     }
 

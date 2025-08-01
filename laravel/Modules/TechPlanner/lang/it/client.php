@@ -190,6 +190,7 @@ return array (
       'label' => 'Valori',
       'description' => 'values',
       'helper_text' => 'values',
+      'placeholder' => 'values',
     ),
     'view' => 
     array (
