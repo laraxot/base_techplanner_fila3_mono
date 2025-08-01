@@ -22,7 +22,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         
         <!-- CSS del Tema -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'], 'themes/Sixteen/dist')
+        @vite(['resources/css/app.css', 'resources/js/app.js'], 'themes/Sixteen')
     </head>
     
     <body class="font-sans text-gray-900 antialiased">

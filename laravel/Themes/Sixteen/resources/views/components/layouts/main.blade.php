@@ -23,7 +23,7 @@
 		@filamentStyles
 
 
-        @vite([/*'resources/css/filament/theme.css',*/'resources/css/app.css',],'themes/Sixteen/dist')
+        @vite([/*'resources/css/filament/theme.css',*/'resources/css/app.css'], 'themes/Sixteen')
 
 
     </head>
@@ -32,7 +32,7 @@
         <livewire:toast />
         @livewire('notifications')
 		@filamentScripts
-        @vite(['resources/js/app.js'],'themes/Sixteen/dist')
+        @vite(['resources/js/app.js'], 'themes/Sixteen')
         <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
     </body>
 </html>
