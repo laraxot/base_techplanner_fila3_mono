@@ -156,8 +156,10 @@ class Login extends Component implements HasForms
         if ($adminRoles->count() === 1) {
             // Un solo ruolo admin - redirect al modulo specifico
             $role = $adminRoles->first();
-            $moduleName = str_replace('::admin', '', $role->name);
-            return redirect()->to("/{$moduleName}/admin");
+            if ($role !== null) {
+                $moduleName = str_replace('::admin', '', $role->name);
+                return redirect()->to("/{$moduleName}/admin");
+            }
         } elseif ($adminRoles->count() > 1) {
             // Più ruoli admin - redirect alla dashboard principale
             return redirect()->to('/admin');

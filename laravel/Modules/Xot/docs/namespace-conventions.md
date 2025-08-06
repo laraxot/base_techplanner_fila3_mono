@@ -8687,9 +8687,11 @@ Un errore particolarmente frequente riguarda le Actions. La convenzione corretta
 
 - ❌ **ERRATO**: `namespace Modules\Xot\app\Actions;`
  bb08ed4 (.)
+
 - ❌ **ERRATO**: `namespace Modules\Xot\app\Actions;`
 - ❌ **ERRATO**: `namespace Modules\Xot\app\Actions;`
 b6f667c (.)
+
 
 Anche se il file si trova nel percorso fisico `Modules/Xot/app/Actions/`, il namespace non deve mai includere il segmento `app`.
 
@@ -8720,6 +8722,11 @@ Class 'Modules\Xot\app\Actions\MyAction' not found.
 Class 'Modules\Xot\app\Actions\MyAction' not found.
 Class 'Modules\Xot\app\Actions\MyAction' not found.
 b6f667c (.)
+
+Class 'Modules\Xot\app\Actions\MyAction' not found.
+Class 'Modules\Xot\app\Actions\MyAction' not found.
+b6f667c (.)
+
 ```
 
 La correzione è sempre la stessa: rimuovere il segmento `app` dal namespace.
@@ -8783,6 +8790,7 @@ class RatingData extends Data
 
  aurmich/dev
  aurmich/dev
+
 # Convenzioni Namespace in <nome progetto>
 
 Questo documento descrive le convenzioni di namespace adottate nel progetto <nome progetto>, con particolare attenzione alla struttura modulare basata su Laravel.
@@ -9108,6 +9116,7 @@ La configurazione dell'autoloading in `composer.json` deve riflettere questa str
 
 
  aurmich/dev
+
 ## Risoluzione dei Problemi PHPStan con i Namespace
 
 I problemi PHPStan relativi ai namespace possono essere identificati da messaggi come:
@@ -9165,6 +9174,7 @@ aurmich/dev
 
  aurmich/dev
  aurmich/dev
+
 ## Casi Speciali
 
 ### Traits

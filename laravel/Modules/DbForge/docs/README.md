@@ -123,6 +123,7 @@ tests/
 ### Comandi Artisan
 
 ```bash
+
 # Genera migrazione personalizzata
 php artisan dbforge:migration
 
@@ -210,4 +211,3 @@ Vedere [filament_integration.md](filament_integration.md) per dettagli completi.
 
 ## Supporto
 
-Per supporto tecnico, contattare il team di sviluppo o consultare la documentazione nella cartella `docs/`. 

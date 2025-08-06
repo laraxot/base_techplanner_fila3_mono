@@ -1,18 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\FormBuilder\Models;
 
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-
-
 /**
  * @property string $id
  * @property array<array-key, mixed> $name
- * @property string|null $type
  * @property string|null $key
+ * @property string|null $type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $updated_by
@@ -40,29 +40,53 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder<static>|FieldOption whereType($value)
  * @method static Builder<static>|FieldOption whereUpdatedAt($value)
  * @method static Builder<static>|FieldOption whereUpdatedBy($value)
+ * @property string|null $type
  * @mixin \Eloquent
  */
 class FieldOption extends BaseModel
 {
     use HasTranslations;
-    public static ?string $type=null;
+    
+    /**
+     * Current type for scoping queries.
+     */
+    private static ?string $currentType = null;
 
     public array $translatable = ['name'];
 
     /** @var list<string> */
     protected $fillable = ['name', 'key', 'type'];
 
-
-    public static function setType(string $type): string
+    /**
+     * Set the current type for scoping queries.
+     */
+    public static function setType(string $type): static
     {
-        self::$type = $type;
-        return self::class;
+        self::$currentType = $type;
+        return new static();
     }
+
+    /**
+     * Get the current type.
+     */
+    public static function getCurrentType(): ?string
+    {
+        return self::$currentType;
+    }
+
+    /**
+     * Clear the current type.
+     */
+    public static function clearType(): void
+    {
+        self::$currentType = null;
+    }
+
     protected static function booted(): void
     {
         static::addGlobalScope('type_scope', function (Builder $builder) {
-            if(self::$type){
-                $builder->where('type', self::$type);
+            if (self::$currentType !== null) {
+                $builder->where('type', self::$currentType);
             }
         });
     }
