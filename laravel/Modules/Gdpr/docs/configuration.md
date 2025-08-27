@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Configuration
+=======
 # Configurazione Modulo GDPR
 
 ## Installazione
@@ -207,3 +210,4 @@ public/vendor/gdpr/
 * [configuration.md](../../Xot/docs/configuration.md)
 * [configuration.md](../../Cms/docs/configuration.md)
 
+>>>>>>> 675dfbc (.)

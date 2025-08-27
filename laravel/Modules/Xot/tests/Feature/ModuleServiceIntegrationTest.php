@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 use Modules\Xot\Services\ModuleService;
+<<<<<<< HEAD
+use Nwidart\Modules\Facades\Module;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+=======
+>>>>>>> 68b3eda (.)
 use Illuminate\Support\Facades\File;
 
 describe('ModuleService Integration', function () {

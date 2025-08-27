@@ -124,19 +124,16 @@ class SpatieEmail extends TemplateMailable
 
     /**
      * Get the message envelope.
-     *
-     * @return Envelope
      */
     public function envelope(): Envelope
     {
-        $envelope = new Envelope();
-        
-        // Set the recipient if available
-        if ($this->recipient) {
-            $envelope->to($this->recipient);
+        $to = [];
+        if (is_string($this->recipient) && $this->recipient !== '') {
+            $to = [new Address($this->recipient)];
         }
-        
-        return $envelope;
+        return new Envelope(
+            to: $to,
+        );
     }
 
     public function getHtmlLayout(): string

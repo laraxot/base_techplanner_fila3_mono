@@ -76,6 +76,16 @@
 
 ### 1. Verifica Componenti Esistenti
 ```bash
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+=======
+>>>>>>> 574afe9e (.)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php"
 
@@ -90,6 +100,16 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 
 ### 3. Test in Sviluppo
 ```bash
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+=======
+>>>>>>> 574afe9e (.)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -172,12 +192,32 @@ name('login');
 
 ### 3. Non Testare in Sviluppo
 ```bash
+<<<<<<< HEAD
+<<<<<<< HEAD
+
 # ERRATO: Non testare
+
+=======
+# ERRATO: Non testare
+>>>>>>> 3c18aa7e (.)
+=======
+# ERRATO: Non testare
+>>>>>>> 574afe9e (.)
 # Usare componente senza test
 
 # CORRETTO: Testare sempre
 php artisan view:clear
 php artisan config:clear
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+=======
+>>>>>>> 574afe9e (.)
 # Testare componente
 ```
 
@@ -213,4 +253,11 @@ L'errore è stato causato da:
 
 *Regole aggiornate il: $(date)*
 *Stato: Regole critiche definite*
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 *Priorità: CRITICA* 
+>>>>>>> 3c18aa7e (.)
+=======
+*Priorità: CRITICA*
+>>>>>>> 574afe9e (.)

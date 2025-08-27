@@ -16,7 +16,7 @@
     },
     "require": {},
     "require-dev": {
-        "larastan/larastan": "^3.0"
+        "larastan/larastan": "*"
     },
     "config": {
         "sort-packages": true,

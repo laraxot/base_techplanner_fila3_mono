@@ -134,7 +134,11 @@ class EditUserWidget extends XotBaseWidget
                 $attributes = $model->getAttributes();
                 
                 // Gestisci specificamente gli enum se presenti
+<<<<<<< HEAD
+                if (($attributes['type'] ?? null) !== null && ($model->type ?? null) !== null && $model->type instanceof \BackedEnum) {
+=======
                 if (isset($attributes['type']) && ($model->type ?? null) instanceof \BackedEnum) {
+>>>>>>> fc93b0f (.)
                     $attributes['type'] = $model->type->value;
                 }
                 

@@ -1,12 +1,12 @@
-# MCP Server Consigliati per il Modulo Chart
+# MCP Server Consigliati per il Modulo Geo
 
 ## Scopo del Modulo
-Gestione e visualizzazione di grafici e dashboard dinamiche.
+Gestione dati geografici, mappe e geolocalizzazione.
 
 ## Server MCP Consigliati
-- `fetch`: Per recuperare dati da API o fonti esterne per i grafici.
-- `memory`: Per caching temporaneo dei dati dei grafici.
-- `filesystem`: Per esportazione/importazione di grafici e dati.
+- `fetch`: Per recupero dati geografici da API esterne.
+- `memory`: Per caching temporaneo di dati geospaziali.
+- `filesystem`: Per gestione file geojson, shapefile, ecc.
 
 ## Configurazione Minima Esempio
 ```json
@@ -20,4 +20,4 @@ Gestione e visualizzazione di grafici e dashboard dinamiche.
 ```
 
 ## Note
-- Personalizza in base al tipo di dashboard e fonti dati.
+- Estendi la configurazione se il modulo gestisce analisi geospaziali avanzate.

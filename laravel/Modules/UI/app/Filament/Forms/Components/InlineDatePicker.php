@@ -249,7 +249,7 @@ class InlineDatePicker extends DatePicker
     {
         $calendarData = $this->generateCalendarData();
         
-        return array_merge(parent::getViewData(), [
+        return [
             'calendarData' => $calendarData,
             'currentViewMonth' => $this->currentViewMonth,
             'currentValue' => $this->getState(),
@@ -258,6 +258,6 @@ class InlineDatePicker extends DatePicker
             'monthName' => $calendarData['monthName'],
             'year' => $calendarData['year'],
             'weekdays' => $calendarData['weekdays'],
-        ]);
+        ];
     }
 } 

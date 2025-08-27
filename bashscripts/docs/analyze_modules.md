@@ -79,6 +79,11 @@ Modules/<NomeModulo>/docs/phpstan/
    - Directory non trovata
    - Permessi insufficienti
    - PHPStan non installato
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 574afe9e (.)
 
 ## Gestione dei Conflitti
 In caso di conflitti durante l'analisi dei moduli:
@@ -87,6 +92,25 @@ In caso di conflitti durante l'analisi dei moduli:
 3. Risolvere i conflitti manualmente seguendo le linee guida in [CONFLICT_RESOLUTION.md](../../docs/development/CONFLICT_RESOLUTION.md)
 4. Dopo la risoluzione, rieseguire l'analisi PHPStan
 
+## Collegamenti
+- [Documentazione PHPStan](../../docs/phpstan/PHPSTAN_WORKFLOW.md)
+- [Linee Guida Moduli](../../docs/MODULES.md)
+- [Risoluzione Conflitti](../../docs/development/CONFLICT_RESOLUTION.md)
+   - Configurazione PHPStan errata
+
+## Pattern di Risoluzione Errori
+Durante l'analisi PHPStan potrebbero emergere errori ricorrenti. Ecco le soluzioni più comuni:
+<<<<<<< HEAD
+>>>>>>> 9c02579 (.)
+=======
+>>>>>>> 574afe9e (.)
+
+## Gestione dei Conflitti
+In caso di conflitti durante l'analisi dei moduli:
+1. Verificare che non ci siano modifiche non committate
+2. Eseguire `git status` per identificare i file in conflitto
+3. Risolvere i conflitti manualmente seguendo le linee guida in [CONFLICT_RESOLUTION.md](../../docs/development/CONFLICT_RESOLUTION.md)
+4. Dopo la risoluzione, rieseguire l'analisi PHPStan
 ## Collegamenti
 - [Documentazione PHPStan](../../docs/phpstan/PHPSTAN_WORKFLOW.md)
 - [Linee Guida Moduli](../../docs/MODULES.md)
@@ -135,6 +159,7 @@ if ($user !== null) {
 Lo script può essere integrato in pipeline CI/CD per automatizzare l'analisi del codice:
 
 ```yaml
+
 # Esempio di configurazione GitHub Actions
 name: PHPStan Analysis
 on: [push, pull_request]

@@ -1,118 +1,43 @@
-# Modulo Media
+# Media Module Documentation
 
-## Panoramica
-Il modulo Media gestisce tutti i file multimediali dell'applicazione, fornendo un sistema centralizzato per l'upload, la gestione e la distribuzione di immagini, video, documenti e altri file. Si integra con tutti gli altri moduli per garantire una gestione efficiente dei media.
+Media module for Laraxot PTVX providing specialized functionality and business logic.
 
-### Versione HEAD
+## Quick Reference
 
+### Core Components
+- **Business Logic**: Core Media functionality
+- **Data Models**: Media-specific models and relationships
+- **API Integration**: External service integrations
+- **User Interface**: Filament resources and components
+- **Configuration**: Module settings and options
 
-### Versione Incoming
+## Documentation Structure
 
-## Collegamenti correlati
-- [README.md documentazione generale](../../../docs/README.md)
-- [README.md toolkit bashscripts](../../../bashscripts/docs/README.md)
-- [README.md modulo GDPR](../Gdpr/docs/README.md)
-- [README.md modulo User](../User/docs/README.md)
-- [README.md modulo Lang](../Lang/docs/README.md)
-- [README.md modulo Media](../Media/docs/README.md)
-- [README.md modulo Notify](../Notify/docs/README.md)
-- [README.md modulo Tenant](../Tenant/docs/README.md)
-- [README.md modulo UI](../UI/docs/README.md)
-- [README.md modulo Xot](../Xot/docs/README.md)
-- [Collegamenti documentazione centrale](../../../docs/collegamenti-documentazione.md)
+1. [Core Functionality](core-functionality.md) - Main business logic
+2. [Data Models](data-models.md) - Models and relationships
+3. [API Integration](api-integration.md) - External integrations
+4. [User Interface](user-interface.md) - Filament components
+5. [Configuration](configuration.md) - Settings and options
+6. [Migration Patterns](migration-patterns.md) - Database patterns
+7. [Best Practices](best-practices.md) - Development guidelines
+8. [Troubleshooting](troubleshooting.md) - Common issues
 
+## Business Logic Focus
 
----
+- **Domain expertise**: Specialized Media functionality
+- **Data integrity**: Robust data validation and storage
+- **Integration**: Seamless system integration
+- **Performance**: Optimized for business requirements
+- **Scalability**: Designed for growth and expansion
 
-## Collegamenti Principali
+## Quick Start
 
-### Documentazione Core
-- [Struttura del Modulo](./structure.md)
-- [Gestione File](./files.md)
-- [Conversioni](./conversions.md)
-- [Storage](./storage.md)
-- [Best Practices](./BEST-PRACTICES.md)
-
-### Integrazioni
-- [Integrazione con User](../User/docs/README.md)
-- [Integrazione con Xot](../Xot/docs/README.md)
-- [Integrazione con Lang](../Lang/docs/README.md)
-
-### Best Practices
-- [Convenzioni Media](./media-conventions.md)
-- [Gestione Storage](./storage-management.md)
-- [PHPStan Fixes](./phpstan-fixes.md)
-
-### Testing e Qualità
-- [PHPStan Level 9](./PHPSTAN_LEVEL9_FIXES.md)
-- [PHPStan Level 10](./PHPSTAN_LEVEL10_FIXES.md)
-- [Testing Best Practices](./testing-best-practices.md)
-
-## Struttura del Modulo
-
-```
-Modules/Media/
-├── app/
-│   ├── Models/
-│   │   ├── Media.php
-│   │   └── MediaConversion.php
-│   ├── Providers/
-│   │   ├── MediaServiceProvider.php
-│   │   └── MediaBaseServiceProvider.php
-│   ├── Filament/
-│   │   ├── Resources/
-│   │   │   └── MediaResource.php
-│   │   ├── Widgets/
-│   │   │   └── MediaStatsWidget.php
-│   │   └── Pages/
-│   │       └── MediaManager.php
-│   └── Http/
-│       └── Controllers/
-│           └── MediaController.php
-├── config/
-│   └── media.php
-├── database/
-│   └── migrations/
-│       ├── create_media_table.php
-│       └── create_media_conversions_table.php
-└── resources/
-    └── views/
-        └── media/
-            ├── upload.blade.php
-            └── manager.blade.php
-```
-
-## Gestione Media
-
-### 1. Modello Media
 ```php
-// app/Models/Media.php
-namespace App\Models;
-
-use Modules\Media\Models\XotBaseMedia;
-use Modules\Lang\Facades\Lang;
-
-class Media extends XotBaseMedia
-{
-    protected $fillable = [
-        'name',
-        'file_name',
-        'mime_type',
-        'size',
-        'disk',
-        'conversions'
-    ];
-
-    protected $casts = [
-        'conversions' => 'array'
-    ];
-
-    public function getDisplayNameAttribute(): string
-    {
-        return Lang::get('media.name', ['name' => $this->name]);
-    }
-}
+// Basic usage example
+$result = app(MediaService::class)->process($data);
 ```
+<<<<<<< HEAD
+=======
 
 ### 2. Trait HasMedia
 ```php
@@ -393,3 +318,4 @@ docs/
 - [x] Documentazione aggiornata
 - [x] Struttura coerente in tutti i moduli
 
+>>>>>>> c59deef (.)

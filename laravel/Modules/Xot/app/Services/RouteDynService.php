@@ -158,6 +158,7 @@ class RouteDynService
         $param_name = self::getParamName($v, $namespace);
         $params_name = self::getParamsName($v, $namespace);
         Assert::isArray($params_name);
+        Assert::string( $v['name']);
 
         $opts = [
             'parameters' => [mb_strtolower((string) $v['name']) => implode('}/{', $params_name)],

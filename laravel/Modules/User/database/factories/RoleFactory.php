@@ -99,4 +99,7 @@ class RoleFactory extends Factory
         ]);
     }
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> fc93b0f (.)

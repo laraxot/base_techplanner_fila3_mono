@@ -7,12 +7,14 @@ namespace Modules\Xot\Providers;
 use BladeUI\Icons\Factory as BladeIconsFactory;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Modules\Xot\Actions\Blade\RegisterBladeComponentsAction;
 use Modules\Xot\Actions\Livewire\RegisterLivewireComponentsAction;
 use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
 use Nwidart\Modules\Traits\PathNamespace;
+use Illuminate\Contracts\Container\Container;
 use Webmozart\Assert\Assert;
 
 /**
@@ -55,6 +57,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
         $this->module_ns = collect(explode('\\', $this->module_ns))->slice(0, -1)->implode('\\');
         $this->app->register($this->module_ns.'\Providers\RouteServiceProvider');
         $this->app->register($this->module_ns.'\Providers\EventServiceProvider');
+        //$this->registerConfig();
         $this->registerBladeIcons();
     }
 
@@ -159,14 +162,44 @@ abstract class XotBaseServiceProvider extends ServiceProvider
      */
     protected function registerConfig(): void
     {
-        try {
+        // dddx('a');
+        // try {
             $configPath = app(GetModulePathByGeneratorAction::class)->execute($this->name, 'config');
 
-            $this->mergeConfigFrom($configPath, $this->nameLower);
-        } catch (\Exception $e) {
-            // Ignore missing configuration
-            return;
-        }
+            // $this->mergeConfigFrom($configPath, $this->nameLower);
+
+            $files = File::files($configPath);
+            foreach ($files as $file) {
+                /*
+                dddx(
+                    ['methods' => get_class_methods($file),
+                    'getFilename' => $file->getFilename(),
+                    'isFile' => $file->isFile(),
+                    'getBasename' => $file->getBasename(),
+                    'getFilenameWithoutExtension' => $file->getFilenameWithoutExtension(),
+                    'getPath' => $file->getPath(),
+                    'content' => File::getRequire($file->getPath().DIRECTORY_SEPARATOR.$file->getFilename()),
+                    'configKey' => $this->nameLower.'::'.$file->getFilenameWithoutExtension()
+                    ]);
+                */
+                if(!$file->isFile()){
+                    continue;
+                }
+                if($file->getExtension() != 'php'){
+                    continue;
+                }
+                $content = File::getRequire($file->getPath().DIRECTORY_SEPARATOR.$file->getFilename());
+                $configKey = $this->nameLower.'::'.$file->getFilenameWithoutExtension();
+                Config::set($configKey, $content);
+                
+                
+                
+            }
+
+        // } catch (\Exception $e) {
+        //     dddx($e->getMessage());
+        //     return;
+        // }
     }
 
     public function registerBladeComponents(): void

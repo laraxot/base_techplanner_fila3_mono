@@ -22,9 +22,24 @@ use function Safe\json_encode;
  * @property-read \Illuminate\Database\Eloquent\Model $linked
  * @property-read \Modules\Geo\Models\PlaceType|null $placeType
  * @property-read \Modules\User\Models\Profile|null $updater
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+ *
+>>>>>>> ea4011f (.)
+ * @method static \Modules\Geo\Database\Factories\PlaceFactory factory($count = null, $state = [])
+=======
+>>>>>>> a93f634 (.)
+=======
+>>>>>>> f90a9bb (.)
+=======
+>>>>>>> f0f95d7 (.)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place query()
+ *
  * @property int $id
  * @property string|null $model_type
  * @property int|null $model_id
@@ -35,6 +50,7 @@ use function Safe\json_encode;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $post_type
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedBy($value)
@@ -49,7 +65,23 @@ use function Safe\json_encode;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place wherePostType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedBy($value)
+<<<<<<< HEAD
+<<<<<<< HEAD
  * @mixin IdeHelperPlace
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+ *
+=======
+ * @mixin IdeHelperPlace
+>>>>>>> a93f634 (.)
+=======
+ * @mixin IdeHelperPlace
+>>>>>>> f90a9bb (.)
+>>>>>>> ea4011f (.)
+=======
+ * @mixin IdeHelperPlace
+>>>>>>> f0f95d7 (.)
  * @mixin \Eloquent
  */
 class Place extends BaseModel implements HasGeolocation
@@ -216,4 +248,18 @@ class Place extends BaseModel implements HasGeolocation
         return $this->placeType->name ?? null;
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /**
+     * Scope to filter by country.
+     */
+    public function scopeInCountry($query, $country)
+    {
+        return $query->where('country', $country);
+    }
+
+=======
+>>>>>>> ea4011f (.)
+=======
+>>>>>>> f0f95d7 (.)
 }

@@ -98,6 +98,7 @@ After migration, thoroughly test:
 
 ## Rollback Plan
 
+<<<<<<< HEAD
 In case of issues, have a rollback plan:
 
 1. Backup your database
@@ -128,7 +129,38 @@ composer require calebporzio/sushi
 
 ### 2. Backup
 ```bash
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f8633bc (.)
+=======
+>>>>>>> 0c268a4 (.)
 
+=======
+>>>>>>> 7b895b0 (.)
+=======
+
+>>>>>>> bda2447 (.)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 70c8c33 (.)
+=======
+
+>>>>>>> e0d1f5b (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f8633bc (.)
+=======
+>>>>>>> 0c268a4 (.)
+=======
+
+>>>>>>> f0f95d7 (.)
 # Backup del file JSON
 cp database/content/comuni.json database/content/comuni.json.bak
 
@@ -537,3 +569,53 @@ git checkout -- app/Models/Comune.php
 - [Comune Model](comune-model.md)
 - [Sushi Configuration](sushi-configuration.md)
 - [Sushi Command](sushi-command.md)
+=======
+If you need to rollback the migration:
+
+1. Restore the old model imports
+2. Restore the old database references
+3. Restore the old relationships
+4. Run any necessary rollback migrations
+
+## Common Issues and Solutions
+
+### Issue: Model Not Found
+**Error**: `Class 'Modules\Geo\Models\Region' not found
+**Solution**: Ensure the Geo module is properly installed and registered
+
+### Issue: Table Not Found
+**Error**: `Table 'geo_regions' doesn't exist
+**Solution**: Run the Geo module migrations first
+
+### Issue: Relationship Errors
+**Error**: `Call to undefined method belongsTo()`
+**Solution**: Check that the model extends the correct base class
+
+## Best Practices
+
+1. **Test in Development First**: Always test migrations in a development environment
+2. **Backup Data**: Create backups before running migrations
+3. **Incremental Migration**: Migrate one model at a time if possible
+4. **Document Changes**: Keep track of all changes made during migration
+
+## Support
+
+If you encounter issues during migration:
+
+1. Check the Geo module documentation
+2. Review the migration logs
+3. Contact the development team
+4. Create an issue in the repository
+
+## Related Documentation
+
+- [Geo Module Overview](../README.md)
+- [Geo Models Documentation](../models/README.md)
+- [Geo API Documentation](../api/README.md)
+- [Geo Testing Guide](../testing/README.md)
+
+---
+
+*Last updated: January 2025*
+*Version: 1.0.0*
+>>>>>>> 8946c2f (.)

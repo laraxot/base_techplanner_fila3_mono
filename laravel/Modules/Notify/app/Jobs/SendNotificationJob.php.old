@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Modules\Notify\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Modules\Notify\Actions\SendNotificationAction;
 
 class SendNotificationJob implements ShouldQueue
@@ -50,9 +49,9 @@ class SendNotificationJob implements ShouldQueue
         protected array $channels = [],
         protected array $options = []
     ) {
-        $this->tries = Config::integer('notify.queue.tries', 3);
-        $this->timeout = Config::integer('notify.queue.retry_after', 60);
-        $this->onQueue(Config::string('notify.queue.queue', 'notifications'));
+        $this->tries = config('notify.queue.tries', 3);
+        $this->timeout = config('notify.queue.retry_after', 60);
+        $this->onQueue(config('notify.queue.queue', 'notifications'));
     }
 
     /**

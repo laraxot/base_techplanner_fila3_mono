@@ -7,6 +7,10 @@ namespace Modules\UI\Enums;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
+<<<<<<< HEAD
+use Filament\Resources\Pages\ListRecords;
+=======
+>>>>>>> be3ca71 (.)
 use Modules\Xot\Filament\Traits\TransTrait;
 
 /**
@@ -99,6 +103,10 @@ enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
             : null;
     }
 
+<<<<<<< HEAD
+   /**
+     * Undocumented function.
+=======
     /**
      * Get the appropriate table columns for this layout type.
      *
@@ -107,12 +115,29 @@ enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
      *
      * @param array<\Filament\Tables\Columns\Column|\Filament\Tables\Columns\ColumnGroup|\Filament\Tables\Columns\Layout\Component> $listColumns Columns for list layout
      * @param array<\Filament\Tables\Columns\Column|\Filament\Tables\Columns\ColumnGroup|\Filament\Tables\Columns\Layout\Component> $gridColumns Columns for grid layout
+>>>>>>> be3ca71 (.)
      *
      * @return array<\Filament\Tables\Columns\Column|\Filament\Tables\Columns\ColumnGroup|\Filament\Tables\Columns\Layout\Component>
      */
     public function getTableColumns(array $listColumns, array $gridColumns): array
     {
         return $this->isGridLayout() ? $gridColumns : $listColumns;
+    }
+
+    public static function getOptions(): array
+    {
+        return [
+            self::LIST->value => self::LIST->getLabel(),
+            self::GRID->value => self::GRID->getLabel(),
+        ];
+    }
+
+    public function getContainerClasses(): string
+    {
+        return match ($this) {
+            self::LIST => 'table-layout-list',
+            self::GRID => 'table-layout-grid',
+        };
     }
 
     public static function getOptions(): array

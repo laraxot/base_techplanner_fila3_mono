@@ -110,9 +110,33 @@ class XotBaseResource extends Resource
     }
 }
 ```
+<<<<<<< HEAD
+## Modifiche Recenti (Giugno 2025)
+
+### Deprecazione Comandi MCP
+I comandi MCP sono stati temporaneamente deprecati e rinominati con estensione `.old`:
+- `McpValidateCommand.php` → `McpValidateCommand.php.old`
+- `McpServerCommand.php` → `McpServerCommand.php.old`
+- `McpCheckCommand.php` → `McpCheckCommand.php.old`
+
+### Migrazione Azioni Database
+Le azioni relative al database sono state migrate al modulo DbForge per una migliore separazione delle responsabilità.
+
+**Per dettagli completi**: [Documentazione Modifiche](docs/mcp-commands-deprecation.md)
+
+## Configurazione
+Il modulo può essere configurato tramite il file `config/module_xot.php`:
+- Gestione delle rotte
+- Permessi
+- Configurazioni specifiche per modulo
 
 ## 🚀 Installazione SUPER VELOCE
 
+=======
+
+## 🚀 Installazione SUPER VELOCE
+
+>>>>>>> 68b3eda (.)
 ```bash
 # 1. Installa il modulo base
 composer require laraxot/xot

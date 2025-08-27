@@ -1,62 +1,64 @@
 <?php
 
-return array (
-  'fields' => 
-  array (
-    'link' => 
-    array (
+declare(strict_types=1);
+
+return [
+  'fields' =>
+  [
+    'link' =>
+    [
       'label' => 'link',
       'description' => 'link',
       'helper_text' => 'link',
       'placeholder' => 'link',
     ),
-    'class' => 
-    array (
+    'class' =>
+    [
       'label' => 'class',
       'description' => 'class',
       'helper_text' => 'class',
       'placeholder' => 'class',
     ),
-    'label' => 
-    array (
+    'label' =>
+    [
       'label' => 'label',
       'description' => 'label',
       'helper_text' => 'label',
       'placeholder' => 'label',
     ),
-    'buttons' => 
-    array (
+    'buttons' =>
+    [
       'label' => 'buttons',
       'description' => 'buttons',
       'helper_text' => 'buttons',
       'placeholder' => 'buttons',
     ),
-    '_tpl' => 
-    array (
+    '_tpl' =>
+    [
       'label' => '_tpl',
     ),
-    'background' => 
-    array (
+    'background' =>
+    [
       'label' => 'background',
       'description' => 'background',
       'helper_text' => 'background',
       'placeholder' => 'background',
     ),
-    'text' => 
-    array (
+    'text' =>
+    [
       'label' => 'text',
       'description' => 'text',
       'helper_text' => 'text',
       'placeholder' => 'text',
     ),
-    'title' => 
-    array (
+    'title' =>
+    [
       'label' => 'title',
       'description' => 'title',
       'helper_text' => 'title',
     ),
-    'view' => 
-    array (
+    'view' =>
+    [
       'label' => 'view',
     ),
   ),

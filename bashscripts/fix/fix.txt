@@ -106,3 +106,9 @@ Soluzione: sudo chmod 777 -R .
 # Cambia versione PHP
 sudo update-alternatives --config php
 ```
+
+## 🔄 Se menù o altri elementi frontend non si aggiornano
+```bash
+# Eseguire script "go" presente nel composer.json
+composer go
+```

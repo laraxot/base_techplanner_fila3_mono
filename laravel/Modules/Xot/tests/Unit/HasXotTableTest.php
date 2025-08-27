@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
@@ -88,6 +90,7 @@ class HasXotTableTest extends TestCase
         $tableMock->shouldReceive('paginated')->andReturnSelf();
 
         // Call the table method
+        /* @phpstan-ignore-next-line */
         $result = $mock->table($tableMock);
 
         // Assert the result is a Table instance
@@ -149,6 +152,7 @@ class HasXotTableTest extends TestCase
         $tableMock->shouldReceive('paginated')->andReturnSelf();
 
         // Call the table method
+        /* @phpstan-ignore-next-line */
         $result = $mock->table($tableMock);
 
         // Assert the result is a Table instance

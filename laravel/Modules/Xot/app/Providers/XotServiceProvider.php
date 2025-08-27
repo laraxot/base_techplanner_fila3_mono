@@ -17,6 +17,7 @@ use Filament\Forms\Components\Field;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Config;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\BaseFilter;
 use Illuminate\Database\Eloquent\Model;
@@ -36,6 +37,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 use Modules\Xot\Exceptions\Handlers\HandlersRepository;
 use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
+use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -64,7 +66,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     public function register(): void
     {
         parent::register();
-        $this->registerConfig();
+        // $this->registerConfig();
         //$this->registerExceptionHandlersRepository();
         //$this->extendExceptionHandler();
         //$this->registerCommands();
@@ -134,10 +136,22 @@ class XotServiceProvider extends XotBaseServiceProvider
     }
         */
 
-    public function registerConfig(): void
+    public function registerConfigOld(): void
     {
         // $config_file = realpath(__DIR__.'/../config/metatag.php');
         // $this->mergeConfigFrom($config_file, 'metatag');
+        // $path = app(GetModulePathByGeneratorAction::class)->execute($this->name, 'config');
+        // $files = File::glob($path.'/*.php');
+        // foreach ($files as $file) {
+        //     $info = pathinfo($file);
+        //     $content = File::getRequire($file);
+        //     $configKey = strtolower($this->name).'::'.$info['filename'];
+        //     Config::set($configKey, $content);
+        //     if($this->name=='Xot'){
+        //         dddx('preso');
+        //     }
+            
+        // }
     }
 
     public function loadHelpersFrom(string $path): void

@@ -22,7 +22,7 @@ use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Modules\Xot\Actions\Model\TableExistsByModelClassActions;
+use Modules\Xot\Actions\ModelClass\TableExistsByModelClassActions;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 
 /**

@@ -15,9 +15,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Trait HasTenants
- * 
+ *
  * Provides tenant functionality for User models implementing multi-tenancy.
- * 
+ *
  * @property TeamContract $currentTeam
  */
 trait HasTenants
@@ -43,7 +43,7 @@ trait HasTenants
     {
         /** @var \Illuminate\Support\Collection<int, \Illuminate\Database\Eloquent\Model> $tenants */
         $tenants = $this->tenants;
-        
+
         return $tenants;
     }
 

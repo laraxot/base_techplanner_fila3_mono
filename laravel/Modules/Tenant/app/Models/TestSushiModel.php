@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\Tenant\Models;
 
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Facades\File;
+>>>>>>> afc9385 (.)
 use Modules\Tenant\Models\Traits\SushiToJson;
 
 /**
@@ -17,6 +20,8 @@ class TestSushiModel extends Model
     use SushiToJson;
 
     /**
+<<<<<<< HEAD
+=======
      * Schema esplicito per Sushi quando non ci sono righe.
      *
      * @var array<string, string>
@@ -34,11 +39,14 @@ class TestSushiModel extends Model
     ];
 
     /**
+>>>>>>> afc9385 (.)
      * La tabella associata al modello.
      */
     protected $table = 'test_sushi';
 
     /**
+<<<<<<< HEAD
+=======
      * Override del path JSON in ambiente di test per NON toccare config/local/saluteora/.
      */
     public function getJsonFile(): string
@@ -75,6 +83,7 @@ class TestSushiModel extends Model
      */
 
     /**
+>>>>>>> afc9385 (.)
      * Gli attributi che sono assegnabili in massa.
      *
      * @var list<string>
@@ -84,8 +93,11 @@ class TestSushiModel extends Model
         'description',
         'status',
         'metadata',
+<<<<<<< HEAD
+=======
         'created_by',
         'updated_by',
+>>>>>>> afc9385 (.)
     ];
 
     /**
@@ -99,8 +111,11 @@ class TestSushiModel extends Model
             'metadata' => 'array',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
+<<<<<<< HEAD
+=======
             'created_by' => 'integer',
             'updated_by' => 'integer',
+>>>>>>> afc9385 (.)
         ];
     }
 }

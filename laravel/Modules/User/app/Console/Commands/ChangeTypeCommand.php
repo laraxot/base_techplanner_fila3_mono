@@ -78,7 +78,11 @@ class ChangeTypeCommand extends Command
         foreach ($childTypes as $key => $item) {
             if (is_object($item) && method_exists($item, 'getLabel') && app(\Modules\Xot\Actions\Cast\SafeObjectCastAction::class)->hasNonNullProperty($item, 'value')) {
                 $value = app(\Modules\Xot\Actions\Cast\SafeObjectCastAction::class)->getStringProperty($item, 'value', '');
+<<<<<<< HEAD
+                $options[$value] = (string) $item->getLabel();
+=======
                 $options[$value] = (string)$item->getLabel();
+>>>>>>> fc93b0f (.)
             } else {
                 $options[(string)$key] = 'Unknown';
             }

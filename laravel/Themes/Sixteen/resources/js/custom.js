@@ -134,3 +134,39 @@ function getBanners() {
 function getMarkets() {
 	return [];
 }
+
+// Add missing toggle functions
+function toggleLanguage() {
+	// Basic language toggle functionality
+	const currentLang = document.documentElement.lang || 'it';
+	const newLang = currentLang === 'it' ? 'en' : 'it';
+	
+	// Update URL with new language
+	const currentPath = window.location.pathname;
+	const segments = currentPath.split('/').filter(Boolean);
+	
+	if (segments[0] && (segments[0] === 'it' || segments[0] === 'en')) {
+		segments[0] = newLang;
+	} else {
+		segments.unshift(newLang);
+	}
+	
+	const newPath = '/' + segments.join('/');
+	window.location.href = newPath;
+}
+
+function toggleMenu() {
+	// Basic menu toggle functionality
+	const menu = document.querySelector('.mobile-menu, .nav-menu, .navbar-collapse, [data-toggle="menu"]');
+	if (menu) {
+		menu.classList.toggle('show');
+		menu.classList.toggle('active');
+		menu.classList.toggle('open');
+	}
+	
+	// Also toggle any menu button active state
+	const menuButton = document.querySelector('.menu-toggle, .navbar-toggler, [onclick*="toggleMenu"]');
+	if (menuButton) {
+		menuButton.classList.toggle('active');
+	}
+}
