@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
 use Modules\User\Models\User;
 use Filament\Actions\DeleteAction;
 use Illuminate\Support\Facades\Hash;
-use Filament\Resources\Pages\EditRecord;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 use Modules\User\Filament\Resources\UserResource;
 
 use Modules\User\Filament\Actions\ChangePasswordAction;
@@ -23,7 +23,7 @@ use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 /**
  * Pagina per la modifica degli utenti con particolare gestione della password.
  */
-abstract class BaseEditUser extends EditRecord
+abstract class BaseEditUser extends XotBaseEditRecord
 {
     // //
     protected static string $resource = UserResource::class;

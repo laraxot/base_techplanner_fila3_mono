@@ -1,100 +1,200 @@
-# Documentation Guidelines
+# Laraxot <nome progetto> - Documentazione Completa
 
-This directory (`docs`) serves as the primary documentation repository for the project. All team members should follow these guidelines:
+## Panoramica
 
-## Core Principles
+Questo progetto implementa un sistema completo di gestione dipendenti con tracciamento orario, seguendo rigorosamente le convenzioni Laraxot e le best practices di Laravel/Filament.
 
-1. **Single Source of Truth**: This `docs` directory is the main repository for all project documentation.
-2. **Continuous Updates**: Documentation must be updated whenever:
-   - Code changes are made
-   - Issues are resolved
-   - New features are implemented
-   - Bug fixes are applied
+## Documentazione Corrente
 
-## Best Practices
+### Moduli Principali
+- [Employee Module](../laravel/Modules/Employee/docs/) - Gestione completa dipendenti e ore di lavoro
+- [Xot Module](../laravel/Modules/Xot/docs/) - Framework base e convenzioni
+- [User Module](../laravel/Modules/User/docs/) - Gestione utenti e autenticazione
+- [UI Module](../laravel/Modules/UI/docs/) - Componenti UI condivisi
 
-1. **Pre-Change Check**: Before making any changes to the codebase:
-   - Review relevant documentation in this directory
-   - Avoid duplicating existing information
-   - Identify potential impacts on existing documentation
+### Guide Tecniche
+- [XotBase Extension Rules](xotbase_extension_rules.md) - Regole per estendere classi XotBase
+- [Model Inheritance Best Practices](model_inheritance_best_practices.md) - Best practices per l'ereditarietà dei modelli
+- [Filament Abstract Methods Guide](filament_abstract_methods_guide.md) - Guida per implementare metodi astratti
+- [Filament Page Route Errors](filament_page_route_errors.md) - Risoluzione errori di routing nelle pagine Filament
+- [Employee Language Standards](employee_language_standards.md) - Standard per le lingue del modulo Employee
+- [SVG Icon System Standards](svg_icon_system_standards.md) - Standard per il sistema di icone SVG
+- [PHPStan Level 10 Fixes](PHPSTAN_LEVEL10_FIXES.md) - Correzioni per PHPStan livello 10
+- [Module Namespace Rules](MODULE_NAMESPACE_RULES.md) - Regole per i namespace dei moduli
 
-2. **Regular Review**:
-   - Periodically review documentation for accuracy
-   - Update outdated information
-   - Identify areas needing more detailed documentation
+### Architettura e Convenzioni
+- [Laraxot Framework](laraxot-framework.md) - Architettura del framework
+- [Laraxot Conventions](laravel/Modules/Xot/docs/conventions.md) - Convenzioni generali
+- [Best Practices](best-practices.md) - Best practices generali
+- [Coding Standards](standards/coding-standards.md) - Standard di codifica
 
-3. **Documentation Structure**:
-   - Keep documentation organized and easy to navigate
-   - Use clear, consistent formatting
-   - Include examples where appropriate
-   - Link related documents together
+## Modulo Employee - Gestione Dipendenti
 
-## Current Documentation
+### Funzionalità Principali
+- **Gestione Dipendenti**: Profili completi, dipartimenti, posizioni
+- **Tracciamento Orario**: Sistema di timbratura con GPS e foto
+- **Gestione Dipartimenti**: Struttura gerarchica e assegnazioni
+- **Reporting**: Statistiche e analisi complete
+- **Interfaccia Filament**: Admin panel completo e intuitivo
 
-The following documentation is currently available:
-- `documentation_script_readme.md`: Script documentation
-- `documentation_strategy.md`: Documentation strategy
-- `form_schema_audit.md`: Form schema auditing
-- `laraxot.md`: Laraxot framework documentation
-- `module_geo.md`: Geographic module documentation
-- `project.md`: Project overview
-- `widget.md`: Widget documentation
+### Documentazione Specifica
+- [Employee Module Overview](../laravel/Modules/Employee/docs/README.md) - Panoramica completa del modulo
+- [WorkHour Implementation](../laravel/Modules/Employee/docs/workhour_implementation.md) - Implementazione sistema ore
+- [Technical Implementation](../laravel/Modules/Employee/docs/technical_implementation.md) - Dettagli tecnici
+- [Language Best Practices](../laravel/Modules/Employee/docs/language_best_practices.md) - Best practices per le lingue
+- [SVG Icon Standards](../laravel/Modules/Employee/docs/svg_icon_standards.md) - Standard per le icone SVG
 
-## Contributing
+### Lingue e Localizzazione
+- **Italiano (it/)**: Lingua principale con traduzioni complete
+- **Inglese (en/)**: Lingua secondaria per uso internazionale
+- **Struttura**: Organizzata per modello e funzionalità
+- **Standard**: Traduzioni complete e coerenti
 
-When contributing to documentation:
-1. Use clear and concise language
-2. Include relevant code examples
-3. Update the table of contents if necessary
-4. Cross-reference related documentation
-5. Commit documentation changes along with code changes
+### Sistema Icone SVG
+- **Icone Personalizzate**: Ogni modulo ha le proprie icone SVG
+- **Stile Heroicon**: Outline design consistente con Filament
+- **Tema Dark Ready**: Adattamento automatico ai temi
+- **Animazioni**: Transizioni CSS e effetti hover
+- **Auto-Registrazione**: Sistema automatico di registrazione icone
 
-## [Aggiornamento 2024-06-10] Collegamento Tema One
+## Architettura Laraxot
 
-- Vedi [laravel/Themes/One/docs/README.md](../laravel/Themes/One/docs/README.md) per dettagli sulle scelte architetturali e funzionali adottate nella risoluzione dei conflitti composer.json, package.json, tailwind.config.js e vite.config.js.
-- Le scelte seguono le [merge_conflict_resolution.md](./merge_conflict_resolution.md).
+### Principi Fondamentali
+- **Modularità**: Ogni modulo è indipendente e ben definito
+- **XotBase Extension**: SEMPRE estendere classi XotBase, MAI Filament direttamente
+- **Tipizzazione Rigorosa**: `declare(strict_types=1)` e type hints obbligatori
+- **Documentazione**: Aggiornamento continuo delle cartelle docs
+- **Sistema Icone**: Standard SVG personalizzate per ogni modulo
 
-# Documentazione del Progetto
+### Regole Critiche
+1. **MAI estendere classi Filament direttamente**
+2. **SEMPRE estendere classi XotBase con prefisso appropriato**
+3. **Implementare SEMPRE tutti i metodi astratti richiesti**
+4. **Mantenere la staticità dei metodi ereditati**
+5. **Aggiornare SEMPRE la documentazione per ogni modifica**
+6. **Ogni modulo deve avere icone SVG personalizzate**
 
-## 📚 Indice
+### Mapping Classi XotBase
+```php
+// ❌ FORBIDDEN - Mai estendere direttamente
+Filament\Resources\Resource
+Filament\Resources\Pages\CreateRecord
+Filament\Resources\Pages\EditRecord
+Filament\Resources\Pages\ListRecords
+Filament\Resources\Pages\Page
+Filament\Resources\Pages\ViewRecord
+Filament\Widgets\Widget
 
-- [Architettura](architecture.md)
-- [Installazione](installation.md)
-- [Configurazione](configuration.md)
-- [Sviluppo](development.md)
-- [Deployment](deployment.md)
-- [Manutenzione](maintenance.md)
-- [Troubleshooting](troubleshooting.md)
-- [FAQ](faq.md)
-- [Changelog](changelog.md)
-- [Contributing](contributing.md)
-- [Licenza](license.md)
+// ✅ MANDATORY - Sempre estendere XotBase
+Modules\Xot\Filament\Resources\XotBaseResource
+Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord
+Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
+Modules\Xot\Filament\Resources\Pages\XotBaseListRecords
+Modules\Xot\Filament\Resources\Pages\XotBasePage
+Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
+Modules\Xot\Filament\Widgets\XotBaseWidget
+```
 
-## 🎨 Temi
+## Sistema Icone SVG
 
-- [Tema One](laravel/Themes/One/README.md) - Tema frontend moderno e riusabile basato su Filament 3.x
+### Principi di Design
+- **Stile Heroicon Outline**: Design consistente con Filament
+- **Tema Dark Ready**: Utilizzo di `currentColor` per adattamento automatico
+- **Animazioni CSS**: Transizioni fluide e effetti hover
+- **Responsive**: Icone vettoriali scalabili per ogni dimensione
 
-## 🔄 Risoluzione Conflitti
+### Struttura Standard
+```
+laravel/Modules/{ModuleName}/resources/svg/
+├── icon.svg              # Icona principale del modulo
+├── icon1.svg             # Prima variante
+├── icon2.svg             # Seconda variante
+├── icon3.svg             # Terza variante
+├── {functionality}.svg   # Icone per funzionalità specifiche
+└── .gitkeep              # Mantiene la cartella nel repository
+```
 
-Durante la risoluzione dei conflitti sono state prese le seguenti decisioni architetturali:
+### Moduli con Icone Implementate ✅
+- **Employee**: Icone complete con varianti multiple
+- **Xot**: Icone complete per funzionalità specifiche
+- **User**: Icone complete per gestione utenti
 
-1. **Standardizzazione dei nomi dei pacchetti**:
-   - Utilizzo del namespace `laraxot` per i pacchetti generici
-   - Nomi dei pacchetti in formato snake_case (es. `theme_one_fila3`)
+### Moduli da Verificare
+- **Tenant**: Verificare e implementare se necessario
+- **UI**: Verificare e implementare se necessario
+- **Notify**: Verificare e implementare se necessario
+- **Media**: Verificare e implementare se necessario
+- **Lang**: Verificare e implementare se necessario
+- **Job**: Verificare e implementare se necessario
+- **Geo**: Verificare e implementare se necessario
+- **Gdpr**: Verificare e implementare se necessario
+- **Activity**: Verificare e implementare se necessario
+- **Cms**: Verificare e implementare se necessario
+- **Chart**: Verificare e implementare se necessario
+- **TechPlanner**: Verificare e implementare se necessario
 
-2. **Configurazione Vite**:
-   - Mantenimento della configurazione base di Vite
-   - Aggiunta di alias per i componenti del tema
-   - Supporto per TypeScript e PostCSS
+## Sviluppo e Manutenzione
 
-3. **Documentazione**:
-   - Mantenimento della documentazione generica per progetti multipli
-   - Aggiunta di riferimenti incrociati tra documentazioni
-   - Standardizzazione del formato Markdown
+### Workflow di Sviluppo
+1. **Studio**: Analizzare sempre la documentazione esistente
+2. **Aggiornamento Docs**: Aggiornare cartelle docs prima dell'implementazione
+3. **Implementazione**: Seguire rigorosamente le convenzioni Laraxot
+4. **Icone SVG**: Creare/verificare icone per ogni modulo
+5. **Validazione**: Eseguire PHPStan livello 10+ e test
+6. **Documentazione**: Aggiornare docs con nuove informazioni
 
-4. **Dipendenze**:
-   - Allineamento con i requisiti di Filament 3.x
-   - Utilizzo di versioni specifiche per evitare incompatibilità
-   - Documentazione chiara delle dipendenze obbligatorie
+### Checklist Pre-Implementazione
+- [ ] Studiare documentazione esistente
+- [ ] Aggiornare cartelle docs
+- [ ] Verificare convenzioni XotBase
+- [ ] Controllare metodi astratti richiesti
+- [ ] Validare namespace e struttura
+- [ ] Verificare/creare icone SVG del modulo
 
-Per maggiori dettagli sulla risoluzione dei conflitti, consulta i file di configurazione e la documentazione specifica di ogni componente.
+### Controlli di Qualità
+- **PHPStan**: Livello 10+ obbligatorio
+- **Coding Standards**: PSR-12 e convenzioni Laraxot
+- **Documentazione**: Aggiornamento continuo
+- **Test**: Copertura completa per nuove funzionalità
+- **Icone SVG**: Standard di design e animazioni
+
+## Risorse e Collegamenti
+
+### Documentazione Interna
+- [Employee Module](../laravel/Modules/Employee/docs/) - Documentazione completa modulo dipendenti
+- [Xot Framework](../laravel/Modules/Xot/docs/) - Documentazione framework base
+- [Language Standards](../laravel/Modules/Lang/docs/) - Standard per le lingue
+- [SVG Icon System](../docs/svg_icon_system_standards.md) - Standard per il sistema di icone
+
+### Risorse Esterne
+- [Laravel Documentation](https://laravel.com/docs)
+- [Filament Documentation](https://filamentphp.com/docs)
+- [Laraxot Documentation](https://laraxot.com)
+- [Heroicons](https://heroicons.com/) - Icone di riferimento
+
+### Supporto e Contributi
+- Seguire rigorosamente le convenzioni Laraxot
+- Aggiornare sempre la documentazione
+- Mantenere alta qualità del codice
+- Testare tutte le funzionalità
+- Creare/aggiornare icone SVG per ogni modulo
+
+## Note Importanti
+
+### Aggiornamenti Critici
+- **2025-06-04**: Aggiornamento completo standard lingue modulo Employee
+- **2025-06-04**: Documentazione best practices per file di lingua
+- **2025-06-04**: Standardizzazione struttura traduzioni
+- **2025-06-04**: Sistema completo standard icone SVG
+- **2025-06-04**: Documentazione sistema icone per tutti i moduli
+
+### Regole Permanenti
+- **XotBase Extension**: Regola assoluta per tutti i componenti Filament
+- **Documentazione**: Aggiornamento continuo delle cartelle docs
+- **Lingue**: Struttura espansa e completa per tutte le traduzioni
+- **Icone SVG**: Ogni modulo deve avere icone personalizzate
+- **Qualità**: PHPStan livello 10+ e test completi
+
+---
+
+**IMPORTANTE**: Seguire SEMPRE le convenzioni Laraxot e estendere classi XotBase. Aggiornare continuamente la documentazione per prevenire errori futuri. Ogni modulo deve avere icone SVG personalizzate seguendo gli standard Heroicon outline, tema dark ready e con animazioni CSS.

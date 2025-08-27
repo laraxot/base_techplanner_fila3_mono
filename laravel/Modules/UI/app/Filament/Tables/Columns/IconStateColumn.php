@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\UI\Filament\Tables\Columns;
 
 use Exception;
+use Filament\Forms\Get;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
@@ -46,28 +47,38 @@ class IconStateColumn extends IconColumn
                             Assert::isInstanceOf($state, State::class);
                             
                             try{
-                                //$states=$record->getAttribute($name)->transitionableStates();
                                 $states=$state->transitionableStates();
                             }catch(Exception $e){
                                 $states=$record->getStatesFor($name)->toArray();;
                             }
                             /** @phpstan-ignore-next-line */
-                            //$states=[$state::$name, ...$states];
-                            //$states=array_combine($states, $states);
                             $states=Arr::mapWithKeys($states,function($state) use ($record){
                                 $model=Str::of(class_basename($record))->slug()->toString();
                                 /** @phpstan-ignore binaryOp.invalid */
                                 Assert::string($label=__('pub_theme::'.$model.'_states.'.$state.'.label'));
                                 return [$state=>$label];
                             });
-                            
-                            //dddx(['state'=>$state, 'state1'=>$record->getAttribute($name),'record'=>$record]);
-
                             return $states;
                         }
                     )
-                    ->required(),
-                Textarea::make('message'),
+                    ->required()
+                    ->reactive(),
+                Textarea::make('message')
+                ->required(function(Get $get,$record){
+                    $newState=$get('state');
+                    $name=$this->getName();
+                    $state=$record->getAttribute($name);
+                    $states=$state::getStateMapping();
+                    /** @var class-string<\Spatie\ModelStates\State> $newStateClass */
+                    $newStateClass=Arr::get($states, (string) $newState);
+                    if (!is_string($newStateClass) || !class_exists($newStateClass)) {
+                        return false;
+                    }
+                    $newStateInstance=new $newStateClass($record);
+                    return method_exists($newStateInstance, 'isMessageRequired') 
+                        ? $newStateInstance->isMessageRequired() 
+                        : false;
+                }),
             ])
             ->fillForm(function($record){
                 //dddx($record->state);//Modules\SaluteOra\States\User\Pending

@@ -1,25 +1,44 @@
-# Documentazione del Progetto
+# XOT Framework Documentation
 
-## Regole Architetturali Fondamentali
+## 🚨 CRITICAL RULES - READ FIRST
 
-### 1. Estensione Filament
+### 1. XotBase/LangBase Extension Rule (MANDATORY)
+**NEVER extend Filament classes directly. ALWAYS extend XotBase OR LangBase abstract classes.**
 
-**NON estendere MAI direttamente le classi Filament. Estendere SEMPRE le classi base con prefisso `XotBase` dal modulo Xot.**
+⚠️ **CRITICAL**: Check if module is multilingual FIRST!
 
-Questa è una regola architetturale critica che garantisce:
-- Compatibilità con aggiornamenti Filament
-- Funzionalità personalizzate centralizzate
-- Consistenza del codice in tutto il progetto
-- Manutenibilità a lungo termine
-
-**Esempio:**
 ```php
-// ❌ ERRATO
-class DoctorResource extends Resource { }
+// ❌ WRONG
+use Filament\Resources\Pages\ListRecords;
+class MyPage extends ListRecords { }
 
-// ✅ CORRETTO
-class DoctorResource extends XotBaseResource { }
+// ✅ FOR NON-MULTILINGUAL MODULES
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
+class MyPage extends XotBaseListRecords { }
+
+// ✅ FOR MULTILINGUAL MODULES (Cms, Blog, News)
+use Modules\Lang\Filament\Resources\Pages\LangBaseListRecords;
+class MyPage extends LangBaseListRecords { }
 ```
+
+### 2. Method Signature Rule (CRITICAL)
+**ALWAYS match parent/trait method signatures exactly - static vs non-static matters!**
+
+### 3. Abstract Method Rule
+**ALL abstract methods from parent classes and traits MUST be implemented.**
+
+---
+
+## Quick Start for Error Prevention
+
+**Before ANY Filament work:**
+1. **🚨 MULTILINGUAL CHECK**: Is the module multilingual? (Use LangBase* if yes, XotBase* if no)
+2. Read [`claude-code-rules.md`](./claude-code-rules.md) - **MANDATORY**
+3. Check [`error-prevention/`](./error-prevention/) for known error patterns  
+4. Follow pre-implementation checklist
+5. Test immediately after changes
+
+## Architecture Rules
 
 ### 2. Traduzioni
 
@@ -33,18 +52,24 @@ class DoctorResource extends XotBaseResource { }
 - **Nelle cartelle docs**: usare solo caratteri minuscoli, eccezione README.md
 - **In Blade templates**: usare `@lang` invece di `@trans`
 
-## Struttura della Documentazione
+## 📚 Documentation Structure
 
-### Patterns
-- [Pattern di Estensione Filament](/docs/patterns/filament-extension.md)
+### Essential Documentation (READ FIRST)
+- [`claude-code-rules.md`](./claude-code-rules.md) - **CRITICAL**: Essential rules that must never be broken
+- [`xotbase-extension-rules.md`](./xotbase-extension-rules.md) - XotBase extension patterns and mappings
+
+### Error Prevention (CRITICAL)
+- [`error-prevention/multilingual-pattern-analysis.md`](./error-prevention/multilingual-pattern-analysis.md) - **NEW**: Critical analysis of multilingual pattern errors
+- [`error-prevention/multilingual-detection-commands.md`](./error-prevention/multilingual-detection-commands.md) - Commands to detect multilingual modules  
+- [`error-prevention/method-signature-errors.md`](./error-prevention/method-signature-errors.md) - Method signature conflict analysis
+- [`error-prevention/filament-xotbase-patterns.md`](./error-prevention/filament-xotbase-patterns.md) - Correct XotBase implementation patterns
+
+### Legacy Documentation
+- [Pattern di Estensione Filament](/docs/patterns/filament-extension.md) 
 - [Actions Pattern](/docs/patterns/actions.md)
 - [Queueable Actions](/docs/patterns/queueable-actions.md)
-
-### Architettura
 - [Regole Architetturali Filament](/docs/architecture/filament-extension-rules.md)
 - [Module Namespaces](/docs/architecture/module-namespaces.md)
-
-### Errori e Fix
 - [Encryption Error Fix](/docs/encryption_error_fix.md)
 
 ## Moduli
@@ -64,14 +89,35 @@ class DoctorResource extends XotBaseResource { }
 ### Sixteen
 - [Documentazione Tema Sixteen](/Themes/Sixteen/docs/README.md)
 
-## Controlli Pre-Implementazione
+## 🔍 Pre-Implementation Checklist
 
-Prima di implementare qualsiasi funzionalità Filament:
+**Before ANY Filament implementation:**
 
-1. **Verificare la mappatura delle classi** nella documentazione
-2. **Controllare che non esistano metodi final** da sovrascrivere
-3. **Implementare traduzioni complete** in tutte le lingue
-4. **Seguire i pattern architetturali** definiti
+### Critical Checks
+- [ ] Read [`claude-code-rules.md`](./claude-code-rules.md) 
+- [ ] Verify XotBase class exists for the Filament class you need
+- [ ] Check abstract methods that need implementation
+- [ ] Verify method signatures match parent/trait exactly
+
+### Implementation Checks  
+- [ ] Using XotBase class instead of direct Filament class
+- [ ] All abstract methods implemented
+- [ ] Method signatures match (especially static vs non-static)
+- [ ] No PHP fatal errors when loading page
+
+### Quality Checks
+- [ ] Page loads successfully
+- [ ] Functionality works as expected  
+- [ ] Caches cleared if needed
+- [ ] New errors documented if encountered
+
+## 🚨 Most Common Fatal Errors
+
+1. **"Cannot make non static method... static"** → Method signature mismatch
+2. **"Class contains N abstract method"** → Missing abstract method implementation
+3. **"Method...::route does not exist"** → Incorrect route usage on Page classes
+
+**Solution**: Check [`error-prevention/`](./error-prevention/) documentation for detailed fixes.
 
 ## Documentazione Correlata
 

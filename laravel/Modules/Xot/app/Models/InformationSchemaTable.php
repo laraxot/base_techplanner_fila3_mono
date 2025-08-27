@@ -140,11 +140,7 @@ class InformationSchemaTable extends Model
         'TABLE_COMMENT' => 'string',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+    
     /**
      * Get the attributes that should be cast.
      *

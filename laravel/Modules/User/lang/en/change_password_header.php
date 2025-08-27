@@ -3,10 +3,13 @@
 return [
     'fields' => [
         'new_password_confirmation' => [
-            'label' => 'new_password_confirmation',
-            'placeholder' => 'new_password_confirmation',
-            'helper_text' => 'new_password_confirmation',
-            'description' => 'new_password_confirmation',
+            'label' => 'Confirm new password',
+            'placeholder' => 'Re-enter your new password',
+            'helper_text' => '',
+            'description' => 'Please type the new password again to confirm',
+            'tooltip' => 'Repeat the new password for security',
+            'icon' => 'heroicon-o-lock-closed',
+            'color' => 'warning',
         ],
     ],
 ];

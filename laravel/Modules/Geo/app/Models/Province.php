@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Geo\Models;
 
 use Filament\Forms\Get;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,10 +25,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province whereRegionId($value)
+ * @mixin IdeHelperProvince
  * @mixin \Eloquent
  */
 class Province extends BaseModel
 {
+    use HasFactory;
     use \Sushi\Sushi;
 
     protected array $schema = [
@@ -58,7 +61,8 @@ class Province extends BaseModel
 
     public static function getOptions(Get $get): array
     {
-        return self::where('region_id',$get('administrative_area_level_1'))
+        $region=$get('administrative_area_level_1') ?? $get('region');
+        return self::where('region_id',$region)
             ->orderBy('name')
             ->get()
             ->pluck("name", "id")

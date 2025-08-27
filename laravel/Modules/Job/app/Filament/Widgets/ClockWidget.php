@@ -9,16 +9,16 @@ declare(strict_types=1);
 namespace Modules\Job\Filament\Widgets;
 
 use Exception;
-use Filament\Widgets\Widget;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Process;
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\StreamOutput;
 
 use function Safe\fopen;
 
-class ClockWidget extends Widget
+class ClockWidget extends XotBaseWidget
 {
     /** @var string */
     public $time = '---';
@@ -28,6 +28,27 @@ class ClockWidget extends Widget
     protected static string $view = 'job::filament.widgets.clock-widget';
 
     protected int|string|array $columnSpan = 'full';
+
+    /**
+     * Get the form schema for the widget.
+     * ⚠️ IMPORTANTE: Questo metodo deve essere PUBBLICO, non protetto!
+     *
+     * @return array<int, \Filament\Forms\Components\Component>
+     */
+    public function getFormSchema(): array
+    {
+        return [
+            \Filament\Forms\Components\TextInput::make('time')
+                ->label(__('job::clock.time_label'))
+                ->disabled()
+                ->default('---'),
+            \Filament\Forms\Components\Toggle::make('run')
+                ->label(__('job::clock.run_label'))
+                ->onIcon('heroicon-o-play')
+                ->offIcon('heroicon-o-pause')
+                ->live(),
+        ];
+    }
 
     public function begin(): void
     {

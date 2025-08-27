@@ -10,27 +10,47 @@ trait NavigationPageLabelTrait
 {
     use TransTrait;
 
-    public function getModelLabel(): string
+    /**
+     * Get the model label for navigation.
+     * This method must be static to be compatible with XotBasePage.
+     */
+    public static function getModelLabel(): string
     {
         return static::trans('navigation.name');
     }
 
-    public function getPluralModelLabel(): string
+    /**
+     * Get the plural model label for navigation.
+     * This method must be static to be compatible with XotBasePage.
+     */
+    public static function getPluralModelLabel(): string
     {
         return static::trans('navigation.plural');
     }
 
-    public function getTitle(): string|Htmlable
+    /**
+     * Get the page title.
+     * This method must be an instance method to be compatible with XotBasePage.
+     */
+    public function getTitle(): string
     {
         return static::trans('title');
     }
 
-    public function getHeading(): string|Htmlable
+    /**
+     * Get the page heading.
+     * This method must be an instance method to be compatible with XotBasePage.
+     */
+    public function getHeading(): string
     {
         return static::trans('heading');
     }
 
-    public function getSubHeading(): string|Htmlable
+    /**
+     * Get the page sub-heading.
+     * This method must be an instance method to be compatible with XotBasePage.
+     */
+    public function getSubHeading(): string
     {
         return static::trans('sub_heading');
     }

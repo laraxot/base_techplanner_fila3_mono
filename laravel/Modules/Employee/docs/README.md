@@ -1,292 +1,363 @@
-# Modulo Employee - Documentazione Completa
+# Employee Module - Laraxot
 
-## Panoramica
+## Overview
 
-Il modulo Employee è progettato per replicare e superare le funzionalità di [dipendentincloud.it](https://www.dipendentincloud.it/), creando un sistema HR completo e moderno basato sull'architettura Laraxot/PTVX.
+Complete Employee module implementation for comprehensive employee management functionality. The module provides employee data management, time tracking, department organization, and follows strict Laraxot conventions.
 
-## 📚 Documentazione Disponibile
+## Critical Laraxot Philosophy Compliance
 
-### 1. **Analisi Funzionalità** (`dipendentincloud_analysis.md`)
-- Analisi completa del sito dipendentincloud.it
-- Identificazione di tutte le funzionalità principali
-- Architettura proposta per il modulo Employee
-- Roadmap di implementazione in 5 fasi
+### XotBase Extension Rules (ABSOLUTE PRIORITY)
 
-### 2. **Piano di Implementazione** (`implementation_plan.md`)
-- Implementazione dettagliata fase per fase
-- Codice specifico per modelli, resources, pagine
-- Migrazioni database complete
-- Viste Blade moderne
+**NEVER EXTEND FILAMENT CLASSES DIRECTLY - ALWAYS USE XOTBASE**
 
-### 3. **Confronto Funzionalità** (`feature_comparison.md`)
-- Confronto diretto con dipendentincloud.it
-- Miglioramenti significativi proposti
-- Funzionalità uniche del modulo Employee
-- Metriche di performance e usabilità
+```php
+// ❌ FORBIDDEN
+class EmployeeResource extends Filament\Resources\Resource
+class EmployeePage extends Filament\Pages\Page
 
-### 4. **Strategia Funzionale** (`functional_strategy.md`)
-- Strategia per replicare le funzionalità
-- Approccio modulare all'implementazione
-- Integrazione con moduli esistenti
-- Roadmap evolutiva
-
-## 🎯 Obiettivi del Modulo
-
-### Replicazione Completa
-- ✅ Gestione anagrafica dipendenti
-- ✅ Gestione organizzativa (dipartimenti, sedi, ruoli)
-- ✅ Sistema presenze e timbrature
-- ✅ Gestione ferie e permessi
-- ✅ Gestione documentale
-- ✅ Dashboard e reporting
-- ✅ Self-service dipendenti
-- ✅ Comunicazioni e notifiche
-
-### Miglioramenti Rispetto a dipendentincloud.it
-- 🚀 **Architettura moderna** (Laravel 11 + Filament 3)
-- 🚀 **Performance superiori** (-70% tempo caricamento)
-- 🚀 **Funzionalità AI/ML** (categorizzazione automatica, predizioni)
-- 🚀 **Integrazione completa** con ecosistema Laraxot/PTVX
-- 🚀 **Sicurezza avanzata** (GDPR, audit trail, crittografia)
-- 🚀 **Scalabilità enterprise** (multi-tenant, API complete)
-
-## 🏗️ Architettura del Sistema
-
-### Moduli Core
-```
-Employee/
-├── Models/
-│   ├── Employee.php          # Dipendente principale
-│   ├── Department.php        # Dipartimenti
-│   ├── Location.php          # Sedi
-│   ├── Role.php              # Ruoli
-│   ├── Contract.php          # Contratti
-│   ├── Attendance.php        # Presenze
-│   ├── Leave.php             # Ferie e permessi
-│   └── Document.php          # Documenti
-├── Filament/
-│   ├── Resources/            # CRUD operations
-│   ├── Pages/                # Dashboard e pagine speciali
-│   └── Widgets/              # Widget dashboard
-└── Views/                    # Viste Blade
+// ✅ MANDATORY
+class EmployeeResource extends Modules\Xot\Filament\Resources\XotBaseResource
+class EmployeePage extends Modules\Xot\Filament\Pages\XotBasePage
 ```
 
-### Integrazione Moduli Esistenti
-- **User**: Autenticazione e profili
-- **Media**: Gestione documenti e file
-- **Notify**: Sistema notifiche e comunicazioni
-- **Setting**: Configurazioni sistema
-- **Geo**: Geolocalizzazione timbrature
+### Naming Standards (Employee Module)
 
-## 📊 Funzionalità Principali
+**ALL DATABASE ELEMENTS MUST BE IN ENGLISH**
 
-### 1. **Gestione Dipendenti**
-- Anagrafica completa con foto profilo
-- Dati personali, lavorativi e contrattuali
-- Storico modifiche e versioning
-- Gestione carriere e progressioni
+- Table names: English only
+- Column names: English only
+- Enum values: English only
+- Comments: English only
 
-### 2. **Gestione Organizzativa**
-- Struttura aziendale gerarchica
-- Organigramma interattivo
-- Gestione dipartimenti e sedi
-- Assegnazione ruoli e responsabili
+## Module Structure
 
-### 3. **Sistema Presenze**
-- Timbratura virtuale e fisica
-- Gestione orari e straordinari
-- Calendario presenze interattivo
-- Workflow approvazioni
+```
+laravel/Modules/Employee/
+├── app/
+│   ├── Actions/           # Business logic actions
+│   ├── Data/             # Data Transfer Objects
+│   ├── Filament/         # Filament resources and pages
+│   ├── Http/             # Controllers and middleware
+│   ├── Models/           # Eloquent models
+│   └── Providers/        # Service providers
+├── config/               # Module configuration
+├── database/             # Migrations and seeders
+├── docs/                 # Module documentation
+├── lang/                 # Language files
+│   ├── it/              # Italian translations
+│   └── en/              # English translations
+├── resources/            # Views and assets
+│   └── svg/             # SVG icons
+│       ├── icon.svg     # Main module icon
+│       ├── icon1.svg    # First variant
+│       ├── icon2.svg    # Second variant
+│       └── icon3.svg    # Third variant
+└── routes/               # Module routes
+```
 
-### 4. **Gestione Ferie e Permessi**
-- Richieste ferie online
-- Workflow approvazioni
-- Calendario ferie aziendale
-- Calcolo automatico ferie residue
+## Core Features
 
-### 5. **Gestione Documentale**
-- Upload e categorizzazione automatica
-- Gestione scadenze e notifiche
-- Archivio digitale sicuro
-- Versioning documenti
+### 1. Employee Management
+- Complete employee profile management
+- Department and position organization
+- Employee status tracking
+- Document management
 
-### 6. **Dashboard e Reporting**
-- Dashboard personalizzate per ruolo
-- KPI e metriche in tempo reale
-- Report personalizzabili
-- Export dati Excel/PDF
+### 2. Time Tracking (WorkHour)
+- Clock in/out functionality
+- Break management
+- GPS location tracking
+- Photo verification
+- Approval workflow
 
-### 7. **Self-Service Dipendenti**
-- Portale dipendente personale
-- Richieste online (ferie, permessi)
-- Visualizzazione buste paga
-- Aggiornamento dati personali
+### 3. Department Management
+- Hierarchical department structure
+- Employee assignment
+- Department statistics
 
-### 8. **Comunicazioni**
-- Messaggistica interna
-- Bacheca aziendale
-- Notifiche automatiche
-- Feedback e sondaggi
+### 4. Reporting and Analytics
+- Employee performance metrics
+- Time tracking reports
+- Department analytics
+- Export functionality
 
-## 🚀 Roadmap di Implementazione
+## Database Schema
 
-### Fase 1: Foundation (Mesi 1-2)
-- [ ] Modelli di base (Employee, Department, Location)
-- [ ] Resources Filament principali
-- [ ] Sistema autenticazione e permessi
-- [ ] Dashboard base
+### Tables
+- `employees` - Employee profiles
+- `departments` - Department structure
+- `positions` - Job positions
+- `time_entries` - Time tracking records
 
-### Fase 2: Core HR (Mesi 3-4)
-- [ ] Gestione completa dipendenti
-- [ ] Sistema contratti
-- [ ] Gestione presenze base
-- [ ] Self-service dipendenti
+### Relationships
+- Employee belongs to Department
+- Employee has many TimeEntries
+- Department has many Employees
+- Department can have parent Department
 
-### Fase 3: Advanced Features (Mesi 5-6)
-- [ ] Analytics e reporting
-- [ ] Gestione documenti avanzata
-- [ ] Workflow complessi
-- [ ] Integrazioni esterne
+## Language and Localization
 
-### Fase 4: Enhancement (Mesi 7-8)
-- [ ] Interfaccia utente avanzata
-- [ ] Funzionalità AI/ML
-- [ ] Mobile optimization
-- [ ] Enterprise features
+### Language Files Structure
+The module follows Laraxot language standards with comprehensive translation files:
 
-## 📈 Metriche di Successo
+- **Italian (it/)**: Primary language with complete translations
+- **English (en/)**: Secondary language for international use
+- **Structure**: Organized by model and functionality
 
-### Performance
-- **Tempo di caricamento**: < 1 secondo
-- **Concorrenza utenti**: 400+ simultanei
-- **Disponibilità**: 99.9%
-- **Backup**: Real-time
+### Translation Standards
+- **Consistency**: Uniform terminology across all files
+- **Completeness**: All user-facing text is translated
+- **Quality**: Professional but understandable language
+- **Maintenance**: Regular updates and validation
 
-### Funzionalità
-- **Copertura dipendentincloud.it**: 100%
-- **Funzionalità aggiuntive**: +50%
-- **Integrazione moduli**: 100%
-- **Compliance**: 100%
+### Key Language Files
+- `work_hour.php` - Time tracking translations
+- `employee.php` - Employee management translations
+- `department.php` - Department management translations
 
-### Usabilità
-- **Soddisfazione utenti**: > 90%
-- **Tempo onboarding**: < 30 minuti
-- **Supporto mobile**: 100%
-- **Accessibilità**: WCAG 2.1
+## SVG Icon System
 
-## 🔧 Tecnologie Utilizzate
+### Custom SVG Icon System
+The Employee module uses a custom SVG icon system:
+- **Config**: `'icon' => 'employee-icon'` in navigation
+- **SVG Files**: Multiple variants in `resources/svg/`
+- **Auto-Registration**: XotBaseServiceProvider automatically registers all SVG files
+- **Naming Convention**: Files become `{module-name}-{filename}` (e.g., `employee-icon`)
 
-### Backend
-- **Laravel 11**: Framework moderno
-- **Filament 3**: Admin panel avanzato
-- **Livewire 3**: Componenti reattivi
-- **Folio + Volt**: Routing e componenti
+### Icon Variants Available
+- **icon.svg** - Main module icon (Heroicon outline style)
+- **icon1.svg** - First variant with different design
+- **icon2.svg** - Second variant with alternative design
+- **icon3.svg** - Third variant for additional options
 
-### Frontend
-- **Tailwind CSS**: Styling moderno
-- **Alpine.js**: Interattività
-- **Chart.js**: Grafici interattivi
-- **FullCalendar.js**: Calendari
+### Icon Features
+- **Dark Theme Ready**: Uses `currentColor` for automatic theme adaptation
+- **Animations**: CSS transitions and hover effects
+- **Heroicon Style**: Outline design consistent with Filament
+- **Responsive**: Scalable vector graphics for all sizes
 
-### Database
-- **MySQL 8**: Database principale
-- **Redis**: Cache e sessioni
-- **Elasticsearch**: Ricerca avanzata
+## Filament Integration
 
-## 🎯 Innovazioni Strategiche
+### Resources
+- `EmployeeResource` - Employee management interface
+- `DepartmentResource` - Department management interface
+- `WorkHourResource` - Time tracking interface
 
-### Intelligenza Artificiale
-- Categorizzazione automatica documenti
-- Predizione assenze e turnover
-- Ottimizzazione turni
-- Chatbot assistenza dipendenti
+### Pages
+- Custom pages for specialized functionality
+- Time clock interface for employees
+- Dashboard with employee statistics
 
-### Analytics Predittive
-- Dashboard executive
-- KPI personalizzati
-- Report predittivi
-- Benchmarking
+### Widgets
+- Employee statistics overview
+- Recent activity tracking
+- Quick action buttons
 
-### Compliance Avanzata
-- GDPR compliance automatica
-- Audit trail completo
-- Sicurezza zero-trust
-- Compliance normative italiane
+## Configuration
 
-## 🔗 Integrazioni Esterne
+### Module Configuration
+```php
+// config/employee.php
+return [
+    'default_working_hours' => 8,
+    'break_duration' => 60, // minutes
+    'overtime_threshold' => 8, // hours
+    'gps_required' => true,
+    'photo_verification' => true,
+];
+```
 
-### API Pubbliche
-- **INPS**: Trasmissione dati previdenziali
-- **INAIL**: Gestione infortuni
-- **Banche**: Trasferimenti stipendi
-- **PEC**: Comunicazioni ufficiali
+### Language Configuration
+```php
+// config/app.php
+'locale' => 'it',
+'fallback_locale' => 'en',
+'available_locales' => ['it', 'en'],
+```
 
-### Calendar Integration
-- **Google Calendar**: Sincronizzazione eventi
-- **Outlook**: Integrazione calendario
-- **iCal**: Export/import eventi
+## Development Guidelines
 
-### Mobile
-- **App nativa**: iOS e Android
-- **PWA**: Progressive Web App
-- **Offline mode**: Funzionalità offline
+### 1. Code Quality
+- Follow PSR-12 coding standards
+- Use strict types (`declare(strict_types=1);`)
+- Implement proper PHPDoc documentation
+- Pass PHPStan level 10 validation
 
-## 📋 Checklist Implementazione
+### 2. Filament Development
+- **ALWAYS** extend XotBase classes
+- Implement required abstract methods
+- Use translation files for all text
+- Follow Laraxot naming conventions
 
-### Setup Iniziale
-- [ ] Modulo Employee configurato
-- [ ] Database migrazioni create
-- [ ] Resources Filament implementate
-- [ ] Dashboard base funzionante
+### 3. Database Development
+- Use XotBaseMigration for all migrations
+- **NEVER** implement `down()` method
+- Follow English naming conventions
+- Implement proper foreign key constraints
 
-### Core Features
-- [ ] Gestione dipendenti completa
-- [ ] Sistema presenze implementato
-- [ ] Gestione ferie funzionante
-- [ ] Self-service dipendenti
+### 4. Language Development
+- Maintain consistency across all files
+- Use structured translation keys
+- Include help text and tooltips
+- Validate syntax with `php -l`
 
-### Advanced Features
-- [ ] Analytics e reporting
-- [ ] Gestione documenti
-- [ ] Workflow approvazioni
-- [ ] Integrazioni esterne
+### 5. Icon Development
+- Follow Heroicon outline style
+- Use `currentColor` for theme adaptation
+- Include CSS animations and transitions
+- Maintain consistent viewBox and stroke-width
 
-### Testing e Deployment
-- [ ] Test unitari completati
-- [ ] Test integrazione
-- [ ] Performance testing
-- [ ] Deployment produzione
+## Testing
 
-## 🤝 Contributi
+### Test Structure
+- Unit tests for models and actions
+- Feature tests for Filament resources
+- Integration tests for time tracking
+- Language validation tests
 
-### Come Contribuire
-1. Studiare la documentazione esistente
-2. Seguire i pattern XotBase*
-3. Implementare test per nuove funzionalità
-4. Documentare modifiche e aggiunte
+### Test Commands
+```bash
+# Run all Employee module tests
+php artisan test --testsuite=Employee
 
-### Standard di Codice
-- Utilizzare sempre XotBase* per estensioni Filament
-- Seguire PSR-12 per coding standards
-- Implementare test per tutte le funzionalità
-- Documentare API e funzioni
+# Run specific test file
+php artisan test tests/Feature/Employee/EmployeeTest.php
 
-## 📞 Supporto
+# Run with coverage
+php artisan test --coverage --testsuite=Employee
+```
 
-### Documentazione
-- Tutti i documenti sono in `/laravel/Modules/Employee/docs/`
-- Aggiornamenti regolari della documentazione
-- Esempi di implementazione inclusi
+## Documentation
 
-### Contatti
-- **Modulo**: Employee
-- **Stato**: In sviluppo
-- **Priorità**: ALTA
-- **Versione**: 1.0 (in sviluppo)
+### Module Documentation
+- [Model Architecture](model_architecture.md) - Database and model structure
+- [WorkHour Implementation](workhour_implementation.md) - Time tracking system
+- [Technical Implementation](technical_implementation.md) - Technical details
+- [Language Best Practices](language_best_practices.md) - Translation standards
+- [SVG Icon Standards](svg_icon_standards.md) - Icon system and standards
+
+### Root Documentation
+- [Employee Language Standards](../../docs/employee_language_standards.md) - Complete language standards
+- [SVG Icon System Standards](../../docs/svg_icon_system_standards.md) - Complete icon system standards
+- [XotBase Extension Rules](../../docs/xotbase_extension_rules.md) - Filament development rules
+- [Laraxot Conventions](../../laravel/Modules/Xot/docs/conventions.md) - General conventions
+
+### Language Documentation
+- [Translation Standards](../../laravel/Modules/Lang/docs/translation_file_syntax.md) - Language file syntax
+- [Best Practices](../../laravel/Modules/Lang/docs/) - Language development guidelines
+
+## Installation and Setup
+
+### 1. Module Registration
+```bash
+# Register the module in composer.json
+composer require modules/employee
+
+# Publish configuration files
+php artisan vendor:publish --tag=employee-config
+
+# Run migrations
+php artisan migrate
+```
+
+### 2. Language Setup
+```bash
+# Publish language files
+php artisan vendor:publish --tag=employee-lang
+
+# Clear language cache
+php artisan lang:clear
+```
+
+### 3. Filament Setup
+```bash
+# Register Filament resources
+php artisan employee:install
+
+# Clear Filament cache
+php artisan filament:clear-cache
+```
+
+### 4. Icon System Setup
+```bash
+# Icons are automatically registered by XotBaseServiceProvider
+# No additional setup required
+# SVG files in resources/svg/ are automatically available
+```
+
+## Maintenance and Updates
+
+### Regular Tasks
+- Update language files for new features
+- Validate syntax with `php -l`
+- Run PHPStan analysis
+- Update documentation
+- Verify icon system functionality
+
+### Quality Assurance
+- Test all language files
+- Verify translation consistency
+- Check for missing translations
+- Validate Filament integration
+- Test icon rendering and animations
+
+## Troubleshooting
+
+### Common Issues
+1. **Missing Translations**: Check language file structure
+2. **Syntax Errors**: Use `php -l` to validate files
+3. **Filament Errors**: Verify XotBase extension
+4. **Language Issues**: Clear language cache
+5. **Icon Issues**: Verify SVG file structure and registration
+
+### Debug Commands
+```bash
+# Check language file syntax
+php -l laravel/Modules/Employee/lang/it/work_hour.php
+
+# Validate translations
+php artisan lang:missing
+
+# Clear all caches
+php artisan optimize:clear
+
+# Check icon registration
+php artisan route:list | grep icon
+```
+
+## Contributing
+
+### Development Workflow
+1. Study existing documentation
+2. Follow Laraxot conventions
+3. Update language files
+4. Create/update SVG icons if needed
+5. Test thoroughly
+6. Update documentation
+7. Submit for review
+
+### Code Review Checklist
+- [ ] Follows XotBase extension rules
+- [ ] Passes PHPStan validation
+- [ ] Includes proper translations
+- [ ] SVG icons follow standards
+- [ ] Updates documentation
+- [ ] Follows naming conventions
+
+## Support and Resources
+
+### Internal Resources
+- [Employee Module Docs](./) - Complete module documentation
+- [Laraxot Framework](../../laravel/Modules/Xot/docs/) - Framework documentation
+- [Language Standards](../../laravel/Modules/Lang/docs/) - Translation guidelines
+- [Icon System Standards](../../docs/svg_icon_system_standards.md) - Icon system guidelines
+
+### External Resources
+- [Laravel Documentation](https://laravel.com/docs)
+- [Filament Documentation](https://filamentphp.com/docs)
+- [Laraxot Documentation](https://laraxot.com)
+- [Heroicons](https://heroicons.com/) - Icon reference
 
 ---
 
-*Documentazione creata il: 2025-07-30*
-*Modulo: Employee*
-*Stato: DOCUMENTAZIONE COMPLETA*
-*Priorità: ALTA*
+**IMPORTANT**: Always follow Laraxot conventions and extend XotBase classes. Never extend Filament classes directly. Maintain high-quality translations, comprehensive documentation, and consistent SVG icon standards.

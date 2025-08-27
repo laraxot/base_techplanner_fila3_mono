@@ -5,6 +5,13 @@
 - **Geo**: Location and mapping services
 - **Activity**: User activity tracking and logging
 - **UI**: Frontend components and themes
+- **Employee**: Complete HR management system with employee lifecycle, attendance tracking, and organizational management
+  - **Stato**: Foundation completata (modelli, factory, test) ✅
+  - **PHPStan**: Livello 10 ✅
+  - **Test Coverage**: 100% modelli base ✅
+  - [Documentazione Modulo Employee](../../laravel/Modules/Employee/docs/README.md)
+  - [Architettura Modelli Employee](../../laravel/Modules/Employee/docs/model_architecture.md)
+  - [Regole Estensione XotBase Employee](../../laravel/Modules/Employee/docs/xotbase_extension_rules.md)
 
 ## Service Providers
 - XotBaseServiceProvider: Core service registration

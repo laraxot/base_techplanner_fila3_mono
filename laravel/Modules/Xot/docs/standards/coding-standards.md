@@ -74,6 +74,7 @@ Ogni modifica ai dati sensibili deve essere:
 ## Principi Fondamentali
 
 Il codice del progetto il progetto **deve** aderire ai seguenti principi fondamentali:# Standard di Codice
+
 # Standard di Codice per il progetto
 
 > **Nota**: Questo documento è correlato a [Convenzioni](../../../docs/conventions.md) e [Naming Conventions](../../../docs/naming-conventions.md). Per una panoramica completa, consulta tutti i documenti correlati.
@@ -149,8 +150,6 @@ Ogni modifica ai dati sensibili deve essere:
 ## Principi Fondamentali
 
 Il codice del progetto **deve** aderire ai seguenti principi fondamentali:
-b6f667c (.)
-Il codice del progetto il progetto **deve** aderire ai seguenti principi fondamentali:
 
 1. **Robustezza**: Il codice deve funzionare correttamente anche in condizioni impreviste o avverse
 2. **Solidità**: La struttura deve essere manutenibile, scalabile e testabile
@@ -327,25 +326,6 @@ class StorePatientRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            'tax_code' => ['required', 'string', 'size:16', 'unique:patients,tax_code'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'birth_date' => ['required', 'date', 'before:today'],
-            'gender' => ['required', 'string', 'in:' . implode(',', array_column(GenderType::cases(), 'value'))],
-            'email' => ['required', 'email', 'unique:patients,email'],
-            'phone' => ['required', 'string', 'max:20'],
-            'address' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'province' => ['required', 'string', 'size:2'],
-            'postal_code' => ['required', 'string', 'size:5'],
-            'isee' => ['required', 'numeric', 'min:0'],
-            'is_pregnant' => ['boolean'],            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'string', 'in:' . implode(',', GenderType::values())],
-            'birth_date' => ['required', 'date', 'before:today'],
-            'tax_code' => ['required', 'string', 'size:16', 'unique:patients,tax_code'],
-b6f667c (.)
             'tax_code' => ['required', 'string', 'size:16', 'unique:patients,tax_code'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -581,6 +561,7 @@ class PatientPolicy
 - Mantenere la storia pulita
 
 ```bash
+
 # ❌ NO: Commit message non descrittivo
 git commit -m "fix"
 
@@ -621,10 +602,11 @@ git commit -m "fix: correzione calcolo età paziente"
 - Implementare logging
 - Monitorare performance
 - Alert su errori 
+
 ## Collegamenti tra versioni di coding-standards.md
 * [coding-standards.md](../../../Xot/docs/standards/coding-standards.md)
 * [coding-standards.md](../../../Xot/docs/conventions/coding-standards.md)
-b6f667c (.)
+
 ## Collegamenti Correlati
 
 - [Convenzioni](../../../docs/conventions.md)

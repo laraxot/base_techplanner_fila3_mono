@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages;
 
-use Filament\Resources\Pages\CreateRecord;
+use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
 
-class CreateLegalOffice extends CreateRecord
+class CreateLegalOffice extends XotBaseCreateRecord
 {
     protected static string $resource = LegalOfficeResource::class;
 }

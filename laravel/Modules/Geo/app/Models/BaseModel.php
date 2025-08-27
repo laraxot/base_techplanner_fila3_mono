@@ -7,6 +7,7 @@ namespace Modules\Geo\Models;
 // use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 // //use Laravel\Scout\Searchable;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Traits\Updater;
 
@@ -15,7 +16,15 @@ use Modules\Xot\Traits\Updater;
  */
 abstract class BaseModel extends Model
 {
+    use HasFactory;
     use Updater;
+
+    /**
+     * The factory class for this model.
+     *
+     * @var class-string<\Illuminate\Database\Eloquent\Factories\Factory>
+     */
+    protected static $factory = null;
 
     /**
      * Indicates whether attributes are snake cased on arrays.

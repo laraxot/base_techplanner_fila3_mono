@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Geo\Models;
 
 use Filament\Forms\Get;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -20,11 +21,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Region query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Region whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Region whereName($value)
+ * @mixin IdeHelperRegion
  * @mixin \Eloquent
  */
 class Region extends BaseModel
 {
+    use HasFactory;
     use \Sushi\Sushi;
+
+    /**
+     * The factory class for this model.
+     *
+     * @var class-string<\Illuminate\Database\Eloquent\Factories\Factory>
+     */
+    protected static $factory = \Modules\Geo\Database\Factories\RegionFactory::class;
 
     /**
      * The data type of the primary key ID.

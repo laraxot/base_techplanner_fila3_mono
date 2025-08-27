@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\TechPlanner\Filament\Resources\Pages;
 
-use Filament\Resources\Pages\CreateRecord;
+use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 use Modules\TechPlanner\Filament\Resources\DeviceResource;
 
-class CreateDevice extends CreateRecord
+class CreateDevice extends XotBaseCreateRecord
 {
     protected static string $resource = DeviceResource::class;
 }

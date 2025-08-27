@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Modules\Media\Filament\Resources\MediaResource\Widgets;
 
 use Filament\Notifications\Notification;
-use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\Media\Filament\Resources\MediaResource;
 use Modules\Media\Models\Media;
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
-class ConvertWidget extends Widget
+class ConvertWidget extends XotBaseWidget
 {
     public Media $record;
 
@@ -31,6 +31,16 @@ class ConvertWidget extends Widget
     protected static string $view = 'media::filament.widgets.convert';
 
     protected static string $resource = MediaResource::class;
+
+    /**
+     * Get the form schema for the widget.
+     *
+     * @return array<int|string, \Filament\Forms\Components\Component>
+     */
+    public function getFormSchema(): array
+    {
+        return [];
+    }
 
     public function begin(): void
     {

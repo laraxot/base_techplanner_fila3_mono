@@ -18,7 +18,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\EditProfile;
-use Filament\Pages\Page;
+use Modules\Xot\Filament\Resources\Pages\XotBasePage;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +31,7 @@ use Modules\User\Datas\PasswordData;
  * @property ComponentContainer $editProfileForm
  * @property ComponentContainer $editPasswordForm
  */
-class MyProfilePage extends Page implements HasForms
+class MyProfilePage extends XotBasePage implements HasForms
 {
     // class MyProfilePage extends EditProfile
     use InteractsWithForms;
@@ -224,7 +224,7 @@ class MyProfilePage extends Page implements HasForms
         $this->editPasswordForm->fill();
     }
 
-    protected function getFormActions(): array
+    public function getFormActions(): array
     {
         return [
             Action::make('Update')
