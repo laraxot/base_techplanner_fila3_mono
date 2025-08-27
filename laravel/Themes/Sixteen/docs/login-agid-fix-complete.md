@@ -13,15 +13,12 @@
 ### 1. **Conflitto Git Risolto** ✅
 **PROBLEMA**: Il file `login.blade.php` conteneva un conflitto Git non risolto
 ```blade
-<<<<<<< HEAD
 <x-layouts.guest-agid>
     <!-- Contenuto AGID corretto -->
 </x-layouts.guest-agid>
-=======
 <x-layouts.guest>
     <!-- Contenuto sbagliato che avevo implementato -->
 </x-layouts.guest>
->>>>>>> dev
 ```
 
 **SOLUZIONE**: Risolto il conflitto mantenendo la versione corretta

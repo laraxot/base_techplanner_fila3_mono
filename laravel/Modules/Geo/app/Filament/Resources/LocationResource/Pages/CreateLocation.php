@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Geo\Filament\Resources\LocationResource\Pages;
 
 use Cheesegrits\FilamentGoogleMaps\Concerns\InteractsWithMaps;
-use Filament\Resources\Pages\CreateRecord;
+use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 use Modules\Geo\Filament\Resources\LocationResource;
 use Webmozart\Assert\Assert;
 
-class CreateLocation extends CreateRecord
+class CreateLocation extends XotBaseCreateRecord
 {
     use InteractsWithMaps;
 

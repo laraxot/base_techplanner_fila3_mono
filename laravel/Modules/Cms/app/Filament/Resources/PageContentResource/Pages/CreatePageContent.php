@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Resources\PageContentResource\Pages;
 
-use Filament\Resources\Pages\CreateRecord;
 use Modules\Cms\Filament\Resources\PageContentResource;
+use Modules\Lang\Filament\Resources\Pages\LangBaseCreateRecord;
 
-class CreatePageContent extends CreateRecord
+class CreatePageContent extends LangBaseCreateRecord
 {
-    use CreateRecord\Concerns\Translatable;
-
     protected static string $resource = PageContentResource::class;
 }

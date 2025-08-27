@@ -3,10 +3,10 @@
 namespace Modules\TechPlanner\Filament\Resources\LegalRepresentativeResource\Pages;
 
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
 use Modules\TechPlanner\Filament\Resources\LegalRepresentativeResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
-class ListLegalRepresentatives extends ListRecords
+class ListLegalRepresentatives extends XotBaseListRecords
 {
     protected static string $resource = LegalRepresentativeResource::class;
 

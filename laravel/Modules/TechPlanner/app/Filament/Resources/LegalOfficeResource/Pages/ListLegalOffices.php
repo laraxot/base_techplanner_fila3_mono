@@ -3,10 +3,10 @@
 namespace Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages;
 
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
-class ListLegalOffices extends ListRecords
+class ListLegalOffices extends XotBaseListRecords
 {
     protected static string $resource = LegalOfficeResource::class;
 

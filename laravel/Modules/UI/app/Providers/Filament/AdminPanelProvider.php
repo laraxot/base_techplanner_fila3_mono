@@ -26,7 +26,7 @@ class AdminPanelProvider extends XotBasePanelProvider
         //     ],
         //     'filament-navigation'
         // );
-
+        /*
         $spatieLaravelTranslatablePlugin = SpatieLaravelTranslatablePlugin::make()
             ->defaultLocales(['it', 'en']);
 
@@ -38,7 +38,7 @@ class AdminPanelProvider extends XotBasePanelProvider
         ];
         
         $panel->plugins($plugins);
-
+        */
         return $panel;
     }
 }

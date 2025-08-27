@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Job\Filament\Pages;
 
-use Filament\Pages\Page;
+use Modules\Xot\Filament\Resources\Pages\XotBasePage;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Process;
 use Modules\Job\Filament\Widgets\ClockWidget;
@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
 
 use function Safe\mb_convert_encoding;
 
-class JobStatus extends Page
+class JobStatus extends XotBasePage
 {
     use NavigationLabelTrait;
 

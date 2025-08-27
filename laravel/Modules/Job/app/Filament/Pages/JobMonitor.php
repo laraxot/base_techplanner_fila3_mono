@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Job\Filament\Pages;
 
-use Filament\Pages\Page;
+use Modules\Xot\Filament\Resources\Pages\XotBasePage;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 
-class JobMonitor extends Page
+class JobMonitor extends XotBasePage
 {
     use NavigationLabelTrait;
 

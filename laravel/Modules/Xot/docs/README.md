@@ -90,5 +90,9 @@ Vedi [phpstan-fixes-gennaio-2025.md](phpstan-fixes-gennaio-2025.md) per dettagli
 - [Modulo UI](../UI/docs/README.md)
 - [Modulo Lang](../Lang/docs/README.md)
 - [Modulo Notify](../Notify/docs/README.md)
+- [Modulo Employee](../Employee/docs/README.md) - Sistema HR completo con gestione dipendenti e presenze ✅
+  - **Stato**: Foundation completata (modelli, factory, test)
+  - **PHPStan**: Livello 10 ✅
+  - **Test Coverage**: 100% modelli base ✅
 
-*Ultimo aggiornamento: gennaio 2025*
+*Ultimo aggiornamento: gennaio 2025 - Aggiornato stato modulo Employee*

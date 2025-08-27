@@ -59,11 +59,11 @@ class Login extends Component implements HasForms
     }
 
     /**
-     * Definisce lo schema del form.
+     * Restituisce lo schema del form per l'autenticazione.
      *
-     * @return array<TextInput|Checkbox>
+     * @return array<int|string, \Filament\Forms\Components\Component>
      */
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
             TextInput::make('email')
@@ -128,7 +128,7 @@ class Login extends Component implements HasForms
                 return $this->getRedirectUrl();
             }
 
-            $this->addError('email', __('Le credenziali fornite non sono corrette.'));
+            $this->addError('email', __('Le credenziali fornite non sono corrette..'));
         } catch (\Exception $e) {
             $this->addError('email', __('Si è verificato un errore durante il login. Riprova più tardi.'));
             report($e);

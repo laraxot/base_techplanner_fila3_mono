@@ -73,20 +73,26 @@ class ChangeTypeCommand extends Command
         $this->info("Current user type: {$user->type?->getLabel()}");
         
         $typeClass = $xot->getUserChildTypeClass();
-        $options = Arr::mapWithKeys($childTypes, function ($item, int|string $key){
-            //dddx($item->getLabel());
-            //$val = $typeClass::tryFrom((string) $key)?->getLabel();
-            //return [(string) $key => '['.$key.'] '.$val.''];
-            return[$item->value => $item->getLabel()];
-        });
+        /** @var array<string, string> */
+        $options = [];
+        foreach ($childTypes as $key => $item) {
+            if (is_object($item) && method_exists($item, 'getLabel') && app(\Modules\Xot\Actions\Cast\SafeObjectCastAction::class)->hasNonNullProperty($item, 'value')) {
+                $value = app(\Modules\Xot\Actions\Cast\SafeObjectCastAction::class)->getStringProperty($item, 'value', '');
+                $options[$value] = (string)$item->getLabel();
+            } else {
+                $options[(string)$key] = 'Unknown';
+            }
+        }
 
         $newType = select('Select new user type:', $options);
         
-        Assert::notNull($newTypeEnum = $typeClass::tryFrom($newType));
+        $newTypeEnum = $typeClass::tryFrom($newType);
+        Assert::notNull($newTypeEnum);
+
         
         $user->type = $newTypeEnum;
         $user->save();
         
-        $this->info("User type changed to '{$user->type->getLabel()}' for {$email}");
+        $this->info("User type changed to '{$newTypeEnum->getLabel()}' for {$email}");
     }
 }

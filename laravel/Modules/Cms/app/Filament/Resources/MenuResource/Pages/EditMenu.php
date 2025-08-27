@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Resources\MenuResource\Pages;
 
-use Filament\Resources\Pages\EditRecord;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 use Modules\Cms\Filament\Resources\MenuResource;
 
-class EditMenu extends EditRecord
+class EditMenu extends XotBaseEditRecord
 {
     protected static string $resource = MenuResource::class;
 

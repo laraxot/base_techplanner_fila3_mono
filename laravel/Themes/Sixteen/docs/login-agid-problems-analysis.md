@@ -5,15 +5,12 @@
 ### 1. **Conflitto Git nel File**
 **PROBLEMA CRITICO**: Il file `login.blade.php` contiene un conflitto Git non risolto
 ```blade
-<<<<<<< HEAD
 <x-layouts.guest-agid>
     <!-- Contenuto AGID corretto -->
 </x-layouts.guest-agid>
-=======
 <x-layouts.guest>
     <!-- Contenuto sbagliato che ho implementato -->
 </x-layouts.guest>
->>>>>>> dev
 ```
 
 **CONSEGUENZE**:

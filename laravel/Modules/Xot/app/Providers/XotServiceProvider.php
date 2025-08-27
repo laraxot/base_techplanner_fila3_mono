@@ -198,6 +198,7 @@ class XotServiceProvider extends XotBaseServiceProvider
             return;
         };
         // --- meglio ficcare un controllo anche sull'env
+        
         if (
             //config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
             //&& isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
@@ -207,9 +208,10 @@ class XotServiceProvider extends XotBaseServiceProvider
             /*
              * da fare in htaccess
              */
-            if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
-                exit(redirect()->secure(request()->getRequestUri()));
-            }
+            
+            //if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
+            //    exit(redirect()->secure(request()->getRequestUri()));
+            //}
         }
     }
 

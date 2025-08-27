@@ -12,7 +12,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
+use Modules\Xot\Filament\Resources\Pages\XotBasePage;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Tenant\Services\TenantService;
@@ -24,7 +24,7 @@ use Modules\Xot\Filament\Traits\TransTrait;
  *
  * @property Forms\ComponentContainer $form
  */
-class Password extends Page implements HasForms
+class Password extends XotBasePage implements HasForms
 {
     use InteractsWithForms;
     use TransTrait;

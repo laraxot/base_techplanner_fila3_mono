@@ -5,19 +5,29 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Filament\Widgets;
 
 use Filament\Notifications\Notification;
-use Filament\Widgets\Widget;
 use Modules\Xot\Actions\Cast\SafeFloatCastAction;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use Livewire\Attributes\On;
 
-class CoordinatesWidget extends Widget
+class CoordinatesWidget extends XotBaseWidget
 {
     protected static string $view = 'techplanner::filament.widgets.coordinates-widget';
 
     public float $latitude = 0;
 
     public float $longitude = 0;
+
+    /**
+     * Get the form schema for the widget.
+     *
+     * @return array<int|string, \Filament\Forms\Components\Component>
+     */
+    public function getFormSchema(): array
+    {
+        return [];
+    }
 
     public function mount(): void
     {
@@ -51,16 +61,5 @@ class CoordinatesWidget extends Widget
         $this->latitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_latitude', Cookie::get('user_latitude', 0)));
         $this->longitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_longitude', Cookie::get('user_longitude', 0)));
     }
-
-    /**
-     * Get the form schema for the widget.
-     *
-     * @return array<int, \Filament\Forms\Components\Component>
-     */
-    public function getFormSchema(): array
-    {
-        return [];
-    }
-
 
 }
