@@ -1,38 +1,36 @@
 <?php
 
-declare(strict_types=1);
-
-return [
-  'fields' =>
-  [
-    'caption' =>
-    [
+return array (
+  'fields' => 
+  array (
+    'caption' => 
+    array (
       'label' => 'caption',
       'description' => 'caption',
       'helper_text' => 'caption',
       'placeholder' => 'caption',
     ),
-    'alt' =>
-    [
+    'alt' => 
+    array (
       'label' => 'alt',
       'description' => 'alt',
       'helper_text' => 'alt',
       'placeholder' => 'alt',
     ),
-    'ratio' =>
-    [
+    'ratio' => 
+    array (
       'label' => 'ratio',
       'description' => 'ratio',
     ),
-    'url' =>
-    [
+    'url' => 
+    array (
       'label' => 'url',
       'description' => 'url',
       'helper_text' => 'url',
       'placeholder' => 'url',
     ),
-    'image' =>
-    [
+    'image' => 
+    array (
       'label' => 'image',
       'description' => 'image',
       'helper_text' => 'image',

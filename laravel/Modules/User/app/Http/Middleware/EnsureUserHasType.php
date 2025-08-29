@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\User\Http\Middleware;
 
 use Closure;
@@ -27,10 +25,8 @@ class EnsureUserHasType
     public function handle(Request $request, Closure $next, string $type): Response
     {
         
-        $user = $request->user();
-        $userType = $user?->type ?? null;
-        $actualType = is_object($userType) && $userType instanceof \BackedEnum ? $userType->value : (is_string($userType) ? $userType : null);
-        if ($actualType !== $type) {
+        if ($request->user()?->type->value !== $type) {
+            // Redirect...
             return redirect()->route('home');
         }
 

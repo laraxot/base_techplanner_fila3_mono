@@ -6,20 +6,6 @@ namespace Modules\User\Actions\User;
 
 use Illuminate\Support\Str;
 use Modules\User\Models\User;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Modules\Xot\Contracts\UserContract;
-
-class GetNewPasswordAction
-{
-    public function execute(UserContract $user): string
-    {
-        $password=Str::random(10);
-        $user->update([
-            'password' => Hash::make($password),
-        ]);
-=======
 use Modules\Xot\Datas\XotData;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +45,6 @@ class GetNewPasswordAction
         ]);
        */
         
->>>>>>> fc93b0f (.)
         return $password;
     }
 }

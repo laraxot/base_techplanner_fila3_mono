@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Filament\Widgets;
 
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Filament\Widgets\Widget;
 
-class LatLngWidget extends XotBaseWidget
+class LatLngWidget extends Widget
 {
     protected static string $view = 'geo::filament.widgets.lat-lng';
 
@@ -14,20 +14,7 @@ class LatLngWidget extends XotBaseWidget
 
     public float $lng = 0;
 
+    public ?int $err_code = null;
+
     public ?string $err_message = null;
-
-    /**
-     * Get the form schema for the widget.
-     *
-     * @return array<int|string, \Filament\Forms\Components\Component>
-     */
-    public function getFormSchema(): array
-    {
-        return [];
-    }
-
-    public function mount(): void
-    {
-        $err_message = null;
-    }
 }

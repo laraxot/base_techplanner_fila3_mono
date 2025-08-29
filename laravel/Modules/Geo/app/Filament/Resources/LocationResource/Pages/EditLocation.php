@@ -6,11 +6,11 @@ namespace Modules\Geo\Filament\Resources\LocationResource\Pages;
 
 use Cheesegrits\FilamentGoogleMaps\Concerns\InteractsWithMaps;
 use Filament\Actions;
-use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
+use Filament\Resources\Pages\EditRecord;
 use Modules\Geo\Filament\Resources\LocationResource;
 use Webmozart\Assert\Assert;
 
-class EditLocation extends XotBaseEditRecord
+class EditLocation extends EditRecord
 {
     use InteractsWithMaps;
 

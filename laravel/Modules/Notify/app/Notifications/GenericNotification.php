@@ -42,10 +42,10 @@ class GenericNotification extends Notification implements ShouldQueue
     /**
      * Crea una nuova istanza della notifica.
      *
-     * @param string               $title    Il titolo della notifica
-     * @param string               $message  Il contenuto della notifica
-     * @param array<string>        $channels I canali da utilizzare ('mail', 'sms', 'database')
-     * @param array<string, mixed> $data     Dati aggiuntivi per la notifica
+     * @param string $title Il titolo della notifica
+     * @param string $message Il contenuto della notifica
+     * @param array<string> $channels I canali da utilizzare ('mail', 'sms', 'database')
+     * @param array<string, mixed> $data Dati aggiuntivi per la notifica
      */
     public function __construct(string $title, string $message, array $channels = ['mail'], array $data = [])
     {
@@ -58,6 +58,7 @@ class GenericNotification extends Notification implements ShouldQueue
     /**
      * Ottiene i canali di consegna della notifica.
      *
+     * @param mixed $notifiable
      * @return array<int, string>
      */
     public function via($notifiable): array
@@ -67,17 +68,20 @@ class GenericNotification extends Notification implements ShouldQueue
 
     /**
      * Ottiene la rappresentazione mail della notifica.
+     *
+     * @param mixed $notifiable
+     * @return MailMessage
      */
     public function toMail($notifiable): MailMessage
     {
         $mail = (new MailMessage())
             ->subject($this->title)
-            ->greeting('Gentile '.$this->getRecipientName($notifiable))
+            ->greeting('Gentile ' . $this->getRecipientName($notifiable))
             ->line($this->message);
 
         // Aggiungi eventuali azioni se specificate nei dati
         if (isset($this->data['action_text']) && isset($this->data['action_url'])) {
-            /* @phpstan-ignore-next-line */
+            /** @phpstan-ignore-next-line */
             $mail->action((string) $this->data['action_text'], (string) $this->data['action_url']);
         }
 
@@ -95,24 +99,25 @@ class GenericNotification extends Notification implements ShouldQueue
     /**
      * Ottiene la rappresentazione SMS della notifica.
      *
+     * @param mixed $notifiable
      * @return array<string, mixed>
      */
     public function toTwilio($notifiable): array
     {
         $content = "il progetto: {$this->title}\n{$this->message}";
-
+        
         // Limita la lunghezza del messaggio SMS
         if (mb_strlen($content) > 320) {
-            $content = mb_substr($content, 0, 317).'...';
+            $content = mb_substr($content, 0, 317) . '...';
         }
-
+        
         // TODO: Implementare TwilioSmsMessage quando disponibile
         $to = '';
         if (is_object($notifiable) && method_exists($notifiable, 'routeNotificationForTwilio')) {
             $routeResult = $notifiable->routeNotificationForTwilio($this);
             $to = (string) ($routeResult ?? '');
         }
-
+        
         return [
             'content' => $content,
             'to' => $to,
@@ -122,6 +127,7 @@ class GenericNotification extends Notification implements ShouldQueue
     /**
      * Ottiene la rappresentazione database della notifica.
      *
+     * @param mixed $notifiable
      * @return array<string, mixed>
      */
     public function toDatabase($notifiable): array
@@ -136,16 +142,14 @@ class GenericNotification extends Notification implements ShouldQueue
 
     /**
      * Ottiene il nome del destinatario per il saluto personalizzato.
+     *
+     * @param mixed $notifiable
+     * @return string
      */
     protected function getRecipientName($notifiable): string
     {
-        // Soluzione più robusta e KISS: usa null coalescing e early return
-        if (!is_object($notifiable)) {
-            return 'Utente';
-        }
-
-        // Prova prima il metodo dedicato
-        if (method_exists($notifiable, 'getFullName')) {
+        // Tenta di ottenere il nome dal destinatario in vari modi
+        if (is_object($notifiable) && method_exists($notifiable, 'getFullName')) {
             return $notifiable->getFullName();
         }
         
@@ -162,13 +166,7 @@ class GenericNotification extends Notification implements ShouldQueue
                 return SafeAttributeCastAction::getString($notifiable, 'name', 'Utente');
             }
         }
-<<<<<<< HEAD
-
-        // Prova le proprietà in ordine di priorità usando null coalescing
-        return $notifiable->full_name ?? $notifiable->first_name ?? $notifiable->name ?? 'Utente';
-=======
         
         return 'Utente';
->>>>>>> 54ed7a8 (.)
     }
 }

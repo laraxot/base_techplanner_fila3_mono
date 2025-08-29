@@ -18,4 +18,12 @@ return array (
       'placeholder' => 'endDate',
     ),
   ),
+  'sections' => 
+  array (
+    'empty' => 
+    array (
+      'heading' => '',
+      'label' => 'empty',
+    ),
+  ),
 );

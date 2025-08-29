@@ -9,16 +9,16 @@ declare(strict_types=1);
 namespace Modules\Job\Filament\Widgets;
 
 use Exception;
+use Filament\Widgets\Widget;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Process;
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\StreamOutput;
 
 use function Safe\fopen;
 
-class QueueListenWidget extends XotBaseWidget
+class QueueListenWidget extends Widget
 {
     /** @var string */
     public $time = '---';
@@ -28,16 +28,6 @@ class QueueListenWidget extends XotBaseWidget
     protected static string $view = 'job::filament.widgets.queue-listen';
 
     protected int|string|array $columnSpan = 'full';
-
-    /**
-     * Get the form schema for the widget.
-     *
-     * @return array<int|string, \Filament\Forms\Components\Component>
-     */
-    public function getFormSchema(): array
-    {
-        return [];
-    }
 
     public function begin(): void
     {

@@ -10,7 +10,7 @@ use Filament\Resources\Concerns\Translatable;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\User\Filament\Resources\BaseProfileResource\Pages;
 use Modules\User\Models\BaseProfile;
-use Modules\Lang\Filament\Resources\LangBaseResource;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 
 
@@ -21,7 +21,7 @@ use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 
 
-abstract class BaseProfileResource extends LangBaseResource
+abstract class BaseProfileResource extends XotBaseResource
 {
     use Translatable;
 

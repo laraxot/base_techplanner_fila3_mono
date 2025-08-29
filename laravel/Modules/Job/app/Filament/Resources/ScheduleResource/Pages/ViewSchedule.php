@@ -8,7 +8,7 @@ use Filament\Forms;
 use Filament\Resources\Concerns\HasTabs;
 use Filament\Resources\Pages\Concerns\HasRelationManagers;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
-use Modules\Xot\Filament\Resources\Pages\XotBasePage;
+use Filament\Resources\Pages\Page;
 use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Support\HtmlString;
@@ -16,7 +16,7 @@ use Livewire\Attributes\Url;
 use Modules\Job\Filament\Resources\ScheduleResource;
 use Webmozart\Assert\Assert;
 
-class ViewSchedule extends XotBasePage implements HasTable
+class ViewSchedule extends Page implements HasTable
 {
     use Forms\Concerns\InteractsWithForms;
     use HasRelationManagers;

@@ -10,7 +10,7 @@ use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\SpatieLaravelTranslatablePlugin;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
-use LaraZeus\Bolt\BoltPlugin;
+//use LaraZeus\Bolt\BoltPlugin;
 
 class AdminPanelProvider extends XotBasePanelProvider
 {

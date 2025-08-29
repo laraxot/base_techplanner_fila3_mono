@@ -11,14 +11,14 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Filament\Widgets\Widget;
 use Illuminate\Support\Arr;
 use Modules\Xot\Datas\EnvData;
 
 /**
  * @property ComponentContainer $form
  */
-class EnvWidget extends XotBaseWidget implements HasForms
+class EnvWidget extends Widget implements HasForms
 {
     use InteractsWithForms;
 

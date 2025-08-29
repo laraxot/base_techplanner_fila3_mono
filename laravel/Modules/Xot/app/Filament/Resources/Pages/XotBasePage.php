@@ -6,7 +6,6 @@ namespace Modules\Xot\Filament\Resources\Pages;
 
 use Closure;
 use Filament\Forms\Form;
-use Filament\Panel;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
@@ -15,8 +14,6 @@ use Filament\Forms\ComponentContainer;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\Component;
 use Filament\Pages\Page as FilamentPage;
-use Filament\Resources\Pages\PageRegistration;
-use Illuminate\Support\Facades\Route;
 use Modules\Xot\Filament\Traits\TransTrait;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Pages\Concerns\InteractsWithFormActions;
@@ -125,22 +122,6 @@ abstract class XotBasePage extends FilamentPage implements HasForms
     {
         /** @phpstan-ignore property.staticAccess */
         return static::$model;
-    }
-
-    /**
-     * Create a route registration for this page.
-     * 
-     * @param string $path
-     * @return PageRegistration
-     */
-    public static function route(string $path): PageRegistration
-    {
-        return new PageRegistration(
-            page: static::class,
-            route: fn (Panel $panel): \Illuminate\Routing\Route => Route::get($path, static::class)
-                ->middleware(static::getRouteMiddleware($panel))
-                ->withoutMiddleware(static::getWithoutRouteMiddleware($panel)),
-        );
     }
 
     /**

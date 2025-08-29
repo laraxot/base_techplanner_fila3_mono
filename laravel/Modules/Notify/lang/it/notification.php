@@ -175,14 +175,6 @@ return array (
     array (
       'label' => 'applyFilters',
     ),
-    'toggleColumns' => 
-    array (
-      'label' => 'toggleColumns',
-    ),
-    'reorderRecords' => 
-    array (
-      'label' => 'reorderRecords',
-    ),
   ),
   'actions' => 
   array (

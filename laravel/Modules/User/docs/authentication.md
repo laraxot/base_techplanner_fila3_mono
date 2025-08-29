@@ -1,154 +1,79 @@
-# Sistema di Autenticazione - Modulo User
+# Architettura Autenticazione
 
-## Panoramica
+## Overview
+Il modulo User gestisce l'autenticazione attraverso componenti Livewire e Filament, seguendo le best practices di Laravel.
 
-Il sistema di autenticazione del modulo User fornisce un'infrastruttura robusta e sicura per la gestione degli accessi all'applicazione.
+## Componenti Principali
 
-## 🏗️ Componenti
-
-### 1. Modello User
-```php
-use Modules\User\Models\User;
-
-class User extends Authenticatable
-{
-    use HasRoles, HasTeams, HasTenants;
-    
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-    
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-}
+### 1. Livewire Components
+```
+app/Http/Livewire/Auth/
+├── Login.php      # Gestione login
+└── Logout.php     # Gestione logout
 ```
 
-### 2. Middleware di Autenticazione
-```php
-// app/Http/Kernel.php
-protected $routeMiddleware = [
-    'auth' => \Modules\User\Http\Middleware\Authenticate::class,
-    'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-    'guest' => \Modules\User\Http\Middleware\RedirectIfAuthenticated::class,
-];
+### 2. Filament Widgets
+```
+app/Filament/Widgets/
+└── LoginWidget.php  # Widget di login per interfaccia admin
 ```
 
-### 3. Controller di Autenticazione
-```php
-namespace Modules\User\Http\Controllers\Auth;
+## Struttura Namespace
 
-class LoginController extends Controller
-{
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
-        
-        return back()->withErrors([
-            'email' => 'Credenziali non valide.',
-        ]);
-    }
-}
-```
+### 1. Convenzioni
+- Base namespace: `Modules\User\app`
+- Livewire components: `Modules\User\app\Http\Livewire\Auth`
+- Filament widgets: `Modules\User\app\Filament\Widgets`
 
-## 🔐 Funzionalità di Sicurezza
+### 2. Views
+- Pattern: `{module}::filament.widgets.{type}`
+- Esempio: `user::filament.widgets.login`
 
-### Password Policy
-- Lunghezza minima: 8 caratteri
-- Complessità: Maiuscole, minuscole, numeri, simboli
-- Storia: Non riutilizzare le ultime 5 password
-- Scadenza: Cambio obbligatorio ogni 90 giorni
+## Flusso Autenticazione
 
-### Autenticazione a Due Fattori (2FA)
-```php
-// Abilitazione 2FA
-$user->enableTwoFactorAuth();
+### 1. Login
+- Form di login (Filament/Livewire)
+- Validazione credenziali
+- Gestione sessione
+- Redirect post-login
 
-// Verifica codice 2FA
-if ($user->verifyTwoFactorCode($code)) {
-    // Accesso consentito
-}
-```
+### 2. Logout
+- Invalidazione sessione
+- Rigenerazione token
+- Redirect alla login
 
-### Gestione Sessioni
-```php
-// Configurazione sessioni
-'session' => [
-    'lifetime' => 120, // 2 ore
-    'expire_on_close' => false,
-    'secure' => true, // Solo HTTPS
-    'http_only' => true,
-    'same_site' => 'lax',
-],
-```
+## Sicurezza
 
-## 🚀 Utilizzo
+### 1. Misure Implementate
+- Rate limiting
+- CSRF protection
+- Session regeneration
+- Password validation
 
-### Login
-```php
-// Autenticazione base
-Auth::attempt(['email' => $email, 'password' => $password]);
+### 2. Best Practices
+- Validazione input
+- Gestione errori
+- Logging tentativi
 
-// Autenticazione con remember me
-Auth::attempt($credentials, $request->boolean('remember'));
+## Collegamenti
 
-// Verifica stato autenticazione
-if (Auth::check()) {
-    $user = Auth::user();
-}
-```
+- [Regole dei Namespace](../../docs/module-namespace-rules.md)
+- [Struttura Views](../../docs/filament-views-structure.md)
+- [Relazioni tra Moduli](../../docs/module-relationships.md)
 
-### Logout
-```php
-// Logout e invalidazione sessione
-Auth::logout();
-$request->session()->invalidate();
-$request->session()->regenerateToken();
-```
+## Checklist Implementazione
 
-### Protezione Route
-```php
-// Route protette
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/profile', [ProfileController::class, 'show']);
-});
+### 1. Namespace
+- [ ] Namespace corretti
+- [ ] PSR-4 compliance
+- [ ] Autoloading verificato
 
-// Route per guest
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm']);
-    Route::post('/login', [LoginController::class, 'login']);
-});
-```
+### 2. Views
+- [ ] Struttura corretta
+- [ ] Naming consistente
+- [ ] Blade templates
 
-## 📱 API Authentication
-
-### Sanctum Token
-```php
-// Generazione token
-$token = $user->createToken('api-token')->plainTextToken;
-
-// Verifica token
-if ($request->bearerToken()) {
-    $user = Auth::guard('sanctum')->user();
-}
-```
-
-## 🔗 Collegamenti
-
-- [**README Modulo User**](README.md)
-- [**Sistema Autorizzazione**](authorization.md)
-- [**Gestione Team**](teams.md)
-- [**Multi-tenancy**](multi-tenancy.md)
-
----
-
-*Ultimo aggiornamento: giugno 2025*
+### 3. Sicurezza
+- [ ] Rate limiting
+- [ ] Session handling
+- [ ] Error handling 

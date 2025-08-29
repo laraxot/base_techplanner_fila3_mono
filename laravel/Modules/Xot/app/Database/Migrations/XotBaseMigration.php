@@ -201,6 +201,7 @@ abstract class XotBaseMigration extends Migration
             return isset($resArray['count']) && (int) $resArray['count'] > 0;
         }
 
+        // If neither, handle the error or unexpected case
         return false;
     }
 

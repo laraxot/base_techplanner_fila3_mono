@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Resources\MenuResource\Pages;
 
-use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
+use Filament\Resources\Pages\CreateRecord;
 use Modules\Cms\Filament\Resources\MenuResource;
 
-class CreateMenu extends XotBaseCreateRecord
+class CreateMenu extends CreateRecord
 {
     protected static string $resource = MenuResource::class;
 }

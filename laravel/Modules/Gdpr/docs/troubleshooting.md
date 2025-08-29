@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Troubleshooting
-=======
 # Troubleshooting Modulo GDPR
 
 ## Problemi Comuni
@@ -214,4 +211,3 @@ class GdprMetrics
 * [troubleshooting.md](../../Xot/docs/troubleshooting.md)
 * [troubleshooting.md](../../Cms/docs/frontoffice/troubleshooting.md)
 
->>>>>>> 675dfbc (.)

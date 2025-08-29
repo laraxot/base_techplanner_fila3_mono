@@ -6,23 +6,13 @@ namespace Modules\Xot\Filament\Widgets;
 
 // use Symfony\Component\Console\Output\BufferedOutput;
 
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Filament\Widgets\Widget;
 
-class Clock extends XotBaseWidget
+class Clock extends Widget
 {
     public string $start = '';
 
     protected static string $view = 'xot::filament.widgets.clock';
-
-    /**
-     * Get the form schema for the widget.
-     *
-     * @return array<int|string, \Filament\Forms\Components\Component>
-     */
-    public function getFormSchema(): array
-    {
-        return [];
-    }
 
     public function begin(): void
     {

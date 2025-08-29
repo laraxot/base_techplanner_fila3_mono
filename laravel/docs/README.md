@@ -1,6 +1,10 @@
-# XOT Framework Documentation
+# TechPlanner Laravel Application Documentation
 
-## 🚨 CRITICAL RULES - READ FIRST
+## Project Overview
+
+This is a comprehensive Laravel application built using a modular architecture with Filament for admin interfaces and multi-tenant support.
+
+## 🚨 CRITICAL DEVELOPMENT RULES - READ FIRST
 
 ### 1. XotBase/LangBase Extension Rule (MANDATORY)
 **NEVER extend Filament classes directly. ALWAYS extend XotBase OR LangBase abstract classes.**
@@ -27,79 +31,98 @@ class MyPage extends LangBaseListRecords { }
 ### 3. Abstract Method Rule
 **ALL abstract methods from parent classes and traits MUST be implemented.**
 
----
+## Architecture
 
-## Quick Start for Error Prevention
+### Modular Structure
+The application is built using Nwidart Laravel Modules package with the following modules:
 
-**Before ANY Filament work:**
-1. **🚨 MULTILINGUAL CHECK**: Is the module multilingual? (Use LangBase* if yes, XotBase* if no)
-2. Read [`claude-code-rules.md`](./claude-code-rules.md) - **MANDATORY**
-3. Check [`error-prevention/`](./error-prevention/) for known error patterns  
-4. Follow pre-implementation checklist
-5. Test immediately after changes
+#### Core Modules
+- **Xot**: Core module providing base classes and shared functionality
+- **User**: User management and authentication
+- **Tenant**: Multi-tenant support and data isolation
+- **Lang**: Internationalization and language management
 
-## Architecture Rules
+#### Business Logic Modules
+- **TechPlanner**: Main business logic module
+- **Employee**: Employee management features
+- **Chart**: Data visualization and reporting
+- **Activity**: Activity logging and tracking
+- **Job**: Background job management
 
-### 2. Traduzioni
+#### Support Modules
+- **UI**: User interface components and Filament customizations
+- **Geo**: Geographic functionality and location services
+- **Media**: File and media management
+- **Notify**: Notification and email systems
+- **Cms**: Content management system
+- **Gdpr**: GDPR compliance features
 
-- **Sempre implementare chiavi mancanti in tutte e tre le lingue** (italiano, inglese, tedesco)
-- **Mai mescolare lingue diverse** in una singola traduzione
-- **Usare terminologia coerente** con il resto del sistema
-- **Per campi upload file**: placeholder deve indicare l'azione (es. "Carica Fattura") NON il contenuto
+### Key Technologies
 
-### 3. Struttura File e Cartelle
+- **Laravel 11**: PHP framework with modern features
+- **Filament 3**: Modern admin interface builder
+- **Livewire**: Dynamic frontend components
+- **Multi-tenancy**: Isolated data per tenant using spatie/multitenancy
+- **Sushi Models**: In-memory Eloquent models from JSON files
+- **Spatie Packages**: Laravel permissions, media library, model states
 
-- **Nelle cartelle docs**: usare solo caratteri minuscoli, eccezione README.md
-- **In Blade templates**: usare `@lang` invece di `@trans`
+## Development Guidelines
 
-## 📚 Documentation Structure
+### Code Quality Standards
+- Follow PSR-12 coding standards
+- Use PHPStan level 10 for static analysis
+- Implement proper type hints and return types
+- Use strict typing (`declare(strict_types=1)`)
+- Write comprehensive tests using Pest
 
-### Essential Documentation (READ FIRST)
-- [`claude-code-rules.md`](./claude-code-rules.md) - **CRITICAL**: Essential rules that must never be broken
-- [`xotbase-extension-rules.md`](./xotbase-extension-rules.md) - XotBase extension patterns and mappings
+### Translation Standards
+- **Always implement missing keys in all three languages** (Italian, English, German)
+- **Never mix different languages** in a single translation
+- **Use consistent terminology** throughout the system
+- **For file upload fields**: placeholder should indicate the action (e.g., "Upload Invoice") NOT the content
 
-### Error Prevention (CRITICAL)
-- [`error-prevention/multilingual-pattern-analysis.md`](./error-prevention/multilingual-pattern-analysis.md) - **NEW**: Critical analysis of multilingual pattern errors
-- [`error-prevention/multilingual-detection-commands.md`](./error-prevention/multilingual-detection-commands.md) - Commands to detect multilingual modules  
-- [`error-prevention/method-signature-errors.md`](./error-prevention/method-signature-errors.md) - Method signature conflict analysis
-- [`error-prevention/filament-xotbase-patterns.md`](./error-prevention/filament-xotbase-patterns.md) - Correct XotBase implementation patterns
+### File and Folder Structure
+- **In docs folders**: use only lowercase characters, exception README.md
+- **In Blade templates**: use `@lang` instead of `@trans`
+- Each module follows consistent structure with app/, docs/, tests/, etc.
 
-### Legacy Documentation
-- [Pattern di Estensione Filament](/docs/patterns/filament-extension.md) 
-- [Actions Pattern](/docs/patterns/actions.md)
-- [Queueable Actions](/docs/patterns/queueable-actions.md)
-- [Regole Architetturali Filament](/docs/architecture/filament-extension-rules.md)
-- [Module Namespaces](/docs/architecture/module-namespaces.md)
-- [Encryption Error Fix](/docs/encryption_error_fix.md)
+## Getting Started
 
-## Moduli
+### Prerequisites
+- PHP 8.2+
+- Composer
+- Node.js & npm
+- MySQL/PostgreSQL database
+- Redis (optional, for caching)
 
-### Xot
-- [Architettura Filament-Xot](/Modules/Xot/docs/filament/xot_filament_architecture.md)
-- [Pattern di Estensione](/Modules/Xot/docs/filament_extension_pattern.md)
+### Installation
+1. Clone the repository
+2. Run `composer install`
+3. Run `npm install`
+4. Copy `.env.example` to `.env` and configure
+5. Run migrations: `php artisan migrate`
+6. Seed database: `php artisan db:seed`
+7. Generate key: `php artisan key:generate`
 
-### Notify
-- [Pattern di Estensione Filament](/Modules/Notify/docs/filament_extension_pattern.md)
-
-## Temi
-
-### One
-- [Documentazione Tema One](/Themes/One/docs/README.md)
-
-### Sixteen
-- [Documentazione Tema Sixteen](/Themes/Sixteen/docs/README.md)
+### Development Commands
+- `php artisan serve` - Start development server
+- `npm run dev` - Start asset compilation with Vite
+- `php artisan test` - Run Pest test suite
+- `vendor/bin/phpstan analyse` - Run PHPStan static analysis
+- `php artisan module:make-command CommandName ModuleName` - Create new module command
 
 ## 🔍 Pre-Implementation Checklist
 
 **Before ANY Filament implementation:**
 
 ### Critical Checks
-- [ ] Read [`claude-code-rules.md`](./claude-code-rules.md) 
+- [ ] Read [`claude-code-rules.md`](./claude-code-rules.md)
+- [ ] **🚨 MULTILINGUAL CHECK**: Is the module multilingual? (Use LangBase* if yes, XotBase* if no)
 - [ ] Verify XotBase class exists for the Filament class you need
 - [ ] Check abstract methods that need implementation
 - [ ] Verify method signatures match parent/trait exactly
 
-### Implementation Checks  
+### Implementation Checks
 - [ ] Using XotBase class instead of direct Filament class
 - [ ] All abstract methods implemented
 - [ ] Method signatures match (especially static vs non-static)
@@ -107,19 +130,85 @@ class MyPage extends LangBaseListRecords { }
 
 ### Quality Checks
 - [ ] Page loads successfully
-- [ ] Functionality works as expected  
+- [ ] Functionality works as expected
 - [ ] Caches cleared if needed
 - [ ] New errors documented if encountered
+
+## Testing
+
+The application uses Pest for testing with comprehensive coverage:
+
+### Test Structure
+- **Unit Tests**: Models, services, and actions
+- **Feature Tests**: HTTP endpoints and workflows
+- **Integration Tests**: Module interactions
+- **Browser Tests**: End-to-end user flows
+
+### Running Tests
+```bash
+# Run all tests
+php artisan test
+
+# Run specific module tests
+php artisan test --filter="User"
+
+# Run with coverage
+php artisan test --coverage
+```
+
+## 📚 Documentation Structure
+
+### Essential Documentation (READ FIRST)
+- [`claude-code-rules.md`](./claude-code-rules.md) - **CRITICAL**: Essential rules that must never be broken
+- [`xotbase-extension-rules.md`](./xotbase-extension-rules.md) - XotBase extension patterns and mappings
+
+### Error Prevention Documentation
+- [`error-prevention/`](./error-prevention/) - Critical error pattern analysis and prevention
+- [`maintenance/git-merge-conflicts.md`](./maintenance/git-merge-conflicts.md) - Git conflict resolution
+
+### Architecture Documentation
+- [`architecture/`](./architecture/) - System architecture and design patterns
+- [`patterns/`](./patterns/) - Code patterns and best practices
 
 ## 🚨 Most Common Fatal Errors
 
 1. **"Cannot make non static method... static"** → Method signature mismatch
-2. **"Class contains N abstract method"** → Missing abstract method implementation
+2. **"Class contains N abstract method"** → Missing abstract method implementation  
 3. **"Method...::route does not exist"** → Incorrect route usage on Page classes
 
 **Solution**: Check [`error-prevention/`](./error-prevention/) documentation for detailed fixes.
 
-## Documentazione Correlata
+## Deployment
 
-- [Architettura Filament-Xot](/Modules/Xot/docs/filament/xot_filament_architecture.md)
-- [Pattern di Estensione Xot](/Modules/Xot/docs/filament_extension_pattern.md) 
+### Environment Configuration
+- Production: Optimized for performance and security
+- Staging: Mirror of production for testing
+- Development: Debug mode enabled with detailed logging
+
+### Deployment Steps
+1. Run `composer install --optimize-autoloader --no-dev`
+2. Run `npm run build`
+3. Clear and cache configurations
+4. Run migrations
+5. Set proper file permissions
+
+## Contributing
+
+1. Follow established code standards and architecture rules
+2. Write comprehensive tests for new features
+3. Update documentation for significant changes
+4. Use conventional commits format
+5. Create clear and detailed pull requests
+6. Ensure PHPStan level 10 compliance
+
+## Support and Troubleshooting
+
+For technical issues:
+1. Check module-specific documentation in `Modules/*/docs/`
+2. Review error prevention guides in `docs/error-prevention/`
+3. Consult architecture documentation for design patterns
+4. Review git conflict resolution procedures
+
+## License
+
+This project is proprietary software. All rights reserved. 

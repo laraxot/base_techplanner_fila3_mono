@@ -13,7 +13,6 @@ use Filament\Forms\Form;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\Features\SupportRedirects\Redirector as LivewireRedirector;
 use Modules\Xot\Actions\File\ViewCopyAction;
 
 /**
@@ -60,11 +59,11 @@ class Login extends Component implements HasForms
     }
 
     /**
-     * Restituisce lo schema del form per l'autenticazione.
+     * Definisce lo schema del form.
      *
-     * @return array<int|string, \Filament\Forms\Components\Component>
+     * @return array<TextInput|Checkbox>
      */
-    public function getFormSchema(): array
+    protected function getFormSchema(): array
     {
         return [
             TextInput::make('email')
@@ -139,9 +138,9 @@ class Login extends Component implements HasForms
     /**
      * Determina l'URL di redirect appropriato per l'utente autenticato.
      *
-     * @return RedirectResponse|LivewireRedirector
+     * @return RedirectResponse
      */
-    protected function getRedirectUrl(): RedirectResponse|LivewireRedirector
+    protected function getRedirectUrl(): RedirectResponse
     {
         $user = Auth::user();
         

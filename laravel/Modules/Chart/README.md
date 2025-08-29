@@ -156,9 +156,7 @@ php artisan vendor:publish --tag=chart-assets
 npm run build
 ```
 
-<<<<<<< HEAD
 ## 🎯 Esempi di Utilizzo
-=======
 ## Run the Migrations
 ```bash
 php artisan module:migrate Chart
@@ -168,7 +166,6 @@ php artisan module:migrate Chart
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/laraxot/module_chart_fila3/run-tests?label=tests)](https://github.com/laraxot/module_chart_fila3/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/laraxot/module_chart_fila3/Check%20&%20fix%20styling?label=code%20style)](https://github.com/laraxot/module_chart_fila3/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/laraxot/module_chart_fila3.svg?style=flat-square)](https://packagist.org/packages/laraxot/module_chart_fila3)
->>>>>>> 9d102d2 (.)
 
 ### 📊 Creazione Grafico Base
 ```php
@@ -414,7 +411,6 @@ return [
 
 ### 📋 **Test Coverage**
 ```bash
-<<<<<<< HEAD
 # Esegui tutti i test
 php artisan test --filter=Chart
 
@@ -496,6 +492,4 @@ Questo progetto è distribuito sotto la licenza MIT. Vedi il file [LICENSE](LICE
   <br>
   <em>Costruito con ❤️ per la comunità Laravel</em>
 </div>
-=======
 php artisan module:migrate Chart
->>>>>>> 9d102d2 (.)

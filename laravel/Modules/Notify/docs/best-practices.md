@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Best Practices Implementazione
-
-## Template Email
-
-### 1. Struttura Template
-```php
-// resources/views/vendor/notifications/email/base.blade.php
-=======
-=======
->>>>>>> 247bd86 (.)
 # Best Practices e Raccomandazioni
 
 ## 1. Design e Layout
@@ -17,31 +5,11 @@
 ### 1.1 Responsive Design
 ```php
 // resources/views/notify/layouts/responsive.blade.php
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <title>{{ config('app.name') }}</title>
-    <style>
-        /* Stili inline per compatibilità */
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { text-align: center; padding: 20px; }
-        .content { padding: 20px; }
-        .footer { text-align: center; padding: 20px; font-size: 12px; }
-=======
-=======
->>>>>>> 247bd86 (.)
     <title>{{ $subject }}</title>
     <style>
         /* Responsive styles */
@@ -60,66 +28,20 @@
                 font-size: 10px !important;
             }
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     </style>
 </head>
 <body>
     <div class="container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        @yield('content')
-=======
-=======
->>>>>>> 247bd86 (.)
         @include('notify::partials.header')
         <div class="content">
             {{ $slot }}
         </div>
         @include('notify::partials.footer')
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     </div>
 </body>
 </html>
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-### 2. Gestione Variabili
-```php
-// app/Services/TemplateVariableService.php
-class TemplateVariableService
-{
-    public function validate($template, $variables)
-    {
-        // 1. Verifica variabili richieste
-        // 2. Validazione tipi
-        // 3. Sanitizzazione
-        // 4. Logging errori
-    }
-
-    public function replace($template, $variables)
-    {
-        // 1. Sostituzione sicura
-        // 2. Escape HTML
-        // 3. Gestione fallback
-        // 4. Cache risultato
-=======
-=======
->>>>>>> 247bd86 (.)
 ### 1.2 Compatibilità
 ```php
 namespace Modules\Notify\Services;
@@ -162,40 +84,10 @@ class CompatibilityService
         }
 
         return $issues;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     }
 }
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## Sistema Notifiche
-
-### 1. Gestione Code
-```php
-// app/Notifications/QueuedNotification.php
-class QueuedNotification extends Notification implements ShouldQueue
-{
-    use Queueable;
-
-    public function retryUntil()
-    {
-        return now()->addHours(24);
-    }
-
-    public function backoff()
-    {
-        return [60, 180, 360];
-=======
-=======
->>>>>>> 247bd86 (.)
 ### 1.3 Performance
 ```php
 namespace Modules\Notify\Services;
@@ -247,33 +139,10 @@ class PerformanceOptimizer
         $css = preg_replace('/\s+/', ' ', $css);
 
         return trim($css);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     }
 }
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-### 2. Rate Limiting
-```php
-// app/Providers/NotificationServiceProvider.php
-class NotificationServiceProvider extends ServiceProvider
-{
-    public function boot()
-    {
-        RateLimiter::for('notifications', function ($job) {
-            return Limit::perMinute(60)->by($job->user->id);
-        });
-=======
-=======
->>>>>>> 247bd86 (.)
 ## 2. Struttura del Codice
 
 ### 2.1 Organizzazione
@@ -294,49 +163,10 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
         $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
         $this->loadViewsFrom(__DIR__.'/Resources/views', 'notify');
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     }
 }
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## Editor Visuale
-
-### 1. Validazione Input
-```php
-// app/Filament/Resources/EmailTemplateResource.php
-class EmailTemplateResource extends Resource
-{
-    public static function form(Form $form): Form
-    {
-        return $form->schema([
-            Forms\Components\Builder::make('content')
-                ->blocks([
-                    Builder\Block::make('text')
-                        ->schema([
-                            Forms\Components\RichEditor::make('content')
-                                ->required()
-                                ->rules([
-                                    'required',
-                                    'string',
-                                    'max:10000',
-                                    function ($attribute, $value, $fail) {
-                                        // Validazione personalizzata
-                                    },
-                                ]),
-                        ]),
-                ]),
-=======
-=======
->>>>>>> 247bd86 (.)
 ### 2.2 Convenzioni di Naming
 ```php
 namespace Modules\Notify\Services;
@@ -700,35 +530,11 @@ class TemplateLogger
             'timestamp' => now(),
             'user_id' => auth()->id(),
             'data' => $data
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
         ]);
     }
 }
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-### 2. Preview Template
-```php
-// app/Filament/Resources/EmailTemplateResource/Actions/PreviewAction.php
-class PreviewAction extends Action
-{
-    public function handle()
-    {
-        // 1. Genera preview
-        // 2. Valida template
-        // 3. Test rendering
-        // 4. Log errori
-=======
-=======
->>>>>>> 247bd86 (.)
 ### 6.2 Analytics
 ```php
 namespace Modules\Notify\Services;
@@ -759,64 +565,10 @@ class TemplateAnalytics
     public function getMetrics($template, $period = 'daily')
     {
         return $this->metrics->get($template, $period);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     }
 }
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> aa7cd13 (.)
-## Integrazioni
-
-### 1. Mailgun
-```php
-// app/Services/MailgunService.php
-class MailgunService
-{
-    public function send($template, $data)
-    {
-        try {
-            // 1. Validazione input
-            // 2. Preparazione payload
-            // 3. Invio email
-            // 4. Logging risultato
-        } catch (Exception $e) {
-            // 1. Log errore
-            // 2. Notifica admin
-            // 3. Retry policy
-            // 4. Fallback
-        }
-    }
-}
-```
-
-### 2. Mailtrap
-```php
-// app/Services/MailtrapService.php
-class MailtrapService
-{
-    public function test($template, $data)
-    {
-        // 1. Validazione ambiente
-        // 2. Preparazione test
-        // 3. Invio test
-        // 4. Verifica risultato
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> aa7cd13 (.)
 ## 7. Manutenzione
 
 ### 7.1 Versioning
@@ -874,66 +626,10 @@ class VersionManager
             'removed' => $this->getRemovedLines($previousVersion->content, $content),
             'modified' => $this->getModifiedLines($previousVersion->content, $content)
         ];
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)
     }
 }
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> aa7cd13 (.)
-## Best Practices Generali
-
-### 1. Performance
-- Utilizzare cache template
-- Implementare lazy loading
-- Ottimizzare query database
-- Minimizzare dipendenze
-
-### 2. Sicurezza
-- Validare input
-- Sanitizzare output
-- Implementare rate limiting
-- Logging accessi
-
-### 3. Manutenibilità
-- Documentazione completa
-- Test unitari
-- Test integrazione
-- Code review
-
-### 4. Monitoraggio
-- Logging dettagliato
-- Metriche performance
-- Alert errori
-- Report utilizzo
-
-## Note
-- Tutti i collegamenti sono relativi
-- La documentazione è mantenuta in italiano
-- I collegamenti sono bidirezionali quando appropriato
-- Ogni sezione ha il suo README.md specifico
-
-## Contribuire
-Per contribuire alla documentazione, seguire le [Linee Guida](../../../docs/linee-guida-documentazione.md) e le [Regole dei Collegamenti](../../../docs/regole_collegamenti_documentazione.md).
-
-## Collegamenti Completi
-Per una lista completa di tutti i collegamenti tra i README.md, consultare il file [README_links.md](../../../docs/README_links.md). 
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> aa7cd13 (.)
 ### 7.2 Backup
 ```php
 namespace Modules\Notify\Console\Commands;
@@ -1000,11 +696,3 @@ class BackupTemplates extends Command
    - Aggiornare dipendenze
    - Scansionare vulnerabilità
    - Implementare best practices 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bf9590e (.)
-=======
->>>>>>> 247bd86 (.)
-=======
->>>>>>> bf9590e (.)
->>>>>>> aa7cd13 (.)

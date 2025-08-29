@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets\Auth;
 
+use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\Auth;
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
-abstract class BaseAuthWidget extends XotBaseWidget
+abstract class BaseAuthWidget extends Widget
 {
     public ?array $data = [];
 
@@ -31,10 +31,10 @@ abstract class BaseAuthWidget extends XotBaseWidget
     }
 
     /**
-     * Schema del form per il widget di autenticazione.
+     * Restituisce lo schema del form per l'autenticazione.
      * Deve essere implementato dalle classi concrete.
      *
-     * @return array<int|string, \Filament\Forms\Components\Component>
+     * @return array<mixed>
      */
-    abstract public function getFormSchema(): array;
+    abstract protected function getFormSchema(): array;
 }

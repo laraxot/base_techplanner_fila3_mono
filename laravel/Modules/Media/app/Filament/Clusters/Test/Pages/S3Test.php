@@ -115,11 +115,7 @@ class S3Test extends XotBasePage
      *
      * @return array<int, \Filament\Forms\Components\Component>
      */
-<<<<<<< HEAD
     protected function getFormSchema(): array
-=======
-    public function getFormSchema(): array
->>>>>>> c59deef (.)
     {
         return [
             Grid::make(2)

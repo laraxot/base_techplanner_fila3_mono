@@ -1,13 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\Lang\Filament\Resources\TranslationFileResource\Pages;
 
 use Filament\Actions;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\EditRecord;
 use Modules\Lang\Actions\SaveTransAction;
 use Modules\Lang\Filament\Actions\LocaleSwitcherRefresh;
 use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;

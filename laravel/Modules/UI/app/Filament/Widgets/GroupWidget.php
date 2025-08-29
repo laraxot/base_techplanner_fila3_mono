@@ -12,10 +12,7 @@ class GroupWidget extends XotBaseWidget
 
     protected static ?string $pollingInterval = null;
 
-    protected static string $view = 'ui::filament.widgets.group';
-
-    public function getFormSchema(): array
-    {
+    public function getFormSchema() :array {
         return [];
     }
 

@@ -87,32 +87,4 @@ return [
         'settings' => 'Impostazioni',
         'logout' => 'Disconnetti',
     ],
-
-    'fields' => [
-        'email' => [
-            'label' => 'Email',
-            'placeholder' => 'Inserisci la tua email',
-            'tooltip' => 'Usa un indirizzo email valido',
-        ],
-        'password' => [
-            'label' => 'Password',
-            'placeholder' => 'Inserisci la tua password',
-            'tooltip' => 'La password deve contenere almeno 8 caratteri',
-        ],
-        'remember' => [
-            'label' => 'Ricordami',
-            'tooltip' => 'Mantieni l\'accesso attivo su questo dispositivo',
-        ],
-    ],
-
-    'actions' => [
-        'authenticate' => [
-            'label' => 'Autentica',
-            'tooltip' => 'Effettua il login nel sistema',
-        ],
-        'login' => [
-            'label' => 'Accedi',
-            'tooltip' => 'Accedi con le tue credenziali',
-        ],
-    ],
 ];

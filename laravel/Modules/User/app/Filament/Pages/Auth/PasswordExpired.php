@@ -13,7 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
-use Modules\Xot\Filament\Resources\Pages\XotBasePage;
+use Filament\Pages\Page;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +22,7 @@ use Illuminate\Validation\Rules\Password as PasswordRule;
 use Modules\User\Datas\PasswordData;
 use Modules\User\Events\NewPasswordSet;
 use Modules\User\Http\Response\PasswordResetResponse;
+use Modules\Xot\Filament\Traits\NavigationPageLabelTrait;
 use Webmozart\Assert\Assert;
 
 /**
@@ -29,9 +30,10 @@ use Webmozart\Assert\Assert;
  * @property ComponentContainer $editProfileForm
  * @property ComponentContainer $editPasswordForm
  */
-class PasswordExpired extends XotBasePage implements HasForms
+class PasswordExpired extends Page implements HasForms
 {
     use InteractsWithFormActions;
+    use NavigationPageLabelTrait;
 
     public ?string $current_password = '';
 
@@ -116,7 +118,7 @@ class PasswordExpired extends XotBasePage implements HasForms
         // get password expiry date and time
         $passwordExpiryDateTime = now()->addDays($pwd->expires_in);
 
-        // Verificare che l'utente esistente e che sia un modello Eloquent
+        // Verificare che l'utente esistante e che sia un modello Eloquent
         if (!($user instanceof \Illuminate\Database\Eloquent\Model)) {
             throw new \InvalidArgumentException('L\'utente deve essere un modello Eloquent con il metodo update');
         }
@@ -150,5 +152,15 @@ class PasswordExpired extends XotBasePage implements HasForms
             ->revealable()
             ->required()
             ->validationAttribute(static::trans('fields.current_password.validation_attribute'));
+    }
+
+    /**
+     * @return array<Action|ActionGroup>
+     */
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getResetPasswordFormAction(),
+        ];
     }
 }
