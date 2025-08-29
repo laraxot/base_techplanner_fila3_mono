@@ -139,6 +139,6 @@ return [
         'content_required' => 'Der Inhalt ist erforderlich',
     ],
     'model' => [
-        'label' => 'Seite',
+        'label' => 'page.model',
     ],
 ];

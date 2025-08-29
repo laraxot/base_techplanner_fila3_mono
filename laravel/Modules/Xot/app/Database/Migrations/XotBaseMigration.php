@@ -192,7 +192,7 @@ abstract class XotBaseMigration extends Migration
 
         // Check if result is an array or object and handle accordingly
         if (is_array($result)) {
-            return isset($result['count']) && is_numeric($result['count']) && (int) $result['count'] > 0;
+            return isset($result['count']) && (int) $result['count'] > 0;
         }
 
         // If it's an object, cast to array to avoid undefined property issues

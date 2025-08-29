@@ -34,15 +34,11 @@ return array (
     array (
       'label' => 'Nome',
       'placeholder' => 'Inserisci il nome della sezione',
-      'description' => 'name',
-      'helper_text' => 'name',
     ),
     'slug' => 
     array (
       'label' => 'Slug',
       'placeholder' => 'Inserisci lo slug della sezione',
-      'description' => 'slug',
-      'helper_text' => 'slug',
     ),
     'blocks' => 
     array (
@@ -297,10 +293,6 @@ return array (
     array (
       'label' => 'video',
     ),
-    'layout' => 
-    array (
-      'label' => 'layout',
-    ),
   ),
   'model' => 
   array (
@@ -367,18 +359,5 @@ return array (
     'updated' => 'Sezione aggiornata con successo',
     'deleted' => 'Sezione eliminata con successo',
     'bulk_deleted' => 'Sezioni eliminate con successo',
-  ),
-  'sections' => 
-  array (
-    'blocks' => 
-    array (
-      'heading' => 'blocks',
-      'label' => 'blocks',
-    ),
-    'info' => 
-    array (
-      'heading' => 'info',
-      'label' => 'info',
-    ),
   ),
 );

@@ -60,7 +60,7 @@ class QueueListenWidget extends Widget
         $output = new class() extends StreamOutput {
             public function __construct()
             {
-                parent::__construct(\Safe\fopen('php://output', 'w'));
+                parent::__construct(fopen('php://output', 'w'));
             }
 
             protected function doWrite(string $message, bool $newline): void
@@ -79,7 +79,7 @@ class QueueListenWidget extends Widget
             }
         };
         */
-        $resource = \Safe\fopen('php://stdout', 'w');
+        $resource = fopen('php://stdout', 'w');
         if ($resource === false) {
             throw new Exception('['.__LINE__.']['.class_basename($this).']');
         }

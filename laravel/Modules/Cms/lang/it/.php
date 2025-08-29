@@ -264,7 +264,6 @@ return array (
     'empty' => 
     array (
       'heading' => '',
-      'label' => 'empty',
     ),
   ),
 );

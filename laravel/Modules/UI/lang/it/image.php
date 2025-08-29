@@ -21,8 +21,6 @@ return array (
     array (
       'label' => 'ratio',
       'description' => 'ratio',
-      'helper_text' => 'ratio',
-      'placeholder' => 'ratio',
     ),
     'url' => 
     array (
