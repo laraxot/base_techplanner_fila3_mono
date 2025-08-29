@@ -4,15 +4,12 @@
 
 Questo documento contiene le soluzioni ai problemi più comuni che possono verificarsi durante lo sviluppo con il modulo Xot, seguendo i principi **DRY**, **KISS**, **SOLID**, **Robust** e **Laraxot**.
 
-<<<<<<< HEAD
 ## 🚨 **Problemi Critici**
-=======
 #### Composer
 ```bash
 
 # Pulire la cache di Composer
 composer clear-cache
->>>>>>> 68b3eda (.)
 
 ### **1. Classe Base Non Trovata**
 
@@ -22,18 +19,15 @@ Fatal error: Class 'Modules\Xot\Models\BaseModel' not found
 Class 'Modules\Xot\Filament\Resources\XotBaseResource' not found
 ```
 
-<<<<<<< HEAD
 #### **Cause Possibili**
 - Autoload non aggiornato
 - Namespace errato
 - Modulo Xot non installato correttamente
-=======
 #### NPM
 ```bash
 
 # Pulire la cache di NPM
 npm cache clean --force
->>>>>>> 68b3eda (.)
 
 #### **Soluzioni**
 
@@ -50,11 +44,9 @@ composer install
 use Modules\Xot\Models\BaseModel;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
-<<<<<<< HEAD
 // ❌ ERRATO
 use App\Models\BaseModel;
 use Filament\Resources\XotBaseResource;
-=======
 #### Migrazioni
 ```bash
 
@@ -63,19 +55,15 @@ php artisan migrate:fresh
 
 # Eseguire i seed
 php artisan db:seed
->>>>>>> 68b3eda (.)
 ```
 
 **Soluzione 3: Verificare Installazione Modulo**
 ```bash
-<<<<<<< HEAD
 # Verificare che il modulo sia presente
 ls -la laravel/Modules/Xot/
-=======
 
 # Verificare la connessione
 php artisan db:monitor
->>>>>>> 68b3eda (.)
 
 # Verificare composer.json
 cat laravel/Modules/Xot/composer.json
@@ -92,11 +80,8 @@ cat laravel/Modules/Xot/composer.json
 
 **Soluzione 1: Pulire Cache**
 ```bash
-<<<<<<< HEAD
-=======
 
 # Pulire la cache dell'applicazione
->>>>>>> 68b3eda (.)
 php artisan cache:clear
 php artisan config:clear
 php artisan view:clear
@@ -105,12 +90,9 @@ php artisan route:clear
 
 **Soluzione 2: Verificare Service Provider**
 ```bash
-<<<<<<< HEAD
 # Verificare che il service provider sia registrato
-=======
 
 # Verificare lo stato dei moduli
->>>>>>> 68b3eda (.)
 php artisan module:list
 
 # Verificare configurazione
@@ -119,12 +101,10 @@ php artisan config:show app.providers
 
 **Soluzione 3: Verificare Struttura Traduzioni**
 ```bash
-<<<<<<< HEAD
 # Verificare struttura file traduzioni
 ls -la laravel/Modules/Xot/lang/it/
 ls -la laravel/Modules/Xot/lang/en/
 ls -la laravel/Modules/Xot/lang/de/
-=======
 
 # Pubblicare gli assets
 php artisan module:publish ModuleName
@@ -134,12 +114,10 @@ php artisan module:publish-config ModuleName
 
 # Pubblicare le migrazioni
 php artisan module:publish-migration ModuleName
->>>>>>> 68b3eda (.)
 ```
 
 ### **3. Errori PHPStan Livello 10**
 
-<<<<<<< HEAD
 #### **Sintomi**
 ```
 ERROR: Access to an undefined property
@@ -150,7 +128,6 @@ ERROR: Return type mismatch
 #### **Soluzioni**
 
 **Soluzione 1: Aggiungere Annotazioni PHPDoc**
-=======
 ### 1. Errori di Compilazione
 ```bash
 
@@ -228,7 +205,6 @@ Soluzione:
 2. Racchiudi tutti gli elementi del componente in un unico `<div>` o altro elemento contenitore
 
 **Esempio corretto:**
->>>>>>> 68b3eda (.)
 ```php
 /**
  * @property int $id
@@ -259,14 +235,11 @@ public function getUser()
 
 **Soluzione 3: Eseguire PHPStan**
 ```bash
-<<<<<<< HEAD
 # Dalla root del progetto Laravel
 ./vendor/bin/phpstan analyse --level=10
-=======
 
 # Compilare gli assets
 npm run dev
->>>>>>> 68b3eda (.)
 
 # Per un modulo specifico
 ./vendor/bin/phpstan analyse Modules/Xot --level=10
@@ -274,15 +247,12 @@ npm run dev
 
 ## 🔧 **Problemi Specifici**
 
-<<<<<<< HEAD
 ### **1. Problemi di Ereditarietà**
-=======
 ### 1. Log dell'Applicazione
 ```bash
 
 # Visualizzare i log
 tail -f storage/logs/laravel.log
->>>>>>> 68b3eda (.)
 
 #### **Sintomi**
 ```

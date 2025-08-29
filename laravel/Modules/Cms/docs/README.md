@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Modulo Cms - Content Management System
+=======
 # CMS Module Documentation
+>>>>>>> 4355c39 (.)
 
 ## Overview
 
@@ -177,8 +182,92 @@ Themes/CustomTheme/
 // Creare nuovo componente
 php artisan make:cms-component CustomComponent
 
+<<<<<<< HEAD
+## Funzionalità Principali
+=======
+# Modulo CMS
+> **Collegamenti correlati**
+> - [README.md documentazione generale SaluteOra](../../../../docs/README.md)
+> - [README.md toolkit bashscripts](../../../../bashscripts/docs/README.md)
+> - [README.md modulo CMS](../../../../laravel/Modules/Cms/docs/README.md)
+> - [README.md modulo Dental](../../../../laravel/Modules/Dental/docs/README.md)
+> - [README.md modulo GDPR](../../../../laravel/Modules/Gdpr/docs/README.md)
+> - [README.md modulo User](../../../../laravel/Modules/User/docs/README.md)
+> - [README.md modulo Lang](../../../../laravel/Modules/Lang/docs/README.md)
+> - [README.md modulo Patient](../../../../laravel/Modules/Patient/docs/README.md)
+> - [README.md modulo Activity](../../../../laravel/Modules/Activity/docs/README.md)
+> - [README.md modulo Media](../../../../laravel/Modules/Media/docs/README.md)
+> - [README.md modulo Notify](../../../../laravel/Modules/Notify/docs/README.md)
+> - [README.md modulo Reporting](../../../../laravel/Modules/Reporting/docs/README.md)
+> - [README.md modulo Tenant](../../../../laravel/Modules/Tenant/docs/README.md)
+> - [README.md modulo UI](../../../../laravel/Modules/UI/docs/README.md)
+> - [README.md modulo Xot](../../../../laravel/Modules/Xot/docs/README.md)
+> - [README.md modulo Chart](../../../../laravel/Modules/Chart/docs/README.md)
+> - [README.md tema One](../../../../laravel/Themes/One/docs/README.md)
+> - [README.md tema Two](../../../../laravel/Themes/Two/docs/README.md)
+> - [Collegamenti documentazione centrale](../../../../docs/collegamenti-documentazione.md)
+>>>>>>> b85e13f (.)
+
+### 1. Gestione Menu
+- Creazione e gestione di menu dinamici
+- Struttura gerarchica dei menu
+- Supporto per localizzazione
+
+### 2. Gestione Sezioni
+- Creazione di sezioni di contenuto
+- Layout flessibili e configurabili
+- Integrazione con il sistema di temi
+
+### 3. Content Management
+- Editor di contenuti avanzato
+- Gestione delle versioni
+- Workflow di approvazione
+
+## Architettura Filament
+
+### Regole di Estensione
+- **TUTTE** le risorse estendono `XotBaseResource`
+- **TUTTE** le pagine estendono le classi XotBase appropriate
+- **MAI** estendere direttamente le classi Filament
+
+### Risorse Implementate
+- `MenuResource`: Gestione menu dinamici
+- `SectionResource`: Gestione sezioni di contenuto
+
+## Stato Attuale e Problemi
+
+### ✅ Corretto
+- `MenuResource.php`: Estende correttamente `XotBaseResource`
+- `SectionResource.php`: Estende correttamente `XotBaseResource`
+- Pagine Section: Estendono correttamente le classi XotBase
+
+### ❌ Da Correggere
+- `CreateMenu.php`: Estende `CreateRecord` → Deve estendere `XotBaseCreateRecord`
+- `EditMenu.php`: Estende `EditRecord` → Deve estendere `XotBaseEditRecord`
+
+## Correzioni Necessarie
+
+### Priorità Alta
+1. **CreateMenu.php**: Correggere estensione classe
+2. **EditMenu.php**: Correggere estensione classe
+3. Verifica PHPStan livello 10
+4. Test funzionali post-correzione
+
+### Impatto
+- Conformità alle regole architetturali XotBase
+- Migliore manutenibilità del codice
+- Consistenza con il resto del progetto
+
+## Testing e Qualità
+
+### PHPStan
+```bash
+# Verifica livello 10
+./vendor/bin/phpstan analyse laravel/Modules/Cms/ --level=10
+=======
 // Registrare nel ServiceProvider
 Blade::componentNamespace('Themes\\CustomTheme\\View\\Components', 'custom');
+>>>>>>> 4355c39 (.)
 ```
 
 ## Performance

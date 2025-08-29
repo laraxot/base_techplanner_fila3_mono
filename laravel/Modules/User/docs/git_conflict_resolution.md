@@ -36,32 +36,8 @@ git rebase -i origin/main
 
 # Opzioni disponibili:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 11b9b29 (.)
-=======
->>>>>>> fc93b0f (.)
 # pick   - mantieni il commit
-
 # edit   - modifica il commit
-
-<<<<<<< HEAD
-=======
->>>>>>> 08f361e (.)
-<<<<<<< HEAD
-=======
->>>>>>> f3bab43 (.)
-=======
->>>>>>> 11b9b29 (.)
-# pick   - mantieni il commit
-
-# edit   - modifica il commit
-
-=======
->>>>>>> fc93b0f (.)
 # squash - unisci con il commit precedente
 ```
 
@@ -228,19 +204,4 @@ git config --global alias.theirs '!f() { git checkout --theirs "$@" && git add "
 2. Mantenere commit atomici e descrittivi
 3. Usare tag per le release
 4. Documentare le decisioni di merge
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-5. Testare dopo ogni risoluzione 
-=======
->>>>>>> 08f361e (.)
-=======
->>>>>>> f3bab43 (.)
-=======
-5. Testare dopo ogni risoluzione 
-=======
->>>>>>> 08f361e (.)
->>>>>>> 11b9b29 (.)
-=======
->>>>>>> fc93b0f (.)
+5. Testare dopo ogni risoluzione
