@@ -20,6 +20,9 @@ class GetViewNameSpacePathAction
      */
     public function execute(?string $module_name = null): string
     {
+        if($module_name=='pub_theme'){
+           return XotData::make()->getPubThemeViewPath('');
+        }
         if (null !== $module_name && '' !== $module_name) {
             $module_path = Module::getModulePath($module_name);
             /** @var non-falsy-string $namespace_path */

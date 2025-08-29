@@ -43,6 +43,10 @@ Il progetto utilizza un sistema di temi multipli basato su Laraxot. I temi dispo
 
 Il tema attivo è configurato in `laravel/config/local/techplanner/xra.php` con la chiave `pub_theme`.
 
+**Configurazione corrente**: `'pub_theme' => 'Sixteen'`
+
+Per dettagli sui componenti dei temi, vedere [Theme Components](./theme_components.md).
+
 #### Struttura dei Temi
 
 ```

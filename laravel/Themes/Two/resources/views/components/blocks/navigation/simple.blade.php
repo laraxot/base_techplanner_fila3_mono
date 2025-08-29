@@ -13,11 +13,13 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between py-4">
             {{-- Logo o titolo --}}
-            <div class="flex items-center">
-                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                    {{ $data['title'] ?? @lang('pub_theme::navigation.site_title') }}
-                </h2>
-            </div>
+            @if(isset($data['title']) || isset($data['brand']))
+                <div class="flex items-center">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                        {{ $data['brand'] ?? $data['title'] ?? @lang('pub_theme::navigation.site_title') }}
+                    </h2>
+                </div>
+            @endif
 
             {{-- Menu di navigazione --}}
             @if(isset($data['menu_items']) && is_array($data['menu_items']))

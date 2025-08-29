@@ -12,9 +12,9 @@
 <nav class="simple-navigation" role="navigation" aria-label="Navigation">
     <div class="navigation-wrapper">
         {{-- Contenuto di base della navigazione --}}
-        @if(isset($data['title']))
+        @if(isset($data['title']) || isset($data['brand']))
             <div class="nav-title">
-                <h2>{{ $data['title'] }}</h2>
+                <h2>{{ $data['brand'] ?? $data['title'] }}</h2>
             </div>
         @endif
 

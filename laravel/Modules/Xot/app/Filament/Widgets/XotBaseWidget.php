@@ -45,6 +45,14 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
     protected int|string|array $columnSpan = 'full';
 
     /**
+     * @return int | string | array<string, int | null>
+     */
+    public function getColumnSpan(): int | string | array
+    {
+        return $this->columnSpan;
+    }
+
+    /**
      * Lista degli eventi ascoltati dal widget.
      *
      * @var array<string, string>
