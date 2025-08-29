@@ -54,6 +54,7 @@ return array (
       'label' => 'title',
       'description' => 'title',
       'helper_text' => 'title',
+      'placeholder' => 'title',
     ),
     'view' => 
     array (

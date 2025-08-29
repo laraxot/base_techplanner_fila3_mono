@@ -92,6 +92,6 @@ return [
         'type_in' => 'Il tipo deve essere uno tra: main, footer, sidebar',
     ],
     'model' => [
-        'label' => 'menu.model',
+        'label' => 'Menü',
     ],
 ];

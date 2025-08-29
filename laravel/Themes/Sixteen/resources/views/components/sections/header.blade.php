@@ -92,10 +92,14 @@
         <div class="flex justify-between w-full max-w-screen-xl mx-auto">
             <div class="flex-1">
                 <a href="" class="flex items-center py-2 space-x-4">
+                    {{--  
                     <x-heroicon-o-shield-check class="stroke-1 size-16" />
+                    --}}
+                    <x-filament-panels::logo  />
+                    
                     <div class="text-start">
-                        <div class="text-2xl font-bold">Il mio Comune</div>
-                        <div class="text-sm">Un comune da vivere</div>
+                        <div class="text-2xl font-bold">{{ $_theme->metatag('title') }}</div>
+                        <div class="text-sm">{{ $_theme->metatag('subtitle') }}</div>
                     </div>
                 </a>
             </div>
@@ -124,6 +128,7 @@
     <div class="hidden h-12 overflow-auto min-h-12 navbar md:flex">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto space-x-12">
             <div class="flex-1 ">
+                {{--  dddx(get_defined_vars()) --}}
                 <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
                     <li><a href="">Amministrazione</a></li>
                     <li><a href="">Novità</a></li>

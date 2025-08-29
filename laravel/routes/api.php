@@ -30,3 +30,4 @@ Route::middleware('api')->group(function () {
         require base_path('Modules/Xot/routes/api.php');
     }
 });
+

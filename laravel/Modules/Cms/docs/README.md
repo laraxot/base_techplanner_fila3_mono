@@ -1,149 +1,286 @@
-# Modulo Cms - Content Management System
+# Modulo CMS - Content Management System
 
-## Panoramica
-Il modulo Cms gestisce il sistema di gestione dei contenuti dell'applicazione, fornendo funzionalità per la gestione di menu, sezioni e contenuti dinamici.
+## Descrizione
+Il modulo CMS fornisce un sistema completo di gestione dei contenuti per l'applicazione Laravel, includendo componenti, blocchi, sezioni e temi personalizzabili.
 
-## Struttura del Modulo
+## Caratteristiche Principali
 
-### Directory Principali
+### Componenti
+- **Footer**: Componente footer responsive con menu e social link
+- **Header**: Header principale con navigazione e logo
+- **Navigation**: Menu di navigazione multilingua
+- **Breadcrumb**: Navigazione a breadcrumb
+- **Pagination**: Sistema di paginazione personalizzabile
+
+### Blocchi
+- **Text**: Blocchi di testo con formattazione rich text
+- **Image**: Gestione immagini con ottimizzazioni
+- **Gallery**: Gallerie di immagini responsive
+- **Video**: Embed video da YouTube, Vimeo e altri servizi
+- **Form**: Form di contatto e iscrizione
+
+### Sezioni
+- **Hero**: Sezioni hero con call-to-action
+- **Features**: Sezioni caratteristiche prodotto/servizio
+- **Testimonials**: Testimonianze clienti
+- **Contact**: Sezioni contatto e mappe
+- **Footer**: Sezioni footer con informazioni e link
+
+### Temi
+- **One**: Tema moderno e minimalista
+- **Sixteen**: Tema business professionale
+- **Custom**: Sistema di temi personalizzabili
+
+## Installazione
+
+### Requisiti
+- Laravel 10.x o superiore
+- PHP 8.1 o superiore
+- Composer 2.0 o superiore
+
+### Installazione via Composer
+```bash
+composer require modules/cms
 ```
-laravel/Modules/Cms/
-├── app/
-│   ├── Filament/
-│   │   └── Resources/
-│   │       ├── MenuResource.php
-│   │       └── SectionResource.php
-│   ├── Models/
-│   └── Providers/
-├── config/
-├── database/
-├── docs/
+
+### Pubblicazione Assets
+```bash
+php artisan vendor:publish --tag=cms-assets
+```
+
+### Esecuzione Migrazioni
+```bash
+php artisan migrate
+```
+
+## Utilizzo Base
+
+### Rendering Componente
+```php
+// In Blade templates
+<x-cms::components.footer />
+
+// In Livewire
+<x-cms::components.header />
+```
+
+### Rendering Sezione
+```php
+// Sezione con slug specifico
+<x-cms::section slug="hero" />
+
+// Sezione con dati personalizzati
+<x-cms::section slug="footer" :data="$footerData" />
+```
+
+### Rendering Blocco
+```php
+// Blocco di testo
+<x-cms::blocks.text :data="$textData" />
+
+// Blocco immagine
+<x-cms::blocks.image :data="$imageData" />
+```
+
+## Configurazione
+
+### File di Configurazione
+```php
+// config/cms.php
+return [
+    'default_theme' => 'one',
+    'cache_enabled' => true,
+    'cache_ttl' => 3600,
+    'upload_path' => 'uploads/cms',
+    'image_sizes' => [
+        'thumbnail' => [150, 150],
+        'medium' => [300, 300],
+        'large' => [800, 600],
+    ],
+];
+```
+
+### Variabili d'Ambiente
+```env
+CMS_DEFAULT_THEME=one
+CMS_CACHE_ENABLED=true
+CMS_UPLOAD_PATH=uploads/cms
+CMS_IMAGE_QUALITY=85
+```
+
+## API
+
+### Endpoint Principali
+- `GET /api/cms/sections` - Lista sezioni
+- `GET /api/cms/sections/{id}` - Dettagli sezione
+- `POST /api/cms/sections` - Crea sezione
+- `PUT /api/cms/sections/{id}` - Aggiorna sezione
+- `DELETE /api/cms/sections/{id}` - Elimina sezione
+
+### Autenticazione
+```php
+// Middleware per proteggere endpoint
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('cms/sections', SectionController::class);
+});
+```
+
+## Personalizzazione
+
+### Temi Personalizzati
+```php
+// Creare nuovo tema
+php artisan make:cms-theme CustomTheme
+
+// Struttura tema
+Themes/CustomTheme/
+├── resources/
+│   ├── views/
+│   ├── css/
+│   └── js/
 ├── lang/
-└── resources/
+└── config/
 ```
 
-### Namespace
-- **Principale**: `Modules\Cms`
-- **Filament**: `Modules\Cms\Filament`
-- **Models**: `Modules\Cms\Models`
-- **Providers**: `Modules\Cms\Providers`
+### Componenti Personalizzati
+```php
+// Creare nuovo componente
+php artisan make:cms-component CustomComponent
 
-## Funzionalità Principali
-
-### 1. Gestione Menu
-- Creazione e gestione di menu dinamici
-- Struttura gerarchica dei menu
-- Supporto per localizzazione
-
-### 2. Gestione Sezioni
-- Creazione di sezioni di contenuto
-- Layout flessibili e configurabili
-- Integrazione con il sistema di temi
-
-### 3. Content Management
-- Editor di contenuti avanzato
-- Gestione delle versioni
-- Workflow di approvazione
-
-## Architettura Filament
-
-### Regole di Estensione
-- **TUTTE** le risorse estendono `XotBaseResource`
-- **TUTTE** le pagine estendono le classi XotBase appropriate
-- **MAI** estendere direttamente le classi Filament
-
-### Risorse Implementate
-- `MenuResource`: Gestione menu dinamici
-- `SectionResource`: Gestione sezioni di contenuto
-
-## Stato Attuale e Problemi
-
-### ✅ Corretto
-- `MenuResource.php`: Estende correttamente `XotBaseResource`
-- `SectionResource.php`: Estende correttamente `XotBaseResource`
-- Pagine Section: Estendono correttamente le classi XotBase
-
-### ❌ Da Correggere
-- `CreateMenu.php`: Estende `CreateRecord` → Deve estendere `XotBaseCreateRecord`
-- `EditMenu.php`: Estende `EditRecord` → Deve estendere `XotBaseEditRecord`
-
-## Correzioni Necessarie
-
-### Priorità Alta
-1. **CreateMenu.php**: Correggere estensione classe
-2. **EditMenu.php**: Correggere estensione classe
-3. Verifica PHPStan livello 10
-4. Test funzionali post-correzione
-
-### Impatto
-- Conformità alle regole architetturali XotBase
-- Migliore manutenibilità del codice
-- Consistenza con il resto del progetto
-
-## Testing e Qualità
-
-### PHPStan
-```bash
-# Verifica livello 10
-./vendor/bin/phpstan analyse laravel/Modules/Cms/ --level=10
+// Registrare nel ServiceProvider
+Blade::componentNamespace('Themes\\CustomTheme\\View\\Components', 'custom');
 ```
 
-### Test Funzionali
-```bash
-# Test specifico per il modulo
-php artisan test --testsuite=Cms
+## Performance
 
-# Test di regressione
+### Ottimizzazioni Implementate
+- Cache delle view e componenti
+- Lazy loading per immagini
+- Minificazione CSS/JS
+- Compressione gzip
+- CDN per asset statici
+
+### Metriche Target
+- First Contentful Paint: < 1.5s
+- Largest Contentful Paint: < 2.5s
+- Cumulative Layout Shift: < 0.1
+- Time to Interactive: < 3.5s
+
+## Sicurezza
+
+### Protezioni Implementate
+- Validazione input rigorosa
+- Sanitizzazione HTML
+- Protezione CSRF
+- Rate limiting
+- Logging accessi
+
+### Best Practices
+- Utilizzare sempre validazione lato server
+- Sanitizzare contenuti HTML
+- Implementare autenticazione per operazioni admin
+- Loggare tutte le operazioni critiche
+
+## Testing
+
+### Test Unitari
+```bash
+# Eseguire test unitari
 php artisan test --filter=Cms
+
+# Test specifici
+php artisan test tests/Unit/Cms/ComponentTest.php
 ```
 
-## Documentazione Correlata
+### Test Feature
+```bash
+# Test API
+php artisan test tests/Feature/Cms/ApiTest.php
 
-### Modulo Specifico
-- [Filament Resources](filament-resources.md) - Risorse Filament e loro configurazione
-- [Architettura](architecture.md) - Architettura del modulo e design patterns
-- [API](api.md) - Endpoint API e documentazione
+# Test componenti
+php artisan test tests/Feature/Cms/ComponentTest.php
+```
 
-### Progetto Root
-- [Regole XotBase Extension](../../.ai/guidelines/xotbase-extension-rules.md)
-- [Architettura Filament](../../.ai/guidelines/FILAMENT.md)
-- [Regole di Sviluppo Generali](../../docs/laraxot.md)
+## Troubleshooting
 
-### Moduli Correlati
-- [Modulo UI](../UI/docs/README.md) - Componenti di interfaccia
-- [Modulo Xot](../Xot/docs/README.md) - Classi base e utilities
-- [Modulo Theme](../Theme/docs/README.md) - Gestione temi
+### Problemi Comuni
+- **View non trovata**: Verificare nome file `default.blade.php`
+- **Componente non registrato**: Controllare ServiceProvider
+- **Cache non aggiornata**: Eseguire `php artisan view:clear`
 
-## Manutenzione e Aggiornamenti
+### Debug
+```php
+// Verificare esistenza view
+if (view()->exists('cms::components.footer')) {
+    echo "View footer esiste";
+}
 
-### Checklist Aggiornamento
-- [ ] Verifica conformità XotBase per nuove risorse
-- [ ] Aggiornamento documentazione per modifiche
-- [ ] Test funzionali post-modifiche
-- [ ] Verifica PHPStan livello 10
-- [ ] Aggiornamento collegamenti bidirezionali
+// Verificare componenti registrati
+dd(app('blade.compiler')->getClassComponentAliases());
+```
 
-### Note Importanti
-- Mantenere sempre la conformità alle regole XotBase
-- Documentare ogni modifica significativa
-- Aggiornare i collegamenti bidirezionali
-- Testare sempre le modifiche prima del commit
+## Documentazione
 
-## Collegamenti Bidirezionali
+### Guide Principali
+- [Componenti](components/README.md) - Panoramica componenti disponibili
+- [Blocchi](blocks/README.md) - Sistema di blocchi modulari
+- [Sezioni](sections/README.md) - Gestione sezioni pagina
+- [Temi](themes/README.md) - Sistema temi personalizzabili
+- [API](api/README.md) - Documentazione API REST
 
-### Documentazione Root
-- [README](../../docs/README.md) - Documentazione principale del progetto
-- [Laraxot](../../docs/laraxot.md) - Framework e convenzioni
-- [Filament Best Practices](../../docs/filament-best-practices.md)
+### Localizzazione
+- [Localizzazione](localization/README.md) - Sistema di traduzioni e localizzazione ⭐ **NUOVO**
 
-### Moduli Correlati
-- [UI](../UI/docs/README.md) - Componenti di interfaccia
-- [Xot](../Xot/docs/README.md) - Classi base e utilities
-- [Theme](../Theme/docs/README.md) - Gestione temi
+### Troubleshooting
+- [Troubleshooting](troubleshooting.md) - Problemi comuni e soluzioni
+
+### Sviluppo
+- [Architettura](architecture.md) - Architettura del modulo
+- [Pattern](patterns/README.md) - Pattern di sviluppo
+- [Convenzioni](conventions.md) - Convenzioni di codice
+
+## Contribuire
+
+### Setup Sviluppo
+```bash
+# Clonare repository
+git clone https://github.com/username/cms-module.git
+
+# Installare dipendenze
+composer install
+
+# Eseguire test
+php artisan test
+```
+
+### Standard di Codice
+- PSR-12 coding standards
+- PHPStan livello 9+
+- Test coverage > 80%
+- Documentazione PHPDoc completa
+
+### Pull Request
+1. Fork del repository
+2. Creare branch feature
+3. Implementare modifiche
+4. Aggiungere test
+5. Aggiornare documentazione
+6. Creare pull request
+
+## Licenza
+Questo modulo è rilasciato sotto licenza MIT. Vedi il file [LICENSE](LICENSE) per i dettagli.
+
+## Supporto
+- **Documentazione**: [docs/](docs/)
+- **Issues**: [GitHub Issues](https://github.com/username/cms-module/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/username/cms-module/discussions)
+
+## Changelog
+Vedi [CHANGELOG.md](CHANGELOG.md) per la cronologia delle versioni.
 
 ---
-
-*Ultimo aggiornamento: Gennaio 2025*
-*Stato: Correzioni necessarie per CreateMenu e EditMenu*
-*Versione: 1.0*
+**Ultimo aggiornamento**: 2025-01-06
+**Versione**: 2.0.1
+**Autore**: Team Sviluppo
+**Compatibilità**: Laravel 10.x, PHP 8.1+
 

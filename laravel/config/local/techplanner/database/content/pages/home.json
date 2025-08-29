@@ -1,0 +1,22 @@
+{
+    "id": "1",
+    "title": {
+        "it": "home"
+    },
+    "slug": "home",
+    "middleware": null,
+    "content": null,
+    "content_blocks": {
+        "it": []
+    },
+    "sidebar_blocks": {
+        "it": []
+    },
+    "footer_blocks": {
+        "it": []
+    },
+    "created_at": "2025-07-08T09:02:57.000000Z",
+    "updated_at": "2025-08-29T11:07:48.000000Z",
+    "created_by": null,
+    "updated_by": "01985ae8-8039-71ea-88c7-54ebce6295b0"
+}

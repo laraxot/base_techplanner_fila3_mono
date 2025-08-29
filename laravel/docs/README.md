@@ -158,17 +158,56 @@ php artisan test --coverage
 
 ## 📚 Documentation Structure
 
-### Essential Documentation (READ FIRST)
-- [`claude-code-rules.md`](./claude-code-rules.md) - **CRITICAL**: Essential rules that must never be broken
-- [`xotbase-extension-rules.md`](./xotbase-extension-rules.md) - XotBase extension patterns and mappings
+### 🚨 Essential Documentation (READ FIRST)
+- [`claude-code-rules.md`](./claude-code-rules.md) - **CRITICAL**: Essential development rules that must never be broken
+- [`xotbase-extension-rules.md`](./xotbase-extension-rules.md) - Quick reference for XotBase/LangBase extension patterns
 
-### Error Prevention Documentation
-- [`error-prevention/`](./error-prevention/) - Critical error pattern analysis and prevention
-- [`maintenance/git-merge-conflicts.md`](./maintenance/git-merge-conflicts.md) - Git conflict resolution
+### 🏗️ Architecture Documentation
+- [`architecture/`](./architecture/) - System architecture, design patterns, and extension rules
+  - [`filament-extension-rules.md`](./architecture/filament-extension-rules.md) - Complete Filament extension patterns
+  - [`module-icons-system.md`](./architecture/module-icons-system.md) - Module icon system documentation
+  - [`module-namespaces.md`](./architecture/module-namespaces.md) - Module namespace conventions
+  - [`filament_widget_vs_livewire_critical_rule.md`](./architecture/filament_widget_vs_livewire_critical_rule.md) - Widget vs Livewire usage rules
 
-### Architecture Documentation
-- [`architecture/`](./architecture/) - System architecture and design patterns
-- [`patterns/`](./patterns/) - Code patterns and best practices
+### 🛡️ Error Prevention Documentation
+- [`error-prevention/`](./error-prevention/) - Critical error pattern analysis and prevention strategies
+  - [`filament-xotbase-patterns.md`](./error-prevention/filament-xotbase-patterns.md) - XotBase implementation patterns
+  - [`xotbase-resource-rules.md`](./error-prevention/xotbase-resource-rules.md) - XotBase resource-specific rules
+  - [`method-signature-errors.md`](./error-prevention/method-signature-errors.md) - Method signature error prevention
+  - [`complete-xotbase-abstract-methods.md`](./error-prevention/complete-xotbase-abstract-methods.md) - Abstract method requirements
+  - [`multilingual-pattern-analysis.md`](./error-prevention/multilingual-pattern-analysis.md) - Multilingual module analysis
+  - [`multilingual-detection-commands.md`](./error-prevention/multilingual-detection-commands.md) - Commands for multilingual detection
+  - [`lessons-learned-fatalerror-prevention.md`](./error-prevention/lessons-learned-fatalerror-prevention.md) - Fatal error prevention lessons
+
+### 🎯 Development Patterns
+- [`patterns/`](./patterns/) - Reusable code patterns and best practices
+  - [`actions.md`](./patterns/actions.md) - Action implementation patterns
+  - [`queueable-actions.md`](./patterns/queueable-actions.md) - Queueable action patterns
+  - [`language-file-patterns.md`](./patterns/language-file-patterns.md) - Translation file patterns
+  - [`module-config-patterns.md`](./patterns/module-config-patterns.md) - Module configuration patterns
+  - [`filament-composite-columns-best-practices.md`](./patterns/filament-composite-columns-best-practices.md) - Filament column best practices
+
+### 🔬 Code Quality Documentation
+- [`code-quality/`](./code-quality/) - PHPStan, testing, and code quality guidelines
+  - [`phpstan-comprehensive-guide.md`](./code-quality/phpstan-comprehensive-guide.md) - Complete PHPStan level 10 compliance guide
+  - [`phpstan-error-analysis-guide.md`](./code-quality/phpstan-error-analysis-guide.md) - PHPStan error analysis and resolution
+  - [`model-casting-deprecated-rules.md`](./code-quality/model-casting-deprecated-rules.md) - Model casting modernization rules
+  - [`model_casting_critical_migration.md`](./code-quality/model_casting_critical_migration.md) - Critical casting migration guide
+
+### 🏢 Business Logic Documentation
+- [`business-logic/`](./business-logic/) - Business-specific implementations and solutions
+  - [`homepage-comprehensive-documentation.md`](./business-logic/homepage-comprehensive-documentation.md) - Complete homepage implementation guide
+
+### 📊 Analysis Documentation
+- [`analysis/`](./analysis/) - Technical analysis, implementation studies, and architectural reviews
+  - Various analysis files for specific implementations and corrections
+
+### 🔧 Maintenance and Troubleshooting
+- [`maintenance/`](./maintenance/) - Maintenance procedures and operational guides
+  - [`git-merge-conflicts.md`](./maintenance/git-merge-conflicts.md) - Git conflict resolution procedures
+- [`troubleshooting/`](./troubleshooting/) - Common issues and solutions
+  - [`homepage-visibility-issues.md`](./troubleshooting/homepage-visibility-issues.md) - Homepage troubleshooting
+  - [`encryption_error_fix.md`](./troubleshooting/encryption_error_fix.md) - Encryption error solutions
 
 ## 🚨 Most Common Fatal Errors
 

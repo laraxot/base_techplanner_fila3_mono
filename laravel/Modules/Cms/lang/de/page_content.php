@@ -92,6 +92,6 @@ return [
         'blocks_required' => 'I blocchi di contenuto sono obbligatori',
     ],
     'model' => [
-        'label' => 'page content.model',
+        'label' => 'Seiteninhalt',
     ],
 ];
