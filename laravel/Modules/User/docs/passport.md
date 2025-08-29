@@ -1570,6 +1570,9 @@ trait HasPassportConfiguration
 ### 4.2 Changelog
 ```markdown
 
+# Changelog
+
+## [1.0.0] - 2024-03-20
 
 ### Added
 - Implementazione iniziale dei trait di configurazione

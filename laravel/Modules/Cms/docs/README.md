@@ -1,190 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Modulo Cms - Content Management System
-=======
-# CMS Module Documentation
->>>>>>> 4355c39 (.)
-
-## Overview
-
-The CMS (Content Management System) module provides a complete content management solution for Laravel applications, featuring components, blocks, sections, and customizable themes with full multilingual support.
-
-## Quick Navigation
-
-### 📚 Getting Started
-- **[01 - Getting Started](01-getting-started.md)** - Installation, configuration, and quick start
-- **[02 - Architecture](02-architecture.md)** - Module structure and design patterns
-- **[03 - Components](03-components.md)** - Working with reusable components
-- **[04 - Content Management](04-content-management.md)** - Pages, sections, and content strategies
-
-### ⚙️ Core Features
-- **[05 - Filament Integration](05-filament-integration.md)** - Admin panel and resource management
-- **[06 - Theming](06-theming.md)** - Creating and customizing themes
-- **[07 - Localization](07-localization.md)** - Multi-language setup and translations
-- **[08 - Testing](08-testing.md)** - Testing strategies and guidelines
-
-### 🔧 Specialized Topics
-- **[Blocks System](blocks/README.md)** - Modular content blocks
-- **[Sections Guide](sections/README.md)** - Reusable page sections
-- **[Performance Optimization](performance-optimization.md)** - Caching and optimization
-- **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
-
-### 🌍 Localization
-- **[Localization Setup](localization/localization-setup.md)** - Translation configuration
-- **[Translation Issues](localization/translation-file-issues.md)** - 🚨 Critical: ".model" string fixes
-
-## Key Features
-
-### 🧩 Components
-- **Reusable UI Components**: Header, footer, navigation, forms
-- **Data Display**: Tables, lists, charts, progress indicators
-- **Interactive Elements**: Buttons, forms, modals, dropdowns
-- **Theme Integration**: Automatic theme adaptation
-
-### 📦 Blocks System
-- **Content Blocks**: Text, images, galleries, videos
-- **Layout Blocks**: Sections, columns, grids, carousels
-- **Interactive Blocks**: Contact forms, CTAs, newsletters
-- **Custom Blocks**: Create your own modular components
-
-### 📄 Content Management
-- **Pages**: Full page management with SEO optimization
-- **Sections**: Reusable content areas across pages
-- **Multilingual**: Complete translation support
-- **Version Control**: Content versioning and history
-
-### 🎨 Theming
-- **Multiple Themes**: One, Sixteen, and custom themes
-- **Theme Reusability**: Business-agnostic, configurable themes
-- **Asset Management**: Vite integration with optimization
-- **Responsive Design**: Mobile-first, accessible interfaces
-
-## Quick Start
-
-### Installation Requirements
-- Laravel 10.x or higher
-- PHP 8.1 or higher
-- Composer 2.0 or higher
-- Node.js 16.x or higher (for assets)
-
-### Basic Installation
-```bash
-# Install via Composer
-composer require modules/cms
-
-# Publish assets
-php artisan vendor:publish --tag=cms-assets
-
-# Run migrations
-php artisan migrate
-
-# Build frontend assets
-npm install && npm run build
-```
-
-### Basic Usage Examples
-```blade
-{{-- Render components --}}
-<x-cms::components.header />
-<x-cms::components.footer />
-
-{{-- Render sections --}}
-<x-cms::section slug="hero" />
-<x-cms::section slug="features" :data="$featuresData" />
-
-{{-- Render blocks --}}
-<x-cms::blocks.text :data="$textData" />
-<x-cms::blocks.image :data="$imageData" />
-```
-
-## Documentation Structure
-
-This documentation is organized into clear, sequential guides:
-
-### Core Documentation
-1. **Getting Started** - Installation and basic setup
-2. **Architecture** - Understanding the module structure  
-3. **Components** - Working with UI components
-4. **Content Management** - Pages, sections, and content strategies
-5. **Filament Integration** - Admin panel and resources
-6. **Theming** - Creating and customizing themes
-7. **Localization** - Multi-language support
-8. **Testing** - Comprehensive testing strategies
-
-### Specialized Guides
-- **Blocks System** - Detailed guide to modular content blocks
-- **Sections** - Reusable page sections and layouts
-- **Performance** - Optimization strategies and caching
-- **Troubleshooting** - Common issues and debugging
-
-## Configurazione
-
-### File di Configurazione
-```php
-// config/cms.php
-return [
-    'default_theme' => 'one',
-    'cache_enabled' => true,
-    'cache_ttl' => 3600,
-    'upload_path' => 'uploads/cms',
-    'image_sizes' => [
-        'thumbnail' => [150, 150],
-        'medium' => [300, 300],
-        'large' => [800, 600],
-    ],
-];
-```
-
-### Variabili d'Ambiente
-```env
-CMS_DEFAULT_THEME=one
-CMS_CACHE_ENABLED=true
-CMS_UPLOAD_PATH=uploads/cms
-CMS_IMAGE_QUALITY=85
-```
-
-## API
-
-### Endpoint Principali
-- `GET /api/cms/sections` - Lista sezioni
-- `GET /api/cms/sections/{id}` - Dettagli sezione
-- `POST /api/cms/sections` - Crea sezione
-- `PUT /api/cms/sections/{id}` - Aggiorna sezione
-- `DELETE /api/cms/sections/{id}` - Elimina sezione
-
-### Autenticazione
-```php
-// Middleware per proteggere endpoint
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::apiResource('cms/sections', SectionController::class);
-});
-```
-
-## Personalizzazione
-
-### Temi Personalizzati
-```php
-// Creare nuovo tema
-php artisan make:cms-theme CustomTheme
-
-// Struttura tema
-Themes/CustomTheme/
-├── resources/
-│   ├── views/
-│   ├── css/
-│   └── js/
-├── lang/
-└── config/
-```
-
-### Componenti Personalizzati
-```php
-// Creare nuovo componente
-php artisan make:cms-component CustomComponent
-
-<<<<<<< HEAD
-## Funzionalità Principali
-=======
 # Modulo CMS
 > **Collegamenti correlati**
 > - [README.md documentazione generale SaluteOra](../../../../docs/README.md)
@@ -206,200 +19,230 @@ php artisan make:cms-component CustomComponent
 > - [README.md tema One](../../../../laravel/Themes/One/docs/README.md)
 > - [README.md tema Two](../../../../laravel/Themes/Two/docs/README.md)
 > - [Collegamenti documentazione centrale](../../../../docs/collegamenti-documentazione.md)
->>>>>>> b85e13f (.)
 
-### 1. Gestione Menu
-- Creazione e gestione di menu dinamici
-- Struttura gerarchica dei menu
-- Supporto per localizzazione
+> - [README.md documentazione generale SaluteOra](../../../../docs/README.md)
+> - [README.md toolkit bashscripts](../../../../bashscripts/docs/README.md)
+> - [README.md modulo CMS](../../../../laravel/Modules/Cms/docs/README.md)
+> - [README.md modulo Dental](../../../../laravel/Modules/Dental/docs/README.md)
+> - [README.md modulo GDPR](../../../../laravel/Modules/Gdpr/docs/README.md)
+> - [README.md modulo User](../../../../laravel/Modules/User/docs/README.md)
+> - [README.md modulo Lang](../../../../laravel/Modules/Lang/docs/README.md)
+> - [README.md modulo Media](../../../../laravel/Modules/Media/docs/README.md)
+> - [README.md modulo Notify](../../../../laravel/Modules/Notify/docs/README.md)
+> - [README.md modulo Reporting](../../../../laravel/Modules/Reporting/docs/README.md)
+> - [README.md modulo Tenant](../../../../laravel/Modules/Tenant/docs/README.md)
+> - [README.md modulo UI](../../../../laravel/Modules/UI/docs/README.md)
+> - [README.md modulo Xot](../../../../laravel/Modules/Xot/docs/README.md)
+> - [README.md modulo Chart](../../../../laravel/Modules/Chart/docs/README.md)
+> - [README.md tema One](../../../../laravel/Themes/One/docs/README.md)
+> - [Collegamenti documentazione centrale](../../../../docs/collegamenti-documentazione.md)
 
-### 2. Gestione Sezioni
-- Creazione di sezioni di contenuto
-- Layout flessibili e configurabili
-- Integrazione con il sistema di temi
+# Jigsaw Docs Starter Template
 
-### 3. Content Management
-- Editor di contenuti avanzato
-- Gestione delle versioni
-- Workflow di approvazione
+## Introduzione
+Il modulo CMS gestisce i contenuti e i widget del sistema, fornendo un sistema flessibile per la gestione dinamica dei contenuti e l'ottimizzazione per i motori di ricerca.
 
-## Architettura Filament
+## Indice
+1. [Architettura](#architettura)
+   - [Struttura del Modulo](structure.md)
+   - [Architettura Generale](architecture.md)
+   - [Convenzioni e Standard](module-guidelines.md)
 
-### Regole di Estensione
-- **TUTTE** le risorse estendono `XotBaseResource`
-- **TUTTE** le pagine estendono le classi XotBase appropriate
-- **MAI** estendere direttamente le classi Filament
+2. [Frontend](#frontend)
+   - [Frontoffice](frontoffice.md)
+   - [Homepage](homepage.md)
+   - [Componenti UI](components.md)
+   - [Volt & Folio](volt-web-application.md)
 
-### Risorse Implementate
-- `MenuResource`: Gestione menu dinamici
-- `SectionResource`: Gestione sezioni di contenuto
+3. [Backend](#backend)
+   - [Filament Integration](filament-integration.md)
+   - [Content Management](content-management.md)
+   - [Filament Components](filament-components.md)
+   - [Resources](filament-resources.md)
 
-## Stato Attuale e Problemi
+4. [Contenuti](#contenuti)
+   - [Gestione Pagine](page-management.md)
+   - [Gestione Sezioni](section-management.md)
+   - [Storage dei Contenuti](content-storage.md)
+   - [Traduzioni](translations.md)
 
-### ✅ Corretto
-- `MenuResource.php`: Estende correttamente `XotBaseResource`
-- `SectionResource.php`: Estende correttamente `XotBaseResource`
-- Pagine Section: Estendono correttamente le classi XotBase
+5. [Sviluppo](#sviluppo)
+   - [Getting Started](getting-started.md)
+   - [Configurazione](configuration.md)
+   - [Testing](testing.md)
+   - [PHPStan](phpstan.md)
 
-### ❌ Da Correggere
-- `CreateMenu.php`: Estende `CreateRecord` → Deve estendere `XotBaseCreateRecord`
-- `EditMenu.php`: Estende `EditRecord` → Deve estendere `XotBaseEditRecord`
+6. [UX/UI](#ux-ui)
+   - [Web Design](webdesign.md)
+   - [Componenti Standard](standard_ui_components.md)
+   - [Multi-step Forms](multi-step-forms.md)
+   - [Wizard](ux-wizard-registrazione-paziente.md)
 
-## Correzioni Necessarie
+## Dipendenze Principali
+- Laravel Framework ^11.0
+- Filament ^3.2
+- Livewire ^3.0
+- Laravel Folio ^1.0
+- Laravel Volt ^1.0
+- Tailwind CSS ^3.4
+- Alpine.js ^3.0
 
-### Priorità Alta
-1. **CreateMenu.php**: Correggere estensione classe
-2. **EditMenu.php**: Correggere estensione classe
-3. Verifica PHPStan livello 10
-4. Test funzionali post-correzione
+## Best Practices
+1. **Estensione Classi**
+   - Estendere sempre le classi base di Xot
+   - Non estendere direttamente le classi di Filament
+   - Utilizzare i trait forniti dal modulo
 
-### Impatto
-- Conformità alle regole architetturali XotBase
-- Migliore manutenibilità del codice
-- Consistenza con il resto del progetto
+2. **Convenzioni**
+   - Seguire le [convenzioni di naming](../../../docs/standards/file_naming_conventions.md)
+   - Documentare tutto il codice con PHPDoc
+   - Mantenere la struttura dei file coerente
 
-## Testing e Qualità
+3. **Performance**
+   - Utilizzare il caching dove possibile
+   - Ottimizzare le query al database
+   - Seguire le [best practices di Laravel](https://laravel.com/docs/11.x/best-practices)
 
-### PHPStan
-```bash
-# Verifica livello 10
-./vendor/bin/phpstan analyse laravel/Modules/Cms/ --level=10
-=======
-// Registrare nel ServiceProvider
-Blade::componentNamespace('Themes\\CustomTheme\\View\\Components', 'custom');
->>>>>>> 4355c39 (.)
-```
+## Collegamenti Bidirezionali
+- [Modulo User](../User/docs/README.md) - Gestione utenti e permessi
+- [Modulo Lang](../Lang/docs/README.md) - Gestione traduzioni
+- [Modulo UI](../UI/docs/README.md) - Componenti di interfaccia
+- [Modulo Xot](../Xot/docs/README.md) - Modulo base e linee guida
+- [Documentazione Principale](../../../docs/README.md) - Documentazione generale
 
-## Performance
-
-### Ottimizzazioni Implementate
-- Cache delle view e componenti
-- Lazy loading per immagini
-- Minificazione CSS/JS
-- Compressione gzip
-- CDN per asset statici
-
-### Metriche Target
-- First Contentful Paint: < 1.5s
-- Largest Contentful Paint: < 2.5s
-- Cumulative Layout Shift: < 0.1
-- Time to Interactive: < 3.5s
-
-## Sicurezza
-
-### Protezioni Implementate
-- Validazione input rigorosa
-- Sanitizzazione HTML
-- Protezione CSRF
-- Rate limiting
-- Logging accessi
-
-### Best Practices
-- Utilizzare sempre validazione lato server
-- Sanitizzare contenuti HTML
-- Implementare autenticazione per operazioni admin
-- Loggare tutte le operazioni critiche
-
-## Testing
-
-### Test Unitari
-```bash
-# Eseguire test unitari
-php artisan test --filter=Cms
-
-# Test specifici
-php artisan test tests/Unit/Cms/ComponentTest.php
-```
-
-### Test Feature
-```bash
-# Test API
-php artisan test tests/Feature/Cms/ApiTest.php
-
-# Test componenti
-php artisan test tests/Feature/Cms/ComponentTest.php
-```
-
-## Troubleshooting
-
-### Problemi Comuni
-- **View non trovata**: Verificare nome file `default.blade.php`
-- **Componente non registrato**: Controllare ServiceProvider
-- **Cache non aggiornata**: Eseguire `php artisan view:clear`
-
-### Debug
-```php
-// Verificare esistenza view
-if (view()->exists('cms::components.footer')) {
-    echo "View footer esiste";
-}
-
-// Verificare componenti registrati
-dd(app('blade.compiler')->getClassComponentAliases());
-```
-
-## Documentazione
-
-### Guide Principali
-- [Componenti](components/README.md) - Panoramica componenti disponibili
-- [Blocchi](blocks/README.md) - Sistema di blocchi modulari
-- [Sezioni](sections/README.md) - Gestione sezioni pagina
-- [Temi](themes/README.md) - Sistema temi personalizzabili
-- [API](api/README.md) - Documentazione API REST
-
-### Localizzazione
-- [Localizzazione](localization/README.md) - Sistema di traduzioni e localizzazione ⭐ **NUOVO**
-
-### Troubleshooting
-- [Troubleshooting](troubleshooting.md) - Problemi comuni e soluzioni
-
-### Sviluppo
-- [Architettura](architecture.md) - Architettura del modulo
-- [Pattern](patterns/README.md) - Pattern di sviluppo
-- [Convenzioni](conventions.md) - Convenzioni di codice
-
-## Contribuire
-
-### Setup Sviluppo
-```bash
-# Clonare repository
-git clone https://github.com/username/cms-module.git
-
-# Installare dipendenze
-composer install
-
-# Eseguire test
-php artisan test
-```
-
-### Standard di Codice
-- PSR-12 coding standards
-- PHPStan livello 9+
-- Test coverage > 80%
-- Documentazione PHPDoc completa
-
-### Pull Request
-1. Fork del repository
-2. Creare branch feature
-3. Implementare modifiche
-4. Aggiungere test
-5. Aggiornare documentazione
-6. Creare pull request
-
-## Licenza
-Questo modulo è rilasciato sotto licenza MIT. Vedi il file [LICENSE](LICENSE) per i dettagli.
+## Roadmap e Sviluppo
+- [Roadmap](roadmap.md) - Piano di sviluppo futuro
+- [Issues](phpstan_issues.md) - Problemi noti e soluzioni
+- [Upgrade Guide](upgrade.md) - Guida all'aggiornamento
 
 ## Supporto
-- **Documentazione**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/username/cms-module/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/username/cms-module/discussions)
-
-## Changelog
-Vedi [CHANGELOG.md](CHANGELOG.md) per la cronologia delle versioni.
+Per domande o problemi, consultare:
+1. La [documentazione ufficiale](https://saluteora.com/docs)
+2. Il [forum di supporto](https://saluteora.com/forum)
+3. Il team di sviluppo via [email](mailto:support@saluteora.com)
+> Tip: This configuration file is also where you’ll define any "collections" (for example, a collection of the contributors to your site, or a collection of blog posts). Check out the official [Jigsaw documentation](https://jigsaw.tighten.co/docs/collections/) to learn more.
 
 ---
-**Ultimo aggiornamento**: 2025-01-06
-**Versione**: 2.0.1
-**Autore**: Team Sviluppo
-**Compatibilità**: Laravel 10.x, PHP 8.1+
+
+### Adding Content
+
+You can write your content using a [variety of file types](http://jigsaw.tighten.co/docs/content-other-file-types/). By default, this starter template expects your content to be located in the `source/docs` folder. If you change this, be sure to update the URL references in `navigation.php`.
+
+The first section of each content page contains a YAML header that specifies how it should be rendered. The `title` attribute is used to dynamically generate HTML `title` and OpenGraph tags for each page. The `extends` attribute defines which parent Blade layout this content file will render with (e.g. `_layouts.documentation` will render with `source/_layouts/documentation.blade.php`), and the `section` attribute defines the Blade "section" that expects this content to be placed into it.
+
+```yaml
+---
+title: Navigation
+description: Building a navigation menu for your site
+extends: _layouts.documentation
+section: content
+---
+```
+
+[Read more about Jigsaw layouts.](https://jigsaw.tighten.co/docs/content-blade/)
+
+---
+
+### Adding Assets
+
+Any assets that need to be compiled (such as JavaScript, Less, or Sass files) can be added to the `source/_assets/` directory, and Laravel Mix will process them when running `npm run dev` or `npm run prod`. The processed assets will be stored in `/source/assets/build/` (note there is no underscore on this second `assets` directory).
+
+Then, when Jigsaw builds your site, the entire `/source/assets/` directory containing your built files (and any other directories containing static assets, such as images or fonts, that you choose to store there) will be copied to the destination build folders (`build_local`, on your local machine).
+
+Files that don't require processing (such as images and fonts) can be added directly to `/source/assets/`.
+
+[Read more about compiling assets in Jigsaw using Laravel Mix.](http://jigsaw.tighten.co/docs/compiling-assets/)
+
+---
+
+## Building Your Site
+
+Now that you’ve edited your configuration variables and know how to customize your styles and content, let’s build the site.
+
+```bash
+# build static files with Jigsaw
+./vendor/bin/jigsaw build
+
+# compile assets with Laravel Mix
+# options: dev, prod
+npm run dev
+```
+
+## Collegamenti tra versioni di README.md
+* [README.md](bashscripts/docs/README.md)
+* [README.md](bashscripts/docs/it/README.md)
+* [README.md](docs/laravel-app/phpstan/README.md)
+* [README.md](docs/laravel-app/README.md)
+* [README.md](docs/moduli/struttura/README.md)
+* [README.md](docs/moduli/README.md)
+* [README.md](docs/moduli/manutenzione/README.md)
+* [README.md](docs/moduli/core/README.md)
+* [README.md](docs/moduli/installati/README.md)
+* [README.md](docs/moduli/comandi/README.md)
+* [README.md](docs/phpstan/README.md)
+* [README.md](docs/README.md)
+* [README.md](docs/module-links/README.md)
+* [README.md](docs/troubleshooting/git-conflicts/README.md)
+* [README.md](docs/tecnico/laraxot/README.md)
+* [README.md](docs/modules/README.md)
+* [README.md](docs/conventions/README.md)
+* [README.md](docs/amministrazione/backup/README.md)
+* [README.md](docs/amministrazione/monitoraggio/README.md)
+* [README.md](docs/amministrazione/deployment/README.md)
+* [README.md](docs/translations/README.md)
+* [README.md](docs/roadmap/README.md)
+* [README.md](docs/ide/cursor/README.md)
+* [README.md](docs/implementazione/api/README.md)
+* [README.md](docs/implementazione/testing/README.md)
+* [README.md](docs/implementazione/pazienti/README.md)
+* [README.md](docs/implementazione/ui/README.md)
+* [README.md](docs/implementazione/dental/README.md)
+* [README.md](docs/implementazione/core/README.md)
+* [README.md](docs/implementazione/reporting/README.md)
+* [README.md](docs/implementazione/isee/README.md)
+* [README.md](docs/it/README.md)
+* [README.md](laravel/vendor/mockery/mockery/docs/README.md)
+* [README.md](laravel/Modules/Chart/docs/README.md)
+* [README.md](laravel/Modules/Reporting/docs/README.md)
+* [README.md](laravel/Modules/Gdpr/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Gdpr/docs/README.md)
+* [README.md](laravel/Modules/Notify/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Notify/docs/README.md)
+* [README.md](laravel/Modules/Xot/docs/filament/README.md)
+* [README.md](laravel/Modules/Xot/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Xot/docs/exceptions/README.md)
+* [README.md](laravel/Modules/Xot/docs/README.md)
+* [README.md](laravel/Modules/Xot/docs/standards/README.md)
+* [README.md](laravel/Modules/Xot/docs/conventions/README.md)
+* [README.md](laravel/Modules/Xot/docs/development/README.md)
+* [README.md](laravel/Modules/Dental/docs/README.md)
+* [README.md](laravel/Modules/User/docs/phpstan/README.md)
+* [README.md](laravel/Modules/User/docs/README.md)
+* [README.md](laravel/Modules/User/resources/views/docs/README.md)
+* [README.md](laravel/Modules/UI/docs/phpstan/README.md)
+* [README.md](laravel/Modules/UI/docs/README.md)
+* [README.md](laravel/Modules/UI/docs/standards/README.md)
+* [README.md](laravel/Modules/UI/docs/themes/README.md)
+* [README.md](laravel/Modules/UI/docs/components/README.md)
+* [README.md](laravel/Modules/Lang/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Lang/docs/README.md)
+* [README.md](laravel/Modules/Job/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Job/docs/README.md)
+* [README.md](laravel/Modules/Media/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Media/docs/README.md)
+* [README.md](laravel/Modules/Tenant/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Tenant/docs/README.md)
+* [README.md](laravel/Modules/Activity/docs/phpstan/README.md)
+* [README.md](laravel/Modules/Activity/docs/README.md)
+* [README.md](laravel/Modules/Patient/docs/README.md)
+* [README.md](laravel/Modules/Patient/docs/standards/README.md)
+* [README.md](laravel/Modules/Patient/docs/value-objects/README.md)
+* [README.md](laravel/Modules/Cms/docs/blocks/README.md)
+* [README.md](laravel/Modules/Cms/docs/README.md)
+* [README.md](laravel/Modules/Cms/docs/standards/README.md)
+* [README.md](laravel/Modules/Cms/docs/content/README.md)
+* [README.md](laravel/Modules/Cms/docs/frontoffice/README.md)
+* [README.md](laravel/Modules/Cms/docs/components/README.md)
+* [README.md](laravel/Themes/Two/docs/README.md)
+* [README.md](laravel/Themes/One/docs/README.md)
 

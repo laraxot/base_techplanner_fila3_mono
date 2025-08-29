@@ -33,37 +33,38 @@ Il progetto è strutturato come un'applicazione Laravel 10+ con Filament 3.x per
 
 ## Componenti Principali
 
-### 1. Tema One
+### 1. Sistema dei Temi
 
-Il tema One è un tema frontend moderno e riusabile basato su:
-- Laravel 10+
-- Filament 3.3+
-- Volt
-- Folio
-- Laraxot
+Il progetto utilizza un sistema di temi multipli basato su Laraxot. I temi disponibili sono:
 
-#### Struttura del Tema
+- **Sixteen** (tema attivo): Tema principale del progetto
+- **Two**: Tema alternativo
+- **Zero**: Tema base/fallback
+
+Il tema attivo è configurato in `laravel/config/local/techplanner/xra.php` con la chiave `pub_theme`.
+
+#### Struttura dei Temi
 
 ```
-laravel/Themes/One/
-├── src/
-│   ├── ThemeOneServiceProvider.php
-│   └── Commands/
-├── resources/
-│   ├── views/
-│   │   ├── components/
-│   │   │   ├── ui/
-│   │   │   ├── layouts/
-│   │   │   └── blocks/
-│   │   └── pages/
-│   └── assets/
-│       ├── css/
-│       └── js/
-└── docs/
-    ├── README.md
-    ├── blocks.md
-    ├── folio.md
-    └── installation.md
+laravel/Themes/
+├── Sixteen/                    # Tema attivo
+│   ├── resources/
+│   │   └── views/
+│   │       └── components/
+│   │           ├── blocks/
+│   │           │   └── navigation/
+│   │           │       └── simple.blade.php
+│   │           └── layouts/
+│   ├── theme.json
+│   └── app/
+├── Two/                        # Tema alternativo
+│   ├── resources/views/
+│   ├── lang/
+│   └── theme.json
+└── Zero/                       # Tema base
+    ├── resources/views/
+    ├── theme.json
+    └── components/
 ```
 
 #### Scelte Architetturali

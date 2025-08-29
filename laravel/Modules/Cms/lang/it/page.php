@@ -1,240 +1,163 @@
 <?php
 
-declare(strict_types=1);
-
-return [
-  'navigation' => [
+return array (
+  'navigation' => 
+  array (
     'name' => 'Pagine',
     'plural' => 'Pagine',
-    'group' => [
+    'group' => 
+    array (
       'name' => 'Gestione Contenuti',
       'description' => 'Gestione delle pagine del sito',
-    ],
+    ),
     'label' => 'Pagine',
-    'sort' => '10',
+    'sort' => 5,
     'icon' => 'heroicon-o-document',
-  ],
-  'fields' => [
-    'id' => [
+  ),
+  'fields' => 
+  array (
+    'id' => 
+    array (
       'label' => 'ID',
       'placeholder' => 'ID della pagina',
-    ],
-    'title' => [
+    ),
+    'title' => 
+    array (
       'label' => 'Titolo',
       'placeholder' => 'Titolo della pagina',
-      'description' => 'Il titolo principale della pagina',
-      'helper_text' => 'Il titolo sarà visibile nella navigazione e nei risultati di ricerca',
-    ],
-    'slug' => [
+    ),
+    'slug' => 
+    array (
       'label' => 'Slug',
-      'placeholder' => 'titolo-pagina',
-      'description' => 'URL amichevole per la pagina',
-      'helper_text' => 'Lo slug determina l\'URL della pagina (es: /titolo-pagina)',
-    ],
-    'content' => [
+      'placeholder' => 'Slug della pagina',
+    ),
+    'content' => 
+    array (
       'label' => 'Contenuto',
       'placeholder' => 'Contenuto della pagina',
-      'description' => 'Il contenuto principale della pagina',
-      'helper_text' => 'Utilizza l\'editor per formattare il contenuto',
-    ],
-    'meta_title' => [
-      'label' => 'Meta Title',
-      'placeholder' => 'Meta title per SEO',
-      'description' => 'Titolo per i motori di ricerca',
-      'helper_text' => 'Ottimizza per SEO (max 60 caratteri)',
-    ],
-    'meta_description' => [
-      'label' => 'Meta Description',
-      'placeholder' => 'Meta description per SEO',
-      'description' => 'Descrizione per i motori di ricerca',
-      'helper_text' => 'Ottimizza per SEO (max 160 caratteri)',
-    ],
-    'status' => [
+    ),
+    'meta_title' => 
+    array (
+      'label' => 'Meta Titolo',
+      'placeholder' => 'Meta titolo per SEO',
+    ),
+    'meta_description' => 
+    array (
+      'label' => 'Meta Descrizione',
+      'placeholder' => 'Meta descrizione per SEO',
+    ),
+    'status' => 
+    array (
       'label' => 'Stato',
-      'placeholder' => 'Seleziona lo stato',
-      'description' => 'Stato di pubblicazione della pagina',
-      'helper_text' => 'Controlla la visibilità della pagina',
-      'options' => [
-        'draft' => 'Bozza',
+      'placeholder' => 'Stato della pagina',
+      'options' => 
+      array (
         'published' => 'Pubblicata',
+        'draft' => 'Bozza',
         'scheduled' => 'Programmata',
         'archived' => 'Archiviata',
-      ],
-    ],
-    'layout' => [
+      ),
+    ),
+    'layout' => 
+    array (
       'label' => 'Layout',
-      'placeholder' => 'Seleziona il layout',
-      'description' => 'Layout della pagina',
-      'helper_text' => 'Il layout determina la struttura visiva',
-      'options' => [
+      'placeholder' => 'Layout della pagina',
+      'options' => 
+      array (
         'default' => 'Predefinito',
-        'full-width' => 'Larghezza Completa',
-        'sidebar' => 'Con Barra Laterale',
-      ],
-    ],
-    'parent_id' => [
-      'label' => 'Pagina Padre',
-      'placeholder' => 'Seleziona pagina padre',
-      'description' => 'Pagina genitore per la gerarchia',
-      'helper_text' => 'Crea una struttura gerarchica delle pagine',
-    ],
-    'order' => [
+        'full-width' => 'Larghezza piena',
+        'sidebar' => 'Con barra laterale',
+      ),
+    ),
+    'parent_id' => 
+    array (
+      'label' => 'Pagina Genitore',
+      'placeholder' => 'Seleziona la pagina genitore',
+    ),
+    'order' => 
+    array (
       'label' => 'Ordine',
       'placeholder' => 'Ordine di visualizzazione',
-      'description' => 'Ordine di visualizzazione della pagina',
-      'helper_text' => 'Numero più basso = visualizzazione prima',
-    ],
-    'lang' => [
+    ),
+    'lang' => 
+    array (
       'label' => 'Lingua',
-      'placeholder' => 'Seleziona la lingua',
-      'description' => 'Lingua della pagina',
-      'helper_text' => 'La lingua determina le traduzioni disponibili',
-    ],
-    'created_at' => [
-      'label' => 'Data Creazione',
-      'placeholder' => 'Data e ora creazione',
-      'description' => 'Data e ora di creazione della pagina',
-      'helper_text' => 'Generato automaticamente dal sistema',
-    ],
-    'updated_at' => [
+      'placeholder' => 'Seleziona la lingua della pagina',
+    ),
+    'updated_at' => 
+    array (
       'label' => 'Ultima Modifica',
       'placeholder' => 'Data e ora ultima modifica',
-      'description' => 'Data e ora dell\'ultima modifica',
-      'helper_text' => 'Aggiornato automaticamente ad ogni modifica',
-    ],
-    'toggleColumns' => [
+    ),
+    'toggleColumns' => 
+    array (
       'label' => 'Attiva/Disattiva Colonne',
-      'placeholder' => 'Gestisci visibilità colonne',
-      'tooltip' => 'Controlla la visibilità delle colonne',
-      'description' => 'Azione per mostrare o nascondere le colonne della tabella',
-      'helper_text' => 'Personalizza la visualizzazione della tabella',
-    ],
-    'reorderRecords' => [
-      'label' => 'Riordina Elementi',
-      'placeholder' => 'Trascina per riordinare',
-      'tooltip' => 'Riordina la sequenza degli elementi',
-      'description' => 'Azione per modificare l\'ordine dei record',
-      'helper_text' => 'Modifica l\'ordine di visualizzazione delle pagine',
-    ],
-    'resetFilters' => [
-      'label' => 'Azzera Filtri',
-      'placeholder' => 'Clicca per azzerare',
-      'tooltip' => 'Rimuove tutti i filtri applicati',
-      'description' => 'Azione per rimuovere tutti i filtri attivi',
-      'helper_text' => 'Ripristina la visualizzazione di tutti i record',
-    ],
-    'applyFilters' => [
-      'label' => 'Applica Filtri',
-      'placeholder' => 'Clicca per applicare',
-      'tooltip' => 'Applica i filtri selezionati',
-      'description' => 'Azione per applicare i filtri configurati',
-      'helper_text' => 'Filtra i risultati in base ai criteri selezionati',
-    ],
-    'openFilters' => [
-      'label' => 'Apri Filtri',
-      'placeholder' => 'Clicca per aprire i filtri',
-      'tooltip' => 'Mostra i filtri disponibili',
-      'description' => 'Azione per aprire il pannello dei filtri',
-      'helper_text' => 'Mostra le opzioni di filtro disponibili',
-    ],
-    'delete' => [
-      'label' => 'Elimina',
-      'placeholder' => 'Conferma eliminazione',
-      'tooltip' => 'Rimuove definitivamente l\'elemento',
-      'description' => 'Azione per eliminare il record selezionato',
-      'helper_text' => 'Elimina definitivamente la pagina dal sistema',
-    ],
-    'edit' => [
-      'label' => 'Modifica',
-      'placeholder' => 'Clicca per modificare',
-      'tooltip' => 'Modifica l\'elemento selezionato',
-      'description' => 'Azione per modificare il record',
-      'helper_text' => 'Apri il form di modifica della pagina',
-    ],
-    'view' => [
-      'label' => 'Visualizza',
-      'placeholder' => 'Clicca per visualizzare',
-      'tooltip' => 'Visualizza i dettagli dell\'elemento',
-      'description' => 'Azione per visualizzare il record',
-      'helper_text' => 'Mostra i dettagli completi della pagina',
-    ],
-    'create' => [
-      'label' => 'Crea',
-      'placeholder' => 'Clicca per creare',
-      'tooltip' => 'Crea un nuovo elemento',
-      'description' => 'Azione per creare un nuovo record',
-      'helper_text' => 'Apri il form per creare una nuova pagina',
-    ],
-    'message' => [
-      'label' => 'Messaggio',
-      'placeholder' => 'Inserisci un messaggio',
-      'tooltip' => 'Messaggio informativo',
-      'description' => 'Messaggio di sistema o comunicazione',
-      'helper_text' => 'Messaggio da visualizzare all\'utente',
-    ],
-    'footer_blocks' => [
-      'label' => 'Blocchi Footer',
-      'placeholder' => 'Seleziona blocchi footer',
-      'tooltip' => 'Blocchi da mostrare nel footer',
-      'description' => 'Blocchi di contenuto per il footer della pagina',
-      'helper_text' => 'Configura i blocchi da visualizzare nel footer',
-    ],
-    'caption' => [
-      'label' => 'Didascalia',
-      'placeholder' => 'Inserisci la didascalia',
-      'tooltip' => 'Testo descrittivo aggiuntivo',
-      'description' => 'Didascalia o testo esplicativo',
-      'helper_text' => 'Testo aggiuntivo per spiegare il contenuto',
-    ],
-  ],
-  'actions' => [
-    'create' => [
+    ),
+    'reorderRecords' => 
+    array (
+      'label' => 'reorderRecords',
+    ),
+    'resetFilters' => 
+    array (
+      'label' => 'resetFilters',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'applyFilters',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
+    'delete' => 
+    array (
+      'label' => 'delete',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'message' => 
+    array (
+      'label' => 'message',
+    ),
+    'footer_blocks' => 
+    array (
+      'label' => 'footer_blocks',
+    ),
+    'caption' => 
+    array (
+      'label' => 'caption',
+    ),
+  ),
+  'actions' => 
+  array (
+    'create' => 
+    array (
       'label' => 'Crea Pagina',
-      'tooltip' => 'Crea una nuova pagina',
-      'description' => 'Azione per creare una nuova pagina',
-    ],
-    'edit' => [
-      'label' => 'Modifica Pagina',
-      'tooltip' => 'Modifica la pagina esistente',
-      'description' => 'Azione per modificare la pagina',
-    ],
-    'delete' => [
-      'label' => 'Elimina Pagina',
-      'tooltip' => 'Elimina la pagina',
-      'description' => 'Azione per eliminare la pagina',
-    ],
-    'publish' => [
-      'label' => 'Pubblica',
-      'tooltip' => 'Pubblica la pagina',
-      'description' => 'Azione per pubblicare la pagina',
-    ],
-    'unpublish' => [
-      'label' => 'Ritira',
-      'tooltip' => 'Ritira la pubblicazione',
-      'description' => 'Azione per ritirare la pubblicazione',
-    ],
-    'archive' => [
-      'label' => 'Archivia',
-      'tooltip' => 'Archivia la pagina',
-      'description' => 'Azione per archiviare la pagina',
-    ],
-    'restore' => [
-      'label' => 'Ripristina',
-      'tooltip' => 'Ripristina la pagina',
-      'description' => 'Azione per ripristinare la pagina',
-    ],
-    'preview' => [
-      'label' => 'Anteprima',
-      'tooltip' => 'Mostra anteprima',
-      'description' => 'Azione per visualizzare l\'anteprima',
-    ],
-    'activeLocale' => [
-      'label' => 'Lingua Attiva',
-      'tooltip' => 'Lingua corrente dell\'interfaccia',
-      'description' => 'Lingua attualmente attiva per l\'utente',
-    ],
-  ],
-  'messages' => [
+    ),
+    'edit' => 'Modifica Pagina',
+    'delete' => 'Elimina Pagina',
+    'publish' => 'Pubblica',
+    'unpublish' => 'Ritira',
+    'archive' => 'Archivia',
+    'restore' => 'Ripristina',
+    'preview' => 'Anteprima',
+    'activeLocale' => 
+    array (
+      'label' => 'activeLocale',
+    ),
+  ),
+  'messages' => 
+  array (
     'created' => 'Pagina creata con successo',
     'updated' => 'Pagina aggiornata con successo',
     'deleted' => 'Pagina eliminata con successo',
@@ -242,23 +165,15 @@ return [
     'unpublished' => 'Pagina ritirata con successo',
     'archived' => 'Pagina archiviata con successo',
     'restored' => 'Pagina ripristinata con successo',
-  ],
-  'validation' => [
+  ),
+  'validation' => 
+  array (
     'title_required' => 'Il titolo è obbligatorio',
     'slug_unique' => 'Lo slug deve essere unico',
     'content_required' => 'Il contenuto è obbligatorio',
-  ],
-  'model' => [
-    'label' => 'Pagina',
-    'tooltip' => 'Modello dati della pagina',
-    'description' => 'Rappresentazione del modello della pagina nel sistema',
-  ],
-  'sections' => [
-    'Footer' => [
-      'heading' => 'Footer',
-      'label' => 'Footer',
-      'tooltip' => 'Sezione footer della pagina',
-      'description' => 'Configurazione del footer della pagina',
-    ],
-  ],
-];
+  ),
+  'model' => 
+  array (
+    'label' => 'page.model',
+  ),
+);

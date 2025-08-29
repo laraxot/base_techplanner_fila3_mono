@@ -15,7 +15,6 @@ return array (
       'label' => 'video',
       'description' => 'video',
       'helper_text' => 'video',
-      'placeholder' => 'video',
     ),
     'caption' => 
     array (

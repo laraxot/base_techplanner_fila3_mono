@@ -1,137 +1,100 @@
-# Blocks System
+# Blocchi di Contenuto
 
-## Overview
+Questo documento contiene la documentazione dettagliata dei blocchi di contenuto.
 
-The CMS blocks system provides modular, reusable content components that can be combined to create dynamic page layouts. Each block is a self-contained unit with its own data, styling, and rendering logic.
+## Struttura dei Blocchi
 
-## Block Categories
-
-### Content Blocks
-- **Text Block**: Rich text content with formatting
-- **Image Block**: Images with captions and styling options  
-- **Video Block**: Video embeds from various sources
-- **Gallery Block**: Image collections with navigation
-- **Quote Block**: Styled quotations with author attribution
+### Base Blocks
+- `XotBaseTextBlock`: Blocco di testo con formattazione
+- `XotBaseImageBlock`: Blocco immagine con caption
+- `XotBaseGalleryBlock`: Galleria di immagini
+- `XotBaseVideoBlock`: Video con player
+- `XotBaseQuoteBlock`: Citazione con autore
 
 ### Layout Blocks
-- **Section Block**: Wrapper for grouping other blocks
-- **Column Block**: Multi-column layouts
-- **Accordion Block**: Collapsible content sections
-- **Tabs Block**: Tabbed content interface
-- **Carousel Block**: Rotating content carousel
-- **Grid Block**: Responsive grid layouts
-
-### Interactive Blocks
-- **Contact Block**: Contact forms and information
-- **CTA Block**: Call-to-action sections
-- **Newsletter Block**: Email subscription forms
-- **Social Block**: Social media links and feeds
+- `XotBaseColumnsBlock`: Colonne con contenuto
+- `XotBaseAccordionBlock`: Accordion espandibile
+- `XotBaseTabsBlock`: Tabs con contenuto
+- `XotBaseCarouselBlock`: Carosello di elementi
+- `XotBaseGridBlock`: Grid con items
 
 ### Special Blocks
-- **Navigation Block**: Menu and navigation elements
-- **Header Block**: Page header sections
-- **Footer Block**: Page footer content
-- **Stats Block**: Statistical data display
-- **Info Block**: Information panels and alerts
+- `XotBaseFormBlock`: Form con campi
+- `XotBaseMapBlock`: Mappa con markers
+- `XotBaseCalendarBlock`: Calendario eventi
+- `XotBaseTableBlock`: Tabella dati
+- `XotBaseChartBlock`: Grafico dati
 
-## Block Usage Examples
+## Implementazione
 
-### Text Block
-```blade
-<x-cms::blocks.text :data="[
-    'content' => '<h2>Welcome</h2><p>This is <strong>formatted</strong> text.</p>',
-    'typography' => 'prose',
-    'alignment' => 'left'
-]" />
-```
-
-### Image Block
-```blade
-<x-cms::blocks.image :data="[
-    'src' => '/images/hero.jpg',
-    'alt' => 'Hero image description',
-    'caption' => 'Our amazing product',
-    'size' => 'large',
-    'loading' => 'lazy'
-]" />
-```
-
-### CTA Block
-```blade
-<x-cms::blocks.cta :data="[
-    'title' => 'Ready to Get Started?',
-    'description' => 'Join thousands of satisfied customers',
-    'button_text' => 'Start Free Trial',
-    'button_url' => '/signup',
-    'style' => 'primary'
-]" />
-```
-
-## Block Data Structure
-
-### Standard Block Properties
+### Esempio Base
 ```php
-[
-    'id' => 'unique-block-id',           // Block identifier
-    'type' => 'text',                    // Block type
-    'data' => [],                        // Block-specific data
-    'meta' => [
-        'css_class' => 'custom-class',   // Additional CSS classes
-        'css_id' => 'custom-id',         // Custom ID attribute
-        'visibility' => [                // Visibility conditions
-            'desktop' => true,
-            'tablet' => true,
-            'mobile' => false
-        ],
-        'animation' => 'fade-in',        // Animation type
-        'background' => [                // Background options
-            'color' => '#ffffff',
-            'image' => '/bg-image.jpg',
-            'position' => 'center'
-        ]
-    ],
-    'order' => 1,                        // Display order
-    'status' => 'active'                 // Block status
-]
-```
+namespace Modules\Cms\app\Models\Blocks;
 
-## Block Implementation
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-### Creating Custom Blocks
-
-1. **Create Block Component**
-```php
-// app/View/Components/Blocks/CustomBlock.php
-namespace Modules\Cms\View\Components\Blocks;
-
-use Illuminate\View\Component;
-
-class CustomBlock extends Component
+class XotBaseTextBlock extends Model
 {
-    public function __construct(
-        public array $data = [],
-        public array $meta = []
-    ) {}
-    
-    public function render()
+    protected $fillable = [
+        'content',
+        'format',
+        'alignment',
+        'style',
+    ];
+
+    protected $casts = [
+        'content' => 'string',
+        'format' => 'string',
+        'alignment' => 'string',
+        'style' => 'array',
+    ];
+
+    public function blockable(): MorphTo
     {
-        return view('cms::blocks.custom');
+        return $this->morphTo();
     }
 }
 ```
 
-2. **Create Block Template**
-```blade
-{{-- resources/views/blocks/custom.blade.php --}}
-<div {{ $attributes->class([
-    'custom-block',
-    'p-6',
-    'bg-white',
-    'rounded-lg'
-]) }}>
-    <h3>{{ $data['title'] ?? 'Default Title' }}</h3>
-    <p>{{ $data['description'] ?? '' }}</p>
-</div>
+### Configurazione
+```php
+class TextBlockConfig
+{
+    public static function getConfig(): array
+    {
+        return [
+            'name' => 'text',
+            'label' => 'Testo',
+            'icon' => 'heroicon-o-document-text',
+            'component' => 'cms::blocks.text',
+            'rules' => [
+                'content' => ['required', 'string'],
+                'format' => ['required', 'in:plain,html,markdown'],
+                'alignment' => ['required', 'in:left,center,right'],
+            ],
+            'defaults' => [
+                'format' => 'plain',
+                'alignment' => 'left',
+            ],
+        ];
+    }
+}
+```
+
+### Rendering
+```php
+class TextBlockRenderer
+{
+    public function render(XotBaseTextBlock $block): string
+    {
+        return match($block->format) {
+            'plain' => e($block->content),
+            'html' => $block->content,
+            'markdown' => Str::markdown($block->content),
+        };
+    }
+}
 ```
 
 ## Gestione

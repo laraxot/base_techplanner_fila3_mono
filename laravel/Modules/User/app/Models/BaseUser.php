@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Hash;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Traits\HasPermissions;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Contracts\UserContract;
 use Illuminate\Notifications\Notifiable;
@@ -130,7 +129,6 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
     use HasApiTokens;
     use HasFactory;
     use HasRoles;
-    use HasPermissions;
     // Guard coerente con Spatie/Permission
     use HasUuids;
     use Notifiable;
