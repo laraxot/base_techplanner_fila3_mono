@@ -1,86 +1,116 @@
-# Modulo CMS - Content Management System
+# CMS Module Documentation
 
-## Descrizione
-Il modulo CMS fornisce un sistema completo di gestione dei contenuti per l'applicazione Laravel, includendo componenti, blocchi, sezioni e temi personalizzabili.
+## Overview
 
-## Caratteristiche Principali
+The CMS (Content Management System) module provides a complete content management solution for Laravel applications, featuring components, blocks, sections, and customizable themes with full multilingual support.
 
-### Componenti
-- **Footer**: Componente footer responsive con menu e social link
-- **Header**: Header principale con navigazione e logo
-- **Navigation**: Menu di navigazione multilingua
-- **Breadcrumb**: Navigazione a breadcrumb
-- **Pagination**: Sistema di paginazione personalizzabile
+## Quick Navigation
 
-### Blocchi
-- **Text**: Blocchi di testo con formattazione rich text
-- **Image**: Gestione immagini con ottimizzazioni
-- **Gallery**: Gallerie di immagini responsive
-- **Video**: Embed video da YouTube, Vimeo e altri servizi
-- **Form**: Form di contatto e iscrizione
+### 📚 Getting Started
+- **[01 - Getting Started](01-getting-started.md)** - Installation, configuration, and quick start
+- **[02 - Architecture](02-architecture.md)** - Module structure and design patterns
+- **[03 - Components](03-components.md)** - Working with reusable components
+- **[04 - Content Management](04-content-management.md)** - Pages, sections, and content strategies
 
-### Sezioni
-- **Hero**: Sezioni hero con call-to-action
-- **Features**: Sezioni caratteristiche prodotto/servizio
-- **Testimonials**: Testimonianze clienti
-- **Contact**: Sezioni contatto e mappe
-- **Footer**: Sezioni footer con informazioni e link
+### ⚙️ Core Features
+- **[05 - Filament Integration](05-filament-integration.md)** - Admin panel and resource management
+- **[06 - Theming](06-theming.md)** - Creating and customizing themes
+- **[07 - Localization](07-localization.md)** - Multi-language setup and translations
+- **[08 - Testing](08-testing.md)** - Testing strategies and guidelines
 
-### Temi
-- **One**: Tema moderno e minimalista
-- **Sixteen**: Tema business professionale
-- **Custom**: Sistema di temi personalizzabili
+### 🔧 Specialized Topics
+- **[Blocks System](blocks/README.md)** - Modular content blocks
+- **[Sections Guide](sections/README.md)** - Reusable page sections
+- **[Performance Optimization](performance-optimization.md)** - Caching and optimization
+- **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
 
-## Installazione
+### 🌍 Localization
+- **[Localization Setup](localization/localization-setup.md)** - Translation configuration
+- **[Translation Issues](localization/translation-file-issues.md)** - 🚨 Critical: ".model" string fixes
 
-### Requisiti
-- Laravel 10.x o superiore
-- PHP 8.1 o superiore
-- Composer 2.0 o superiore
+## Key Features
 
-### Installazione via Composer
+### 🧩 Components
+- **Reusable UI Components**: Header, footer, navigation, forms
+- **Data Display**: Tables, lists, charts, progress indicators
+- **Interactive Elements**: Buttons, forms, modals, dropdowns
+- **Theme Integration**: Automatic theme adaptation
+
+### 📦 Blocks System
+- **Content Blocks**: Text, images, galleries, videos
+- **Layout Blocks**: Sections, columns, grids, carousels
+- **Interactive Blocks**: Contact forms, CTAs, newsletters
+- **Custom Blocks**: Create your own modular components
+
+### 📄 Content Management
+- **Pages**: Full page management with SEO optimization
+- **Sections**: Reusable content areas across pages
+- **Multilingual**: Complete translation support
+- **Version Control**: Content versioning and history
+
+### 🎨 Theming
+- **Multiple Themes**: One, Sixteen, and custom themes
+- **Theme Reusability**: Business-agnostic, configurable themes
+- **Asset Management**: Vite integration with optimization
+- **Responsive Design**: Mobile-first, accessible interfaces
+
+## Quick Start
+
+### Installation Requirements
+- Laravel 10.x or higher
+- PHP 8.1 or higher
+- Composer 2.0 or higher
+- Node.js 16.x or higher (for assets)
+
+### Basic Installation
 ```bash
+# Install via Composer
 composer require modules/cms
-```
 
-### Pubblicazione Assets
-```bash
+# Publish assets
 php artisan vendor:publish --tag=cms-assets
-```
 
-### Esecuzione Migrazioni
-```bash
+# Run migrations
 php artisan migrate
+
+# Build frontend assets
+npm install && npm run build
 ```
 
-## Utilizzo Base
-
-### Rendering Componente
-```php
-// In Blade templates
+### Basic Usage Examples
+```blade
+{{-- Render components --}}
+<x-cms::components.header />
 <x-cms::components.footer />
 
-// In Livewire
-<x-cms::components.header />
-```
-
-### Rendering Sezione
-```php
-// Sezione con slug specifico
+{{-- Render sections --}}
 <x-cms::section slug="hero" />
+<x-cms::section slug="features" :data="$featuresData" />
 
-// Sezione con dati personalizzati
-<x-cms::section slug="footer" :data="$footerData" />
-```
-
-### Rendering Blocco
-```php
-// Blocco di testo
+{{-- Render blocks --}}
 <x-cms::blocks.text :data="$textData" />
-
-// Blocco immagine
 <x-cms::blocks.image :data="$imageData" />
 ```
+
+## Documentation Structure
+
+This documentation is organized into clear, sequential guides:
+
+### Core Documentation
+1. **Getting Started** - Installation and basic setup
+2. **Architecture** - Understanding the module structure  
+3. **Components** - Working with UI components
+4. **Content Management** - Pages, sections, and content strategies
+5. **Filament Integration** - Admin panel and resources
+6. **Theming** - Creating and customizing themes
+7. **Localization** - Multi-language support
+8. **Testing** - Comprehensive testing strategies
+
+### Specialized Guides
+- **Blocks System** - Detailed guide to modular content blocks
+- **Sections** - Reusable page sections and layouts
+- **Performance** - Optimization strategies and caching
+- **Troubleshooting** - Common issues and debugging
 
 ## Configurazione
 
