@@ -939,6 +939,34 @@ Schema::table('teams', function (Blueprint $table) {
 - [ ] La documentazione tecnica è aggiornata
 - [ ] I comandi artisan sono lanciati dal path corretto o con namespace modulo
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 8055579 (.)
+
+## Aggiornamenti Recenti
+
+### 27 Gennaio 2025
+- ✅ **Riorganizzazione Documentazione**: Spostati file specifici da docs_project alle cartelle docs dei moduli
+  - **File spostati in User/docs/**: 
+    - `doctor-registration-widget.md` - Widget registrazione dottori
+    - `doctor-registration.md` - Sistema registrazione dottori
+    - `email-doctor-registration.md` - Email registrazione dottori
+  - **Motivazione**: Separazione responsabilità, principio modulare, manutenibilità
+  - **Regola**: docs_project solo per documentazione generale del progetto, file specifici di moduli nelle rispettive cartelle docs
+
+## Collegamenti
+
+<<<<<<< HEAD
+=======
+>>>>>>> 8a21b63 (.)
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)
 ## Aggiornamenti Recenti
 
 ### 27 Gennaio 2025

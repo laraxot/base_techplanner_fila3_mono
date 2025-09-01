@@ -1,5 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -8,6 +16,15 @@
 =======
 <<<<<<< HEAD
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Guida Completa per Bug Fixing - Laraxot SaluteOra
 
 ## Principi Fondamentali
@@ -138,6 +155,14 @@ Un errore `ParseError: syntax error, unexpected token "protected", expecting end
 
 ### Esempio Corretto
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
 # Linee Guida per il Bug Fixing e Best Practices
 
 ## Principi Fondamentali
@@ -332,6 +357,15 @@ Un errore di tipo `ParseError: syntax error, unexpected token "protected", expec
 >>>>>>> 9c02579 (.)
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 ```php
 class Example {
     public function foo() {}
@@ -341,10 +375,27 @@ class Example {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 ## Processo di Revisione
 
 ### Auto-Revisione
@@ -395,7 +446,15 @@ class Example {
 *Versione: 2.0*
 *Compatibilità: Laraxot SaluteOra, PHP 8.2+, Laravel 12+, Filament 3.4+*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9de04485 (.)
 =======
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
@@ -488,3 +547,12 @@ class Example {
 >>>>>>> 9c02579 (.)
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)

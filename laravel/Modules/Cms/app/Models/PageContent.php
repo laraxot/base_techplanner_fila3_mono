@@ -23,6 +23,23 @@ use Spatie\Translatable\HasTranslations;
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
+<<<<<<< HEAD
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereJsonContainsLocale(string $column, string $locale, ?mixed $value, string $operand = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereJsonContainsLocales(string $column, array $locales, ?mixed $value, string $operand = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereLocale(string $column, string $locale)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereLocales(string $column, array $locales)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereUpdatedBy($value)
+=======
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent query()
@@ -39,6 +56,7 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent whereUpdatedBy($value)
  *
+>>>>>>> b32aaf5 (.)
  * @mixin IdeHelperPageContent
  * @mixin \Eloquent
  */

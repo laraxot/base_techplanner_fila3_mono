@@ -27,7 +27,11 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         return [
+<<<<<<< HEAD
+            'name' => $this->faker->unique()->department(),
+=======
             'name' => $this->faker->unique()->randomElement(['HR', 'IT', 'Sales', 'Marketing', 'Finance', 'Operations']),
+>>>>>>> 8e910bc (.)
             'description' => $this->faker->optional()->sentence(),
             'status' => $this->faker->randomElement(['attivo', 'inattivo']),
             'manager_id' => null, // Will be set when needed

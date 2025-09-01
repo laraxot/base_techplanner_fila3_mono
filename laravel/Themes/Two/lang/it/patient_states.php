@@ -43,4 +43,22 @@ return [
         'label' => 'Integrazione annullata',
         'color' => 'danger',
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 4144434 (.)
+    'suspended' => [
+        'label' => 'Sospeso',
+        'color' => 'warning',
+    ],
+<<<<<<< HEAD
+>>>>>>> 54fe3e2 (.)
+=======
+=======
+>>>>>>> ea6ff28 (.)
+>>>>>>> 4144434 (.)
+=======
+>>>>>>> 9387404 (.)
 ];

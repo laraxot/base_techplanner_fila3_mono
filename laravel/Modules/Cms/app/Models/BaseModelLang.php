@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+<<<<<<< HEAD
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Actions\Factory\GetFactoryAction;
+use Modules\Xot\Traits\Updater;
+=======
+>>>>>>> b32aaf5 (.)
 use Spatie\Translatable\HasTranslations;
 
 /**

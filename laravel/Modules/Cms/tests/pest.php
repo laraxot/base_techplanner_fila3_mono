@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
+namespace Modules\Cms\Tests;
+=======
 use Tests\TestCase;
+>>>>>>> b32aaf5 (.)
 
 /*
 |--------------------------------------------------------------------------

@@ -63,8 +63,13 @@ class FolioVoltServiceProvider extends ServiceProvider
         // $currentLocale = LaravelLocalization::setLocale() ?? app()->getLocale();
 
         Folio::path($theme_path)
+<<<<<<< HEAD
+            ->uri(LaravelLocalization::setLocale() ?? app()->getLocale() )
+            //->uri('{lang}')
+=======
             ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
             // ->uri('{lang}')
+>>>>>>> b32aaf5 (.)
             ->middleware([
                 '*' => $base_middleware,
             ]);
@@ -82,8 +87,13 @@ class FolioVoltServiceProvider extends ServiceProvider
             }
             $paths[] = $path;
             Folio::path($path)
+<<<<<<< HEAD
+                ->uri( LaravelLocalization::setLocale() ?? app()->getLocale() )
+                //->uri('{lang}')
+=======
                 ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
                 // ->uri('{lang}')
+>>>>>>> b32aaf5 (.)
                 ->middleware([
                     '*' => $base_middleware,
                 ]);

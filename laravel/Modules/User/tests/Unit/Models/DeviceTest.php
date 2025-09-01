@@ -366,3 +366,19 @@ class DeviceTest extends TestCase
         expect($expectedCasts, $device->getCasts());
     }
 }
+<<<<<<< HEAD
+
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a21b63 (.)
+=======
+
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)

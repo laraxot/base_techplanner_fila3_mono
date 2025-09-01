@@ -78,14 +78,39 @@
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 85c5198c (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php"
 
@@ -102,14 +127,39 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 85c5198c (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -194,15 +244,43 @@ name('login');
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 85c5198c (.)
 
 # ERRATO: Non testare
 
 =======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+
+# ERRATO: Non testare
+
+=======
+>>>>>>> 85c5198c (.)
 # ERRATO: Non testare
 >>>>>>> 3c18aa7e (.)
 =======
 # ERRATO: Non testare
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+# ERRATO: Non testare
+
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Usare componente senza test
 
 # CORRETTO: Testare sempre
@@ -210,14 +288,39 @@ php artisan view:clear
 php artisan config:clear
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 85c5198c (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Testare componente
 ```
 
@@ -255,9 +358,26 @@ L'errore è stato causato da:
 *Stato: Regole critiche definite*
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
 =======
 *Priorità: CRITICA*
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)

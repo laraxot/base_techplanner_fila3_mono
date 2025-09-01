@@ -266,3 +266,19 @@ class TenantTest extends TestCase
         expect('dark', $darkThemeTenants->first()->settings['theme']);
     }
 }
+<<<<<<< HEAD
+
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a21b63 (.)
+=======
+
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)

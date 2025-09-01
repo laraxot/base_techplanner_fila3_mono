@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Modules\Cms\Models\Module;
 use Modules\User\Models\User;
 use Modules\Xot\Actions\Filament\GetModulesNavigationItems;
+use Modules\User\Models\User;
 use Tests\CreatesApplication;
 
 abstract class TestHelper extends BaseTestCase

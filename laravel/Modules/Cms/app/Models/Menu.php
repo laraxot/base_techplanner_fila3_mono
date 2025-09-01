@@ -130,7 +130,10 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property-read int $depth
  * @property-read string $path
+<<<<<<< HEAD
+=======
  *
+>>>>>>> b32aaf5 (.)
  * @mixin IdeHelperMenu
  * @mixin \Eloquent
  */

@@ -120,9 +120,23 @@ name('login');
 ### 1. Verifica Componenti Esistenti
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+
+=======
+>>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php" | head -20
 
@@ -138,9 +152,23 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 ### 3. Test in Sviluppo
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+
+=======
+>>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -199,6 +227,22 @@ L'errore è stato causato da:
 *Analisi completata il: $(date)*
 *Stato: Errore critico identificato*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
 =======
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+*Priorità: CRITICA* 
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9de04485 (.)

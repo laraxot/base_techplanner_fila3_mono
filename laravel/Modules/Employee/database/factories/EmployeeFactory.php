@@ -43,7 +43,11 @@ class EmployeeFactory extends Factory
                 'address' => [
                     'street' => $this->faker->streetAddress(),
                     'city' => $this->faker->city(),
+<<<<<<< HEAD
+                    'state' => $this->faker->state(),
+=======
                     'state' => $this->faker->optional()->randomElement(['CA', 'NY', 'TX', 'FL', 'WA', 'IL', 'PA', 'OH']),
+>>>>>>> 8e910bc (.)
                     'postal_code' => $this->faker->postcode(),
                     'country' => $this->faker->country(),
                 ],

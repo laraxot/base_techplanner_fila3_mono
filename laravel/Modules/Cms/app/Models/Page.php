@@ -61,7 +61,10 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property array<array-key, mixed>|null $middleware
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Page whereMiddleware($value)
+<<<<<<< HEAD
+=======
  *
+>>>>>>> b32aaf5 (.)
  * @mixin IdeHelperPage
  * @mixin \Eloquent
  */

@@ -245,3 +245,19 @@ class TeamTest extends TestCase
         expect(0, $teams->first()->personal_team);
     }
 }
+<<<<<<< HEAD
+
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a21b63 (.)
+=======
+
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)

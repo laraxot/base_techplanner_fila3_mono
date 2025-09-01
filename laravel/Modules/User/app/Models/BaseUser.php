@@ -5,6 +5,26 @@ declare(strict_types=1);
 namespace Modules\User\Models;
 
 use Filament\Models\Contracts\HasName;
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Traits\HasRoles;
+<<<<<<< HEAD
+<<<<<<< HEAD
+use Spatie\Permission\Traits\HasPermissions;
+=======
+>>>>>>> 8a21b63 (.)
+=======
+=======
+use Spatie\Permission\Traits\HasPermissions;
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Contracts\UserContract;
+use Illuminate\Notifications\Notifiable;
+use Modules\User\Models\Traits\HasTeams;
+use Modules\Xot\Models\Traits\RelationX;
+=======
+>>>>>>> d51888e (.)
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Collection;
@@ -126,6 +146,19 @@ abstract class BaseUser extends Authenticatable implements HasMedia, HasName, Ha
     use HasFactory;
 
     use HasRoles;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    use HasPermissions;
+=======
+>>>>>>> 8a21b63 (.)
+=======
+=======
+    use HasPermissions;
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)
     // Guard coerente con Spatie/Permission
     use HasUuids;
     use InteractsWithMedia;

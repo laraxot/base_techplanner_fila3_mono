@@ -249,3 +249,19 @@ class PermissionTest extends TestCase
         expect(method_exists($permission, 'getTable'));
     }
 }
+<<<<<<< HEAD
+
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a21b63 (.)
+=======
+
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)
