@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Notify\Models\NotificationTemplate;
 use Modules\Notify\Models\NotificationTemplateVersion;
 use Tests\TestCase;
@@ -40,10 +40,10 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => 'Aggiornamento design e aggiunta variabile doctor_name',
         ]);
 
-        $this->assertEquals('2.0', $version->version);
-        $this->assertEquals(['email', 'sms'], $version->channels);
-        $this->assertEquals(['patient_name', 'appointment_date', 'doctor_name'], $version->variables);
-        $this->assertEquals(['is_confirmed' => true], $version->conditions);
+        expect('2.0', $version->version);
+        expect(['email', 'sms'], $version->channels);
+        expect(['patient_name', 'appointment_date', 'doctor_name'], $version->variables);
+        expect(['is_confirmed' => true], $version->conditions);
     }
 
     /** @test */
@@ -54,8 +54,8 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'template_id' => $template->id,
         ]);
 
-        $this->assertInstanceOf(NotificationTemplate::class, $version->template);
-        $this->assertEquals($template->id, $version->template->id);
+        expect(NotificationTemplate::class, $version->template);
+        expect($template->id, $version->template->id);
     }
 
     /** @test */
@@ -85,12 +85,12 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
         // Restaura dalla versione
         $restoredTemplate = $version->restore();
 
-        $this->assertEquals('Versione Precedente', $restoredTemplate->subject);
-        $this->assertEquals('<p>Contenuto versione precedente</p>', $restoredTemplate->body_html);
-        $this->assertEquals('Contenuto versione precedente', $restoredTemplate->body_text);
-        $this->assertEquals(['email'], $restoredTemplate->channels);
-        $this->assertEquals(['patient_name'], $restoredTemplate->variables);
-        $this->assertEquals(['is_active' => true], $restoredTemplate->conditions);
+        expect('Versione Precedente', $restoredTemplate->subject);
+        expect('<p>Contenuto versione precedente</p>', $restoredTemplate->body_html);
+        expect('Contenuto versione precedente', $restoredTemplate->body_text);
+        expect(['email'], $restoredTemplate->channels);
+        expect(['patient_name'], $restoredTemplate->variables);
+        expect(['is_active' => true], $restoredTemplate->conditions);
     }
 
     /** @test */
@@ -117,8 +117,8 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => 'Correzione bug nella formattazione email',
         ]);
 
-        $this->assertEquals('1.5', $version->version);
-        $this->assertEquals('Correzione bug nella formattazione email', $version->change_notes);
+        expect('1.5', $version->version);
+        expect('Correzione bug nella formattazione email', $version->change_notes);
     }
 
     /** @test */
@@ -148,9 +148,9 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'channels' => $complexChannels,
         ]);
 
-        $this->assertEquals($complexChannels, $version->channels);
-        $this->assertTrue($version->channels['email']['enabled']);
-        $this->assertFalse($version->channels['push']['enabled']);
+        expect($complexChannels, $version->channels);
+        expect($version->channels['email']['enabled']);
+        expect($version->channels['push']['enabled']);
     }
 
     /** @test */
@@ -171,9 +171,9 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'conditions' => $conditions,
         ]);
 
-        $this->assertEquals($conditions, $version->conditions);
+        expect($conditions, $version->conditions);
         $this->assertContains('patient', $version->conditions['user_type']);
-        $this->assertEquals('confirmed', $version->conditions['appointment_status']);
+        expect('confirmed', $version->conditions['appointment_status']);
     }
 
     /** @test */
@@ -197,9 +197,9 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'variables' => $variables,
         ]);
 
-        $this->assertEquals($variables, $version->variables);
+        expect($variables, $version->variables);
         $this->assertContains('patient_name', $version->variables['required']);
-        $this->assertEquals('d/m/Y H:i', $version->variables['formatting']['date_format']);
+        expect('d/m/Y H:i', $version->variables['formatting']['date_format']);
     }
 
     /** @test */
@@ -226,10 +226,10 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => 'Rifattorizzazione completa del template',
         ]);
 
-        $this->assertCount(3, $template->versions);
-        $this->assertEquals('1.0', $version1->version);
-        $this->assertEquals('1.1', $version2->version);
-        $this->assertEquals('2.0', $version3->version);
+        expect(3, $template->versions);
+        expect('1.0', $version1->version);
+        expect('1.1', $version2->version);
+        expect('2.0', $version3->version);
     }
 
     /** @test */
@@ -260,12 +260,12 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
         // Rollback alla versione stabile
         $restoredTemplate = $stableVersion->restore();
 
-        $this->assertEquals('Versione Stabile', $restoredTemplate->subject);
-        $this->assertEquals('<p>Contenuto stabile</p>', $restoredTemplate->body_html);
-        $this->assertEquals('Contenuto stabile', $restoredTemplate->body_text);
-        $this->assertEquals(['email'], $restoredTemplate->channels);
-        $this->assertEquals(['patient_name'], $restoredTemplate->variables);
-        $this->assertEquals(['is_active' => true], $restoredTemplate->conditions);
+        expect('Versione Stabile', $restoredTemplate->subject);
+        expect('<p>Contenuto stabile</p>', $restoredTemplate->body_html);
+        expect('Contenuto stabile', $restoredTemplate->body_text);
+        expect(['email'], $restoredTemplate->channels);
+        expect(['patient_name'], $restoredTemplate->variables);
+        expect(['is_active' => true], $restoredTemplate->conditions);
     }
 
     /** @test */
@@ -280,10 +280,10 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
         ]);
 
         // Verifica che i metadati siano preservati
-        $this->assertEquals('1.2.3', $version->version);
-        $this->assertEquals('Hotfix per problema di formattazione SMS', $version->change_notes);
-        $this->assertNotNull($version->created_at);
-        $this->assertNotNull($version->updated_at);
+        expect('1.2.3', $version->version);
+        expect('Hotfix per problema di formattazione SMS', $version->change_notes);
+        expect($version->created_at);
+        expect($version->updated_at);
     }
 
     /** @test */
@@ -302,12 +302,12 @@ class NotificationTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => null,
         ]);
 
-        $this->assertNull($version->subject);
-        $this->assertNull($version->body_html);
-        $this->assertNull($version->body_text);
-        $this->assertNull($version->channels);
-        $this->assertNull($version->variables);
-        $this->assertNull($version->conditions);
-        $this->assertNull($version->change_notes);
+        expect($version->subject);
+        expect($version->body_html);
+        expect($version->body_text);
+        expect($version->channels);
+        expect($version->variables);
+        expect($version->conditions);
+        expect($version->change_notes);
     }
 }

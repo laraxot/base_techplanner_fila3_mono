@@ -24,16 +24,6 @@ class AppointmentResource extends XotBaseResource
                 ->required(),
             Forms\Components\DatePicker::make('date')
                 ->required(),
-            Forms\Components\TimePicker::make('time')
-                ->required(),
-            Forms\Components\Select::make('status')
-                ->options([
-                    'scheduled' => 'Scheduled',
-                    'confirmed' => 'Confirmed',
-                    'completed' => 'Completed',
-                    'cancelled' => 'Cancelled',
-                ])
-                ->required(),
             Forms\Components\Textarea::make('notes')
                 ->maxLength(65535)
                 ->columnSpanFull(),

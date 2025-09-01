@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Notify\Models\Contact;
 use Tests\TestCase;
 
@@ -74,7 +74,7 @@ class ContactTest extends TestCase
             'order_column' => 1,
         ]);
 
-        $this->assertInstanceOf(Contact::class, $contact);
+        expect(Contact::class, $contact);
     }
 
     /** @test */
@@ -96,7 +96,7 @@ class ContactTest extends TestCase
             'token',
         ];
 
-        $this->assertEquals($expectedFillable, $contact->getFillable());
+        expect($expectedFillable, $contact->getFillable());
     }
 
     /** @test */
@@ -117,7 +117,7 @@ class ContactTest extends TestCase
             'user_id' => 'string',
         ];
 
-        $this->assertEquals($expectedCasts, $contact->casts());
+        expect($expectedCasts, $contact->casts());
     }
 
     /** @test */
@@ -138,7 +138,7 @@ class ContactTest extends TestCase
             'value' => '+393331234567',
         ]);
 
-        $this->assertInstanceOf(Contact::class, $contact);
+        expect(Contact::class, $contact);
     }
 
     /** @test */
@@ -248,8 +248,8 @@ class ContactTest extends TestCase
             'mobile_phone' => '+393331111111',
         ]);
 
-        $this->assertNotNull($contact->fresh()->verified_at);
-        $this->assertEquals('new-token-123', $contact->fresh()->token);
+        expect($contact->fresh()->verified_at);
+        expect('new-token-123', $contact->fresh()->token);
     }
 
     /** @test */
@@ -266,10 +266,10 @@ class ContactTest extends TestCase
             ->where('model_id', '123')
             ->first();
 
-        $this->assertNotNull($foundContact);
-        $this->assertEquals($contact->id, $foundContact->id);
-        $this->assertEquals('App\Models\User', $foundContact->model_type);
-        $this->assertEquals('123', $foundContact->model_id);
+        expect($foundContact);
+        expect($contact->id, $foundContact->id);
+        expect('App\Models\User', $foundContact->model_type);
+        expect('123', $foundContact->model_id);
     }
 
     /** @test */
@@ -299,10 +299,10 @@ class ContactTest extends TestCase
         $emailContacts = Contact::where('contact_type', 'email')->get();
         $phoneContacts = Contact::where('contact_type', 'phone')->get();
 
-        $this->assertCount(2, $emailContacts);
-        $this->assertCount(1, $phoneContacts);
-        $this->assertEquals('email', $emailContacts[0]->contact_type);
-        $this->assertEquals('phone', $phoneContacts[0]->contact_type);
+        expect(2, $emailContacts);
+        expect(1, $phoneContacts);
+        expect('email', $emailContacts[0]->contact_type);
+        expect('phone', $phoneContacts[0]->contact_type);
     }
 
     /** @test */
@@ -335,11 +335,11 @@ class ContactTest extends TestCase
         $user456Contacts = Contact::where('user_id', '456')->get();
         $user789Contacts = Contact::where('user_id', '789')->get();
 
-        $this->assertCount(2, $user456Contacts);
-        $this->assertCount(1, $user789Contacts);
-        $this->assertEquals('456', $user456Contacts[0]->user_id);
-        $this->assertEquals('456', $user456Contacts[1]->user_id);
-        $this->assertEquals('789', $user789Contacts[0]->user_id);
+        expect(2, $user456Contacts);
+        expect(1, $user789Contacts);
+        expect('456', $user456Contacts[0]->user_id);
+        expect('456', $user456Contacts[1]->user_id);
+        expect('789', $user789Contacts[0]->user_id);
     }
 
     /** @test */
@@ -355,9 +355,9 @@ class ContactTest extends TestCase
 
         $foundContact = Contact::where('email', 'test@example.com')->first();
 
-        $this->assertNotNull($foundContact);
-        $this->assertEquals($contact->id, $foundContact->id);
-        $this->assertEquals('test@example.com', $foundContact->email);
+        expect($foundContact);
+        expect($contact->id, $foundContact->id);
+        expect('test@example.com', $foundContact->email);
     }
 
     /** @test */
@@ -373,9 +373,9 @@ class ContactTest extends TestCase
 
         $foundContact = Contact::where('mobile_phone', '+393331234567')->first();
 
-        $this->assertNotNull($foundContact);
-        $this->assertEquals($contact->id, $foundContact->id);
-        $this->assertEquals('+393331234567', $foundContact->mobile_phone);
+        expect($foundContact);
+        expect($contact->id, $foundContact->id);
+        expect('+393331234567', $foundContact->mobile_phone);
     }
 
     /** @test */
@@ -412,11 +412,11 @@ class ContactTest extends TestCase
         $doeContacts = Contact::where('last_name', 'like', '%Doe%')->get();
         $jContacts = Contact::where('first_name', 'like', 'J%')->get();
 
-        $this->assertCount(1, $johnContacts);
-        $this->assertCount(1, $doeContacts);
-        $this->assertCount(2, $jContacts); // John and Jane
-        $this->assertEquals('John', $johnContacts[0]->first_name);
-        $this->assertEquals('Doe', $doeContacts[0]->last_name);
+        expect(1, $johnContacts);
+        expect(1, $doeContacts);
+        expect(2, $jContacts); // John and Jane
+        expect('John', $johnContacts[0]->first_name);
+        expect('Doe', $doeContacts[0]->last_name);
     }
 
     /** @test */
@@ -432,9 +432,9 @@ class ContactTest extends TestCase
 
         $foundContact = Contact::where('token', 'unique-token-123')->first();
 
-        $this->assertNotNull($foundContact);
-        $this->assertEquals($contact->id, $foundContact->id);
-        $this->assertEquals('unique-token-123', $foundContact->token);
+        expect($foundContact);
+        expect($contact->id, $foundContact->id);
+        expect('unique-token-123', $foundContact->token);
     }
 
     /** @test */
@@ -459,10 +459,10 @@ class ContactTest extends TestCase
         $verifiedContacts = Contact::whereNotNull('verified_at')->get();
         $unverifiedContacts = Contact::whereNull('verified_at')->get();
 
-        $this->assertCount(1, $verifiedContacts);
-        $this->assertCount(1, $unverifiedContacts);
-        $this->assertNotNull($verifiedContacts[0]->verified_at);
-        $this->assertNull($unverifiedContacts[0]->verified_at);
+        expect(1, $verifiedContacts);
+        expect(1, $unverifiedContacts);
+        expect($verifiedContacts[0]->verified_at);
+        expect($unverifiedContacts[0]->verified_at);
     }
 
     /** @test */
@@ -489,12 +489,12 @@ class ContactTest extends TestCase
         $deliveredSms = Contact::where('sms_status_code', '200')->get();
         $failedSms = Contact::where('sms_status_code', '400')->get();
 
-        $this->assertCount(1, $deliveredSms);
-        $this->assertCount(1, $failedSms);
-        $this->assertEquals('200', $deliveredSms[0]->sms_status_code);
-        $this->assertEquals('400', $failedSms[0]->sms_status_code);
-        $this->assertEquals('Delivered', $deliveredSms[0]->sms_status_txt);
-        $this->assertEquals('Failed', $failedSms[0]->sms_status_txt);
+        expect(1, $deliveredSms);
+        expect(1, $failedSms);
+        expect('200', $deliveredSms[0]->sms_status_code);
+        expect('400', $failedSms[0]->sms_status_code);
+        expect('Delivered', $deliveredSms[0]->sms_status_txt);
+        expect('Failed', $failedSms[0]->sms_status_txt);
     }
 
     /** @test */
@@ -521,10 +521,10 @@ class ContactTest extends TestCase
         $lowSmsContacts = Contact::where('sms_count', '<=', 5)->get();
         $highMailContacts = Contact::where('mail_count', '>=', 20)->get();
 
-        $this->assertCount(1, $lowSmsContacts);
-        $this->assertCount(1, $highMailContacts);
-        $this->assertEquals(1, $lowSmsContacts[0]->sms_count);
-        $this->assertEquals(25, $highMailContacts[0]->mail_count);
+        expect(1, $lowSmsContacts);
+        expect(1, $highMailContacts);
+        expect(1, $lowSmsContacts[0]->sms_count);
+        expect(25, $highMailContacts[0]->mail_count);
     }
 
     /** @test */
@@ -553,11 +553,11 @@ class ContactTest extends TestCase
         $managers = Contact::where('attribute_2', 'Manager')->get();
         $itDepartment = Contact::where('attribute_3', 'IT Department')->get();
 
-        $this->assertCount(1, $managers);
-        $this->assertCount(2, $itDepartment);
-        $this->assertEquals('Manager', $managers[0]->attribute_2);
-        $this->assertEquals('IT Department', $itDepartment[0]->attribute_3);
-        $this->assertEquals('IT Department', $itDepartment[1]->attribute_3);
+        expect(1, $managers);
+        expect(2, $itDepartment);
+        expect('Manager', $managers[0]->attribute_2);
+        expect('IT Department', $itDepartment[0]->attribute_3);
+        expect('IT Department', $itDepartment[1]->attribute_3);
     }
 
     /** @test */
@@ -588,10 +588,10 @@ class ContactTest extends TestCase
             ->where('sms_count', '>=', 3)
             ->get();
 
-        $this->assertCount(1, $verifiedManagers);
-        $this->assertEquals('verified@example.com', $verifiedManagers[0]->value);
-        $this->assertEquals('Manager', $verifiedManagers[0]->attribute_1);
-        $this->assertEquals(5, $verifiedManagers[0]->sms_count);
+        expect(1, $verifiedManagers);
+        expect('verified@example.com', $verifiedManagers[0]->value);
+        expect('Manager', $verifiedManagers[0]->attribute_1);
+        expect(5, $verifiedManagers[0]->sms_count);
     }
 
     /** @test */
@@ -610,12 +610,12 @@ class ContactTest extends TestCase
             'token' => null,
         ]);
 
-        $this->assertNull($contact->first_name);
-        $this->assertNull($contact->last_name);
-        $this->assertNull($contact->email);
-        $this->assertNull($contact->mobile_phone);
-        $this->assertNull($contact->verified_at);
-        $this->assertNull($contact->token);
+        expect($contact->first_name);
+        expect($contact->last_name);
+        expect($contact->email);
+        expect($contact->mobile_phone);
+        expect($contact->verified_at);
+        expect($contact->token);
     }
 
     /** @test */
@@ -647,12 +647,12 @@ class ContactTest extends TestCase
 
         $orderedContacts = Contact::orderBy('order_column')->get();
 
-        $this->assertCount(3, $orderedContacts);
-        $this->assertEquals('first@example.com', $orderedContacts[0]->value);
-        $this->assertEquals('second@example.com', $orderedContacts[1]->value);
-        $this->assertEquals('third@example.com', $orderedContacts[2]->value);
-        $this->assertEquals(1, $orderedContacts[0]->order_column);
-        $this->assertEquals(2, $orderedContacts[1]->order_column);
-        $this->assertEquals(3, $orderedContacts[2]->order_column);
+        expect(3, $orderedContacts);
+        expect('first@example.com', $orderedContacts[0]->value);
+        expect('second@example.com', $orderedContacts[1]->value);
+        expect('third@example.com', $orderedContacts[2]->value);
+        expect(1, $orderedContacts[0]->order_column);
+        expect(2, $orderedContacts[1]->order_column);
+        expect(3, $orderedContacts[2]->order_column);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Cms\Models\Page;
 use Modules\Cms\Models\PageContent;
 use Modules\Cms\Models\Section;
@@ -39,9 +39,9 @@ class PageManagementBusinessLogicTest extends TestCase
             'meta_description' => 'Pagina principale di '.config('app.name', 'Our Platform'),
         ]);
 
-        $this->assertEquals('Home Page', $page->title);
-        $this->assertEquals('home', $page->slug);
-        $this->assertEquals('published', $page->status);
+        expect('Home Page', $page->title);
+        expect('home', $page->slug);
+        expect('published', $page->status);
     }
 
     /** @test */
@@ -67,9 +67,9 @@ class PageManagementBusinessLogicTest extends TestCase
             'version' => 1,
         ]);
 
-        $this->assertEquals($page->id, $pageContent->page_id);
-        $this->assertEquals('it', $pageContent->locale);
-        $this->assertEquals(1, $pageContent->version);
+        expect($page->id, $pageContent->page_id);
+        expect('it', $pageContent->locale);
+        expect(1, $pageContent->version);
     }
 
     /** @test */
@@ -97,9 +97,9 @@ class PageManagementBusinessLogicTest extends TestCase
             'type' => 'hero',
         ]);
 
-        $this->assertEquals($page->id, $section->page_id);
-        $this->assertEquals('Hero Section', $section->title);
-        $this->assertEquals(1, $section->order);
+        expect($page->id, $section->page_id);
+        expect('Hero Section', $section->title);
+        expect(1, $section->order);
     }
 
     /** @test */
@@ -117,7 +117,7 @@ class PageManagementBusinessLogicTest extends TestCase
             'status' => 'published',
         ]);
 
-        $this->assertEquals('published', $page->fresh()->status);
+        expect('published', $page->fresh()->status);
     }
 
     /** @test */
@@ -171,10 +171,10 @@ class PageManagementBusinessLogicTest extends TestCase
             ->get();
 
         // Assert
-        $this->assertCount(2, $versions);
-        $this->assertEquals(2, $versions->first()->version);
-        $this->assertEquals(1, $versions->last()->version);
-        $this->assertEquals('Versione 2 del contenuto aggiornata', $versions->first()->content);
+        expect(2, $versions);
+        expect(2, $versions->first()->version);
+        expect(1, $versions->last()->version);
+        expect('Versione 2 del contenuto aggiornata', $versions->first()->content);
     }
 
     /** @test */
@@ -206,10 +206,10 @@ class PageManagementBusinessLogicTest extends TestCase
             ->first();
 
         // Assert
-        $this->assertNotNull($italian);
-        $this->assertNotNull($english);
-        $this->assertEquals('Contenuto in italiano', $italian->content);
-        $this->assertEquals('Content in English', $english->content);
+        expect($italian);
+        expect($english);
+        expect('Contenuto in italiano', $italian->content);
+        expect('Content in English', $english->content);
     }
 
     /** @test */
@@ -244,10 +244,10 @@ class PageManagementBusinessLogicTest extends TestCase
             ->get();
 
         // Assert
-        $this->assertCount(3, $orderedSections);
-        $this->assertEquals('Prima Sezione', $orderedSections[0]->title);
-        $this->assertEquals('Seconda Sezione', $orderedSections[1]->title);
-        $this->assertEquals('Terza Sezione', $orderedSections[2]->title);
+        expect(3, $orderedSections);
+        expect('Prima Sezione', $orderedSections[0]->title);
+        expect('Seconda Sezione', $orderedSections[1]->title);
+        expect('Terza Sezione', $orderedSections[2]->title);
     }
 
     /** @test */
@@ -370,10 +370,10 @@ class PageManagementBusinessLogicTest extends TestCase
         $results = Page::where('title', 'like', '%Page%')->get();
 
         // Assert
-        $this->assertCount(2, $results);
-        $this->assertTrue($results->contains($page1));
-        $this->assertTrue($results->contains($page3));
-        $this->assertFalse($results->contains($page2));
+        expect(2, $results);
+        expect($results->contains($page1));
+        expect($results->contains($page3));
+        expect($results->contains($page2));
     }
 
     /** @test */
@@ -389,10 +389,10 @@ class PageManagementBusinessLogicTest extends TestCase
         $draftPages = Page::where('status', 'draft')->get();
 
         // Assert
-        $this->assertCount(1, $publishedPages);
-        $this->assertCount(1, $draftPages);
-        $this->assertTrue($publishedPages->contains($publishedPage));
-        $this->assertTrue($draftPages->contains($draftPage));
+        expect(1, $publishedPages);
+        expect(1, $draftPages);
+        expect($publishedPages->contains($publishedPage));
+        expect($draftPages->contains($draftPage));
     }
 
     /** @test */
@@ -411,10 +411,10 @@ class PageManagementBusinessLogicTest extends TestCase
         $pageWithContent = Page::with('contents')->find($page->id);
 
         // Assert
-        $this->assertNotNull($pageWithContent);
-        $this->assertTrue($pageWithContent->relationLoaded('contents'));
-        $this->assertCount(1, $pageWithContent->contents);
-        $this->assertEquals('Test content', $pageWithContent->contents->first()->content);
+        expect($pageWithContent);
+        expect($pageWithContent->relationLoaded('contents'));
+        expect(1, $pageWithContent->contents);
+        expect('Test content', $pageWithContent->contents->first()->content);
     }
 
     /** @test */
@@ -433,10 +433,10 @@ class PageManagementBusinessLogicTest extends TestCase
         $pageWithSections = Page::with('sections')->find($page->id);
 
         // Assert
-        $this->assertNotNull($pageWithSections);
-        $this->assertTrue($pageWithSections->relationLoaded('sections'));
-        $this->assertCount(1, $pageWithSections->sections);
-        $this->assertEquals('Test Section', $pageWithSections->sections->first()->title);
+        expect($pageWithSections);
+        expect($pageWithSections->relationLoaded('sections'));
+        expect(1, $pageWithSections->sections);
+        expect('Test Section', $pageWithSections->sections->first()->title);
     }
 
     /** @test */
@@ -454,7 +454,7 @@ class PageManagementBusinessLogicTest extends TestCase
             'template' => 'landing',
         ]);
 
-        $this->assertEquals('landing', $page->fresh()->template);
+        expect('landing', $page->fresh()->template);
     }
 
     /** @test */
@@ -477,8 +477,8 @@ class PageManagementBusinessLogicTest extends TestCase
             'permissions' => json_encode($permissions),
         ]);
 
-        $this->assertTrue($page->fresh()->permissions['view']);
-        $this->assertFalse($page->fresh()->permissions['edit']);
+        expect($page->fresh()->permissions['view']);
+        expect($page->fresh()->permissions['edit']);
     }
 
     /** @test */
@@ -540,7 +540,7 @@ class PageManagementBusinessLogicTest extends TestCase
             'tags' => json_encode($tags),
         ]);
 
-        $this->assertCount(4, $page->fresh()->tags);
+        expect(4, $page->fresh()->tags);
         $this->assertContains('salute', $page->fresh()->tags);
         $this->assertContains('dentista', $page->fresh()->tags);
     }

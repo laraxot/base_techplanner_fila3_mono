@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Str;
 use Modules\Activity\Models\StoredEvent;
 use Tests\TestCase;
@@ -42,10 +42,10 @@ class StoredEventBusinessLogicTest extends TestCase
             'event_class' => 'App\Events\UserCreated',
         ]);
 
-        $this->assertEquals($eventData['aggregate_uuid'], $storedEvent->aggregate_uuid);
-        $this->assertEquals(1, $storedEvent->aggregate_version);
-        $this->assertEquals(1, $storedEvent->event_version);
-        $this->assertEquals('App\Events\UserCreated', $storedEvent->event_class);
+        expect($eventData['aggregate_uuid'], $storedEvent->aggregate_uuid);
+        expect(1, $storedEvent->aggregate_version);
+        expect(1, $storedEvent->event_version);
+        expect('App\Events\UserCreated', $storedEvent->event_class);
     }
 
     /** @test */
@@ -120,16 +120,16 @@ class StoredEventBusinessLogicTest extends TestCase
             'event_version' => 2,
         ]);
 
-        $this->assertEquals(5, $storedEvent->aggregate_version);
-        $this->assertEquals(2, $storedEvent->event_version);
-        $this->assertEquals('App\Events\OrderPlaced', $storedEvent->event_class);
+        expect(5, $storedEvent->aggregate_version);
+        expect(2, $storedEvent->event_version);
+        expect('App\Events\OrderPlaced', $storedEvent->event_class);
 
         $properties = json_decode($storedEvent->event_properties, true);
-        $this->assertEquals('ORD-12345', $properties['order_data']['order_id']);
-        $this->assertEquals('Jane Smith', $properties['order_data']['customer']['name']);
-        $this->assertEquals(80.22, $properties['order_data']['totals']['total']);
-        $this->assertEquals('mobile_app', $properties['metadata']['source']);
-        $this->assertEquals('iOS', $properties['metadata']['device_info']['platform']);
+        expect('ORD-12345', $properties['order_data']['order_id']);
+        expect('Jane Smith', $properties['order_data']['customer']['name']);
+        expect(80.22, $properties['order_data']['totals']['total']);
+        expect('mobile_app', $properties['metadata']['source']);
+        expect('iOS', $properties['metadata']['device_info']['platform']);
     }
 
     /** @test */
@@ -184,17 +184,17 @@ class StoredEventBusinessLogicTest extends TestCase
         ]);
 
         // Verifica che tutti gli eventi abbiano lo stesso UUID ma versioni diverse
-        $this->assertEquals($aggregateUuid, $event1->aggregate_uuid);
-        $this->assertEquals($aggregateUuid, $event2->aggregate_uuid);
-        $this->assertEquals($aggregateUuid, $event3->aggregate_uuid);
+        expect($aggregateUuid, $event1->aggregate_uuid);
+        expect($aggregateUuid, $event2->aggregate_uuid);
+        expect($aggregateUuid, $event3->aggregate_uuid);
 
-        $this->assertEquals(1, $event1->aggregate_version);
-        $this->assertEquals(2, $event2->aggregate_version);
-        $this->assertEquals(3, $event3->aggregate_version);
+        expect(1, $event1->aggregate_version);
+        expect(2, $event2->aggregate_version);
+        expect(3, $event3->aggregate_version);
 
-        $this->assertEquals(1, $event1->event_version);
-        $this->assertEquals(2, $event2->event_version);
-        $this->assertEquals(3, $event3->event_version);
+        expect(1, $event1->event_version);
+        expect(2, $event2->event_version);
+        expect(3, $event3->event_version);
     }
 
     /** @test */
@@ -236,11 +236,11 @@ class StoredEventBusinessLogicTest extends TestCase
         $events1 = StoredEvent::where('aggregate_uuid', $uuid1)->get();
         $events2 = StoredEvent::where('aggregate_uuid', $uuid2)->get();
 
-        $this->assertCount(2, $events1);
-        $this->assertCount(1, $events2);
+        expect(2, $events1);
+        expect(1, $events2);
 
-        $this->assertEquals($uuid1, $events1->first()->aggregate_uuid);
-        $this->assertEquals($uuid2, $events2->first()->aggregate_uuid);
+        expect($uuid1, $events1->first()->aggregate_uuid);
+        expect($uuid2, $events2->first()->aggregate_uuid);
     }
 
     /** @test */
@@ -280,13 +280,13 @@ class StoredEventBusinessLogicTest extends TestCase
         $userUpdatedEvents = StoredEvent::where('event_class', 'App\Events\UserUpdated')->get();
         $userDeletedEvents = StoredEvent::where('event_class', 'App\Events\UserDeleted')->get();
 
-        $this->assertCount(1, $userCreatedEvents);
-        $this->assertCount(1, $userUpdatedEvents);
-        $this->assertCount(1, $userDeletedEvents);
+        expect(1, $userCreatedEvents);
+        expect(1, $userUpdatedEvents);
+        expect(1, $userDeletedEvents);
 
-        $this->assertEquals('App\Events\UserCreated', $userCreatedEvents->first()->event_class);
-        $this->assertEquals('App\Events\UserUpdated', $userUpdatedEvents->first()->event_class);
-        $this->assertEquals('App\Events\UserDeleted', $userDeletedEvents->first()->event_class);
+        expect('App\Events\UserCreated', $userCreatedEvents->first()->event_class);
+        expect('App\Events\UserUpdated', $userUpdatedEvents->first()->event_class);
+        expect('App\Events\UserDeleted', $userDeletedEvents->first()->event_class);
     }
 
     /** @test */
@@ -327,8 +327,8 @@ class StoredEventBusinessLogicTest extends TestCase
             'event_class' => 'App\Events\NullEvent',
         ]);
 
-        $this->assertNull($storedEvent->event_properties);
-        $this->assertNull($storedEvent->meta_data);
+        expect($storedEvent->event_properties);
+        expect($storedEvent->meta_data);
     }
 
     /** @test */
@@ -360,12 +360,12 @@ class StoredEventBusinessLogicTest extends TestCase
         // Simula il ripristino dell'evento
         $restoredProperties = $storedEvent->event_properties;
 
-        $this->assertEquals($originalProperties, $restoredProperties);
-        $this->assertEquals(789, $restoredProperties['user_id']);
-        $this->assertEquals('profile_update', $restoredProperties['action']);
-        $this->assertEquals('Bob Johnson', $restoredProperties['changes']['name']);
-        $this->assertEquals('bob@example.com', $restoredProperties['changes']['email']);
-        $this->assertEquals('+1987654321', $restoredProperties['changes']['phone']);
+        expect($originalProperties, $restoredProperties);
+        expect(789, $restoredProperties['user_id']);
+        expect('profile_update', $restoredProperties['action']);
+        expect('Bob Johnson', $restoredProperties['changes']['name']);
+        expect('bob@example.com', $restoredProperties['changes']['email']);
+        expect('+1987654321', $restoredProperties['changes']['phone']);
     }
 
     /** @test */
@@ -408,13 +408,13 @@ class StoredEventBusinessLogicTest extends TestCase
         $this->assertLessThan($event3->event_version, $event2->event_version);
 
         // Verifica che i dati cambino tra le versioni
-        $this->assertEquals(1, $event1->event_properties['version']);
-        $this->assertEquals(2, $event2->event_properties['version']);
-        $this->assertEquals(3, $event3->event_properties['version']);
+        expect(1, $event1->event_properties['version']);
+        expect(2, $event2->event_properties['version']);
+        expect(3, $event3->event_properties['version']);
 
-        $this->assertEquals('Initial data', $event1->event_properties['data']);
-        $this->assertEquals('Updated data', $event2->event_properties['data']);
-        $this->assertEquals('Final data', $event3->event_properties['data']);
+        expect('Initial data', $event1->event_properties['data']);
+        expect('Updated data', $event2->event_properties['data']);
+        expect('Final data', $event3->event_properties['data']);
     }
 
     /** @test */
@@ -437,7 +437,7 @@ class StoredEventBusinessLogicTest extends TestCase
             'created_at' => $now->toDateTimeString(),
         ]);
 
-        $this->assertEquals($now->timestamp, $storedEvent->created_at->timestamp);
+        expect($now->timestamp, $storedEvent->created_at->timestamp);
     }
 
     /** @test */
@@ -478,11 +478,11 @@ class StoredEventBusinessLogicTest extends TestCase
         ]);
 
         $todayEvents = StoredEvent::whereDate('created_at', today())->get();
-        $this->assertCount(1, $todayEvents);
-        $this->assertEquals('today', $todayEvents->first()->event_properties['date']);
+        expect(1, $todayEvents);
+        expect('today', $todayEvents->first()->event_properties['date']);
 
         $recentEvents = StoredEvent::where('created_at', '>=', $yesterday)->get();
-        $this->assertCount(2, $recentEvents);
+        expect(2, $recentEvents);
     }
 
     /** @test */
@@ -526,17 +526,17 @@ class StoredEventBusinessLogicTest extends TestCase
         ]);
 
         $properties = json_decode($storedEvent->event_properties, true);
-        $this->assertEquals('IMP-98765', $properties['import_id']);
-        $this->assertEquals('completed', $properties['status']);
-        $this->assertEquals(1500, $properties['total_records']);
-        $this->assertEquals(1485, $properties['successful_records']);
-        $this->assertEquals(15, $properties['failed_records']);
+        expect('IMP-98765', $properties['import_id']);
+        expect('completed', $properties['status']);
+        expect(1500, $properties['total_records']);
+        expect(1485, $properties['successful_records']);
+        expect(15, $properties['failed_records']);
 
         $meta = json_decode($storedEvent->meta_data, true);
-        $this->assertEquals('web_interface', $meta['source']);
-        $this->assertEquals(1010, $meta['user_id']);
-        $this->assertEquals('bulk_import', $meta['action']);
-        $this->assertEquals(2.5, $meta['processing_time']);
-        $this->assertEquals(1500, $meta['records_processed']);
+        expect('web_interface', $meta['source']);
+        expect(1010, $meta['user_id']);
+        expect('bulk_import', $meta['action']);
+        expect(2.5, $meta['processing_time']);
+        expect(1500, $meta['records_processed']);
     }
 }

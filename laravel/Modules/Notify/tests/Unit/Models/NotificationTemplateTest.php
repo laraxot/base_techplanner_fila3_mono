@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Notify\Enums\NotificationTypeEnum;
 use Modules\Notify\Models\NotificationTemplate;
 use Tests\TestCase;
@@ -51,7 +51,7 @@ class NotificationTemplateTest extends TestCase
             'version' => 1,
         ]);
 
-        $this->assertInstanceOf(NotificationTemplate::class, $template);
+        expect(NotificationTemplate::class, $template);
     }
 
     /** @test */
@@ -79,7 +79,7 @@ class NotificationTemplateTest extends TestCase
             'type',
         ];
 
-        $this->assertEquals($expectedFillable, $template->getFillable());
+        expect($expectedFillable, $template->getFillable());
     }
 
     /** @test */
@@ -103,7 +103,7 @@ class NotificationTemplateTest extends TestCase
             'deleted_at' => 'datetime',
         ];
 
-        $this->assertEquals($expectedCasts, $template->casts());
+        expect($expectedCasts, $template->casts());
     }
 
     /** @test */
@@ -117,7 +117,7 @@ class NotificationTemplateTest extends TestCase
             'body_html',
         ];
 
-        $this->assertEquals($expectedTranslatable, $template->translatable);
+        expect($expectedTranslatable, $template->translatable);
     }
 
     /** @test */
@@ -142,7 +142,7 @@ class NotificationTemplateTest extends TestCase
         ]);
 
         $this->assertIsArray($template->channels);
-        $this->assertCount(3, $template->channels);
+        expect(3, $template->channels);
         $this->assertContains('mail', $template->channels);
         $this->assertContains('database', $template->channels);
         $this->assertContains('sms', $template->channels);
@@ -170,7 +170,7 @@ class NotificationTemplateTest extends TestCase
         ]);
 
         $this->assertIsArray($template->variables);
-        $this->assertCount(4, $template->variables);
+        expect(4, $template->variables);
         $this->assertContains('name', $template->variables);
         $this->assertContains('email', $template->variables);
         $this->assertContains('company', $template->variables);
@@ -204,9 +204,9 @@ class NotificationTemplateTest extends TestCase
         ]);
 
         $this->assertIsArray($template->conditions);
-        $this->assertEquals('premium', $template->conditions['user_type']);
-        $this->assertEquals('active', $template->conditions['subscription_status']);
-        $this->assertEquals('IT', $template->conditions['country']);
+        expect('premium', $template->conditions['user_type']);
+        expect('active', $template->conditions['subscription_status']);
+        expect('IT', $template->conditions['country']);
     }
 
     /** @test */
@@ -237,10 +237,10 @@ class NotificationTemplateTest extends TestCase
         ]);
 
         $this->assertIsArray($template->preview_data);
-        $this->assertEquals('John Doe', $template->preview_data['name']);
-        $this->assertEquals('john@example.com', $template->preview_data['email']);
-        $this->assertEquals('Acme Corp', $template->preview_data['company']);
-        $this->assertEquals('Manager', $template->preview_data['role']);
+        expect('John Doe', $template->preview_data['name']);
+        expect('john@example.com', $template->preview_data['email']);
+        expect('Acme Corp', $template->preview_data['company']);
+        expect('Manager', $template->preview_data['role']);
     }
 
     /** @test */
@@ -271,9 +271,9 @@ class NotificationTemplateTest extends TestCase
         ]);
 
         $this->assertIsArray($template->metadata);
-        $this->assertEquals('high', $template->metadata['priority']);
-        $this->assertEquals(['welcome', 'onboarding'], $template->metadata['tags']);
-        $this->assertEquals('system', $template->metadata['author']);
+        expect('high', $template->metadata['priority']);
+        expect(['welcome', 'onboarding'], $template->metadata['tags']);
+        expect('system', $template->metadata['author']);
     }
 
     /** @test */
@@ -304,10 +304,10 @@ class NotificationTemplateTest extends TestCase
         ]);
 
         $this->assertIsArray($template->grapesjs_data);
-        $this->assertEquals('<div>Custom HTML</div>', $template->grapesjs_data['html']);
-        $this->assertEquals('.custom { color: red; }', $template->grapesjs_data['css']);
-        $this->assertEquals(['header', 'content', 'footer'], $template->grapesjs_data['components']);
-        $this->assertEquals(['theme' => 'modern'], $template->grapesjs_data['styles']);
+        expect('<div>Custom HTML</div>', $template->grapesjs_data['html']);
+        expect('.custom { color: red; }', $template->grapesjs_data['css']);
+        expect(['header', 'content', 'footer'], $template->grapesjs_data['components']);
+        expect(['theme' => 'modern'], $template->grapesjs_data['styles']);
     }
 
     /** @test */
@@ -333,9 +333,9 @@ class NotificationTemplateTest extends TestCase
 
         $result = $template->compile($data);
 
-        $this->assertEquals('Benvenuto Mario Rossi!', $result['subject']);
-        $this->assertEquals('<h1>Benvenuto Mario Rossi!</h1><p>La tua email è mario@example.com</p>', $result['body_html']);
-        $this->assertEquals('Benvenuto Mario Rossi! La tua email è mario@example.com', $result['body_text']);
+        expect('Benvenuto Mario Rossi!', $result['subject']);
+        expect('<h1>Benvenuto Mario Rossi!</h1><p>La tua email è mario@example.com</p>', $result['body_html']);
+        expect('Benvenuto Mario Rossi! La tua email è mario@example.com', $result['body_text']);
     }
 
     /** @test */
@@ -363,7 +363,7 @@ class NotificationTemplateTest extends TestCase
             'name' => 'Test User',
         ];
 
-        $this->assertTrue($template->shouldSend($validData));
+        expect($template->shouldSend($validData));
 
         // Dati che NON soddisfano le condizioni
         $invalidData = [
@@ -372,7 +372,7 @@ class NotificationTemplateTest extends TestCase
             'name' => 'Test User',
         ];
 
-        $this->assertFalse($template->shouldSend($invalidData));
+        expect($template->shouldSend($invalidData));
 
         // Template senza condizioni
         $templateNoConditions = NotificationTemplate::create([
@@ -386,7 +386,7 @@ class NotificationTemplateTest extends TestCase
             'type' => NotificationTypeEnum::EMAIL,
         ]);
 
-        $this->assertTrue($templateNoConditions->shouldSend($validData));
+        expect($templateNoConditions->shouldSend($validData));
     }
 
     /** @test */
@@ -411,16 +411,16 @@ class NotificationTemplateTest extends TestCase
 
         $result = $template->preview();
 
-        $this->assertEquals('Benvenuto Preview User!', $result['subject']);
-        $this->assertEquals('<h1>Benvenuto Preview User!</h1><p>Email: preview@example.com</p>', $result['body_html']);
-        $this->assertEquals('Benvenuto Preview User! Email: preview@example.com', $result['body_text']);
+        expect('Benvenuto Preview User!', $result['subject']);
+        expect('<h1>Benvenuto Preview User!</h1><p>Email: preview@example.com</p>', $result['body_html']);
+        expect('Benvenuto Preview User! Email: preview@example.com', $result['body_text']);
 
         // Preview con dati aggiuntivi
         $additionalData = ['company' => 'Acme Corp'];
         $resultWithAdditional = $template->preview($additionalData);
 
-        $this->assertEquals('Benvenuto Preview User!', $resultWithAdditional['subject']);
-        $this->assertEquals('<h1>Benvenuto Preview User!</h1><p>Email: preview@example.com</p>', $resultWithAdditional['body_html']);
+        expect('Benvenuto Preview User!', $resultWithAdditional['subject']);
+        expect('<h1>Benvenuto Preview User!</h1><p>Email: preview@example.com</p>', $resultWithAdditional['body_html']);
     }
 
     /** @test */
@@ -451,10 +451,10 @@ class NotificationTemplateTest extends TestCase
         $activeTemplates = NotificationTemplate::active()->get();
         $allTemplates = NotificationTemplate::all();
 
-        $this->assertCount(1, $activeTemplates);
-        $this->assertCount(2, $allTemplates);
-        $this->assertEquals('Active Template', $activeTemplates[0]->name);
-        $this->assertTrue($activeTemplates[0]->is_active);
+        expect(1, $activeTemplates);
+        expect(2, $allTemplates);
+        expect('Active Template', $activeTemplates[0]->name);
+        expect($activeTemplates[0]->is_active);
     }
 
     /** @test */
@@ -496,8 +496,8 @@ class NotificationTemplateTest extends TestCase
         $mailTemplates = NotificationTemplate::forChannel('mail')->get();
         $smsTemplates = NotificationTemplate::forChannel('sms')->get();
 
-        $this->assertCount(2, $mailTemplates); // mail_template + multi_channel_template
-        $this->assertCount(2, $smsTemplates);  // sms_template + multi_channel_template
+        expect(2, $mailTemplates); // mail_template + multi_channel_template
+        expect(2, $smsTemplates);  // sms_template + multi_channel_template
     }
 
     /** @test */
@@ -542,11 +542,11 @@ class NotificationTemplateTest extends TestCase
         $welcomeTemplates = NotificationTemplate::forCategory('welcome')->get();
         $reminderTemplates = NotificationTemplate::forCategory('reminder')->get();
 
-        $this->assertCount(2, $welcomeTemplates);
-        $this->assertCount(1, $reminderTemplates);
-        $this->assertEquals('welcome', $welcomeTemplates[0]->category);
-        $this->assertEquals('welcome', $welcomeTemplates[1]->category);
-        $this->assertEquals('reminder', $reminderTemplates[0]->category);
+        expect(2, $welcomeTemplates);
+        expect(1, $reminderTemplates);
+        expect('welcome', $welcomeTemplates[0]->category);
+        expect('welcome', $welcomeTemplates[1]->category);
+        expect('reminder', $reminderTemplates[0]->category);
     }
 
     /** @test */
@@ -594,9 +594,9 @@ class NotificationTemplateTest extends TestCase
 
         $template->setGrapesJSData($newData);
 
-        $this->assertEquals($newData, $template->getGrapesJSData());
-        $this->assertEquals('<div>New HTML</div>', $template->grapesjs_data['html']);
-        $this->assertEquals('.new { color: blue; }', $template->grapesjs_data['css']);
+        expect($newData, $template->getGrapesJSData());
+        expect('<div>New HTML</div>', $template->grapesjs_data['html']);
+        expect('.new { color: blue; }', $template->grapesjs_data['css']);
     }
 
     /** @test */
@@ -615,9 +615,9 @@ class NotificationTemplateTest extends TestCase
             'type' => NotificationTypeEnum::EMAIL,
         ]);
 
-        $this->assertEquals('Test Subject', $template->getPreviewSubject());
-        $this->assertEquals('Test HTML', $template->getPreviewBodyHtml());
-        $this->assertEquals('Test Text', $template->getPreviewBodyText());
+        expect('Test Subject', $template->getPreviewSubject());
+        expect('Test HTML', $template->getPreviewBodyHtml());
+        expect('Test Text', $template->getPreviewBodyText());
     }
 
     /** @test */

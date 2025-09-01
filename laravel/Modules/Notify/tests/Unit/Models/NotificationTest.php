@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Notify\Models\Notification;
 use Tests\TestCase;
 
@@ -50,7 +50,7 @@ class NotificationTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $this->assertInstanceOf(Notification::class, $notification);
+        expect(Notification::class, $notification);
     }
 
     /** @test */
@@ -72,7 +72,7 @@ class NotificationTest extends TestCase
             'data',
         ];
 
-        $this->assertEquals($expectedFillable, $notification->getFillable());
+        expect($expectedFillable, $notification->getFillable());
     }
 
     /** @test */
@@ -90,7 +90,7 @@ class NotificationTest extends TestCase
             'deleted_at' => 'datetime',
         ];
 
-        $this->assertEquals($expectedCasts, $notification->casts());
+        expect($expectedCasts, $notification->casts());
     }
 
     /** @test */
@@ -121,11 +121,11 @@ class NotificationTest extends TestCase
         ]);
 
         $this->assertIsArray($notification->data);
-        $this->assertEquals('Welcome to our platform', $notification->data['title']);
-        $this->assertEquals('Thank you for joining us!', $notification->data['body']);
-        $this->assertEquals('high', $notification->data['priority']);
-        $this->assertEquals('registration', $notification->data['metadata']['source']);
-        $this->assertEquals(['welcome', 'onboarding'], $notification->data['metadata']['tags']);
+        expect('Welcome to our platform', $notification->data['title']);
+        expect('Thank you for joining us!', $notification->data['body']);
+        expect('high', $notification->data['priority']);
+        expect('registration', $notification->data['metadata']['source']);
+        expect(['welcome', 'onboarding'], $notification->data['metadata']['tags']);
     }
 
     /** @test */
@@ -145,7 +145,7 @@ class NotificationTest extends TestCase
         ]);
 
         $this->assertIsArray($notification->channels);
-        $this->assertCount(4, $notification->channels);
+        expect(4, $notification->channels);
         $this->assertContains('mail', $notification->channels);
         $this->assertContains('database', $notification->channels);
         $this->assertContains('sms', $notification->channels);
@@ -160,11 +160,11 @@ class NotificationTest extends TestCase
             'type' => 'info',
         ]);
 
-        $this->assertNull($notification->read_at);
+        expect($notification->read_at);
 
         $notification->update(['read_at' => now()]);
 
-        $this->assertNotNull($notification->fresh()->read_at);
+        expect($notification->fresh()->read_at);
         $this->assertDatabaseHas('notifications', [
             'id' => $notification->id,
             'read_at' => $notification->fresh()->read_at,
@@ -180,15 +180,15 @@ class NotificationTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $this->assertNull($notification->sent_at);
+        expect($notification->sent_at);
 
         $notification->update([
             'sent_at' => now(),
             'status' => 'sent',
         ]);
 
-        $this->assertNotNull($notification->fresh()->sent_at);
-        $this->assertEquals('sent', $notification->fresh()->status);
+        expect($notification->fresh()->sent_at);
+        expect('sent', $notification->fresh()->status);
         $this->assertDatabaseHas('notifications', [
             'id' => $notification->id,
             'sent_at' => $notification->fresh()->sent_at,
@@ -219,10 +219,10 @@ class NotificationTest extends TestCase
             'status' => 'sent',
         ]);
 
-        $this->assertEquals('Updated message', $notification->fresh()->message);
-        $this->assertEquals('warning', $notification->fresh()->type);
-        $this->assertEquals('sent', $notification->fresh()->status);
-        $this->assertEquals(['updated' => true], $notification->fresh()->data);
+        expect('Updated message', $notification->fresh()->message);
+        expect('warning', $notification->fresh()->type);
+        expect('sent', $notification->fresh()->status);
+        expect(['updated' => true], $notification->fresh()->data);
     }
 
     /** @test */
@@ -247,12 +247,12 @@ class NotificationTest extends TestCase
         $warningNotifications = Notification::where('type', 'warning')->get();
         $errorNotifications = Notification::where('type', 'error')->get();
 
-        $this->assertCount(1, $infoNotifications);
-        $this->assertCount(1, $warningNotifications);
-        $this->assertCount(1, $errorNotifications);
-        $this->assertEquals('info', $infoNotifications[0]->type);
-        $this->assertEquals('warning', $warningNotifications[0]->type);
-        $this->assertEquals('error', $errorNotifications[0]->type);
+        expect(1, $infoNotifications);
+        expect(1, $warningNotifications);
+        expect(1, $errorNotifications);
+        expect('info', $infoNotifications[0]->type);
+        expect('warning', $warningNotifications[0]->type);
+        expect('error', $errorNotifications[0]->type);
     }
 
     /** @test */
@@ -280,12 +280,12 @@ class NotificationTest extends TestCase
         $sentNotifications = Notification::where('status', 'sent')->get();
         $failedNotifications = Notification::where('status', 'failed')->get();
 
-        $this->assertCount(1, $pendingNotifications);
-        $this->assertCount(1, $sentNotifications);
-        $this->assertCount(1, $failedNotifications);
-        $this->assertEquals('pending', $pendingNotifications[0]->status);
-        $this->assertEquals('sent', $sentNotifications[0]->status);
-        $this->assertEquals('failed', $failedNotifications[0]->status);
+        expect(1, $pendingNotifications);
+        expect(1, $sentNotifications);
+        expect(1, $failedNotifications);
+        expect('pending', $pendingNotifications[0]->status);
+        expect('sent', $sentNotifications[0]->status);
+        expect('failed', $failedNotifications[0]->status);
     }
 
     /** @test */
@@ -312,11 +312,11 @@ class NotificationTest extends TestCase
         $tenant1Notifications = Notification::where('tenant_id', 1)->get();
         $tenant2Notifications = Notification::where('tenant_id', 2)->get();
 
-        $this->assertCount(2, $tenant1Notifications);
-        $this->assertCount(1, $tenant2Notifications);
-        $this->assertEquals(1, $tenant1Notifications[0]->tenant_id);
-        $this->assertEquals(1, $tenant1Notifications[1]->tenant_id);
-        $this->assertEquals(2, $tenant2Notifications[0]->tenant_id);
+        expect(2, $tenant1Notifications);
+        expect(1, $tenant2Notifications);
+        expect(1, $tenant1Notifications[0]->tenant_id);
+        expect(1, $tenant1Notifications[1]->tenant_id);
+        expect(2, $tenant2Notifications[0]->tenant_id);
     }
 
     /** @test */
@@ -343,11 +343,11 @@ class NotificationTest extends TestCase
         $user123Notifications = Notification::where('user_id', 123)->get();
         $user456Notifications = Notification::where('user_id', 456)->get();
 
-        $this->assertCount(2, $user123Notifications);
-        $this->assertCount(1, $user456Notifications);
-        $this->assertEquals(123, $user123Notifications[0]->user_id);
-        $this->assertEquals(123, $user123Notifications[1]->user_id);
-        $this->assertEquals(456, $user456Notifications[0]->user_id);
+        expect(2, $user123Notifications);
+        expect(1, $user456Notifications);
+        expect(123, $user123Notifications[0]->user_id);
+        expect(123, $user123Notifications[1]->user_id);
+        expect(456, $user456Notifications[0]->user_id);
     }
 
     /** @test */
@@ -377,11 +377,11 @@ class NotificationTest extends TestCase
         $userSubjectNotifications = Notification::where('subject_type', 'App\Models\User')->get();
         $companySubjectNotifications = Notification::where('subject_type', 'App\Models\Company')->get();
 
-        $this->assertCount(2, $userSubjectNotifications);
-        $this->assertCount(1, $companySubjectNotifications);
-        $this->assertEquals('App\Models\User', $userSubjectNotifications[0]->subject_type);
-        $this->assertEquals('App\Models\User', $userSubjectNotifications[1]->subject_type);
-        $this->assertEquals('App\Models\Company', $companySubjectNotifications[0]->subject_type);
+        expect(2, $userSubjectNotifications);
+        expect(1, $companySubjectNotifications);
+        expect('App\Models\User', $userSubjectNotifications[0]->subject_type);
+        expect('App\Models\User', $userSubjectNotifications[1]->subject_type);
+        expect('App\Models\Company', $companySubjectNotifications[0]->subject_type);
     }
 
     /** @test */
@@ -409,9 +409,9 @@ class NotificationTest extends TestCase
         $smsNotifications = Notification::whereJsonContains('channels', 'sms')->get();
         $databaseNotifications = Notification::whereJsonContains('channels', 'database')->get();
 
-        $this->assertCount(2, $mailNotifications);
-        $this->assertCount(2, $smsNotifications);
-        $this->assertCount(1, $databaseNotifications);
+        expect(2, $mailNotifications);
+        expect(2, $smsNotifications);
+        expect(1, $databaseNotifications);
     }
 
     /** @test */
@@ -447,10 +447,10 @@ class NotificationTest extends TestCase
         $highPriorityNotifications = Notification::whereJsonPath('data.priority', 'high')->get();
         $securityNotifications = Notification::whereJsonPath('data.category', 'security')->get();
 
-        $this->assertCount(1, $highPriorityNotifications);
-        $this->assertCount(1, $securityNotifications);
-        $this->assertEquals('high', $highPriorityNotifications[0]->data['priority']);
-        $this->assertEquals('security', $securityNotifications[0]->data['category']);
+        expect(1, $highPriorityNotifications);
+        expect(1, $securityNotifications);
+        expect('high', $highPriorityNotifications[0]->data['priority']);
+        expect('security', $securityNotifications[0]->data['category']);
     }
 
     /** @test */
@@ -477,11 +477,11 @@ class NotificationTest extends TestCase
         $unreadNotifications = Notification::whereNull('read_at')->get();
         $readNotifications = Notification::whereNotNull('read_at')->get();
 
-        $this->assertCount(2, $unreadNotifications);
-        $this->assertCount(1, $readNotifications);
-        $this->assertNull($unreadNotifications[0]->read_at);
-        $this->assertNull($unreadNotifications[1]->read_at);
-        $this->assertNotNull($readNotifications[0]->read_at);
+        expect(2, $unreadNotifications);
+        expect(1, $readNotifications);
+        expect($unreadNotifications[0]->read_at);
+        expect($unreadNotifications[1]->read_at);
+        expect($readNotifications[0]->read_at);
     }
 
     /** @test */
@@ -508,11 +508,11 @@ class NotificationTest extends TestCase
         $unsentNotifications = Notification::whereNull('sent_at')->get();
         $sentNotifications = Notification::whereNotNull('sent_at')->get();
 
-        $this->assertCount(2, $unsentNotifications);
-        $this->assertCount(1, $sentNotifications);
-        $this->assertNull($unsentNotifications[0]->sent_at);
-        $this->assertNull($unsentNotifications[1]->sent_at);
-        $this->assertNotNull($sentNotifications[0]->sent_at);
+        expect(2, $unsentNotifications);
+        expect(1, $sentNotifications);
+        expect($unsentNotifications[0]->sent_at);
+        expect($unsentNotifications[1]->sent_at);
+        expect($sentNotifications[0]->sent_at);
     }
 
     /** @test */
@@ -543,9 +543,9 @@ class NotificationTest extends TestCase
         $todayNotifications = Notification::whereDate('created_at', $today->toDateString())->get();
         $recentNotifications = Notification::where('created_at', '>=', $yesterday)->get();
 
-        $this->assertCount(1, $todayNotifications);
-        $this->assertCount(2, $recentNotifications); // yesterday and today
-        $this->assertEquals('Today notification', $todayNotifications[0]->message);
+        expect(1, $todayNotifications);
+        expect(2, $recentNotifications); // yesterday and today
+        expect('Today notification', $todayNotifications[0]->message);
     }
 
     /** @test */
@@ -589,11 +589,11 @@ class NotificationTest extends TestCase
             ->whereJsonPath('data.priority', 'high')
             ->get();
 
-        $this->assertCount(1, $pendingHighPriorityTenant1);
-        $this->assertEquals('High priority security alert', $pendingHighPriorityTenant1[0]->message);
-        $this->assertEquals('pending', $pendingHighPriorityTenant1[0]->status);
-        $this->assertEquals(1, $pendingHighPriorityTenant1[0]->tenant_id);
-        $this->assertEquals('high', $pendingHighPriorityTenant1[0]->data['priority']);
+        expect(1, $pendingHighPriorityTenant1);
+        expect('High priority security alert', $pendingHighPriorityTenant1[0]->message);
+        expect('pending', $pendingHighPriorityTenant1[0]->status);
+        expect(1, $pendingHighPriorityTenant1[0]->tenant_id);
+        expect('high', $pendingHighPriorityTenant1[0]->data['priority']);
     }
 
     /** @test */
@@ -648,13 +648,13 @@ class NotificationTest extends TestCase
             'data' => null,
         ]);
 
-        $this->assertNull($notification->tenant_id);
-        $this->assertNull($notification->user_id);
-        $this->assertNull($notification->subject_type);
-        $this->assertNull($notification->subject_id);
-        $this->assertNull($notification->channels);
-        $this->assertNull($notification->status);
-        $this->assertNull($notification->sent_at);
-        $this->assertNull($notification->data);
+        expect($notification->tenant_id);
+        expect($notification->user_id);
+        expect($notification->subject_type);
+        expect($notification->subject_id);
+        expect($notification->channels);
+        expect($notification->status);
+        expect($notification->sent_at);
+        expect($notification->data);
     }
 }

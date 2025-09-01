@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\User\Models\Permission;
 use Tests\TestCase;
 
@@ -50,14 +50,14 @@ class PermissionTest extends TestCase
     {
         $permission = new Permission;
 
-        $this->assertEquals('user', $permission->connection);
+        expect('user', $permission->connection);
     }
 
     public function test_permission_has_key_type_attribute(): void
     {
         $permission = new Permission;
 
-        $this->assertEquals('string', $permission->keyType);
+        expect('string', $permission->keyType);
     }
 
     public function test_permission_has_fillable_attributes(): void
@@ -74,7 +74,7 @@ class PermissionTest extends TestCase
             'updated_by',
         ];
 
-        $this->assertEquals($expectedFillable, $permission->getFillable());
+        expect($expectedFillable, $permission->getFillable());
     }
 
     public function test_permission_has_casts(): void
@@ -90,7 +90,7 @@ class PermissionTest extends TestCase
             'updated_at' => 'datetime',
         ];
 
-        $this->assertEquals($expectedCasts, $permission->getCasts());
+        expect($expectedCasts, $permission->getCasts());
     }
 
     public function test_can_find_permission_by_name(): void
@@ -99,8 +99,8 @@ class PermissionTest extends TestCase
 
         $foundPermission = Permission::where('name', 'unique.permission')->first();
 
-        $this->assertNotNull($foundPermission);
-        $this->assertEquals($permission->id, $foundPermission->id);
+        expect($foundPermission);
+        expect($permission->id, $foundPermission->id);
     }
 
     public function test_can_find_permission_by_guard_name(): void
@@ -111,8 +111,8 @@ class PermissionTest extends TestCase
 
         $webPermissions = Permission::where('guard_name', 'web')->get();
 
-        $this->assertCount(2, $webPermissions);
-        $this->assertTrue($webPermissions->every(fn ($permission) => $permission->guard_name === 'web'));
+        expect(2, $webPermissions);
+        expect($webPermissions->every(fn ($permission) => $permission->guard_name === 'web'));
     }
 
     public function test_can_find_permission_by_created_by(): void
@@ -121,8 +121,8 @@ class PermissionTest extends TestCase
 
         $foundPermission = Permission::where('created_by', 'user123')->first();
 
-        $this->assertNotNull($foundPermission);
-        $this->assertEquals($permission->id, $foundPermission->id);
+        expect($foundPermission);
+        expect($permission->id, $foundPermission->id);
     }
 
     public function test_can_find_permission_by_updated_by(): void
@@ -131,8 +131,8 @@ class PermissionTest extends TestCase
 
         $foundPermission = Permission::where('updated_by', 'user456')->first();
 
-        $this->assertNotNull($foundPermission);
-        $this->assertEquals($permission->id, $foundPermission->id);
+        expect($foundPermission);
+        expect($permission->id, $foundPermission->id);
     }
 
     public function test_can_find_permissions_by_name_pattern(): void
@@ -144,8 +144,8 @@ class PermissionTest extends TestCase
 
         $userPermissions = Permission::where('name', 'like', 'user.%')->get();
 
-        $this->assertCount(3, $userPermissions);
-        $this->assertTrue($userPermissions->every(fn ($permission) => str_starts_with($permission->name, 'user.')));
+        expect(3, $userPermissions);
+        expect($userPermissions->every(fn ($permission) => str_starts_with($permission->name, 'user.')));
     }
 
     public function test_can_update_permission(): void
@@ -194,8 +194,8 @@ class PermissionTest extends TestCase
             ->where('created_by', 'admin')
             ->get();
 
-        $this->assertCount(2, $permissions);
-        $this->assertTrue($permissions->every(fn ($permission) => str_starts_with($permission->name, 'admin.user.') && $permission->created_by === 'admin'
+        expect(2, $permissions);
+        expect($permissions->every(fn ($permission) => str_starts_with($permission->name, 'admin.user.') && $permission->created_by === 'admin'
         ));
     }
 
@@ -203,49 +203,49 @@ class PermissionTest extends TestCase
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'roles'));
+        expect(method_exists($permission, 'roles'));
     }
 
     public function test_permission_has_users_relationship(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'users'));
+        expect(method_exists($permission, 'users'));
     }
 
     public function test_permission_can_use_role_scopes(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'role'));
+        expect(method_exists($permission, 'role'));
     }
 
     public function test_permission_can_use_permission_scopes(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'permission'));
-        $this->assertTrue(method_exists($permission, 'withoutPermission'));
+        expect(method_exists($permission, 'permission'));
+        expect(method_exists($permission, 'withoutPermission'));
     }
 
     public function test_permission_can_use_without_role_scopes(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'withoutRole'));
+        expect(method_exists($permission, 'withoutRole'));
     }
 
     public function test_permission_has_factory_method(): void
     {
         $permission = new Permission;
 
-        $this->assertTrue(method_exists($permission, 'newFactory'));
+        expect(method_exists($permission, 'newFactory'));
     }
 
     public function test_permission_has_get_table_method(): void
     {
         $permission = new Permission;
 
-        $this->assertTrue(method_exists($permission, 'getTable'));
+        expect(method_exists($permission, 'getTable'));
     }
 }

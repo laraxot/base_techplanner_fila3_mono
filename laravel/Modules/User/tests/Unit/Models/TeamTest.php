@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\User\Models\Team;
 use Modules\User\Models\User;
 use Tests\TestCase;
@@ -80,7 +80,7 @@ class TeamTest extends TestCase
         $restoredTeam->restore();
 
         $this->assertDatabaseHas('teams', ['id' => $teamId]);
-        $this->assertNull($restoredTeam->deleted_at);
+        expect($restoredTeam->deleted_at);
     }
 
     public function test_can_find_team_by_name(): void
@@ -93,8 +93,8 @@ class TeamTest extends TestCase
 
         $foundTeam = Team::where('name', 'Unique Team Name')->first();
 
-        $this->assertNotNull($foundTeam);
-        $this->assertEquals($team->id, $foundTeam->id);
+        expect($foundTeam);
+        expect($team->id, $foundTeam->id);
     }
 
     public function test_can_find_team_by_code(): void
@@ -107,8 +107,8 @@ class TeamTest extends TestCase
 
         $foundTeam = Team::where('code', 'TEAM123')->first();
 
-        $this->assertNotNull($foundTeam);
-        $this->assertEquals($team->id, $foundTeam->id);
+        expect($foundTeam);
+        expect($team->id, $foundTeam->id);
     }
 
     public function test_can_find_team_by_uuid(): void
@@ -122,8 +122,8 @@ class TeamTest extends TestCase
 
         $foundTeam = Team::where('uuid', $uuid)->first();
 
-        $this->assertNotNull($foundTeam);
-        $this->assertEquals($team->id, $foundTeam->id);
+        expect($foundTeam);
+        expect($team->id, $foundTeam->id);
     }
 
     public function test_can_find_team_by_owner_id(): void
@@ -136,8 +136,8 @@ class TeamTest extends TestCase
 
         $foundTeam = Team::where('owner_id', $user->id)->first();
 
-        $this->assertNotNull($foundTeam);
-        $this->assertEquals($team->id, $foundTeam->id);
+        expect($foundTeam);
+        expect($team->id, $foundTeam->id);
     }
 
     public function test_can_find_personal_teams(): void
@@ -154,8 +154,8 @@ class TeamTest extends TestCase
 
         $personalTeams = Team::where('personal_team', 1)->get();
 
-        $this->assertCount(1, $personalTeams);
-        $this->assertEquals(1, $personalTeams->first()->personal_team);
+        expect(1, $personalTeams);
+        expect(1, $personalTeams->first()->personal_team);
     }
 
     public function test_can_find_teams_by_user_id(): void
@@ -169,8 +169,8 @@ class TeamTest extends TestCase
 
         $user1Teams = Team::where('user_id', $user1->id)->get();
 
-        $this->assertCount(2, $user1Teams);
-        $this->assertTrue($user1Teams->every(fn ($team) => $team->user_id === $user1->id));
+        expect(2, $user1Teams);
+        expect($user1Teams->every(fn ($team) => $team->user_id === $user1->id));
     }
 
     public function test_can_find_teams_by_name_pattern(): void
@@ -182,8 +182,8 @@ class TeamTest extends TestCase
 
         $devTeams = Team::where('name', 'like', '%Team%')->get();
 
-        $this->assertCount(3, $devTeams);
-        $this->assertTrue($devTeams->every(fn ($team) => str_contains($team->name, 'Team')));
+        expect(3, $devTeams);
+        expect($devTeams->every(fn ($team) => str_contains($team->name, 'Team')));
     }
 
     public function test_can_update_team(): void
@@ -240,8 +240,8 @@ class TeamTest extends TestCase
             ->where('personal_team', 0)
             ->get();
 
-        $this->assertCount(1, $teams);
-        $this->assertEquals('Development Team', $teams->first()->name);
-        $this->assertEquals(0, $teams->first()->personal_team);
+        expect(1, $teams);
+        expect('Development Team', $teams->first()->name);
+        expect(0, $teams->first()->personal_team);
     }
 }

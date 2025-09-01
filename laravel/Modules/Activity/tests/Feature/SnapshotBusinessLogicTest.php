@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Str;
 use Modules\Activity\Models\Snapshot;
 use Tests\TestCase;
@@ -34,11 +34,11 @@ class SnapshotBusinessLogicTest extends TestCase
             'aggregate_version' => 1,
         ]);
 
-        $this->assertEquals($snapshotData['aggregate_uuid'], $snapshot->aggregate_uuid);
-        $this->assertEquals(1, $snapshot->aggregate_version);
+        expect($snapshotData['aggregate_uuid'], $snapshot->aggregate_uuid);
+        expect(1, $snapshot->aggregate_version);
         $this->assertIsArray($snapshot->state);
-        $this->assertEquals('Test Aggregate', $snapshot->state['name']);
-        $this->assertEquals('active', $snapshot->state['status']);
+        expect('Test Aggregate', $snapshot->state['name']);
+        expect('active', $snapshot->state['status']);
     }
 
     /** @test */
@@ -87,11 +87,11 @@ class SnapshotBusinessLogicTest extends TestCase
             'aggregate_version' => 5,
         ]);
 
-        $this->assertEquals(5, $snapshot->aggregate_version);
+        expect(5, $snapshot->aggregate_version);
         $this->assertIsArray($snapshot->state);
-        $this->assertEquals('John Doe', $snapshot->state['user_info']['name']);
-        $this->assertEquals('premium', $snapshot->state['account_status']['subscription']['plan']);
-        $this->assertTrue($snapshot->state['account_status']['is_active']);
+        expect('John Doe', $snapshot->state['user_info']['name']);
+        expect('premium', $snapshot->state['account_status']['subscription']['plan']);
+        expect($snapshot->state['account_status']['is_active']);
         $this->assertContains('verified', $snapshot->state['metadata']['tags']);
     }
 
@@ -135,13 +135,13 @@ class SnapshotBusinessLogicTest extends TestCase
         ]);
 
         // Verifica che tutti gli snapshot abbiano lo stesso UUID ma versioni diverse
-        $this->assertEquals($aggregateUuid, $snapshot1->aggregate_uuid);
-        $this->assertEquals($aggregateUuid, $snapshot2->aggregate_uuid);
-        $this->assertEquals($aggregateUuid, $snapshot3->aggregate_uuid);
+        expect($aggregateUuid, $snapshot1->aggregate_uuid);
+        expect($aggregateUuid, $snapshot2->aggregate_uuid);
+        expect($aggregateUuid, $snapshot3->aggregate_uuid);
 
-        $this->assertEquals(1, $snapshot1->aggregate_version);
-        $this->assertEquals(2, $snapshot2->aggregate_version);
-        $this->assertEquals(3, $snapshot3->aggregate_version);
+        expect(1, $snapshot1->aggregate_version);
+        expect(2, $snapshot2->aggregate_version);
+        expect(3, $snapshot3->aggregate_version);
     }
 
     /** @test */
@@ -174,11 +174,11 @@ class SnapshotBusinessLogicTest extends TestCase
         $snapshots1 = Snapshot::where('aggregate_uuid', $uuid1)->get();
         $snapshots2 = Snapshot::where('aggregate_uuid', $uuid2)->get();
 
-        $this->assertCount(2, $snapshots1);
-        $this->assertCount(1, $snapshots2);
+        expect(2, $snapshots1);
+        expect(1, $snapshots2);
 
-        $this->assertEquals($uuid1, $snapshots1->first()->aggregate_uuid);
-        $this->assertEquals($uuid2, $snapshots2->first()->aggregate_uuid);
+        expect($uuid1, $snapshots1->first()->aggregate_uuid);
+        expect($uuid2, $snapshots2->first()->aggregate_uuid);
     }
 
     /** @test */
@@ -217,13 +217,13 @@ class SnapshotBusinessLogicTest extends TestCase
             ->where('aggregate_version', 10)
             ->first();
 
-        $this->assertNotNull($version1Snapshot);
-        $this->assertNotNull($version5Snapshot);
-        $this->assertNotNull($version10Snapshot);
+        expect($version1Snapshot);
+        expect($version5Snapshot);
+        expect($version10Snapshot);
 
-        $this->assertEquals(1, $version1Snapshot->aggregate_version);
-        $this->assertEquals(5, $version5Snapshot->aggregate_version);
-        $this->assertEquals(10, $version10Snapshot->aggregate_version);
+        expect(1, $version1Snapshot->aggregate_version);
+        expect(5, $version5Snapshot->aggregate_version);
+        expect(10, $version10Snapshot->aggregate_version);
     }
 
     /** @test */
@@ -258,7 +258,7 @@ class SnapshotBusinessLogicTest extends TestCase
             'aggregate_version' => 1,
         ]);
 
-        $this->assertNull($snapshot->state);
+        expect($snapshot->state);
     }
 
     /** @test */
@@ -287,11 +287,11 @@ class SnapshotBusinessLogicTest extends TestCase
         // Simula il ripristino dello stato
         $restoredState = $snapshot->state;
 
-        $this->assertEquals($originalState, $restoredState);
-        $this->assertEquals(456, $restoredState['user_id']);
-        $this->assertEquals('light', $restoredState['settings']['theme']);
-        $this->assertEquals('Europe/Rome', $restoredState['preferences']['timezone']);
-        $this->assertEquals('EUR', $restoredState['preferences']['currency']);
+        expect($originalState, $restoredState);
+        expect(456, $restoredState['user_id']);
+        expect('light', $restoredState['settings']['theme']);
+        expect('Europe/Rome', $restoredState['preferences']['timezone']);
+        expect('EUR', $restoredState['preferences']['currency']);
     }
 
     /** @test */
@@ -322,13 +322,13 @@ class SnapshotBusinessLogicTest extends TestCase
         $this->assertLessThan($snapshot3->aggregate_version, $snapshot2->aggregate_version);
 
         // Verifica che i valori cambino tra le versioni
-        $this->assertEquals(100, $snapshot1->state['value']);
-        $this->assertEquals(200, $snapshot2->state['value']);
-        $this->assertEquals(300, $snapshot3->state['value']);
+        expect(100, $snapshot1->state['value']);
+        expect(200, $snapshot2->state['value']);
+        expect(300, $snapshot3->state['value']);
 
-        $this->assertEquals('initial', $snapshot1->state['status']);
-        $this->assertEquals('updated', $snapshot2->state['status']);
-        $this->assertEquals('final', $snapshot3->state['status']);
+        expect('initial', $snapshot1->state['status']);
+        expect('updated', $snapshot2->state['status']);
+        expect('final', $snapshot3->state['status']);
     }
 
     /** @test */
@@ -350,8 +350,8 @@ class SnapshotBusinessLogicTest extends TestCase
             'updated_at' => $now->toDateTimeString(),
         ]);
 
-        $this->assertEquals($now->timestamp, $snapshot->created_at->timestamp);
-        $this->assertEquals($now->timestamp, $snapshot->updated_at->timestamp);
+        expect($now->timestamp, $snapshot->created_at->timestamp);
+        expect($now->timestamp, $snapshot->updated_at->timestamp);
     }
 
     /** @test */
@@ -383,11 +383,11 @@ class SnapshotBusinessLogicTest extends TestCase
         ]);
 
         $todaySnapshots = Snapshot::whereDate('created_at', today())->get();
-        $this->assertCount(1, $todaySnapshots);
-        $this->assertEquals('today', $todaySnapshots->first()->state['date']);
+        expect(1, $todaySnapshots);
+        expect('today', $todaySnapshots->first()->state['date']);
 
         $recentSnapshots = Snapshot::where('created_at', '>=', $yesterday)->get();
-        $this->assertCount(2, $recentSnapshots);
+        expect(2, $recentSnapshots);
     }
 
     /** @test */
@@ -420,10 +420,10 @@ class SnapshotBusinessLogicTest extends TestCase
             'aggregate_version' => 1,
         ]);
 
-        $this->assertEquals('Alice Johnson', $snapshot->state['profile']['name']);
-        $this->assertEquals('alice@example.com', $snapshot->state['profile']['email']);
-        $this->assertEquals('user_action', $snapshot->state['metadata']['source']);
-        $this->assertEquals(789, $snapshot->state['metadata']['user_id']);
-        $this->assertEquals('profile_update', $snapshot->state['metadata']['action']);
+        expect('Alice Johnson', $snapshot->state['profile']['name']);
+        expect('alice@example.com', $snapshot->state['profile']['email']);
+        expect('user_action', $snapshot->state['metadata']['source']);
+        expect(789, $snapshot->state['metadata']['user_id']);
+        expect('profile_update', $snapshot->state['metadata']['action']);
     }
 }

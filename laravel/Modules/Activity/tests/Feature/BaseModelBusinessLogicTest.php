@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Str;
 use Modules\Activity\Models\BaseModel;
 use Tests\TestCase;
@@ -25,8 +25,8 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $fillable = ['name', 'value'];
         };
 
-        $this->assertInstanceOf(BaseModel::class, $concreteModel);
-        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Model::class, $concreteModel);
+        expect(BaseModel::class, $concreteModel);
+        expect(\Illuminate\Database\Eloquent\Model::class, $concreteModel);
     }
 
     /** @test */
@@ -37,7 +37,7 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals('activity', $concreteModel->getConnectionName());
+        expect('activity', $concreteModel->getConnectionName());
     }
 
     /** @test */
@@ -48,9 +48,9 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals('id', $concreteModel->getKeyName());
-        $this->assertEquals('string', $concreteModel->getKeyType());
-        $this->assertTrue($concreteModel->getIncrementing());
+        expect('id', $concreteModel->getKeyName());
+        expect('string', $concreteModel->getKeyType());
+        expect($concreteModel->getIncrementing());
     }
 
     /** @test */
@@ -61,8 +61,8 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertTrue($concreteModel->usesTimestamps());
-        $this->assertTrue($concreteModel->timestamps);
+        expect($concreteModel->usesTimestamps());
+        expect($concreteModel->timestamps);
     }
 
     /** @test */
@@ -73,7 +73,7 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals(30, $concreteModel->getPerPage());
+        expect(30, $concreteModel->getPerPage());
     }
 
     /** @test */
@@ -84,7 +84,7 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertTrue($concreteModel::$snakeAttributes);
+        expect($concreteModel::$snakeAttributes);
     }
 
     /** @test */
@@ -98,31 +98,31 @@ class BaseModelBusinessLogicTest extends TestCase
         $casts = $concreteModel->getCasts();
 
         $this->assertArrayHasKey('id', $casts);
-        $this->assertEquals('string', $casts['id']);
+        expect('string', $casts['id']);
 
         $this->assertArrayHasKey('uuid', $casts);
-        $this->assertEquals('string', $casts['uuid']);
+        expect('string', $casts['uuid']);
 
         $this->assertArrayHasKey('created_at', $casts);
-        $this->assertEquals('datetime', $casts['created_at']);
+        expect('datetime', $casts['created_at']);
 
         $this->assertArrayHasKey('updated_at', $casts);
-        $this->assertEquals('datetime', $casts['updated_at']);
+        expect('datetime', $casts['updated_at']);
 
         $this->assertArrayHasKey('deleted_at', $casts);
-        $this->assertEquals('datetime', $casts['deleted_at']);
+        expect('datetime', $casts['deleted_at']);
 
         $this->assertArrayHasKey('updated_by', $casts);
-        $this->assertEquals('string', $casts['updated_by']);
+        expect('string', $casts['updated_by']);
 
         $this->assertArrayHasKey('created_by', $casts);
-        $this->assertEquals('string', $casts['created_by']);
+        expect('string', $casts['created_by']);
 
         $this->assertArrayHasKey('deleted_by', $casts);
-        $this->assertEquals('string', $casts['deleted_by']);
+        expect('string', $casts['deleted_by']);
 
         $this->assertArrayHasKey('published_at', $casts);
-        $this->assertEquals('datetime', $casts['published_at']);
+        expect('datetime', $casts['published_at']);
     }
 
     /** @test */
@@ -136,8 +136,8 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $fillable = ['name', 'value'];
         };
 
-        $this->assertTrue(method_exists($concreteModel, 'factory'));
-        $this->assertTrue(method_exists($concreteModel, 'newFactory'));
+        expect(method_exists($concreteModel, 'factory'));
+        expect(method_exists($concreteModel, 'newFactory'));
     }
 
     /** @test */
@@ -179,8 +179,8 @@ class BaseModelBusinessLogicTest extends TestCase
         $concreteModel->uuid = $uuid;
         $concreteModel->name = 'Test Model';
 
-        $this->assertEquals($uuid, $concreteModel->uuid);
-        $this->assertEquals('Test Model', $concreteModel->name);
+        expect($uuid, $concreteModel->uuid);
+        expect('Test Model', $concreteModel->name);
     }
 
     /** @test */
@@ -198,8 +198,8 @@ class BaseModelBusinessLogicTest extends TestCase
         $concreteModel->created_at = $now;
         $concreteModel->updated_at = $now;
 
-        $this->assertEquals($now->timestamp, $concreteModel->created_at->timestamp);
-        $this->assertEquals($now->timestamp, $concreteModel->updated_at->timestamp);
+        expect($now->timestamp, $concreteModel->created_at->timestamp);
+        expect($now->timestamp, $concreteModel->updated_at->timestamp);
     }
 
     /** @test */
@@ -216,7 +216,7 @@ class BaseModelBusinessLogicTest extends TestCase
         $now = now();
         $concreteModel->deleted_at = $now;
 
-        $this->assertEquals($now->timestamp, $concreteModel->deleted_at->timestamp);
+        expect($now->timestamp, $concreteModel->deleted_at->timestamp);
     }
 
     /** @test */
@@ -233,7 +233,7 @@ class BaseModelBusinessLogicTest extends TestCase
         $now = now();
         $concreteModel->published_at = $now;
 
-        $this->assertEquals($now->timestamp, $concreteModel->published_at->timestamp);
+        expect($now->timestamp, $concreteModel->published_at->timestamp);
     }
 
     /** @test */
@@ -251,9 +251,9 @@ class BaseModelBusinessLogicTest extends TestCase
         $concreteModel->updated_by = 'user-456';
         $concreteModel->deleted_by = 'user-789';
 
-        $this->assertEquals('user-123', $concreteModel->created_by);
-        $this->assertEquals('user-456', $concreteModel->updated_by);
-        $this->assertEquals('user-789', $concreteModel->deleted_by);
+        expect('user-123', $concreteModel->created_by);
+        expect('user-456', $concreteModel->updated_by);
+        expect('user-789', $concreteModel->deleted_by);
     }
 
     /** @test */
@@ -280,8 +280,8 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals('activity', $concreteModel->getConnectionName());
-        $this->assertInstanceOf(\Illuminate\Database\ConnectionInterface::class, $concreteModel->getConnection());
+        expect('activity', $concreteModel->getConnectionName());
+        expect(\Illuminate\Database\ConnectionInterface::class, $concreteModel->getConnection());
     }
 
     /** @test */
@@ -292,7 +292,7 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals('test_models', $concreteModel->getTable());
+        expect('test_models', $concreteModel->getTable());
     }
 
     /** @test */
@@ -303,9 +303,9 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals('id', $concreteModel->getKeyName());
-        $this->assertEquals('string', $concreteModel->getKeyType());
-        $this->assertTrue($concreteModel->getIncrementing());
+        expect('id', $concreteModel->getKeyName());
+        expect('string', $concreteModel->getKeyType());
+        expect($concreteModel->getIncrementing());
     }
 
     /** @test */
@@ -316,11 +316,11 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertTrue($concreteModel->usesTimestamps());
-        $this->assertTrue($concreteModel->timestamps);
+        expect($concreteModel->usesTimestamps());
+        expect($concreteModel->timestamps);
 
-        $this->assertEquals('created_at', $concreteModel->getCreatedAtColumn());
-        $this->assertEquals('updated_at', $concreteModel->getUpdatedAtColumn());
+        expect('created_at', $concreteModel->getCreatedAtColumn());
+        expect('updated_at', $concreteModel->getUpdatedAtColumn());
     }
 
     /** @test */
@@ -331,11 +331,11 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertEquals(30, $concreteModel->getPerPage());
+        expect(30, $concreteModel->getPerPage());
 
         // Test setPerPage
         $concreteModel->setPerPage(50);
-        $this->assertEquals(50, $concreteModel->getPerPage());
+        expect(50, $concreteModel->getPerPage());
     }
 
     /** @test */
@@ -346,15 +346,15 @@ class BaseModelBusinessLogicTest extends TestCase
             protected $table = 'test_models';
         };
 
-        $this->assertTrue($concreteModel::$snakeAttributes);
+        expect($concreteModel::$snakeAttributes);
 
         // Test setSnakeAttributes
         $concreteModel::$snakeAttributes = false;
-        $this->assertFalse($concreteModel::$snakeAttributes);
+        expect($concreteModel::$snakeAttributes);
 
         // Ripristina il valore originale
         $concreteModel::$snakeAttributes = true;
-        $this->assertTrue($concreteModel::$snakeAttributes);
+        expect($concreteModel::$snakeAttributes);
     }
 
     /** @test */
@@ -374,7 +374,7 @@ class BaseModelBusinessLogicTest extends TestCase
         // Test setCasts
         $newCasts = ['test_field' => 'string'];
         $concreteModel->setCasts($newCasts);
-        $this->assertEquals($newCasts, $concreteModel->getCasts());
+        expect($newCasts, $concreteModel->getCasts());
     }
 
     /** @test */
@@ -396,7 +396,7 @@ class BaseModelBusinessLogicTest extends TestCase
         // Test setFillable
         $newFillable = ['new_field'];
         $concreteModel->setFillable($newFillable);
-        $this->assertEquals($newFillable, $concreteModel->getFillable());
+        expect($newFillable, $concreteModel->getFillable());
     }
 
     /** @test */
@@ -417,6 +417,6 @@ class BaseModelBusinessLogicTest extends TestCase
         // Test setHidden
         $newHidden = ['new_secret'];
         $concreteModel->setHidden($newHidden);
-        $this->assertEquals($newHidden, $concreteModel->getHidden());
+        expect($newHidden, $concreteModel->getHidden());
     }
 }

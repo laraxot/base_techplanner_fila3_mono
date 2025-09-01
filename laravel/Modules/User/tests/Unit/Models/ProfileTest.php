@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\User\Models\Profile;
 use Tests\TestCase;
 
@@ -64,8 +64,8 @@ class ProfileTest extends TestCase
         ]);
 
         // Verifica campi JSON
-        $this->assertEquals(['theme' => 'dark', 'notifications' => true], $profile->preferences);
-        $this->assertEquals(['skills' => ['PHP', 'Laravel'], 'experience' => 5], $profile->extra);
+        expect(['theme' => 'dark', 'notifications' => true], $profile->preferences);
+        expect(['skills' => ['PHP', 'Laravel'], 'experience' => 5], $profile->extra);
     }
 
     public function test_profile_has_schemaless_attributes(): void
@@ -73,14 +73,14 @@ class ProfileTest extends TestCase
         $profile = new Profile;
 
         $expectedAttributes = ['extra'];
-        $this->assertEquals($expectedAttributes, $profile->getSchemalessAttributes());
+        expect($expectedAttributes, $profile->getSchemalessAttributes());
     }
 
     public function test_profile_has_table_name(): void
     {
         $profile = new Profile;
 
-        $this->assertEquals('profiles', $profile->getTable());
+        expect('profiles', $profile->getTable());
     }
 
     public function test_can_find_profile_by_email(): void
@@ -89,8 +89,8 @@ class ProfileTest extends TestCase
 
         $foundProfile = Profile::where('email', 'unique@example.com')->first();
 
-        $this->assertNotNull($foundProfile);
-        $this->assertEquals($profile->id, $foundProfile->id);
+        expect($foundProfile);
+        expect($profile->id, $foundProfile->id);
     }
 
     public function test_can_find_profile_by_user_name(): void
@@ -99,8 +99,8 @@ class ProfileTest extends TestCase
 
         $foundProfile = Profile::where('user_name', 'uniqueuser')->first();
 
-        $this->assertNotNull($foundProfile);
-        $this->assertEquals($profile->id, $foundProfile->id);
+        expect($foundProfile);
+        expect($profile->id, $foundProfile->id);
     }
 
     public function test_can_find_profile_by_first_name(): void
@@ -109,8 +109,8 @@ class ProfileTest extends TestCase
 
         $foundProfile = Profile::where('first_name', 'Unique')->first();
 
-        $this->assertNotNull($foundProfile);
-        $this->assertEquals($profile->id, $foundProfile->id);
+        expect($foundProfile);
+        expect($profile->id, $foundProfile->id);
     }
 
     public function test_can_find_profile_by_last_name(): void
@@ -119,8 +119,8 @@ class ProfileTest extends TestCase
 
         $foundProfile = Profile::where('last_name', 'Unique')->first();
 
-        $this->assertNotNull($foundProfile);
-        $this->assertEquals($profile->id, $foundProfile->id);
+        expect($foundProfile);
+        expect($profile->id, $foundProfile->id);
     }
 
     public function test_can_find_profile_by_phone(): void
@@ -129,8 +129,8 @@ class ProfileTest extends TestCase
 
         $foundProfile = Profile::where('phone', '+1234567890')->first();
 
-        $this->assertNotNull($foundProfile);
-        $this->assertEquals($profile->id, $foundProfile->id);
+        expect($foundProfile);
+        expect($profile->id, $foundProfile->id);
     }
 
     public function test_can_find_profile_by_status(): void
@@ -141,8 +141,8 @@ class ProfileTest extends TestCase
 
         $activeProfiles = Profile::where('status', 'active')->get();
 
-        $this->assertCount(1, $activeProfiles);
-        $this->assertEquals('active', $activeProfiles->first()->status);
+        expect(1, $activeProfiles);
+        expect('active', $activeProfiles->first()->status);
     }
 
     public function test_can_find_profile_by_timezone(): void
@@ -153,8 +153,8 @@ class ProfileTest extends TestCase
 
         $utcProfiles = Profile::where('timezone', 'UTC')->get();
 
-        $this->assertCount(1, $utcProfiles);
-        $this->assertEquals('UTC', $utcProfiles->first()->timezone);
+        expect(1, $utcProfiles);
+        expect('UTC', $utcProfiles->first()->timezone);
     }
 
     public function test_can_find_profile_by_locale(): void
@@ -165,8 +165,8 @@ class ProfileTest extends TestCase
 
         $englishProfiles = Profile::where('locale', 'en')->get();
 
-        $this->assertCount(1, $englishProfiles);
-        $this->assertEquals('en', $englishProfiles->first()->locale);
+        expect(1, $englishProfiles);
+        expect('en', $englishProfiles->first()->locale);
     }
 
     public function test_can_find_profiles_by_name_pattern(): void
@@ -177,8 +177,8 @@ class ProfileTest extends TestCase
 
         $doeProfiles = Profile::where('last_name', 'like', '%Doe%')->get();
 
-        $this->assertCount(2, $doeProfiles);
-        $this->assertTrue($doeProfiles->every(fn ($profile) => str_contains($profile->last_name, 'Doe')));
+        expect(2, $doeProfiles);
+        expect($doeProfiles->every(fn ($profile) => str_contains($profile->last_name, 'Doe')));
     }
 
     public function test_can_find_profiles_by_bio_pattern(): void
@@ -189,8 +189,8 @@ class ProfileTest extends TestCase
 
         $devProfiles = Profile::where('bio', 'like', '%Developer%')->get();
 
-        $this->assertCount(1, $devProfiles);
-        $this->assertTrue($devProfiles->every(fn ($profile) => str_contains($profile->bio, 'Developer')));
+        expect(1, $devProfiles);
+        expect($devProfiles->every(fn ($profile) => str_contains($profile->bio, 'Developer')));
     }
 
     public function test_can_update_profile(): void
@@ -253,74 +253,74 @@ class ProfileTest extends TestCase
             ->where('timezone', 'UTC')
             ->get();
 
-        $this->assertCount(1, $profiles);
-        $this->assertEquals('active', $profiles->first()->status);
-        $this->assertEquals('UTC', $profiles->first()->timezone);
+        expect(1, $profiles);
+        expect('active', $profiles->first()->status);
+        expect('UTC', $profiles->first()->timezone);
     }
 
     public function test_profile_has_roles_relationship(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'roles'));
+        expect(method_exists($profile, 'roles'));
     }
 
     public function test_profile_has_permissions_relationship(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'permissions'));
+        expect(method_exists($profile, 'permissions'));
     }
 
     public function test_profile_has_teams_relationship(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'teams'));
+        expect(method_exists($profile, 'teams'));
     }
 
     public function test_profile_has_devices_relationship(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'devices'));
+        expect(method_exists($profile, 'devices'));
     }
 
     public function test_profile_has_media_relationship(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'media'));
+        expect(method_exists($profile, 'media'));
     }
 
     public function test_profile_can_use_permission_scopes(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'permission'));
-        $this->assertTrue(method_exists($profile, 'withoutPermission'));
+        expect(method_exists($profile, 'permission'));
+        expect(method_exists($profile, 'withoutPermission'));
     }
 
     public function test_profile_can_use_role_scopes(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'role'));
-        $this->assertTrue(method_exists($profile, 'withoutRole'));
+        expect(method_exists($profile, 'role'));
+        expect(method_exists($profile, 'withoutRole'));
     }
 
     public function test_profile_can_use_extra_attributes_scopes(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertTrue(method_exists($profile, 'withExtraAttributes'));
+        expect(method_exists($profile, 'withExtraAttributes'));
     }
 
     public function test_profile_has_factory(): void
     {
         $profile = Profile::factory()->create();
 
-        $this->assertNotNull($profile->id);
-        $this->assertInstanceOf(Profile::class, $profile);
+        expect($profile->id);
+        expect(Profile::class, $profile);
     }
 }

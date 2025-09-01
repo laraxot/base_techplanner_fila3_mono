@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Notify\Models\MailTemplate;
 use Modules\Notify\Models\MailTemplateVersion;
 use Tests\TestCase;
@@ -41,8 +41,8 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => 'Aggiornamento design email e aggiunta variabile appointment_date',
         ]);
 
-        $this->assertEquals('2.0', $version->version);
-        $this->assertEquals('AppointmentConfirmation', $version->mailable);
+        expect('2.0', $version->version);
+        expect('AppointmentConfirmation', $version->mailable);
         $this->assertStringContainsString('{{patient_name}}', $version->html_template);
         $this->assertStringContainsString('{{appointment_date}}', $version->text_template);
     }
@@ -55,8 +55,8 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
             'template_id' => $template->id,
         ]);
 
-        $this->assertInstanceOf(MailTemplate::class, $version->template);
-        $this->assertEquals($template->id, $version->template->id);
+        expect(MailTemplate::class, $version->template);
+        expect($template->id, $version->template->id);
     }
 
     /** @test */
@@ -85,9 +85,9 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
         // Restaura dalla versione
         $restoredTemplate = $version->restore();
 
-        $this->assertEquals('Versione Precedente', $restoredTemplate->subject);
-        $this->assertEquals('<p>Template versione precedente</p>', $restoredTemplate->html_template);
-        $this->assertEquals('Template versione precedente', $restoredTemplate->text_template);
+        expect('Versione Precedente', $restoredTemplate->subject);
+        expect('<p>Template versione precedente</p>', $restoredTemplate->html_template);
+        expect('Template versione precedente', $restoredTemplate->text_template);
     }
 
     /** @test */
@@ -115,11 +115,11 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => 'Correzione bug nella formattazione HTML e ottimizzazione per mobile',
         ]);
 
-        $this->assertEquals('1.5.2', $version->version);
-        $this->assertEquals('developer@'.config('app.domain', 'example.com'), $version->created_by);
-        $this->assertEquals('Correzione bug nella formattazione HTML e ottimizzazione per mobile', $version->change_notes);
-        $this->assertNotNull($version->created_at);
-        $this->assertNotNull($version->updated_at);
+        expect('1.5.2', $version->version);
+        expect('developer@'.config('app.domain', 'example.com'), $version->created_by);
+        expect('Correzione bug nella formattazione HTML e ottimizzazione per mobile', $version->change_notes);
+        expect($version->created_at);
+        expect($version->updated_at);
     }
 
     /** @test */
@@ -255,16 +255,16 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => 'Rifattorizzazione completa del template',
         ]);
 
-        $this->assertCount(3, $template->versions);
-        $this->assertEquals('1.0', $version1->version);
-        $this->assertEquals('1.1', $version2->version);
-        $this->assertEquals('2.0', $version3->version);
+        expect(3, $template->versions);
+        expect('1.0', $version1->version);
+        expect('1.1', $version2->version);
+        expect('2.0', $version3->version);
 
         // Test rollback alla versione 1.1
         $restoredTemplate = $version2->restore();
-        $this->assertEquals('Versione 1.1', $restoredTemplate->subject);
-        $this->assertEquals('<p>Template versione 1.1</p>', $restoredTemplate->html_template);
-        $this->assertEquals('Template versione 1.1', $restoredTemplate->text_template);
+        expect('Versione 1.1', $restoredTemplate->subject);
+        expect('<p>Template versione 1.1</p>', $restoredTemplate->html_template);
+        expect('Template versione 1.1', $restoredTemplate->text_template);
     }
 
     /** @test */
@@ -290,8 +290,8 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
                 'html_template' => '<p>Template per '.$mailableClass.'</p>',
             ]);
 
-            $this->assertEquals($mailableClass, $version->mailable);
-            $this->assertEquals('Template per '.$mailableClass, $version->subject);
+            expect($mailableClass, $version->mailable);
+            expect('Template per '.$mailableClass, $version->subject);
         }
     }
 
@@ -304,12 +304,12 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
         ]);
 
         // Verifica che il modello supporti soft delete
-        $this->assertTrue($version->trashed() === false);
+        expect($version->trashed() === false);
 
         // Soft delete
         $version->delete();
 
-        $this->assertTrue($version->trashed());
+        expect($version->trashed());
         $this->assertDatabaseHas('mail_template_versions', [
             'id' => $version->id,
             'deleted_at' => $version->deleted_at,
@@ -317,7 +317,7 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
 
         // Restore
         $version->restore();
-        $this->assertFalse($version->trashed());
+        expect($version->trashed());
     }
 
     /** @test */
@@ -332,11 +332,11 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
             'change_notes' => null,
         ]);
 
-        $this->assertNull($version->subject);
-        $this->assertNull($version->text_template);
-        $this->assertNull($version->change_notes);
-        $this->assertNotNull($version->html_template); // Campo obbligatorio
-        $this->assertNotNull($version->version); // Campo obbligatorio
+        expect($version->subject);
+        expect($version->text_template);
+        expect($version->change_notes);
+        expect($version->html_template); // Campo obbligatorio
+        expect($version->version); // Campo obbligatorio
     }
 
     /** @test */
@@ -358,7 +358,7 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
         $htmlVariables = $this->extractVariables($htmlTemplate);
         $textVariables = $this->extractVariables($textTemplate);
 
-        $this->assertEquals($htmlVariables, $textVariables);
+        expect($htmlVariables, $textVariables);
         $this->assertContains('patient_name', $htmlVariables);
         $this->assertContains('appointment_date', $htmlVariables);
         $this->assertContains('doctor_name', $htmlVariables);
@@ -385,8 +385,8 @@ class MailTemplateVersionBusinessLogicTest extends TestCase
                 'change_notes' => $description,
             ]);
 
-            $this->assertEquals($versionNumber, $version->version);
-            $this->assertEquals($description, $version->change_notes);
+            expect($versionNumber, $version->version);
+            expect($description, $version->change_notes);
         }
     }
 

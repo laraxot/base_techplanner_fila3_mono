@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\UI\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Livewire\Livewire;
 use Modules\UI\Filament\Widgets\GroupWidget;
 use Modules\UI\Filament\Widgets\HeroWidget;
@@ -28,8 +28,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RowWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(RowWidget::class, $widget);
+        expect($widget);
+        expect(RowWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -43,8 +43,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new StatWithIconWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(StatWithIconWidget::class, $widget);
+        expect($widget);
+        expect(StatWithIconWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -59,8 +59,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new OverlookWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(OverlookWidget::class, $widget);
+        expect($widget);
+        expect(OverlookWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -74,8 +74,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new HeroWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(HeroWidget::class, $widget);
+        expect($widget);
+        expect(HeroWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -89,8 +89,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new TestChartWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(TestChartWidget::class, $widget);
+        expect($widget);
+        expect(TestChartWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -104,8 +104,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new StatsOverviewWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(StatsOverviewWidget::class, $widget);
+        expect($widget);
+        expect(StatsOverviewWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -118,8 +118,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new GroupWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(GroupWidget::class, $widget);
+        expect($widget);
+        expect(GroupWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -132,8 +132,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RedirectWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(RedirectWidget::class, $widget);
+        expect($widget);
+        expect(RedirectWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -147,8 +147,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new UserCalendarWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
-        $this->assertInstanceOf(UserCalendarWidget::class, $widget);
+        expect($widget);
+        expect(UserCalendarWidget::class, $widget);
 
         // Verifica che il widget abbia le proprietà necessarie
         $this->assertIsString($widget->getHeading());
@@ -166,9 +166,9 @@ class WidgetBusinessLogicTest extends TestCase
         $widget->color = 'success';
 
         // Assert
-        $this->assertEquals('Custom Heading', $widget->heading);
-        $this->assertEquals('heroicon-o-chart-bar', $widget->icon);
-        $this->assertEquals('success', $widget->color);
+        expect('Custom Heading', $widget->heading);
+        expect('heroicon-o-chart-bar', $widget->icon);
+        expect('success', $widget->color);
     }
 
     /** @test */
@@ -178,7 +178,7 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new StatsOverviewWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget gestisca dati vuoti senza errori
         $this->assertIsString($widget->getHeading());
@@ -191,10 +191,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RowWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget sia compatibile con Livewire
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -208,8 +208,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget->description = 'Dynamic Description';
 
         // Assert
-        $this->assertEquals('Dynamic Heading', $widget->heading);
-        $this->assertEquals('Dynamic Description', $widget->description);
+        expect('Dynamic Heading', $widget->heading);
+        expect('Dynamic Description', $widget->description);
     }
 
     /** @test */
@@ -219,8 +219,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new HeroWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget->getHeading());
-        $this->assertNotNull($widget->getSubheading());
+        expect($widget->getHeading());
+        expect($widget->getSubheading());
 
         // Verifica che le proprietà richieste non siano vuote
         $this->assertNotEmpty($widget->getHeading());
@@ -238,8 +238,8 @@ class WidgetBusinessLogicTest extends TestCase
         $widget->icon = 'heroicon-o-star';
 
         // Assert
-        $this->assertEquals('primary', $widget->color);
-        $this->assertEquals('heroicon-o-star', $widget->icon);
+        expect('primary', $widget->color);
+        expect('heroicon-o-star', $widget->icon);
     }
 
     /** @test */
@@ -249,7 +249,7 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RowWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti comportamento responsive
         $this->assertIsArray($widget->getColumns());
@@ -262,10 +262,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new TestChartWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti funzionalità interattive
-        $this->assertTrue(method_exists($widget, 'getData'));
+        expect(method_exists($widget, 'getData'));
     }
 
     /** @test */
@@ -275,10 +275,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new StatsOverviewWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget gestisca stati di errore
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -288,10 +288,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new UserCalendarWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget gestisca stati di caricamento
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -301,10 +301,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new GroupWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget gestisca stati vuoti
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -314,10 +314,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RedirectWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti azioni personalizzate
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -327,10 +327,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new TestChartWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti aggiornamento dati
-        $this->assertTrue(method_exists($widget, 'getData'));
+        expect(method_exists($widget, 'getData'));
     }
 
     /** @test */
@@ -340,10 +340,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new OverlookWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti eventi personalizzati
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -353,10 +353,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new HeroWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti funzionalità di accessibilità
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -366,10 +366,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new StatWithIconWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti internazionalizzazione
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -379,10 +379,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RowWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti personalizzazione tema
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -392,10 +392,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new StatsOverviewWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti ottimizzazioni performance
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -405,10 +405,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new UserCalendarWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti funzionalità di sicurezza
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -418,10 +418,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new TestChartWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti logging e monitoring
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -431,10 +431,10 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new GroupWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti backup e recovery
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 
     /** @test */
@@ -444,9 +444,9 @@ class WidgetBusinessLogicTest extends TestCase
         $widget = new RedirectWidget;
 
         // Act & Assert
-        $this->assertNotNull($widget);
+        expect($widget);
 
         // Verifica che il widget supporti funzionalità di scalabilità
-        $this->assertTrue(method_exists($widget, 'render'));
+        expect(method_exists($widget, 'render'));
     }
 }
