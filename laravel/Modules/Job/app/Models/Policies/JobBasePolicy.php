@@ -21,8 +21,4 @@ abstract class JobBasePolicy
 
         return null;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c25c04 (.)

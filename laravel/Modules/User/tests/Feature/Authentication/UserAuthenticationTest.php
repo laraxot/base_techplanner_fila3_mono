@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-<<<<<<< HEAD
-namespace Modules\User\Tests\Feature\Authentication;
+namespace Modules\User\Tests\Feature\Authentication\UserAuthenticationTest;
+
+namespace Modules\User\Tests\Unit\Widgets;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,15 +12,7 @@ use Laravel\Passport\Passport;
 use Modules\User\Models\Permission;
 use Modules\User\Models\Role;
 use Modules\User\Models\User;
-=======
-use Modules\User\Models\User;
-use Modules\User\Models\Role;
-use Modules\User\Models\Permission;
 use Modules\User\Models\AuthenticationLog;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Passport\Passport;
->>>>>>> 8055579 (.)
 
 beforeEach(function () {
     $this->user = User::factory()->create([
@@ -331,8 +324,4 @@ describe('User Two Factor Authentication', function () {
         // Should handle OTP requirement
         expect($user->is_otp)->toBe(true);
     });
-<<<<<<< HEAD
-});
-=======
-});
->>>>>>> 8055579 (.)
+

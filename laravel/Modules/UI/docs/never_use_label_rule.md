@@ -112,7 +112,6 @@ TextColumn::make('status')
 
 ## Checklist Pre-Implementazione
 
->>>>>>> 8727c5b (.)
 ### Prima di usare un componente Filament:
 - [ ] Implementare traduzioni in `lang/it/fields.php`
 - [ ] Implementare traduzioni in `lang/en/fields.php`

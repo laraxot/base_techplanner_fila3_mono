@@ -24,19 +24,13 @@ return [
     // Anmeldung
     'login' => [
         'title' => 'Anmelden',
-<<<<<<< HEAD
-        'subtitle' => 'Geben Sie Ihre Anmeldedaten ein, um fortzufahren',
-=======
->>>>>>> d1c61d3 (.)
+
         'email' => 'E-Mail',
         'password' => 'Passwort',
         'remember_me' => 'Angemeldet bleiben',
         'forgot_password' => 'Passwort vergessen?',
         'submit' => 'Anmelden',
-<<<<<<< HEAD
-        'submitting' => 'Anmeldung läuft...',
-=======
->>>>>>> d1c61d3 (.)
+
         'or' => 'oder',
         'create_account' => 'ein neues Konto erstellen',
         'link' => 'Anmelden',

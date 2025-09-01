@@ -4,24 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Job\Tests\Unit\Models;
 
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Model;
 use Modules\Job\Models\BaseModel;
 
 beforeEach(function () {
     $this->baseModel = new class extends BaseModel
     {
-=======
-use Modules\Job\Models\BaseModel;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Database\Eloquent\Model;
-use Tests\TestCase;
-
-uses(TestCase::class, RefreshDatabase::class);
-
-beforeEach(function () {
-    $this->baseModel = new class extends BaseModel {
->>>>>>> 0c25c04 (.)
         protected $table = 'test_job_table';
     };
 });

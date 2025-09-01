@@ -4,13 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-<<<<<<< HEAD
-use Modules\User\Models\OauthAuthCode;
-use Modules\Xot\Contracts\UserContract;
-=======
-use Modules\Xot\Contracts\UserContract;
-use Modules\User\Models\OauthAuthCode;
->>>>>>> 8055579 (.)
+
 
 class OauthAuthCodePolicy extends UserBasePolicy
 {
@@ -27,11 +21,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function view(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('oauth-auth-code.view') ||
-=======
-        return $user->hasPermissionTo('oauth-auth-code.view') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -48,11 +38,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function update(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('oauth-auth-code.update') ||
-=======
-        return $user->hasPermissionTo('oauth-auth-code.update') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -61,11 +47,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('oauth-auth-code.delete') ||
-=======
-        return $user->hasPermissionTo('oauth-auth-code.delete') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -74,11 +56,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('oauth-auth-code.restore') ||
-=======
-        return $user->hasPermissionTo('oauth-auth-code.restore') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -87,14 +65,4 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('oauth-auth-code.force-delete') ||
-               $user->hasRole('super-admin');
-    }
-}
-=======
-        return $user->hasPermissionTo('oauth-auth-code.force-delete') || 
-               $user->hasRole('super-admin');
-    }
-}
->>>>>>> 8055579 (.)
+

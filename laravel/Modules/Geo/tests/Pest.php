@@ -15,12 +15,8 @@ use Modules\Geo\Tests\TestCase;
 |
 */
 
-<<<<<<< HEAD
 uses(TestCase::class)
     ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
-=======
-pest()->extend(TestCase::class)
->>>>>>> 63c6dd4 (.)
     ->in('Feature', 'Unit');
 
 /*
@@ -70,8 +66,4 @@ function createRegion(array $attributes = []): \Modules\Geo\Models\Region
 function createCity(array $attributes = []): \Modules\Geo\Models\City
 {
     return \Modules\Geo\Models\City::factory()->create($attributes);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 63c6dd4 (.)

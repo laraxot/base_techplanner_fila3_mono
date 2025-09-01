@@ -2,25 +2,16 @@
 
 declare(strict_types=1);
 
+namespace Modules\UI\Tests\Unit\Filament\Widgets\StatWithIconWidgetTest;
+
 namespace Modules\UI\Tests\Unit\Filament\Widgets;
 
-<<<<<<< HEAD
-use Filament\Widgets\Widget;
-use Modules\UI\Filament\Widgets\StatWithIconWidget;
-=======
-use Modules\UI\Filament\Widgets\StatWithIconWidget;
-use Tests\TestCase;
-use Filament\Widgets\Widget;
->>>>>>> 60908d2 (.)
+
 
 uses(TestCase::class);
 
 beforeEach(function () {
-<<<<<<< HEAD
-    $this->widget = new StatWithIconWidget;
-=======
-    $this->widget = new StatWithIconWidget();
->>>>>>> 60908d2 (.)
+$this->widget = new StatWithIconWidget();
 });
 
 test('stat with icon widget extends filament widget', function () {
@@ -43,11 +34,7 @@ test('stat with icon widget has proper properties', function () {
 
 test('stat with icon widget can render', function () {
     $view = $this->widget->render();
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 60908d2 (.)
     expect($view)->toBeInstanceOf(\Illuminate\Contracts\View\View::class);
 });
 

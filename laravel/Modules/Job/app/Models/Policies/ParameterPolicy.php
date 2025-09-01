@@ -64,8 +64,4 @@ class ParameterPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('parameter.forceDelete');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c25c04 (.)

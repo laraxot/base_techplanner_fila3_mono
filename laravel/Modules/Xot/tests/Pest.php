@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-<<<<<<< HEAD
-namespace Modules\Xot\Tests;
-=======
-use Modules\Xot\Tests\TestCase;
->>>>>>> e697a77b (.)
+namespace Modules\Xot\Tests\Pest;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +16,7 @@ use Modules\Xot\Tests\TestCase;
 |
 */
 
-<<<<<<< HEAD
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
-=======
-pest()->extend(TestCase::class)
->>>>>>> e697a77b (.)
+
     ->in('Feature', 'Unit');
 
 /*
@@ -32,11 +25,7 @@ pest()->extend(TestCase::class)
 |--------------------------------------------------------------------------
 |
 | Qui puoi definire aspettative globali per il modulo Xot.
-<<<<<<< HEAD
-| Quando definisci here expectation globali, saranno disponibili
-=======
-| Quando definisci here expectation globali, saranno disponibili 
->>>>>>> e697a77b (.)
+
 | in tutti i test del modulo.
 |
 */
@@ -57,8 +46,4 @@ pest()->extend(TestCase::class)
 
 // function something() {
 //     // ...
-<<<<<<< HEAD
-// }
-=======
-// } 
->>>>>>> e697a77b (.)
+

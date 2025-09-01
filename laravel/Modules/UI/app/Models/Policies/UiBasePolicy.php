@@ -21,8 +21,4 @@ abstract class UiBasePolicy
 
         return null;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 60908d2 (.)

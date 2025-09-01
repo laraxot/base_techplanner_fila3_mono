@@ -2,60 +2,21 @@
 
 declare(strict_types=1);
 
-<<<<<<< HEAD
-namespace Modules\User\Tests\Feature;
+namespace Modules\User\Tests\Feature\UserCommandIntegrationTest;
 
-use Illuminate\Console\Application;
-use Illuminate\Support\Facades\Artisan;
-use Modules\User\Console\Commands\ChangeTypeCommand;
-use Modules\Xot\Contracts\UserContract;
-use Modules\Xot\Datas\XotData;
 
-describe('User Command Integration', function () {
-    beforeEach(function () {
-        $this->command = new ChangeTypeCommand;
-=======
-use Modules\User\Console\Commands\ChangeTypeCommand;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Contracts\UserContract;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Console\Application;
-use Illuminate\Support\Facades\Artisan;
-
-uses(RefreshDatabase::class);
-
-describe('User Command Integration', function () {
-    beforeEach(function () {
-        $this->command = new ChangeTypeCommand();
->>>>>>> 8055579 (.)
     });
 
     it('can be registered with Laravel artisan', function () {
         // Test that the command can be registered
-<<<<<<< HEAD
-        $application = new Application;
-        $application->add($this->command);
 
-=======
-        $application = new Application();
-        $application->add($this->command);
-        
->>>>>>> 8055579 (.)
         expect($application->has('user:change-type'))->toBeTrue();
     });
 
     it('integrates with XotData system', function () {
         // Test XotData integration
         $xotData = XotData::make();
-<<<<<<< HEAD
 
-        expect($xotData)->toBeInstanceOf(XotData::class);
-
-=======
-        
-        expect($xotData)->toBeInstanceOf(XotData::class);
-        
->>>>>>> 8055579 (.)
         // Test that required methods exist
         expect(method_exists($xotData, 'getUserByEmail'))->toBeTrue()
             ->and(method_exists($xotData, 'getUserChildTypes'))->toBeTrue()
@@ -65,11 +26,7 @@ describe('User Command Integration', function () {
     it('validates command registration in service provider', function () {
         // Test that the command can be found in artisan list
         $commands = Artisan::all();
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         // The command should be registrable
         expect($this->command->getName())->toBe('user:change-type');
     });
@@ -83,11 +40,7 @@ describe('User Command Integration', function () {
     it('validates Webmozart Assert integration', function () {
         // Test that Assert class is available and usable
         expect(class_exists('Webmozart\Assert\Assert'))->toBeTrue();
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         // Test basic assertion functionality
         expect(fn () => \Webmozart\Assert\Assert::notNull('test'))
             ->not->toThrow(Exception::class);
@@ -96,15 +49,7 @@ describe('User Command Integration', function () {
     it('integrates with Illuminate Support Arr', function () {
         // Test Arr helper functionality
         $testArray = ['a' => 1, 'b' => 2, 'c' => 3];
-<<<<<<< HEAD
 
-        $result = \Illuminate\Support\Arr::mapWithKeys($testArray, function ($value, $key) {
-            return [$key.'_mapped' => $value * 2];
-=======
-        
-        $result = \Illuminate\Support\Arr::mapWithKeys($testArray, function ($value, $key) {
-            return [$key . '_mapped' => $value * 2];
->>>>>>> 8055579 (.)
         });
 
         expect($result)->toBeArray()
@@ -124,19 +69,7 @@ describe('User Command Integration', function () {
 
     it('validates command signature and options', function () {
         $reflection = new ReflectionClass($this->command);
-<<<<<<< HEAD
 
-        // Check command properties
-        expect($reflection->hasProperty('name'))->toBeTrue()
-            ->and($reflection->hasProperty('description'))->toBeTrue();
-
-=======
-        
-        // Check command properties
-        expect($reflection->hasProperty('name'))->toBeTrue()
-            ->and($reflection->hasProperty('description'))->toBeTrue();
-            
->>>>>>> 8055579 (.)
         $nameProperty = $reflection->getProperty('name');
         $nameProperty->setAccessible(true);
         expect($nameProperty->getValue($this->command))->toBe('user:change-type');
@@ -151,11 +84,7 @@ describe('User Command Integration', function () {
     it('validates user contract integration', function () {
         // Test UserContract interface
         expect(interface_exists('Modules\Xot\Contracts\UserContract'))->toBeTrue();
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         $reflection = new ReflectionClass('Modules\Xot\Contracts\UserContract');
         expect($reflection->isInterface())->toBeTrue();
     });
@@ -170,25 +99,13 @@ describe('User Command Integration', function () {
         // Test that the command structure supports proper error handling
         $reflection = new ReflectionClass($this->command);
         $handleMethod = $reflection->getMethod('handle');
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         expect($handleMethod->getReturnType()?->getName())->toBe('void');
     });
 
     it('can work with type checking utilities', function () {
         // Test type checking functions used in the command
-<<<<<<< HEAD
-        $testObject = new stdClass;
-        $testObject->value = 'test';
-        $testObject->getLabel = fn () => 'Test Label';
-=======
-        $testObject = new stdClass();
-        $testObject->value = 'test';
-        $testObject->getLabel = fn() => 'Test Label';
->>>>>>> 8055579 (.)
+
 
         expect(is_object($testObject))->toBeTrue()
             ->and(property_exists($testObject, 'value'))->toBeTrue()
@@ -198,11 +115,7 @@ describe('User Command Integration', function () {
     it('integrates with Laravel configuration system', function () {
         // Test that the command can access configuration
         expect(function_exists('config'))->toBeTrue();
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         // Test setting and getting config
         config(['test.user_types' => ['admin', 'user', 'guest']]);
         expect(config('test.user_types'))->toBe(['admin', 'user', 'guest']);
@@ -211,30 +124,14 @@ describe('User Command Integration', function () {
     it('handles string manipulation correctly', function () {
         // Test string operations used in the command
         $testString = 'TestValue';
-<<<<<<< HEAD
 
-        expect((string) $testString)->toBe('TestValue')
-=======
-        
-        expect((string)$testString)->toBe('TestValue')
->>>>>>> 8055579 (.)
             ->and(is_string($testString))->toBeTrue();
     });
 
     it('validates array operations', function () {
         // Test array operations used in the command
         $testArray = ['key1' => 'value1', 'key2' => 'value2'];
-<<<<<<< HEAD
 
-        $mapped = [];
-        foreach ($testArray as $key => $value) {
-            $mapped[$key.'_suffix'] = $value.'_modified';
-=======
-        
-        $mapped = [];
-        foreach ($testArray as $key => $value) {
-            $mapped[$key . '_suffix'] = $value . '_modified';
->>>>>>> 8055579 (.)
         }
 
         expect($mapped)->toBeArray()
@@ -251,11 +148,7 @@ describe('User Command Integration', function () {
     it('validates dependency injection compatibility', function () {
         // Test that the command can be instantiated through DI
         $commandFromContainer = app(ChangeTypeCommand::class);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         expect($commandFromContainer)->toBeInstanceOf(ChangeTypeCommand::class)
             ->and($commandFromContainer->getName())->toBe('user:change-type');
     });
@@ -279,11 +172,7 @@ describe('User Command Integration', function () {
     it('handles reflection operations correctly', function () {
         // Test reflection operations used in the command logic
         $reflection = new ReflectionClass($this->command);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 8055579 (.)
         expect($reflection)->toBeInstanceOf(ReflectionClass::class)
             ->and($reflection->getName())->toBe(ChangeTypeCommand::class);
     });
@@ -296,15 +185,7 @@ describe('User Command Integration', function () {
 
     it('can handle object property access safely', function () {
         // Test safe property access patterns
-<<<<<<< HEAD
-        $testObject = new stdClass;
-        $testObject->testProperty = 'test_value';
 
-=======
-        $testObject = new stdClass();
-        $testObject->testProperty = 'test_value';
-        
->>>>>>> 8055579 (.)
         expect(property_exists($testObject, 'testProperty'))->toBeTrue()
             ->and(property_exists($testObject, 'nonExistentProperty'))->toBeFalse();
     });

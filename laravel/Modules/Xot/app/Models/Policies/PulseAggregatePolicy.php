@@ -4,13 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models\Policies;
 
-<<<<<<< HEAD
-use Modules\Xot\Contracts\UserContract;
-use Modules\Xot\Models\PulseAggregate;
-=======
-use Modules\Xot\Models\PulseAggregate;
-use Modules\Xot\Contracts\UserContract;
->>>>>>> e697a77b (.)
+
 
 class PulseAggregatePolicy extends XotBasePolicy
 {
@@ -69,8 +63,4 @@ class PulseAggregatePolicy extends XotBasePolicy
     {
         return $user->hasPermissionTo('pulse_aggregate.forceDelete');
     }
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> e697a77b (.)
+

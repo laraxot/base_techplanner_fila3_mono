@@ -14,15 +14,10 @@ use Modules\Xot\Traits\Updater;
  * @method static \Illuminate\Database\Eloquent\Builder|GeoNamesCap newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GeoNamesCap newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GeoNamesCap query()
-<<<<<<< HEAD
  *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
  *
-=======
- * @property \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null $updater
->>>>>>> 63c6dd4 (.)
  * @mixin \Eloquent
  */
 class GeoNamesCap extends Model

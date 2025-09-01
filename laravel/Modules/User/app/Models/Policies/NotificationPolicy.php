@@ -4,13 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-<<<<<<< HEAD
-use Modules\User\Models\Notification;
-use Modules\Xot\Contracts\UserContract;
-=======
-use Modules\Xot\Contracts\UserContract;
-use Modules\User\Models\Notification;
->>>>>>> 8055579 (.)
+
 
 class NotificationPolicy extends UserBasePolicy
 {
@@ -27,11 +21,7 @@ class NotificationPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Notification $notification): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('notification.view') ||
-=======
-        return $user->hasPermissionTo('notification.view') || 
->>>>>>> 8055579 (.)
+
                $user->id === $notification->notifiable_id ||
                $user->hasRole('super-admin');
     }
@@ -49,11 +39,7 @@ class NotificationPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Notification $notification): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('notification.update') ||
-=======
-        return $user->hasPermissionTo('notification.update') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -62,11 +48,7 @@ class NotificationPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Notification $notification): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('notification.delete') ||
-=======
-        return $user->hasPermissionTo('notification.delete') || 
->>>>>>> 8055579 (.)
+
                $user->id === $notification->notifiable_id ||
                $user->hasRole('super-admin');
     }
@@ -76,11 +58,7 @@ class NotificationPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Notification $notification): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('notification.restore') ||
-=======
-        return $user->hasPermissionTo('notification.restore') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -89,11 +67,7 @@ class NotificationPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Notification $notification): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('notification.force-delete') ||
-=======
-        return $user->hasPermissionTo('notification.force-delete') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 }

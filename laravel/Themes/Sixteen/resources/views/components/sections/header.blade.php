@@ -2,36 +2,7 @@
     <div class="h-12 bg-emerald-900 min-h-12 navbar">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto">
             <div class="flex-1 py-1">
-<<<<<<< HEAD
-                <a class="text-sm" href="#">{{-- regione --}}</a>
-            </div>
-            <div class="flex-none">
-                <ul class="px-1 menu menu-horizontal">
-                    {{--  
-                    <li>
-                        @livewire("Modules\UI\Filament\Widgets\DarkModeSwitcherWidget")
-                    </li>
-                    <li>
-                        @livewire("Modules\Lang\Filament\Widgets\LanguageSwitcherWidget")
-                    </li>
-                    --}}
-=======
-                <a class="text-sm" href="#">Nome della Regione</a>
-            </div>
-            <div class="flex-none">
-                <ul class="px-1 menu menu-horizontal">
-                    <livewire:dark-mode-switcher />
-                    <livewire:lang.switcher />
-                    {{-- <li>
-						<details>
-							<summary>ITA</summary>
-							<ul class="p-2 !mt-0 bg-white text-gray-950 rounded">
-								<li><a>ITA</a></li>
-								<li><a>ENG</a></li>
-							</ul>
-						</details>
-					</li> --}}
->>>>>>> d1c61d3 (.)
+
                     @guest
                         <li class="ml-4">
                             <a class="flex items-center space-x-1" href="{{ route('login') }}">
@@ -143,34 +114,14 @@
     <div class="hidden h-12 overflow-auto min-h-12 navbar md:flex">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto space-x-12">
             <div class="flex-1 ">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                
-                @php
-                $nav1 = Arr::first($blocks,fn($item)=>$item->slug =='nav1');
-                @endphp
-                <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
-                    @foreach($nav1->data['items'] as $item)
-                    <li><a href="">{{ $item['label'] }}</a></li>
-                    @endforeach
-                    {{--  
-=======
-=======
->>>>>>> b812033 (.)
-=======
->>>>>>> 2426908 (.)
+
                 {{--  dddx(get_defined_vars()) --}}
                 <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
->>>>>>> d1c61d3 (.)
                     <li><a href="">Amministrazione</a></li>
                     <li><a href="">Novità</a></li>
                     <li><a href="">Servizi</a></li>
                     <li><a href="">Vivere il Comune</a></li>
-<<<<<<< HEAD
-                    --}}
-=======
->>>>>>> d1c61d3 (.)
+
                 </ul>
             </div>
             <div class="flex-none">

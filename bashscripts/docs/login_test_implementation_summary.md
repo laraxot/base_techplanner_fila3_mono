@@ -120,12 +120,24 @@ test('successful login regenerates session', function (): void {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d20d0523 (.)
+
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 337c5266 (.)
@@ -146,6 +158,14 @@ test('successful login regenerates session', function (): void {
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Complete test suite
 ./vendor/bin/pest Modules/Cms/tests/Feature/Auth/LoginTest.php
 
@@ -240,6 +260,7 @@ Questa implementazione fornisce una **base solida** per tutti i futuri test di a
 *Project: Laraxot SaluteOra*  
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -258,3 +279,19 @@ Questa implementazione fornisce una **base solida** per tutti i futuri test di a
 *Module: Cms Testing Suite* 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9de04485 (.)
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+*Module: Cms Testing Suite* 
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 59901687 (.)
+<<<<<<< HEAD
+>>>>>>> 85c5198c (.)
+=======
+=======
+*Module: Cms Testing Suite* 
+>>>>>>> 3c18aa7e (.)
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)

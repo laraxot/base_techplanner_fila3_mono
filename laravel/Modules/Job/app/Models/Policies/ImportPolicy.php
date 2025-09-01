@@ -64,8 +64,4 @@ class ImportPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('import.forceDelete');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c25c04 (.)

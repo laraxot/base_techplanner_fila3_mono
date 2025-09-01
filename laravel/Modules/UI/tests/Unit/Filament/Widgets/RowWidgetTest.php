@@ -2,25 +2,17 @@
 
 declare(strict_types=1);
 
+namespace Modules\UI\Tests\Unit\Filament\Widgets\RowWidgetTest;
+
 namespace Modules\UI\Tests\Unit\Filament\Widgets;
 
-<<<<<<< HEAD
 use Filament\Widgets\Widget;
 use Modules\UI\Filament\Widgets\RowWidget;
-=======
-use Modules\UI\Filament\Widgets\RowWidget;
-use Tests\TestCase;
-use Filament\Widgets\Widget;
->>>>>>> 60908d2 (.)
 
 uses(TestCase::class);
 
 beforeEach(function () {
-<<<<<<< HEAD
-    $this->widget = new RowWidget;
-=======
     $this->widget = new RowWidget();
->>>>>>> 60908d2 (.)
 });
 
 test('row widget extends filament widget', function () {
@@ -42,10 +34,5 @@ test('row widget has proper properties', function () {
 
 test('row widget can render', function () {
     $view = $this->widget->render();
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 60908d2 (.)
     expect($view)->toBeInstanceOf(\Illuminate\Contracts\View\View::class);
 });

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 return [
@@ -11,18 +10,3 @@ return [
         ],
     ],
 ];
-=======
-<?php return array (
-  'fields' => 
-  array (
-    'edit' => 
-    array (
-      'label' => 'edit',
-    ),
-    'validation_error' => 
-    array (
-      'label' => 'validation_error',
-    ),
-  ),
-);
->>>>>>> 0c25c04 (.)

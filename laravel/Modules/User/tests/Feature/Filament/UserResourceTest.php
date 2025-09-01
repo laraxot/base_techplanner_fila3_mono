@@ -2,36 +2,25 @@
 
 declare(strict_types=1);
 
-<<<<<<< HEAD
-namespace Modules\User\Tests\Feature\Filament;
+namespace Modules\User\Tests\Feature\Filament\UserResourceTest;
 
-use Livewire\Livewire;
-=======
+namespace Modules\User\Tests\Unit\Widgets;
+
 use Livewire\Livewire;
 use Modules\User\Models\User;
 use Modules\User\Models\Role;
 use Modules\User\Models\Permission;
->>>>>>> 8055579 (.)
 use Modules\User\Filament\Resources\UserResource;
 use Modules\User\Filament\Resources\UserResource\Pages\CreateUser;
 use Modules\User\Filament\Resources\UserResource\Pages\EditUser;
 use Modules\User\Filament\Resources\UserResource\Pages\ListUsers;
 use Modules\User\Filament\Resources\UserResource\Pages\ViewUser;
-<<<<<<< HEAD
-use Modules\User\Models\Permission;
-use Modules\User\Models\Role;
-use Modules\User\Models\User;
-=======
->>>>>>> 8055579 (.)
+
 
 beforeEach(function () {
     $this->admin = User::factory()->create();
     $this->user = User::factory()->create();
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 8055579 (.)
     // Set admin panel for testing
     Filament\Facades\Filament::setCurrentPanel('user::admin');
     $this->actingAs($this->admin);
@@ -498,8 +487,4 @@ describe('UserResource Security', function () {
             ->call('create')
             ->assertHasFormErrors(['password']);
     });
-<<<<<<< HEAD
-});
-=======
-});
->>>>>>> 8055579 (.)
+

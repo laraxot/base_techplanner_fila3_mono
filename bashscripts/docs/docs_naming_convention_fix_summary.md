@@ -26,12 +26,24 @@ Ho analizzato tutte le cartelle docs del progetto per verificare la conformità 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d20d0523 (.)
+
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 337c5266 (.)
@@ -52,6 +64,14 @@ Ho analizzato tutte le cartelle docs del progetto per verificare la conformità 
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Prima (ERRATO)
 ./Modules/Xot/docs/filament/infinite-loop-getStepByName-fix.md
 
@@ -74,6 +94,8 @@ Ho analizzato tutte le cartelle docs del progetto per verificare la conformità 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 337c5266 (.)
 =======
@@ -83,12 +105,28 @@ Ho analizzato tutte le cartelle docs del progetto per verificare la conformità 
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 
 # Verifica file con maiuscole
 find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d20d0523 (.)
 =======
 <<<<<<< HEAD
 # Verifica file con maiuscole
@@ -100,14 +138,29 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 =======
 >>>>>>> 9de04485 (.)
 =======
+=======
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> f198176d (.)
+=======
 # Verifica file con maiuscole
 find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Risultato: Nessun file trovato ✅
 
 # Verifica cartelle con maiuscole
@@ -116,12 +169,24 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type d
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d20d0523 (.)
+
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 337c5266 (.)
@@ -142,6 +207,14 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type d
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Risultato: Nessuna cartella trovata ✅
 
 # Verifica completa (solo README.md permessi)
@@ -150,12 +223,24 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d20d0523 (.)
+
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 337c5266 (.)
@@ -176,6 +261,14 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Risultato: Solo file README.md trovati ✅
 ```
 
@@ -221,12 +314,24 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d20d0523 (.)
+
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 337c5266 (.)
@@ -247,6 +352,14 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Trova file con maiuscole nelle cartelle docs
 find docs/ -name "*[A-Z]*" -type f | grep -v README.md
 
@@ -263,12 +376,24 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d20d0523 (.)
+
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 337c5266 (.)
@@ -289,6 +414,14 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Esegui script di correzione automatica
 ./bashscripts/fix_docs_naming_convention.sh
 ```
@@ -328,6 +461,7 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 **Documentazione creata**: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -346,3 +480,19 @@ find ./docs ./Modules/*/docs -name "*[A-Z]*" -type f | grep -v README.md
 **README aggiornato**: 1 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9de04485 (.)
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+**README aggiornato**: 1 
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 59901687 (.)
+<<<<<<< HEAD
+>>>>>>> 85c5198c (.)
+=======
+=======
+**README aggiornato**: 1 
+>>>>>>> 3c18aa7e (.)
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)

@@ -100,8 +100,4 @@ return [
         'updated_at' => 'Aggiornato il',
         'deleted_at' => 'Eliminato il',
     ],
-<<<<<<< HEAD
-];
-=======
-]; 
->>>>>>> e697a77b (.)
+

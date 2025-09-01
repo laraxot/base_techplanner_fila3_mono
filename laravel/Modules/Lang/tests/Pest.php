@@ -15,12 +15,8 @@ use Modules\Lang\Tests\TestCase;
 |
 */
 
-<<<<<<< HEAD
 uses(TestCase::class)
     ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
-=======
-pest()->extend(TestCase::class)
->>>>>>> 054e6ea (.)
     ->in('Feature', 'Unit');
 
 /*
@@ -72,7 +68,6 @@ function makeLanguage(array $attributes = []): \Modules\Lang\Models\Language
 {
     return \Modules\Lang\Models\Language::factory()->make($attributes);
 }
-<<<<<<< HEAD
 
 function createTranslationFile(string $path, array $translations): void
 {
@@ -99,5 +94,3 @@ function cleanupTranslationFile(string $path): void
         }
     }
 }
-=======
->>>>>>> 054e6ea (.)

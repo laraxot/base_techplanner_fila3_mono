@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 return [
@@ -13,21 +12,3 @@ return [
         ],
     ],
 ];
-=======
-<?php return array (
-  'actions' => 
-  array (
-    'create' => 
-    array (
-      'label' => 'create',
-    ),
-  ),
-  'fields' => 
-  array (
-    'edit' => 
-    array (
-      'label' => 'edit',
-    ),
-  ),
-);
->>>>>>> 0c25c04 (.)

@@ -64,8 +64,4 @@ class TaskCommentPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('task_comment.forceDelete');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c25c04 (.)

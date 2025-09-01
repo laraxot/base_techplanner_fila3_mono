@@ -4,13 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-<<<<<<< HEAD
-use Modules\User\Models\Tenant;
-use Modules\Xot\Contracts\UserContract;
-=======
-use Modules\Xot\Contracts\UserContract;
-use Modules\User\Models\Tenant;
->>>>>>> 8055579 (.)
+
 
 class TenantPolicy extends UserBasePolicy
 {
@@ -27,11 +21,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Tenant $tenant): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('tenant.view') ||
-=======
-        return $user->hasPermissionTo('tenant.view') || 
->>>>>>> 8055579 (.)
+
                $user->tenants->contains($tenant->id) ||
                $user->hasRole('super-admin');
     }
@@ -49,11 +39,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Tenant $tenant): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('tenant.update') ||
-=======
-        return $user->hasPermissionTo('tenant.update') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -62,11 +48,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Tenant $tenant): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('tenant.delete') ||
-=======
-        return $user->hasPermissionTo('tenant.delete') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -75,11 +57,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Tenant $tenant): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('tenant.restore') ||
-=======
-        return $user->hasPermissionTo('tenant.restore') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 
@@ -88,11 +66,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Tenant $tenant): bool
     {
-<<<<<<< HEAD
-        return $user->hasPermissionTo('tenant.force-delete') ||
-=======
-        return $user->hasPermissionTo('tenant.force-delete') || 
->>>>>>> 8055579 (.)
+
                $user->hasRole('super-admin');
     }
 }

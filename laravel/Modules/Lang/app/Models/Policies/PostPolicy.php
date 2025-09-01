@@ -64,8 +64,4 @@ class PostPolicy extends LangBasePolicy
     {
         return $user->hasPermissionTo('post.forceDelete');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 054e6ea (.)

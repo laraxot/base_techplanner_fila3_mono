@@ -27,29 +27,8 @@ new class extends Component
 
 <x-layouts.app>
     @volt('home')
-<<<<<<< HEAD
-    <div class="min-h-screen bg-gray-100">
-        
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
-                {{-- Contenuto Principale (3/4 larghezza) - Occupa 3 colonne su 4 --}}
-                <div class="lg:col-span-4  ">
-                    <div class="bg-white rounded-lg shadow-sm p-6">
-                        <x-page side="content" slug="home" />
-                    </div>
-                </div>
-                
-                {{-- Sidebar Destra (1/4 larghezza) - Occupa 1 colonna su 4 --}}
-                <div class="lg:col-span-4 ">
-                    <div class="bg-white rounded-lg shadow-sm p-6">
-                        <x-page side="sidebar" slug="home" />
-                    </div>
-                </div>
-            </div>
-        
-=======
     <div>
         <x-page side="content" slug="home" />
->>>>>>> d1c61d3 (.)
     </div>
     @endvolt
 </x-layouts.app>

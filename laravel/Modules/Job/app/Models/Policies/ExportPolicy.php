@@ -64,8 +64,4 @@ class ExportPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('export.forceDelete');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c25c04 (.)

@@ -64,8 +64,4 @@ class JobManagerPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('job_manager.forceDelete');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c25c04 (.)

@@ -82,14 +82,26 @@ Script per il push dei subtree. Funzionalità:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-=======
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 85c5198c (.)
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> 9de04485 (.)
+=======
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 85c5198c (.)
+=======
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Script Git
 
 Questi script sono utilizzati per automatizzare le operazioni Git nel progetto.
@@ -243,6 +255,8 @@ Script per il push dei subtree. Funzionalità:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 337c5266 (.)
 =======
@@ -250,6 +264,14 @@ Script per il push dei subtree. Funzionalità:
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 # Script Git
 
 Questi script sono utilizzati per automatizzare le operazioni Git nel progetto.
@@ -345,6 +367,8 @@ Script per il push dei subtree. Funzionalità:
 1. Conflitti di merge: utilizzare gli script di backup prima di risolvere
 2. Errori di path: verificare la configurazione Windows
 3. Problemi di permessi: controllare fileMode e symlinks
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -353,6 +377,14 @@ Script per il push dei subtree. Funzionalità:
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+=======
+>>>>>>> 85c5198c (.)
+=======
+=======
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
 
 # Script Git
 
@@ -424,6 +456,8 @@ Script per il push dei subtree. Funzionalità:
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 337c5266 (.)
 =======
@@ -431,3 +465,11 @@ Script per il push dei subtree. Funzionalità:
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 return [
@@ -8,14 +7,3 @@ return [
         ],
     ],
 ];
-=======
-<?php return array (
-  'actions' => 
-  array (
-    'delete' => 
-    array (
-      'label' => 'delete',
-    ),
-  ),
-);
->>>>>>> 0c25c04 (.)

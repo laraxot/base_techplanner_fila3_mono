@@ -33,31 +33,7 @@
         @livewire('notifications')
 		@filamentScripts
         @vite(['resources/js/app.js'], 'themes/Sixteen')
-<<<<<<< HEAD
-        
-        {{-- Dark Mode Toggle Script --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const darkModeToggle = document.getElementById('darkModeToggle');
-                
-                if (darkModeToggle) {
-                    darkModeToggle.addEventListener('click', function() {
-                        const html = document.documentElement;
-                        const isDark = html.classList.contains('dark');
-                        
-                        if (isDark) {
-                            html.classList.remove('dark');
-                            localStorage.setItem('dark_mode', 'false');
-                        } else {
-                            html.classList.add('dark');
-                            localStorage.setItem('dark_mode', 'true');
-                        }
-                    });
-                }
-            });
-        </script>
-=======
->>>>>>> d1c61d3 (.)
+
         <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
     </body>
 </html>
