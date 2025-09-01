@@ -11,7 +11,7 @@
     "UI": true,
     "User": true,
     "Xot": true,
-    "Chart": true,
+    "Chart": false,
     "Cms": true,
     "DbForge": true,
     "FormBuilder": true,
