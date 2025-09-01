@@ -55,6 +55,9 @@ return array (
     'company_name' => 
     array (
       'label' => 'Ragione Sociale',
+      'description' => 'company_name',
+      'helper_text' => 'company_name',
+      'placeholder' => 'company_name',
     ),
     'latitude' => 
     array (
@@ -98,6 +101,7 @@ return array (
       'label' => 'Codice Fiscale',
       'description' => 'tax_code',
       'helper_text' => 'tax_code',
+      'placeholder' => 'tax_code',
     ),
     'vat_number' => 
     array (
@@ -174,6 +178,9 @@ return array (
     'activity' => 
     array (
       'label' => 'Attività',
+      'description' => 'activity',
+      'helper_text' => 'activity',
+      'placeholder' => 'activity',
     ),
     'name' => 
     array (

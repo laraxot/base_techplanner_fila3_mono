@@ -1,7 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'navigation' => [
+        'label' => 'Rappresentanti Legali',
+        'group' => 'TechPlanner',
+        'icon' => 'heroicon-o-user-group',
+        'sort' => 3,
+    ],
+    'resource' => [
         'label' => 'Rappresentante Legale',
         'name' => 'Rappresentante Legale',
         'plural' => 'Rappresentanti Legali',
@@ -13,48 +21,76 @@ return [
     ],
     'actions' => [
         'create' => [
-            'label' => 'create',
+            'label' => 'Nuovo Rappresentante',
+            'icon' => 'heroicon-o-plus',
+            'color' => 'primary',
+            'tooltip' => 'Aggiungi un nuovo rappresentante legale',
         ],
-        'importDevice' => [
-            'label' => 'importDevice',
+        'edit' => [
+            'label' => 'Modifica Rappresentante',
+            'icon' => 'heroicon-o-pencil',
+            'color' => 'warning',
+            'tooltip' => 'Modifica il rappresentante selezionato',
         ],
-        'importMedicalDirector' => [
-            'label' => 'importMedicalDirector',
+        'delete' => [
+            'label' => 'Elimina Rappresentante',
+            'icon' => 'heroicon-o-trash',
+            'color' => 'danger',
+            'tooltip' => 'Elimina il rappresentante selezionato',
+        ],
+        'view' => [
+            'label' => 'Visualizza Rappresentante',
+            'icon' => 'heroicon-o-eye',
+            'color' => 'info',
+            'tooltip' => 'Visualizza i dettagli del rappresentante',
         ],
     ],
     'fields' => [
-        'edit' => [
-            'label' => 'edit',
+        'name' => [
+            'label' => 'Nome',
+            'placeholder' => 'Inserisci nome completo',
+            'help' => 'Nome completo del rappresentante legale',
         ],
-        'title' => [
-            'label' => 'Titolo',
+        'email' => [
+            'label' => 'Email',
+            'placeholder' => 'Inserisci indirizzo email',
+            'help' => 'Indirizzo email del rappresentante',
         ],
-        'subtitle' => [
-            'label' => 'Sottotitolo',
+        'phone' => [
+            'label' => 'Telefono',
+            'placeholder' => 'Inserisci numero di telefono',
+            'help' => 'Numero di telefono del rappresentante',
         ],
-        'price' => [
-            'label' => 'Prezzo',
+        'role' => [
+            'label' => 'Ruolo',
+            'placeholder' => 'Seleziona ruolo',
+            'help' => 'Ruolo del rappresentante legale',
+            'options' => [
+                'lawyer' => 'Avvocato',
+                'notary' => 'Notaio',
+                'consultant' => 'Consulente',
+            ],
         ],
-        'price_currency' => [
-            'label' => 'Valuta Prezzo',
+        'id' => [
+            'label' => 'ID',
+            'help' => 'Identificativo univoco del rappresentante',
         ],
-        'status' => [
-            'label' => 'Stato',
+    ],
+    'filters' => [
+        'name' => [
+            'label' => 'Nome',
+            'placeholder' => 'Cerca per nome',
+            'help' => 'Filtra per nome del rappresentante',
         ],
-        'applyFilters' => [
-            'label' => 'applyFilters',
+        'role' => [
+            'label' => 'Ruolo',
+            'placeholder' => 'Seleziona ruolo',
+            'help' => 'Filtra per ruolo del rappresentante',
         ],
-        'toggleColumns' => [
-            'label' => 'toggleColumns',
-        ],
-        'reorderRecords' => [
-            'label' => 'reorderRecords',
-        ],
-        'resetFilters' => [
-            'label' => 'resetFilters',
-        ],
-        'openFilters' => [
-            'label' => 'openFilters',
-        ],
+    ],
+    'messages' => [
+        'created' => 'Rappresentante legale creato con successo',
+        'updated' => 'Rappresentante legale aggiornato con successo',
+        'deleted' => 'Rappresentante legale eliminato con successo',
     ],
 ];

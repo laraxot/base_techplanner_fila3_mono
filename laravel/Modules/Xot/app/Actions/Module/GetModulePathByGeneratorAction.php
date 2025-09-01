@@ -15,7 +15,7 @@ class GetModulePathByGeneratorAction
         try {
             $res = module_path($moduleName, $relativePath);
         } catch (\Exception|\Error $e) {
-            throw new \Exception('Module path not found: '.$moduleName.' '.$generatorPath);
+            throw new \Exception('Module path not found: module:['.$moduleName.'] generator:['.$generatorPath.'] error:['.$e->getMessage().'] relativePath:['.$relativePath.']');
         }
         Assert::string($res);
 

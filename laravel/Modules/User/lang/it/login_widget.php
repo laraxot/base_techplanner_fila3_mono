@@ -9,6 +9,7 @@ return array (
       'placeholder' => 'Inserisci la tua email',
       'help' => 'Inserisci l\'indirizzo email con cui ti sei registrato',
       'description' => 'Indirizzo email per l\'accesso',
+      'helper_text' => 'email',
     ),
     'password' => 
     array (
