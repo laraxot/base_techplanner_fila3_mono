@@ -57,103 +57,18 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 3c18aa7e (.)
-=======
->>>>>>> 574afe9e (.)
-=======
-
->>>>>>> 337c5266 (.)
-=======
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 9de04485 (.)
-<<<<<<< HEAD
-
-=======
->>>>>>> 3c18aa7e (.)
-=======
->>>>>>> 574afe9e (.)
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
->>>>>>> 85c5198c (.)
-=======
->>>>>>> 9de04485 (.)
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
 È possibile modificare lo script per risolvere selettivamente solo determinati tipi di file:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 337c5266 (.)
-=======
-
-=======
->>>>>>> 59901687 (.)
->>>>>>> 85c5198c (.)
-=======
->>>>>>> 9de04485 (.)
 ### 2. Integrazione con Git Hooks
 Lo script può essere integrato con Git hooks per verificare automaticamente la presenza di conflitti prima del commit:
 
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 574afe9e (.)
 
-=======
-=======
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 9de04485 (.)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 574afe9e (.)
-
-=======
->>>>>>> 85c5198c (.)
->>>>>>> 3c18aa7e (.)
->>>>>>> 9c02579 (.)
-<<<<<<< HEAD
-=======
->>>>>>> 1420e3b683 (.)
->>>>>>> 574afe9e (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 337c5266 (.)
-=======
->>>>>>> 59901687 (.)
->>>>>>> 85c5198c (.)
-=======
->>>>>>> 9de04485 (.)
 # .git/hooks/pre-commit
 #!/bin/bash
 ```

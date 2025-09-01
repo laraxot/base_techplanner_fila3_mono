@@ -16,22 +16,7 @@
     },
     "require": {},
     "require-dev": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "larastan/larastan": "*"
-=======
         "larastan/larastan": "^3.0"
->>>>>>> 337c5266 (.)
-=======
-        "larastan/larastan": "^3.0"
-=======
-        "larastan/larastan": "*"
->>>>>>> 59901687 (.)
->>>>>>> 85c5198c (.)
-=======
-        "larastan/larastan": "*"
->>>>>>> 9de04485 (.)
     },
     "config": {
         "sort-packages": true,
