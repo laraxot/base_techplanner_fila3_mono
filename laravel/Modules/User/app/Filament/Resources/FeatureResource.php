@@ -11,6 +11,7 @@ use Modules\User\Filament\Resources\FeatureResource\Pages\EditFeature;
 use Modules\User\Filament\Resources\FeatureResource\Pages\ListFeatures;
 use Modules\User\Models\Feature;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 /**
  * @property Feature $record

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Pages;
 
+use Filament\Facades\Filament;
+use Filament\Pages\Dashboard;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
 
@@ -24,15 +26,15 @@ class MainDashboard extends XotBaseDashboard
 
     public function mount(): void
     {
-
+        
         Assert::notNull($user = auth()->user(), '['.__LINE__.']['.class_basename($this).']');
         $modules = $user->roles->filter(
             static function ($item) {
                 return Str::endsWith($item->name, '::admin');
             }
         );
-
-        if ($modules->count() === 1) {
+        
+        if (1 === $modules->count()) {
             Assert::notNull($module_first = $modules->first(), '['.__LINE__.']['.class_basename($this).']');
             $panel_name = $module_first->name;
             $module_name = Str::before($panel_name, '::admin');
@@ -40,7 +42,7 @@ class MainDashboard extends XotBaseDashboard
             redirect($url);
         }
 
-        if ($modules->count() === 0) {
+        if (0 === $modules->count()) {
             $url = '/'.app()->getLocale();
             redirect($url);
         }

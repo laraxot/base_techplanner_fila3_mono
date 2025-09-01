@@ -11,16 +11,16 @@ use Modules\User\Models\User;
 
 /**
  * OauthAccessToken Factory
- *
+ * 
  * Factory for creating OauthAccessToken model instances for testing and seeding.
- *
+ * 
  * @extends Factory<OauthAccessToken>
  */
 class OauthAccessTokenFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
+     * 
      * @var class-string<OauthAccessToken>
      */
     protected $model = OauthAccessToken::class;
@@ -38,7 +38,7 @@ class OauthAccessTokenFactory extends Factory
             'client_id' => OauthClient::factory(),
             'name' => $this->faker->optional()->words(2, true),
             'scopes' => $this->faker->optional()->randomElements([
-                'read', 'write', 'admin', 'user',
+                'read', 'write', 'admin', 'user'
             ], $this->faker->numberBetween(1, 3)),
             'revoked' => $this->faker->boolean(10), // 10% revoked
             'expires_at' => $this->faker->dateTimeBetween('now', '+1 year'),
@@ -47,6 +47,8 @@ class OauthAccessTokenFactory extends Factory
 
     /**
      * Create a revoked token.
+     *
+     * @return static
      */
     public function revoked(): static
     {
@@ -57,6 +59,8 @@ class OauthAccessTokenFactory extends Factory
 
     /**
      * Create an active token.
+     *
+     * @return static
      */
     public function active(): static
     {
@@ -68,6 +72,9 @@ class OauthAccessTokenFactory extends Factory
 
     /**
      * Create token for a specific user.
+     *
+     * @param User $user
+     * @return static
      */
     public function forUser(User $user): static
     {
@@ -78,6 +85,9 @@ class OauthAccessTokenFactory extends Factory
 
     /**
      * Create token for a specific client.
+     *
+     * @param OauthClient $client
+     * @return static
      */
     public function forClient(OauthClient $client): static
     {
@@ -89,7 +99,8 @@ class OauthAccessTokenFactory extends Factory
     /**
      * Create token with specific scopes.
      *
-     * @param  array<string>  $scopes
+     * @param array<string> $scopes
+     * @return static
      */
     public function withScopes(array $scopes): static
     {

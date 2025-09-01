@@ -68,32 +68,32 @@ class ListMedia extends XotBaseListRecords
     public function getTableActions(): array
     {
         return [
-            'view' => ViewAction::make(),
+            'view' => ViewAction::make()
+                ,
             'view_attachment' => Action::make('view_attachment')
-
+                
                 ->icon('heroicon-s-eye')
                 ->color('gray')
                 ->url(
                     static fn (Media $record): string => $record->getUrl()
                 )->openUrlInNewTab(true),
             'delete' => DeleteAction::make()
-
+                
                 ->requiresConfirmation(),
             'download' => Action::make('download_attachment')
-
+                
                 ->icon('heroicon-o-arrow-down-tray')
                 ->color('primary')
                 ->action(
                     static fn ($record) => response()->download($record->getPath(), $record->file_name)
                 ),
             'convert' => Action::make('convert')
-
+                
                 ->icon('convert01')
                 ->color('gray')
                 ->url(
                     function ($record): string {
                         Assert::string($res = static::$resource::getUrl('convert', ['record' => $record]));
-
                         return $res;
                     }
                 )->openUrlInNewTab(true),

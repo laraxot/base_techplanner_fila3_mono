@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Resources\NotificationTemplateResource\Pages;
 
-use Modules\Notify\Filament\Resources\NotificationTemplateResource;
+
+
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
+use Modules\Notify\Filament\Resources\NotificationTemplateResource;
 
 class ListNotificationTemplates extends XotBaseListRecords
 {
@@ -15,4 +17,4 @@ class ListNotificationTemplates extends XotBaseListRecords
     {
         return [];
     }
-}
+} 

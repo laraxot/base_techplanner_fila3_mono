@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
+<<<<<<< HEAD
 use Modules\User\Models\TeamUser;
 use Modules\Xot\Contracts\UserContract;
+=======
+use Modules\Xot\Contracts\UserContract;
+use Modules\User\Models\TeamUser;
+>>>>>>> 8055579 (.)
 
 class TeamUserPolicy extends UserBasePolicy
 {
@@ -22,7 +27,11 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, TeamUser $teamUser): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('team-user.view') ||
+=======
+        return $user->hasPermissionTo('team-user.view') || 
+>>>>>>> 8055579 (.)
                $user->id === $teamUser->user_id ||
                $user->teams->contains($teamUser->team_id) ||
                $user->hasRole('super-admin');
@@ -41,7 +50,11 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, TeamUser $teamUser): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('team-user.update') ||
+=======
+        return $user->hasPermissionTo('team-user.update') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 
@@ -50,7 +63,11 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, TeamUser $teamUser): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('team-user.delete') ||
+=======
+        return $user->hasPermissionTo('team-user.delete') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 
@@ -59,7 +76,11 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, TeamUser $teamUser): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('team-user.restore') ||
+=======
+        return $user->hasPermissionTo('team-user.restore') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 
@@ -68,7 +89,11 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, TeamUser $teamUser): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('team-user.force-delete') ||
+=======
+        return $user->hasPermissionTo('team-user.force-delete') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 }

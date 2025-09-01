@@ -9,16 +9,16 @@ use Modules\Media\Models\TemporaryUpload;
 
 /**
  * TemporaryUpload Factory
- *
+ * 
  * Factory for creating TemporaryUpload model instances for testing and seeding.
- *
+ * 
  * @extends Factory<TemporaryUpload>
  */
 class TemporaryUploadFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
+     * 
      * @var class-string<TemporaryUpload>
      */
     protected $model = TemporaryUpload::class;
@@ -37,6 +37,9 @@ class TemporaryUploadFactory extends Factory
 
     /**
      * Create temporary upload for a specific session.
+     *
+     * @param string $sessionId
+     * @return static
      */
     public function forSession(string $sessionId): static
     {
@@ -47,6 +50,8 @@ class TemporaryUploadFactory extends Factory
 
     /**
      * Create temporary upload for current session.
+     *
+     * @return static
      */
     public function currentSession(): static
     {

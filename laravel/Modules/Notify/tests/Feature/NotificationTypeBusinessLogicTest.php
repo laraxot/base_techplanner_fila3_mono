@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Modules\Notify\Models\NotificationType;
+use Modules\Notify\Helpers\ConfigHelper;
 
 describe('Notification Type Business Logic', function () {
     it('can create notification type with basic information', function () {
@@ -113,7 +114,7 @@ describe('Notification Type Business Logic', function () {
                 'text_template' => 'emails.appointment-reminder-text',
             ],
             'sms' => [
-                'message' => 'Promemoria: appuntamento {{appointment_date}} alle {{appointment_time}}. '.config('app.name', 'Our Platform'),
+                'message' => 'Promemoria: appuntamento {{appointment_date}} alle {{appointment_time}}. ' . config('app.name', 'Our Platform'),
                 'variables' => ['appointment_date', 'appointment_time'],
                 'max_length' => 160,
             ],
@@ -135,7 +136,7 @@ describe('Notification Type Business Logic', function () {
         expect($type->fresh()->templates['email']['subject'])->toBe('Promemoria Appuntamento - {{appointment_date}}')
             ->and($type->fresh()->templates['email']['variables'])->toContain('patient_name')
             ->and($type->fresh()->templates['email']['html_template'])->toBe('emails.appointment-reminder')
-            ->and($type->fresh()->templates['sms']['message'])->toBe('Promemoria: appuntamento {{appointment_date}} alle {{appointment_time}}. '.config('app.name', 'Our Platform'))
+            ->and($type->fresh()->templates['sms']['message'])->toBe('Promemoria: appuntamento {{appointment_date}} alle {{appointment_time}}. ' . config('app.name', 'Our Platform'))
             ->and($type->fresh()->templates['sms']['max_length'])->toBe(160)
             ->and($type->fresh()->templates['push']['title'])->toBe('Promemoria Appuntamento');
     });
@@ -303,9 +304,9 @@ describe('Notification Type Business Logic', function () {
                 'push_provider' => 'Firebase',
             ],
             'webhooks' => [
-                'delivery_webhook' => 'https://api.'.config('app.domain', 'example.com').'/webhooks/notification-delivered',
-                'bounce_webhook' => 'https://api.'.config('app.domain', 'example.com').'/webhooks/notification-bounced',
-                'click_webhook' => 'https://api.'.config('app.domain', 'example.com').'/webhooks/notification-clicked',
+                'delivery_webhook' => 'https://api.' . config('app.domain', 'example.com') . '/webhooks/notification-delivered',
+                'bounce_webhook' => 'https://api.' . config('app.domain', 'example.com') . '/webhooks/notification-bounced',
+                'click_webhook' => 'https://api.' . config('app.domain', 'example.com') . '/webhooks/notification-clicked',
             ],
             'api_endpoints' => [
                 'send' => 'POST /api/v1/notifications/send',
@@ -329,7 +330,7 @@ describe('Notification Type Business Logic', function () {
         expect($type->fresh()->integrations['external_services']['email_provider'])->toBe('SendGrid')
             ->and($type->fresh()->integrations['external_services']['sms_provider'])->toBe('Twilio')
             ->and($type->fresh()->integrations['external_services']['push_provider'])->toBe('Firebase')
-            ->and($type->fresh()->integrations['webhooks']['delivery_webhook'])->toBe('https://api.'.config('app.domain', 'example.com').'/webhooks/notification-delivered')
+            ->and($type->fresh()->integrations['webhooks']['delivery_webhook'])->toBe('https://api.' . config('app.domain', 'example.com') . '/webhooks/notification-delivered')
             ->and($type->fresh()->integrations['api_endpoints']['send'])->toBe('POST /api/v1/notifications/send')
             ->and($type->fresh()->integrations['third_party']['crm_integration'])->toBe('Salesforce');
     });
@@ -363,10 +364,10 @@ describe('Notification Type Business Logic', function () {
 
     it('can search notification types by channel enabled', function () {
         $emailType = NotificationType::factory()->create([
-            'channels' => ['email' => ['enabled' => true], 'sms' => ['enabled' => false]],
+            'channels' => ['email' => ['enabled' => true], 'sms' => ['enabled' => false]]
         ]);
         $smsType = NotificationType::factory()->create([
-            'channels' => ['email' => ['enabled' => false], 'sms' => ['enabled' => true]],
+            'channels' => ['email' => ['enabled' => false], 'sms' => ['enabled' => true]]
         ]);
 
         $emailTypes = NotificationType::whereJsonContains('channels->email->enabled', true)->get();

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\User\Support;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\User\Contracts\HasShieldPermissions;
 use Modules\User\Datas\FilamentShieldData;
@@ -13,6 +12,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Webmozart\Assert\Assert;
+use Illuminate\Support\Facades\File;
 
 use function Safe\class_implements;
 use function Safe\class_uses;
@@ -277,7 +277,6 @@ class Utils
     public static function roleResourceExists(): bool
     {
         $roleResourcePath = base_path('Modules/User/app/Filament/Resources/RoleResource.php');
-
         return File::exists($roleResourcePath);
     }
 }

@@ -18,11 +18,9 @@ class AwsTest extends XotBasePage
     protected static ?string $cluster = Test::class;
 
     public array $testResults = [];
-
     public string $activeTab = 's3';
 
     private const DEFAULT_REGION = 'eu-west-1';
-
     private const KEY_PREVIEW_LENGTH = 8;
 
     public array $connectionTests = [
@@ -153,7 +151,7 @@ class AwsTest extends XotBasePage
     }
 
     /* Test Methods */
-    public function test_s3_connection(): void
+    public function testS3Connection(): void
     {
         try {
             $s3 = new S3Client([
@@ -200,7 +198,7 @@ class AwsTest extends XotBasePage
         }
     }
 
-    public function test_cloud_front_config(): void
+    public function testCloudFrontConfig(): void
     {
         try {
             // Implement CloudFront config test
@@ -270,7 +268,7 @@ class AwsTest extends XotBasePage
 
     protected function getS3Solution(?string $errorCode): string
     {
-        if ($errorCode === null) {
+        if (null === $errorCode) {
             return 'Unknown error - check AWS credentials and configuration';
         }
 
@@ -284,7 +282,7 @@ class AwsTest extends XotBasePage
         return $solutions[$errorCode] ?? 'Consult AWS documentation for error: '.$errorCode;
     }
 
-    public function test_s3_permissions(): void
+    public function testS3Permissions(): void
     {
         try {
             $s3 = new S3Client([
@@ -333,7 +331,7 @@ class AwsTest extends XotBasePage
         }
     }
 
-    public function test_s3_file_operations(): void
+    public function testS3FileOperations(): void
     {
         try {
             $s3 = new S3Client([
@@ -401,7 +399,7 @@ class AwsTest extends XotBasePage
         }
     }
 
-    public function test_cloud_front_signed_urls(): void
+    public function testCloudFrontSignedUrls(): void
     {
         try {
             // Test CloudFront signed URL generation
@@ -444,7 +442,7 @@ class AwsTest extends XotBasePage
         }
     }
 
-    public function test_iam_credentials(): void
+    public function testIamCredentials(): void
     {
         try {
             $sts = new StsClient([
@@ -490,7 +488,7 @@ class AwsTest extends XotBasePage
         }
     }
 
-    public function test_iam_policies(): void
+    public function testIamPolicies(): void
     {
         try {
             // Test IAM policies by attempting various operations

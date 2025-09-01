@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace Modules\Notify\Datas\SMS;
 
 use Illuminate\Support\Arr;
+use Spatie\LaravelData\Data;
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Config;
 use Modules\Tenant\Services\TenantService;
-use Spatie\LaravelData\Data;
 
 class GammuData extends Data
 {
     public ?string $path;
-
     public ?string $config;
-
     public int $timeout = 30;
 
     private static ?self $instance = null;

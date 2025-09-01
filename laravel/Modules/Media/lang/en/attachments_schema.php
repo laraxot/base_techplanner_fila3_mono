@@ -99,4 +99,4 @@ return [
         'delete_success' => 'File deleted successfully',
         'delete_error' => 'Error deleting file',
     ],
-];
+]; 

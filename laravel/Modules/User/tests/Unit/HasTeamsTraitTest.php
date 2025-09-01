@@ -19,6 +19,7 @@ use Modules\User\Models\User;
  * - Tipizzazione rigorosa
  * - Metodi non-Jetstream rimossi
  */
+
 uses(Tests\TestCase::class);
 
 beforeEach(function (): void {
@@ -101,7 +102,7 @@ test('it correctly manages current team', function (): void {
 
 test('it correctly identifies current team', function (): void {
     $this->user->switchTeam($this->personalTeam);
-
+    
     expect($this->user->isCurrentTeam($this->personalTeam))->toBeTrue();
     expect($this->user->isCurrentTeam($this->team))->toBeFalse();
 });
@@ -111,7 +112,7 @@ test('it returns all teams user owns or belongs to', function (): void {
     $this->user->teams()->attach($this->team->id, ['role' => 'member']);
 
     $allTeams = $this->user->allTeams();
-
+    
     expect($allTeams)->toBeInstanceOf(Collection::class);
     expect($allTeams)->toHaveCount(2); // personal team + member team
     expect($allTeams->contains($this->personalTeam))->toBeTrue();
@@ -120,7 +121,7 @@ test('it returns all teams user owns or belongs to', function (): void {
 
 test('it returns owned teams', function (): void {
     $ownedTeams = $this->user->ownedTeams;
-
+    
     expect($ownedTeams)->toBeInstanceOf(Collection::class);
     expect($ownedTeams)->toHaveCount(1);
     expect($ownedTeams->contains($this->personalTeam))->toBeTrue();
@@ -128,7 +129,7 @@ test('it returns owned teams', function (): void {
 
 test('it returns personal team', function (): void {
     $personalTeam = $this->user->personalTeam();
-
+    
     expect($personalTeam)->toBeInstanceOf(TeamContract::class);
     expect($personalTeam->id)->toBe($this->personalTeam->id);
     expect($personalTeam->personal_team)->toBeTrue();
@@ -205,7 +206,7 @@ test('it provides utility methods', function (): void {
 
     // Test: isOwnerOrMember()
     expect($this->user->isOwnerOrMember($this->personalTeam))->toBeTrue();
-
+    
     $this->user->teams()->attach($this->team->id, ['role' => 'member']);
     expect($this->user->isOwnerOrMember($this->team))->toBeTrue();
 
@@ -215,7 +216,7 @@ test('it provides utility methods', function (): void {
 
 test('it handles edge cases correctly', function (): void {
     // Test: User senza ID
-    $newUser = new User;
+    $newUser = new User();
     expect($newUser->belongsToTeams())->toBeFalse();
 
     // Test: Team senza user_id

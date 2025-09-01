@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Job\Filament\Resources;
 
+use Modules\Job\Filament\Resources\ExportResource\Pages;
 use Modules\Job\Models\Export;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 

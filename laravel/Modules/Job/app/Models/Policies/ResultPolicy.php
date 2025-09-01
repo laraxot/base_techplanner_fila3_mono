@@ -64,4 +64,8 @@ class ResultPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('result.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

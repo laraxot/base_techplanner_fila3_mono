@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Modules\Job\Http\Livewire\Schedule;
 
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Artisan;
 use Livewire\Component;
-use Modules\Job\Actions\ExecuteTaskAction;
 use Modules\Job\Models\Task;
-use Modules\Xot\Actions\GetViewAction;
-use Symfony\Component\Console\Command\Command;
 use Webmozart\Assert\Assert;
+use Illuminate\Support\Collection;
+use Modules\Xot\Actions\GetViewAction;
+use Illuminate\Support\Facades\Artisan;
+use Modules\Job\Actions\ExecuteTaskAction;
+use Illuminate\Contracts\Support\Renderable;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * Class Schedule\Crud.

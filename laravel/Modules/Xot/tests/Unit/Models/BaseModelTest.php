@@ -4,15 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Unit\Models;
 
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Models\BaseModel;
 use Modules\Xot\Tests\TestCase;
+=======
+use Modules\Xot\Models\BaseModel;
+use Modules\Xot\Tests\TestCase;
+use Illuminate\Database\Eloquent\Model;
+>>>>>>> e697a77b (.)
 
 uses(TestCase::class);
 
 beforeEach(function () {
+<<<<<<< HEAD
     $this->baseModel = new class extends BaseModel
     {
+=======
+    $this->baseModel = new class extends BaseModel {
+>>>>>>> e697a77b (.)
         protected $table = 'test_table';
     };
 });

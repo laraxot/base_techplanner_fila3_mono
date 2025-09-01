@@ -10,7 +10,18 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\UI\Enums\TableLayoutEnum;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+use Modules\Xot\Filament\Traits\HasXotTable;
+use Modules\Xot\Filament\Traits\TransTrait;
+
+
+
+
+
+
+
+
 
 /**
  * UsersRelationManager.
@@ -20,9 +31,15 @@ use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
  */
 final class UsersRelationManager extends XotBaseRelationManager
 {
+
     protected static string $relationship = 'users';
 
     protected static ?string $inverseRelationship = 'roles';
+
+
+
+
+
 
     /**
      * Returns the form schema structure, defining the input fields for user data.
@@ -100,4 +117,10 @@ final class UsersRelationManager extends XotBaseRelationManager
                 ->columns(2),
         ];
     }
+
+
+
+
+
+
 }

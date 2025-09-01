@@ -15,7 +15,7 @@ class CoolModulesServiceProvider extends PackageServiceProvider
 {
     /**
      * Traccia i panel che hanno già gli hook registrati.
-     *
+     * 
      * @var array<string, bool>
      */
     private static array $processedPanels = [];
@@ -38,25 +38,25 @@ class CoolModulesServiceProvider extends PackageServiceProvider
 
         $this->app->afterResolving('filament', function () {
             $panels = Filament::getPanels();
-
+           
             foreach ($panels as $panel) {
                 $id = Str::of($panel->getId());
                 $panelId = $panel->getId();
-
+                
                 // Controlla se questo panel è già stato processato
                 if (isset(self::$processedPanels[$panelId])) {
                     continue;
                 }
-
+                
                 if ($id->contains('::')) {
                     $title = $id->replace(['::', '-'], [' ', ' '])->title()->toString();
                     $panel
-
+                   
                         ->renderHook(
                             'panels::sidebar.nav.start',
                             fn () => new HtmlString("<h2 class='m-2 p-2 font-black text-xl'>$title</h2>"),
                         )
-
+                            
                         ->renderHook(
                             'panels::sidebar.nav.end',
                             fn () => new HtmlString(
@@ -68,7 +68,7 @@ class CoolModulesServiceProvider extends PackageServiceProvider
                                       </a>'
                             ),
                         );
-
+                    
                     // Marca questo panel come processato
                     self::$processedPanels[$panelId] = true;
                 }

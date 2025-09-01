@@ -23,11 +23,13 @@ class XlsByModelClassAction
     /**
      * Esporta i dati di un modello in Excel.
      *
-     * @param  string  $modelClass  Classe del modello da esportare
-     * @param  array<string, mixed>  $where  Condizioni where per la query
-     * @param  array<int, string>  $includes  Relazioni o campi da includere
-     * @param  array<int, string>  $excludes  Campi da escludere
-     * @param  callable|null  $callback  Callback per manipolare i dati
+     * @param string $modelClass Classe del modello da esportare
+     * @param array<string, mixed> $where Condizioni where per la query
+     * @param array<int, string> $includes Relazioni o campi da includere
+     * @param array<int, string> $excludes Campi da escludere
+     * @param callable|null $callback Callback per manipolare i dati
+     * 
+     * @return BinaryFileResponse
      */
     public function execute(
         string $modelClass,
@@ -39,14 +41,14 @@ class XlsByModelClassAction
         // Verifichiamo che la classe del modello esista
         Assert::classExists($modelClass);
         Assert::subclassOf($modelClass, Model::class);
-
+        
         $with = $this->getWithByIncludes($includes);
 
         // Creiamo l'istanza del modello e costruiamo la query
         /** @var Model $model */
         $model = app($modelClass);
         $query = $model->query()->with($with);
-
+        
         // Applichiamo le condizioni where
         foreach ($where as $key => $value) {
             $query->where($key, $value);
@@ -55,9 +57,9 @@ class XlsByModelClassAction
         // Otteniamo i risultati
         /** @var Collection $rows */
         $rows = $query->get();
-
+        
         // Filtriamo i campi se sono specificati gli includes
-        if ($includes !== []) {
+        if ([] !== $includes) {
             $rows = $rows->map(
                 static function ($item) use ($includes) {
                     $data = [];
@@ -71,19 +73,18 @@ class XlsByModelClassAction
         }
 
         // Nascondiamo i campi esclusi
-        if ($excludes !== []) {
+        if ([] !== $excludes) {
             $rows = $rows->map(function ($item) use ($excludes) {
                 if (is_object($item) && method_exists($item, 'makeHidden')) {
                     /** @var Model $item */
                     return $item->makeHidden($excludes);
                 }
-
                 return $item;
             });
         }
 
         // Applichiamo il callback se fornito
-        if ($callback !== null) {
+        if (null !== $callback) {
             $rows = $rows->map($callback);
         }
 
@@ -98,7 +99,8 @@ class XlsByModelClassAction
     /**
      * Ottiene le relazioni da caricare in base ai campi inclusi.
      *
-     * @param  array<int, string>  $includes  Campi da includere
+     * @param array<int, string> $includes Campi da includere
+     * 
      * @return array<int, string>
      */
     private function getWithByIncludes(array $includes): array
@@ -107,15 +109,15 @@ class XlsByModelClassAction
         foreach ($includes as $include) {
             // Assicuriamo che $include sia una stringa
             $includeStr = is_string($include) ? $include : (string) $include;
-
+            
             // Verifichiamo se contiene un punto (indicatore di relazione)
-            if (! Str::contains($includeStr, '.')) {
+            if (!Str::contains($includeStr, '.')) {
                 continue;
             }
-
+            
             // Estraiamo il nome della relazione (prima parte prima del punto)
             $parts = explode('.', $includeStr);
-            if (! empty($parts[0])) {
+            if (!empty($parts[0])) {
                 $with[] = $parts[0];
             }
         }
@@ -126,7 +128,9 @@ class XlsByModelClassAction
     /**
      * Genera il nome del file di export.
      *
-     * @param  string  $modelClass  Classe del modello
+     * @param string $modelClass Classe del modello
+     * 
+     * @return string
      */
     private function getExportName(string $modelClass): string
     {

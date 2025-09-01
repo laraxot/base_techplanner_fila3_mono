@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Console\Commands;
 
+use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Webmozart\Assert\Assert;
 
 use function Safe\file_get_contents;
 

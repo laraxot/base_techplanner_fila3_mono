@@ -9,12 +9,16 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Modules\Notify\Filament\Resources\NotifyThemeResource\Pages\CreateNotifyTheme;
+use Modules\Notify\Filament\Resources\NotifyThemeResource\Pages\EditNotifyTheme;
+use Modules\Notify\Filament\Resources\NotifyThemeResource\Pages\ListNotifyThemes;
 use Modules\Notify\Models\NotifyTheme;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class NotifyThemeResource extends XotBaseResource
 {
     protected static ?string $model = NotifyTheme::class;
+
 
     public static function getFormSchema(): array
     {
@@ -59,6 +63,8 @@ class NotifyThemeResource extends XotBaseResource
                 ->columnSpanFull(),
         ];
     }
+
+   
 
     public static function fieldOptions(string $field): array
     {

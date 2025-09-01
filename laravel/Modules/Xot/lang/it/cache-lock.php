@@ -73,4 +73,4 @@ return [
             'lock_extended' => 'Durata del lock estesa',
         ],
     ],
-];
+]; 

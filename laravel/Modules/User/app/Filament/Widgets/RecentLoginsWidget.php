@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets;
 
+use Filament\Tables;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -41,7 +42,7 @@ class RecentLoginsWidget extends BaseWidget
 
     /**
      * Optionally configure additional table settings.
-     *
+     * 
      * @return array<string, \Filament\Tables\Actions\Action|\Filament\Tables\Actions\ActionGroup>
      */
     public function getTableActions(): array

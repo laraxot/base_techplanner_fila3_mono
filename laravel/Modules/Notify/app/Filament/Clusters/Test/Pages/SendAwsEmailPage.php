@@ -4,25 +4,29 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Clusters\Test\Pages;
 
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Filament\Forms;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Form;
-use Filament\Notifications\Notification as FilamentNotification;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Mail;
 use Modules\Notify\Datas\EmailData;
+use Illuminate\Support\Facades\Mail;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Contracts\HasForms;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Notify\Emails\EmailDataEmail;
 use Modules\Notify\Filament\Clusters\Test;
 use Modules\Xot\Filament\Pages\XotBasePage;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Modules\Xot\Filament\Traits\NavigationLabelTrait;
+use Filament\Notifications\Notification as FilamentNotification;
 
 /**
  * @property ComponentContainer $emailForm
  */
 class SendAwsEmailPage extends XotBasePage
 {
+
     public ?array $emailData = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
@@ -30,10 +34,10 @@ class SendAwsEmailPage extends XotBasePage
     protected static string $view = 'notify::filament.pages.send-email';
 
     protected static ?string $cluster = Test::class;
-
+    
     /**
      * Get the slug of the page
-     *
+     * 
      * This explicit definition ensures consistent URL generation for acronyms
      */
     public static function getSlug(): string

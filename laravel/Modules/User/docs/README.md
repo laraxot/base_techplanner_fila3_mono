@@ -942,9 +942,20 @@ Schema::table('teams', function (Blueprint $table) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 8055579 (.)
+=======
+=======
+>>>>>>> 8055579 (.)
+=======
+=======
+=======
+>>>>>>> 933fcfe (.)
+>>>>>>> e67649e (.)
 
 ## Aggiornamenti Recenti
 
@@ -960,6 +971,8 @@ Schema::table('teams', function (Blueprint $table) {
 ## Collegamenti
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8a21b63 (.)
 =======
@@ -967,6 +980,16 @@ Schema::table('teams', function (Blueprint $table) {
 >>>>>>> 8055579 (.)
 =======
 >>>>>>> d51888e (.)
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> a0c18bc (.)
+=======
+>>>>>>> 933fcfe (.)
+>>>>>>> e67649e (.)
+=======
+>>>>>>> 7113f04 (.)
 ## Aggiornamenti Recenti
 
 ### 27 Gennaio 2025

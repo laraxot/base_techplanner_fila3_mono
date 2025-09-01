@@ -15,7 +15,6 @@ namespace Modules\Job\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob query()
- *
  * @property int $id
  * @property string $uuid
  * @property string $connection
@@ -23,7 +22,6 @@ namespace Modules\Job\Models;
  * @property array $payload
  * @property string $exception
  * @property string $failed_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob whereConnection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob whereException($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob whereFailedAt($value)
@@ -31,10 +29,8 @@ namespace Modules\Job\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob wherePayload($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob whereQueue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob whereUuid($value)
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin IdeHelperFailedJob
  * @mixin \Eloquent
  */

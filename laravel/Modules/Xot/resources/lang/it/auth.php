@@ -72,4 +72,8 @@ return [
         'profile' => 'Profilo Utente',
         'settings' => 'Impostazioni Utente',
     ],
+<<<<<<< HEAD
 ];
+=======
+]; 
+>>>>>>> e697a77b (.)

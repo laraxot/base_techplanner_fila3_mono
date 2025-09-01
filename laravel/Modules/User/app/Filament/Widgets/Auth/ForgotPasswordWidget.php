@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets\Auth;
 
+use Filament\Forms\Form;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Illuminate\Support\Facades\Password;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Filament\Forms\Components\TextInput as FormsTextInput;
 
 /**
  * @property ComponentContainer $form

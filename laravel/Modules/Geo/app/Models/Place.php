@@ -20,11 +20,9 @@ use function Safe\json_encode;
  * @property-read \Illuminate\Database\Eloquent\Model $linked
  * @property-read \Modules\Geo\Models\PlaceType|null $placeType
  * @property-read \Modules\User\Models\Profile|null $updater
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place query()
- *
  * @property int $id
  * @property string|null $model_type
  * @property int|null $model_id
@@ -35,7 +33,6 @@ use function Safe\json_encode;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $post_type
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereCreatedBy($value)
@@ -50,7 +47,6 @@ use function Safe\json_encode;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place wherePostType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Place whereUpdatedBy($value)
- *
  * @mixin IdeHelperPlace
  * @mixin \Eloquent
  */
@@ -75,6 +71,8 @@ class Place extends BaseModel implements HasGeolocation
         'point_of_interest',
         'political',
     ];
+
+
 
     protected $fillable = [
         'id', 'post_id', 'post_type', 'model_id', 'model_type',
@@ -215,4 +213,5 @@ class Place extends BaseModel implements HasGeolocation
     {
         return $this->placeType->name ?? null;
     }
+
 }

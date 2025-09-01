@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Blocks;
 
-use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
-use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
 use Modules\Xot\Filament\Traits\TransTrait;
+use Filament\Forms\Components\Builder\Block;
+use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
 
 abstract class XotBaseBlock
 {
     use TransTrait;
-
+    
     public static function make(
         string $name = 'article_list',
         string $context = 'form',
@@ -25,7 +25,7 @@ abstract class XotBaseBlock
         return Block::make($name)
             ->schema($schema)
 
-            ->columns($context === 'form' ? 3 : 1);
+            ->columns('form' === $context ? 3 : 1);
     }
 
     /**

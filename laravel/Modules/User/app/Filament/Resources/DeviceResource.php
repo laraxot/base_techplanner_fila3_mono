@@ -7,8 +7,13 @@ namespace Modules\User\Filament\Resources;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Modules\User\Filament\Resources\DeviceResource\Pages\CreateDevice;
+use Modules\User\Filament\Resources\DeviceResource\Pages\EditDevice;
+use Modules\User\Filament\Resources\DeviceResource\Pages\ListDevices;
+use Modules\User\Filament\Resources\DeviceResource\RelationManagers\UsersRelationManager;
 use Modules\User\Models\Device;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class DeviceResource extends XotBaseResource
 {
@@ -64,4 +69,6 @@ class DeviceResource extends XotBaseResource
                 ->label(__('user::device.fields.is_phone.label')),
         ];
     }
+
+
 }

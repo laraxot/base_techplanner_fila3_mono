@@ -12,7 +12,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Modules\Lang\Actions\GetAllTranslationAction;
 use Modules\Lang\Actions\ReadTranslationFileAction;
-
+use Modules\Lang\Actions\WriteTranslationFileAction;
 use function Safe\json_encode;
 
 /**
@@ -23,7 +23,6 @@ use function Safe\json_encode;
  * @property array<array-key, mixed>|null $content
  * @property-read \Modules\SaluteOra\Models\Profile|null $creator
  * @property-read \Modules\SaluteOra\Models\Profile|null $updater
- *
  * @method static \Modules\Lang\Database\Factories\TranslationFileFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TranslationFile newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TranslationFile newQuery()
@@ -33,7 +32,6 @@ use function Safe\json_encode;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TranslationFile whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TranslationFile whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TranslationFile wherePath($value)
- *
  * @mixin IdeHelperTranslationFile
  * @mixin \Eloquent
  */
@@ -49,10 +47,10 @@ class TranslationFile extends BaseModel
     ];
 
     protected array $schema = [
-        'key' => 'string',
-        'path' => 'string',
-        'id' => 'string',
-        'name' => 'string',
+        'key' => "string",
+        'path' => "string",
+        'id' => "string",
+        'name' => "string",
         'content' => 'json',
     ];
 
@@ -71,12 +69,12 @@ class TranslationFile extends BaseModel
     public function getRows(): array
     {
         $files = app(GetAllTranslationAction::class)->execute();
-        $rows = Arr::map($files, function ($item) {
+        $rows = Arr::map($files, function($item) {
             $item['id'] = $item['key'];
             $item['name'] = basename($item['path'], '.php');
 
-            $item['content'] = json_encode(File::getRequire($item['path']));
 
+            $item['content']=json_encode(File::getRequire($item['path']));
             /*
             // Carica il contenuto del file
             try {
@@ -86,10 +84,11 @@ class TranslationFile extends BaseModel
                 $item['content'] = [];
             }
             */
-            // dddx($item);
+            //dddx($item);
             return $item;
         });
-
         return $rows;
     }
+
+   
 }

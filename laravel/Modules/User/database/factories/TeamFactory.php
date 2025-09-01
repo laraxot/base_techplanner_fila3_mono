@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\User\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\User\Models\Team;
 use Modules\User\Models\User;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * Factory per il modello Team del modulo User.
@@ -40,11 +40,11 @@ class TeamFactory extends Factory
             'Contabilità',
             'Produzione',
             'Qualità',
-            'Logistica',
+            'Logistica'
         ];
 
         return [
-            'name' => app(SafeStringCastAction::class)->execute($this->faker->randomElement($teamTypes)).' Team',
+            'name' => app(SafeStringCastAction::class)->execute($this->faker->randomElement($teamTypes)) . ' Team',
             'user_id' => User::factory(),
             'personal_team' => false,
         ];
@@ -52,17 +52,22 @@ class TeamFactory extends Factory
 
     /**
      * Indica che il team è un team personale.
+     *
+     * @return static
      */
     public function personal(): static
     {
         return $this->state(fn (array $attributes) => [
             'personal_team' => true,
-            'name' => $this->faker->firstName()."'s Team",
+            'name' => $this->faker->firstName() . "'s Team",
         ]);
     }
 
     /**
      * Crea un team con un owner specifico.
+     *
+     * @param int $userId
+     * @return static
      */
     public function ownedBy(int $userId): static
     {
@@ -73,11 +78,14 @@ class TeamFactory extends Factory
 
     /**
      * Crea un team con un nome specifico.
+     *
+     * @param string $name
+     * @return static
      */
     public function withName(string $name): static
     {
         return $this->state(fn (array $attributes) => [
-            'name' => $name.' Team',
+            'name' => $name . ' Team',
         ]);
     }
 }

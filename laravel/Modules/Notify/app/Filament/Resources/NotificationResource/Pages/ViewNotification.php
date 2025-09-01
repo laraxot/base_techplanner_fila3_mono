@@ -32,7 +32,7 @@ class ViewNotification extends XotBaseViewRecord
                         ->dateTime(),
                     TextEntry::make('updated_at')
                         ->dateTime(),
-                ]),
+                ])
         ];
     }
 }

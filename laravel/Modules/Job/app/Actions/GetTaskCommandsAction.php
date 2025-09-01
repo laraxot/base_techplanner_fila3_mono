@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Job\Actions;
 
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\Console\Command\Command;
-use Webmozart\Assert\Assert;
 
 class GetTaskCommandsAction
 {

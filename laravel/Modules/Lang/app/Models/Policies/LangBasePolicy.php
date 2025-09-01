@@ -21,4 +21,8 @@ abstract class LangBasePolicy
 
         return null;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 054e6ea (.)

@@ -137,12 +137,14 @@ class Login extends Component implements HasForms
 
     /**
      * Determina l'URL di redirect appropriato per l'utente autenticato.
+     *
+     * @return RedirectResponse
      */
     protected function getRedirectUrl(): RedirectResponse
     {
         $user = Auth::user();
-
-        if (! $user) {
+        
+        if (!$user) {
             return redirect()->to('/');
         }
 
@@ -156,7 +158,6 @@ class Login extends Component implements HasForms
             $role = $adminRoles->first();
             if ($role !== null) {
                 $moduleName = str_replace('::admin', '', $role->name);
-
                 return redirect()->to("/{$moduleName}/admin");
             }
         } elseif ($adminRoles->count() > 1) {
@@ -165,15 +166,17 @@ class Login extends Component implements HasForms
         }
 
         // Utente senza ruoli admin - redirect alla homepage
-        return redirect()->to('/'.app()->getLocale());
+        return redirect()->to('/' . app()->getLocale());
     }
 
     /**
      * Renderizza il componente.
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
-        // app(ViewCopyAction::class)->execute('user::livewire.auth.login', 'pub_theme::livewire.auth.login');
+        //app(ViewCopyAction::class)->execute('user::livewire.auth.login', 'pub_theme::livewire.auth.login');
         return view('user::livewire.auth.login');
     }
 }

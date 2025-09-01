@@ -64,4 +64,8 @@ class JobsWaitingPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('jobs_waiting.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

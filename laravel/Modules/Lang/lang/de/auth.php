@@ -82,7 +82,7 @@ return [
         'try_again' => 'Erneut versuchen',
         'processing' => 'Abmeldung läuft...',
     ],
-
+    
     'user_dropdown' => [
         'manage_account' => 'Konto verwalten',
         'profile' => 'Profil',

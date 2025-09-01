@@ -64,4 +64,8 @@ class SchedulePolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('schedule.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

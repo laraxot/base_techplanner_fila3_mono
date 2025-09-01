@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\User\Contracts\TeamContract;
 use Modules\User\Models\Scopes\TenantScope;
 use Modules\User\Models\Tenant;
+use Modules\Xot\Datas\XotData;
 
 /**
  * @property TeamContract $currentTeam
@@ -18,6 +19,8 @@ trait InteractsWithTenant
 {
     /**
      * Tenant corrente.
+     *
+     * @var Model|null
      */
     protected ?Model $currentTenant = null;
 
@@ -25,7 +28,6 @@ trait InteractsWithTenant
      * Relazione con il tenant a cui appartiene il modello.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Illuminate\Database\Eloquent\Model, self>
-     *
      * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     public function tenant(): BelongsTo
@@ -44,6 +46,8 @@ trait InteractsWithTenant
 
     /**
      * Ottiene il tenant corrente.
+     *
+     * @return Model|null
      */
     protected function getTenant(): ?Model
     {
@@ -52,6 +56,8 @@ trait InteractsWithTenant
 
     /**
      * Carica il tenant dalla sessione.
+     *
+     * @return void
      */
     protected function loadTenantFromSession(): void
     {
@@ -114,7 +120,7 @@ trait InteractsWithTenant
         if ($tenant !== null) {
             $tenantId = $tenant->getKey();
             if ($tenantId !== null) {
-                static::addGlobalScope(new TenantScope);
+                static::addGlobalScope(new TenantScope());
             }
         }
     }

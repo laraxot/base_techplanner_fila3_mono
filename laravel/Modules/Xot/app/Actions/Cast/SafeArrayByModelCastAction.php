@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Cast;
 
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -16,25 +17,26 @@ class SafeArrayByModelCastAction
      */
     public function execute(Model $model): array
     {
-        try {
-            return $model->attributesToArray();
-        } catch (\ValueError|\Error|\Exception $e) {
+        try{
+            return $model->attributesToArray(); 
+        }catch(\ValueError|\Error|\Exception $e){
             return $this->safeExecute($model);
         }
     }
 
+
     public function safeExecute(Model $model): array
     {
-        $data = [];
-        foreach ($model->getAttributes() as $key => $value) {
-            try {
-                $data[$key] = $model->$key;
+        $data=[];
+        foreach($model->getAttributes() as $key=>$value){
+            try{
+                $data[$key]=$model->$key;
                 /** @phpstan-ignore-next-line */
-            } catch (\ValueError|\Error $e) {
-
+            }catch(\ValueError|\Error $e){
+                
             }
         }
-
-        return $data;
+        
+        return $data;;
     }
 }

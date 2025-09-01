@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
+<<<<<<< HEAD
 use Modules\User\Models\Authentication;
 use Modules\Xot\Contracts\UserContract;
+=======
+use Modules\Xot\Contracts\UserContract;
+use Modules\User\Models\Authentication;
+>>>>>>> 8055579 (.)
 
 class AuthenticationPolicy extends UserBasePolicy
 {
@@ -22,7 +27,11 @@ class AuthenticationPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Authentication $authentication): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('authentication.view') ||
+=======
+        return $user->hasPermissionTo('authentication.view') || 
+>>>>>>> 8055579 (.)
                $user->id === $authentication->user_id ||
                $user->hasRole('super-admin');
     }
@@ -40,7 +49,11 @@ class AuthenticationPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Authentication $authentication): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('authentication.update') ||
+=======
+        return $user->hasPermissionTo('authentication.update') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 
@@ -49,7 +62,11 @@ class AuthenticationPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Authentication $authentication): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('authentication.delete') ||
+=======
+        return $user->hasPermissionTo('authentication.delete') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 
@@ -58,7 +75,11 @@ class AuthenticationPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Authentication $authentication): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('authentication.restore') ||
+=======
+        return $user->hasPermissionTo('authentication.restore') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 
@@ -67,7 +88,11 @@ class AuthenticationPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Authentication $authentication): bool
     {
+<<<<<<< HEAD
         return $user->hasPermissionTo('authentication.force-delete') ||
+=======
+        return $user->hasPermissionTo('authentication.force-delete') || 
+>>>>>>> 8055579 (.)
                $user->hasRole('super-admin');
     }
 }

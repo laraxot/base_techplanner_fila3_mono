@@ -29,16 +29,16 @@ class AddressField extends Forms\Components\Field
                 'state' => null,
                 'zip' => null,
             ];
-
-            // if ($record && method_exists($record, 'getRelationValue')) {
-            $relationship = $this->getRelationship();
-            if ($relationship && $record?->relationLoaded($relationship)) {
-                $address = $record->getRelationValue($relationship);
-                if ($address !== null && is_object($address) && method_exists($address, 'toArray')) {
-                    $data = $address->toArray();
+            
+            //if ($record && method_exists($record, 'getRelationValue')) {
+                $relationship = $this->getRelationship();
+                if ($relationship && $record?->relationLoaded($relationship)) {
+                    $address = $record->getRelationValue($relationship);
+                    if (null !== $address && is_object($address) && method_exists($address, 'toArray')) {
+                        $data = $address->toArray();
+                    }
                 }
-            }
-            // }
+            //}
         });
 
         $this->dehydrated(false);
@@ -57,7 +57,7 @@ class AddressField extends Forms\Components\Field
         $record = $this->getRecord();
         $relationship = $record->{$this->getRelationship()}();
 
-        if ($relationship === null) {
+        if (null === $relationship) {
             return;
         }
         if ($address = $relationship->first()) {

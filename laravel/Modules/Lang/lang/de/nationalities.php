@@ -267,4 +267,4 @@ return [
     'mp' => 'Nördliche Marianer',
     'um' => 'US-Außengebiete',
     'eh' => 'Westsahara',
-];
+]; 

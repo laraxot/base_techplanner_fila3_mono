@@ -1,8 +1,9 @@
 <?php
 
-return [
-    'navigation' => [
-        'label' => 'Impostazioni Notifiche',
-        'group' => 'Notifiche',
-    ],
-];
+return array (
+  'navigation' =>
+  array (
+    'label' => 'Impostazioni Notifiche',
+    'group' => 'Notifiche',
+  ),
+);

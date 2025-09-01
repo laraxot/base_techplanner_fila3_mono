@@ -39,4 +39,4 @@ return [
         'color' => 'text-gray-600',
         'description' => 'Numero fax',
     ],
-];
+]; 

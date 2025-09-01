@@ -54,9 +54,8 @@ final class SmsActionFactory
      * Utilizza una risoluzione dinamica delle classi basata sulla convenzione di naming
      * per istanziare l'action corretta.
      *
-     * @param  string|null  $driver  Driver SMS da utilizzare (se null, viene utilizzato quello predefinito)
+     * @param string|null $driver Driver SMS da utilizzare (se null, viene utilizzato quello predefinito)
      * @return SmsActionContract Azione SMS corrispondente al driver
-     *
      * @throws Exception Se il driver specificato non è supportato o la classe non esiste
      */
     public function create(?string $driver = null): SmsActionContract
@@ -67,28 +66,28 @@ final class SmsActionFactory
         $normalizedDriver = $this->normalizeDriverName(is_string($driver) ? $driver : '');
 
         // Avvisa per driver non standard
-        if (! in_array($normalizedDriver, $this->supportedDrivers)) {
-            Log::warning('Attempting to use non-standard SMS driver: '.(is_string($driver) ? $driver : ''));
+        if (!in_array($normalizedDriver, $this->supportedDrivers)) {
+            Log::warning("Attempting to use non-standard SMS driver: " . (is_string($driver) ? $driver : ''));
         }
 
         // Costruisci il nome della classe seguendo la convenzione
-        $className = 'Modules\\Notify\\Actions\\SMS\\Send'.ucfirst($normalizedDriver).'SMSAction';
+        $className = "Modules\\Notify\\Actions\\SMS\\Send" . ucfirst($normalizedDriver) . "SMSAction";
 
         // Verifica se la classe esiste
-        if (! class_exists($className)) {
-            Log::error('SMS driver class not found', [
+        if (!class_exists($className)) {
+            Log::error("SMS driver class not found", [
                 'driver' => $driver,
                 'normalized' => $normalizedDriver,
-                'className' => $className,
+                'className' => $className
             ]);
 
-            throw new Exception('Unsupported SMS driver: '.(is_string($driver) ? $driver : '').". Class {$className} not found.");
+            throw new Exception("Unsupported SMS driver: " . (is_string($driver) ? $driver : '') . ". Class {$className} not found.");
         }
 
         $instance = app($className);
 
         // Verifica che l'istanza implementi l'interfaccia corretta
-        if (! ($instance instanceof SmsActionContract)) {
+        if (!($instance instanceof SmsActionContract)) {
             throw new Exception("Class {$className} does not implement SmsActionContract.");
         }
 
@@ -99,7 +98,7 @@ final class SmsActionFactory
      * Normalizza il nome del driver eliminando trattini e underscore
      * e gestendo eventuali casi speciali/alias.
      *
-     * @param  string  $driver  Nome del driver da normalizzare
+     * @param string $driver Nome del driver da normalizzare
      * @return string Nome normalizzato
      */
     private function normalizeDriverName(string $driver): string

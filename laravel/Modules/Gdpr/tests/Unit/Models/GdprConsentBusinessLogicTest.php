@@ -8,7 +8,7 @@ use Modules\User\Models\User;
 describe('GDPR Consent Business Logic', function () {
     it('records consent with required metadata', function () {
         $user = User::factory()->create();
-
+        
         $consent = GdprConsent::create([
             'user_id' => $user->id,
             'purpose' => 'marketing_emails',
@@ -40,12 +40,12 @@ describe('GDPR Consent Business Logic', function () {
 
     it('validates legal basis for processing', function () {
         $validBases = ['consent', 'contract', 'legal_obligation', 'vital_interests', 'public_task', 'legitimate_interests'];
-
+        
         foreach ($validBases as $basis) {
             $consent = GdprConsent::factory()->create([
                 'legal_basis' => $basis,
             ]);
-
+            
             expect($consent->legal_basis)->toBe($basis);
         }
     });
@@ -65,7 +65,7 @@ describe('GDPR Consent Business Logic', function () {
 
     it('tracks consent history', function () {
         $user = User::factory()->create();
-
+        
         // Initial consent
         $consent1 = GdprConsent::create([
             'user_id' => $user->id,
@@ -91,7 +91,7 @@ describe('GDPR Consent Business Logic', function () {
         ]);
 
         $history = GdprConsent::getConsentHistory($user->id, 'analytics');
-
+        
         expect($history)->toHaveCount(3)
             ->and($history->first()->consent_given)->toBeTrue()
             ->and($history->get(1)->consent_given)->toBeFalse();

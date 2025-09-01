@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Pages\Tenancy;
 
 use Filament\Forms\Form;
-use Filament\Pages\Tenancy\RegisterTenant as BaseRegisterTenant;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Modules\User\Contracts\TenantContract;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Filament\Traits\TransTrait;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Datas\XotData;
+use Filament\Support\Enums\MaxWidth;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TextInput;
+use Modules\User\Contracts\TenantContract;
+use Modules\Xot\Filament\Traits\TransTrait;
+use Filament\Pages\Tenancy\RegisterTenant as BaseRegisterTenant;
 
 class RegisterTenant extends BaseRegisterTenant
 {
@@ -22,25 +24,26 @@ class RegisterTenant extends BaseRegisterTenant
     public static function getLabel(): string
     {
         $tenantClass = XotData::make()->getTenantClass();
-        $func = Str::of(__FUNCTION__)->snake()->toString();
-        if (Str::startsWith($func, 'get_')) {
-            $func = Str::of($func)->after('get_')->toString();
+        $func=Str::of(__FUNCTION__)->snake()->toString();
+        if(Str::startsWith($func,'get_')){
+            $func=Str::of($func)->after('get_')->toString();
         }
-        $key = Str::of(class_basename(__CLASS__))->snake()->prepend('actions.')->append('.'.$func)->toString();
-        $str = static::transClass($tenantClass, $key);
+        $key=Str::of(class_basename(__CLASS__))->snake()->prepend('actions.')->append('.'.$func)->toString();
+        $str= static::transClass($tenantClass,$key);
 
         return $str;
     }
 
+
+
     public function form(Form $form): Form
     {
         $tenantClass = XotData::make()->getTenantClass();
-        $resource = Str::of($tenantClass)
-            ->replace('\Models\\', '\Filament\Resources\\')
+        $resource=Str::of($tenantClass)
+            ->replace('\Models\\','\Filament\Resources\\')
             ->append('Resource')
             ->toString();
-        $this->resource = $resource;
-
+        $this->resource=$resource;
         return $form
             ->schema($this->getFormSchema());
     }

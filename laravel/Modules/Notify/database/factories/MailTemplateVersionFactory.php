@@ -19,3 +19,4 @@ class MailTemplateVersionFactory extends Factory
         return [];
     }
 }
+

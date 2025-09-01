@@ -6,14 +6,15 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Route::put('/post/{id}', function (string $id) {
- *   // ...
- * })->middleware(EnsureUserHasRole::class.':editor');
- * Route::put('/post/{id}', function (string $id) {
- *     // ...
- *})->middleware(EnsureUserHasRole::class.':editor,publisher');
- */
+/** 
+* Route::put('/post/{id}', function (string $id) {
+*   // ...
+* })->middleware(EnsureUserHasRole::class.':editor');
+* Route::put('/post/{id}', function (string $id) {
+*     // ...
+*})->middleware(EnsureUserHasRole::class.':editor,publisher');
+*/
+
 class EnsureUserHasType
 {
     /**
@@ -23,7 +24,7 @@ class EnsureUserHasType
      */
     public function handle(Request $request, Closure $next, string $type): Response
     {
-
+        
         if ($request->user()?->type->value !== $type) {
             // Redirect...
             return redirect()->route('home');

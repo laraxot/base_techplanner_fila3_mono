@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Lang\Filament\Forms\Components;
 
-use Filament\Forms\Components\Select;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Rinvex\Country\CountryLoader;
+use Filament\Forms\Components\Select;
 use Modules\Xot\Actions\File\AssetAction;
 
 /**
  * National Flag Select Component.
- *
+ * 
  * A Filament Select component that displays countries with their flags
  * and supports searching by country name using localized translations.
  */
@@ -18,6 +20,8 @@ class NationalFlagSelect extends Select
 {
     /**
      * Set up the component configuration.
+     *
+     * @return void
      */
     protected function setUp(): void
     {
@@ -40,32 +44,34 @@ class NationalFlagSelect extends Select
     protected function getCountryOptions(): array
     {
 
+       
         $countries = countries();
         $countries = Arr::sort($countries, function ($c) {
             return $c['name'];
         });
 
+       
+
         $options = Arr::mapWithKeys($countries, function ($c) {
             $code = $c['iso_3166_1_alpha2'];
-            // $label = $c['name'];
+            //$label = $c['name'];
             $flag_name = strtolower($code);
-            $localizedLabel = __('lang::countries.'.$flag_name);
+            $localizedLabel = __('lang::countries.' . $flag_name);
 
-            $flag_src = app(AssetAction::class)->execute('lang::svg/flag/'.$flag_name.'.svg');
-            $flag = '<img src="'.$flag_src.'" class="h-4 w-6 mr-2" inline-block />';
+            $flag_src = app(AssetAction::class)->execute('lang::svg/flag/' . $flag_name . '.svg');
+            $flag = '<img src="' . $flag_src . '" class="h-4 w-6 mr-2" inline-block />';
 
-            $html = '<span class="flex items-center gap-2">'.$flag.$localizedLabel.'</span>';
-
+            $html = '<span class="flex items-center gap-2">' . $flag . $localizedLabel . '</span>';
             return [$code => $html];
         });
-
+        
         return $options;
     }
 
     /**
      * Get filtered country options based on search query.
      *
-     * @param  string  $search  The search query
+     * @param string $search The search query
      * @return array<string, string>
      */
     protected function getFilteredCountryOptions(string $search): array
@@ -76,15 +82,15 @@ class NationalFlagSelect extends Select
 
         $countries = countries();
         $searchLower = strtolower($search);
-
+        
         // Filter countries by search term
         $filteredCountries = array_filter($countries, function ($country) use ($searchLower) {
             $code = $country['iso_3166_1_alpha2'];
             $flag_name = strtolower($code);
-
+            
             // Get localized country name
-            $localizedName = __('lang::countries.'.$flag_name);
-
+            $localizedName = __('lang::countries.' . $flag_name);
+            
             // Search in both English name and localized name
             return str_contains(strtolower($country['name']), $searchLower) ||
                    str_contains(strtolower($localizedName), $searchLower) ||
@@ -100,13 +106,12 @@ class NationalFlagSelect extends Select
         $options = Arr::mapWithKeys($filteredCountries, function ($c) {
             $code = $c['iso_3166_1_alpha2'];
             $flag_name = strtolower($code);
-            $localizedLabel = __('lang::countries.'.$flag_name);
+            $localizedLabel = __('lang::countries.' . $flag_name);
 
-            $flag_src = app(AssetAction::class)->execute('lang::svg/flag/'.$flag_name.'.svg');
-            $flag = '<img src="'.$flag_src.'" class="h-4 w-6 mr-2" inline-block />';
+            $flag_src = app(AssetAction::class)->execute('lang::svg/flag/' . $flag_name . '.svg');
+            $flag = '<img src="' . $flag_src . '" class="h-4 w-6 mr-2" inline-block />';
 
-            $html = '<span class="flex items-center gap-2">'.$flag.$localizedLabel.'</span>';
-
+            $html = '<span class="flex items-center gap-2">' . $flag . $localizedLabel . '</span>';
             return [$code => $html];
         });
 

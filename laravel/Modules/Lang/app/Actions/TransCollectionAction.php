@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Lang\Actions;
 
+
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Spatie\QueueableAction\QueueableAction;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 
 /**
  * Action per la traduzione di elementi di una collezione.
@@ -20,14 +22,16 @@ class TransCollectionAction
     /**
      * Esegue la traduzione di una collezione.
      *
-     * @param  Collection<int|string, mixed>  $collection
+     * @param Collection<int|string, mixed> $collection
+     * @param string|null $transKey
+     *
      * @return Collection<int|string, string>
      */
     public function execute(
         Collection $collection,
         ?string $transKey,
     ): Collection {
-        if ($transKey === null) {
+        if (null === $transKey) {
             return $collection->map(fn (mixed $item): string => SafeStringCastAction::cast($item));
         }
 
@@ -39,17 +43,18 @@ class TransCollectionAction
     /**
      * Traduce un singolo elemento.
      *
-     * @param  mixed  $item  L'elemento da tradurre
+     * @param mixed $item L'elemento da tradurre
+     *
      * @return string L'elemento tradotto o l'elemento originale se la traduzione non esiste
      */
     public function trans(mixed $item): string
     {
         // Converte l'item in stringa se non lo è già
-        if (! \is_string($item)) {
+        if (!\is_string($item)) {
             $item = SafeStringCastAction::cast($item);
         }
 
-        if (empty($item) || $this->transKey === null) {
+        if (empty($item) || null === $this->transKey) {
             return $item;
         }
 

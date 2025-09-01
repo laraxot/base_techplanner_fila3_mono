@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Job\Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Job\Models\Result;
 use Modules\Job\Models\Task;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 
 class ResultBusinessLogicTest extends TestCase
 {
-
+    use RefreshDatabase;
 
     /** @test */
     public function it_can_create_result_with_basic_information(): void
@@ -46,10 +47,10 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 5.2,
         ]);
 
-        expect($task->id, $result->task_id);
-        expect('success', $result->result);
-        expect('Task completato con successo', $result->output);
-        expect(5.2, $result->execution_time);
+        $this->assertEquals($task->id, $result->task_id);
+        $this->assertEquals('success', $result->result);
+        $this->assertEquals('Task completato con successo', $result->output);
+        $this->assertEquals(5.2, $result->execution_time);
     }
 
     /** @test */
@@ -74,9 +75,9 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => null,
         ]);
 
-        expect('running', $result->result);
-        expect($result->finished_at);
-        expect($result->execution_time);
+        $this->assertEquals('running', $result->result);
+        $this->assertNull($result->finished_at);
+        $this->assertNull($result->execution_time);
 
         // Completa l'esecuzione
         $result->update([
@@ -86,9 +87,9 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 3.5,
         ]);
 
-        expect('success', $result->result);
-        expect($result->finished_at);
-        expect(3.5, $result->execution_time);
+        $this->assertEquals('success', $result->result);
+        $this->assertNotNull($result->finished_at);
+        $this->assertEquals(3.5, $result->execution_time);
     }
 
     /** @test */
@@ -111,7 +112,7 @@ class ResultBusinessLogicTest extends TestCase
             'output' => 'Task avviato',
         ]);
 
-        expect('running', $result->result);
+        $this->assertEquals('running', $result->result);
 
         // Transizione a success
         $result->update([
@@ -120,7 +121,7 @@ class ResultBusinessLogicTest extends TestCase
             'output' => 'Task completato con successo',
         ]);
 
-        expect('success', $result->result);
+        $this->assertEquals('success', $result->result);
 
         // Transizione a failed
         $result->update([
@@ -128,7 +129,7 @@ class ResultBusinessLogicTest extends TestCase
             'output' => 'Task fallito: errore di connessione',
         ]);
 
-        expect('failed', $result->result);
+        $this->assertEquals('failed', $result->result);
     }
 
     /** @test */
@@ -159,11 +160,11 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 2.1,
         ]);
 
-        expect(json_encode($detailedOutput), $result->output);
-
+        $this->assertEquals(json_encode($detailedOutput), $result->output);
+        
         $decodedOutput = json_decode($result->output, true);
-        expect('Inizializzazione', $decodedOutput['step']);
-        expect('success', $decodedOutput['status']);
+        $this->assertEquals('Inizializzazione', $decodedOutput['step']);
+        $this->assertEquals('success', $decodedOutput['status']);
     }
 
     /** @test */
@@ -190,10 +191,10 @@ class ResultBusinessLogicTest extends TestCase
             'exit_code' => 0,
         ]);
 
-        expect(3.0, $result->execution_time);
-        expect(2048000, $result->memory_usage);
-        expect(15.5, $result->cpu_usage);
-        expect(0, $result->exit_code);
+        $this->assertEquals(3.0, $result->execution_time);
+        $this->assertEquals(2048000, $result->memory_usage);
+        $this->assertEquals(15.5, $result->cpu_usage);
+        $this->assertEquals(0, $result->exit_code);
     }
 
     /** @test */
@@ -230,12 +231,12 @@ class ResultBusinessLogicTest extends TestCase
             'exit_code' => 1,
         ]);
 
-        expect('failed', $result->result);
-        expect(1, $result->exit_code);
-
+        $this->assertEquals('failed', $result->result);
+        $this->assertEquals(1, $result->exit_code);
+        
         $decodedError = json_decode($result->output, true);
-        expect('ConnectionException', $decodedError['error_type']);
-        expect('DB_CONNECTION_FAILED', $decodedError['error_code']);
+        $this->assertEquals('ConnectionException', $decodedError['error_type']);
+        $this->assertEquals('DB_CONNECTION_FAILED', $decodedError['error_code']);
     }
 
     /** @test */
@@ -269,9 +270,9 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 1.0,
         ]);
 
-        expect(2, $task->results);
-        expect($task->results->contains($result1));
-        expect($task->results->contains($result2));
+        $this->assertCount(2, $task->results);
+        $this->assertTrue($task->results->contains($result1));
+        $this->assertTrue($task->results->contains($result2));
     }
 
     /** @test */
@@ -305,8 +306,8 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 1.0,
         ]);
 
-        expect($oldResult->started_at < now()->subDays(7));
-        expect($recentResult->started_at > now()->subDays(7));
+        $this->assertTrue($oldResult->started_at < now()->subDays(7));
+        $this->assertTrue($recentResult->started_at > now()->subDays(7));
     }
 
     /** @test */
@@ -324,7 +325,7 @@ class ResultBusinessLogicTest extends TestCase
         // Crea un batch di risultati
         $results = [];
         $statuses = ['success', 'failed', 'success', 'success', 'failed'];
-
+        
         for ($i = 1; $i <= 5; $i++) {
             $results[] = Result::create([
                 'task_id' => $task->id,
@@ -336,13 +337,13 @@ class ResultBusinessLogicTest extends TestCase
             ]);
         }
 
-        expect(5, $results);
-
+        $this->assertCount(5, $results);
+        
         $successCount = collect($results)->where('result', 'success')->count();
         $failedCount = collect($results)->where('result', 'failed')->count();
-
-        expect(3, $successCount);
-        expect(2, $failedCount);
+        
+        $this->assertEquals(3, $successCount);
+        $this->assertEquals(2, $failedCount);
     }
 
     /** @test */
@@ -367,10 +368,10 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 1.0,
         ]);
 
-        expect($validResult->id);
-        expect($validResult->started_at);
-        expect($validResult->finished_at);
-        expect($validResult->finished_at > $validResult->started_at);
+        $this->assertNotNull($validResult->id);
+        $this->assertNotNull($validResult->started_at);
+        $this->assertNotNull($validResult->finished_at);
+        $this->assertTrue($validResult->finished_at > $validResult->started_at);
 
         // Verifica che il tempo di esecuzione sia positivo
         $this->assertGreaterThan(0, $validResult->execution_time);
@@ -405,11 +406,11 @@ class ResultBusinessLogicTest extends TestCase
             'execution_time' => 1.0,
         ]);
 
-        expect('warning', $result->result);
-
+        $this->assertEquals('warning', $result->result);
+        
         $decodedAlert = json_decode($result->output, true);
-        expect('warning', $decodedAlert['alert_level']);
-        expect(85, $decodedAlert['current_value']);
-        expect($decodedAlert['current_value'] > $decodedAlert['threshold']);
+        $this->assertEquals('warning', $decodedAlert['alert_level']);
+        $this->assertEquals(85, $decodedAlert['current_value']);
+        $this->assertTrue($decodedAlert['current_value'] > $decodedAlert['threshold']);
     }
 }

@@ -10,7 +10,7 @@ use Modules\User\Models\TeamPermission;
 
 /**
  * TeamPermission Factory
- *
+ * 
  * @extends Factory<TeamPermission>
  */
 class TeamPermissionFactory extends Factory

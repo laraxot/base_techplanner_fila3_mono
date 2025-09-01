@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 use Modules\User\Filament\Resources\TenantResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class ListTenants extends XotBaseListRecords
 {

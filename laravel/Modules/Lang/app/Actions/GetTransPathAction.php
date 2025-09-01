@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Lang\Actions;
 
 use Illuminate\Support\Str;
-use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
 
 class GetTransPathAction
 {
@@ -30,7 +30,6 @@ class GetTransPathAction
         }
         $file_name = $piece[0] ?? '';
         Assert::string($file_name, 'Il nome del file deve essere una stringa');
-
         return $lang_path.'/'.$lang.'/'.$file_name.'.php';
     }
 }

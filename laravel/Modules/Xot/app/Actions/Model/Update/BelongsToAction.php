@@ -31,12 +31,12 @@ class BelongsToAction
         }
         */
 
-        if (! Arr::isAssoc($relationDTO->data) && \count($relationDTO->data) === 1) {
+        if (! Arr::isAssoc($relationDTO->data) && 1 === \count($relationDTO->data)) {
             $related_id = Arr::first($relationDTO->data);
-            if ($related_id === null) {
+            if (null === $related_id) {
                 return;
             }
-
+            
             $related = $relationDTO->related->find($related_id);
             // Verifica che $related non sia una Collection, ma un singolo modello
             if ($related instanceof \Illuminate\Database\Eloquent\Collection) {
@@ -55,7 +55,7 @@ class BelongsToAction
         if (Arr::isAssoc($relationDTO->data)) {
             $sub = $rows->firstOrCreate();
             // $sub = $rows->first() ?? $rows->getModel();
-            if ($sub === null) {
+            if (null === $sub) {
                 throw new \Exception('['.__LINE__.']['.class_basename($this).']');
             }
 

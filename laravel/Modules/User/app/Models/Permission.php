@@ -18,21 +18,20 @@ use Webmozart\Assert\Assert;
 
 /**
  * Class Permission.
- *
+ * 
  * Extends Spatie's Permission model to interact with the permission system.
  *
- * @property string $id
- * @property string $name
- * @property string $guard_name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property Collection<int, Role> $roles
- * @property int|null $roles_count
+ * @property string                                                                    $id
+ * @property string                                                                    $name
+ * @property string                                                                    $guard_name
+ * @property Carbon|null                                                               $created_at
+ * @property Carbon|null                                                               $updated_at
+ * @property string|null                                                               $created_by
+ * @property string|null                                                               $updated_by
+ * @property Collection<int, Role>                                                     $roles
+ * @property int|null                                                                  $roles_count
  * @property EloquentCollection<int, \Illuminate\Database\Eloquent\Model&UserContract> $users
- * @property int|null $users_count
- *
+ * @property int|null                                                                  $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
@@ -45,19 +44,13 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission role($roles, $guard = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission permission($permissions)
- *
  * @property EloquentCollection<int, Permission> $permissions
- * @property int|null $permissions_count
- *
+ * @property int|null                            $permissions_count
  * @method static \Illuminate\Database\Eloquent\Builder|Permission withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission withoutRole($roles, $guard = null)
- *
  * @property PermissionRole|null $pivot
- *
  * @mixin IdeHelperPermission
- *
  * @method static \Modules\User\Database\Factories\PermissionFactory factory($count = null, $state = [])
- *
  * @mixin \Eloquent
  */
 class Permission extends SpatiePermission
@@ -131,3 +124,4 @@ class Permission extends SpatiePermission
         return app(\Modules\Xot\Actions\Factory\GetFactoryAction::class)->execute(static::class);
     }
 }
+

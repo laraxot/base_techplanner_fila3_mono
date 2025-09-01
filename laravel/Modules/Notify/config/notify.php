@@ -101,4 +101,4 @@ return [
         'appointment_date' => '{{appointment_date}}',
         'appointment_time' => '{{appointment_time}}',
     ],
-];
+]; 

@@ -64,4 +64,8 @@ class TranslationPolicy extends LangBasePolicy
     {
         return $user->hasPermissionTo('translation.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 054e6ea (.)

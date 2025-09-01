@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Notify\Services;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Modules\Notify\Actions\SendNotificationAction;
 use Modules\Notify\Models\NotificationLog;
 use Modules\Notify\Models\NotificationTemplate;
@@ -14,11 +16,13 @@ class NotificationManager
     /**
      * Invia una notifica a un destinatario.
      *
-     * @param  Model  $recipient  Il destinatario della notifica
-     * @param  string  $templateCode  Il codice del template da utilizzare
-     * @param  array  $data  I dati per compilare il template
-     * @param  array  $channels  I canali da utilizzare (opzionale)
-     * @param  array  $options  Opzioni aggiuntive per l'invio
+     * @param Model $recipient Il destinatario della notifica
+     * @param string $templateCode Il codice del template da utilizzare
+     * @param array $data I dati per compilare il template
+     * @param array $channels I canali da utilizzare (opzionale)
+     * @param array $options Opzioni aggiuntive per l'invio
+     * 
+     * @return array
      */
     public function send(
         Model $recipient,
@@ -29,7 +33,7 @@ class NotificationManager
     ): array {
         $template = $this->getTemplate($templateCode);
 
-        if (! $template) {
+        if (!$template) {
             throw new \Exception("Template not found: {$templateCode}");
         }
 
@@ -42,11 +46,12 @@ class NotificationManager
     /**
      * Invia una notifica a più destinatari.
      *
-     * @param  array  $recipients  I destinatari delle notifiche
-     * @param  string  $templateCode  Il codice del template da utilizzare
-     * @param  array  $data  I dati per compilare il template
-     * @param  array  $channels  I canali da utilizzare (opzionale)
-     * @param  array  $options  Opzioni aggiuntive per l'invio
+     * @param array $recipients I destinatari delle notifiche
+     * @param string $templateCode Il codice del template da utilizzare
+     * @param array $data I dati per compilare il template
+     * @param array $channels I canali da utilizzare (opzionale)
+     * @param array $options Opzioni aggiuntive per l'invio
+     * 
      * @return array<array>
      */
     public function sendMultiple(
@@ -68,7 +73,8 @@ class NotificationManager
     /**
      * Recupera un template per codice.
      *
-     * @param  string  $code  Il codice del template
+     * @param string $code Il codice del template
+     * @return NotificationTemplate|null
      */
     public function getTemplate(string $code): ?NotificationTemplate
     {
@@ -80,7 +86,7 @@ class NotificationManager
     /**
      * Recupera i template per categoria.
      *
-     * @param  string  $category  La categoria dei template
+     * @param string $category La categoria dei template
      * @return \Illuminate\Database\Eloquent\Collection<NotificationTemplate>
      */
     public function getTemplatesByCategory(string $category)
@@ -93,7 +99,7 @@ class NotificationManager
     /**
      * Recupera i template per canale.
      *
-     * @param  string  $channel  Il canale di notifica
+     * @param string $channel Il canale di notifica
      * @return \Illuminate\Database\Eloquent\Collection<NotificationTemplate>
      */
     public function getTemplatesByChannel(string $channel)
@@ -106,7 +112,7 @@ class NotificationManager
     /**
      * Recupera le statistiche di invio per un template.
      *
-     * @param  NotificationTemplate  $template  Il template
+     * @param NotificationTemplate $template Il template
      * @return array<string, mixed>
      */
     public function getTemplateStats(NotificationTemplate $template): array
@@ -135,7 +141,7 @@ class NotificationManager
     /**
      * Recupera le statistiche di invio per un destinatario.
      *
-     * @param  Model  $recipient  Il destinatario
+     * @param Model $recipient Il destinatario
      * @return array<string, mixed>
      */
     public function getRecipientStats(Model $recipient): array
@@ -160,4 +166,4 @@ class NotificationManager
             'clicked' => 0,
         ];
     }
-}
+} 

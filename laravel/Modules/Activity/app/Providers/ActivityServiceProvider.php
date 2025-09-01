@@ -17,16 +17,22 @@ class ActivityServiceProvider extends XotBaseServiceProvider
 {
     /**
      * Nome del modulo.
+     *
+     * @var string
      */
     public string $name = 'Activity';
 
     /**
      * Directory del modulo.
+     *
+     * @var string
      */
     protected string $module_dir = __DIR__;
 
     /**
      * Namespace del modulo.
+     *
+     * @var string
      */
     protected string $module_ns = __NAMESPACE__;
 
@@ -34,6 +40,8 @@ class ActivityServiceProvider extends XotBaseServiceProvider
      * Boot del service provider.
      *
      * Configura il modulo Activity e registra le configurazioni specifiche.
+     *
+     * @return void
      */
     public function boot(): void
     {
@@ -45,22 +53,26 @@ class ActivityServiceProvider extends XotBaseServiceProvider
 
     /**
      * Registra i servizi del provider.
+     *
+     * @return void
      */
     public function register(): void
     {
         parent::register();
         // Additional register logic can be added here
     }
-
+    
     /**
      * Registra le configurazioni del modulo.
+     *
+     * @return void
      */
     protected function registerConfig(): void
     {
         $this->publishes([
             module_path($this->name, 'config/config.php') => config_path('activity.php'),
         ], 'config');
-
+        
         $this->mergeConfigFrom(
             module_path($this->name, 'config/config.php'), 'activity'
         );

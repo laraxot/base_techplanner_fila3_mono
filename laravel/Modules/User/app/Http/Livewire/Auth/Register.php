@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\User\Http\Livewire\Auth;
 
-use Filament\Forms\ComponentContainer;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password as PasswordRule;
 use Livewire\Component;
 use Modules\Xot\Datas\XotData;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Filament\Forms\ComponentContainer;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rules\Password as PasswordRule;
 
 /**
  * @property ComponentContainer $form
@@ -28,6 +28,8 @@ class Register extends Component
 
     /**
      * Execute the action.
+     *
+     * @return RedirectResponse|\Livewire\Features\SupportRedirects\Redirector
      */
     public function register(): RedirectResponse|\Livewire\Features\SupportRedirects\Redirector
     {
@@ -58,6 +60,8 @@ class Register extends Component
      *
      * In Livewire components, the render method ultimately returns a view,
      * but it's processed through Livewire's component system.
+     *
+     * @return mixed
      */
     public function render(): mixed
     {
@@ -65,7 +69,7 @@ class Register extends Component
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::livewire.auth.register', 'pub_theme::livewire.auth.register');
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::layouts.auth', 'pub_theme::layouts.auth');
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::layouts.base', 'pub_theme::layouts.base');
-
+        
         /**
          * @phpstan-var view-string
          */

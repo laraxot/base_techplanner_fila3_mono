@@ -14,24 +14,24 @@ return [
     'servers' => [
         'filesystem' => [
             'command' => 'npx',
-            'args' => ['-y', '@modelcontextprotocol/server-filesystem'],
+            'args' => ['-y', '@modelcontextprotocol/server-filesystem']
         ],
         'memory' => [
             'command' => 'npx',
-            'args' => ['-y', '@modelcontextprotocol/server-memory'],
+            'args' => ['-y', '@modelcontextprotocol/server-memory']
         ],
         'fetch' => [
             'command' => 'npx',
-            'args' => ['-y', '@modelcontextprotocol/server-fetch'],
+            'args' => ['-y', '@modelcontextprotocol/server-fetch']
         ],
         'mysql' => [
             'command' => 'npx',
-            'args' => ['-y', '@modelcontextprotocol/server-mysql'],
+            'args' => ['-y', '@modelcontextprotocol/server-mysql']
         ],
         'redis' => [
             'command' => 'npx',
-            'args' => ['-y', '@modelcontextprotocol/server-redis'],
-        ],
+            'args' => ['-y', '@modelcontextprotocol/server-redis']
+        ]
     ],
 
     /*
@@ -50,39 +50,39 @@ return [
             'traits' => [
                 'HasFactory',
                 'Notifiable',
-                'HasParent',
+                'HasParent'
             ],
             'relationships' => [
                 'doctor',
-                'patient',
+                'patient'
             ],
             'table' => 'users',
-            'type_column' => 'type',
+            'type_column' => 'type'
         ],
         'Doctor' => [
             'extends' => 'User',
             'type' => 'child',
             'traits' => [
-                'HasParent',
+                'HasParent'
             ],
             'context' => 'medical',
             'validations' => [
                 'medical_license',
-                'specialization',
-            ],
+                'specialization'
+            ]
         ],
         'Patient' => [
             'extends' => 'User',
             'type' => 'child',
             'traits' => [
-                'HasParent',
+                'HasParent'
             ],
             'context' => 'medical',
             'validations' => [
                 'health_insurance',
-                'medical_history',
-            ],
-        ],
+                'medical_history'
+            ]
+        ]
     ],
 
     /*
@@ -97,6 +97,6 @@ return [
     'validation' => [
         'strict' => true,
         'log_violations' => true,
-        'throw_exceptions' => false,
-    ],
+        'throw_exceptions' => false
+    ]
 ];

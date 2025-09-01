@@ -22,20 +22,20 @@ return [
             'auth_token' => env('TWILIO_AUTH_TOKEN'),
             'from' => env('TWILIO_WHATSAPP_FROM'),
         ],
-
+        
         'vonage' => [
             'api_key' => env('VONAGE_KEY'),
             'api_secret' => env('VONAGE_SECRET'),
             'from' => env('VONAGE_WHATSAPP_FROM'),
         ],
-
+        
         'facebook' => [
             'app_id' => env('FACEBOOK_APP_ID'),
             'app_secret' => env('FACEBOOK_APP_SECRET'),
             'access_token' => env('FACEBOOK_ACCESS_TOKEN'),
             'phone_number_id' => env('FACEBOOK_PHONE_NUMBER_ID'),
         ],
-
+        
         '360dialog' => [
             'api_key' => env('360DIALOG_API_KEY'),
             'phone_number_id' => env('360DIALOG_PHONE_NUMBER_ID'),

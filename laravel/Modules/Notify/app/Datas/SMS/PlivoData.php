@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace Modules\Notify\Datas\SMS;
 
 use Illuminate\Support\Arr;
+use Spatie\LaravelData\Data;
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Config;
 use Modules\Tenant\Services\TenantService;
-use Spatie\LaravelData\Data;
 
 class PlivoData extends Data
 {
     public ?string $auth_id;
-
     public ?string $auth_token;
-
     public ?string $base_url;
-
     public string $auth_type = 'basic';
-
     public int $timeout = 30;
 
     private static ?self $instance = null;
@@ -43,8 +40,8 @@ class PlivoData extends Data
             case 'basic':
             default:
                 return [
-                    'Authorization' => 'Basic '.base64_encode($this->auth_id.':'.$this->auth_token),
-                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Basic ' . base64_encode($this->auth_id . ':' . $this->auth_token),
+                    'Content-Type' => 'application/json'
                 ];
         }
     }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {{--
 /**
  * Simple Navigation Component - Theme Sixteen
@@ -63,3 +64,6 @@
         </div>
     </div>
 </nav>
+=======
+<div>simple navigation</div>
+>>>>>>> d1c61d3 (.)

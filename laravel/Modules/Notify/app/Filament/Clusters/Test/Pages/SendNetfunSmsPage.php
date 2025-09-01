@@ -4,26 +4,30 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Clusters\Test\Pages;
 
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Filament\Forms;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Form;
-use Filament\Notifications\Notification as FilamentNotification;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
 use Modules\Notify\Datas\SmsData;
+use Illuminate\Support\Facades\Log;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Contracts\HasForms;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Notify\Filament\Clusters\Test;
-use Modules\Notify\Notifications\SmsNotification;
 use Modules\Xot\Filament\Pages\XotBasePage;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Modules\Notify\Notifications\SmsNotification;
+use Modules\Xot\Filament\Traits\NavigationLabelTrait;
+use Filament\Notifications\Notification as FilamentNotification;
 
 /**
  * @property ComponentContainer $smsForm
  */
 class SendNetfunSmsPage extends XotBasePage
 {
+
     public ?array $smsData = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';
@@ -31,10 +35,10 @@ class SendNetfunSmsPage extends XotBasePage
     protected static string $view = 'notify::filament.pages.send-sms';
 
     protected static ?string $cluster = Test::class;
-
+    
     /**
      * Get the slug of the page
-     *
+     * 
      * This explicit definition ensures consistent URL generation for acronyms
      */
     public static function getSlug(): string

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-use Modules\Notify\Models\NotifyTheme;
 use Modules\Notify\Models\NotifyThemeable;
+use Modules\Notify\Models\NotifyTheme;
 
 describe('Notify Themeable Business Logic', function () {
     it('can create notify themeable with basic information', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $themeableData = [
             'model_type' => 'App\Models\NotificationTemplate',
             'model_id' => 123,
             'notify_theme_id' => $theme->id,
-            'created_by' => 'admin@'.config('app.domain', 'example.com'),
-            'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+            'created_by' => 'admin@' . config('app.domain', 'example.com'),
+            'updated_by' => 'admin@' . config('app.domain', 'example.com'),
         ];
 
         $themeable = NotifyThemeable::create($themeableData);
@@ -24,8 +24,8 @@ describe('Notify Themeable Business Logic', function () {
             'model_type' => 'App\Models\NotificationTemplate',
             'model_id' => 123,
             'notify_theme_id' => $theme->id,
-            'created_by' => 'admin@'.config('app.domain', 'example.com'),
-            'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+            'created_by' => 'admin@' . config('app.domain', 'example.com'),
+            'updated_by' => 'admin@' . config('app.domain', 'example.com'),
         ]);
 
         expect($themeable->model_type)->toBe('App\Models\NotificationTemplate');
@@ -35,7 +35,7 @@ describe('Notify Themeable Business Logic', function () {
 
     it('can manage polymorphic relationships', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'model_type' => 'App\Models\EmailTemplate',
             'model_id' => 456,
@@ -44,13 +44,13 @@ describe('Notify Themeable Business Logic', function () {
 
         expect($themeable->model_type)->toBe('App\Models\EmailTemplate');
         expect($themeable->model_id)->toBe(456);
-
+        
         expect($themeable->morphTo())->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\MorphTo::class);
     });
 
     it('can handle different model types', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $modelTypes = [
             'App\Models\NotificationTemplate',
             'App\Models\EmailTemplate',
@@ -73,30 +73,30 @@ describe('Notify Themeable Business Logic', function () {
 
     it('can manage theme relationships', function () {
         $theme = NotifyTheme::factory()->create([
-            'name' => config('app.name', 'Platform').' Professional',
-            'description' => 'Tema professionale per '.config('app.name', 'Platform'),
+            'name' => config('app.name', 'Platform') . ' Professional',
+            'description' => 'Tema professionale per ' . config('app.name', 'Platform'),
         ]);
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'notify_theme_id' => $theme->id,
         ]);
 
         expect($themeable->theme)->toBeInstanceOf(NotifyTheme::class);
         expect($themeable->theme->id)->toBe($theme->id);
-        expect($themeable->theme->name)->toBe(config('app.name', 'Platform').' Professional');
+        expect($themeable->theme->name)->toBe(config('app.name', 'Platform') . ' Professional');
     });
 
     it('can handle user tracking', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'notify_theme_id' => $theme->id,
-            'created_by' => 'developer@'.config('app.domain', 'example.com'),
-            'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+            'created_by' => 'developer@' . config('app.domain', 'example.com'),
+            'updated_by' => 'admin@' . config('app.domain', 'example.com'),
         ]);
 
-        expect($themeable->created_by)->toBe('developer@'.config('app.domain', 'example.com'));
-        expect($themeable->updated_by)->toBe('admin@'.config('app.domain', 'example.com'));
+        expect($themeable->created_by)->toBe('developer@' . config('app.domain', 'example.com'));
+        expect($themeable->updated_by)->toBe('admin@' . config('app.domain', 'example.com'));
         expect($themeable->created_at)->not->toBeNull();
         expect($themeable->updated_at)->not->toBeNull();
     });
@@ -105,7 +105,7 @@ describe('Notify Themeable Business Logic', function () {
         $theme1 = NotifyTheme::factory()->create(['name' => 'Tema 1']);
         $theme2 = NotifyTheme::factory()->create(['name' => 'Tema 2']);
         $theme3 = NotifyTheme::factory()->create(['name' => 'Tema 3']);
-
+        
         $themeable1 = NotifyThemeable::factory()->create([
             'model_type' => 'App\Models\NotificationTemplate',
             'model_id' => 123,
@@ -132,7 +132,7 @@ describe('Notify Themeable Business Logic', function () {
     it('can handle theme switching', function () {
         $oldTheme = NotifyTheme::factory()->create(['name' => 'Tema Vecchio']);
         $newTheme = NotifyTheme::factory()->create(['name' => 'Tema Nuovo']);
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'notify_theme_id' => $oldTheme->id,
         ]);
@@ -142,17 +142,17 @@ describe('Notify Themeable Business Logic', function () {
 
         $themeable->update([
             'notify_theme_id' => $newTheme->id,
-            'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+            'updated_by' => 'admin@' . config('app.domain', 'example.com'),
         ]);
 
         expect($themeable->notify_theme_id)->toBe($newTheme->id);
         expect($themeable->theme->name)->toBe('Tema Nuovo');
-        expect($themeable->updated_by)->toBe('admin@'.config('app.domain', 'example.com'));
+        expect($themeable->updated_by)->toBe('admin@' . config('app.domain', 'example.com'));
     });
 
     it('can handle empty or null values gracefully', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'notify_theme_id' => $theme->id,
             'model_type' => null,
@@ -170,7 +170,7 @@ describe('Notify Themeable Business Logic', function () {
 
     it('can validate model type consistency', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $validModelTypes = [
             'App\Models\NotificationTemplate',
             'App\Models\EmailTemplate',
@@ -197,12 +197,12 @@ describe('Notify Themeable Business Logic', function () {
             'name' => 'Tema Base',
             'description' => 'Tema base per tutte le notifiche',
         ]);
-
+        
         $childTheme = NotifyTheme::factory()->create([
             'name' => 'Tema Specializzato',
             'description' => 'Tema specializzato per appuntamenti',
         ]);
-
+        
         $baseThemeable = NotifyThemeable::factory()->create([
             'model_type' => 'App\Models\NotificationTemplate',
             'model_id' => 123,
@@ -217,14 +217,14 @@ describe('Notify Themeable Business Logic', function () {
 
         expect($baseThemeable->theme->name)->toBe('Tema Base');
         expect($specializedThemeable->theme->name)->toBe('Tema Specializzato');
-
+        
         expect($baseThemeable->model_type)->toBe($specializedThemeable->model_type);
         expect($baseThemeable->model_id)->toBe($specializedThemeable->model_id);
     });
 
     it('can handle theme removal', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'notify_theme_id' => $theme->id,
         ]);
@@ -234,29 +234,29 @@ describe('Notify Themeable Business Logic', function () {
 
         $themeable->update([
             'notify_theme_id' => null,
-            'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+            'updated_by' => 'admin@' . config('app.domain', 'example.com'),
         ]);
 
         expect($themeable->notify_theme_id)->toBeNull();
-        expect($themeable->updated_by)->toBe('admin@'.config('app.domain', 'example.com'));
+        expect($themeable->updated_by)->toBe('admin@' . config('app.domain', 'example.com'));
     });
 
     it('can manage audit trail', function () {
         $theme = NotifyTheme::factory()->create();
-
+        
         $themeable = NotifyThemeable::factory()->create([
             'notify_theme_id' => $theme->id,
-            'created_by' => 'developer@'.config('app.domain', 'example.com'),
+            'created_by' => 'developer@' . config('app.domain', 'example.com'),
         ]);
 
-        expect($themeable->created_by)->toBe('developer@'.config('app.domain', 'example.com'));
+        expect($themeable->created_by)->toBe('developer@' . config('app.domain', 'example.com'));
         expect($themeable->created_at)->not->toBeNull();
 
         $themeable->update([
-            'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+            'updated_by' => 'admin@' . config('app.domain', 'example.com'),
         ]);
 
-        expect($themeable->updated_by)->toBe('admin@'.config('app.domain', 'example.com'));
+        expect($themeable->updated_by)->toBe('admin@' . config('app.domain', 'example.com'));
         expect($themeable->updated_at)->not->toBeNull();
 
         expect($themeable->created_at->lte($themeable->updated_at))->toBeTrue();
@@ -266,9 +266,9 @@ describe('Notify Themeable Business Logic', function () {
         $theme1 = NotifyTheme::factory()->create(['name' => 'Tema 1']);
         $theme2 = NotifyTheme::factory()->create(['name' => 'Tema 2']);
         $theme3 = NotifyTheme::factory()->create(['name' => 'Tema 3']);
-
+        
         $modelIds = [101, 102, 103, 104, 105];
-
+        
         foreach ($modelIds as $modelId) {
             NotifyThemeable::factory()->create([
                 'model_type' => 'App\Models\NotificationTemplate',
@@ -283,14 +283,14 @@ describe('Notify Themeable Business Logic', function () {
         NotifyThemeable::where('notify_theme_id', $theme1->id)
             ->update([
                 'notify_theme_id' => $theme2->id,
-                'updated_by' => 'admin@'.config('app.domain', 'example.com'),
+                'updated_by' => 'admin@' . config('app.domain', 'example.com'),
             ]);
 
         $theme2Assignments = NotifyThemeable::where('notify_theme_id', $theme2->id)->get();
         expect($theme2Assignments)->toHaveCount(5);
 
         foreach ($theme2Assignments as $assignment) {
-            expect($assignment->updated_by)->toBe('admin@'.config('app.domain', 'example.com'));
+            expect($assignment->updated_by)->toBe('admin@' . config('app.domain', 'example.com'));
         }
     });
 });

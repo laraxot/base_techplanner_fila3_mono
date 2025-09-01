@@ -1,5 +1,6 @@
 # Testing Best Practices - Laraxot Framework
 
+<<<<<<< HEAD
 ## 🏆 **CRITICAL RULE: PEST TESTING MANDATORY**
 
 **ALWAYS use Pest testing framework and NEVER use RefreshDatabase trait.**
@@ -19,12 +20,22 @@
 - ❌ `public function test_something(): void`
 
 ### Correct Pest Structure
+=======
+## 🏆 **Gold Standard Pattern**
+
+Basato sui successi misurabili dei test RegisterTypeWidgetTest.php (9/9 test passati) e RegisterTypeTest.php (10/14 test passati).
+
+## ✅ **Pattern Vincente per Widget Test**
+
+### Struttura Base Obbligatoria
+>>>>>>> e697a77b (.)
 
 ```php
 <?php
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Modules\Xot\Models\BaseMorphPivot;
 
@@ -45,6 +56,23 @@ describe('BaseMorphPivot Business Logic', function () {
         // Act & Assert
         expect($pivot->morph_type)->toBe('App\Models\User');
     });
+=======
+use Livewire\Livewire;
+use Modules\{Module}\Filament\Widgets\{WidgetName};
+
+// ✅ CRITICO: TestCase specifico
+uses(\Modules\Xot\Tests\TestCase::class);
+
+// ✅ CRITICO: Mock XotData per ogni test
+beforeEach(function (): void {
+    mockXotData();
+});
+
+// ✅ CRITICO: Test diretti senza describe() o dataset()
+test('widget can be rendered', function () {
+    Livewire::test({WidgetName}::class)
+        ->assertStatus(200);
+>>>>>>> e697a77b (.)
 });
 ```
 

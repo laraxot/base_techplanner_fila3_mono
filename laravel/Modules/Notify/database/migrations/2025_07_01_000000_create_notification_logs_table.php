@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (! Schema::hasTable('notification_logs')) {
+        if (!Schema::hasTable('notification_logs')) {
             Schema::create('notification_logs', function (Blueprint $table) {
                 $table->id();
                 $table->string('notifiable_type');
@@ -27,7 +27,7 @@ return new class extends Migration
                 $table->text('error_message')->nullable();
                 $table->json('metadata')->nullable();
                 $table->timestamps();
-
+                
                 $table->index(['notifiable_type', 'notifiable_id']);
                 $table->index('channel');
                 $table->index('status');

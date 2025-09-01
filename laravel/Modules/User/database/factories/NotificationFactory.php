@@ -10,16 +10,16 @@ use Modules\User\Models\User;
 
 /**
  * Notification Factory
- *
+ * 
  * Factory for creating Notification model instances for testing and seeding.
- *
+ * 
  * @extends Factory<Notification>
  */
 class NotificationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
+     * 
      * @var class-string<Notification>
      */
     protected $model = Notification::class;
@@ -53,6 +53,8 @@ class NotificationFactory extends Factory
 
     /**
      * Create an unread notification.
+     *
+     * @return static
      */
     public function unread(): static
     {
@@ -63,6 +65,8 @@ class NotificationFactory extends Factory
 
     /**
      * Create a read notification.
+     *
+     * @return static
      */
     public function read(): static
     {
@@ -73,6 +77,9 @@ class NotificationFactory extends Factory
 
     /**
      * Create notification for a specific user.
+     *
+     * @param User $user
+     * @return static
      */
     public function forUser(User $user): static
     {
@@ -82,28 +89,33 @@ class NotificationFactory extends Factory
         ]);
     }
 
-    /**
-     * Create notification with high priority.
-     */
-    public function highPriority(): static
-    {
-        return $this->state(fn (array $attributes): array => [
-            'data' => array_merge(
-                is_array($attributes['data'] ?? null) ? $attributes['data'] : [
-                    'title' => $this->faker->sentence(4),
-                    'message' => $this->faker->text(200),
-                    'action_url' => $this->faker->optional()->url(),
-                    'priority' => 'medium',
-                ],
-                [
-                    'priority' => 'high',
-                ]
-            ),
-        ]);
-    }
+         /**
+      * Create notification with high priority.
+      *
+      * @return static
+      */
+     public function highPriority(): static
+     {
+         return $this->state(fn (array $attributes): array => [
+             'data' => array_merge(
+                 is_array($attributes['data'] ?? null) ? $attributes['data'] : [
+                     'title' => $this->faker->sentence(4),
+                     'message' => $this->faker->text(200),
+                     'action_url' => $this->faker->optional()->url(),
+                     'priority' => 'medium',
+                 ],
+                 [
+                     'priority' => 'high',
+                 ]
+             ),
+         ]);
+     }
 
     /**
      * Create notification with specific type.
+     *
+     * @param string $type
+     * @return static
      */
     public function ofType(string $type): static
     {

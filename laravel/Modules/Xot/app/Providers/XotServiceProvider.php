@@ -4,38 +4,39 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Field;
-use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Set;
-use Filament\Infolists\Components\Entry;
-use Filament\Support\Components\Component;
-use Filament\Support\Concerns\Configurable;
-use Filament\Tables\Columns\Column;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\BaseFilter;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Database\Events\MigrationsEnded;
+use function Safe\realpath;
+use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\File;
+use Modules\Xot\Datas\XotData;
+use Filament\Tables\Columns\Column;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
+use Filament\Forms\Components\Field;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
+use Illuminate\Support\Facades\Event;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\BaseFilter;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\Entry;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\Placeholder;
+use Filament\Support\Components\Component;
+use Filament\Support\Concerns\Configurable;
+use Modules\Xot\View\Composers\XotComposer;
+use Illuminate\Auth\AuthenticationException;
+use Filament\Forms\Components\DateTimePicker;
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+
 use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 use Modules\Xot\Exceptions\Handlers\HandlersRepository;
-use Modules\Xot\View\Composers\XotComposer;
+use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Webmozart\Assert\Assert;
-
-use function Safe\realpath;
 
 /**
  * Class XotServiceProvider.
@@ -54,7 +55,7 @@ class XotServiceProvider extends XotBaseServiceProvider
         $this->redirectSSL();
         $this->registerViewComposers();
         $this->registerEvents();
-        // $this->registerExceptionHandler(); // guardare come fa sentry
+        //$this->registerExceptionHandler(); // guardare come fa sentry
         $this->registerTimezone();
         $this->registerFilamentMacros();
         $this->registerProviders();
@@ -64,9 +65,9 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         parent::register();
         $this->registerConfig();
-        // $this->registerExceptionHandlersRepository();
-        // $this->extendExceptionHandler();
-        // $this->registerCommands();
+        //$this->registerExceptionHandlersRepository();
+        //$this->extendExceptionHandler();
+        //$this->registerCommands();
     }
 
     public function registerProviders(): void
@@ -89,28 +90,28 @@ class XotServiceProvider extends XotBaseServiceProvider
         TimePicker::configureUsing(fn (TimePicker $component) => $component->timezone($timezone));
         TextColumn::configureUsing(fn (TextColumn $column) => $column->timezone($timezone));
 
+        
     }
 
     public function registerFilamentMacros(): void
     {
-        TextInput::macro('generateSlug', function () {
+        TextInput::macro('generateSlug',function (){
             /** @phpstan-ignore-next-line */
             $this
-                ->live(onBlur: true)
-                ->afterStateUpdated(function (string $operation, string $state, Set $set) {
-                    if ($operation === 'create') {
-                        return;
-                    }
-                    $set('slug', Str::slug($state));
-                });
-
+            ->live(onBlur: true)
+            ->afterStateUpdated(function (string $operation, string $state,Set $set){
+                if($operation === 'create'){
+                    return ;
+                }
+                $set('slug', Str::slug($state));
+            });
             return $this;
         });
     }
 
     /*
      * @see https://github.com/cerbero90/exception-handler
-     --  guardare come fa sentry
+     --  guardare come fa sentry 
     public function registerExceptionHandler(): void
     {
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
@@ -143,12 +144,12 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         $files = File::files($path);
         foreach ($files as $file) {
-            if ($file->getExtension() !== 'php') {
+            if ('php' !== $file->getExtension()) {
                 continue;
             }
 
             $realPath = $file->getRealPath();
-            if ($realPath === false) {
+            if (false === $realPath) {
                 continue;
             }
 
@@ -193,24 +194,24 @@ class XotServiceProvider extends XotBaseServiceProvider
     */
     private function redirectSSL(): void
     {
-        if (app()->runningInConsole()) {
+        if(app()->runningInConsole()){
             return;
-        }
+        };
         // --- meglio ficcare un controllo anche sull'env
-
+        
         if (
-            // config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
-            // && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
+            //config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
+            //&& isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
             XotData::make()->forceSSL()
         ) {
             URL::forceScheme('https');
             /*
              * da fare in htaccess
              */
-
-            // if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
+            
+            //if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
             //    exit(redirect()->secure(request()->getRequestUri()));
-            // }
+            //}
         }
     }
 
@@ -233,4 +234,6 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         View::composer('*', XotComposer::class);
     }
+
+
 } // end class

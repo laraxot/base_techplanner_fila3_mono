@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
 
         // Load Activity module specific configurations
         $this->artisan('migrate', ['--database' => 'testing']);
-
+        
         // Seed any required data for Activity tests
         $this->artisan('module:seed', ['module' => 'Activity']);
     }
@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      * @return array<int, class-string>
      */
     protected function getPackageProviders($app): array

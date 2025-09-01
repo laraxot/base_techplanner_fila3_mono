@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-use Modules\Notify\Helpers\ConfigHelper;
-use Modules\Notify\Models\Contact;
 use Modules\Notify\Models\Notification;
 use Modules\Notify\Models\NotificationTemplate;
 use Modules\Notify\Models\NotificationType;
+use Modules\Notify\Models\Contact;
+use Modules\Notify\Helpers\ConfigHelper;
 
 describe('Notification Management Business Logic', function () {
     it('can create notification with basic information', function () {
         $testData = ConfigHelper::getTestData();
-
+        
         $notificationData = [
             'type' => 'email',
             'subject' => $testData['default_subject'],
@@ -39,7 +39,7 @@ describe('Notification Management Business Logic', function () {
 
     it('can create notification template', function () {
         $testData = ConfigHelper::getTestData();
-
+        
         $templateData = [
             'name' => 'Welcome Email Template',
             'type' => 'email',
@@ -263,7 +263,7 @@ describe('Notification Management Business Logic', function () {
             $notificationData = [
                 'type' => 'email',
                 'subject' => "Test Notification - {$priority} Priority",
-                'content' => 'This is a test notification with '.$priority.' priority',
+                'content' => 'This is a test notification with ' . $priority . ' priority',
                 'status' => 'pending',
                 'priority' => $priority,
             ];
@@ -459,7 +459,7 @@ describe('Notification Management Business Logic', function () {
                 'bounces' => true,
                 'complaints' => true,
             ],
-            'tracking_id' => 'track_'.uniqid(),
+            'tracking_id' => 'track_' . uniqid(),
         ];
 
         $notification = Notification::create($notificationData);

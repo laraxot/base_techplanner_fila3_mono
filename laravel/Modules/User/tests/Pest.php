@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
 namespace Modules\User\Tests;
+=======
+use Modules\User\Tests\TestCase;
+>>>>>>> 8055579 (.)
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +19,12 @@ namespace Modules\User\Tests;
 |
 */
 
+<<<<<<< HEAD
 uses(TestCase::class)
     ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
+=======
+pest()->extend(TestCase::class)
+>>>>>>> 8055579 (.)
     ->in('Feature', 'Unit');
 
 /*
@@ -71,4 +79,8 @@ function createTeam(array $attributes = []): \Modules\User\Models\Team
 function createProfile(array $attributes = []): \Modules\User\Models\Profile
 {
     return \Modules\User\Models\Profile::factory()->create($attributes);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8055579 (.)

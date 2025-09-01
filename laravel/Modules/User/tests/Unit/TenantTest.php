@@ -2,9 +2,15 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
 namespace Modules\User\Tests\Unit;
 
 use Modules\User\Models\Tenant;
+=======
+use Modules\User\Models\Tenant;
+use Modules\User\Models\User;
+use Illuminate\Support\Str;
+>>>>>>> 8055579 (.)
 
 uses(Tests\TestCase::class);
 
@@ -37,7 +43,11 @@ test('tenant extends correct base class', function (): void {
 
 test('tenant has correct fillable attributes', function (): void {
     $fillable = $this->tenant->getFillable();
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     expect($fillable)->toContain('id');
     expect($fillable)->toContain('name');
     expect($fillable)->toContain('slug');
@@ -57,27 +67,43 @@ test('tenant slug is automatically generated', function (): void {
     $newTenant = Tenant::factory()->create([
         'name' => 'Another Test Tenant',
     ]);
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     expect($newTenant->slug)->toBe('another-test-tenant');
 });
 
 test('tenant has users relationship', function (): void {
     expect($this->tenant)->toHaveMethod('users');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     $users = $this->tenant->users();
     expect($users)->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class);
 });
 
 test('tenant has members relationship', function (): void {
     expect($this->tenant)->toHaveMethod('members');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     $members = $this->tenant->members();
     expect($members)->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class);
 });
 
 test('tenant implements required interfaces', function (): void {
     $reflection = new ReflectionClass(Tenant::class);
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     expect($reflection->implementsInterface(\Filament\Models\Contracts\HasAvatar::class))->toBeTrue();
     expect($reflection->implementsInterface(\Spatie\MediaLibrary\HasMedia::class))->toBeTrue();
     expect($reflection->implementsInterface(\Modules\User\Contracts\TenantContract::class))->toBeTrue();
@@ -85,21 +111,33 @@ test('tenant implements required interfaces', function (): void {
 
 test('tenant has slug options configuration', function (): void {
     expect($this->tenant)->toHaveMethod('getSlugOptions');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     $slugOptions = $this->tenant->getSlugOptions();
     expect($slugOptions)->toBeInstanceOf(\Spatie\Sluggable\SlugOptions::class);
 });
 
 test('tenant has filament avatar url method', function (): void {
     expect($this->tenant)->toHaveMethod('getFilamentAvatarUrl');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     $avatarUrl = $this->tenant->getFilamentAvatarUrl();
     expect($avatarUrl)->toBeNull(); // Default implementation returns null
 });
 
 test('tenant can be found by slug', function (): void {
     $foundTenant = Tenant::where('slug', 'test-tenant')->first();
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8055579 (.)
     expect($foundTenant)->not->toBeNull();
     expect($foundTenant->id)->toBe($this->tenant->id);
     expect($foundTenant->name)->toBe('Test Tenant');
@@ -122,9 +160,15 @@ test('tenant can be updated', function (): void {
         'name' => 'Updated Tenant Name',
         'email_address' => 'updated@tenant.com',
     ]);
+<<<<<<< HEAD
 
     $this->tenant->refresh();
 
+=======
+    
+    $this->tenant->refresh();
+    
+>>>>>>> 8055579 (.)
     expect($this->tenant->name)->toBe('Updated Tenant Name');
     expect($this->tenant->email_address)->toBe('updated@tenant.com');
     expect($this->tenant->slug)->toBe('updated-tenant-name');
@@ -132,8 +176,14 @@ test('tenant can be updated', function (): void {
 
 test('tenant can be deleted', function (): void {
     $tenantId = $this->tenant->id;
+<<<<<<< HEAD
 
     $this->tenant->delete();
 
+=======
+    
+    $this->tenant->delete();
+    
+>>>>>>> 8055579 (.)
     expect(Tenant::find($tenantId))->toBeNull();
 });

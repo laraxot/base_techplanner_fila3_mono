@@ -66,3 +66,4 @@ class DomainFactory extends Factory
         ]);
     }
 }
+

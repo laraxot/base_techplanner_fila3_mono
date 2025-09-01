@@ -2,8 +2,9 @@
 
 namespace Modules\Notify\Filament\Resources\MailTemplateResource\Pages;
 
-use Modules\Lang\Filament\Resources\Pages\LangBaseCreateRecord;
+use Filament\Actions;
 use Modules\Notify\Filament\Resources\MailTemplateResource;
+use Modules\Lang\Filament\Resources\Pages\LangBaseCreateRecord;
 
 class CreateMailTemplate extends LangBaseCreateRecord
 {

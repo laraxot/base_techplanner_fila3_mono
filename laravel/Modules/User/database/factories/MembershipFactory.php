@@ -11,16 +11,16 @@ use Modules\User\Models\User;
 
 /**
  * Membership Factory
- *
+ * 
  * Factory for creating Membership model instances for testing and seeding.
- *
+ * 
  * @extends Factory<Membership>
  */
 class MembershipFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
+     * 
      * @var class-string<Membership>
      */
     protected $model = Membership::class;
@@ -42,6 +42,9 @@ class MembershipFactory extends Factory
 
     /**
      * Create membership for a specific team.
+     *
+     * @param Team $team
+     * @return static
      */
     public function forTeam(Team $team): static
     {
@@ -52,6 +55,9 @@ class MembershipFactory extends Factory
 
     /**
      * Create membership for a specific user.
+     *
+     * @param User $user
+     * @return static
      */
     public function forUser(User $user): static
     {
@@ -62,6 +68,8 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to admin.
+     *
+     * @return static
      */
     public function admin(): static
     {
@@ -72,6 +80,8 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to editor.
+     *
+     * @return static
      */
     public function editor(): static
     {
@@ -82,6 +92,8 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to member.
+     *
+     * @return static
      */
     public function member(): static
     {
@@ -92,6 +104,8 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to viewer.
+     *
+     * @return static
      */
     public function viewer(): static
     {

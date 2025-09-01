@@ -5,18 +5,16 @@ declare(strict_types=1);
 namespace Modules\Notify\Datas\SMS;
 
 use Illuminate\Support\Arr;
+use Spatie\LaravelData\Data;
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Config;
 use Modules\Tenant\Services\TenantService;
-use Spatie\LaravelData\Data;
 
 class SmsFactorData extends Data
 {
     public ?string $token;
-
     public ?string $base_url;
-
     public string $auth_type = 'bearer';
-
     public int $timeout = 30;
 
     private static ?self $instance = null;
@@ -41,9 +39,9 @@ class SmsFactorData extends Data
             case 'bearer':
             default:
                 return [
-                    'Authorization' => 'Bearer '.$this->token,
+                    'Authorization' => 'Bearer ' . $this->token,
                     'Content-Type' => 'application/json',
-                    'Cache-Control' => 'no-cache',
+                    'Cache-Control' => 'no-cache'
                 ];
         }
     }

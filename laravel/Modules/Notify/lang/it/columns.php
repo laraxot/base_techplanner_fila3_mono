@@ -16,4 +16,4 @@ return [
             'email_sent' => 'Email inviate',
         ],
     ],
-];
+]; 

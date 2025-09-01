@@ -10,8 +10,8 @@ describe('XotBaseModel Business Logic', function () {
     });
 
     test('xot base model can be instantiated', function () {
-        $model = new XotBaseModel;
-
+        $model = new XotBaseModel();
+        
         expect($model)->toBeInstanceOf(XotBaseModel::class);
         expect($model)->toBeInstanceOf(\Illuminate\Database\Eloquent\Model::class);
     });

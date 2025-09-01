@@ -6,6 +6,7 @@ namespace Modules\Job\Filament\Resources\JobsWaitingResource\Pages;
 
 use Filament\Actions\DeleteAction;
 use Modules\Job\Filament\Resources\JobsWaitingResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
 class EditJobsWaiting extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {

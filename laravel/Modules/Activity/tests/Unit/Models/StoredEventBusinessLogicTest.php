@@ -6,19 +6,19 @@ use Modules\Activity\Models\StoredEvent;
 
 describe('StoredEvent Business Logic', function () {
     test('stored event has correct connection configured', function () {
-        $storedEvent = new StoredEvent;
-
+        $storedEvent = new StoredEvent();
+        
         expect($storedEvent->getConnectionName())->toBe('activity');
     });
 
     test('stored event has correct table configured', function () {
-        $storedEvent = new StoredEvent;
-
+        $storedEvent = new StoredEvent();
+        
         expect($storedEvent->getTable())->toBe('stored_events');
     });
 
     test('stored event has expected fillable fields for event sourcing', function () {
-        $storedEvent = new StoredEvent;
+        $storedEvent = new StoredEvent();
         $expectedFillable = [
             'id',
             'aggregate_uuid',
@@ -31,7 +31,7 @@ describe('StoredEvent Business Logic', function () {
             'updated_by',
             'created_by',
         ];
-
+        
         expect($storedEvent->getFillable())->toEqual($expectedFillable);
     });
 
@@ -41,7 +41,7 @@ describe('StoredEvent Business Logic', function () {
 
     test('stored event has factory trait for testing', function () {
         $traits = class_uses(StoredEvent::class);
-
+        
         expect($traits)->toHaveKey(\Illuminate\Database\Eloquent\Factories\HasFactory::class);
     });
 

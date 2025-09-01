@@ -16,6 +16,8 @@ use Modules\User\Filament\Resources\PermissionResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Webmozart\Assert\Assert;
 
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+
 class ListPermissions extends XotBaseListRecords
 {
     protected static string $resource = PermissionResource::class;

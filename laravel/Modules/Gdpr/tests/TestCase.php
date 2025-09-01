@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
 
         // Load Gdpr module specific configurations
         $this->loadLaravelMigrations();
-
+        
         // Seed any required data for Gdpr tests
         $this->artisan('module:seed', ['module' => 'Gdpr']);
     }
@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      * @return array<int, class-string>
      */
     protected function getPackageProviders($app): array

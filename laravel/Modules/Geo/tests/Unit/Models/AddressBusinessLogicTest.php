@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modules\Geo\Enums\AddressTypeEnum;
 use Modules\Geo\Models\Address;
+use Modules\Geo\Enums\AddressTypeEnum;
 
 describe('Address Business Logic', function () {
     test('address extends base model', function () {
@@ -11,7 +11,7 @@ describe('Address Business Logic', function () {
     });
 
     test('address has expected fillable fields for postal address', function () {
-        $address = new Address;
+        $address = new Address();
         $expectedFillable = [
             'model_type',
             'model_id',
@@ -33,14 +33,14 @@ describe('Address Business Logic', function () {
             'is_primary',
             'extra_data',
         ];
-
+        
         expect($address->getFillable())->toEqual($expectedFillable);
     });
 
     test('address has correct casts for geolocation and structured data', function () {
-        $address = new Address;
+        $address = new Address();
         $casts = $address->getCasts();
-
+        
         expect($casts['latitude'])->toBe('float');
         expect($casts['longitude'])->toBe('float');
         expect($casts['is_primary'])->toBe('boolean');
@@ -49,65 +49,65 @@ describe('Address Business Logic', function () {
     });
 
     test('address has polymorphic model relationship', function () {
-        $address = new Address;
-
+        $address = new Address();
+        
         expect(method_exists($address, 'model'))->toBeTrue();
         expect(method_exists($address, 'addressable'))->toBeTrue();
     });
 
     test('address can get region data from comune', function () {
-        $address = new Address;
-
+        $address = new Address();
+        
         expect(method_exists($address, 'getRegione'))->toBeTrue();
     });
 
     test('address can get province data from comune', function () {
-        $address = new Address;
-
+        $address = new Address();
+        
         expect(method_exists($address, 'getProvincia'))->toBeTrue();
     });
 
     test('address can get locality data from comune', function () {
-        $address = new Address;
-
+        $address = new Address();
+        
         expect(method_exists($address, 'getLocality'))->toBeTrue();
     });
 
     test('address can format full address attribute', function () {
-        $address = new Address;
+        $address = new Address();
         $address->route = 'Via Roma';
         $address->street_number = '123';
         $address->locality = 'Milano';
-
+        
         expect($address->full_address)->toContain('Via Roma 123');
         expect($address->full_address)->toContain('Milano');
     });
 
     test('address can format street address attribute', function () {
-        $address = new Address;
+        $address = new Address();
         $address->route = 'Via Roma';
         $address->street_number = '123';
-
+        
         expect($address->street_address)->toBe('Via Roma 123');
     });
 
     test('address can get geolocation coordinates', function () {
-        $address = new Address;
+        $address = new Address();
         $address->latitude = 45.4642;
         $address->longitude = 9.1900;
-
+        
         expect($address->getLatitude())->toBe(45.4642);
         expect($address->getLongitude())->toBe(9.1900);
     });
 
     test('address can export to schema org format', function () {
-        $address = new Address;
+        $address = new Address();
         $address->name = 'Test Address';
         $address->route = 'Via Roma';
         $address->street_number = '123';
-
+        
         $schemaOrg = $address->toSchemaOrg();
-
+        
         expect($schemaOrg)->toHaveKey('@context');
         expect($schemaOrg)->toHaveKey('@type');
         expect($schemaOrg['@context'])->toBe('https://schema.org');
@@ -116,19 +116,19 @@ describe('Address Business Logic', function () {
 
     test('address scope can query nearby addresses', function () {
         $query = Address::nearby(45.4642, 9.1900, 10);
-
+        
         expect($query)->toBeInstanceOf(\Illuminate\Database\Eloquent\Builder::class);
     });
 
     test('address scope can query primary addresses', function () {
         $query = Address::primary();
-
+        
         expect($query)->toBeInstanceOf(\Illuminate\Database\Eloquent\Builder::class);
     });
 
     test('address scope can query by type', function () {
         $query = Address::ofType(AddressTypeEnum::BILLING);
-
+        
         expect($query)->toBeInstanceOf(\Illuminate\Database\Eloquent\Builder::class);
     });
 });

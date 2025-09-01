@@ -64,4 +64,8 @@ class FrequencyPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('frequency.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

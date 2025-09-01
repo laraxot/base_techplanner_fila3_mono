@@ -64,4 +64,8 @@ class TaskPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('task.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

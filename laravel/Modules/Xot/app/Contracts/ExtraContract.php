@@ -21,7 +21,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|ExtraContract query()
  * @method static \Illuminate\Database\Eloquent\Builder|ExtraContract withExtraAttributes()
  *
- * @property int $id
+ * @property int         $id
  * @property string $model_type
  * @property string $model_id
  * @property Carbon|null $created_at
@@ -46,4 +46,6 @@ use Illuminate\Support\Carbon;
  *
  * @mixin \Eloquent
  */
-interface ExtraContract {}
+interface ExtraContract
+{
+}

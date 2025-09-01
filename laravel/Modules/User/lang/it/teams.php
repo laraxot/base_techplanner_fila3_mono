@@ -75,4 +75,4 @@ return [
             'description' => 'Utente che ha creato questo team',
         ],
     ],
-];
+]; 

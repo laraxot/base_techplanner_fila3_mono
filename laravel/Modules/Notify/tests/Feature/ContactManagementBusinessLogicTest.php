@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Notify\Models\Contact;
 use Modules\Notify\Models\ContactGroup;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ContactManagementBusinessLogicTest extends TestCase
 {
-
+    use RefreshDatabase;
 
     /** @test */
     public function it_can_create_contact_with_basic_information(): void
@@ -38,9 +38,9 @@ class ContactManagementBusinessLogicTest extends TestCase
             'is_active' => true,
         ]);
 
-        expect('Mario Rossi', $contact->name);
-        expect('mario.rossi@example.com', $contact->email);
-        expect($contact->is_active);
+        $this->assertEquals('Mario Rossi', $contact->name);
+        $this->assertEquals('mario.rossi@example.com', $contact->email);
+        $this->assertTrue($contact->is_active);
     }
 
     /** @test */
@@ -64,9 +64,9 @@ class ContactManagementBusinessLogicTest extends TestCase
             'is_active' => true,
         ]);
 
-        expect('Dottori Specialisti', $group->name);
-        expect('Gruppo per dottori specialisti', $group->description);
-        expect($group->is_active);
+        $this->assertEquals('Dottori Specialisti', $group->name);
+        $this->assertEquals('Gruppo per dottori specialisti', $group->description);
+        $this->assertTrue($group->is_active);
     }
 
     /** @test */
@@ -95,13 +95,13 @@ class ContactManagementBusinessLogicTest extends TestCase
             'preferences' => json_encode($preferences),
         ]);
 
-        expect($contact->fresh()->preferences['email']);
-        expect($contact->fresh()->preferences['sms']);
-        expect($contact->fresh()->preferences['push']);
-        expect('daily', $contact->fresh()->preferences['frequency']);
-        expect('22:00', $contact->fresh()->preferences['quiet_hours']['start']);
-        expect('08:00', $contact->fresh()->preferences['quiet_hours']['end']);
-        expect('Europe/Rome', $contact->fresh()->preferences['timezone']);
+        $this->assertTrue($contact->fresh()->preferences['email']);
+        $this->assertFalse($contact->fresh()->preferences['sms']);
+        $this->assertTrue($contact->fresh()->preferences['push']);
+        $this->assertEquals('daily', $contact->fresh()->preferences['frequency']);
+        $this->assertEquals('22:00', $contact->fresh()->preferences['quiet_hours']['start']);
+        $this->assertEquals('08:00', $contact->fresh()->preferences['quiet_hours']['end']);
+        $this->assertEquals('Europe/Rome', $contact->fresh()->preferences['timezone']);
     }
 
     /** @test */
@@ -128,13 +128,13 @@ class ContactManagementBusinessLogicTest extends TestCase
             'demographics' => json_encode($demographics),
         ]);
 
-        expect(35, $contact->fresh()->demographics['age']);
-        expect('M', $contact->fresh()->demographics['gender']);
-        expect('Milano, Italia', $contact->fresh()->demographics['location']);
-        expect('it', $contact->fresh()->demographics['language']);
+        $this->assertEquals(35, $contact->fresh()->demographics['age']);
+        $this->assertEquals('M', $contact->fresh()->demographics['gender']);
+        $this->assertEquals('Milano, Italia', $contact->fresh()->demographics['location']);
+        $this->assertEquals('it', $contact->fresh()->demographics['language']);
         $this->assertContains('dentistry', $contact->fresh()->demographics['interests']);
-        expect('Dentist', $contact->fresh()->demographics['profession']);
-        expect(8, $contact->fresh()->demographics['experience_years']);
+        $this->assertEquals('Dentist', $contact->fresh()->demographics['profession']);
+        $this->assertEquals(8, $contact->fresh()->demographics['experience_years']);
     }
 
     /** @test */
@@ -145,7 +145,7 @@ class ContactManagementBusinessLogicTest extends TestCase
         $communicationHistory = [
             [
                 'type' => 'email',
-                'subject' => 'Benvenuto su '.config('app.name', 'Our Platform'),
+                'subject' => 'Benvenuto su ' . config('app.name', 'Our Platform'),
                 'sent_at' => now()->subDays(5)->toISOString(),
                 'status' => 'delivered',
                 'opened' => true,
@@ -170,11 +170,11 @@ class ContactManagementBusinessLogicTest extends TestCase
             'communication_history' => json_encode($communicationHistory),
         ]);
 
-        expect(2, $contact->fresh()->communication_history);
-        expect('email', $contact->fresh()->communication_history[0]['type']);
-        expect('Benvenuto su '.config('app.name', 'Our Platform'), $contact->fresh()->communication_history[0]['subject']);
-        expect('sms', $contact->fresh()->communication_history[1]['type']);
-        expect($contact->fresh()->communication_history[1]['clicked']);
+        $this->assertCount(2, $contact->fresh()->communication_history);
+        $this->assertEquals('email', $contact->fresh()->communication_history[0]['type']);
+        $this->assertEquals('Benvenuto su ' . config('app.name', 'Our Platform'), $contact->fresh()->communication_history[0]['subject']);
+        $this->assertEquals('sms', $contact->fresh()->communication_history[1]['type']);
+        $this->assertTrue($contact->fresh()->communication_history[1]['clicked']);
     }
 
     /** @test */
@@ -198,11 +198,11 @@ class ContactManagementBusinessLogicTest extends TestCase
             'tags' => json_encode($tags),
         ]);
 
-        expect(4, $contact->fresh()->tags);
-        expect('Cliente VIP', $contact->fresh()->tags['vip']);
-        expect('Nuovo cliente', $contact->fresh()->tags['new']);
-        expect('Piano premium', $contact->fresh()->tags['premium']);
-        expect('Cliente attivo', $contact->fresh()->tags['active']);
+        $this->assertCount(4, $contact->fresh()->tags);
+        $this->assertEquals('Cliente VIP', $contact->fresh()->tags['vip']);
+        $this->assertEquals('Nuovo cliente', $contact->fresh()->tags['new']);
+        $this->assertEquals('Piano premium', $contact->fresh()->tags['premium']);
+        $this->assertEquals('Cliente attivo', $contact->fresh()->tags['active']);
     }
 
     /** @test */
@@ -228,11 +228,11 @@ class ContactManagementBusinessLogicTest extends TestCase
             'custom_fields' => json_encode($customFields),
         ]);
 
-        expect('Ortodonzia', $contact->fresh()->custom_fields['specialization']);
-        expect('Università di Milano', $contact->fresh()->custom_fields['university']);
+        $this->assertEquals('Ortodonzia', $contact->fresh()->custom_fields['specialization']);
+        $this->assertEquals('Università di Milano', $contact->fresh()->custom_fields['university']);
         $this->assertContains('Invisalign', $contact->fresh()->custom_fields['certifications']);
-        expect('mattina', $contact->fresh()->custom_fields['preferred_contact_time']);
-        expect('+39 987 654 3210', $contact->fresh()->custom_fields['emergency_contact']);
+        $this->assertEquals('mattina', $contact->fresh()->custom_fields['preferred_contact_time']);
+        $this->assertEquals('+39 987 654 3210', $contact->fresh()->custom_fields['emergency_contact']);
     }
 
     /** @test */
@@ -261,11 +261,11 @@ class ContactManagementBusinessLogicTest extends TestCase
             'double_optin' => true,
         ]);
 
-        expect($contact->fresh()->subscribed);
-        expect('website_form', $contact->fresh()->subscription_source);
-        expect($contact->fresh()->double_optin);
-        expect($contact->fresh()->subscription_date);
-        expect($contact->fresh()->unsubscribe_date);
+        $this->assertTrue($contact->fresh()->subscribed);
+        $this->assertEquals('website_form', $contact->fresh()->subscription_source);
+        $this->assertTrue($contact->fresh()->double_optin);
+        $this->assertNotNull($contact->fresh()->subscription_date);
+        $this->assertNull($contact->fresh()->unsubscribe_date);
 
         // Act - Unsubscribe
         $contact->update([
@@ -275,9 +275,9 @@ class ContactManagementBusinessLogicTest extends TestCase
         ]);
 
         // Assert
-        expect($contact->fresh()->subscribed);
-        expect($contact->fresh()->unsubscribe_date);
-        expect('Troppe email', $contact->fresh()->unsubscribe_reason);
+        $this->assertFalse($contact->fresh()->subscribed);
+        $this->assertNotNull($contact->fresh()->unsubscribe_date);
+        $this->assertEquals('Troppe email', $contact->fresh()->unsubscribe_reason);
     }
 
     /** @test */
@@ -309,12 +309,12 @@ class ContactManagementBusinessLogicTest extends TestCase
             'lifetime_value' => 2500.00,
         ]);
 
-        expect(85, $contact->fresh()->engagement_score);
-        expect(15, $contact->fresh()->interaction_count);
-        expect(78.5, $contact->fresh()->response_rate);
-        expect('email', $contact->fresh()->preferred_channel);
-        expect('high', $contact->fresh()->engagement_level);
-        expect(2500.00, $contact->fresh()->lifetime_value);
+        $this->assertEquals(85, $contact->fresh()->engagement_score);
+        $this->assertEquals(15, $contact->fresh()->interaction_count);
+        $this->assertEquals(78.5, $contact->fresh()->response_rate);
+        $this->assertEquals('email', $contact->fresh()->preferred_channel);
+        $this->assertEquals('high', $contact->fresh()->engagement_level);
+        $this->assertEquals(2500.00, $contact->fresh()->lifetime_value);
     }
 
     /** @test */
@@ -342,12 +342,12 @@ class ContactManagementBusinessLogicTest extends TestCase
             'privacy_settings' => json_encode($privacySettings),
         ]);
 
-        expect($contact->fresh()->privacy_settings['gdpr_consent']);
-        expect($contact->fresh()->privacy_settings['data_processing_consent']);
-        expect($contact->fresh()->privacy_settings['marketing_consent']);
-        expect($contact->fresh()->privacy_settings['third_party_sharing']);
-        expect('5_years', $contact->fresh()->privacy_settings['data_retention_preference']);
-        expect($contact->fresh()->privacy_settings['data_portability']);
+        $this->assertTrue($contact->fresh()->privacy_settings['gdpr_consent']);
+        $this->assertTrue($contact->fresh()->privacy_settings['data_processing_consent']);
+        $this->assertTrue($contact->fresh()->privacy_settings['marketing_consent']);
+        $this->assertFalse($contact->fresh()->privacy_settings['third_party_sharing']);
+        $this->assertEquals('5_years', $contact->fresh()->privacy_settings['data_retention_preference']);
+        $this->assertTrue($contact->fresh()->privacy_settings['data_portability']);
     }
 
     /** @test */
@@ -355,13 +355,13 @@ class ContactManagementBusinessLogicTest extends TestCase
     {
         // Arrange
         $emailContact = Contact::factory()->create([
-            'preferences' => ['email' => true, 'sms' => false],
+            'preferences' => ['email' => true, 'sms' => false]
         ]);
         $smsContact = Contact::factory()->create([
-            'preferences' => ['email' => false, 'sms' => true],
+            'preferences' => ['email' => false, 'sms' => true]
         ]);
         $bothContact = Contact::factory()->create([
-            'preferences' => ['email' => true, 'sms' => true],
+            'preferences' => ['email' => true, 'sms' => true]
         ]);
 
         // Act
@@ -374,10 +374,10 @@ class ContactManagementBusinessLogicTest extends TestCase
             ->get();
 
         // Assert
-        expect(1, $emailOnlyContacts);
-        expect(1, $smsOnlyContacts);
-        expect($emailOnlyContacts->contains($emailContact));
-        expect($smsOnlyContacts->contains($smsContact));
+        $this->assertCount(1, $emailOnlyContacts);
+        $this->assertCount(1, $smsOnlyContacts);
+        $this->assertTrue($emailOnlyContacts->contains($emailContact));
+        $this->assertTrue($smsOnlyContacts->contains($smsContact));
     }
 
     /** @test */
@@ -385,10 +385,10 @@ class ContactManagementBusinessLogicTest extends TestCase
     {
         // Arrange
         $vipContact = Contact::factory()->create([
-            'tags' => ['vip' => 'Cliente VIP', 'premium' => 'Piano premium'],
+            'tags' => ['vip' => 'Cliente VIP', 'premium' => 'Piano premium']
         ]);
         $newContact = Contact::factory()->create([
-            'tags' => ['new' => 'Nuovo cliente', 'active' => 'Cliente attivo'],
+            'tags' => ['new' => 'Nuovo cliente', 'active' => 'Cliente attivo']
         ]);
 
         // Act
@@ -396,10 +396,10 @@ class ContactManagementBusinessLogicTest extends TestCase
         $newContacts = Contact::whereJsonContains('tags->new', 'Nuovo cliente')->get();
 
         // Assert
-        expect(1, $vipContacts);
-        expect(1, $newContacts);
-        expect($vipContacts->contains($vipContact));
-        expect($newContacts->contains($newContact));
+        $this->assertCount(1, $vipContacts);
+        $this->assertCount(1, $newContacts);
+        $this->assertTrue($vipContacts->contains($vipContact));
+        $this->assertTrue($newContacts->contains($newContact));
     }
 
     /** @test */
@@ -415,10 +415,10 @@ class ContactManagementBusinessLogicTest extends TestCase
         $mediumEngagementContacts = Contact::where('engagement_level', 'medium')->get();
 
         // Assert
-        expect(1, $highEngagementContacts);
-        expect(1, $mediumEngagementContacts);
-        expect($highEngagementContacts->contains($highEngagementContact));
-        expect($mediumEngagementContacts->contains($mediumEngagementContact));
+        $this->assertCount(1, $highEngagementContacts);
+        $this->assertCount(1, $mediumEngagementContacts);
+        $this->assertTrue($highEngagementContacts->contains($highEngagementContact));
+        $this->assertTrue($mediumEngagementContacts->contains($mediumEngagementContact));
     }
 
     /** @test */
@@ -434,9 +434,9 @@ class ContactManagementBusinessLogicTest extends TestCase
         $contactWithGroup = Contact::with('group')->find($contact->id);
 
         // Assert
-        expect($contactWithGroup);
-        expect($contactWithGroup->relationLoaded('group'));
-        expect($group->id, $contactWithGroup->group->id);
+        $this->assertNotNull($contactWithGroup);
+        $this->assertTrue($contactWithGroup->relationLoaded('group'));
+        $this->assertEquals($group->id, $contactWithGroup->group->id);
     }
 
     /** @test */
@@ -469,11 +469,11 @@ class ContactManagementBusinessLogicTest extends TestCase
             'import_batch_id' => 'batch_001',
         ]);
 
-        expect('csv_upload', $contact->fresh()->import_source);
-        expect('batch_001', $contact->fresh()->import_batch_id);
-        expect('Importazione da sistema legacy', $contact->fresh()->import_notes);
-        expect(1, $contact->fresh()->export_history);
-        expect('csv', $contact->fresh()->export_history[0]['export_format']);
+        $this->assertEquals('csv_upload', $contact->fresh()->import_source);
+        $this->assertEquals('batch_001', $contact->fresh()->import_batch_id);
+        $this->assertEquals('Importazione da sistema legacy', $contact->fresh()->import_notes);
+        $this->assertCount(1, $contact->fresh()->export_history);
+        $this->assertEquals('csv', $contact->fresh()->export_history[0]['export_format']);
     }
 
     /** @test */
@@ -503,12 +503,12 @@ class ContactManagementBusinessLogicTest extends TestCase
             'conversion_rate' => 8.2,
         ]);
 
-        expect(25, $contact->fresh()->activity_count);
-        expect(3, $contact->fresh()->activity_types);
+        $this->assertEquals(25, $contact->fresh()->activity_count);
+        $this->assertCount(3, $contact->fresh()->activity_types);
         $this->assertContains('email_open', $contact->fresh()->activity_types);
         $this->assertContains('/dashboard', $contact->fresh()->favorite_pages);
-        expect(1800, $contact->fresh()->session_duration);
-        expect(15.5, $contact->fresh()->bounce_rate);
-        expect(8.2, $contact->fresh()->conversion_rate);
+        $this->assertEquals(1800, $contact->fresh()->session_duration);
+        $this->assertEquals(15.5, $contact->fresh()->bounce_rate);
+        $this->assertEquals(8.2, $contact->fresh()->conversion_rate);
     }
 }

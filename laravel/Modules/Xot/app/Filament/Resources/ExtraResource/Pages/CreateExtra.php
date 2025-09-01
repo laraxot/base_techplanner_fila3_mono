@@ -6,6 +6,15 @@ namespace Modules\Xot\Filament\Resources\ExtraResource\Pages;
 
 use Modules\Xot\Filament\Resources\ExtraResource;
 
+
+
+
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+
+
+
+
+
 class CreateExtra extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord
 {
     protected static string $resource = ExtraResource::class;

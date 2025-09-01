@@ -19,15 +19,16 @@ class CalculateDistanceMatrixAction
     /**
      * Calcola la matrice delle distanze tra origini e destinazioni.
      *
-     * @param  Collection<int, LocationData>  $origins  Punti di origine
-     * @param  Collection<int, LocationData>  $destinations  Punti di destinazione
+     * @param Collection<int, LocationData> $origins      Punti di origine
+     * @param Collection<int, LocationData> $destinations Punti di destinazione
+     *
+     * @throws GoogleMapsApiException Se la richiesta fallisce o i dati non sono validi
+     *
      * @return array<array<array{
      *     distance: array{text: string, value: int},
      *     duration: array{text: string, value: int},
      *     status: string
      * }>>
-     *
-     * @throws GoogleMapsApiException Se la richiesta fallisce o i dati non sono validi
      */
     public function execute(Collection $origins, Collection $destinations): array
     {
@@ -46,7 +47,7 @@ class CalculateDistanceMatrixAction
         /** @var array{status?: string, rows?: array<int, array{elements?: array<int, array{distance?: array{text: string, value: int}, duration?: array{text: string, value: int}, status?: string}>}>} $data */
         $data = $response->json();
 
-        if (! is_array($data) || 'OK' !== ($data['status'] ?? null)) {
+        if (!is_array($data) || 'OK' !== ($data['status'] ?? null)) {
             throw GoogleMapsApiException::requestFailed('Stato della risposta non valido: '.($data['status'] ?? 'sconosciuto'));
         }
 
@@ -71,7 +72,7 @@ class CalculateDistanceMatrixAction
     {
         $apiKey = config('services.google.maps_api_key');
 
-        if (empty($apiKey) || ! is_string($apiKey)) {
+        if (empty($apiKey) || !is_string($apiKey)) {
             throw GoogleMapsApiException::missingApiKey();
         }
 

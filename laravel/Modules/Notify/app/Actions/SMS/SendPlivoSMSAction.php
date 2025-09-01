@@ -7,23 +7,27 @@ namespace Modules\Notify\Actions\SMS;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Notify\Contracts\SMS\SmsActionContract;
-use Modules\Notify\Datas\SMS\PlivoData;
 use Modules\Notify\Datas\SmsData;
+use Modules\Notify\Datas\SMS\PlivoData;
 use Spatie\QueueableAction\QueueableAction;
 
 final class SendPlivoSMSAction implements SmsActionContract
 {
     use QueueableAction;
 
+    /** @var PlivoData */
     private PlivoData $plivoData;
 
     /** @var array<string, mixed> */
     private array $vars = [];
 
+    /** @var bool */
     protected bool $debug;
 
+    /** @var string|null */
     protected ?string $defaultSender = null;
 
     /**
@@ -32,12 +36,12 @@ final class SendPlivoSMSAction implements SmsActionContract
     public function __construct()
     {
         $this->plivoData = PlivoData::make();
-
-        if (! $this->plivoData->auth_id) {
+        
+        if (!$this->plivoData->auth_id) {
             throw new Exception('Auth ID Plivo non configurato in sms.php');
         }
 
-        if (! $this->plivoData->auth_token) {
+        if (!$this->plivoData->auth_token) {
             throw new Exception('Auth Token Plivo non configurato in sms.php');
         }
 
@@ -50,9 +54,8 @@ final class SendPlivoSMSAction implements SmsActionContract
     /**
      * Execute the action.
      *
-     * @param  SmsData  $smsData  I dati del messaggio SMS
+     * @param SmsData $smsData I dati del messaggio SMS
      * @return array Risultato dell'operazione
-     *
      * @throws Exception In caso di errore durante l'invio
      */
     public function execute(SmsData $smsData): array
@@ -60,11 +63,11 @@ final class SendPlivoSMSAction implements SmsActionContract
         // Normalizza il numero di telefono
         $to = (string) $smsData->to;
         if (Str::startsWith($to, '00')) {
-            $to = $to !== '' ? ('+'.substr($to, 2)) : $to;
+            $to = $to !== '' ? ('+' . substr($to, 2)) : $to;
         }
 
-        if (! Str::startsWith($to, '+')) {
-            $to = '+39'.$to;
+        if (!Str::startsWith($to, '+')) {
+            $to = '+39' . $to;
         }
 
         $from = $smsData->from ?? $this->defaultSender;
@@ -75,10 +78,10 @@ final class SendPlivoSMSAction implements SmsActionContract
             'auth' => [$this->plivoData->auth_id, $this->plivoData->auth_token],
             'headers' => [
                 'Content-Type' => 'application/json',
-            ],
+            ]
         ]);
 
-        $endpoint = $this->plivoData->getBaseUrl().'/v1/Account/'.$this->plivoData->auth_id.'/Message/';
+        $endpoint = $this->plivoData->getBaseUrl() . '/v1/Account/' . $this->plivoData->auth_id . '/Message/';
 
         try {
             $response = $client->post($endpoint, [
@@ -86,7 +89,7 @@ final class SendPlivoSMSAction implements SmsActionContract
                     'src' => $from,
                     'dst' => $to,
                     'text' => $smsData->body,
-                ],
+                ]
             ]);
 
             $this->vars['status_code'] = $response->getStatusCode();
@@ -95,7 +98,7 @@ final class SendPlivoSMSAction implements SmsActionContract
             return $this->vars;
         } catch (ClientException $clientException) {
             throw new Exception(
-                $clientException->getMessage().'['.__LINE__.']['.class_basename($this).']',
+                $clientException->getMessage() . '[' . __LINE__ . '][' . class_basename($this) . ']',
                 $clientException->getCode(),
                 $clientException
             );

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Media\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Media\Models\Media;
 use Tests\TestCase;
 
 class MediaTest extends TestCase
 {
-
+    use RefreshDatabase;
 
     public function test_can_create_media_with_minimal_data(): void
     {
@@ -96,12 +96,12 @@ class MediaTest extends TestCase
         ]);
 
         // Verifica campi JSON
-        expect(['resize' => ['width' => 800, 'height' => 600]], $media->manipulations);
-        expect(['alt' => 'Test Image', 'caption' => 'A test image'], $media->custom_properties);
-        expect(['thumb' => true, 'medium' => true], $media->generated_conversions);
-        expect(['thumb' => 'thumb.jpg', 'medium' => 'medium.jpg'], $media->responsive_images);
-        expect(['camera' => 'Canon', 'iso' => 100], $media->exif);
-        expect(['featured' => true, 'gallery' => false], $media->curations);
+        $this->assertEquals(['resize' => ['width' => 800, 'height' => 600]], $media->manipulations);
+        $this->assertEquals(['alt' => 'Test Image', 'caption' => 'A test image'], $media->custom_properties);
+        $this->assertEquals(['thumb' => true, 'medium' => true], $media->generated_conversions);
+        $this->assertEquals(['thumb' => 'thumb.jpg', 'medium' => 'medium.jpg'], $media->responsive_images);
+        $this->assertEquals(['camera' => 'Canon', 'iso' => 100], $media->exif);
+        $this->assertEquals(['featured' => true, 'gallery' => false], $media->curations);
     }
 
     public function test_media_has_soft_deletes(): void
@@ -127,7 +127,7 @@ class MediaTest extends TestCase
         $restoredMedia->restore();
 
         $this->assertDatabaseHas('media', ['id' => $mediaId]);
-        expect($restoredMedia->deleted_at);
+        $this->assertNull($restoredMedia->deleted_at);
     }
 
     public function test_can_find_media_by_model_type(): void
@@ -136,8 +136,8 @@ class MediaTest extends TestCase
 
         $foundMedia = Media::where('model_type', 'App\Models\UniqueModel')->first();
 
-        expect($foundMedia);
-        expect($media->id, $foundMedia->id);
+        $this->assertNotNull($foundMedia);
+        $this->assertEquals($media->id, $foundMedia->id);
     }
 
     public function test_can_find_media_by_model_id(): void
@@ -146,8 +146,8 @@ class MediaTest extends TestCase
 
         $foundMedia = Media::where('model_id', '999')->first();
 
-        expect($foundMedia);
-        expect($media->id, $foundMedia->id);
+        $this->assertNotNull($foundMedia);
+        $this->assertEquals($media->id, $foundMedia->id);
     }
 
     public function test_can_find_media_by_collection_name(): void
@@ -158,8 +158,8 @@ class MediaTest extends TestCase
 
         $avatarMedia = Media::where('collection_name', 'avatars')->get();
 
-        expect(1, $avatarMedia);
-        expect('avatars', $avatarMedia->first()->collection_name);
+        $this->assertCount(1, $avatarMedia);
+        $this->assertEquals('avatars', $avatarMedia->first()->collection_name);
     }
 
     public function test_can_find_media_by_name(): void
@@ -168,8 +168,8 @@ class MediaTest extends TestCase
 
         $foundMedia = Media::where('name', 'unique-media-name')->first();
 
-        expect($foundMedia);
-        expect($media->id, $foundMedia->id);
+        $this->assertNotNull($foundMedia);
+        $this->assertEquals($media->id, $foundMedia->id);
     }
 
     public function test_can_find_media_by_file_name(): void
@@ -178,8 +178,8 @@ class MediaTest extends TestCase
 
         $foundMedia = Media::where('file_name', 'unique-file.jpg')->first();
 
-        expect($foundMedia);
-        expect($media->id, $foundMedia->id);
+        $this->assertNotNull($foundMedia);
+        $this->assertEquals($media->id, $foundMedia->id);
     }
 
     public function test_can_find_media_by_disk(): void
@@ -190,8 +190,8 @@ class MediaTest extends TestCase
 
         $publicMedia = Media::where('disk', 'public')->get();
 
-        expect(1, $publicMedia);
-        expect('public', $publicMedia->first()->disk);
+        $this->assertCount(1, $publicMedia);
+        $this->assertEquals('public', $publicMedia->first()->disk);
     }
 
     public function test_can_find_media_by_mime_type(): void
@@ -202,8 +202,8 @@ class MediaTest extends TestCase
 
         $jpegMedia = Media::where('mime_type', 'image/jpeg')->get();
 
-        expect(1, $jpegMedia);
-        expect('image/jpeg', $jpegMedia->first()->mime_type);
+        $this->assertCount(1, $jpegMedia);
+        $this->assertEquals('image/jpeg', $jpegMedia->first()->mime_type);
     }
 
     public function test_can_find_media_by_size_range(): void
@@ -214,8 +214,8 @@ class MediaTest extends TestCase
 
         $largeMedia = Media::where('size', '>', 1000)->get();
 
-        expect(2, $largeMedia);
-        expect($largeMedia->every(fn ($media) => $media->size > 1000));
+        $this->assertCount(2, $largeMedia);
+        $this->assertTrue($largeMedia->every(fn ($media) => $media->size > 1000));
     }
 
     public function test_can_find_media_by_type(): void
@@ -226,8 +226,8 @@ class MediaTest extends TestCase
 
         $imageMedia = Media::where('type', 'image')->get();
 
-        expect(1, $imageMedia);
-        expect('image', $imageMedia->first()->type);
+        $this->assertCount(1, $imageMedia);
+        $this->assertEquals('image', $imageMedia->first()->type);
     }
 
     public function test_can_find_media_by_extension(): void
@@ -238,8 +238,8 @@ class MediaTest extends TestCase
 
         $jpgMedia = Media::where('ext', 'jpg')->get();
 
-        expect(1, $jpgMedia);
-        expect('jpg', $jpgMedia->first()->ext);
+        $this->assertCount(1, $jpgMedia);
+        $this->assertEquals('jpg', $jpgMedia->first()->ext);
     }
 
     public function test_can_find_media_by_dimensions(): void
@@ -250,8 +250,8 @@ class MediaTest extends TestCase
 
         $hdMedia = Media::where('width', '>=', 1920)->get();
 
-        expect(1, $hdMedia);
-        expect(1920, $hdMedia->first()->width);
+        $this->assertCount(1, $hdMedia);
+        $this->assertEquals(1920, $hdMedia->first()->width);
     }
 
     public function test_can_find_media_by_name_pattern(): void
@@ -262,8 +262,8 @@ class MediaTest extends TestCase
 
         $profileMedia = Media::where('name', 'like', '%profile%')->get();
 
-        expect(1, $profileMedia);
-        expect($profileMedia->every(fn ($media) => str_contains($media->name, 'profile')));
+        $this->assertCount(1, $profileMedia);
+        $this->assertTrue($profileMedia->every(fn ($media) => str_contains($media->name, 'profile')));
     }
 
     public function test_can_find_media_by_custom_properties(): void
@@ -278,8 +278,8 @@ class MediaTest extends TestCase
 
         $avatarMedia = Media::whereJsonContains('custom_properties->category', 'avatar')->get();
 
-        expect(1, $avatarMedia);
-        expect('avatar', $avatarMedia->first()->custom_properties['category']);
+        $this->assertCount(1, $avatarMedia);
+        $this->assertEquals('avatar', $avatarMedia->first()->custom_properties['category']);
     }
 
     public function test_can_find_media_by_manipulations(): void
@@ -294,7 +294,7 @@ class MediaTest extends TestCase
 
         $resizeMedia = Media::whereJsonContains('manipulations->resize', ['width' => 800, 'height' => 600])->get();
 
-        expect(1, $resizeMedia);
+        $this->assertCount(1, $resizeMedia);
         $this->assertArrayHasKey('resize', $resizeMedia->first()->manipulations);
     }
 
@@ -379,30 +379,30 @@ class MediaTest extends TestCase
             ->where('type', 'image')
             ->get();
 
-        expect(1, $avatarImages);
-        expect('avatars', $avatarImages->first()->collection_name);
-        expect('image', $avatarImages->first()->type);
+        $this->assertCount(1, $avatarImages);
+        $this->assertEquals('avatars', $avatarImages->first()->collection_name);
+        $this->assertEquals('image', $avatarImages->first()->type);
     }
 
     public function test_media_has_media_converts_relationship(): void
     {
         $media = Media::factory()->create();
 
-        expect(method_exists($media, 'mediaConverts'));
+        $this->assertTrue(method_exists($media, 'mediaConverts'));
     }
 
     public function test_media_has_temporary_upload_relationship(): void
     {
         $media = Media::factory()->create();
 
-        expect(method_exists($media, 'temporaryUpload'));
+        $this->assertTrue(method_exists($media, 'temporaryUpload'));
     }
 
     public function test_media_has_creator_relationship(): void
     {
         $media = Media::factory()->create();
 
-        expect(method_exists($media, 'creator'));
+        $this->assertTrue(method_exists($media, 'creator'));
     }
 
     public function test_media_can_get_url_conversion(): void
@@ -431,7 +431,7 @@ class MediaTest extends TestCase
         $entryConversions = $media->entry_conversions;
 
         $this->assertIsArray($entryConversions);
-        expect(2, $entryConversions);
+        $this->assertCount(2, $entryConversions);
         $this->assertArrayHasKey('name', $entryConversions[0]);
         $this->assertArrayHasKey('generated', $entryConversions[0]);
         $this->assertArrayHasKey('src', $entryConversions[0]);
@@ -441,13 +441,13 @@ class MediaTest extends TestCase
     {
         $media = Media::factory()->create();
 
-        expect($media->id);
-        expect(Media::class, $media);
+        $this->assertNotNull($media->id);
+        $this->assertInstanceOf(Media::class, $media);
     }
 
     public function test_media_has_casts(): void
     {
-        $media = new Media;
+        $media = new Media();
 
         $expectedCasts = [
             'id' => 'string',
@@ -464,6 +464,6 @@ class MediaTest extends TestCase
             'responsive_images' => 'array',
         ];
 
-        expect($expectedCasts, $media->getCasts());
+        $this->assertEquals($expectedCasts, $media->getCasts());
     }
 }

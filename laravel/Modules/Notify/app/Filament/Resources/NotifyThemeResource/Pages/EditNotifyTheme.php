@@ -6,6 +6,7 @@ namespace Modules\Notify\Filament\Resources\NotifyThemeResource\Pages;
 
 use Filament\Pages\Actions\DeleteAction;
 use Modules\Notify\Filament\Resources\NotifyThemeResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
 /**
  * --

@@ -64,4 +64,8 @@ class FailedImportRowPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('failed_import_row.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

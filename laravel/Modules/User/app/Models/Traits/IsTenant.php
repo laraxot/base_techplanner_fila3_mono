@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Modules\User\Contracts\TeamContract;
+use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Undocumented trait.
@@ -18,7 +19,7 @@ trait IsTenant
 {
     /**
      * Get all users associated with this tenant.
-     *
+     * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\Illuminate\Database\Eloquent\Model&\Modules\Xot\Contracts\UserContract, static>
      */
     public function users(): BelongsToMany
@@ -34,9 +35,9 @@ trait IsTenant
 
     /*
      * Method to create a belongsToMany relationship.
-     *
+     * 
      * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
-     *
+     * 
      * @param class-string<TRelatedModel> $related The related model class
      * @param string|null $table The pivot table name
      * @param string $foreignPivotKey The foreign key in pivot table
@@ -44,9 +45,9 @@ trait IsTenant
      * @param string|null $parentKey The parent key
      * @param string|null $relatedKey The related key
      * @param string|null $relation The relation name
-     *
+     * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<TRelatedModel, static>
-
+     
     public function belongsToManyX(
         string $related,
         ?string $table = null,

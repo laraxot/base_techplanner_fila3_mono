@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Widgets;
 
+use Modules\Xot\Filament\Widgets\XotBaseChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
+use Modules\SaluteOra\Models\Appointment;
 
 class ModelTrendChartWidget extends XotBaseChartWidget
 {
     protected static ?string $heading = null;
-
     protected static ?int $sort = 5;
-
     protected static bool $isLazy = true;
-
     protected static ?string $pollingInterval = '300s'; // 5 minuti
 
     public string $model;
@@ -70,4 +69,4 @@ class ModelTrendChartWidget extends XotBaseChartWidget
     {
         return 'line';
     }
-}
+} 

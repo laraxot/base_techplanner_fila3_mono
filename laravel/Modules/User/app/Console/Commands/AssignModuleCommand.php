@@ -47,15 +47,14 @@ class AssignModuleCommand extends Command
     public function handle(): void
     {
         $email = text('email ?');
-
+        
         /**
          * @var UserContract $user
          */
         $user = XotData::make()->getUserByEmail($email);
-
-        if (! $user) {
+        
+        if (!$user) {
             $this->error("User with email '{$email}' not found.");
-
             return;
         }
 
@@ -68,7 +67,7 @@ class AssignModuleCommand extends Command
         $currentModules = array_keys($userModuleRoles);
 
         // Show current modules as default selected
-        $this->info("Current modules for {$email}: ".implode(', ', $currentModules));
+        $this->info("Current modules for {$email}: " . implode(', ', $currentModules));
 
         $selectedModules = multiselect(
             label: 'Select modules (checked = assigned, unchecked = will be revoked)',
@@ -95,7 +94,7 @@ class AssignModuleCommand extends Command
 
             // Assign the role to the user
             $user->assignRole($role);
-
+            
             $this->info("✓ Assigned module: {$module}");
         }
 
@@ -106,13 +105,13 @@ class AssignModuleCommand extends Command
 
             // Revoke the role from the user
             $user->removeRole($role_name);
-
+            
             $this->warn("✗ Revoked module: {$module}");
         }
 
         // Summary
         if (empty($modulesToAssign) && empty($modulesToRevoke)) {
-            $this->info('No changes made to user modules.');
+            $this->info("No changes made to user modules.");
         } else {
             $this->info("Module assignment updated for {$email}");
         }
@@ -121,19 +120,20 @@ class AssignModuleCommand extends Command
     /**
      * Get user's current module roles.
      *
+     * @param UserContract $user
      * @return array<string, string>
      */
     private function getUserModuleRoles(UserContract $user): array
     {
         $moduleRoles = [];
-
+        
         foreach ($user->roles as $role) {
             if (Str::endsWith($role->name, '::admin')) {
                 $moduleName = Str::before($role->name, '::admin');
                 $moduleRoles[$moduleName] = $role->name;
             }
         }
-
+        
         return $moduleRoles;
     }
 

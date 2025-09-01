@@ -22,6 +22,8 @@ use Modules\Notify\Filament\Clusters\Test;
 use Modules\User\Models\DeviceUser;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 use Webmozart\Assert\Assert;
+use Illuminate\Support\Collection;
+use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
 
 use function Safe\json_encode;
 
@@ -63,13 +65,13 @@ class SendPushNotification extends Page implements HasForms
          */
         $callback = function ($item) {
             /** @var mixed $item */
-            if (! is_object($item)) {
+            if (!is_object($item)) {
                 return [];
             }
-
+            
             // Relations & attributes in a Laravel-safe way
             $profile = method_exists($item, 'getRelationValue') ? $item->getRelationValue('profile') : null;
-            if (! is_object($profile)) {
+            if (!is_object($profile)) {
                 return [];
             }
             $fullName = (string) (data_get($profile, 'full_name') ?? 'Utente');
@@ -83,11 +85,11 @@ class SendPushNotification extends Page implements HasForms
             $device = method_exists($item, 'getRelationValue') ? $item->getRelationValue('device') : null;
             $robotVal = data_get($device, 'robot');
             $robot = is_string($robotVal) ? $robotVal : null;
-
+            
             // Creiamo la label con gli ultimi 5 caratteri del token
             $tokenSuffix = mb_substr($token, -5);
             $label = $fullName.' ('.($robot ?? '').') '.$tokenSuffix;
-
+            
             return [$token => $label];
         };
 
@@ -95,11 +97,10 @@ class SendPushNotification extends Page implements HasForms
          * Callback per filtrare i dispositivi.
          */
         $filterCallback = function ($item): bool {
-            if (! is_object($item)) {
+            if (!is_object($item)) {
                 return false;
             }
             $profile = method_exists($item, 'getRelationValue') ? $item->getRelationValue('profile') : null;
-
             return is_object($profile);
         };
 
@@ -146,7 +147,6 @@ class SendPushNotification extends Page implements HasForms
                 ->title('Errore')
                 ->body('Token del dispositivo non valido')
                 ->send();
-
             return;
         }
 
@@ -155,13 +155,13 @@ class SendPushNotification extends Page implements HasForms
         $title = $data['title'] ?? '';
         $body = $data['body'] ?? '';
         $jsonData = isset($data['data']) ? json_encode($data['data']) : '{}';
-
+        
         // Verifichiamo che jsonData sia una stringa
         $jsonData = $jsonData ?: '{}';
-
+        
         // Creiamo un array con chiavi non vuote e valori stringa che implementano Stringable
         $pushDataTemp = [];
-
+        
         // Aggiungiamo i valori all'array solo se non sono vuoti
         // PHPStan sa che queste stringhe non possono essere vuote a questo punto
         $pushDataTemp['type'] = $type;
@@ -169,12 +169,12 @@ class SendPushNotification extends Page implements HasForms
         $pushDataTemp['body'] = $body;
         // Adding data field (we know jsonData can't be empty due to fallback to '{}' earlier)
         $pushDataTemp['data'] = $jsonData;
-
+        
         // Verifichiamo che l'array contenga almeno un elemento
         if (count($pushDataTemp) === 0) {
             $pushDataTemp['type'] = 'notification';
         }
-
+        
         // Creiamo un MessageData object
         // Convertiamo tutti i valori in stringa come richiesto da MessageData
         $sanitizedData = [];
@@ -184,24 +184,24 @@ class SendPushNotification extends Page implements HasForms
                 $sanitizedData[$key] = is_string($value) ? $value : (string) $value;
             } else {
                 // Handle non-scalar values (arrays, objects) by converting to JSON
-                $sanitizedData[$key] = (string) json_encode($value);
+                $sanitizedData[$key] = (string)json_encode($value);
             }
         }
         $messageData = \Kreait\Firebase\Messaging\MessageData::fromArray($sanitizedData);
 
         // Verifichiamo che deviceToken sia una stringa non vuota (per soddisfare il tipo non-empty-string)
         Assert::stringNotEmpty($deviceToken, 'Il token del dispositivo non può essere vuoto');
-
+        
         $message = CloudMessage::withTarget('token', $deviceToken)
             ->withHighestPossiblePriority()
             ->withData($messageData);
-
+            
         try {
             // Otteniamo l'istanza di messaging e verifichiamo che sia valida
             /** @var Messaging $messaging */
             $messaging = app('firebase.messaging');
             Assert::isInstanceOf($messaging, Messaging::class, 'Invalid messaging instance');
-
+            
             $messaging->send($message);
         } catch (\Exception $e) {
             dddx([

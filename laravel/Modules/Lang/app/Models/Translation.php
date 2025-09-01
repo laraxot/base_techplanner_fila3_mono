@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\Lang\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
@@ -16,7 +17,7 @@ use Illuminate\Support\Carbon;
 /**
  * Modules\Lang\Models\Translation.
  *
- * @property int $id
+ * @property int         $id
  * @property string|null $lang
  * @property string|null $key
  * @property string|null $value
@@ -24,32 +25,29 @@ use Illuminate\Support\Carbon;
  * @property string|null $updated_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string $namespace
- * @property string $group
+ * @property string      $namespace
+ * @property string      $group
  * @property string|null $item
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Translation newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Translation newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Translation ofTranslatedGroup(string $group)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation orderByGroupKeys(bool $ordered)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation query()
- * @method static \Illuminate\Database\Eloquent\Builder|Translation selectDistinctGroup()
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereGroup($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereItem($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereLang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereNamespace($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Translation whereValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   ofTranslatedGroup(string $group)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   orderByGroupKeys(bool $ordered)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   selectDistinctGroup()
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereGroup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereItem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereLang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereNamespace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Translation   whereValue($value)
  * @method static \Modules\Lang\Database\Factories\TranslationFactory factory($count = null, $state = [])
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin IdeHelperTranslation
  * @mixin \Eloquent
  */

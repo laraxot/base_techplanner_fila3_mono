@@ -64,4 +64,8 @@ class ScheduleHistoryPolicy extends JobBasePolicy
     {
         return $user->hasPermissionTo('schedule_history.forceDelete');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0c25c04 (.)

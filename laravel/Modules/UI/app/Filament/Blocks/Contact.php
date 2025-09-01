@@ -4,6 +4,7 @@ namespace Modules\UI\Filament\Blocks;
 
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DateTimePicker;
 use Modules\Xot\Filament\Blocks\XotBaseBlock;
 
 final class Contact extends XotBaseBlock
@@ -38,4 +39,4 @@ final class Contact extends XotBaseBlock
     {
         return __('ui::blocks.contact.title');
     }
-}
+} 

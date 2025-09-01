@@ -1,10 +1,12 @@
 <?php
 
-return [
-    'sections' => [
-        'empty' => [
-            'label' => '',
-            'heading' => '',
-        ],
-    ],
-];
+return array (
+  'sections' => 
+  array (
+    'empty' => 
+    array (
+      'label' => '',
+      'heading' => '',
+    ),
+  ),
+);

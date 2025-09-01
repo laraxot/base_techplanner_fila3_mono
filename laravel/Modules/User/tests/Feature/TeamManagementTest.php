@@ -2,12 +2,20 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
 namespace Modules\User\Tests\Feature;
 
 use Modules\User\Models\Team;
 use Modules\User\Models\TeamInvitation;
 use Modules\User\Models\TeamPermission;
 use Modules\User\Models\User;
+=======
+use Modules\User\Models\User;
+use Modules\User\Models\Team;
+use Modules\User\Models\Membership;
+use Modules\User\Models\TeamInvitation;
+use Modules\User\Models\TeamPermission;
+>>>>>>> 8055579 (.)
 
 beforeEach(function () {
     $this->owner = User::factory()->create();
@@ -242,7 +250,11 @@ describe('Team Scopes and Queries', function () {
 
         $ownerTeams = Team::where('user_id', $this->owner->id)->get();
 
+<<<<<<< HEAD
         expect($ownerTeams->every(fn ($team) => $team->user_id === $this->owner->id))->toBe(true);
+=======
+        expect($ownerTeams->every(fn($team) => $team->user_id === $this->owner->id))->toBe(true);
+>>>>>>> 8055579 (.)
     });
 
     it('can find teams by slug', function () {
@@ -327,4 +339,8 @@ describe('Team Events and Notifications', function () {
         // Test activity logging when members join/leave
         expect($this->team->users)->toContain($this->member);
     });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 8055579 (.)

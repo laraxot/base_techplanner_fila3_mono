@@ -55,8 +55,8 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
     public function registerLang(): void
     {
         /** @var array<string, array<string, string>>|null $locales */
-        $locales = config()->has('laravellocalization.supportedLocales')
-            ? config('laravellocalization.supportedLocales')
+        $locales = config()->has('laravellocalization.supportedLocales') 
+            ? config('laravellocalization.supportedLocales') 
             : null;
 
         if (! \is_array($locales)) {
@@ -80,7 +80,7 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
         if (\in_array(request()->segment($n), $langs, false)) {
             /** @var string|null $lang */
             $lang = request()->segment($n);
-            if ($lang !== null) {
+            if (null !== $lang) {
                 app()->setLocale($lang);
             }
         }

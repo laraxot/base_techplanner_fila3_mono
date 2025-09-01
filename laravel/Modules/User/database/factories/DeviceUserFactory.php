@@ -11,16 +11,16 @@ use Modules\User\Models\User;
 
 /**
  * DeviceUser Factory
- *
+ * 
  * Factory for creating DeviceUser model instances for testing and seeding.
- *
+ * 
  * @extends Factory<DeviceUser>
  */
 class DeviceUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
+     * 
      * @var class-string<DeviceUser>
      */
     protected $model = DeviceUser::class;
@@ -33,7 +33,7 @@ class DeviceUserFactory extends Factory
     public function definition(): array
     {
         $loginAt = $this->faker->optional(0.8)->dateTimeBetween('-1 year', 'now');
-
+        
         return [
             'device_id' => Device::factory(),
             'user_id' => User::factory(),
@@ -46,6 +46,9 @@ class DeviceUserFactory extends Factory
 
     /**
      * Create a device-user relationship for a specific user.
+     *
+     * @param User $user
+     * @return static
      */
     public function forUser(User $user): static
     {
@@ -56,6 +59,9 @@ class DeviceUserFactory extends Factory
 
     /**
      * Create a device-user relationship for a specific device.
+     *
+     * @param Device $device
+     * @return static
      */
     public function forDevice(Device $device): static
     {
@@ -66,6 +72,8 @@ class DeviceUserFactory extends Factory
 
     /**
      * Indicate that the user is currently logged in.
+     *
+     * @return static
      */
     public function loggedIn(): static
     {
@@ -77,11 +85,13 @@ class DeviceUserFactory extends Factory
 
     /**
      * Indicate that the user is logged out.
+     *
+     * @return static
      */
     public function loggedOut(): static
     {
         $loginAt = $this->faker->dateTimeBetween('-1 month', '-1 day');
-
+        
         return $this->state(fn (array $attributes): array => [
             'login_at' => $loginAt,
             'logout_at' => $this->faker->dateTimeBetween($loginAt, 'now'),

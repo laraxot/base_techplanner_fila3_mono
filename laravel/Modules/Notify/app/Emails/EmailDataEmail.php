@@ -18,18 +18,20 @@ class EmailDataEmail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    public function __construct(public EmailData $email_data) {}
+    public function __construct(public EmailData $email_data)
+    {
+    }
 
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
-        if ($this->email_data->from == null) {
+        if (null == $this->email_data->from) {
             Assert::string($from = config('mail.from.name', 'Default Sender'));
             $this->email_data->from = $from;
         }
-        if ($this->email_data->from_email == null) {
+        if (null == $this->email_data->from_email) {
             Assert::string($from_email = config('mail.from.address', 'default@example.com'));
             $this->email_data->from_email = $from_email;
         }

@@ -14,12 +14,10 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read int|null $media_count
  * @property-read \Modules\Notify\Models\MailTemplate|null $template
  * @property-read \Modules\User\Models\Profile|null $updater
- *
  * @method static \Modules\Notify\Database\Factories\MailTemplateLogFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MailTemplateLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MailTemplateLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MailTemplateLog query()
- *
  * @mixin IdeHelperMailTemplateLog
  * @mixin \Eloquent
  */

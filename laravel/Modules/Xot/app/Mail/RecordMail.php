@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 
 /**
  * Class RecordMail
- *
+ * 
  * Mailable per l'invio di dati di record via email.
  */
 class RecordMail extends Mailable
@@ -25,7 +25,7 @@ class RecordMail extends Mailable
     /**
      * Crea una nuova istanza del mailable.
      *
-     * @param  array<string, mixed>  $data  I dati del record
+     * @param array<string, mixed> $data I dati del record
      */
     public function __construct(array $data)
     {
@@ -40,6 +40,6 @@ class RecordMail extends Mailable
     public function build(): self
     {
         return $this->view('xot::emails.record')
-            ->with(['data' => $this->recordData]);
+                    ->with(['data' => $this->recordData]);
     }
-}
+} 

@@ -19,3 +19,4 @@ class TranslationFileFactory extends Factory
         return [];
     }
 }
+

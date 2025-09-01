@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Modules\Notify\Models\NotificationType;
 use Tests\TestCase;
+use Modules\Notify\Models\NotificationType;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class NotificationTypeTest extends TestCase
 {
-
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -34,13 +34,13 @@ class NotificationTypeTest extends TestCase
             'template' => 'email_template_1',
         ]);
 
-        expect(NotificationType::class, $notificationType);
+        $this->assertInstanceOf(NotificationType::class, $notificationType);
     }
 
     /** @test */
     public function it_has_correct_fillable_fields(): void
     {
-        $notificationType = new NotificationType;
+        $notificationType = new NotificationType();
 
         $expectedFillable = [
             'name',
@@ -48,7 +48,7 @@ class NotificationTypeTest extends TestCase
             'template',
         ];
 
-        expect($expectedFillable, $notificationType->getFillable());
+        $this->assertEquals($expectedFillable, $notificationType->getFillable());
     }
 
     /** @test */
@@ -73,9 +73,9 @@ class NotificationTypeTest extends TestCase
             'template' => 'updated_template',
         ]);
 
-        expect('Updated Name', $notificationType->fresh()->name);
-        expect('Updated description', $notificationType->fresh()->description);
-        expect('updated_template', $notificationType->fresh()->template);
+        $this->assertEquals('Updated Name', $notificationType->fresh()->name);
+        $this->assertEquals('Updated description', $notificationType->fresh()->description);
+        $this->assertEquals('updated_template', $notificationType->fresh()->template);
     }
 
     /** @test */
@@ -89,11 +89,11 @@ class NotificationTypeTest extends TestCase
 
         $found = NotificationType::where('name', 'SMS Notification')->first();
 
-        expect($found);
-        expect($notificationType->id, $found->id);
-        expect('SMS Notification', $found->name);
-        expect('SMS notification type', $found->description);
-        expect('sms_template', $found->template);
+        $this->assertNotNull($found);
+        $this->assertEquals($notificationType->id, $found->id);
+        $this->assertEquals('SMS Notification', $found->name);
+        $this->assertEquals('SMS notification type', $found->description);
+        $this->assertEquals('sms_template', $found->template);
     }
 
     /** @test */
@@ -114,10 +114,10 @@ class NotificationTypeTest extends TestCase
         $template1Types = NotificationType::where('template', 'email_template_1')->get();
         $template2Types = NotificationType::where('template', 'email_template_2')->get();
 
-        expect(1, $template1Types);
-        expect(1, $template2Types);
-        expect('email_template_1', $template1Types[0]->template);
-        expect('email_template_2', $template2Types[0]->template);
+        $this->assertCount(1, $template1Types);
+        $this->assertCount(1, $template2Types);
+        $this->assertEquals('email_template_1', $template1Types[0]->template);
+        $this->assertEquals('email_template_2', $template2Types[0]->template);
     }
 
     /** @test */
@@ -144,8 +144,8 @@ class NotificationTypeTest extends TestCase
         $userTypes = NotificationType::where('description', 'like', '%for users%')->get();
         $mobileTypes = NotificationType::where('description', 'like', '%mobile%')->get();
 
-        expect(2, $userTypes);
-        expect(1, $mobileTypes);
+        $this->assertCount(2, $userTypes);
+        $this->assertCount(1, $mobileTypes);
         $this->assertStringContainsString('for users', $userTypes[0]->description);
         $this->assertStringContainsString('for users', $userTypes[1]->description);
         $this->assertStringContainsString('mobile', $mobileTypes[0]->description);
@@ -160,8 +160,8 @@ class NotificationTypeTest extends TestCase
             'template' => null,
         ]);
 
-        expect($notificationType->description);
-        expect($notificationType->template);
+        $this->assertNull($notificationType->description);
+        $this->assertNull($notificationType->template);
         $this->assertDatabaseHas('notification_types', [
             'id' => $notificationType->id,
             'description' => null,
@@ -190,12 +190,12 @@ class NotificationTypeTest extends TestCase
         $smsType = NotificationType::where('name', 'SMS')->first();
         $pushType = NotificationType::where('name', 'Push')->first();
 
-        expect('Email notifications', $emailType->description);
-        expect('SMS notifications', $smsType->description);
-        expect('Push notifications', $pushType->description);
-        expect('email', $emailType->template);
-        expect('sms', $smsType->template);
-        expect('push', $pushType->template);
+        $this->assertEquals('Email notifications', $emailType->description);
+        $this->assertEquals('SMS notifications', $smsType->description);
+        $this->assertEquals('Push notifications', $pushType->description);
+        $this->assertEquals('email', $emailType->template);
+        $this->assertEquals('sms', $smsType->template);
+        $this->assertEquals('push', $pushType->template);
     }
 
     /** @test */
@@ -223,9 +223,9 @@ class NotificationTypeTest extends TestCase
             ->where('description', 'like', '%email%')
             ->get();
 
-        expect(1, $highPriorityEmailTypes);
-        expect('High Priority Email', $highPriorityEmailTypes[0]->name);
-        expect('High priority email notifications', $highPriorityEmailTypes[0]->description);
-        expect('high_priority_email', $highPriorityEmailTypes[0]->template);
+        $this->assertCount(1, $highPriorityEmailTypes);
+        $this->assertEquals('High Priority Email', $highPriorityEmailTypes[0]->name);
+        $this->assertEquals('High priority email notifications', $highPriorityEmailTypes[0]->description);
+        $this->assertEquals('high_priority_email', $highPriorityEmailTypes[0]->template);
     }
 }

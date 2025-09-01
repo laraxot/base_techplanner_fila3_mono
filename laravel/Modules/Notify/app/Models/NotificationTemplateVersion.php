@@ -14,12 +14,10 @@ use Modules\Xot\Traits\Updater;
  * @property-read int|null $media_count
  * @property-read \Modules\Notify\Models\NotificationTemplate|null $template
  * @property-read \Modules\User\Models\Profile|null $updater
- *
  * @method static \Modules\Notify\Database\Factories\NotificationTemplateVersionFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplateVersion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplateVersion newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationTemplateVersion query()
- *
  * @mixin IdeHelperNotificationTemplateVersion
  * @mixin \Eloquent
  */
@@ -62,11 +60,11 @@ class NotificationTemplateVersion extends BaseModel
     public function restore(): NotificationTemplate
     {
         $template = $this->template;
-
-        if (! $template) {
-            throw new \RuntimeException('Template not found for version '.$this->id);
+        
+        if (!$template) {
+            throw new \RuntimeException('Template not found for version ' . $this->id);
         }
-
+        
         $template->update([
             'subject' => $this->subject ?? null,
             'body_html' => $this->body_html ?? null,
@@ -78,4 +76,4 @@ class NotificationTemplateVersion extends BaseModel
 
         return $template;
     }
-}
+} 

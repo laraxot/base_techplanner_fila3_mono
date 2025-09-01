@@ -14,14 +14,14 @@ return [
         'sort' => 62,
         'icon' => 'activity-stored-event-animated',
     ],
-
+    
     'fields' => [
         'id' => [
             'label' => 'ID',
             'help' => 'Identificativo unico dell\'evento archiviato',
             'validation' => 'required|integer|min:1',
         ],
-
+        
         'event_class' => [
             'label' => 'Classe Evento',
             'placeholder' => 'Inserisci la classe dell\'evento',
@@ -29,7 +29,7 @@ return [
             'validation' => 'required|string|max:255',
             'searchable' => true,
         ],
-
+        
         'event_properties' => [
             'label' => 'Proprietà Evento',
             'placeholder' => 'Proprietà dell\'evento',
@@ -38,7 +38,7 @@ return [
             'type' => 'json',
             'format' => 'json',
         ],
-
+        
         'aggregate_uuid' => [
             'label' => 'UUID Aggregato',
             'placeholder' => 'UUID dell\'aggregato',
@@ -46,7 +46,7 @@ return [
             'validation' => 'required|uuid',
             'searchable' => true,
         ],
-
+        
         'aggregate_version' => [
             'label' => 'Versione Aggregato',
             'placeholder' => 'Inserisci la versione',
@@ -54,14 +54,14 @@ return [
             'validation' => 'required|integer|min:1',
             'sortable' => true,
         ],
-
+        
         'event_version' => [
             'label' => 'Versione Evento',
             'placeholder' => 'Versione dell\'evento',
             'help' => 'Numero di versione del formato evento',
             'validation' => 'nullable|string|max:20',
         ],
-
+        
         'meta_data' => [
             'label' => 'Metadata',
             'placeholder' => 'Metadata aggiuntivi',
@@ -70,7 +70,7 @@ return [
             'type' => 'json',
             'format' => 'json',
         ],
-
+        
         'created_at' => [
             'label' => 'Data Creazione',
             'placeholder' => 'Seleziona data e ora',
@@ -79,7 +79,7 @@ return [
             'format' => 'd/m/Y H:i:s',
             'sortable' => true,
         ],
-
+        
         'created_by' => [
             'label' => 'Creato Da',
             'placeholder' => 'Utente creatore',
@@ -87,14 +87,14 @@ return [
             'validation' => 'nullable|integer|exists:users,id',
             'searchable' => true,
         ],
-
+        
         'updated_by' => [
             'label' => 'Aggiornato Da',
             'placeholder' => 'Utente aggiornatore',
             'help' => 'Utente che ha aggiornato l\'evento',
             'validation' => 'nullable|integer|exists:users,id',
         ],
-
+        
         'stream_name' => [
             'label' => 'Nome Stream',
             'placeholder' => 'Nome del flusso di eventi',
@@ -102,7 +102,7 @@ return [
             'validation' => 'nullable|string|max:255',
             'searchable' => true,
         ],
-
+        
         'stream_position' => [
             'label' => 'Posizione Stream',
             'placeholder' => 'Posizione nel flusso',
@@ -110,14 +110,14 @@ return [
             'validation' => 'nullable|integer|min:0',
             'sortable' => true,
         ],
-
+        
         'toggleColumns' => [
             'label' => 'Mostra/Nascondi Colonne',
             'placeholder' => '',
             'help' => 'Configura la visibilità delle colonne nella tabella',
         ],
     ],
-
+    
     'filters' => [
         'event_class' => [
             'label' => 'Classe Evento',
@@ -127,7 +127,7 @@ return [
             'searchable' => true,
             'multiple' => true,
         ],
-
+        
         'aggregate_uuid' => [
             'label' => 'UUID Aggregato',
             'placeholder' => 'Filtra per aggregato',
@@ -135,14 +135,14 @@ return [
             'type' => 'text',
             'validation' => 'nullable|uuid',
         ],
-
+        
         'aggregate_version_range' => [
             'label' => 'Range Versione Aggregato',
             'placeholder' => 'Da versione - A versione',
             'help' => 'Filtra per range di versioni dell\'aggregato',
             'type' => 'number_range',
         ],
-
+        
         'date_range' => [
             'label' => 'Intervallo Date',
             'placeholder' => 'Seleziona intervallo',
@@ -158,7 +158,7 @@ return [
                 'last_month' => 'Mese scorso',
             ],
         ],
-
+        
         'stream_name' => [
             'label' => 'Nome Stream',
             'placeholder' => 'Filtra per stream',
@@ -166,7 +166,7 @@ return [
             'type' => 'select',
             'searchable' => true,
         ],
-
+        
         'created_by' => [
             'label' => 'Creato Da',
             'placeholder' => 'Filtra per utente',
@@ -175,14 +175,14 @@ return [
             'searchable' => true,
         ],
     ],
-
+    
     'actions' => [
         'view' => [
             'label' => 'Visualizza',
             'success' => 'Evento caricato con successo',
             'error' => 'Errore nel caricamento dell\'evento',
         ],
-
+        
         'view_json' => [
             'label' => 'Visualizza JSON',
             'icon' => 'heroicon-o-code-bracket',
@@ -190,7 +190,7 @@ return [
             'success' => 'Dati JSON caricati con successo',
             'error' => 'Errore nel caricamento dei dati JSON',
         ],
-
+        
         'replay' => [
             'label' => 'Replay Evento',
             'success' => 'Replay dell\'evento completato con successo',
@@ -198,7 +198,7 @@ return [
             'confirmation' => 'Sei sicuro di voler eseguire il replay di questo evento?',
             'requires_permission' => 'events.replay',
         ],
-
+        
         'replay_from' => [
             'label' => 'Replay da Questo Evento',
             'icon' => 'heroicon-o-play',
@@ -208,14 +208,14 @@ return [
             'confirmation' => 'Vuoi eseguire il replay di tutti gli eventi a partire da questo? Operazione potenzialmente impattante.',
             'requires_permission' => 'events.replay_from',
         ],
-
+        
         'export' => [
             'label' => 'Esporta Eventi',
             'success' => 'Eventi esportati con successo',
             'error' => 'Errore durante l\'esportazione',
             'confirmation' => 'Vuoi esportare gli eventi selezionati?',
         ],
-
+        
         'snapshot_create' => [
             'label' => 'Crea Snapshot',
             'icon' => 'heroicon-o-camera',
@@ -225,7 +225,7 @@ return [
             'confirmation' => 'Vuoi creare uno snapshot dell\'aggregato a questo punto?',
             'requires_permission' => 'events.snapshot',
         ],
-
+        
         'bulk_replay' => [
             'label' => 'Replay Multiplo',
             'icon' => 'heroicon-o-forward',
@@ -236,7 +236,7 @@ return [
             'requires_permission' => 'events.bulk_replay',
         ],
     ],
-
+    
     'messages' => [
         'no_events' => 'Nessun evento trovato',
         'event_replayed' => 'Evento riprodotto con successo',
@@ -250,7 +250,7 @@ return [
         ],
         'replay_warning' => 'Il replay degli eventi può modificare lo stato del sistema. Procedi con cautela.',
     ],
-
+    
     'export' => [
         'formats' => [
             'json' => [
@@ -307,7 +307,7 @@ return [
         'max_records' => 50000,
         'include_properties' => false, // Per performance, escludi di default i JSON payload
     ],
-
+    
     'permissions' => [
         'view' => 'stored_events.view',
         'create' => 'stored_events.create',
@@ -319,18 +319,18 @@ return [
         'bulk_replay' => 'stored_events.bulk_replay',
         'snapshot' => 'stored_events.snapshot',
     ],
-
+    
     'pagination' => [
         'per_page' => 50,
         'options' => [25, 50, 100, 200],
         'simple' => false, // Usa paginazione completa per event sourcing
     ],
-
+    
     'cache' => [
         'ttl' => 600, // 10 minuti - cache più lunga per eventi immutabili
         'tags' => ['stored_events', 'event_sourcing', 'monitoring'],
     ],
-
+    
     'event_sourcing' => [
         'replay_batch_size' => 100,
         'snapshot_frequency' => 1000, // Crea snapshot ogni 1000 eventi
@@ -341,7 +341,7 @@ return [
             'payment' => 'payment-{uuid}',
         ],
     ],
-
+    
     'monitoring' => [
         'alert_on_replay_errors' => true,
         'alert_on_missing_events' => true,

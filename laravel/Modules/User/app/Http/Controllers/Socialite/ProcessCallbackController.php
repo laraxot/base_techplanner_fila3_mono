@@ -10,7 +10,6 @@ namespace Modules\User\Http\Controllers\Socialite;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Modules\User\Actions\Socialite\IsProviderConfiguredAction;
 use Modules\User\Actions\Socialite\IsRegistrationEnabledAction;
@@ -27,6 +26,7 @@ use Modules\User\Events\RegistrationNotEnabled;
 use Modules\User\Events\UserNotAllowed;
 use Modules\User\Exceptions\ProviderNotConfigured;
 use Modules\Xot\Datas\XotData;
+use Illuminate\Support\Facades\Auth;
 
 class ProcessCallbackController extends Controller
 {
@@ -58,7 +58,7 @@ class ProcessCallbackController extends Controller
         $socialiteUser = app(RetrieveSocialiteUserAction::class)->execute($provider, $oauthUser);
         if ($socialiteUser) {
             $socialiteUserObj = $socialiteUser->user;
-            if ($socialiteUserObj === null || ! $socialiteUserObj->canAccessSocialite()) {
+            if ($socialiteUserObj === null || !$socialiteUserObj->canAccessSocialite()) {
                 return app(RedirectToLoginAction::class)->execute('auth.user-not-allowed');
             }
             // Associate default roles to the existing "real" user, if needed
@@ -93,14 +93,14 @@ class ProcessCallbackController extends Controller
         }
 
         $socialiteUserObj = $socialiteUser->user;
-        if ($socialiteUserObj === null || ! $socialiteUserObj->canAccessSocialite()) {
+        if ($socialiteUserObj === null || !$socialiteUserObj->canAccessSocialite()) {
             return app(RedirectToLoginAction::class)->execute('auth.user-not-allowed');
         }
 
         // Verifichiamo prima se l'utente può accedere al socialite
         /** @var \Modules\Xot\Contracts\UserContract|null $authUser */
         $authUser = Auth::user();
-        if ($authUser !== null && method_exists($authUser, 'canAccessSocialite') && ! $authUser->canAccessSocialite()) {
+        if ($authUser !== null && method_exists($authUser, 'canAccessSocialite') && !$authUser->canAccessSocialite()) {
             return redirect()->route(
                 optional(Auth::check()) ? 'filament.user.pages.dashboard' : 'filament.user.auth.login'
             );

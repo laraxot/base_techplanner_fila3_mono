@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Tests\Unit\Models;
 
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Model;
 use Modules\Activity\Models\BaseModel;
 use Tests\TestCase;
@@ -13,6 +14,17 @@ uses(TestCase::class);
 beforeEach(function () {
     $this->baseModel = new class extends BaseModel
     {
+=======
+use Modules\Activity\Models\BaseModel;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Model;
+use Tests\TestCase;
+
+uses(TestCase::class, RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->baseModel = new class extends BaseModel {
+>>>>>>> f371b59 (.)
         protected $table = 'test_activity_table';
     };
 });

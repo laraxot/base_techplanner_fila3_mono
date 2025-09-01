@@ -68,9 +68,11 @@ return [
             'username' => env('AGILETELECOM_USERNAME'),
             'password' => env('AGILETELECOM_PASSWORD'),
             'sender' => env('AGILETELECOM_SENDER', 'MyApp'),
-            'endpoint' => env('AGILETELECOM_API_URL', 'https://secure.agiletelecom.com/services/sms/send'),
+            'endpoint' => env('AGILETELECOM_API_URL','https://secure.agiletelecom.com/services/sms/send'),
         ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------

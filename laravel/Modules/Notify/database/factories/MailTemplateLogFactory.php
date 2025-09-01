@@ -19,3 +19,4 @@ class MailTemplateLogFactory extends Factory
         return [];
     }
 }
+

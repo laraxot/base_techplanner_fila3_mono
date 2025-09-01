@@ -8,7 +8,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 /**
  * Helper standardizzato per upload documenti usando Spatie Media Library.
- *
+ * 
  * Filosofia: Centralizzazione della configurazione per garantire coerenza sistemica.
  * Politica: Type safety, GDPR compliance, multi-tenant isolation.
  * Zen: Semplicità attraverso la standardizzazione, non la duplicazione.
@@ -18,8 +18,9 @@ class SpatieDocumentUpload
     /**
      * Configurazione base per upload documenti con collection specifica.
      *
-     * @param  string  $name  Nome del campo
-     * @param  string  $collection  Nome della media collection
+     * @param string $name Nome del campo
+     * @param string $collection Nome della media collection
+     * @return SpatieMediaLibraryFileUpload
      */
     public static function make(string $name, string $collection): SpatieMediaLibraryFileUpload
     {
@@ -37,9 +38,11 @@ class SpatieDocumentUpload
 
     /**
      * Upload documento identità - documento sensibile paziente.
-     *
+     * 
      * Collection: 'documenti_identita'
      * Security: Private disk, audit trail
+     * 
+     * @return SpatieMediaLibraryFileUpload
      */
     public static function forIdentityDocument(): SpatieMediaLibraryFileUpload
     {
@@ -51,9 +54,11 @@ class SpatieDocumentUpload
 
     /**
      * Upload certificazione ISEE - documento fiscale sensibile.
-     *
+     * 
      * Collection: 'certificazioni_isee'
      * Formats: Solo PDF per documenti ufficiali
+     * 
+     * @return SpatieMediaLibraryFileUpload
      */
     public static function forIseeDocument(): SpatieMediaLibraryFileUpload
     {
@@ -64,9 +69,11 @@ class SpatieDocumentUpload
 
     /**
      * Upload certificato gravidanza - documento medico sensibile.
-     *
+     * 
      * Collection: 'certificati_gravidanza'
      * GDPR: Retention policy automatica
+     * 
+     * @return SpatieMediaLibraryFileUpload
      */
     public static function forPregnancyDocument(): SpatieMediaLibraryFileUpload
     {
@@ -77,9 +84,11 @@ class SpatieDocumentUpload
 
     /**
      * Upload certificazioni professionali mediche - documenti multipli.
-     *
+     * 
      * Collection: 'certificazioni_professionali'
      * Multiple: Supporta caricamento multiplo con riordinamento
+     * 
+     * @return SpatieMediaLibraryFileUpload
      */
     public static function forCertifications(): SpatieMediaLibraryFileUpload
     {
@@ -93,15 +102,16 @@ class SpatieDocumentUpload
 
     /**
      * Upload documento generico con collection personalizzata.
-     *
-     * @param  string  $name  Nome del campo
-     * @param  string  $collection  Nome della collection
-     * @param  array<string>  $mimeTypes  Tipi MIME accettati
-     * @param  int  $maxSize  Dimensione massima in KB
+     * 
+     * @param string $name Nome del campo
+     * @param string $collection Nome della collection
+     * @param array<string> $mimeTypes Tipi MIME accettati
+     * @param int $maxSize Dimensione massima in KB
+     * @return SpatieMediaLibraryFileUpload
      */
     public static function custom(
-        string $name,
-        string $collection,
+        string $name, 
+        string $collection, 
         array $mimeTypes = ['image/jpeg', 'image/png', 'application/pdf'],
         int $maxSize = 10240
     ): SpatieMediaLibraryFileUpload {
@@ -116,4 +126,4 @@ class SpatieDocumentUpload
             ->acceptedFileTypes($mimeTypes)
             ->imagePreviewHeight('150');
     }
-}
+} 

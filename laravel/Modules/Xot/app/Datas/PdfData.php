@@ -8,18 +8,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Modules\Xot\Enums\PdfEngineEnum;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelPdf\Enums\Format;
-use Spatie\LaravelPdf\Enums\Orientation;
+use Spipu\Html2Pdf\Html2Pdf;
+use Webmozart\Assert\Assert;
 use Spatie\LaravelPdf\Enums\Unit;
 use Spatie\LaravelPdf\Facades\Pdf;
-use Spipu\Html2Pdf\Html2Pdf;
+use Spatie\LaravelPdf\Enums\Format;
+use Modules\Xot\Enums\PdfEngineEnum;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Spatie\LaravelPdf\Enums\Orientation;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Webmozart\Assert\Assert;
+
 
 /**
  * Undocumented class.
@@ -64,6 +65,7 @@ class PdfData extends Data
 
     // public static function make(Model $model = null, string $html = null): self
 
+
     public PdfEngineEnum $engine = PdfEngineEnum::SPIPU;
 
     public string $html = '';
@@ -104,10 +106,11 @@ class PdfData extends Data
                 // ->name(str_slug($project->nome).'-REPORT.pdf')
                 ->save($this->getPath());
                 ;
-
+                
                 break;
                 */
         }
+
 
         $this->html = $html;
         // $this->engine->build($this);
@@ -141,21 +144,19 @@ class PdfData extends Data
         return $res;
     }
 
-    public function view(string $view, array $params = []): self
+    public function view(string $view, array $params=[]): self
     {
-        if (! view()->exists($view)) {
+        if(!view()->exists($view)){
             throw new \Exception('View '.$view.' not found');
         }
         $out = view($view, $params);
         $this->html = $out->render();
-
         return $this->fromHtml($this->html);
     }
 
     public function setEngine(PdfEngineEnum $engine): self
     {
         $this->engine = $engine;
-
         return $this;
     }
 }

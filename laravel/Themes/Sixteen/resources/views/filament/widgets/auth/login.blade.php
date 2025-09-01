@@ -6,10 +6,17 @@
     {{-- Header del form --}}
     <div class="text-center">
         <h2 class="text-2xl font-extrabold leading-9 text-gray-800 dark:text-gray-200">
+<<<<<<< HEAD
             @lang('pub_theme::auth.login.title')
         </h2>
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
             @lang('pub_theme::auth.login.subtitle')
+=======
+            {{ __('auth.login.title') }}
+        </h2>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {{ __('auth.login.subtitle') }}
+>>>>>>> d1c61d3 (.)
         </p>
     </div>
 
@@ -24,7 +31,11 @@
                     href="{{ url('/' . app()->getLocale() . '/auth/password/email') }}" 
                     class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
                 >
+<<<<<<< HEAD
                     @lang('pub_theme::auth.login.forgot_password')
+=======
+                    {{ __('auth.login.forgot_password') }}
+>>>>>>> d1c61d3 (.)
                 </a>
             </div>
         </div>
@@ -47,8 +58,13 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 
+<<<<<<< HEAD
                 <span wire:loading.remove>@lang('pub_theme::auth.login.submit')</span>
                 <span wire:loading>@lang('pub_theme::auth.login.submitting')</span>
+=======
+                <span wire:loading.remove>{{ __('auth.login.submit') }}</span>
+                <span wire:loading>{{ __('auth.login.submitting') }}</span>
+>>>>>>> d1c61d3 (.)
             </button>
         </div>
     </form>
@@ -56,12 +72,20 @@
     {{-- Registration Link --}}
     <div class="mt-6 text-center">
         <div class="text-sm leading-5 text-gray-600 dark:text-gray-400 space-x-0.5">
+<<<<<<< HEAD
             <span>@lang('pub_theme::auth.login.or')</span>
+=======
+            <span>{{ __('auth.login.or') }}</span>
+>>>>>>> d1c61d3 (.)
             <a 
                 href="{{ url('/' . app()->getLocale() . '/auth/register') }}" 
                 class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
             >
+<<<<<<< HEAD
                 @lang('pub_theme::auth.login.create_account')
+=======
+                {{ __('auth.login.create_account') }}
+>>>>>>> d1c61d3 (.)
             </a>
         </div>
     </div>
