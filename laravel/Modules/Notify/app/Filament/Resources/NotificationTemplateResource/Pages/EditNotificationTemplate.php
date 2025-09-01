@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Resources\NotificationTemplateResource\Pages;
 
-use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 use Modules\Notify\Filament\Resources\NotificationTemplateResource;
-
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
 class EditNotificationTemplate extends XotBaseEditRecord
 {
@@ -28,4 +27,4 @@ class EditNotificationTemplate extends XotBaseEditRecord
         return $data;
     }
     */
-} 
+}

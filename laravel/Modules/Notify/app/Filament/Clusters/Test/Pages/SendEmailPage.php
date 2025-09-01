@@ -4,30 +4,26 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Clusters\Test\Pages;
 
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Modules\Notify\Datas\EmailData;
-use Illuminate\Support\Facades\Mail;
+use Filament\Forms;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+use Modules\Notify\Datas\EmailData;
 use Modules\Notify\Emails\EmailDataEmail;
 use Modules\Notify\Filament\Clusters\Test;
 use Modules\Xot\Filament\Pages\XotBasePage;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
-
 
 /**
  * @property ComponentContainer $emailForm
  */
 class SendEmailPage extends XotBasePage
 {
-
     // use NavigationLabelTrait;
 
     public ?array $emailData = [];
@@ -50,7 +46,7 @@ class SendEmailPage extends XotBasePage
             ->model($this->getUser())
             ->statePath('emailData');
     }
-    
+
     public function getEmailFormSchema(): array
     {
         return [

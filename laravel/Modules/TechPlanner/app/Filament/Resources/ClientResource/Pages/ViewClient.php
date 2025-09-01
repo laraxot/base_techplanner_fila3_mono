@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
 
-use Filament\Infolists\Components;
 use Modules\TechPlanner\Filament\Resources\ClientResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 
@@ -24,7 +23,7 @@ class ViewClient extends XotBaseViewRecord
                     \Filament\Infolists\Components\TextEntry::make('vat_number')->label('VAT Number'),
                     \Filament\Infolists\Components\TextEntry::make('fiscal_code')->label('Fiscal Code'),
                 ]),
-            
+
             \Filament\Infolists\Components\Section::make('Contact Information')
                 ->schema([
                     \Filament\Infolists\Components\TextEntry::make('address')->label('Address'),
@@ -44,7 +43,7 @@ class ViewClient extends XotBaseViewRecord
                     \Filament\Infolists\Components\TextEntry::make('competent_health_unit')->label('Competent Health Unit'),
                     \Filament\Infolists\Components\TextEntry::make('company_office')->label('Company Office'),
                     \Filament\Infolists\Components\TextEntry::make('notes')->label('Notes'),
-                ])
+                ]),
         ];
     }
 

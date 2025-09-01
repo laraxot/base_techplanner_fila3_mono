@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Unit;
 
-use Modules\Xot\Models\Traits\HasExtraTrait;
-use Modules\Xot\Contracts\ExtraContract;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Contracts\ExtraContract;
+use Modules\Xot\Models\Traits\HasExtraTrait;
 use ReflectionClass;
 use ReflectionMethod;
 use stdClass;
-use Exception;
 
 describe('HasExtraTrait', function () {
     beforeEach(function () {
         // Create a test model that uses the trait
-        $this->testModel = new class extends Model {
+        $this->testModel = new class extends Model
+        {
             use HasExtraTrait;
-            
+
             protected $table = 'test_models';
+
             protected $fillable = ['name'];
-            
+
             // Mock the getExtraClass method
             public function getExtraClass(): string
             {
@@ -29,17 +31,19 @@ describe('HasExtraTrait', function () {
         };
 
         // Create a mock Extra class
-        $this->extraClass = new class extends Model implements ExtraContract {
+        $this->extraClass = new class extends Model implements ExtraContract
+        {
             protected $table = 'test_extras';
+
             protected $fillable = ['model_id', 'model_type', 'extra_attributes'];
-            
+
             protected function casts(): array
             {
                 return [
                     'extra_attributes' => 'collection',
                 ];
             }
-            
+
             public function model()
             {
                 return $this->morphTo();
@@ -49,7 +53,7 @@ describe('HasExtraTrait', function () {
 
     it('uses the trait correctly', function () {
         $traits = class_uses($this->testModel);
-        
+
         expect($traits)->toContain(HasExtraTrait::class);
     });
 
@@ -60,34 +64,38 @@ describe('HasExtraTrait', function () {
     it('returns null for non-existent extra', function () {
         // Mock the extra relationship to be null
         $this->testModel->extra = null;
-        
+
         $result = $this->testModel->getExtra('non_existent_key');
-        
+
         expect($result)->toBeNull();
     });
 
     it('can set and get extra attributes', function () {
         // Mock the extra relationship
-        $mockExtra = new class {
+        $mockExtra = new class
+        {
             public $extra_attributes;
-            
-            public function __construct() {
+
+            public function __construct()
+            {
                 $this->extra_attributes = collect(['test_key' => 'test_value']);
             }
         };
-        
+
         $this->testModel->extra = $mockExtra;
-        
+
         $result = $this->testModel->getExtra('test_key');
-        
+
         expect($result)->toBe('test_value');
     });
 
     it('handles different data types correctly', function () {
-        $mockExtra = new class {
+        $mockExtra = new class
+        {
             public $extra_attributes;
-            
-            public function __construct() {
+
+            public function __construct()
+            {
                 $this->extra_attributes = collect([
                     'string_value' => 'test_string',
                     'int_value' => 123,
@@ -97,9 +105,9 @@ describe('HasExtraTrait', function () {
                 ]);
             }
         };
-        
+
         $this->testModel->extra = $mockExtra;
-        
+
         expect($this->testModel->getExtra('string_value'))->toBe('test_string')
             ->and($this->testModel->getExtra('int_value'))->toBe(123)
             ->and($this->testModel->getExtra('bool_value'))->toBe(true)
@@ -108,18 +116,20 @@ describe('HasExtraTrait', function () {
     });
 
     it('throws exception for invalid data types', function () {
-        $mockExtra = new class {
+        $mockExtra = new class
+        {
             public $extra_attributes;
-            
-            public function __construct() {
+
+            public function __construct()
+            {
                 $this->extra_attributes = collect([
-                    'invalid_value' => new stdClass(), // Object that's not allowed
+                    'invalid_value' => new stdClass, // Object that's not allowed
                 ]);
             }
         };
-        
+
         $this->testModel->extra = $mockExtra;
-        
+
         expect(fn () => $this->testModel->getExtra('invalid_value'))
             ->toThrow(Exception::class);
     });
@@ -130,20 +140,20 @@ describe('HasExtraTrait', function () {
 
     it('validates method signatures', function () {
         $reflection = new ReflectionClass($this->testModel);
-        
+
         // Check getExtra method signature
         $getExtraMethod = $reflection->getMethod('getExtra');
         expect($getExtraMethod->isPublic())->toBeTrue();
-        
+
         $parameters = $getExtraMethod->getParameters();
         expect(count($parameters))->toBe(1)
             ->and($parameters[0]->getName())->toBe('name')
             ->and($parameters[0]->getType()?->getName())->toBe('string');
-        
+
         // Check setExtra method signature
         $setExtraMethod = $reflection->getMethod('setExtra');
         expect($setExtraMethod->isPublic())->toBeTrue();
-        
+
         $setParameters = $setExtraMethod->getParameters();
         expect(count($setParameters))->toBe(2)
             ->and($setParameters[0]->getName())->toBe('name')
@@ -153,7 +163,7 @@ describe('HasExtraTrait', function () {
     it('has proper return type annotations', function () {
         $reflection = new ReflectionClass($this->testModel);
         $method = $reflection->getMethod('getExtra');
-        
+
         // Check that method has return type hint
         $returnType = $method->getReturnType();
         expect($returnType)->not->toBeNull();
@@ -161,7 +171,7 @@ describe('HasExtraTrait', function () {
 
     it('handles extra relationship correctly', function () {
         $extraMethod = new ReflectionMethod($this->testModel, 'extra');
-        
+
         expect($extraMethod->isPublic())->toBeTrue();
     });
 
@@ -171,16 +181,18 @@ describe('HasExtraTrait', function () {
     });
 
     it('handles empty extra attributes', function () {
-        $mockExtra = new class {
+        $mockExtra = new class
+        {
             public $extra_attributes;
-            
-            public function __construct() {
+
+            public function __construct()
+            {
                 $this->extra_attributes = collect([]);
             }
         };
-        
+
         $this->testModel->extra = $mockExtra;
-        
+
         $result = $this->testModel->getExtra('non_existent');
         expect($result)->toBeNull();
     });
@@ -189,14 +201,14 @@ describe('HasExtraTrait', function () {
         // Test that the extra class implements the required contract
         $extraClass = $this->testModel->getExtraClass();
         $reflection = new ReflectionClass($extraClass);
-        
+
         expect($reflection->implementsInterface(ExtraContract::class))->toBeTrue();
     });
 
     it('has proper documentation', function () {
         $reflection = new ReflectionClass(HasExtraTrait::class);
         $getExtraMethod = $reflection->getMethod('getExtra');
-        
+
         $docComment = $getExtraMethod->getDocComment();
         expect($docComment)->toBeString()
             ->and($docComment)->toContain('@return');
@@ -206,13 +218,13 @@ describe('HasExtraTrait', function () {
 /**
  * Helper class for testing HasExtraTrait.
  */
-class HasExtraTraitTest extends Model implements ExtraContract 
+class HasExtraTraitTest extends Model implements ExtraContract
 {
     protected $table = 'test_extras';
-    
+
     /** @var list<string> */
     protected $fillable = ['model_id', 'model_type', 'extra_attributes'];
-    
+
     /**
      * Get the attributes that should be cast.
      *
@@ -224,7 +236,7 @@ class HasExtraTraitTest extends Model implements ExtraContract
             'extra_attributes' => 'collection',
         ];
     }
-    
+
     /**
      * Get the parent model.
      *

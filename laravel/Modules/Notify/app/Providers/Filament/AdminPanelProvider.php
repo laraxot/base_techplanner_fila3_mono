@@ -10,18 +10,18 @@ namespace Modules\Notify\Providers\Filament;
 
 use Filament\Notifications\Livewire\DatabaseNotifications;
 use Filament\Panel;
+use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\Blade;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
-use Filament\SpatieLaravelTranslatablePlugin;
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Notify';
 
     public function panel(Panel $panel): Panel
-    { 
+    {
         $panel->plugins([
             SpatieLaravelTranslatablePlugin::make(),
         ]);
@@ -35,9 +35,6 @@ class AdminPanelProvider extends XotBasePanelProvider
             );
         }
 
-       
-
         return parent::panel($panel);
     }
 }
-

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources\Pages;
 
-use Filament\Pages\Actions;
+use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\Grid;
-use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
+use Filament\Pages\Actions;
 use Modules\TechPlanner\Filament\Resources\DeviceResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 
 class ViewDevice extends XotBaseViewRecord
 {

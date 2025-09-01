@@ -4,48 +4,48 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
-use Laravel\Passport\Token;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Permission\Contracts\Role;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Models\Contracts\FilamentUser;
-use Modules\User\Contracts\HasTeamsContract;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\MediaLibrary\MediaCollections\FileAdder;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Laravel\Passport\Token;
+use Modules\User\Contracts\HasTeamsContract;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
+use Spatie\Permission\Contracts\Role;
 
 // use Filament\Models\Contracts\HasTenants;
 
 /**
  * Modules\User\Contracts\UserContract.
  *
- * @property ProfileContract|null                                                       $profile
+ * @property ProfileContract|null $profile
  * @property string $id
  * @property string $handle
- * @property string|null                                                                $first_name
- * @property string|null                                                                $last_name
- * @property string|null                                                                $full_name
- * @property \BackedEnum&\Filament\Support\Contracts\HasLabel                           $type
- * @property string|null                                                                $password
- * @property string|int|null                                                            $current_team_id
- * @property string|null                                                                $phone
- * @property string|null                                                                $email
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Role>   $roles
+ * @property string|null $first_name
+ * @property string|null $last_name
+ * @property string|null $full_name
+ * @property \BackedEnum&\Filament\Support\Contracts\HasLabel $type
+ * @property string|null $password
+ * @property string|int|null $current_team_id
+ * @property string|null $phone
+ * @property string|null $email
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Role> $roles
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Tenant> $tenants
  *
- * @method  FileAdder addMediaFromDisk(string $key, ?string $disk = null)
+ * @method FileAdder addMediaFromDisk(string $key, ?string $disk = null)
  * @method bool canAccessSocialite()
  *
  * @phpstan-require-extends Model
  *
  * @mixin \Eloquent
  */
-interface UserContract extends Authenticatable, Authorizable, CanResetPassword, FilamentUser, HasTeamsContract, ModelContract, MustVerifyEmail, PassportHasApiTokensContract,HasMedia
+interface UserContract extends Authenticatable, Authorizable, CanResetPassword, FilamentUser, HasMedia, HasTeamsContract, ModelContract, MustVerifyEmail, PassportHasApiTokensContract
 {
     /*
     public function isSuperAdmin();
@@ -63,8 +63,7 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
     /**
      * Get a relationship.
      *
-     * @param string $key
-     *
+     * @param  string  $key
      * @return mixed|null
      */
     public function getRelationValue($key);
@@ -72,9 +71,8 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
     /**
      * Create a new instance of the given model.
      *
-     * @param array $attributes
-     * @param bool  $exists
-     *
+     * @param  array  $attributes
+     * @param  bool  $exists
      * @return static
      */
     public function newInstance($attributes = [], $exists = false);
@@ -101,8 +99,7 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
     /**
      * Revoke the given role from the model.
      *
-     * @param string|int|Role|\BackedEnum $role
-     *
+     * @param  string|int|Role|\BackedEnum  $role
      * @return self
      */
     public function removeRole($role);
@@ -127,8 +124,7 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
 
     /**
      * Get all consents for the model (polymorphic).
-     *
      */
-    //public function consents(): MorphMany;
-    
+    // public function consents(): MorphMany;
+
 }

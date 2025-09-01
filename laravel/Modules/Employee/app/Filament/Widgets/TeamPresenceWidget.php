@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Widgets;
 
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Modules\Employee\Models\Employee;
-use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * Team presence widget showing who's present/absent today.
- * 
+ *
  * Displays current team presence status with department filtering
  * and detailed view capabilities.
  */
 class TeamPresenceWidget extends XotBaseWidget
 {
     protected static ?int $sort = 4;
+
     protected static ?string $maxHeight = '400px';
-    
-    protected int | string | array $columnSpan = [
+
+    protected int|string|array $columnSpan = [
         'md' => 2,
         'xl' => 1,
     ];
@@ -39,7 +39,7 @@ class TeamPresenceWidget extends XotBaseWidget
     public function getFormSchema(): array
     {
         $presenceData = $this->getPresenceData();
-        
+
         return [
             Section::make(__('employee::widgets.team_presence.title'))
                 ->schema([
@@ -48,31 +48,31 @@ class TeamPresenceWidget extends XotBaseWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
-                        ->afterStateUpdated(fn($state) => $this->selectedDepartment = $state),
-                    
+                        ->afterStateUpdated(fn ($state) => $this->selectedDepartment = $state),
+
                     Placeholder::make('presence_stats')
-                        ->content(fn() => view('employee::widgets.team-presence.stats-display', [
+                        ->content(fn () => view('employee::widgets.team-presence.stats-display', [
                             'present' => $presenceData['present'],
                             'absent' => $presenceData['absent'],
                             'presentCount' => count($presenceData['present']),
                             'absentCount' => count($presenceData['absent']),
                         ])),
-                    
+
                     Placeholder::make('presence_list')
-                        ->content(fn() => view('employee::widgets.team-presence.presence-list', [
+                        ->content(fn () => view('employee::widgets.team-presence.presence-list', [
                             'present' => $presenceData['present'],
                             'absent' => $presenceData['absent'],
                         ])),
-                    
+
                     Actions::make([
                         Action::make('view_detail')
                             ->label(__('employee::widgets.team_presence.view_detail'))
-                            ->url(fn() => route('filament.admin.resources.employees.index'))
+                            ->url(fn () => route('filament.admin.resources.employees.index'))
                             ->icon('heroicon-o-eye')
                             ->color('gray')
                             ->size('sm'),
                     ])
-                    ->alignment('center'),
+                        ->alignment('center'),
                 ])
                 ->extraAttributes(['class' => 'team-presence-widget']),
         ];
@@ -102,7 +102,7 @@ class TeamPresenceWidget extends XotBaseWidget
 
         // Build base query for employees
         $baseQuery = \Modules\Employee\Models\Employee::where('status', '!=', 'terminated');
-        
+
         if ($departmentFilter) {
             $baseQuery->whereJsonContains('work_data->department', $departmentFilter);
         }
@@ -111,24 +111,24 @@ class TeamPresenceWidget extends XotBaseWidget
         $present = $baseQuery->clone()
             ->whereHas('workHours', function ($query) use ($today) {
                 $query->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
-                      ->whereDate('timestamp', $today)
-                      ->whereNotExists(function ($subQuery) use ($today) {
-                          $subQuery->from('time_entries as te2')
-                                   ->whereColumn('te2.employee_id', 'time_entries.employee_id')
-                                   ->where('te2.type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_OUT)
-                                   ->whereDate('te2.timestamp', $today)
-                                   ->where('te2.timestamp', '>', \DB::raw('time_entries.timestamp'));
-                      });
+                    ->whereDate('timestamp', $today)
+                    ->whereNotExists(function ($subQuery) use ($today) {
+                        $subQuery->from('time_entries as te2')
+                            ->whereColumn('te2.employee_id', 'time_entries.employee_id')
+                            ->where('te2.type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_OUT)
+                            ->whereDate('te2.timestamp', $today)
+                            ->where('te2.timestamp', '>', \DB::raw('time_entries.timestamp'));
+                    });
             })
             ->with(['workHours' => function ($query) use ($today) {
                 $query->whereDate('timestamp', $today)
-                      ->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
-                      ->latest('timestamp');
+                    ->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
+                    ->latest('timestamp');
             }])
             ->get()
             ->map(function ($employee) {
                 $lastEntry = $employee->workHours->first();
-                
+
                 return [
                     'name' => $employee->full_name ?? 'N/A',
                     'avatar' => null, // Could be implemented later with photo_url
@@ -142,7 +142,7 @@ class TeamPresenceWidget extends XotBaseWidget
         $absent = $baseQuery->clone()
             ->whereDoesntHave('workHours', function ($query) use ($today) {
                 $query->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
-                      ->whereDate('timestamp', $today);
+                    ->whereDate('timestamp', $today);
             })
             ->limit(10) // Limit for performance
             ->get()
@@ -171,12 +171,12 @@ class TeamPresenceWidget extends XotBaseWidget
         if (empty($parts) || $fullName === '') {
             return 'N/A';
         }
-        
+
         $initials = '';
         foreach (array_slice($parts, 0, 2) as $part) {
             $initials .= strtoupper(substr($part, 0, 1));
         }
-        
+
         return $initials;
     }
 
@@ -187,7 +187,7 @@ class TeamPresenceWidget extends XotBaseWidget
     {
         $today = now()->startOfDay();
         $currentStatus = \Modules\Employee\Models\WorkHour::getCurrentStatus($employee->id, $today);
-        
+
         return match ($currentStatus) {
             'clocked_in' => 'working',
             'on_break' => 'break',

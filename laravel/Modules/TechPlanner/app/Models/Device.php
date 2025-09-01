@@ -98,7 +98,7 @@ class Device extends BaseModel
 
         // Verifica se la data di prossima verifica è passata
         $nextVerificationDate = $this->latest_verification->getAttribute('next_verification_date');
-        if (!$nextVerificationDate) {
+        if (! $nextVerificationDate) {
             return true;
         }
 

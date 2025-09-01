@@ -45,4 +45,4 @@ return [
             'color' => 'info',
         ],
     ],
-]; 
+];

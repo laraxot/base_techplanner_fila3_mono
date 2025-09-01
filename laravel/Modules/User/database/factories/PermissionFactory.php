@@ -36,65 +36,53 @@ class PermissionFactory extends Factory
         $resource = SafeStringCastAction::cast($this->faker->randomElement($resources));
 
         return [
-            'name' => $action . ' ' . $resource,
+            'name' => $action.' '.$resource,
             'guard_name' => 'web',
         ];
     }
 
     /**
      * Crea un set di permessi CRUD per una risorsa.
-     *
-     * @param string $resource
-     * @return static
      */
     public function forResource(string $resource): static
     {
         return $this->state(fn (array $attributes) => [
-            'name' => SafeStringCastAction::cast($this->faker->randomElement(['create', 'read', 'update', 'delete'])) . ' ' . $resource,
+            'name' => SafeStringCastAction::cast($this->faker->randomElement(['create', 'read', 'update', 'delete'])).' '.$resource,
         ]);
     }
 
     /**
      * Crea un permesso di lettura.
-     *
-     * @return static
      */
     public function read(): static
     {
         return $this->state(fn (array $attributes) => [
-            'name' => 'read ' . SafeStringCastAction::cast($this->faker->randomElement(['users', 'posts', 'comments', 'pages'])),
+            'name' => 'read '.SafeStringCastAction::cast($this->faker->randomElement(['users', 'posts', 'comments', 'pages'])),
         ]);
     }
 
     /**
      * Crea un permesso di scrittura.
-     *
-     * @return static
      */
     public function write(): static
     {
         return $this->state(fn (array $attributes) => [
-            'name' => SafeStringCastAction::cast($this->faker->randomElement(['create', 'update', 'delete'])) . ' ' . SafeStringCastAction::cast($this->faker->randomElement(['users', 'posts', 'comments', 'pages'])),
+            'name' => SafeStringCastAction::cast($this->faker->randomElement(['create', 'update', 'delete'])).' '.SafeStringCastAction::cast($this->faker->randomElement(['users', 'posts', 'comments', 'pages'])),
         ]);
     }
 
     /**
      * Crea un permesso admin.
-     *
-     * @return static
      */
     public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
-            'name' => 'manage ' . SafeStringCastAction::cast($this->faker->randomElement(['users', 'system', 'settings', 'permissions'])),
+            'name' => 'manage '.SafeStringCastAction::cast($this->faker->randomElement(['users', 'system', 'settings', 'permissions'])),
         ]);
     }
 
     /**
      * Crea un permesso con un guard specifico.
-     *
-     * @param string $guard
-     * @return static
      */
     public function withGuard(string $guard): static
     {

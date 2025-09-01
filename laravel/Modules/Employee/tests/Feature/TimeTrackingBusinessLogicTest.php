@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\Employee\Tests\Feature;
-use Carbon\Carbon;
-use Modules\Employee\Models\Employee;
-use Modules\Employee\Models\WorkHour;
 
+use Carbon\Carbon;
+use Modules\Employee\Models\WorkHour;
 
 beforeEach(function () {
     $this->employee = createEmployee();
@@ -121,7 +118,7 @@ describe('Time Tracking Business Logic', function () {
 
     test('handles work across midnight boundary', function () {
         $today = Carbon::create(2024, 1, 15, 0, 0, 0);
-        
+
         createWorkHour([
             'employee_id' => $this->employee->id,
             'type' => WorkHour::TYPE_CLOCK_IN,
@@ -141,7 +138,7 @@ describe('Time Tracking Business Logic', function () {
 
     test('validates work hour sequence rules', function () {
         expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_IN))->toBeTrue();
-        
+
         createWorkHour([
             'employee_id' => $this->employee->id,
             'type' => WorkHour::TYPE_CLOCK_IN,
@@ -269,7 +266,7 @@ describe('Time Tracking Business Logic', function () {
         ]);
 
         expect($workHour->status)->toBe(WorkHour::STATUS_PENDING);
-        
+
         $workHour->status = WorkHour::STATUS_APPROVED;
         $workHour->approved_at = now();
         $workHour->save();

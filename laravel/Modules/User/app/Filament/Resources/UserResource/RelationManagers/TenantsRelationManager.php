@@ -9,7 +9,6 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Modules\User\Filament\Resources\TenantResource\Pages\ListTenants;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-use Modules\Xot\Filament\Traits\HasXotTable;
 
 /**
  * Manages the relationship between users and tenants.
@@ -19,8 +18,6 @@ use Modules\Xot\Filament\Traits\HasXotTable;
  */
 class TenantsRelationManager extends XotBaseRelationManager
 {
-
-
     protected static string $relationship = 'tenants';
 
     protected static ?string $recordTitleAttribute = 'name';
@@ -47,7 +44,7 @@ class TenantsRelationManager extends XotBaseRelationManager
     public function getTableColumns(): array
     {
         $columns = app(ListTenants::class)->getTableColumns();
-        
+
         // Ensure we only return Column instances, filter out any Layout\Component instances
         return array_filter($columns, function ($column): bool {
             return $column instanceof \Filament\Tables\Columns\Column;

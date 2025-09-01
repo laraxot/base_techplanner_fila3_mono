@@ -9,12 +9,12 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Actions\Header;
 
 use Filament\Actions\Action;
-use Illuminate\Support\Facades\Hash;
-use Modules\User\Datas\PasswordData;
-use Modules\Xot\Contracts\UserContract;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Modules\User\Datas\PasswordData;
+use Modules\Xot\Contracts\UserContract;
 
 class ChangePasswordHeaderAction extends Action
 {
@@ -25,10 +25,10 @@ class ChangePasswordHeaderAction extends Action
             ->icon('heroicon-o-key')
             ->action(function (UserContract $record, array $data): void {
                 $old_password = $record->getAttribute('password');
-                $res=tap($record)->update([
+                $res = tap($record)->update([
                     'password' => Hash::make($data['new_password']),
                 ]);
-                
+
                 Notification::make()
                     ->success()
                     ->title(__('user::notifications.password_changed_successfully.title'))

@@ -45,4 +45,4 @@ return [
         'icon' => 'heroicon-o-truck',
         'description' => 'Italian provider for telecommunications services and SMS',
     ],
-]; 
+];

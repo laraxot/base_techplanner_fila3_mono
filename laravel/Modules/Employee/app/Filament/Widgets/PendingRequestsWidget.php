@@ -8,16 +8,16 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * PendingRequestsWidget - Employee Request Status Widget
- * 
+ *
  * Displays pending approval requests for the current employee
  * with status tracking and illustrations for empty states.
  */
 class PendingRequestsWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.pending-requests-widget';
-    
-    protected int | string | array $columnSpan = 'full';
-    
+
+    protected int|string|array $columnSpan = 'full';
+
     protected static ?int $sort = 5;
 
     /**
@@ -71,7 +71,6 @@ class PendingRequestsWidget extends XotBaseWidget
     /**
      * Get request type configuration
      *
-     * @param string $type
      * @return array<string, string>
      */
     protected function getRequestTypeConfig(string $type): array
@@ -118,9 +117,6 @@ class PendingRequestsWidget extends XotBaseWidget
 
     /**
      * Get status badge color
-     *
-     * @param string $status
-     * @return string
      */
     protected function getStatusBadgeColor(string $status): string
     {
@@ -135,9 +131,6 @@ class PendingRequestsWidget extends XotBaseWidget
 
     /**
      * Get priority badge color
-     *
-     * @param string $priority
-     * @return string
      */
     protected function getPriorityBadgeColor(string $priority): string
     {

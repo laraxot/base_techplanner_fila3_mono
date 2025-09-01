@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Tests\TestCase;
-use Modules\Notify\Models\NotificationTemplate;
-use Modules\Notify\Enums\NotificationTypeEnum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Notify\Enums\NotificationTypeEnum;
+use Modules\Notify\Models\NotificationTemplate;
+use Tests\TestCase;
 
 class NotificationTemplateTest extends TestCase
 {
@@ -57,7 +57,7 @@ class NotificationTemplateTest extends TestCase
     /** @test */
     public function it_has_correct_fillable_fields(): void
     {
-        $template = new NotificationTemplate();
+        $template = new NotificationTemplate;
 
         $expectedFillable = [
             'name',
@@ -85,7 +85,7 @@ class NotificationTemplateTest extends TestCase
     /** @test */
     public function it_has_correct_casts(): void
     {
-        $template = new NotificationTemplate();
+        $template = new NotificationTemplate;
 
         $expectedCasts = [
             'type' => NotificationTypeEnum::class,
@@ -109,7 +109,7 @@ class NotificationTemplateTest extends TestCase
     /** @test */
     public function it_has_translatable_fields(): void
     {
-        $template = new NotificationTemplate();
+        $template = new NotificationTemplate;
 
         $expectedTranslatable = [
             'subject',

@@ -36,11 +36,11 @@ class SendNotificationJob implements ShouldQueue
     /**
      * Crea una nuova istanza del job.
      *
-     * @param Model $recipient Il destinatario della notifica
-     * @param string $templateCode Il codice del template da utilizzare
-     * @param array $data I dati per compilare il template
-     * @param array $channels I canali da utilizzare
-     * @param array $options Opzioni aggiuntive per l'invio
+     * @param  Model  $recipient  Il destinatario della notifica
+     * @param  string  $templateCode  Il codice del template da utilizzare
+     * @param  array  $data  I dati per compilare il template
+     * @param  array  $channels  I canali da utilizzare
+     * @param  array  $options  Opzioni aggiuntive per l'invio
      */
     public function __construct(
         protected Model $recipient,
@@ -51,10 +51,10 @@ class SendNotificationJob implements ShouldQueue
     ) {
         $triesConfig = config('notify.queue.tries', 3);
         $this->tries = is_numeric($triesConfig) ? (int) $triesConfig : 3;
-        
+
         $timeoutConfig = config('notify.queue.retry_after', 60);
         $this->timeout = is_numeric($timeoutConfig) ? (int) $timeoutConfig : 60;
-        
+
         $queueConfig = config('notify.queue.queue', 'notifications');
         $this->onQueue(is_string($queueConfig) ? $queueConfig : 'notifications');
     }
@@ -75,9 +75,6 @@ class SendNotificationJob implements ShouldQueue
 
     /**
      * Gestisce un fallimento del job.
-     *
-     * @param \Throwable $exception
-     * @return void
      */
     public function failed(\Throwable $exception): void
     {
@@ -90,4 +87,4 @@ class SendNotificationJob implements ShouldQueue
             'trace' => $exception->getTraceAsString(),
         ]);
     }
-} 
+}

@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Filament\Widgets;
 
 use Filament\Notifications\Notification;
-use Modules\Xot\Actions\Cast\SafeFloatCastAction;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use Livewire\Attributes\On;
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 class CoordinatesWidget extends XotBaseWidget
 {
@@ -61,5 +60,4 @@ class CoordinatesWidget extends XotBaseWidget
         $this->latitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_latitude', Cookie::get('user_latitude', 0)));
         $this->longitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_longitude', Cookie::get('user_longitude', 0)));
     }
-
 }

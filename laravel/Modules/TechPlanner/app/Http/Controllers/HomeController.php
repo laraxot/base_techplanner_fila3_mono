@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 
 /**
  * HomeController per il modulo TechPlanner.
@@ -16,8 +15,6 @@ class HomeController extends Controller
 {
     /**
      * Mostra la homepage del modulo TechPlanner.
-     *
-     * @return \Illuminate\View\View
      */
     public function index(): View
     {
@@ -29,8 +26,6 @@ class HomeController extends Controller
 
     /**
      * Mostra la dashboard del modulo.
-     *
-     * @return \Illuminate\View\View
      */
     public function dashboard(): View
     {
@@ -42,8 +37,6 @@ class HomeController extends Controller
 
     /**
      * Mostra la lista dei progetti.
-     *
-     * @return \Illuminate\View\View
      */
     public function projects(): View
     {
@@ -55,9 +48,6 @@ class HomeController extends Controller
 
     /**
      * Mostra un progetto specifico.
-     *
-     * @param int $project
-     * @return \Illuminate\View\View
      */
     public function showProject(int $project): View
     {
@@ -69,8 +59,6 @@ class HomeController extends Controller
 
     /**
      * Mostra la lista dei contatti.
-     *
-     * @return \Illuminate\View\View
      */
     public function contacts(): View
     {
@@ -82,8 +70,6 @@ class HomeController extends Controller
 
     /**
      * API per ottenere i progetti.
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function apiProjects(): JsonResponse
     {
@@ -95,8 +81,6 @@ class HomeController extends Controller
 
     /**
      * API per ottenere i contatti.
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function apiContacts(): JsonResponse
     {
@@ -136,7 +120,6 @@ class HomeController extends Controller
     /**
      * Ottiene un progetto specifico.
      *
-     * @param int $projectId
      * @return array<string, mixed>|null
      */
     private function getProject(int $projectId): ?array
@@ -156,4 +139,3 @@ class HomeController extends Controller
         return [];
     }
 }
-

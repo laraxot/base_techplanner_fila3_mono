@@ -18,7 +18,7 @@ class WorkHourSeeder extends Seeder
     {
         // Get all users or create some if none exist
         $users = User::all();
-        
+
         if ($users->isEmpty()) {
             $users = User::factory(5)->create();
         }
@@ -29,11 +29,12 @@ class WorkHourSeeder extends Seeder
 
         foreach ($users as $user) {
             $currentDate = $startDate->copy();
-            
+
             while ($currentDate->lte($endDate)) {
                 // Skip weekends (optional - remove if you want weekend entries)
                 if ($currentDate->isWeekend()) {
                     $currentDate->addDay();
+
                     continue;
                 }
 
@@ -41,7 +42,7 @@ class WorkHourSeeder extends Seeder
                 if (rand(1, 100) <= 80) {
                     $this->createWorkDayEntries($user->id, $currentDate->copy());
                 }
-                
+
                 $currentDate->addDay();
             }
         }
@@ -52,9 +53,6 @@ class WorkHourSeeder extends Seeder
 
     /**
      * Create a complete work day sequence for a user.
-     *
-     * @param int $userId
-     * @param Carbon $date
      */
     private function createWorkDayEntries(int $userId, Carbon $date): void
     {
@@ -64,10 +62,10 @@ class WorkHourSeeder extends Seeder
             collect([0, 15, 30, 45])->random(),
             0
         );
-        
+
         WorkHour::create([
             'user_id' => $userId,
-            'badge_id' => 'EMP' . str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
+            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
             'date' => $date->toDateString(),
             'time' => $clockInTime,
             'type' => WorkHour::TYPE_CLOCK_IN,
@@ -78,7 +76,7 @@ class WorkHourSeeder extends Seeder
         $breakStartTime = $clockInTime->copy()->addHours(rand(3, 5))->addMinutes(rand(0, 30));
         WorkHour::create([
             'user_id' => $userId,
-            'badge_id' => 'EMP' . str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
+            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
             'date' => $date->toDateString(),
             'time' => $breakStartTime,
             'type' => WorkHour::TYPE_BREAK_START,
@@ -89,7 +87,7 @@ class WorkHourSeeder extends Seeder
         $breakEndTime = $breakStartTime->copy()->addMinutes(rand(30, 60));
         WorkHour::create([
             'user_id' => $userId,
-            'badge_id' => 'EMP' . str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
+            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
             'date' => $date->toDateString(),
             'time' => $breakEndTime,
             'type' => WorkHour::TYPE_BREAK_END,
@@ -100,7 +98,7 @@ class WorkHourSeeder extends Seeder
         $clockOutTime = $breakEndTime->copy()->addHours(rand(3, 5))->addMinutes(rand(0, 30));
         WorkHour::create([
             'user_id' => $userId,
-            'badge_id' => 'EMP' . str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
+            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
             'date' => $date->toDateString(),
             'time' => $clockOutTime,
             'type' => WorkHour::TYPE_CLOCK_OUT,
@@ -111,17 +109,17 @@ class WorkHourSeeder extends Seeder
     /**
      * Create some incomplete work days for testing.
      *
-     * @param \Illuminate\Support\Collection<int, User> $users
+     * @param  \Illuminate\Support\Collection<int, User>  $users
      */
     private function createIncompleteWorkDays($users): void
     {
         foreach ($users as $user) {
             $today = Carbon::today();
-            
+
             // User who clocked in but didn't clock out
             WorkHour::create([
                 'user_id' => $user->id,
-                'badge_id' => 'EMP' . str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
+                'badge_id' => 'EMP'.str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
                 'date' => $today->toDateString(),
                 'time' => $today->copy()->setTime(8, 30, 0),
                 'type' => WorkHour::TYPE_CLOCK_IN,
@@ -132,7 +130,7 @@ class WorkHourSeeder extends Seeder
             $yesterday = Carbon::yesterday();
             WorkHour::create([
                 'user_id' => $user->id,
-                'badge_id' => 'EMP' . str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
+                'badge_id' => 'EMP'.str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
                 'date' => $yesterday->toDateString(),
                 'time' => $yesterday->copy()->setTime(8, 0, 0),
                 'type' => WorkHour::TYPE_CLOCK_IN,
@@ -140,7 +138,7 @@ class WorkHourSeeder extends Seeder
 
             WorkHour::create([
                 'user_id' => $user->id,
-                'badge_id' => 'EMP' . str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
+                'badge_id' => 'EMP'.str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
                 'date' => $yesterday->toDateString(),
                 'time' => $yesterday->copy()->setTime(12, 0, 0),
                 'type' => WorkHour::TYPE_BREAK_START,

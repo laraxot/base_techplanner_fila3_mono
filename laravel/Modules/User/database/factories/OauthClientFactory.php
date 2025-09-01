@@ -10,16 +10,16 @@ use Modules\User\Models\User;
 
 /**
  * OauthClient Factory
- * 
+ *
  * Factory for creating OauthClient model instances for testing and seeding.
- * 
+ *
  * @extends Factory<OauthClient>
  */
 class OauthClientFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<OauthClient>
      */
     protected $model = OauthClient::class;
@@ -34,7 +34,7 @@ class OauthClientFactory extends Factory
         return [
             'id' => $this->faker->uuid(),
             'user_id' => $this->faker->optional()->randomElement([User::factory(), null]),
-            'name' => $this->faker->company() . ' App',
+            'name' => $this->faker->company().' App',
             'secret' => $this->faker->sha256(),
             'provider' => $this->faker->optional()->randomElement(['users', 'admins']),
             'redirect' => $this->faker->url(),
@@ -45,18 +45,16 @@ class OauthClientFactory extends Factory
                 'authorization_code',
                 'client_credentials',
                 'password',
-                'refresh_token'
+                'refresh_token',
             ], $this->faker->numberBetween(1, 3)),
             'scopes' => $this->faker->optional()->randomElements([
-                'read', 'write', 'admin', 'user'
+                'read', 'write', 'admin', 'user',
             ], $this->faker->numberBetween(1, 3)),
         ];
     }
 
     /**
      * Create a personal access client.
-     *
-     * @return static
      */
     public function personalAccess(): static
     {
@@ -69,8 +67,6 @@ class OauthClientFactory extends Factory
 
     /**
      * Create a password client.
-     *
-     * @return static
      */
     public function password(): static
     {
@@ -83,8 +79,6 @@ class OauthClientFactory extends Factory
 
     /**
      * Create a revoked client.
-     *
-     * @return static
      */
     public function revoked(): static
     {
@@ -95,8 +89,6 @@ class OauthClientFactory extends Factory
 
     /**
      * Create an active client.
-     *
-     * @return static
      */
     public function active(): static
     {
@@ -107,9 +99,6 @@ class OauthClientFactory extends Factory
 
     /**
      * Create client for a specific user.
-     *
-     * @param User $user
-     * @return static
      */
     public function forUser(User $user): static
     {
@@ -120,9 +109,6 @@ class OauthClientFactory extends Factory
 
     /**
      * Create client with specific redirect URI.
-     *
-     * @param string $redirectUri
-     * @return static
      */
     public function withRedirectUri(string $redirectUri): static
     {
@@ -134,8 +120,7 @@ class OauthClientFactory extends Factory
     /**
      * Create client with specific scopes.
      *
-     * @param array<string> $scopes
-     * @return static
+     * @param  array<string>  $scopes
      */
     public function withScopes(array $scopes): static
     {

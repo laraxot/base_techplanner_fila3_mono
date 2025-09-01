@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\TechPlanner\Tests;
-use Modules\TechPlanner\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +23,7 @@ pest()->extend(TestCase::class)
 |--------------------------------------------------------------------------
 |
 | Aspettative globali per il modulo TechPlanner.
-| Quando definisci expectation globali, saranno disponibili 
+| Quando definisci expectation globali, saranno disponibili
 | in tutti i test del modulo.
 |
 */

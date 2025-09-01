@@ -9,7 +9,7 @@ use Modules\Xot\Models\InformationSchemaTable;
 
 /**
  * InformationSchemaTable Factory
- * 
+ *
  * @extends Factory<InformationSchemaTable>
  */
 class InformationSchemaTableFactory extends Factory
@@ -21,9 +21,9 @@ class InformationSchemaTableFactory extends Factory
         /** @var string $tableName */
         $tableName = $this->faker->randomElement([
             'users', 'posts', 'comments', 'categories', 'tags',
-            'orders', 'products', 'customers', 'invoices'
+            'orders', 'products', 'customers', 'invoices',
         ]);
-        
+
         return [
             'table_catalog' => 'def',
             'table_schema' => $this->faker->randomElement(['saluteora', 'public', 'main']),

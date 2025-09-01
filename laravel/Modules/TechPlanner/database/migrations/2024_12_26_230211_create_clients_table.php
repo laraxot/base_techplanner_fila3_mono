@@ -32,11 +32,10 @@ return new class extends XotBaseMigration
             function (Blueprint $table): void {
                 $contact_types = ContactTypeEnum::cases();
                 foreach ($contact_types as $contact_type) {
-                    if(!$this->hasColumn($contact_type->value)){
+                    if (! $this->hasColumn($contact_type->value)) {
                         $table->string($contact_type->value)->nullable();
                     }
                 }
-
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }

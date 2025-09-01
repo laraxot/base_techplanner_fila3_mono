@@ -18,7 +18,7 @@ class ExecuteArtisanCommandAction
 
     /**
      * Lista dei comandi consentiti per motivi di sicurezza.
-     * 
+     *
      * @var array<int, string>
      */
     private array $allowedCommands = [
@@ -35,21 +35,20 @@ class ExecuteArtisanCommandAction
     /**
      * Esegue un comando Artisan e restituisce i risultati.
      *
-     * @param string $command Il comando Artisan da eseguire (senza "php artisan")
-     * 
-     * @throws \RuntimeException Se il comando non è consentito o si verifica un errore
-     * 
+     * @param  string  $command  Il comando Artisan da eseguire (senza "php artisan")
      * @return array{
      *     command: string,
      *     output: array<int, string>,
      *     status: 'completed'|'failed',
      *     exitCode: int
      * } Array con informazioni sull'esecuzione del comando
+     *
+     * @throws \RuntimeException Se il comando non è consentito o si verifica un errore
      */
     public function execute(string $command): array
     {
         Assert::stringNotEmpty($command, 'Il comando non può essere vuoto');
-        
+
         if (! $this->isCommandAllowed($command)) {
             throw new \RuntimeException("Comando non consentito: {$command}");
         }
@@ -121,8 +120,8 @@ class ExecuteArtisanCommandAction
         } catch (\Throwable $e) {
             Event::dispatch('artisan-command.error', [$command, $e->getMessage()]);
             throw new \RuntimeException(
-                "Errore durante l'esecuzione del comando {$command}: {$e->getMessage()}", 
-                (int) $e->getCode(), 
+                "Errore durante l'esecuzione del comando {$command}: {$e->getMessage()}",
+                (int) $e->getCode(),
                 $e
             );
         }
@@ -131,12 +130,13 @@ class ExecuteArtisanCommandAction
     /**
      * Verifica se un comando è presente nella lista dei comandi consentiti.
      *
-     * @param string $command Il comando da verificare
+     * @param  string  $command  Il comando da verificare
      * @return bool True se il comando è consentito, false altrimenti
      */
     private function isCommandAllowed(string $command): bool
     {
         Assert::stringNotEmpty($command, 'Il comando non può essere vuoto');
+
         return in_array($command, $this->allowedCommands, true);
     }
 }

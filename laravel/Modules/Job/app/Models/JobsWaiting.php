@@ -22,6 +22,7 @@ namespace Modules\Job\Models;
  * @property string|null $updated_by
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property mixed $display_name
+ *
  * @method static \Modules\Job\Database\Factories\JobsWaitingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|JobsWaiting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|JobsWaiting newQuery()
@@ -36,9 +37,11 @@ namespace Modules\Job\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|JobsWaiting whereReservedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|JobsWaiting whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|JobsWaiting whereUpdatedBy($value)
+ *
  * @property mixed $status
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin IdeHelperJobsWaiting
  * @mixin \Eloquent
  */

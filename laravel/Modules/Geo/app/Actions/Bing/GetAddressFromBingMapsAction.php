@@ -34,6 +34,7 @@ class GetAddressFromBingMapsAction
      * Get the Bing Maps API key from configuration.
      *
      * @return non-empty-string
+     *
      * @throws InvalidLocationException
      */
     private function getApiKey(): string
@@ -53,10 +54,9 @@ class GetAddressFromBingMapsAction
     /**
      * Make an API request to Bing Maps.
      *
-     * @param float $latitude
-     * @param float $longitude
-     * @param non-empty-string $apiKey
+     * @param  non-empty-string  $apiKey
      * @return array<string, mixed>
+     *
      * @throws InvalidLocationException
      */
     private function makeApiRequest(float $latitude, float $longitude, string $apiKey): array
@@ -74,6 +74,7 @@ class GetAddressFromBingMapsAction
 
         /** @var array<string, mixed> $jsonResponse */
         $jsonResponse = $response->json();
+
         return $jsonResponse;
     }
 

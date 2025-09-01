@@ -2,27 +2,24 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\User\Tests\Unit\Actions;
-use Modules\User\Actions\GetCurrentDeviceAction;
-use Modules\User\Models\Device;
-use Modules\User\Tests\Unit\Actions\TestCase;
+
 use Jenssegers\Agent\Agent;
 use Mockery;
+use Modules\User\Actions\GetCurrentDeviceAction;
+use Modules\User\Models\Device;
 
 class GetCurrentDeviceActionTest extends TestCase
 {
-
     private GetCurrentDeviceAction $action;
+
     private Agent $mockAgent;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = new GetCurrentDeviceAction();
-        
+        $this->action = new GetCurrentDeviceAction;
+
         // Mock the Agent class
         $this->mockAgent = Mockery::mock(Agent::class);
     }
@@ -81,7 +78,7 @@ class GetCurrentDeviceActionTest extends TestCase
     {
         // Arrange
         $mobileId = 'unique-mobile-identifier-123';
-        
+
         $deviceData = [
             'device' => 'Android Phone',
             'platform' => 'Android',
@@ -128,7 +125,7 @@ class GetCurrentDeviceActionTest extends TestCase
         $emptyMobileId = '';
 
         // Act & Assert
-        expect(fn() => $this->action->execute($emptyMobileId))
+        expect(fn () => $this->action->execute($emptyMobileId))
             ->toThrow(\InvalidArgumentException::class, 'L\'ID mobile non può essere vuoto');
     }
 

@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-
-use Modules\Lang\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
-use Tests\TestCase;
-
+use Modules\Lang\Models\BaseModel;
 
 beforeEach(function () {
-    $this->baseModel = new class extends BaseModel {
+    $this->baseModel = new class extends BaseModel
+    {
         protected $table = 'test_lang_table';
     };
 });

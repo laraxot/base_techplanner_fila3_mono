@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\Media\Tests\Unit\Models;
-use Modules\Media\Models\BaseModel;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Media\Tests\Unit\Models\TestCase;
 
+use Illuminate\Database\Eloquent\Model;
+use Modules\Media\Models\BaseModel;
 
 beforeEach(function () {
-    $this->baseModel = new class extends BaseModel {
+    $this->baseModel = new class extends BaseModel
+    {
         protected $table = 'test_media_table';
     };
 });

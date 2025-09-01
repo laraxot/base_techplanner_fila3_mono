@@ -48,21 +48,21 @@ class PermissionTest extends TestCase
 
     public function test_permission_has_connection_attribute(): void
     {
-        $permission = new Permission();
+        $permission = new Permission;
 
         $this->assertEquals('user', $permission->connection);
     }
 
     public function test_permission_has_key_type_attribute(): void
     {
-        $permission = new Permission();
+        $permission = new Permission;
 
         $this->assertEquals('string', $permission->keyType);
     }
 
     public function test_permission_has_fillable_attributes(): void
     {
-        $permission = new Permission();
+        $permission = new Permission;
 
         $expectedFillable = [
             'id',
@@ -79,7 +79,7 @@ class PermissionTest extends TestCase
 
     public function test_permission_has_casts(): void
     {
-        $permission = new Permission();
+        $permission = new Permission;
 
         $expectedCasts = [
             'id' => 'string',
@@ -195,8 +195,7 @@ class PermissionTest extends TestCase
             ->get();
 
         $this->assertCount(2, $permissions);
-        $this->assertTrue($permissions->every(fn ($permission) => 
-            str_starts_with($permission->name, 'admin.user.') && $permission->created_by === 'admin'
+        $this->assertTrue($permissions->every(fn ($permission) => str_starts_with($permission->name, 'admin.user.') && $permission->created_by === 'admin'
         ));
     }
 
@@ -238,19 +237,15 @@ class PermissionTest extends TestCase
 
     public function test_permission_has_factory_method(): void
     {
-        $permission = new Permission();
+        $permission = new Permission;
 
         $this->assertTrue(method_exists($permission, 'newFactory'));
     }
 
     public function test_permission_has_get_table_method(): void
     {
-        $permission = new Permission();
+        $permission = new Permission;
 
         $this->assertTrue(method_exists($permission, 'getTable'));
     }
 }
-
-
-
-

@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\Notify\Tests\Unit\Models;
-use Modules\Notify\Models\BaseModel;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Notify\Tests\Unit\Models\TestCase;
 
+use Illuminate\Database\Eloquent\Model;
+use Modules\Notify\Models\BaseModel;
 
 beforeEach(function () {
-    $this->baseModel = new class extends BaseModel {
+    $this->baseModel = new class extends BaseModel
+    {
         protected $table = 'test_notify_table';
     };
 });

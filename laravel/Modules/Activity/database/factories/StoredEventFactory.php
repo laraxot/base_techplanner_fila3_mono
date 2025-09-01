@@ -9,16 +9,16 @@ use Modules\Activity\Models\StoredEvent;
 
 /**
  * StoredEvent Factory
- * 
+ *
  * Factory for creating StoredEvent model instances for testing and seeding.
- * 
+ *
  * @extends Factory<StoredEvent>
  */
 class StoredEventFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<StoredEvent>
      */
     protected $model = StoredEvent::class;
@@ -59,9 +59,6 @@ class StoredEventFactory extends Factory
 
     /**
      * Create stored event with specific UUID.
-     *
-     * @param string $uuid
-     * @return static
      */
     public function withUuid(string $uuid): static
     {
@@ -72,9 +69,6 @@ class StoredEventFactory extends Factory
 
     /**
      * Create stored event with specific version.
-     *
-     * @param int $version
-     * @return static
      */
     public function withVersion(int $version): static
     {
@@ -85,9 +79,6 @@ class StoredEventFactory extends Factory
 
     /**
      * Create stored event with specific event class.
-     *
-     * @param string $eventClass
-     * @return static
      */
     public function withEventClass(string $eventClass): static
     {
@@ -98,8 +89,6 @@ class StoredEventFactory extends Factory
 
     /**
      * Create user-related stored event.
-     *
-     * @return static
      */
     public function userEvent(): static
     {

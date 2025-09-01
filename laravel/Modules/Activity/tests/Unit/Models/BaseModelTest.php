@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\Activity\Tests\Unit\Models;
-use Modules\Activity\Models\BaseModel;
+
 use Illuminate\Database\Eloquent\Model;
+use Modules\Activity\Models\BaseModel;
 use Tests\TestCase;
 
 uses(TestCase::class);
 
 beforeEach(function () {
-    $this->baseModel = new class extends BaseModel {
+    $this->baseModel = new class extends BaseModel
+    {
         protected $table = 'test_activity_table';
     };
 });

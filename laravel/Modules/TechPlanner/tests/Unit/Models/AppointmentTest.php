@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
-use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\Location;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
+use Modules\TechPlanner\Models\Worker;
 
 /**
  * Test unitario per il modello Appointment.
@@ -20,13 +17,12 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class AppointmentTest extends TestCase
 {
-
     private Appointment $appointment;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->appointment = Appointment::factory()->create();
     }
 
@@ -214,9 +210,9 @@ class AppointmentTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $appointmentId = $this->appointment->id;
-        
+
         $this->appointment->delete();
-        
+
         $this->assertSoftDeleted('appointments', ['id' => $appointmentId]);
         $this->assertDatabaseMissing('appointments', ['id' => $appointmentId]);
     }
@@ -225,13 +221,13 @@ class AppointmentTest extends TestCase
     public function it_can_be_restored(): void
     {
         $appointmentId = $this->appointment->id;
-        
+
         $this->appointment->delete();
         $this->assertSoftDeleted('appointments', ['id' => $appointmentId]);
-        
+
         $restoredAppointment = Appointment::withTrashed()->find($appointmentId);
         $restoredAppointment->restore();
-        
+
         $this->assertDatabaseHas('appointments', ['id' => $appointmentId]);
         $this->assertNull($restoredAppointment->deleted_at);
     }
@@ -254,7 +250,7 @@ class AppointmentTest extends TestCase
     public function it_has_is_ongoing_check(): void
     {
         $now = now();
-        
+
         // Appuntamento in corso
         $this->appointment->update([
             'start_time' => $now->subMinutes(30),
@@ -284,7 +280,7 @@ class AppointmentTest extends TestCase
     public function it_has_is_past_check(): void
     {
         $now = now();
-        
+
         // Appuntamento passato
         $this->appointment->update([
             'start_time' => $now->subHours(3),
@@ -306,7 +302,7 @@ class AppointmentTest extends TestCase
     public function it_has_is_future_check(): void
     {
         $now = now();
-        
+
         // Appuntamento futuro
         $this->appointment->update([
             'start_time' => $now->addHours(1),
@@ -328,7 +324,7 @@ class AppointmentTest extends TestCase
     public function it_has_is_today_check(): void
     {
         $today = now();
-        
+
         // Appuntamento oggi
         $this->appointment->update([
             'start_time' => $today->copy()->startOfDay()->addHours(9),
@@ -350,7 +346,7 @@ class AppointmentTest extends TestCase
     public function it_has_is_this_week_check(): void
     {
         $thisWeek = now();
-        
+
         // Appuntamento questa settimana
         $this->appointment->update([
             'start_time' => $thisWeek->copy()->startOfWeek()->addDays(2)->addHours(9),

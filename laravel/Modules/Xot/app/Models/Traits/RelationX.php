@@ -15,13 +15,13 @@ use Webmozart\Assert\Assert;
 trait RelationX
 {
     /**
-     * @param class-string<Model>             $related         aaa
-     * @param class-string<Model>|string|null $table           aaa
-     * @param string|null                     $foreignPivotKey aaa
-     * @param string|null                     $relatedPivotKey aaa
-     * @param string|null                     $parentKey       aaa
-     * @param string|null                     $relatedKey      aaa
-     * @param string|null                     $relation        aaa
+     * @param  class-string<Model>  $related  aaa
+     * @param  class-string<Model>|string|null  $table  aaa
+     * @param  string|null  $foreignPivotKey  aaa
+     * @param  string|null  $relatedPivotKey  aaa
+     * @param  string|null  $parentKey  aaa
+     * @param  string|null  $relatedKey  aaa
+     * @param  string|null  $relation  aaa
      */
     public function belongsToManyX(
         string $related,
@@ -45,7 +45,7 @@ trait RelationX
             $table = $pivotDbName.'.'.$table;
         }
         // }
-        
+
         return $this->belongsToMany(
             related: $related,
             table: $table,
@@ -59,7 +59,6 @@ trait RelationX
             ->withPivot($pivotFields)
             ->withTimestamps();
     }
-
 
     /**
      * Define a polymorphic many-to-many relationship.
@@ -78,20 +77,21 @@ trait RelationX
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany<TRelatedModel, $this>
      */
     public function morphToManyX($related, $name, $table = null, $foreignPivotKey = null,
-                                $relatedPivotKey = null, $parentKey = null,
-                                $relatedKey = null, $relation = null, $inverse = false)
+        $relatedPivotKey = null, $parentKey = null,
+        $relatedKey = null, $relation = null, $inverse = false)
     {
-       
+
         $pivot = $this->guessMorphPivot($related);
         $table = $pivot->getTable();
         $pivotFields = $pivot->getFillable();
 
         $pivotDbName = $pivot->getConnection()->getDatabaseName();
         $dbName = $this->getConnection()->getDatabaseName();
-        //$relatedDbName = $related_model->getConnection()->getDatabaseName();
-        if($table==null){
+        // $relatedDbName = $related_model->getConnection()->getDatabaseName();
+        if ($table == null) {
             $table = $pivot->getTable();
         }
+
         return $this->morphToMany(
             related: $related,
             name: $name,
@@ -103,30 +103,31 @@ trait RelationX
             relation: $relation,
             inverse: $inverse,
         )
-        ->using($pivot::class)
-        ->withPivot($pivotFields)
-        ->withTimestamps();
+            ->using($pivot::class)
+            ->withPivot($pivotFields)
+            ->withTimestamps();
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphPivot
      */
-    public function guessMorphPivot(string $related,?string $class = null)
+    public function guessMorphPivot(string $related, ?string $class = null)
     {
         $class = $this::class;
         $pivot_name = class_basename($related).'Morph';
-        
+
         $pivot_class = $this->guessPivotFullClass($pivot_name, $related, $class);
         $pivot = app($pivot_class);
-        Assert::isInstanceOf($pivot,\Illuminate\Database\Eloquent\Relations\MorphPivot::class);
+        Assert::isInstanceOf($pivot, \Illuminate\Database\Eloquent\Relations\MorphPivot::class);
+
         return $pivot;
     }
 
     /**
      * Guess the pivot class for a many-to-many relationship.
      *
-     * @param string $related The related model class name
-     * @param string|class-string|null $class The class to use for parent class lookup (used internally)
+     * @param  string  $related  The related model class name
+     * @param  string|class-string|null  $class  The class to use for parent class lookup (used internally)
      * @return \Illuminate\Database\Eloquent\Relations\Pivot
      */
     public function guessPivot(string $related, ?string $class = null)
@@ -137,18 +138,19 @@ trait RelationX
             class_basename($related),
         ];
         sort($model_names);
-        $msg='';
+        $msg = '';
         $pivot_name = implode('', $model_names);
-        
+
         $pivot_class = $this->guessPivotFullClass($pivot_name, $related, $class);
-        
+
         $pivot = app($pivot_class);
         Assert::isInstanceOf($pivot, \Illuminate\Database\Eloquent\Relations\Pivot::class);
 
         return $pivot;
     }
 
-    public function guessPivotFullClass(string $pivot_name, string $related, ?string $class = null):string{
+    public function guessPivotFullClass(string $pivot_name, string $related, ?string $class = null): string
+    {
         $class = $class ?? $this::class;
         $pivot_class = Str::of($class)
             ->beforeLast('\\')
@@ -156,25 +158,27 @@ trait RelationX
             ->toString();
         if (! class_exists($pivot_class)) {
             $pivot_class = Str::of($related)
-            ->beforeLast('\\')
-            ->append('\\'.$pivot_name)
-            ->toString();
+                ->beforeLast('\\')
+                ->append('\\'.$pivot_name)
+                ->toString();
         }
         if (! class_exists($pivot_class)) {
-            
-            if(get_parent_class($class)!==false){
-                if(!Str::endsWith(get_parent_class($class),'Morph')){
+
+            if (get_parent_class($class) !== false) {
+                if (! Str::endsWith(get_parent_class($class), 'Morph')) {
                     $model_names = [
                         class_basename(get_parent_class($class)),
                         class_basename($related),
                     ];
                     sort($model_names);
                     $pivot_name = implode('', $model_names);
-                    
+
                 }
+
                 return $this->guessPivotFullClass($pivot_name, $related, get_parent_class($class));
             }
         }
+
         return $pivot_class;
     }
 }

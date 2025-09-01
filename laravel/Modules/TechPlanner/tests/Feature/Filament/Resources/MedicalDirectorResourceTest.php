@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
-use Illuminate\Foundation\Testing\WithFaker;
+
 use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource;
 use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource\Pages\CreateMedicalDirector;
@@ -14,17 +11,15 @@ use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource\Pages\EditMed
 use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource\Pages\ListMedicalDirectors;
 use Modules\TechPlanner\Models\MedicalDirector;
 use Modules\User\Models\User;
-use Modules\TechPlanner\Tests\Feature\Filament\Resources\TestCase;
 
 class MedicalDirectorResourceTest extends TestCase
 {
-
     protected User $admin;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->admin = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -186,10 +181,10 @@ class MedicalDirectorResourceTest extends TestCase
     public function it_can_filter_medical_directors_by_specialization(): void
     {
         MedicalDirector::factory()->create([
-            'specializations' => json_encode(['cardiology', 'internal_medicine'])
+            'specializations' => json_encode(['cardiology', 'internal_medicine']),
         ]);
         MedicalDirector::factory()->create([
-            'specializations' => json_encode(['surgery', 'pediatrics'])
+            'specializations' => json_encode(['surgery', 'pediatrics']),
         ]);
 
         Livewire::actingAs($this->admin)

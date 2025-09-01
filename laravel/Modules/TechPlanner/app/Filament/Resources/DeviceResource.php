@@ -3,10 +3,6 @@
 namespace Modules\TechPlanner\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Modules\TechPlanner\Filament\Resources\DeviceResource\Pages;
 use Modules\TechPlanner\Models\Device;
 use Modules\Xot\Filament\Resources\XotBaseResource;

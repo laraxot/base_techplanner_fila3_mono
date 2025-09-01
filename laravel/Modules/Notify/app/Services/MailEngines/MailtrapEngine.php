@@ -34,7 +34,7 @@ class MailtrapEngine
     public static function getInstance(): self
     {
         if (! self::$instance instanceof self) {
-            self::$instance = new self();
+            self::$instance = new self;
         }
 
         return self::$instance;
@@ -74,7 +74,7 @@ class MailtrapEngine
             $to = $this->to;
 
             // Utilizziamo una condizione più appropriata
-            if (!$to) {
+            if (! $to) {
                 throw new \InvalidArgumentException('Il destinatario email non è valido');
             }
 

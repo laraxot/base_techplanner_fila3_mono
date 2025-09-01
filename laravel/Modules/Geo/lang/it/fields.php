@@ -21,4 +21,4 @@ return [
         'placeholder' => 'Seleziona un CAP',
         'tooltip' => 'CAP della città selezionata',
     ],
-]; 
+];

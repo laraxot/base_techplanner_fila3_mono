@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\TenantUser;
+use Modules\Xot\Contracts\UserContract;
 
 class TenantUserPolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class TenantUserPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, TenantUser $tenantUser): bool
     {
-        return $user->hasPermissionTo('tenant-user.view') || 
+        return $user->hasPermissionTo('tenant-user.view') ||
                $user->id === $tenantUser->user_id ||
                $user->tenants->contains($tenantUser->tenant_id) ||
                $user->hasRole('super-admin');
@@ -41,7 +41,7 @@ class TenantUserPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, TenantUser $tenantUser): bool
     {
-        return $user->hasPermissionTo('tenant-user.update') || 
+        return $user->hasPermissionTo('tenant-user.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -50,7 +50,7 @@ class TenantUserPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, TenantUser $tenantUser): bool
     {
-        return $user->hasPermissionTo('tenant-user.delete') || 
+        return $user->hasPermissionTo('tenant-user.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -59,7 +59,7 @@ class TenantUserPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, TenantUser $tenantUser): bool
     {
-        return $user->hasPermissionTo('tenant-user.restore') || 
+        return $user->hasPermissionTo('tenant-user.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -68,7 +68,7 @@ class TenantUserPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, TenantUser $tenantUser): bool
     {
-        return $user->hasPermissionTo('tenant-user.force-delete') || 
+        return $user->hasPermissionTo('tenant-user.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

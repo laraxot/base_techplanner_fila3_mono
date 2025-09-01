@@ -5,17 +5,20 @@ declare(strict_types=1);
 namespace Modules\Notify\Datas\SMS;
 
 use Illuminate\Support\Arr;
-use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Config;
 use Modules\Tenant\Services\TenantService;
+use Spatie\LaravelData\Data;
 
 class NexmoData extends Data
 {
     public ?string $key;
+
     public ?string $secret;
+
     public ?string $base_url;
+
     public string $auth_type = 'api_key';
+
     public int $timeout = 30;
 
     private static ?self $instance = null;
@@ -40,8 +43,8 @@ class NexmoData extends Data
             case 'api_key':
             default:
                 return [
-                    'Authorization' => 'Basic ' . base64_encode($this->key . ':' . $this->secret),
-                    'Content-Type' => 'application/json'
+                    'Authorization' => 'Basic '.base64_encode($this->key.':'.$this->secret),
+                    'Content-Type' => 'application/json',
                 ];
         }
     }

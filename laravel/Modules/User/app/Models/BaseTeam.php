@@ -128,8 +128,8 @@ abstract class BaseTeam extends BaseModel implements TeamContract
 
     /**
      * Determina se l'utente specificato appartiene al team.
-     * 
-     * @param \Modules\Xot\Contracts\UserContract $user L'utente da verificare
+     *
+     * @param  \Modules\Xot\Contracts\UserContract  $user  L'utente da verificare
      * @return bool True se l'utente appartiene al team, false altrimenti
      */
     public function hasUser(UserContract $user): bool
@@ -146,7 +146,7 @@ abstract class BaseTeam extends BaseModel implements TeamContract
     /**
      * Determina se l'indirizzo email specificato appartiene a un utente del team.
      *
-     * @param string $email Indirizzo email da verificare
+     * @param  string  $email  Indirizzo email da verificare
      * @return bool True se un utente con quell'email appartiene al team, false altrimenti
      */
     public function hasUserWithEmail(string $email): bool
@@ -157,8 +157,8 @@ abstract class BaseTeam extends BaseModel implements TeamContract
     /**
      * Determina se l'utente specificato ha il permesso indicato sul team.
      *
-     * @param \Modules\Xot\Contracts\UserContract $userContract L'utente da verificare
-     * @param string $permission Il permesso da controllare
+     * @param  \Modules\Xot\Contracts\UserContract  $userContract  L'utente da verificare
+     * @param  string  $permission  Il permesso da controllare
      * @return bool True se l'utente ha il permesso, false altrimenti
      */
     public function userHasPermission(UserContract $userContract, string $permission): bool
@@ -170,6 +170,7 @@ abstract class BaseTeam extends BaseModel implements TeamContract
      * Ottiene tutti gli inviti utente pendenti per il team.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\User\Models\TeamInvitation, \Modules\User\Models\BaseTeam>
+     *
      * @phpstan-return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\User\Models\TeamInvitation, $this>
      */
     public function teamInvitations(): HasMany
@@ -180,8 +181,7 @@ abstract class BaseTeam extends BaseModel implements TeamContract
     /**
      * Rimuove l'utente specificato dal team.
      *
-     * @param \Modules\Xot\Contracts\UserContract $userContract L'utente da rimuovere dal team
-     * @return void
+     * @param  \Modules\Xot\Contracts\UserContract  $userContract  L'utente da rimuovere dal team
      */
     public function removeUser(UserContract $userContract): void
     {
@@ -198,8 +198,6 @@ abstract class BaseTeam extends BaseModel implements TeamContract
 
     /**
      * Rimuove tutte le risorse del team.
-     * 
-     * @return void
      */
     public function purge(): void
     {

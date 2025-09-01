@@ -447,7 +447,7 @@ class MediaTest extends TestCase
 
     public function test_media_has_casts(): void
     {
-        $media = new Media();
+        $media = new Media;
 
         $expectedCasts = [
             'id' => 'string',

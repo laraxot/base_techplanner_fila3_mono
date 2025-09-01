@@ -8,16 +8,16 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * UpcomingScheduleWidget - 7-Day Schedule Overview Widget
- * 
- * Displays upcoming events for the next 7 days including absences, 
+ *
+ * Displays upcoming events for the next 7 days including absences,
  * smart working, transfers, and other schedule items.
  */
 class UpcomingScheduleWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.upcoming-schedule-widget';
-    
-    protected int | string | array $columnSpan = 'full';
-    
+
+    protected int|string|array $columnSpan = 'full';
+
     protected static ?int $sort = 2;
 
     /**
@@ -40,25 +40,25 @@ class UpcomingScheduleWidget extends XotBaseWidget
         // Query reale per eventi futuri (prossimi 7 giorni)
         $startDate = now()->startOfDay();
         $endDate = now()->addDays(7)->endOfDay();
-        
+
         // Query per WorkHours con tipi speciali nei prossimi 7 giorni
         $upcomingEvents = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
             $query->whereBetween('timestamp', [$startDate, $endDate])
-                  ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave']);
+                ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave']);
         })
-        ->with(['workHours' => function ($query) use ($startDate, $endDate) {
-            $query->whereBetween('timestamp', [$startDate, $endDate])
-                  ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave'])
-                  ->orderBy('timestamp');
-        }])
-        ->limit(10)
-        ->get();
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('timestamp', [$startDate, $endDate])
+                    ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave'])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
 
         $events = [];
         foreach ($upcomingEvents as $employee) {
             foreach ($employee->workHours as $workHour) {
                 $fullName = $this->getEmployeeFullName($employee);
-                
+
                 $events[] = [
                     'id' => $workHour->id,
                     'employee_name' => $fullName,
@@ -91,14 +91,13 @@ class UpcomingScheduleWidget extends XotBaseWidget
                 ],
             ];
         }
-        
+
         return $events;
     }
 
     /**
      * Get event type configuration
      *
-     * @param string $type
      * @return array<string, string>
      */
     protected function getEventTypeConfig(string $type): array
@@ -129,9 +128,6 @@ class UpcomingScheduleWidget extends XotBaseWidget
 
     /**
      * Get status badge color
-     *
-     * @param string $status
-     * @return string
      */
     protected function getStatusBadgeColor(string $status): string
     {
@@ -145,18 +141,16 @@ class UpcomingScheduleWidget extends XotBaseWidget
 
     /**
      * Get avatar background color based on initials
-     *
-     * @param string $initials
-     * @return string
      */
     protected function getAvatarColor(string $initials): string
     {
         $colors = [
             'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
-            'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500'
+            'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500',
         ];
-        
+
         $hash = array_sum(array_map('ord', str_split($initials)));
+
         return $colors[$hash % count($colors)];
     }
 
@@ -175,50 +169,43 @@ class UpcomingScheduleWidget extends XotBaseWidget
     /**
      * Get full name from Employee model using real database fields
      *
-     * @param Employee $employee
-     * @return string
+     * @param  Employee  $employee
      */
     protected function getEmployeeFullName($employee): string
     {
         // Use full_name mutator if available
-        if (!empty($employee->full_name)) {
+        if (! empty($employee->full_name)) {
             return $employee->full_name;
         }
-        
+
         // Combine first_name + last_name
-        if (!empty($employee->first_name) || !empty($employee->last_name)) {
-            return trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? ''));
+        if (! empty($employee->first_name) || ! empty($employee->last_name)) {
+            return trim(($employee->first_name ?? '').' '.($employee->last_name ?? ''));
         }
-        
+
         // Fallback to name field
-        return $employee->name ?? 'Dipendente #' . $employee->id;
+        return $employee->name ?? 'Dipendente #'.$employee->id;
     }
 
     /**
      * Get initials from full name
-     *
-     * @param string $fullName
-     * @return string
      */
     protected function getInitialsFromName(string $fullName): string
     {
         $parts = explode(' ', trim($fullName));
         $initials = '';
-        
+
         foreach ($parts as $part) {
-            if (!empty($part)) {
+            if (! empty($part)) {
                 $initials .= strtoupper(substr($part, 0, 1));
             }
         }
-        
+
         return substr($initials, 0, 2) ?: 'DP';
     }
 
     /**
      * Get event title based on type
-     *
-     * @param string $type
-     * @return string
      */
     protected function getEventTitle(string $type): string
     {

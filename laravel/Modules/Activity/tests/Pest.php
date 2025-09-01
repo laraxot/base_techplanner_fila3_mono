@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\Activity\Tests;
-use Modules\Activity\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------

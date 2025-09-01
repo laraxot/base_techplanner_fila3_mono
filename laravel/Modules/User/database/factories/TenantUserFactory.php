@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace Modules\User\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\User\Models\TenantUser;
 use Modules\User\Models\Tenant;
+use Modules\User\Models\TenantUser;
 use Modules\User\Models\User;
 
 /**
  * TenantUser Factory
- * 
+ *
  * Factory for creating TenantUser model instances for testing and seeding.
- * 
+ *
  * @extends Factory<TenantUser>
  */
 class TenantUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<TenantUser>
      */
     protected $model = TenantUser::class;
@@ -40,9 +40,6 @@ class TenantUserFactory extends Factory
 
     /**
      * Create tenant-user relationship for a specific tenant.
-     *
-     * @param Tenant $tenant
-     * @return static
      */
     public function forTenant(Tenant $tenant): static
     {
@@ -53,9 +50,6 @@ class TenantUserFactory extends Factory
 
     /**
      * Create tenant-user relationship for a specific user.
-     *
-     * @param User $user
-     * @return static
      */
     public function forUser(User $user): static
     {

@@ -9,7 +9,8 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateThemesTable.
  */
-return new class () extends XotBaseMigration {
+return new class extends XotBaseMigration
+{
     // use XotBaseMigrationTrait;
     /**
      * Run the migrations.
@@ -24,12 +25,12 @@ return new class () extends XotBaseMigration {
                 $table->text('subject')->nullable();
                 $table->longText('html_template');
                 $table->longText('text_template')->nullable();
-                
+
             }
         );
 
-         // -- UPDATE --
-         $this->tableUpdate(
+        // -- UPDATE --
+        $this->tableUpdate(
             function (Blueprint $table): void {
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }

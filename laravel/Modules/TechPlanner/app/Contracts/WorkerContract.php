@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Contracts;
 
-use Illuminate\Database\Eloquent\Collection;
-
 /**
  * Modules\TechPlanner\Contracts\WorkerContract.
  *

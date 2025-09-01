@@ -17,7 +17,7 @@ describe('Media Business Logic', function () {
     it('can create media from temporary upload', function () {
         $user = User::factory()->create();
         $file = UploadedFile::fake()->image('test-image.jpg', 100, 100);
-        
+
         $temporaryUpload = TemporaryUpload::factory()->create([
             'user_id' => $user->id,
             'file_name' => $file->getClientOriginalName(),
@@ -102,7 +102,7 @@ describe('Media Business Logic', function () {
 
     it('can manage media collections', function () {
         $user = User::factory()->create();
-        
+
         $profileMedia = Media::factory()->create([
             'user_id' => $user->id,
             'collection_name' => 'profile',
@@ -131,7 +131,7 @@ describe('Media Business Logic', function () {
 
     it('can validate media file types', function () {
         $user = User::factory()->create();
-        
+
         $validImage = Media::factory()->create([
             'user_id' => $user->id,
             'mime_type' => 'image/jpeg',
@@ -178,7 +178,7 @@ describe('Media Business Logic', function () {
     it('can manage media permissions', function () {
         $owner = User::factory()->create();
         $otherUser = User::factory()->create();
-        
+
         $media = Media::factory()->create([
             'user_id' => $owner->id,
             'is_public' => false,
@@ -223,7 +223,7 @@ describe('Media Business Logic', function () {
 
     it('can validate file size limits', function () {
         $user = User::factory()->create();
-        
+
         $validMedia = Media::factory()->create([
             'user_id' => $user->id,
             'file_size' => 1024 * 1024, // 1MB
@@ -241,7 +241,7 @@ describe('Media Business Logic', function () {
 
     it('can track media usage statistics', function () {
         $user = User::factory()->create();
-        
+
         Media::factory()->count(5)->create([
             'user_id' => $user->id,
             'mime_type' => 'image/jpeg',

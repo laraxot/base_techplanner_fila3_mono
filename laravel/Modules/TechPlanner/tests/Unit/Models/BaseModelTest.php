@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
-use Modules\TechPlanner\Models\BaseModel;
-use Illuminate\Database\Eloquent\Model;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
+use Illuminate\Database\Eloquent\Model;
+use Modules\TechPlanner\Models\BaseModel;
 
 beforeEach(function () {
-    $this->baseModel = new class extends BaseModel {
+    $this->baseModel = new class extends BaseModel
+    {
         protected $table = 'test_techplanner_table';
     };
 });

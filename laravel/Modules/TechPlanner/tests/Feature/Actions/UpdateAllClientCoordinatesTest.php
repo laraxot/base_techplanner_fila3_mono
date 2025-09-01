@@ -1,6 +1,5 @@
 <?php
 
-
 use Modules\Geo\Actions\UpdateCoordinatesAction;
 use Modules\TechPlanner\Actions\UpdateAllClientCoordinatesAction;
 use Modules\TechPlanner\Models\Client;
@@ -8,7 +7,6 @@ use Tests\TestCase;
 
 class UpdateAllClientCoordinatesTest extends TestCase
 {
-
     public function test_it_updates_all_client_coordinates(): void
     {
         // Arrange

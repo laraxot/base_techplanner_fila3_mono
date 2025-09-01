@@ -10,7 +10,7 @@ use Modules\User\Models\OauthPersonalAccessClient;
 
 /**
  * OauthPersonalAccessClient Factory
- * 
+ *
  * @extends Factory<OauthPersonalAccessClient>
  */
 class OauthPersonalAccessClientFactory extends Factory

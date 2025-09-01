@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * Validatore per i dati geografici.
- * 
+ *
  * Questo servizio fornisce metodi per validare la struttura e l'integrità
  * dei dati geografici nel file JSON.
- * 
+ *
  * @see \Modules\Geo\docs\json-database.md
  */
 class GeoDataValidator
@@ -63,9 +63,8 @@ class GeoDataValidator
 
     /**
      * Valida i dati geografici.
-     * 
-     * @param array $data Dati da validare
-     * @return bool
+     *
+     * @param  array  $data  Dati da validare
      */
     public function validate(array $data): bool
     {
@@ -75,13 +74,13 @@ class GeoDataValidator
             self::CUSTOM_MESSAGES
         );
 
-        return !$validator->fails();
+        return ! $validator->fails();
     }
 
     /**
      * Ottiene gli errori di validazione.
-     * 
-     * @param array $data Dati da validare
+     *
+     * @param  array  $data  Dati da validare
      * @return array<string, string>
      */
     public function getErrors(array $data): array
@@ -97,13 +96,12 @@ class GeoDataValidator
 
     /**
      * Verifica l'integrità dei dati.
-     * 
-     * @param array $data Dati da verificare
-     * @return bool
+     *
+     * @param  array  $data  Dati da verificare
      */
     public function checkIntegrity(array $data): bool
     {
-        if (!$this->validate($data)) {
+        if (! $this->validate($data)) {
             return false;
         }
 
@@ -135,4 +133,4 @@ class GeoDataValidator
 
         return true;
     }
-} 
+}

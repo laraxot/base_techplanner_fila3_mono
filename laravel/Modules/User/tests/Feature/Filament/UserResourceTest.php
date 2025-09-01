@@ -2,23 +2,22 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\User\Tests\Feature\Filament;
+
 use Livewire\Livewire;
-use Modules\User\Models\User;
-use Modules\User\Models\Role;
-use Modules\User\Models\Permission;
 use Modules\User\Filament\Resources\UserResource;
 use Modules\User\Filament\Resources\UserResource\Pages\CreateUser;
 use Modules\User\Filament\Resources\UserResource\Pages\EditUser;
 use Modules\User\Filament\Resources\UserResource\Pages\ListUsers;
 use Modules\User\Filament\Resources\UserResource\Pages\ViewUser;
+use Modules\User\Models\Permission;
+use Modules\User\Models\Role;
+use Modules\User\Models\User;
 
 beforeEach(function () {
     $this->admin = User::factory()->create();
     $this->user = User::factory()->create();
-    
+
     // Set admin panel for testing
     Filament\Facades\Filament::setCurrentPanel('user::admin');
     $this->actingAs($this->admin);

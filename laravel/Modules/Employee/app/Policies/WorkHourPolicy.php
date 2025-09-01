@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Policies;
 
-use Modules\User\Models\User;
 use Modules\Employee\Models\WorkHour;
-use Modules\Xot\Contracts\UserContract;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\User\Models\Policies\UserBasePolicy;
+use Modules\User\Models\User;
+use Modules\Xot\Contracts\UserContract;
 
 class WorkHourPolicy extends UserBasePolicy
 {
-    
-
     /**
      * Determine whether the user can view any work hours.
      */
     public function viewAnyOld(UserContract $user): bool
     {
-        return $user->hasPermissionTo('view_work_hours') || 
+        return $user->hasPermissionTo('view_work_hours') ||
                $user->hasRole(['admin', 'manager', 'hr']);
     }
 
@@ -34,7 +31,7 @@ class WorkHourPolicy extends UserBasePolicy
         }
 
         // Managers and admins can view all work hours
-        return $user->hasPermissionTo('view_all_work_hours') || 
+        return $user->hasPermissionTo('view_all_work_hours') ||
                $user->hasRole(['admin', 'manager', 'hr']);
     }
 
@@ -43,7 +40,7 @@ class WorkHourPolicy extends UserBasePolicy
      */
     public function createOld(UserContract $user): bool
     {
-        return $user->hasPermissionTo('create_work_hours') || 
+        return $user->hasPermissionTo('create_work_hours') ||
                $user->hasRole(['admin', 'manager', 'hr', 'employee']);
     }
 
@@ -55,11 +52,12 @@ class WorkHourPolicy extends UserBasePolicy
         // Users can update their own work hours within 24 hours
         if ($user->id === $workHour->user_id) {
             $hoursSinceCreation = $workHour->created_at->diffInHours(now());
+
             return $hoursSinceCreation <= 24;
         }
 
         // Managers and admins can update any work hours
-        return $user->hasPermissionTo('update_all_work_hours') || 
+        return $user->hasPermissionTo('update_all_work_hours') ||
                $user->hasRole(['admin', 'manager', 'hr']);
     }
 
@@ -74,7 +72,7 @@ class WorkHourPolicy extends UserBasePolicy
         }
 
         // Only admins and managers can delete work hours
-        return $user->hasPermissionTo('delete_work_hours') || 
+        return $user->hasPermissionTo('delete_work_hours') ||
                $user->hasRole(['admin', 'manager']);
     }
 
@@ -83,7 +81,7 @@ class WorkHourPolicy extends UserBasePolicy
      */
     public function restoreOld(UserContract $user, WorkHour $workHour): bool
     {
-        return $user->hasPermissionTo('restore_work_hours') || 
+        return $user->hasPermissionTo('restore_work_hours') ||
                $user->hasRole(['admin']);
     }
 
@@ -92,7 +90,7 @@ class WorkHourPolicy extends UserBasePolicy
      */
     public function forceDeleteOld(UserContract $user, WorkHour $workHour): bool
     {
-        return $user->hasPermissionTo('force_delete_work_hours') || 
+        return $user->hasPermissionTo('force_delete_work_hours') ||
                $user->hasRole(['admin']);
     }
 
@@ -107,7 +105,7 @@ class WorkHourPolicy extends UserBasePolicy
         }
 
         // Managers can clock in/out for their team members
-        return $user->hasPermissionTo('manage_team_work_hours') || 
+        return $user->hasPermissionTo('manage_team_work_hours') ||
                $user->hasRole(['admin', 'manager', 'hr']);
     }
 
@@ -116,7 +114,7 @@ class WorkHourPolicy extends UserBasePolicy
      */
     public function viewReportsOld(UserContract $user): bool
     {
-        return $user->hasPermissionTo('view_work_hour_reports') || 
+        return $user->hasPermissionTo('view_work_hour_reports') ||
                $user->hasRole(['admin', 'manager', 'hr']);
     }
 
@@ -125,7 +123,7 @@ class WorkHourPolicy extends UserBasePolicy
      */
     public function exportOld(UserContract $user): bool
     {
-        return $user->hasPermissionTo('export_work_hours') || 
+        return $user->hasPermissionTo('export_work_hours') ||
                $user->hasRole(['admin', 'manager', 'hr']);
     }
 
@@ -134,7 +132,7 @@ class WorkHourPolicy extends UserBasePolicy
      */
     public function manageSettingsOld(UserContract $user): bool
     {
-        return $user->hasPermissionTo('manage_work_hour_settings') || 
+        return $user->hasPermissionTo('manage_work_hour_settings') ||
                $user->hasRole(['admin', 'hr']);
     }
 }

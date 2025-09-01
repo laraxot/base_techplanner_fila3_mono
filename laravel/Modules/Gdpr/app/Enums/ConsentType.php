@@ -4,36 +4,33 @@ declare(strict_types=1);
 
 namespace Modules\Gdpr\Enums;
 
-use Illuminate\Support\Collection;
-
 /**
  * Enum ConsentType
- * 
+ *
  * Defines all available consent types in the application.
  * Each consent type must have a corresponding translation key in the language files.
  */
 enum ConsentType: string
 {
-
     // Marketing communications
     case MARKETING_EMAIL = 'marketing_email';
     case MARKETING_SMS = 'marketing_sms';
     case MARKETING_PHONE = 'marketing_phone';
-    
+
     // Privacy and data processing
     case PRIVACY_POLICY = 'privacy_policy';
     case COOKIES = 'cookies';
     case ANALYTICS = 'analytics';
     case PERSONALIZATION = 'personalization';
-    
+
     // Data sharing
     case THIRD_PARTY_SHARING = 'third_party_sharing';
     case DATA_TRANSFER = 'data_transfer';
-    
+
     // Account related
     case TERMS_AND_CONDITIONS = 'terms_and_conditions';
     case AGE_VERIFICATION = 'age_verification';
-    
+
     // Special consents
     case RESEARCH = 'research';
     case PROFILING = 'profiling';
@@ -41,12 +38,10 @@ enum ConsentType: string
 
     /**
      * Get the human-readable name of the consent type.
-     * 
-     * @return string
      */
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MARKETING_EMAIL => __('gdpr::consent.types.marketing_email'),
             self::MARKETING_SMS => __('gdpr::consent.types.marketing_sms'),
             self::MARKETING_PHONE => __('gdpr::consent.types.marketing_phone'),
@@ -66,12 +61,10 @@ enum ConsentType: string
 
     /**
      * Get the description of the consent type.
-     * 
-     * @return string
      */
     public function description(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MARKETING_EMAIL => __('gdpr::consent.descriptions.marketing_email'),
             self::MARKETING_SMS => __('gdpr::consent.descriptions.marketing_sms'),
             self::MARKETING_PHONE => __('gdpr::consent.descriptions.marketing_phone'),
@@ -91,8 +84,6 @@ enum ConsentType: string
 
     /**
      * Check if this consent type is required for using the service.
-     * 
-     * @return bool
      */
     public function isRequired(): bool
     {
@@ -105,7 +96,7 @@ enum ConsentType: string
 
     /**
      * Get all required consent types.
-     * 
+     *
      * @return array<string>
      */
     public static function getRequiredConsentTypes(): array
@@ -118,20 +109,20 @@ enum ConsentType: string
 
     /**
      * Get all optional consent types.
-     * 
+     *
      * @return array<string>
      */
     public static function getOptionalConsentTypes(): array
     {
         return array_map(
             fn (self $type) => $type->value,
-            array_filter(self::cases(), fn (self $type) => !$type->isRequired())
+            array_filter(self::cases(), fn (self $type) => ! $type->isRequired())
         );
     }
 
     /**
      * Get consent types grouped by category.
-     * 
+     *
      * @return array<string, array<string, string>>
      */
     public static function groupedByCategory(): array
@@ -163,6 +154,4 @@ enum ConsentType: string
             ],
         ];
     }
-
-    
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Job\Filament\Resources;
 
 use Filament\Forms;
-use Modules\Job\Filament\Resources\FailedImportRowResource\Pages;
 use Modules\Job\Models\FailedImportRow;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 

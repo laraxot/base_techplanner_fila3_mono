@@ -5,24 +5,25 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\Placeholder;
 use Modules\Employee\Models\Employee;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * Leave balance widget showing vacation, ROL, permits and hour bank.
- * 
+ *
  * Displays monthly and annual leave balances with visual progress bars.
  */
 class LeaveBalanceWidget extends XotBaseWidget
 {
     protected static ?int $sort = 2;
+
     protected static ?string $maxHeight = '400px';
-    
-    protected int | string | array $columnSpan = [
+
+    protected int|string|array $columnSpan = [
         'md' => 2,
         'xl' => 1,
     ];
@@ -36,7 +37,7 @@ class LeaveBalanceWidget extends XotBaseWidget
     {
         $employee = Employee::find(auth()->id());
         $currentMonth = Carbon::now()->translatedFormat('F Y');
-        
+
         return [
             Section::make(__('employee::widgets.leave_balance.title', ['month' => $currentMonth]))
                 ->schema([
@@ -46,23 +47,23 @@ class LeaveBalanceWidget extends XotBaseWidget
                                 ->label(__('employee::widgets.leave_balance.monthly'))
                                 ->schema([
                                     Placeholder::make('monthly_balances')
-                                        ->content(fn() => view('employee::widgets.leave-balance.balance-display', [
+                                        ->content(fn () => view('employee::widgets.leave-balance.balance-display', [
                                             'balances' => $this->getMonthlyBalances($employee),
-                                            'type' => 'monthly'
+                                            'type' => 'monthly',
                                         ])),
                                 ]),
-                            
+
                             Tab::make('annual')
                                 ->label(__('employee::widgets.leave_balance.annual'))
                                 ->schema([
                                     Placeholder::make('annual_balances')
-                                        ->content(fn() => view('employee::widgets.leave-balance.balance-display', [
+                                        ->content(fn () => view('employee::widgets.leave-balance.balance-display', [
                                             'balances' => $this->getAnnualBalances($employee),
-                                            'type' => 'annual'
+                                            'type' => 'annual',
                                         ])),
                                 ]),
                         ])
-                        ->activeTab(1)
+                        ->activeTab(1),
                 ])
                 ->extraAttributes(['class' => 'leave-balance-widget']),
         ];
@@ -73,14 +74,14 @@ class LeaveBalanceWidget extends XotBaseWidget
      */
     protected function getMonthlyBalances(?Employee $employee): array
     {
-        if (!$employee) {
+        if (! $employee) {
             return $this->getDefaultBalances();
         }
 
         // Calculate current month balances
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
-        
+
         return [
             'ferie' => [
                 'label' => __('employee::widgets.leave_balance.types.vacation'),
@@ -130,13 +131,13 @@ class LeaveBalanceWidget extends XotBaseWidget
      */
     protected function getAnnualBalances(?Employee $employee): array
     {
-        if (!$employee) {
+        if (! $employee) {
             return $this->getDefaultBalances();
         }
 
         // Calculate annual balances
         $currentYear = Carbon::now()->year;
-        
+
         return [
             'ferie' => [
                 'label' => __('employee::widgets.leave_balance.types.vacation'),

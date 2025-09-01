@@ -5,31 +5,38 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Livewire;
 
 use Carbon\Carbon;
-use Livewire\Component;
-use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Models\Employee;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\WorkHour;
 
 class WorkHourDashboard extends Component
 {
     public ?Employee $employee = null;
+
     public array $weeklyStats = [];
+
     public array $monthlyStats = [];
+
     public float $todayHours = 0.0;
+
     public float $weekHours = 0.0;
+
     public float $monthHours = 0.0;
+
     public array $recentEntries = [];
+
     public string $selectedPeriod = 'week';
 
     protected $listeners = [
         'workHourRecorded' => 'refreshStats',
-        'refreshDashboard' => 'refreshStats'
+        'refreshDashboard' => 'refreshStats',
     ];
 
     public function mount(?int $employeeId = null): void
     {
-        $this->employee = $employeeId 
-            ? Employee::find($employeeId) 
+        $this->employee = $employeeId
+            ? Employee::find($employeeId)
             : (Auth::user()->employee ?? null);
         $this->refreshStats();
     }
@@ -41,7 +48,7 @@ class WorkHourDashboard extends Component
 
     public function refreshStats(): void
     {
-        if (!$this->employee) {
+        if (! $this->employee) {
             return;
         }
 
@@ -65,14 +72,14 @@ class WorkHourDashboard extends Component
     {
         $startOfWeek = Carbon::now()->startOfWeek();
         $endOfWeek = Carbon::now()->endOfWeek();
-        
+
         $this->weekHours = 0.0;
         $this->weeklyStats = [];
 
         for ($date = $startOfWeek->copy(); $date->lte($endOfWeek); $date->addDay()) {
             $hours = WorkHour::calculateWorkedHours($this->employee->id, $date);
             $this->weekHours += $hours;
-            
+
             $this->weeklyStats[] = [
                 'date' => $date->format('Y-m-d'),
                 'day' => $date->format('D'),
@@ -86,7 +93,7 @@ class WorkHourDashboard extends Component
     {
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
-        
+
         $this->monthHours = 0.0;
         $this->monthlyStats = [];
 
@@ -180,11 +187,11 @@ class WorkHourDashboard extends Component
     {
         $wholeHours = floor($hours);
         $minutes = round(($hours - $wholeHours) * 60);
-        
+
         if ($minutes == 0) {
             return "{$wholeHours}h";
         }
-        
+
         return "{$wholeHours}h {$minutes}m";
     }
 
@@ -200,6 +207,7 @@ class WorkHourDashboard extends Component
         }
 
         $average = $this->weekHours / $workDays;
+
         return $this->formatHours($average);
     }
 
@@ -213,13 +221,14 @@ class WorkHourDashboard extends Component
         // Assuming 40 hours per week as target
         $targetHours = 40;
         $percentage = ($this->weekHours / $targetHours) * 100;
+
         return min(100, (int) round($percentage));
     }
 
     public function getProgressColor(): string
     {
         $percentage = $this->getProgressPercentage();
-        
+
         if ($percentage >= 90) {
             return 'success';
         } elseif ($percentage >= 70) {

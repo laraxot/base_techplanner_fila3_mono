@@ -8,16 +8,16 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * TodayPresenceWidget - Real-time Presence Tracking Widget
- * 
+ *
  * Displays who is present today with real-time counters,
  * employee avatars, and detailed presence information.
  */
 class TodayPresenceWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.today-presence-widget';
-    
-    protected int | string | array $columnSpan = 'full';
-    
+
+    protected int|string|array $columnSpan = 'full';
+
     protected static ?int $sort = 4;
 
     /**
@@ -38,58 +38,58 @@ class TodayPresenceWidget extends XotBaseWidget
     protected function getTodayPresence(): array
     {
         $today = now()->startOfDay();
-        
+
         // Get employees who clocked in today (present employees)
         $presentEmployees = \Modules\Employee\Models\Employee::whereHas('workHours', function ($query) use ($today) {
             $query->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
-                  ->whereDate('timestamp', $today)
-                  ->whereNotExists(function ($subQuery) use ($today) {
-                      $subQuery->from('time_entries as te2')
-                               ->whereColumn('te2.employee_id', 'time_entries.employee_id')
-                               ->where('te2.type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_OUT)
-                               ->whereDate('te2.timestamp', $today)
-                               ->where('te2.timestamp', '>', \DB::raw('time_entries.timestamp'));
-                  });
+                ->whereDate('timestamp', $today)
+                ->whereNotExists(function ($subQuery) use ($today) {
+                    $subQuery->from('time_entries as te2')
+                        ->whereColumn('te2.employee_id', 'time_entries.employee_id')
+                        ->where('te2.type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_OUT)
+                        ->whereDate('te2.timestamp', $today)
+                        ->where('te2.timestamp', '>', \DB::raw('time_entries.timestamp'));
+                });
         })
-        ->with(['workHours' => function ($query) use ($today) {
-            $query->whereDate('timestamp', $today)->latest('timestamp');
-        }])
-        ->get()
-        ->map(function ($employee) {
-            $lastEntry = $employee->workHours->first();
-            $workType = $this->determineWorkType($lastEntry);
-            
-            return [
-                'id' => $employee->id,
-                'name' => $employee->full_name ?? 'N/A',
-                'initials' => $this->generateInitials($employee->full_name ?? ''),
-                'department' => $employee->work_data['department'] ?? 'N/A',
-                'check_in_time' => $lastEntry ? $lastEntry->timestamp->format('H:i') : 'N/A',
-                'location' => $lastEntry->location_name ?? $workType['default_location'],
-                'status' => 'present',
-                'work_type' => $workType['type'],
-            ];
-        })->toArray();
+            ->with(['workHours' => function ($query) use ($today) {
+                $query->whereDate('timestamp', $today)->latest('timestamp');
+            }])
+            ->get()
+            ->map(function ($employee) {
+                $lastEntry = $employee->workHours->first();
+                $workType = $this->determineWorkType($lastEntry);
+
+                return [
+                    'id' => $employee->id,
+                    'name' => $employee->full_name ?? 'N/A',
+                    'initials' => $this->generateInitials($employee->full_name ?? ''),
+                    'department' => $employee->work_data['department'] ?? 'N/A',
+                    'check_in_time' => $lastEntry ? $lastEntry->timestamp->format('H:i') : 'N/A',
+                    'location' => $lastEntry->location_name ?? $workType['default_location'],
+                    'status' => 'present',
+                    'work_type' => $workType['type'],
+                ];
+            })->toArray();
 
         // Get employees who are absent (no clock-in today or on leave)
         $absentEmployees = \Modules\Employee\Models\Employee::whereDoesntHave('workHours', function ($query) use ($today) {
             $query->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
-                  ->whereDate('timestamp', $today);
+                ->whereDate('timestamp', $today);
         })
-        ->where('status', '!=', 'terminated') // Don't show terminated employees
-        ->limit(10) // Limit for performance
-        ->get()
-        ->map(function ($employee) {
-            return [
-                'id' => $employee->id,
-                'name' => $employee->full_name ?? 'N/A',
-                'initials' => $this->generateInitials($employee->full_name ?? ''),
-                'department' => $employee->work_data['department'] ?? 'N/A',
-                'absence_type' => $this->determineAbsenceType($employee),
-                'absence_reason' => $this->getAbsenceReason($employee),
-                'return_date' => $this->getEstimatedReturnDate($employee),
-            ];
-        })->toArray();
+            ->where('status', '!=', 'terminated') // Don't show terminated employees
+            ->limit(10) // Limit for performance
+            ->get()
+            ->map(function ($employee) {
+                return [
+                    'id' => $employee->id,
+                    'name' => $employee->full_name ?? 'N/A',
+                    'initials' => $this->generateInitials($employee->full_name ?? ''),
+                    'department' => $employee->work_data['department'] ?? 'N/A',
+                    'absence_type' => $this->determineAbsenceType($employee),
+                    'absence_reason' => $this->getAbsenceReason($employee),
+                    'return_date' => $this->getEstimatedReturnDate($employee),
+                ];
+            })->toArray();
 
         return [
             'present' => $presentEmployees,
@@ -101,9 +101,6 @@ class TodayPresenceWidget extends XotBaseWidget
 
     /**
      * Generate initials from full name
-     *
-     * @param string $fullName
-     * @return string
      */
     protected function generateInitials(string $fullName): string
     {
@@ -111,35 +108,34 @@ class TodayPresenceWidget extends XotBaseWidget
         if (empty($parts) || $fullName === '') {
             return 'N/A';
         }
-        
+
         $initials = '';
         foreach (array_slice($parts, 0, 2) as $part) {
             $initials .= strtoupper(substr($part, 0, 1));
         }
-        
+
         return $initials;
     }
 
     /**
      * Determine work type based on last entry
      *
-     * @param ?\Modules\Employee\Models\WorkHour $lastEntry
      * @return array<string, string>
      */
     protected function determineWorkType(?\Modules\Employee\Models\WorkHour $lastEntry): array
     {
-        if (!$lastEntry) {
+        if (! $lastEntry) {
             return ['type' => 'office', 'default_location' => 'Ufficio'];
         }
 
         if ($lastEntry->location_name) {
-            if (str_contains(strtolower($lastEntry->location_name), 'smart') || 
+            if (str_contains(strtolower($lastEntry->location_name), 'smart') ||
                 str_contains(strtolower($lastEntry->location_name), 'remote') ||
                 str_contains(strtolower($lastEntry->location_name), 'casa')) {
                 return ['type' => 'remote', 'default_location' => 'Smart Working'];
             }
-            
-            if (str_contains(strtolower($lastEntry->location_name), 'trasferta') || 
+
+            if (str_contains(strtolower($lastEntry->location_name), 'trasferta') ||
                 str_contains(strtolower($lastEntry->location_name), 'viaggio')) {
                 return ['type' => 'travel', 'default_location' => 'Trasferta'];
             }
@@ -150,9 +146,6 @@ class TodayPresenceWidget extends XotBaseWidget
 
     /**
      * Determine absence type for employee
-     *
-     * @param \Modules\Employee\Models\Employee $employee
-     * @return string
      */
     protected function determineAbsenceType(\Modules\Employee\Models\Employee $employee): string
     {
@@ -168,9 +161,6 @@ class TodayPresenceWidget extends XotBaseWidget
 
     /**
      * Get absence reason for employee
-     *
-     * @param \Modules\Employee\Models\Employee $employee
-     * @return string
      */
     protected function getAbsenceReason(\Modules\Employee\Models\Employee $employee): string
     {
@@ -184,9 +174,6 @@ class TodayPresenceWidget extends XotBaseWidget
 
     /**
      * Get estimated return date for employee
-     *
-     * @param \Modules\Employee\Models\Employee $employee
-     * @return string
      */
     protected function getEstimatedReturnDate(\Modules\Employee\Models\Employee $employee): string
     {
@@ -201,26 +188,23 @@ class TodayPresenceWidget extends XotBaseWidget
 
     /**
      * Get avatar background color based on initials
-     *
-     * @param string $initials
-     * @return string
      */
     protected function getAvatarColor(string $initials): string
     {
         $colors = [
             'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
             'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500',
-            'bg-orange-500', 'bg-cyan-500', 'bg-lime-500', 'bg-amber-500'
+            'bg-orange-500', 'bg-cyan-500', 'bg-lime-500', 'bg-amber-500',
         ];
-        
+
         $hash = array_sum(array_map('ord', str_split($initials)));
+
         return $colors[$hash % count($colors)];
     }
 
     /**
      * Get work type configuration
      *
-     * @param string $type
      * @return array<string, string>
      */
     protected function getWorkTypeConfig(string $type): array
@@ -252,7 +236,6 @@ class TodayPresenceWidget extends XotBaseWidget
     /**
      * Get absence type configuration
      *
-     * @param string $type
      * @return array<string, string>
      */
     protected function getAbsenceTypeConfig(string $type): array
@@ -295,44 +278,37 @@ class TodayPresenceWidget extends XotBaseWidget
 
     /**
      * Get full name from Employee model using real database fields
-     *
-     * @param Employee $employee
-     * @return string
      */
     protected function getEmployeeFullName(Employee $employee): string
     {
         // Use full_name mutator if available
-        if (!empty($employee->full_name)) {
+        if (! empty($employee->full_name)) {
             return $employee->full_name;
         }
-        
+
         // Combine first_name + last_name
-        if (!empty($employee->first_name) || !empty($employee->last_name)) {
-            return trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? ''));
+        if (! empty($employee->first_name) || ! empty($employee->last_name)) {
+            return trim(($employee->first_name ?? '').' '.($employee->last_name ?? ''));
         }
-        
+
         // Fallback to name field
-        return $employee->name ?? 'Dipendente #' . $employee->id;
+        return $employee->name ?? 'Dipendente #'.$employee->id;
     }
 
     /**
      * Get initials from full name
-     *
-     * @param string $fullName
-     * @return string
      */
     protected function getInitialsFromName(string $fullName): string
     {
         $parts = explode(' ', trim($fullName));
         $initials = '';
-        
+
         foreach ($parts as $part) {
-            if (!empty($part)) {
+            if (! empty($part)) {
                 $initials .= strtoupper(substr($part, 0, 1));
             }
         }
-        
+
         return substr($initials, 0, 2) ?: 'DP';
     }
-
 }

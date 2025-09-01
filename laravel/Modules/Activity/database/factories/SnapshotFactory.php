@@ -9,16 +9,16 @@ use Modules\Activity\Models\Snapshot;
 
 /**
  * Snapshot Factory
- * 
+ *
  * Factory for creating Snapshot model instances for testing and seeding.
- * 
+ *
  * @extends Factory<Snapshot>
  */
 class SnapshotFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<Snapshot>
      */
     protected $model = Snapshot::class;
@@ -46,9 +46,6 @@ class SnapshotFactory extends Factory
 
     /**
      * Create snapshot with specific UUID.
-     *
-     * @param string $uuid
-     * @return static
      */
     public function withUuid(string $uuid): static
     {
@@ -59,9 +56,6 @@ class SnapshotFactory extends Factory
 
     /**
      * Create snapshot with specific version.
-     *
-     * @param int $version
-     * @return static
      */
     public function withVersion(int $version): static
     {
@@ -73,8 +67,7 @@ class SnapshotFactory extends Factory
     /**
      * Create snapshot with specific state.
      *
-     * @param array<string, mixed> $state
-     * @return static
+     * @param  array<string, mixed>  $state
      */
     public function withState(array $state): static
     {

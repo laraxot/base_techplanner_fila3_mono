@@ -17,14 +17,13 @@ use Modules\Xot\Contracts\ProfileContract;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Services\ModuleService;
 use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
 
 use function Safe\define;
 use function Safe\glob;
 use function Safe\json_decode;
 use function Safe\preg_match;
 use function Safe\realpath;
-
-use Webmozart\Assert\Assert;
 
 // ------------------------------------------------
 
@@ -126,14 +125,14 @@ if (! function_exists('hex2rgba')) {
         }
 
         // Sanitize $color if "#" is provided
-        if ('#' === $color[0]) {
+        if ($color[0] === '#') {
             $color = mb_substr($color, 1);
         }
 
         // Check if color has 6 or 3 characters and get values
-        if (6 === mb_strlen($color)) {
+        if (mb_strlen($color) === 6) {
             $hex = [$color[0].$color[1], $color[2].$color[3], $color[4].$color[5]];
-        } elseif (3 === mb_strlen($color)) {
+        } elseif (mb_strlen($color) === 3) {
             $hex = [$color[0].$color[0], $color[1].$color[1], $color[2].$color[2]];
         } else {
             return $default;
@@ -143,7 +142,7 @@ if (! function_exists('hex2rgba')) {
         $rgb = array_map('hexdec', $hex);
 
         // Check if opacity is set(rgba or rgb)
-        if (-1.0 !== $opacity) {
+        if ($opacity !== -1.0) {
             if ($opacity < 0 || $opacity > 1) {
                 $opacity = 1.0;
             }
@@ -280,13 +279,13 @@ if (! function_exists('inAdmin')) {
             return config()->get('in_admin');
         }
         */
-        if ('admin' === Request::segment(2)) {
+        if (Request::segment(2) === 'admin') {
             return true;
         }
 
         $segments = Request::segments();
 
-        return (is_countable($segments) ? count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
+        return (is_countable($segments) ? count($segments) : 0) > 0 && $segments[0] === 'livewire' && session('in_admin') === true;
     }
 }
 
@@ -385,7 +384,7 @@ if (! function_exists('params2ContainerItem')) {
      */
     function params2ContainerItem(?array $params = null): array
     {
-        if (null === $params) {
+        if ($params === null) {
             // Call to static method current() on an unknown class Route.
             // $params = optional(\Route::current())->parameters();
             // Cannot call method parameters() on mixed.
@@ -403,7 +402,7 @@ if (! function_exists('params2ContainerItem')) {
             $pattern = '/(container|item)(\d+)/';
             preg_match($pattern, $k, $matches);
 
-            if (!empty($matches) && isset($matches[1]) && isset($matches[2]) && is_string($matches[1]) && is_string($matches[2])) {
+            if (! empty($matches) && isset($matches[1]) && isset($matches[2]) && is_string($matches[1]) && is_string($matches[2])) {
                 $sk = $matches[1];
                 $sv = $matches[2];
                 // @phpstan-ignore offsetAccess.nonOffsetAccessible
@@ -415,13 +414,12 @@ if (! function_exists('params2ContainerItem')) {
     }
 }
 
-
 if (! function_exists('getModelFields')) {
-    function getModelFields(Model $model): array {
+    function getModelFields(Model $model): array
+    {
         return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
     }
 }
-
 
 if (! function_exists('getModelByName')) {
     function getModelByName(string $name): Model
@@ -453,7 +451,7 @@ if (! function_exists('getModelByName')) {
             }
         );
 
-        if (null === $path) {
+        if ($path === null) {
             throw new Exception('['.$name.'] not in morph_map ['.__LINE__.']['.__FILE__.']');
         }
         Assert::string($path);
@@ -555,9 +553,10 @@ if (! function_exists('getAllModulesModels')) {
     /**
      * Get all models from all enabled modules.
      *
-     * @throws ReflectionException
      *
      * @return array<string, string>
+     *
+     * @throws ReflectionException
      */
     function getAllModulesModels(): array
     {
@@ -662,7 +661,7 @@ if (! function_exists('dottedToBrackets')) {
     function dottedToBrackets(string $str, string $quotation_marks = ''): string
     {
         return collect(explode('.', $str))->map(
-            static fn (string $v, $k): string => 0 === $k ? $v : '['.$v.']'
+            static fn (string $v, $k): string => $k === 0 ? $v : '['.$v.']'
         )->implode('');
     }
 }
@@ -699,7 +698,7 @@ if (! function_exists('getRelationships')) {
         foreach ($methods as $method) {
             $reflection = new ReflectionMethod($model, $method);
             $args = $reflection->getParameters();
-            if ([] !== $args) {
+            if ($args !== []) {
                 continue;
             }
 
@@ -1122,11 +1121,11 @@ if (! function_exists('authId')) {
         try {
             $filamentAuth = Filament::auth();
             $id = null;
-            
+
             if ($filamentAuth && method_exists($filamentAuth, 'id')) {
                 $id = $filamentAuth->id();
             }
-            
+
             if ($id === null && auth()->check()) {
                 $id = auth()->id();
             }
@@ -1141,19 +1140,21 @@ if (! function_exists('authId')) {
  * Esegue un controllo sicuro su un oggetto e chiama un metodo se l'oggetto esiste
  *
  * @template T
- * @param T|null $object L'oggetto da controllare
- * @param string $method Il nome del metodo da chiamare
- * @param mixed ...$args Gli argomenti da passare al metodo
+ *
+ * @param  T|null  $object  L'oggetto da controllare
+ * @param  string  $method  Il nome del metodo da chiamare
+ * @param  mixed  ...$args  Gli argomenti da passare al metodo
  * @return mixed|null
  */
-function safe_object_call($object, string $method, ...$args) {
-    if (!is_object($object)) {
+function safe_object_call($object, string $method, ...$args)
+{
+    if (! is_object($object)) {
         return null;
     }
-    
-    if (!method_exists($object, $method)) {
+
+    if (! method_exists($object, $method)) {
         return null;
     }
-    
+
     return $object->$method(...$args);
 }

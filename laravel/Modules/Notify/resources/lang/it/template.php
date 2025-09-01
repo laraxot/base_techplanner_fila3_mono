@@ -121,4 +121,4 @@ return [
             'color' => 'primary',
         ],
     ],
-]; 
+];

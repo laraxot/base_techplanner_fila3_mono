@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Widgets;
 
+use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseStatsOverviewWidget;
-use Carbon\Carbon;
 
 /**
  * Widget panoramica dipendenti per il dashboard Employee.
- * 
+ *
  * Fornisce statistiche chiave sui dipendenti inclusi:
  * - Totale dipendenti registrati
  * - Dipendenti attivi oggi
@@ -92,6 +92,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
             $date = Carbon::today()->subDays($i);
             $data[] = Employee::whereDate('created_at', '<=', $date)->count();
         }
+
         return $data;
     }
 
@@ -110,6 +111,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
                 ->count('employee_id');
             $data[] = $activeCount;
         }
+
         return $data;
     }
 
@@ -124,9 +126,10 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
         for ($i = 6; $i >= 0; $i--) {
             $month = Carbon::now()->subMonths($i);
             $data[] = Employee::whereYear('created_at', $month->year)
-                             ->whereMonth('created_at', $month->month)
-                             ->count();
+                ->whereMonth('created_at', $month->month)
+                ->count();
         }
+
         return $data;
     }
 }

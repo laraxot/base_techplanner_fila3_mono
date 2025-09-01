@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Tests\TestCase;
-use Modules\Notify\Models\MailTemplate;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Notify\Models\MailTemplate;
+use Tests\TestCase;
 
 class MailTemplateTest extends TestCase
 {
@@ -52,7 +52,7 @@ class MailTemplateTest extends TestCase
     /** @test */
     public function it_has_correct_fillable_fields(): void
     {
-        $template = new MailTemplate();
+        $template = new MailTemplate;
 
         $expectedFillable = [
             'mailable',
@@ -72,7 +72,7 @@ class MailTemplateTest extends TestCase
     /** @test */
     public function it_has_correct_casts(): void
     {
-        $template = new MailTemplate();
+        $template = new MailTemplate;
 
         $expectedCasts = [
             'created_at' => 'datetime',
@@ -86,7 +86,7 @@ class MailTemplateTest extends TestCase
     /** @test */
     public function it_has_translatable_fields(): void
     {
-        $template = new MailTemplate();
+        $template = new MailTemplate;
 
         $expectedTranslatable = [
             'subject',
@@ -101,7 +101,7 @@ class MailTemplateTest extends TestCase
     /** @test */
     public function it_uses_notify_connection(): void
     {
-        $template = new MailTemplate();
+        $template = new MailTemplate;
 
         $this->assertEquals('notify', $template->getConnectionName());
     }

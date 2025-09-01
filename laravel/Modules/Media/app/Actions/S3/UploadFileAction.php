@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions\S3;
 
-use Aws\Exception\MultipartUploadException;
-use Aws\S3\Exception\S3Exception;
-use Aws\S3\MultipartUploader;
 use Aws\S3\ObjectUploader;
-use function Safe\fopen;
+
 use function Safe\fclose;
-use function Safe\rewind;
 use function Safe\filesize;
+use function Safe\fopen;
 use function Safe\mime_content_type;
 
 class UploadFileAction extends BaseS3Action
@@ -19,40 +16,42 @@ class UploadFileAction extends BaseS3Action
     /**
      * Upload a file to S3
      *
-     * @param array<string, mixed> $options
+     * @param  array<string, mixed>  $options
      * @return array<string, mixed>
      */
     public function execute(
-        string $localFilePath, 
-        string $destinationFilePath, 
+        string $localFilePath,
+        string $destinationFilePath,
         array $options = []
     ): array {
         // Validation
-        if (!file_exists($localFilePath)) {
+        if (! file_exists($localFilePath)) {
             $error = "Local file does not exist: {$localFilePath}";
             $this->logger->error($error);
+
             return ['success' => false, 'error' => $error];
         }
 
-        if (!is_readable($localFilePath)) {
+        if (! is_readable($localFilePath)) {
             $error = "Local file is not readable: {$localFilePath}";
             $this->logger->error($error);
+
             return ['success' => false, 'error' => $error];
         }
 
         $sourceFile = null;
-        
+
         try {
             $sourceFile = fopen($localFilePath, 'rb');
 
             // Default options with proper typing
             $defaultOptions = [
                 'ACL' => 'private',
-                'ContentType' => mime_content_type($localFilePath) ?: 'application/octet-stream'
+                'ContentType' => mime_content_type($localFilePath) ?: 'application/octet-stream',
             ];
 
             $uploadOptions = array_merge($defaultOptions, $options);
-            
+
             // Ensure ACL is string for type safety
             $acl = is_string($uploadOptions['ACL']) ? $uploadOptions['ACL'] : 'private';
 
@@ -69,18 +68,18 @@ class UploadFileAction extends BaseS3Action
             $this->logger->info('Uploading file to S3', [
                 'localPath' => $localFilePath,
                 's3Key' => $destinationFilePath,
-                'fileSize' => filesize($localFilePath)
+                'fileSize' => filesize($localFilePath),
             ]);
 
             $result = $uploader->upload();
-                
+
             // Close the file after successful upload
             fclose($sourceFile);
-                
+
             $this->logger->info('File uploaded successfully to S3', [
                 'localPath' => $localFilePath,
                 's3Key' => $destinationFilePath,
-                'objectUrl' => $result['ObjectURL'] ?? null
+                'objectUrl' => $result['ObjectURL'] ?? null,
             ]);
 
             return [
@@ -88,13 +87,13 @@ class UploadFileAction extends BaseS3Action
                 'objectUrl' => $result['ObjectURL'] ?? null,
                 'etag' => $result['ETag'] ?? null,
                 'key' => $destinationFilePath,
-                'bucket' => $this->bucketName
+                'bucket' => $this->bucketName,
             ];
 
         } catch (\Exception $exception) {
             // Initialize $sourceFile as null if not already defined
             $sourceFile = $sourceFile ?? null;
-            
+
             if (isset($sourceFile) && is_resource($sourceFile)) {
                 fclose($sourceFile);
             }
@@ -103,13 +102,13 @@ class UploadFileAction extends BaseS3Action
                 'localPath' => $localFilePath,
                 's3Key' => $destinationFilePath,
                 'error' => $exception->getMessage(),
-                'trace' => $exception->getTraceAsString()
+                'trace' => $exception->getTraceAsString(),
             ]);
 
             return [
                 'success' => false,
                 'error' => $exception->getMessage(),
-                'errorTrace' => $exception->getTraceAsString()
+                'errorTrace' => $exception->getTraceAsString(),
             ];
         }
     }

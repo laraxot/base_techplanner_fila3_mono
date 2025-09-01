@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Pages;
 
+use Carbon\Carbon;
 use Filament\Actions;
-use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
+use Filament\Notifications\Notification;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
-use Filament\Notifications\Notification;
-use Carbon\Carbon;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
 class EditWorkHour extends XotBaseEditRecord
 {
@@ -31,7 +31,7 @@ class EditWorkHour extends XotBaseEditRecord
     {
         $data = $this->form->getState();
         $currentRecord = $this->record;
-        
+
         // Skip validation if no changes to critical fields
         if (
             $currentRecord->employee_id === $data['employee_id'] &&

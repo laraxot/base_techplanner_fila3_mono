@@ -9,16 +9,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions\Video;
 
-use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Storage;
 use Modules\Media\Datas\ConvertData;
 use Modules\Media\Models\MediaConvert;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-use ProtoneMedia\LaravelFFMpeg\MediaOpener;
-use ProtoneMedia\LaravelFFMpeg\FFMpeg\FFMpegExporter;
 use Spatie\QueueableAction\QueueableAction;
-use FFMpeg\Format\Video\DefaultVideo;
-use Webmozart\Assert\Assert;
 
 /**
  * Classe per convertire video utilizzando MediaConvert e tenere traccia del progresso.
@@ -32,19 +26,19 @@ class ConvertVideoByMediaConvertAction
      */
     public function execute(ConvertData $data, MediaConvert $record): string
     {
-        if (!$data->exists()) {
+        if (! $data->exists()) {
             throw new \Exception('Il file non esiste');
         }
 
         $format = $data->getFFMpegFormat();
         $file_new = $record->converted_file;
 
-        if (!$file_new) {
+        if (! $file_new) {
             throw new \Exception('Il nome del file convertito non è stato specificato');
         }
 
         // Instanziamo il formato prima di usarlo
-        $formatInstance = new $format();
+        $formatInstance = new $format;
 
         // @phpstan-ignore method.notFound
         FFMpeg::fromDisk($data->disk)

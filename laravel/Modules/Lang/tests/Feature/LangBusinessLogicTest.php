@@ -10,7 +10,7 @@ use Modules\User\Models\User;
 describe('Lang Business Logic', function () {
     it('can create and manage posts', function () {
         $user = User::factory()->create();
-        
+
         $post = Post::factory()->create([
             'user_id' => $user->id,
             'title' => 'Test Post',
@@ -50,7 +50,7 @@ describe('Lang Business Logic', function () {
 
     it('can manage post categories', function () {
         $user = User::factory()->create();
-        
+
         $newsPost = Post::factory()->create([
             'user_id' => $user->id,
             'category' => 'news',
@@ -79,7 +79,7 @@ describe('Lang Business Logic', function () {
 
     it('can create and manage translations', function () {
         $user = User::factory()->create();
-        
+
         $translation = Translation::factory()->create([
             'user_id' => $user->id,
             'key' => 'welcome.message',
@@ -104,7 +104,7 @@ describe('Lang Business Logic', function () {
 
     it('can manage multilingual content', function () {
         $user = User::factory()->create();
-        
+
         $englishTranslation = Translation::factory()->create([
             'user_id' => $user->id,
             'key' => 'welcome.message',
@@ -148,7 +148,7 @@ describe('Lang Business Logic', function () {
 
     it('can manage translation files', function () {
         $user = User::factory()->create();
-        
+
         $translationFile = TranslationFile::factory()->create([
             'user_id' => $user->id,
             'filename' => 'welcome.php',
@@ -171,7 +171,7 @@ describe('Lang Business Logic', function () {
 
     it('can validate translation keys', function () {
         $user = User::factory()->create();
-        
+
         $validTranslation = Translation::factory()->create([
             'user_id' => $user->id,
             'key' => 'user.profile.name',
@@ -233,7 +233,7 @@ describe('Lang Business Logic', function () {
 
     it('can manage post metadata', function () {
         $user = User::factory()->create();
-        
+
         $post = Post::factory()->create([
             'user_id' => $user->id,
             'title' => 'SEO Optimized Post',
@@ -256,7 +256,7 @@ describe('Lang Business Logic', function () {
 
     it('can manage translation namespaces', function () {
         $user = User::factory()->create();
-        
+
         $adminTranslation = Translation::factory()->create([
             'user_id' => $user->id,
             'key' => 'admin.dashboard.title',
@@ -289,9 +289,9 @@ describe('Lang Business Logic', function () {
 
     it('can validate locale formats', function () {
         $user = User::factory()->create();
-        
+
         $validLocales = ['en', 'it', 'de', 'fr', 'es'];
-        
+
         foreach ($validLocales as $locale) {
             $translation = Translation::factory()->create([
                 'user_id' => $user->id,
@@ -301,7 +301,7 @@ describe('Lang Business Logic', function () {
             ]);
 
             expect($translation->locale)->toBe($locale);
-            
+
             $this->assertDatabaseHas('translations', [
                 'id' => $translation->id,
                 'locale' => $locale,
@@ -312,7 +312,7 @@ describe('Lang Business Logic', function () {
     it('can manage post scheduling', function () {
         $user = User::factory()->create();
         $futureDate = now()->addDays(7);
-        
+
         $scheduledPost = Post::factory()->create([
             'user_id' => $user->id,
             'title' => 'Scheduled Post',
@@ -332,7 +332,7 @@ describe('Lang Business Logic', function () {
 
     it('can track translation statistics', function () {
         $user = User::factory()->create();
-        
+
         Translation::factory()->count(5)->create([
             'user_id' => $user->id,
             'locale' => 'en',

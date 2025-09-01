@@ -31,11 +31,10 @@ abstract class XotBaseListRecords extends FilamentListRecords
      * Get the table columns.
      *
      * @return array<string, Tables\Columns\Column>
-     
+
     abstract public function getTableColumns(): array;
     */
 
-    
     /**
      * Get the default sort column and direction.
      *
@@ -55,7 +54,7 @@ abstract class XotBaseListRecords extends FilamentListRecords
     {
         return [
             // \Filament\Actions\CreateAction::make(),
-           // ExportXlsAction::make('export_xls'),
+            // ExportXlsAction::make('export_xls'),
         ];
     }
 
@@ -72,16 +71,15 @@ abstract class XotBaseListRecords extends FilamentListRecords
         return $resource;
     }
 
-    /** 
+    /**
      * Paginate the table query.
-    */
+     */
     protected function paginateTableQueryTMP(Builder $query): Paginator
     {
         return $query->fastPaginate(
-            ('all' === $this->getTableRecordsPerPage()) 
-            ? $query->count() 
+            ($this->getTableRecordsPerPage() === 'all')
+            ? $query->count()
             : $this->getTableRecordsPerPage()
         );
     }
 }
-

@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\User\Tests\Unit;
+
 use Modules\User\Models\Tenant;
-use Modules\User\Models\User;
-use Illuminate\Support\Str;
 
 uses(Tests\TestCase::class);
 
@@ -40,7 +37,7 @@ test('tenant extends correct base class', function (): void {
 
 test('tenant has correct fillable attributes', function (): void {
     $fillable = $this->tenant->getFillable();
-    
+
     expect($fillable)->toContain('id');
     expect($fillable)->toContain('name');
     expect($fillable)->toContain('slug');
@@ -60,27 +57,27 @@ test('tenant slug is automatically generated', function (): void {
     $newTenant = Tenant::factory()->create([
         'name' => 'Another Test Tenant',
     ]);
-    
+
     expect($newTenant->slug)->toBe('another-test-tenant');
 });
 
 test('tenant has users relationship', function (): void {
     expect($this->tenant)->toHaveMethod('users');
-    
+
     $users = $this->tenant->users();
     expect($users)->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class);
 });
 
 test('tenant has members relationship', function (): void {
     expect($this->tenant)->toHaveMethod('members');
-    
+
     $members = $this->tenant->members();
     expect($members)->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class);
 });
 
 test('tenant implements required interfaces', function (): void {
     $reflection = new ReflectionClass(Tenant::class);
-    
+
     expect($reflection->implementsInterface(\Filament\Models\Contracts\HasAvatar::class))->toBeTrue();
     expect($reflection->implementsInterface(\Spatie\MediaLibrary\HasMedia::class))->toBeTrue();
     expect($reflection->implementsInterface(\Modules\User\Contracts\TenantContract::class))->toBeTrue();
@@ -88,21 +85,21 @@ test('tenant implements required interfaces', function (): void {
 
 test('tenant has slug options configuration', function (): void {
     expect($this->tenant)->toHaveMethod('getSlugOptions');
-    
+
     $slugOptions = $this->tenant->getSlugOptions();
     expect($slugOptions)->toBeInstanceOf(\Spatie\Sluggable\SlugOptions::class);
 });
 
 test('tenant has filament avatar url method', function (): void {
     expect($this->tenant)->toHaveMethod('getFilamentAvatarUrl');
-    
+
     $avatarUrl = $this->tenant->getFilamentAvatarUrl();
     expect($avatarUrl)->toBeNull(); // Default implementation returns null
 });
 
 test('tenant can be found by slug', function (): void {
     $foundTenant = Tenant::where('slug', 'test-tenant')->first();
-    
+
     expect($foundTenant)->not->toBeNull();
     expect($foundTenant->id)->toBe($this->tenant->id);
     expect($foundTenant->name)->toBe('Test Tenant');
@@ -125,9 +122,9 @@ test('tenant can be updated', function (): void {
         'name' => 'Updated Tenant Name',
         'email_address' => 'updated@tenant.com',
     ]);
-    
+
     $this->tenant->refresh();
-    
+
     expect($this->tenant->name)->toBe('Updated Tenant Name');
     expect($this->tenant->email_address)->toBe('updated@tenant.com');
     expect($this->tenant->slug)->toBe('updated-tenant-name');
@@ -135,8 +132,8 @@ test('tenant can be updated', function (): void {
 
 test('tenant can be deleted', function (): void {
     $tenantId = $this->tenant->id;
-    
+
     $this->tenant->delete();
-    
+
     expect(Tenant::find($tenantId))->toBeNull();
 });

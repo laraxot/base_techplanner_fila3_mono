@@ -4,19 +4,19 @@ return [
     'months' => [
         'long' => [
             'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-            'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
+            'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre',
         ],
         'short' => [
             'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu',
-            'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'
-        ]
+            'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic',
+        ],
     ],
     'weekdays' => [
         'long' => [
-            'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'
+            'Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato',
         ],
         'short' => ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-        'min' => ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa']
+        'min' => ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
     ],
     'buttons' => [
         'previous' => 'Mese precedente',
@@ -24,13 +24,13 @@ return [
         'today' => 'Oggi',
         'cancel' => 'Annulla',
         'save' => 'Salva',
-        'close' => 'Chiudi'
+        'close' => 'Chiudi',
     ],
     'labels' => [
         'today' => 'Oggi',
         'all_day' => 'Tutto il giorno',
         'no_events' => 'Nessun evento programmato',
-        'loading' => 'Caricamento in corso...'
+        'loading' => 'Caricamento in corso...',
     ],
     'fields' => [
         'title' => [
@@ -68,11 +68,11 @@ return [
             'label' => 'Nuovo evento',
             'success' => 'Evento creato con successo',
             'error' => 'Errore durante la creazione dell\'evento',
-        ]
+        ],
     ],
     'validation' => [
         'required' => 'Questo campo è obbligatorio',
         'date' => 'Inserisci una data valida',
-        'after' => 'La data di fine deve essere successiva alla data di inizio'
-    ]
+        'after' => 'La data di fine deve essere successiva alla data di inizio',
+    ],
 ];

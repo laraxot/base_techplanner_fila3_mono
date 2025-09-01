@@ -5,30 +5,38 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Livewire;
 
 use Carbon\Carbon;
-use Livewire\Component;
-use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Models\Employee;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\WorkHour;
 
 class TimeClock extends Component
 {
     public ?Employee $employee = null;
+
     public string $currentTime = '';
+
     public string $currentDate = '';
+
     public string $nextAction = '';
+
     public string $currentStatus = '';
+
     public ?WorkHour $lastEntry = null;
+
     public $todayEntries = [];
+
     public float $workedHours = 0.0;
+
     public string $notes = '';
 
     protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function mount(?int $employeeId = null): void
     {
-        $this->employee = $employeeId 
-            ? Employee::find($employeeId) 
+        $this->employee = $employeeId
+            ? Employee::find($employeeId)
             : (Auth::user()->employee ?? null);
         $this->updateTimeAndStatus();
         $this->loadTodayData();
@@ -46,8 +54,9 @@ class TimeClock extends Component
 
     public function clockAction(): void
     {
-        if (!$this->employee) {
+        if (! $this->employee) {
             $this->showNotification('Error', 'Employee not found', 'danger');
+
             return;
         }
 
@@ -60,16 +69,18 @@ class TimeClock extends Component
                     'Time clock is only available between 6:00 AM and 10:00 PM',
                     'warning'
                 );
+
                 return;
             }
 
             // Check if the next action is valid
-            if (!WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
+            if (! WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
                 $this->showNotification(
                     'Invalid Action',
                     'This action is not valid based on your current status',
                     'danger'
                 );
+
                 return;
             }
 
@@ -104,7 +115,7 @@ class TimeClock extends Component
         } catch (\Exception $e) {
             $this->showNotification(
                 'Error',
-                'Failed to record time entry: ' . $e->getMessage(),
+                'Failed to record time entry: '.$e->getMessage(),
                 'danger'
             );
         }

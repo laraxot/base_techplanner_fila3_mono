@@ -21,4 +21,4 @@ interface ErrorFormatterContract
      * @return array<string, mixed>
      */
     public function format(): array;
-} 
+}

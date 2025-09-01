@@ -6,7 +6,6 @@ namespace Modules\Employee\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Parental\HasParent;
 
 /**
  * Class Employee.
@@ -38,6 +37,7 @@ use Parental\HasParent;
 class Employee extends User
 {
     protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -118,8 +118,6 @@ class Employee extends User
 
     /**
      * Check if employee is active today.
-     *
-     * @return bool
      */
     public function isActiveToday(): bool
     {
@@ -130,12 +128,10 @@ class Employee extends User
 
     /**
      * Get employee's status label.
-     *
-     * @return string
      */
     public function getStatusLabelAttribute(): string
     {
-        return match($this->status) {
+        return match ($this->status) {
             'active' => 'Attivo',
             'inactive' => 'Inattivo',
             'on_leave' => 'In Ferie',

@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
-use Modules\TechPlanner\Models\Worker;
+
+use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
-use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\PhoneCall;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
+use Modules\TechPlanner\Models\Worker;
 
 /**
  * Test unitario per il modello Worker.
@@ -20,13 +17,12 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class WorkerTest extends TestCase
 {
-
     private Worker $worker;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->worker = Worker::factory()->create();
     }
 
@@ -152,9 +148,9 @@ class WorkerTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $workerId = $this->worker->id;
-        
+
         $this->worker->delete();
-        
+
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
         $this->assertDatabaseMissing('workers', ['id' => $workerId]);
     }
@@ -163,13 +159,13 @@ class WorkerTest extends TestCase
     public function it_can_be_restored(): void
     {
         $workerId = $this->worker->id;
-        
+
         $this->worker->delete();
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
-        
+
         $restoredWorker = Worker::withTrashed()->find($workerId);
         $restoredWorker->restore();
-        
+
         $this->assertDatabaseHas('workers', ['id' => $workerId]);
         $this->assertNull($restoredWorker->deleted_at);
     }

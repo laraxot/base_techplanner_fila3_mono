@@ -29,8 +29,7 @@ abstract class XotBaseMigration extends Migration
 
     public function __construct()
     {
-        
-        
+
         $this->model_class = $this->model_class ?? $this->getModelClass();
         Assert::isInstanceOf($model = app($this->model_class), Model::class);
         $this->model = $model;
@@ -41,7 +40,7 @@ abstract class XotBaseMigration extends Migration
      */
     public function getModelClass(): string
     {
-        if (null !== $this->model_class) {
+        if ($this->model_class !== null) {
             return $this->model_class;
         }
 
@@ -62,7 +61,7 @@ abstract class XotBaseMigration extends Migration
         $mod_path = Module::getPath();
 
         // Controllo che $filename sia valido prima di passarlo a Str::of()
-        $mod_name = false !== $filename
+        $mod_name = $filename !== false
             ? Str::of($filename)
                 ->after($mod_path)
                 ->explode(\DIRECTORY_SEPARATOR)[1]
@@ -77,13 +76,13 @@ abstract class XotBaseMigration extends Migration
 
     public function getTable(): string
     {
-       
+
         return $this->model->getTable();
     }
 
     public function getConn(): Builder
     {
-        
+
         return Schema::connection($this->model->getConnectionName());
     }
 
@@ -109,9 +108,10 @@ abstract class XotBaseMigration extends Migration
     /**
      * Get the table indexes using Doctrine's schema manager.
      *
-     * @throws \Doctrine\DBAL\Exception
      *
      * @return array<\Doctrine\DBAL\Schema\Index>
+     *
+     * @throws \Doctrine\DBAL\Exception
      */
     // public function getTableIndexes(): array
     // {
@@ -121,7 +121,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Add common fields to the table.
      *
-     * @param Blueprint $table The table blueprint
+     * @param  Blueprint  $table  The table blueprint
      */
     public function addCommonFields(Blueprint $table): void
     {
@@ -198,6 +198,7 @@ abstract class XotBaseMigration extends Migration
         // If it's an object, cast to array to avoid undefined property issues
         if (is_object($result)) {
             $resArray = (array) $result;
+
             return isset($resArray['count']) && (int) $resArray['count'] > 0;
         }
 
@@ -238,7 +239,7 @@ abstract class XotBaseMigration extends Migration
     {
         $this->getConn()->table($this->getTable(), function (Blueprint $table) use ($from, $to) {
 
-                $table->renameColumn($from, $to);
+            $table->renameColumn($from, $to);
 
         });
     }
@@ -262,14 +263,12 @@ abstract class XotBaseMigration extends Migration
         $xot = XotData::make();
         $userClass = $xot->getUserClass();
 
+        $table->timestamps();
+        $table->foreignIdFor($userClass, 'user_id')->nullable();
+        $table->foreignIdFor($userClass, 'updated_by')->nullable();
+        $table->foreignIdFor($userClass, 'created_by')->nullable();
 
-            $table->timestamps();
-            $table->foreignIdFor($userClass, 'user_id')->nullable();
-            $table->foreignIdFor($userClass, 'updated_by')->nullable();
-            $table->foreignIdFor($userClass, 'created_by')->nullable();
-
-
-        if ($hasSoftDeletes ) {
+        if ($hasSoftDeletes) {
             $table->softDeletes();
         }
     }
@@ -308,15 +307,15 @@ abstract class XotBaseMigration extends Migration
         $methodName = 'updateUserKey'.Str::studly($this->model->getKeyType());
         $this->{$methodName}($table);
 
-        if ($this->hasColumn('model_id') && 'bigint' === $this->getColumnType('model_id')) {
+        if ($this->hasColumn('model_id') && $this->getColumnType('model_id') === 'bigint') {
 
-                $table->string('model_id', 36)->index()->change();
+            $table->string('model_id', 36)->index()->change();
 
         }
 
-        if ($this->hasColumn('team_id') && 'bigint' === $this->getColumnType('team_id')) {
+        if ($this->hasColumn('team_id') && $this->getColumnType('team_id') === 'bigint') {
 
-                $table->uuid('team_id')->nullable()->change();
+            $table->uuid('team_id')->nullable()->change();
 
         }
     }
@@ -327,11 +326,11 @@ abstract class XotBaseMigration extends Migration
             $table->uuid('id')->primary()->first();
         }
 
-        if ($this->hasColumn('id') && 'bigint' === $this->getColumnType('id')) {
+        if ($this->hasColumn('id') && $this->getColumnType('id') === 'bigint') {
             $table->uuid('id')->change();
         }
 
-        if ($this->hasColumn('user_id') && 'bigint' === $this->getColumnType('user_id')) {
+        if ($this->hasColumn('user_id') && $this->getColumnType('user_id') === 'bigint') {
             $table->uuid('user_id')->change();
         }
     }
@@ -385,17 +384,15 @@ abstract class XotBaseMigration extends Migration
     {
         return DB::connection($this->getConnection())->getDriverName();
     }
+
     /**
      * Add a foreign ID column to the table based on a related model.
      *
      * @param  \Illuminate\Database\Schema\Blueprint  $table
-     * @param  string  $class
-     * @param  string|null  $column
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
-    public function foreignIdFor($table, string $class, ?string $column = null) {
+    public function foreignIdFor($table, string $class, ?string $column = null)
+    {
         return $table->foreignIdFor($class, $column);
-    } 
-    
-   
+    }
 }// end XotBaseMigration

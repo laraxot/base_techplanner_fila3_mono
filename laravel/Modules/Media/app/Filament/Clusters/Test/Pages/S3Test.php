@@ -4,31 +4,30 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Clusters\Test\Pages;
 
+use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
 use Aws\Sts\StsClient;
-use function Safe\unlink;
 use Filament\Actions\Action;
-use function Safe\json_decode;
-use function Safe\json_encode;
-use Aws\Exception\AwsException;
-use Filament\Forms\Components\Grid;
-use Illuminate\Support\Facades\Log;
-use function Safe\file_put_contents;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Textarea;
-use Illuminate\Support\Facades\Storage;
-use Modules\Media\Datas\CloudFrontData;
-
-use Filament\Notifications\Notification;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Textarea;
+use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Modules\Media\Actions\CloudFront\GetCloudFrontSignedUrlAction;
 use Modules\Media\Filament\Clusters\Test;
 use Modules\Xot\Filament\Pages\XotBasePage;
-use Modules\Media\Actions\CloudFront\GetCloudFrontSignedUrlAction;
+
+use function Safe\file_put_contents;
+use function Safe\json_decode;
+use function Safe\json_encode;
+use function Safe\unlink;
 
 /**
  * S3Test Page for AWS S3 testing and diagnostics.
  *
- * @property ComponentContainer   $form
+ * @property ComponentContainer $form
  * @property array<string, mixed> $debugResults
  */
 class S3Test extends XotBasePage
@@ -39,10 +38,15 @@ class S3Test extends XotBasePage
     public array $debugResults = [];
 
     private const DEFAULT_REGION = 'eu-west-1';
+
     private const TEST_FILE_PREFIX = 'test-upload-';
+
     private const PERMISSION_TEST_PREFIX = 'test-permissions-';
+
     private const CLOUDFRONT_TEST_FILE = 'test-file.txt';
+
     private const DEBUG_OUTPUT_ROWS = 15;
+
     private const URL_PREVIEW_LENGTH = 100;
 
     public function mount(): void
@@ -70,7 +74,6 @@ class S3Test extends XotBasePage
     protected function getFormActions(): array
     {
 
-        
         return [
             Action::make('testCredentials')
                 ->color('secondary')
@@ -105,7 +108,7 @@ class S3Test extends XotBasePage
                 ->action('clearResults'),
 
             Action::make('test01')
-                
+
                 ->submit('test01'),
         ];
     }
@@ -148,7 +151,7 @@ class S3Test extends XotBasePage
     /**
      * Test S3 connection.
      */
-    public function testS3Connection(): void
+    public function test_s3_connection(): void
     {
         $this->debugResults['s3_connection'] = $this->testS3ConnectionDetails();
         $this->updateDebugOutput();
@@ -157,7 +160,7 @@ class S3Test extends XotBasePage
     /**
      * Test S3 permissions.
      */
-    public function testPermissions(): void
+    public function test_permissions(): void
     {
         $this->debugResults['permissions'] = $this->testS3Permissions();
         $this->updateDebugOutput();
@@ -166,7 +169,7 @@ class S3Test extends XotBasePage
     /**
      * Test CloudFront connection.
      */
-    public function testCloudFront(): void
+    public function test_cloud_front(): void
     {
         $this->debugResults['cloudfront'] = $this->testCloudFrontConnection();
         $this->updateDebugOutput();
@@ -175,7 +178,7 @@ class S3Test extends XotBasePage
     /**
      * Test AWS credentials.
      */
-    public function testCredentials(): void
+    public function test_credentials(): void
     {
         $this->debugResults['credentials'] = $this->performCredentialsTest();
         $this->updateDebugOutput();
@@ -189,7 +192,7 @@ class S3Test extends XotBasePage
     /**
      * Test bucket policy.
      */
-    public function testBucketPolicy(): void
+    public function test_bucket_policy(): void
     {
         $this->debugResults['bucket_policy'] = $this->checkBucketPolicy();
         $this->updateDebugOutput();
@@ -203,7 +206,7 @@ class S3Test extends XotBasePage
     /**
      * Test file operations.
      */
-    public function testFileOperations(): void
+    public function test_file_operations(): void
     {
         $this->debugResults['file_operations'] = $this->testFileUploadDownload();
         $this->updateDebugOutput();
@@ -242,7 +245,6 @@ class S3Test extends XotBasePage
             ->send();
     }
 
-
     public function test01(): void
     {
         $data = $this->form->getState();
@@ -261,13 +263,13 @@ class S3Test extends XotBasePage
         // Generate CloudFront signed URL for attachment
         $signedUrl = app(GetCloudFrontSignedUrlAction::class)->execute((string) $filePath, 60);
         dddx([
-            'signedurl'=>$signedUrl,
-            'filePath'=>$filePath,
-            'url2'=>Storage::disk('s3')->url((string) $filePath),
-            'url3'=>Storage::disk('s3')->temporaryUrl((string) $filePath, now()->addMinutes(5)),
+            'signedurl' => $signedUrl,
+            'filePath' => $filePath,
+            'url2' => Storage::disk('s3')->url((string) $filePath),
+            'url3' => Storage::disk('s3')->temporaryUrl((string) $filePath, now()->addMinutes(5)),
         ]);
         $this->debugResults = [];
-          $this->updateDebugOutput();
+        $this->updateDebugOutput();
     }
 
     /**
@@ -339,7 +341,7 @@ class S3Test extends XotBasePage
      *
      * @return array<string, mixed>
      */
-    private function testS3ConnectionDetails(): array
+    private function test_s3_connection_details(): array
     {
         try {
             $s3 = new S3Client([
@@ -389,7 +391,7 @@ class S3Test extends XotBasePage
      *
      * @return array<string, mixed>
      */
-    private function testS3Permissions(): array
+    private function test_s3_permissions(): array
     {
         $tests = [
             'ListBucket' => 's3:ListBucket',
@@ -519,7 +521,7 @@ class S3Test extends XotBasePage
      *
      * @return array<string, mixed>
      */
-    private function testCloudFrontConnection(): array
+    private function test_cloud_front_connection(): array
     {
         try {
             // Test CloudFront configuration
@@ -572,7 +574,7 @@ class S3Test extends XotBasePage
      */
     private function getSolutionForError(?string $errorCode): string
     {
-        if (null === $errorCode) {
+        if ($errorCode === null) {
             return 'Unknown error - check AWS credentials and configuration';
         }
 
@@ -684,7 +686,7 @@ class S3Test extends XotBasePage
      *
      * @return array<string, mixed>
      */
-    private function testFileUploadDownload(): array
+    private function test_file_upload_download(): array
     {
         try {
             $testData = 'This is a test file content for S3 upload/download test.';

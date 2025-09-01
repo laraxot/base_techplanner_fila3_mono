@@ -9,8 +9,6 @@ use Modules\Geo\Models\Place;
 // --- traits ---
 use Modules\Geo\Models\Traits\GeoTrait;
 use Modules\TechPlanner\Contracts\WorkerContract;
-use Modules\Xot\Services\PanelService;
-use Modules\Xot\Actions\Cast\SafeStringCastAction;
 
 /**
  * Modules\TechPlanner\Models\Worker.
@@ -19,13 +17,13 @@ use Modules\Xot\Actions\Cast\SafeStringCastAction;
  * @property string $full_address
  * @property float|null $latitude
  * @property float|null $longitude
-*/
+ */
 class Worker extends BaseModel implements WorkerContract
 {
     use GeoTrait;
     // protected $connection = 'customer'; // this will use the specified database conneciton
 
-    /**  @var list<string>     */
+    /** @var list<string> */
     protected $fillable = ['id', 'type',
         'first_name', 'last_name', 'full_name',
         'address', 'full_address',
@@ -33,7 +31,6 @@ class Worker extends BaseModel implements WorkerContract
         'cod_fisc', 'p_iva', 'address',
     ];
 
-    
     /**
      * Get the attributes that should be cast.
      *
@@ -77,8 +74,6 @@ class Worker extends BaseModel implements WorkerContract
         return $this->hasMany(Device::class); // ,customer_id,id
     }
 
-    
-
     // ---------------- mutators --------------------------
 
     public function setBirthDayAttribute(mixed $value): void
@@ -93,9 +88,6 @@ class Worker extends BaseModel implements WorkerContract
         }
     }
 
-    /**
-     * @return string
-     */
     public function getFullNameAttribute(mixed $value): string
     {
         if ($value != '') {
@@ -104,12 +96,12 @@ class Worker extends BaseModel implements WorkerContract
         $type = $this->getAttribute('type');
         $lastName = $this->getAttribute('last_name');
         $firstName = $this->getAttribute('first_name');
-        
+
         // Safe string casting for all components
         $typeStr = $this->safeStringCast($type);
         $lastNameStr = $this->safeStringCast($lastName);
         $firstNameStr = $this->safeStringCast($firstName);
-        
+
         $value = $typeStr.' '.$lastNameStr.' '.$firstNameStr;
         $value = trim($value);
         $this->full_name = $value;
@@ -128,7 +120,7 @@ class Worker extends BaseModel implements WorkerContract
     /**
      * Converte in modo sicuro un valore mixed in string usando l'action centralizzata.
      *
-     * @param mixed $value Il valore da convertire
+     * @param  mixed  $value  Il valore da convertire
      * @return string Il valore convertito in string
      */
     private function safeStringCast(mixed $value): string

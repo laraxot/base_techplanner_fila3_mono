@@ -11,10 +11,9 @@ class Merge
     /**
      * Unisce due immagini in una sola.
      *
-     * @param string $path1 Percorso della prima immagine
-     * @param string $path2 Percorso della seconda immagine
-     * @param string $outputPath Percorso di salvataggio
-     * @return bool
+     * @param  string  $path1  Percorso della prima immagine
+     * @param  string  $path2  Percorso della seconda immagine
+     * @param  string  $outputPath  Percorso di salvataggio
      */
     public function handle(string $path1, string $path2, string $outputPath): bool
     {

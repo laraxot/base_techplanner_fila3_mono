@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\MedicalDirector;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello MedicalDirector.
@@ -16,7 +13,6 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class MedicalDirectorTest extends TestCase
 {
-
     private MedicalDirector $medicalDirector;
 
     protected function setUp(): void

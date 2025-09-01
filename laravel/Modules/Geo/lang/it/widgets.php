@@ -9,4 +9,4 @@ return [
             'error' => 'Errore durante la selezione della località',
         ],
     ],
-]; 
+];

@@ -8,7 +8,7 @@ return [
         'heading' => 'AWS Configuration Diagnostics',
         'description' => 'Page to test and diagnose complete AWS configuration',
     ],
-    
+
     'fields' => [
         'cloudfront_url' => [
             'label' => 'CloudFront Distribution URL',
@@ -26,7 +26,7 @@ return [
             'helper_text' => 'Overview of current AWS configuration',
         ],
     ],
-    
+
     'actions' => [
         'test_s3_connection' => [
             'label' => 'Test Basic Connection',
@@ -77,7 +77,7 @@ return [
             'error' => 'Error during full diagnostic',
         ],
     ],
-    
+
     'sections' => [
         's3_connection_test' => [
             'label' => 'S3 Connection Test',
@@ -96,7 +96,7 @@ return [
             'description' => 'Run all AWS diagnostic tests',
         ],
     ],
-    
+
     'tabs' => [
         'tests' => [
             'label' => 'Tests',
@@ -114,7 +114,7 @@ return [
             'label' => 'Diagnostics',
         ],
     ],
-    
+
     'notifications' => [
         's3_connection_successful' => 'S3 Connection Successful',
         's3_connection_failed' => 'S3 Connection Failed',
@@ -122,7 +122,7 @@ return [
         'cloudfront_config_error' => 'CloudFront Config Error',
         'full_diagnostic_completed' => 'Full Diagnostic Completed',
     ],
-    
+
     'test_results' => [
         'status_success' => 'success',
         'status_error' => 'error',

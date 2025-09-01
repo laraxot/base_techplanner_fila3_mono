@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets\Auth;
 
-use Filament\Forms;
-use Filament\Forms\Form;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
@@ -63,8 +62,6 @@ class ResetPasswordWidget extends XotBaseWidget
 
     /**
      * Mount the widget and initialize the form.
-     *
-     * @return void
      */
     public function mount(): void
     {
@@ -73,9 +70,6 @@ class ResetPasswordWidget extends XotBaseWidget
 
     /**
      * Configure the form for this widget.
-     *
-     * @param \Filament\Forms\Form $form
-     * @return \Filament\Forms\Form
      */
     public function form(Form $form): Form
     {
@@ -100,8 +94,8 @@ class ResetPasswordWidget extends XotBaseWidget
     {
         $data = $this->form->getState();
 
-        $reset_data =Arr::only($data,['email','password','password_confirmation','token']);
-        $status = Password::reset( $reset_data,
+        $reset_data = Arr::only($data, ['email', 'password', 'password_confirmation', 'token']);
+        $status = Password::reset($reset_data,
             function ($user, $password): void {
                 $user->forceFill([
                     'password' => Hash::make($password),
@@ -112,6 +106,7 @@ class ResetPasswordWidget extends XotBaseWidget
 
         if ($status === Password::PASSWORD_RESET) {
             session()->flash('status', __($status));
+
             return redirect()->route('login');
         } else {
             /** @phpstan-ignore-next-line */

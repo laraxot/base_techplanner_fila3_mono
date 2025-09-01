@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Pages;
 
-use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
+use Carbon\Carbon;
+use Filament\Notifications\Notification;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
-use Filament\Notifications\Notification;
-use Carbon\Carbon;
+use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
 class CreateWorkHour extends XotBaseCreateRecord
 {
@@ -22,7 +22,7 @@ class CreateWorkHour extends XotBaseCreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         // Set default status if not provided
-        if (!isset($data['status'])) {
+        if (! isset($data['status'])) {
             $data['status'] = WorkHour::STATUS_PENDING;
         }
 
@@ -32,12 +32,12 @@ class CreateWorkHour extends XotBaseCreateRecord
     protected function beforeCreate(): void
     {
         $data = $this->form->getState();
-        
+
         // Validate if this entry is allowed based on the last entry
         $timestamp = Carbon::parse($data['timestamp']);
         $lastEntry = WorkHour::getLastEntryForEmployee($data['employee_id'], $timestamp);
         $expectedAction = WorkHour::getNextAction($data['employee_id'], $timestamp);
-        
+
         if ($data['type'] !== $expectedAction) {
             $lastEntryType = $lastEntry ? match ($lastEntry->type) {
                 WorkHour::TYPE_CLOCK_IN => 'Clock In',
@@ -46,7 +46,7 @@ class CreateWorkHour extends XotBaseCreateRecord
                 WorkHour::TYPE_BREAK_END => 'Break End',
                 default => $lastEntry->type,
             } : 'None';
-            
+
             $expectedActionLabel = match ($expectedAction) {
                 WorkHour::TYPE_CLOCK_IN => 'Clock In',
                 WorkHour::TYPE_CLOCK_OUT => 'Clock Out',

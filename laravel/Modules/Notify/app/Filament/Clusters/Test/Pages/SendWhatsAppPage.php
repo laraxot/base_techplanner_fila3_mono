@@ -4,25 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Clusters\Test\Pages;
 
-use Modules\Notify\Enums\WhatsAppDriverEnum;
-
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Modules\Notify\Datas\WhatsAppData;
-use Illuminate\Support\Facades\Log;
+use Filament\Forms;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Notify\Filament\Clusters\Test;
-use Modules\Xot\Filament\Pages\XotBasePage;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Modules\Notify\Notifications\WhatsAppNotification;
-use Modules\Xot\Filament\Traits\NavigationLabelTrait;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification as FilamentNotification;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
+use Modules\Notify\Enums\WhatsAppDriverEnum;
+use Modules\Notify\Filament\Clusters\Test;
+use Modules\Notify\Notifications\WhatsAppNotification;
+use Modules\Xot\Filament\Pages\XotBasePage;
 
 /**
  * @property ComponentContainer $whatsappForm
@@ -30,13 +25,16 @@ use Filament\Notifications\Notification as FilamentNotification;
 class SendWhatsAppPage extends XotBasePage
 {
     public ?array $whatsappData = [];
+
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+
     protected static string $view = 'notify::filament.pages.send-whatsapp';
+
     protected static ?string $cluster = Test::class;
-    
+
     /**
      * Get the slug of the page
-     * 
+     *
      * This explicit definition ensures consistent URL generation for acronyms
      */
     public static function getSlug(): string
@@ -126,7 +124,7 @@ class SendWhatsAppPage extends XotBasePage
                 ->send();
 
         } catch (\Exception $e) {
-            Log::error('Errore nell\'invio WhatsApp: ' . $e->getMessage());
+            Log::error('Errore nell\'invio WhatsApp: '.$e->getMessage());
 
             FilamentNotification::make()
                 ->danger()

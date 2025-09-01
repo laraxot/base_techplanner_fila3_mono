@@ -10,7 +10,6 @@ use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\Page;
@@ -18,7 +17,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Validation\Rules\Password as PasswordRule;
 use Modules\User\Datas\PasswordData;
 use Modules\User\Events\NewPasswordSet;
 use Modules\User\Http\Response\PasswordResetResponse;
@@ -119,7 +117,7 @@ class PasswordExpired extends Page implements HasForms
         $passwordExpiryDateTime = now()->addDays($pwd->expires_in);
 
         // Verificare che l'utente esistante e che sia un modello Eloquent
-        if (!($user instanceof \Illuminate\Database\Eloquent\Model)) {
+        if (! ($user instanceof \Illuminate\Database\Eloquent\Model)) {
             throw new \InvalidArgumentException('L\'utente deve essere un modello Eloquent con il metodo update');
         }
 
@@ -131,7 +129,7 @@ class PasswordExpired extends Page implements HasForms
         ]);
 
         // Verificare che l'utente implementi l'interfaccia UserContract prima di passarlo all'evento
-        if (!$user instanceof \Modules\Xot\Contracts\UserContract) {
+        if (! $user instanceof \Modules\Xot\Contracts\UserContract) {
             throw new \InvalidArgumentException('L\'utente deve implementare l\'interfaccia UserContract');
         }
 
@@ -142,7 +140,7 @@ class PasswordExpired extends Page implements HasForms
             ->success()
             ->send();
 
-        return new PasswordResetResponse();
+        return new PasswordResetResponse;
     }
 
     protected function getCurrentPasswordFormComponent(): Component

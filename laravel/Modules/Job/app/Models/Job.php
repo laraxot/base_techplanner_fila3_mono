@@ -27,6 +27,7 @@ use function Safe\json_decode;
  * @property string|null $created_by
  * @property string|null $updated_by
  * @property Carbon|null $updated_at
+ *
  * @method static \Modules\Job\Database\Factories\JobFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Job newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Job newQuery()
@@ -41,10 +42,12 @@ use function Safe\json_decode;
  * @method static \Illuminate\Database\Eloquent\Builder|Job whereReservedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Job whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Job whereUpdatedBy($value)
+ *
  * @property mixed $display_name
  * @property mixed $status
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin IdeHelperJob
  * @mixin \Eloquent
  */

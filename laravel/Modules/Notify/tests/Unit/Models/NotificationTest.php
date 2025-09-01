@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Tests\TestCase;
-use Modules\Notify\Models\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Notify\Models\Notification;
+use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
@@ -56,7 +56,7 @@ class NotificationTest extends TestCase
     /** @test */
     public function it_has_correct_fillable_fields(): void
     {
-        $notification = new Notification();
+        $notification = new Notification;
 
         $expectedFillable = [
             'message',
@@ -78,7 +78,7 @@ class NotificationTest extends TestCase
     /** @test */
     public function it_has_correct_casts(): void
     {
-        $notification = new Notification();
+        $notification = new Notification;
 
         $expectedCasts = [
             'read_at' => 'datetime',

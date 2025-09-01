@@ -230,7 +230,7 @@ class UserTest extends TestCase
 
     public function test_user_has_connection_attribute(): void
     {
-        $user = new User();
+        $user = new User;
 
         $this->assertEquals('user', $user->connection);
     }

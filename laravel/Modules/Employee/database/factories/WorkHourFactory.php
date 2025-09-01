@@ -6,8 +6,8 @@ namespace Modules\Employee\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Employee\Models\WorkHour;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\WorkHour;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Employee\Models\WorkHour>
@@ -34,7 +34,7 @@ class WorkHourFactory extends Factory
             $this->faker->randomElement([0, 15, 30, 45]), // Minutes in 15-minute intervals
             0 // Seconds
         );
-        
+
         return [
             'employee_id' => Employee::factory(),
             'type' => $this->faker->randomElement(WorkHour::TYPES),
@@ -58,20 +58,18 @@ class WorkHourFactory extends Factory
     /**
      * Create a realistic work day sequence for an employee.
      *
-     * @param int $employeeId
-     * @param Carbon $date
      * @return array<WorkHour>
      */
     public function workDaySequence(int $employeeId, Carbon $date): array
     {
         $entries = [];
-        
+
         // Clock in (8:00-9:30 AM)
         $clockInTime = $date->copy()->setTime(
             $this->faker->numberBetween(8, 9),
             $this->faker->randomElement([0, 15, 30, 45])
         );
-        
+
         $entries[] = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $clockInTime,

@@ -172,8 +172,8 @@ class SubtitleService
     /**
      * Undocumented function.
      *
-     * @param  string $srtFile
-     * @param  string $webVttFile
+     * @param  string  $srtFile
+     * @param  string  $webVttFile
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {

@@ -39,14 +39,13 @@ abstract class BaseGeoService
     /**
      * Esegue una richiesta HTTP con rate limiting, cache e retry.
      *
-     * @param string               $method   Metodo HTTP (GET, POST, etc.)
-     * @param string               $url      URL della richiesta
-     * @param array<string, mixed> $params   Parametri della richiesta
-     * @param bool                 $useCache Se utilizzare la cache
+     * @param  string  $method  Metodo HTTP (GET, POST, etc.)
+     * @param  string  $url  URL della richiesta
+     * @param  array<string, mixed>  $params  Parametri della richiesta
+     * @param  bool  $useCache  Se utilizzare la cache
+     * @return array<string, mixed>
      *
      * @throws \RuntimeException Se la richiesta fallisce
-     *
-     * @return array<string, mixed>
      */
     protected function makeRequest(string $method, string $url, array $params = [], bool $useCache = true): array
     {
@@ -55,7 +54,7 @@ abstract class BaseGeoService
         if ($useCache && config('geo.cache.enabled')) {
             /** @var array<string, mixed>|null $cached */
             $cached = Cache::get($cacheKey);
-            if (null !== $cached) {
+            if ($cached !== null) {
                 return $cached;
             }
         }
@@ -80,12 +79,12 @@ abstract class BaseGeoService
             }
 
             $data = $response->json();
-            
+
             // Validazione tipo di ritorno per PHPStan level 9 compliance
-            if (!is_array($data)) {
-                throw new \RuntimeException("Risposta API non valida: atteso array, ricevuto " . gettype($data));
+            if (! is_array($data)) {
+                throw new \RuntimeException('Risposta API non valida: atteso array, ricevuto '.gettype($data));
             }
-            
+
             // Assicura che sia array<string, mixed> come richiesto dalla signature
             /** @var array<string, mixed> $validatedData */
             $validatedData = $data;
@@ -135,9 +134,9 @@ abstract class BaseGeoService
     /**
      * Genera una chiave di cache per la richiesta.
      *
-     * @param string               $method Metodo HTTP
-     * @param string               $url    URL della richiesta
-     * @param array<string, mixed> $params Parametri della richiesta
+     * @param  string  $method  Metodo HTTP
+     * @param  string  $url  URL della richiesta
+     * @param  array<string, mixed>  $params  Parametri della richiesta
      */
     protected function getCacheKey(string $method, string $url, array $params): string
     {

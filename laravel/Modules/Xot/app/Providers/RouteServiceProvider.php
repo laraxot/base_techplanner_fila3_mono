@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Filament\Facades\Filament;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrls;
 use Modules\Xot\Http\Middleware\SetDefaultTenantForUrlsMiddleware;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 
 // public function boot(\Illuminate\Routing\Router $router)
 
@@ -95,12 +93,12 @@ class RouteServiceProvider extends ServiceProvider
         if ($user !== null) {
             $lang = $user->lang ?? $lang;
         }
-        
+
         // ✅ Controllo sicuro della configurazione laravellocalization
-        $locales = config()->has('laravellocalization.supportedLocales') 
-            ? config('laravellocalization.supportedLocales') 
+        $locales = config()->has('laravellocalization.supportedLocales')
+            ? config('laravellocalization.supportedLocales')
             : null;
-            
+
         if (is_array($locales)) {
             $langs = array_keys($locales);
         }
@@ -120,10 +118,10 @@ class RouteServiceProvider extends ServiceProvider
     public function registerRoutePattern(Router $router): void
     {
         // ✅ Controllo sicuro della configurazione laravellocalization
-        $langs = config()->has('laravellocalization.supportedLocales') 
-            ? config('laravellocalization.supportedLocales') 
+        $langs = config()->has('laravellocalization.supportedLocales')
+            ? config('laravellocalization.supportedLocales')
             : ['it' => 'it', 'en' => 'en'];
-            
+
         if (! is_array($langs)) {
             $langs = ['it' => 'it', 'en' => 'en'];
         }

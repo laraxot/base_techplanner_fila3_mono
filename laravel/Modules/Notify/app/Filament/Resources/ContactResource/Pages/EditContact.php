@@ -6,7 +6,6 @@ namespace Modules\Notify\Filament\Resources\ContactResource\Pages;
 
 use Filament\Actions\DeleteAction;
 use Modules\Notify\Filament\Resources\ContactResource;
-use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
 class EditContact extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {

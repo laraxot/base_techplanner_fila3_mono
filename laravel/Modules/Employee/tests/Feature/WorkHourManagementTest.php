@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\Employee\Tests\Feature;
-use Carbon\Carbon;
-use Modules\Employee\Models\Employee;
-use Modules\Employee\Models\WorkHour;
 
+use Carbon\Carbon;
+use Modules\Employee\Models\WorkHour;
 
 beforeEach(function () {
     $this->employee = createEmployee();
@@ -16,7 +13,7 @@ beforeEach(function () {
 });
 
 describe('Work Hour Management Business Logic', function () {
-    
+
     test('employee can clock in at start of day', function () {
         $clockIn = createWorkHour([
             'employee_id' => $this->employee->id,
@@ -151,7 +148,7 @@ describe('Work Hour Management Business Logic', function () {
 
     test('validates correct entry sequence', function () {
         expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_IN))->toBeTrue();
-        
+
         createWorkHour([
             'employee_id' => $this->employee->id,
             'type' => WorkHour::TYPE_CLOCK_IN,

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\Membership;
+use Modules\Xot\Contracts\UserContract;
 
 class MembershipPolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class MembershipPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Membership $membership): bool
     {
-        return $user->hasPermissionTo('membership.view') || 
+        return $user->hasPermissionTo('membership.view') ||
                $user->id === $membership->user_id ||
                $user->hasRole('super-admin');
     }
@@ -40,7 +40,7 @@ class MembershipPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Membership $membership): bool
     {
-        return $user->hasPermissionTo('membership.update') || 
+        return $user->hasPermissionTo('membership.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -49,7 +49,7 @@ class MembershipPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Membership $membership): bool
     {
-        return $user->hasPermissionTo('membership.delete') || 
+        return $user->hasPermissionTo('membership.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -58,7 +58,7 @@ class MembershipPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Membership $membership): bool
     {
-        return $user->hasPermissionTo('membership.restore') || 
+        return $user->hasPermissionTo('membership.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -67,7 +67,7 @@ class MembershipPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Membership $membership): bool
     {
-        return $user->hasPermissionTo('membership.force-delete') || 
+        return $user->hasPermissionTo('membership.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

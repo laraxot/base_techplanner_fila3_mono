@@ -1,9 +1,9 @@
 <?php
 
 // app/Filament/Components/TranslationEditor.php
+
 namespace Modules\Lang\Filament\Forms\Components;
 
-use Illuminate\Support\Arr;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -25,7 +25,7 @@ class TranslationEditor extends Field
     {
         $components = [];
         $state = $this->getState() ?? [];
-        if(!is_iterable($state)){
+        if (! is_iterable($state)) {
             return $components;
         }
 
@@ -35,7 +35,7 @@ class TranslationEditor extends Field
                     ->schema([
                         TranslationEditor::make($key)
                             ->label('')
-                            ->state($value)
+                            ->state($value),
                     ]);
             } else {
                 $components[] = TextInput::make($key)

@@ -2,16 +2,12 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\User\Tests\Feature;
-use Modules\User\Models\User;
-use Modules\User\Models\Team;
-use Modules\User\Models\Role;
+
 use Modules\User\Models\Permission;
-use Modules\User\Models\Profile;
-use Modules\User\Models\Device;
-use Modules\User\Models\AuthenticationLog;
+use Modules\User\Models\Role;
+use Modules\User\Models\Team;
+use Modules\User\Models\User;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -23,7 +19,7 @@ describe('User Model Creation', function () {
         $userData = [
             'name' => 'Test User',
             'first_name' => 'Test',
-            'last_name' => 'User', 
+            'last_name' => 'User',
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
             'lang' => 'it',
@@ -275,8 +271,8 @@ describe('User Scopes and Queries', function () {
         $activeUsers = User::where('is_active', true)->get();
         $inactiveUsers = User::where('is_active', false)->get();
 
-        expect($activeUsers->every(fn($user) => $user->is_active))->toBe(true);
-        expect($inactiveUsers->every(fn($user) => !$user->is_active))->toBe(true);
+        expect($activeUsers->every(fn ($user) => $user->is_active))->toBe(true);
+        expect($inactiveUsers->every(fn ($user) => ! $user->is_active))->toBe(true);
     });
 
     it('can filter by email verified', function () {
@@ -286,8 +282,8 @@ describe('User Scopes and Queries', function () {
         $verifiedUsers = User::whereNotNull('email_verified_at')->get();
         $unverifiedUsers = User::whereNull('email_verified_at')->get();
 
-        expect($verifiedUsers->every(fn($user) => $user->email_verified_at !== null))->toBe(true);
-        expect($unverifiedUsers->every(fn($user) => $user->email_verified_at === null))->toBe(true);
+        expect($verifiedUsers->every(fn ($user) => $user->email_verified_at !== null))->toBe(true);
+        expect($unverifiedUsers->every(fn ($user) => $user->email_verified_at === null))->toBe(true);
     });
 
     it('can filter by language', function () {
@@ -297,15 +293,15 @@ describe('User Scopes and Queries', function () {
         $italianUsers = User::where('lang', 'it')->get();
         $englishUsers = User::where('lang', 'en')->get();
 
-        expect($italianUsers->every(fn($user) => $user->lang === 'it'))->toBe(true);
-        expect($englishUsers->every(fn($user) => $user->lang === 'en'))->toBe(true);
+        expect($italianUsers->every(fn ($user) => $user->lang === 'it'))->toBe(true);
+        expect($englishUsers->every(fn ($user) => $user->lang === 'en'))->toBe(true);
     });
 });
 
 describe('User Soft Deletes', function () {
     it('can be soft deleted', function () {
         $userId = $this->user->id;
-        
+
         $this->user->delete();
 
         expect(User::find($userId))->toBeNull();
@@ -314,7 +310,7 @@ describe('User Soft Deletes', function () {
 
     it('can be restored after soft delete', function () {
         $userId = $this->user->id;
-        
+
         $this->user->delete();
         expect(User::find($userId))->toBeNull();
 
@@ -324,7 +320,7 @@ describe('User Soft Deletes', function () {
 
     it('can be force deleted', function () {
         $userId = $this->user->id;
-        
+
         $this->user->forceDelete();
 
         expect(User::withTrashed()->find($userId))->toBeNull();

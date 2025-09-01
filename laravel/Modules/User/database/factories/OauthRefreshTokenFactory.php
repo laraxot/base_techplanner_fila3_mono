@@ -10,7 +10,7 @@ use Modules\User\Models\OauthRefreshToken;
 
 /**
  * OauthRefreshToken Factory
- * 
+ *
  * @extends Factory<OauthRefreshToken>
  */
 class OauthRefreshTokenFactory extends Factory

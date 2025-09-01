@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Resources\Pages;
 
-use Filament\Infolists\Components\Component;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord as FilamentViewRecord;
 
@@ -23,5 +22,4 @@ abstract class XotBaseViewRecord extends FilamentViewRecord
      * @return array<int|string, \Filament\Infolists\Components\Component>
      */
     abstract protected function getInfolistSchema(): array;
-    
 }

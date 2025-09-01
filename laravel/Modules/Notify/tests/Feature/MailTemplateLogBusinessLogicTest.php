@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-use Modules\Notify\Models\MailTemplateLog;
 use Modules\Notify\Models\MailTemplate;
-use Carbon\Carbon;
+use Modules\Notify\Models\MailTemplateLog;
 
 describe('Mail Template Log Business Logic', function () {
     it('can create mail template log with basic information', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $logData = [
             'template_id' => $template->id,
             'mailable_type' => 'App\Mail\AppointmentConfirmation',
@@ -62,7 +61,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can track email lifecycle events', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'pending',
@@ -101,7 +100,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can handle email failure scenarios', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'pending',
@@ -128,7 +127,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can manage mailable polymorphic relationships', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'mailable_type' => 'App\Models\Appointment',
@@ -142,7 +141,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can handle complex data structures', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $complexData = [
             'recipient' => [
                 'email' => 'patient@example.com',
@@ -159,7 +158,7 @@ describe('Mail Template Log Business Logic', function () {
                     'patient_name' => 'Mario Rossi',
                     'appointment_date' => '2024-12-15 10:00:00',
                     'doctor_name' => 'Dr. Bianchi',
-                    'clinic_name' => 'Studio Dentistico ' . config('app.name', 'Our Platform'),
+                    'clinic_name' => 'Studio Dentistico '.config('app.name', 'Our Platform'),
                     'clinic_address' => 'Via Roma 123, Milano',
                     'clinic_phone' => '+39 02 1234567',
                 ],
@@ -190,7 +189,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can manage metadata for analytics', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $analyticsMetadata = [
             'campaign_id' => 'appointment_confirmation_q4_2024',
             'segment' => 'new_patients',
@@ -232,7 +231,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can handle delivery status transitions', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'pending',
@@ -271,7 +270,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can handle bounce and complaint scenarios', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'sent',
@@ -314,7 +313,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can manage retry logic', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'failed',
@@ -372,7 +371,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can handle empty or null values gracefully', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status_message' => null,
@@ -397,7 +396,7 @@ describe('Mail Template Log Business Logic', function () {
 
     it('can validate timestamp consistency', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $now = now();
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,

@@ -5,29 +5,29 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
+use Filament\Forms\Components\Actions;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Actions;
-use Filament\Forms\Components\Actions\Action;
 use Modules\Employee\Models\Employee;
-use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * Attendance overview widget showing next 7 days schedule.
- * 
+ *
  * Displays upcoming absences, smart working, and transfers
  * with department filtering capabilities.
  */
 class AttendanceOverviewWidget extends XotBaseWidget
 {
     protected static ?int $sort = 3;
+
     protected static ?string $maxHeight = '500px';
-    
-    protected int | string | array $columnSpan = [
+
+    protected int|string|array $columnSpan = [
         'md' => 3,
         'xl' => 2,
     ];
@@ -49,8 +49,8 @@ class AttendanceOverviewWidget extends XotBaseWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
-                        ->afterStateUpdated(fn($state) => $this->selectedDepartment = $state),
-                    
+                        ->afterStateUpdated(fn ($state) => $this->selectedDepartment = $state),
+
                     Tabs::make('attendance_type')
                         ->tabs([
                             Tab::make('absences')
@@ -58,45 +58,45 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                 ->badge($this->getAbsencesCount())
                                 ->schema([
                                     Placeholder::make('absences_list')
-                                        ->content(fn() => view('employee::widgets.attendance-overview.attendance-list', [
+                                        ->content(fn () => view('employee::widgets.attendance-overview.attendance-list', [
                                             'items' => $this->getAbsences(),
-                                            'type' => 'absences'
+                                            'type' => 'absences',
                                         ])),
                                 ]),
-                            
+
                             Tab::make('smart_working')
                                 ->label(__('employee::widgets.attendance_overview.tabs.smart_working'))
                                 ->badge($this->getSmartWorkingCount())
                                 ->schema([
                                     Placeholder::make('smart_working_list')
-                                        ->content(fn() => view('employee::widgets.attendance-overview.attendance-list', [
+                                        ->content(fn () => view('employee::widgets.attendance-overview.attendance-list', [
                                             'items' => $this->getSmartWorking(),
-                                            'type' => 'smart_working'
+                                            'type' => 'smart_working',
                                         ])),
                                 ]),
-                            
+
                             Tab::make('transfers')
                                 ->label(__('employee::widgets.attendance_overview.tabs.transfers'))
                                 ->badge($this->getTransfersCount())
                                 ->schema([
                                     Placeholder::make('transfers_list')
-                                        ->content(fn() => view('employee::widgets.attendance-overview.attendance-list', [
+                                        ->content(fn () => view('employee::widgets.attendance-overview.attendance-list', [
                                             'items' => $this->getTransfers(),
-                                            'type' => 'transfers'
+                                            'type' => 'transfers',
                                         ])),
                                 ]),
                         ])
                         ->activeTab(1),
-                    
+
                     Actions::make([
                         Action::make('view_all')
                             ->label(__('employee::widgets.attendance_overview.view_all_presences'))
-                            ->url(fn() => route('filament.admin.resources.employees.index'))
+                            ->url(fn () => route('filament.admin.resources.employees.index'))
                             ->icon('heroicon-o-eye')
                             ->color('gray')
                             ->size('sm'),
                     ])
-                    ->alignment('center'),
+                        ->alignment('center'),
                 ])
                 ->extraAttributes(['class' => 'attendance-overview-widget']),
         ];
@@ -125,12 +125,12 @@ class AttendanceOverviewWidget extends XotBaseWidget
         if (empty($parts) || $fullName === '') {
             return 'N/A';
         }
-        
+
         $initials = '';
         foreach (array_slice($parts, 0, 2) as $part) {
             $initials .= strtoupper(substr($part, 0, 1));
         }
-        
+
         return $initials ?: 'DP';
     }
 
@@ -141,19 +141,19 @@ class AttendanceOverviewWidget extends XotBaseWidget
     {
         $startDate = Carbon::today();
         $endDate = Carbon::today()->addDays(7);
-        
+
         // Query real absences from database
         $absences = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
             $query->where('type', 'absence')
-                  ->whereBetween('timestamp', [$startDate, $endDate]);
+                ->whereBetween('timestamp', [$startDate, $endDate]);
         })
-        ->with(['workHours' => function ($query) use ($startDate, $endDate) {
-            $query->where('type', 'absence')
-                  ->whereBetween('timestamp', [$startDate, $endDate])
-                  ->orderBy('timestamp');
-        }])
-        ->limit(10)
-        ->get();
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->where('type', 'absence')
+                    ->whereBetween('timestamp', [$startDate, $endDate])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
 
         $result = [];
         foreach ($absences as $employee) {
@@ -179,7 +179,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
                 ->whereNotNull('last_name')
                 ->limit(2)
                 ->get();
-            
+
             foreach ($users as $user) {
                 $fullName = $user->full_name ?? 'Dipendente';
                 $result[] = [
@@ -206,19 +206,19 @@ class AttendanceOverviewWidget extends XotBaseWidget
     {
         $startDate = Carbon::today();
         $endDate = Carbon::today()->addDays(7);
-        
+
         // Query real smart working entries from database
         $smartWorkingEntries = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
             $query->where('type', 'smart_working')
-                  ->whereBetween('timestamp', [$startDate, $endDate]);
+                ->whereBetween('timestamp', [$startDate, $endDate]);
         })
-        ->with(['workHours' => function ($query) use ($startDate, $endDate) {
-            $query->where('type', 'smart_working')
-                  ->whereBetween('timestamp', [$startDate, $endDate])
-                  ->orderBy('timestamp');
-        }])
-        ->limit(10)
-        ->get();
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->where('type', 'smart_working')
+                    ->whereBetween('timestamp', [$startDate, $endDate])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
 
         $result = [];
         foreach ($smartWorkingEntries as $employee) {
@@ -243,7 +243,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
             $user = \Modules\User\Models\User::whereNotNull('first_name')
                 ->whereNotNull('last_name')
                 ->first();
-            
+
             if ($user) {
                 $fullName = $user->full_name ?? 'Dipendente';
                 $result[] = [
@@ -270,19 +270,19 @@ class AttendanceOverviewWidget extends XotBaseWidget
     {
         $startDate = Carbon::today();
         $endDate = Carbon::today()->addDays(7);
-        
+
         // Query real transfer entries from database
         $transfers = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
             $query->where('type', 'transfer')
-                  ->whereBetween('timestamp', [$startDate, $endDate]);
+                ->whereBetween('timestamp', [$startDate, $endDate]);
         })
-        ->with(['workHours' => function ($query) use ($startDate, $endDate) {
-            $query->where('type', 'transfer')
-                  ->whereBetween('timestamp', [$startDate, $endDate])
-                  ->orderBy('timestamp');
-        }])
-        ->limit(10)
-        ->get();
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->where('type', 'transfer')
+                    ->whereBetween('timestamp', [$startDate, $endDate])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
 
         $result = [];
         foreach ($transfers as $employee) {
@@ -307,7 +307,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
             $user = \Modules\User\Models\User::whereNotNull('first_name')
                 ->whereNotNull('last_name')
                 ->first();
-            
+
             if ($user) {
                 $fullName = $user->full_name ?? 'Dipendente';
                 $result[] = [

@@ -9,7 +9,7 @@ use Modules\Lang\Models\Post;
 
 /**
  * Post Factory
- * 
+ *
  * @extends Factory<Post>
  */
 class PostFactory extends Factory

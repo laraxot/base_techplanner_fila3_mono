@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-
 use Modules\Lang\Actions\ReadTranslationFileAction;
 
-
 beforeEach(function () {
-    $this->action = new ReadTranslationFileAction();
+    $this->action = new ReadTranslationFileAction;
     $this->testFilePath = storage_path('test_translations.php');
     $this->testTranslations = [
         'auth' => [
@@ -85,8 +83,8 @@ describe('ReadTranslationFileAction Business Logic', function () {
         $phpContent = $this->action->toPhp($translations);
 
         expect($phpContent)->toContain("Text with \\'single\\' and \\\"double\\\" quotes");
-        expect($phpContent)->toContain("Text with \\\\ backslashes");
-        expect($phpContent)->toContain("Text with\\nnewlines");
+        expect($phpContent)->toContain('Text with \\\\ backslashes');
+        expect($phpContent)->toContain('Text with\\nnewlines');
     });
 
     test('handles deeply nested arrays', function () {
@@ -119,8 +117,8 @@ describe('ReadTranslationFileAction Business Logic', function () {
         $lines = explode("\n", $phpContent);
 
         // Find the parent line and check indentation
-        $parentLine = array_filter($lines, fn($line) => str_contains($line, "'parent'"));
-        $childLine = array_filter($lines, fn($line) => str_contains($line, "'child'"));
+        $parentLine = array_filter($lines, fn ($line) => str_contains($line, "'parent'"));
+        $childLine = array_filter($lines, fn ($line) => str_contains($line, "'child'"));
 
         expect(current($parentLine))->toStartWith('    ');
         expect(current($childLine))->toStartWith('        ');

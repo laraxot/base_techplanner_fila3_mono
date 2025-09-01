@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\DeviceVerification;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello DeviceVerification.
@@ -16,7 +13,6 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class DeviceVerificationTest extends TestCase
 {
-
     private DeviceVerification $deviceVerification;
 
     protected function setUp(): void

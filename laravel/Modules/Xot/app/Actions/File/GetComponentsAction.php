@@ -7,12 +7,11 @@ namespace Modules\Xot\Actions\File;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Xot\Datas\ComponentFileData;
-
-use function Safe\json_decode;
-
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
+
+use function Safe\json_decode;
 
 class GetComponentsAction
 {
@@ -38,22 +37,22 @@ class GetComponentsAction
         }
 
         $exists = File::exists($components_json);
-        
+
         if ($exists && ! $force_recreate) {
             Assert::string($content = File::get($components_json), '['.__LINE__.']['.class_basename(static::class).']');
             $comps = json_decode($content, false);
             if (! is_array($comps)) {
                 $comps = [];
             }
+
             return ComponentFileData::collection($comps);
         }
-        
 
         $files = File::allFiles($path);
         $comps = [];
-        
+
         foreach ($files as $file) {
-            if ('php' !== $file->getExtension()) {
+            if ($file->getExtension() !== 'php') {
                 continue;
             }
 
@@ -62,37 +61,37 @@ class GetComponentsAction
             Assert::string($relative_path = Str::replace('/', '\\', $relative_path), '['.__LINE__.']['.class_basename(static::class).']');
 
             $comp_name = Str::slug(Str::snake(Str::replace('\\', ' ', $class_name)));
-            $comp_name = $prefix . $comp_name;
-            $comp_ns = $namespace . '\\' . $class_name;
+            $comp_name = $prefix.$comp_name;
+            $comp_ns = $namespace.'\\'.$class_name;
 
-            if ('' !== $relative_path) {
+            if ($relative_path !== '') {
                 $comp_name = '';
                 $piece = collect(explode('\\', $relative_path))
                     ->map(fn ($item) => Str::slug(Str::snake($item)))
                     ->implode('.');
-                
-                $comp_name = $prefix . $piece . '.' . Str::slug(Str::snake(Str::replace('\\', ' ', $class_name)));
-                $comp_ns = $namespace . '\\' . $relative_path . '\\' . $class_name;
-                $class_name = $relative_path . '\\' . $class_name;
+
+                $comp_name = $prefix.$piece.'.'.Str::slug(Str::snake(Str::replace('\\', ' ', $class_name)));
+                $comp_ns = $namespace.'\\'.$relative_path.'\\'.$class_name;
+                $class_name = $relative_path.'\\'.$class_name;
             }
 
             try {
-                if (!class_exists($comp_ns)) {
+                if (! class_exists($comp_ns)) {
                     throw new \Exception("La classe {$comp_ns} non esiste");
                 }
-                
+
                 /** @var class-string<object> $comp_ns */
                 $reflection = new \ReflectionClass($comp_ns);
                 if ($reflection->isAbstract()) {
                     continue;
                 }
-                
+
                 $comps[] = ComponentFileData::from([
                     'name' => $comp_name,
                     'class' => $class_name,
                     'ns' => $comp_ns,
                 ])->toArray();
-                
+
             } catch (\Exception $e) {
                 /*
                 dddx([

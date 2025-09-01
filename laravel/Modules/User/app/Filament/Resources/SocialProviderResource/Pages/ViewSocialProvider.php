@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\SocialProviderResource\Pages;
 
-use Filament\Actions;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
 use Modules\User\Filament\Resources\SocialProviderResource;
-use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
+
 use function Safe\json_encode;
 
 class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
@@ -30,6 +29,7 @@ class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseVi
                             if (is_array($state)) {
                                 return json_encode($state);
                             }
+
                             return is_string($state) ? $state : (string) $state;
                         }),
                     TextEntry::make('parameters')
@@ -37,6 +37,7 @@ class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseVi
                             if (is_array($state)) {
                                 return json_encode($state);
                             }
+
                             return is_string($state) ? $state : (string) $state;
                         }),
                     TextEntry::make('stateless')
@@ -52,9 +53,7 @@ class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseVi
                         ->html(),
                     TextEntry::make('created_at'),
                     TextEntry::make('updated_at'),
-                ])
+                ]),
         ];
     }
-
-    
 }

@@ -2,15 +2,11 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Actions;
+
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllAppointmentsAction;
 use Modules\TechPlanner\Models\Appointment;
-use Modules\TechPlanner\Jobs\UpdateAppointmentJob;
-use Modules\TechPlanner\Tests\Unit\Actions\TestCase;
 
 /**
  * Test unitario per l'action UpdateAllAppointmentsAction.
@@ -19,15 +15,14 @@ use Modules\TechPlanner\Tests\Unit\Actions\TestCase;
  */
 class UpdateAllAppointmentsActionTest extends TestCase
 {
-
     private UpdateAllAppointmentsAction $action;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllAppointmentsAction();
-        
+
+        $this->action = new UpdateAllAppointmentsAction;
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -426,7 +421,7 @@ class UpdateAllAppointmentsActionTest extends TestCase
         // Arrange
         $activeAppointments = Appointment::factory()->count(2)->create();
         $deletedAppointments = Appointment::factory()->count(2)->create();
-        
+
         // Soft delete alcuni appuntamenti
         $deletedAppointments->each(function ($appointment) {
             $appointment->delete();
@@ -561,7 +556,7 @@ class UpdateAllAppointmentsActionTest extends TestCase
         // Arrange
         $appointments = Appointment::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
+
         $updateData = [
             'description' => $longText,
             'notes' => 'Updated notes',

@@ -30,7 +30,7 @@ class RoleTest extends TestCase
     public function test_can_create_role_with_all_fields(): void
     {
         $team = Team::factory()->create();
-        
+
         $roleData = [
             'name' => 'Full Role',
             'guard_name' => 'web',
@@ -51,14 +51,14 @@ class RoleTest extends TestCase
 
     public function test_role_has_connection_attribute(): void
     {
-        $role = new Role();
+        $role = new Role;
 
         $this->assertEquals('user', $role->connection);
     }
 
     public function test_role_has_key_type_attribute(): void
     {
-        $role = new Role();
+        $role = new Role;
 
         $this->assertEquals('string', $role->keyType);
     }
@@ -215,7 +215,3 @@ class RoleTest extends TestCase
         $this->assertTrue(method_exists($role, 'withoutRole'));
     }
 }
-
-
-
-

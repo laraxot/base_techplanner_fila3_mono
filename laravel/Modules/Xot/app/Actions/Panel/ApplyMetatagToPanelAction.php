@@ -16,7 +16,7 @@ class ApplyMetatagToPanelAction
     {
         try {
             $metatag = MetatagData::make();
-            
+
             return $panel
                 // @phpstan-ignore argument.type
                 ->colors($metatag->getColors())
@@ -27,7 +27,8 @@ class ApplyMetatagToPanelAction
                 ->favicon($metatag->getFavicon());
         } catch (\Exception $e) {
             // Log l'errore ma non bloccare l'applicazione
-            \Illuminate\Support\Facades\Log::error('Error applying metatag to panel: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Error applying metatag to panel: '.$e->getMessage());
+
             return $panel;
         }
     }

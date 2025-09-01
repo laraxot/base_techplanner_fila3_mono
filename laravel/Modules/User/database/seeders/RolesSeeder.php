@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Modules\User\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
-use Modules\User\Enums\UserTypeEnum;
 use Modules\User\Models\Role;
 
 class RolesSeeder extends Seeder
@@ -22,16 +20,12 @@ class RolesSeeder extends Seeder
         'Guard',
     ];
 
-    
-
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
         $roles = [];
-
-
 
         // Display results in a table format
         $this->displayResults($roles);
@@ -40,7 +34,7 @@ class RolesSeeder extends Seeder
     /**
      * Display the seeding results in a table format.
      *
-     * @param array<int, Role> $roles
+     * @param  array<int, Role>  $roles
      */
     private function displayResults(array $roles): void
     {

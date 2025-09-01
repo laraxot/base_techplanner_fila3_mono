@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\Employee\Tests;
+
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Modules\Xot\Tests\CreatesApplication;
 

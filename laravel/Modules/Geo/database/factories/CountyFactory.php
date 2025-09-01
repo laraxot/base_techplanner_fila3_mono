@@ -9,7 +9,7 @@ use Modules\Geo\Models\County;
 
 /**
  * County Factory
- * 
+ *
  * @extends Factory<County>
  */
 class CountyFactory extends Factory
@@ -22,7 +22,7 @@ class CountyFactory extends Factory
             'Provincia di Milano', 'Provincia di Roma', 'Provincia di Napoli',
             'Provincia di Torino', 'Provincia di Palermo', 'Provincia di Genova',
             'Provincia di Bologna', 'Provincia di Firenze', 'Provincia di Bari',
-            'Provincia di Catania', 'Provincia di Venezia', 'Provincia di Verona'
+            'Provincia di Catania', 'Provincia di Venezia', 'Provincia di Verona',
         ];
 
         return [
@@ -37,7 +37,7 @@ class CountyFactory extends Factory
         return $this->state(fn (array $attributes): array => [
             'county' => $this->faker->randomElement([
                 'Provincia di Milano', 'Provincia di Brescia', 'Provincia di Bergamo',
-                'Provincia di Como', 'Provincia di Varese', 'Provincia di Pavia'
+                'Provincia di Como', 'Provincia di Varese', 'Provincia di Pavia',
             ]),
         ]);
     }

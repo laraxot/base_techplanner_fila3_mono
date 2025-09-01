@@ -11,16 +11,16 @@ use Modules\User\Models\User;
 
 /**
  * TeamUser Factory
- * 
+ *
  * Factory for creating TeamUser model instances for testing and seeding.
- * 
+ *
  * @extends Factory<TeamUser>
  */
 class TeamUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<TeamUser>
      */
     protected $model = TeamUser::class;
@@ -41,9 +41,6 @@ class TeamUserFactory extends Factory
 
     /**
      * Create team-user relationship for a specific team.
-     *
-     * @param Team $team
-     * @return static
      */
     public function forTeam(Team $team): static
     {
@@ -54,9 +51,6 @@ class TeamUserFactory extends Factory
 
     /**
      * Create team-user relationship for a specific user.
-     *
-     * @param User $user
-     * @return static
      */
     public function forUser(User $user): static
     {
@@ -67,8 +61,6 @@ class TeamUserFactory extends Factory
 
     /**
      * Set the role to owner.
-     *
-     * @return static
      */
     public function owner(): static
     {
@@ -79,8 +71,6 @@ class TeamUserFactory extends Factory
 
     /**
      * Set the role to admin.
-     *
-     * @return static
      */
     public function admin(): static
     {
@@ -91,8 +81,6 @@ class TeamUserFactory extends Factory
 
     /**
      * Set the role to member.
-     *
-     * @return static
      */
     public function member(): static
     {

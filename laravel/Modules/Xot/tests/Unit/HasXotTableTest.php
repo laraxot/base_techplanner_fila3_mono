@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Mockery;
-use Filament\Tables\Table;
 use Filament\Tables\Contracts\HasTable;
-use Modules\Xot\Filament\Traits\HasXotTable;
+use Filament\Tables\Table;
 use Illuminate\Support\Collection;
+use Mockery;
+use Modules\Xot\Filament\Traits\HasXotTable;
 
 uses(Tests\TestCase::class);
 
@@ -15,15 +15,15 @@ afterEach(function () {
 });
 
 it('tests table method with all methods implemented', function () {
-        // Avoid DB/Schema access inside TableExistsByModelClassActions
-        Mockery::mock('overload:Modules\\Xot\\Actions\\Model\\TableExistsByModelClassActions')
-            ->shouldReceive('execute')
-            ->andReturn(true);
+    // Avoid DB/Schema access inside TableExistsByModelClassActions
+    Mockery::mock('overload:Modules\\Xot\\Actions\\Model\\TableExistsByModelClassActions')
+        ->shouldReceive('execute')
+        ->andReturn(true);
 
-        // Create partial mock and defer missing to real methods so trait's table() runs
-        $mock = Mockery::mock(HasTableWithXot::class)
-            ->makePartial()
-            ->shouldDeferMissing();
+    // Create partial mock and defer missing to real methods so trait's table() runs
+    $mock = Mockery::mock(HasTableWithXot::class)
+        ->makePartial()
+        ->shouldDeferMissing();
 
     // Expect getTableHeaderActions to be called
     $mock->shouldReceive('getTableHeaderActions')
@@ -84,15 +84,15 @@ it('tests table method with all methods implemented', function () {
 });
 
 it('tests table method with no optional methods implemented', function () {
-        // Avoid DB/Schema access inside TableExistsByModelClassActions
-        Mockery::mock('overload:Modules\\Xot\\Actions\\Model\\TableExistsByModelClassActions')
-            ->shouldReceive('execute')
-            ->andReturn(true);
+    // Avoid DB/Schema access inside TableExistsByModelClassActions
+    Mockery::mock('overload:Modules\\Xot\\Actions\\Model\\TableExistsByModelClassActions')
+        ->shouldReceive('execute')
+        ->andReturn(true);
 
-        // Create partial mock and defer missing to real methods so trait's table() runs
-        $mock = Mockery::mock(HasTableWithoutOptionalMethods::class)
-            ->makePartial()
-            ->shouldDeferMissing();
+    // Create partial mock and defer missing to real methods so trait's table() runs
+    $mock = Mockery::mock(HasTableWithoutOptionalMethods::class)
+        ->makePartial()
+        ->shouldDeferMissing();
 
     // Other required method stubs
     $mock->shouldReceive('getModelClass')
@@ -150,6 +150,7 @@ class HasTableWithXot
         $mock = Mockery::mock();
         $mock->shouldReceive('getTableColumns')->andReturn([]);
         $mock->shouldReceive('getTableContentGrid')->andReturn([]);
+
         return $mock;
     }
 
@@ -235,7 +236,7 @@ class HasTableWithXot
 
     public function getSelectedTableRecords(bool $shouldFetchSelectedRecords = true): Collection
     {
-        return new Collection();
+        return new Collection;
     }
 
     public function getAllTableRecordsCount(): int
@@ -343,42 +344,26 @@ class HasTableWithXot
         return null;
     }
 
-    public function deselectAllTableRecords(): void
-    {
-    }
+    public function deselectAllTableRecords(): void {}
 
-    public function mountTableAction(): void
-    {
-    }
+    public function mountTableAction(): void {}
 
-    public function mountTableBulkAction(): void
-    {
-    }
+    public function mountTableBulkAction(): void {}
 
     public function mountedTableActionRecord(): mixed
     {
         return null;
     }
 
-    public function replaceMountedTableAction(): void
-    {
-    }
+    public function replaceMountedTableAction(): void {}
 
-    public function replaceMountedTableBulkAction(): void
-    {
-    }
+    public function replaceMountedTableBulkAction(): void {}
 
-    public function resetTableSearch(): void
-    {
-    }
+    public function resetTableSearch(): void {}
 
-    public function resetTableColumnSearch(): void
-    {
-    }
+    public function resetTableColumnSearch(): void {}
 
-    public function toggleTableReordering(): void
-    {
-    }
+    public function toggleTableReordering(): void {}
 
     public function parseTableFilterName(): string
     {
@@ -403,6 +388,7 @@ class HasTableWithoutOptionalMethods
         $mock = Mockery::mock();
         $mock->shouldReceive('getTableColumns')->andReturn([]);
         $mock->shouldReceive('getTableContentGrid')->andReturn([]);
+
         return $mock;
     }
 
@@ -596,42 +582,26 @@ class HasTableWithoutOptionalMethods
         return null;
     }
 
-    public function deselectAllTableRecords(): void
-    {
-    }
+    public function deselectAllTableRecords(): void {}
 
-    public function mountTableAction(): void
-    {
-    }
+    public function mountTableAction(): void {}
 
-    public function mountTableBulkAction(): void
-    {
-    }
+    public function mountTableBulkAction(): void {}
 
     public function mountedTableActionRecord(): mixed
     {
         return null;
     }
 
-    public function replaceMountedTableAction(): void
-    {
-    }
+    public function replaceMountedTableAction(): void {}
 
-    public function replaceMountedTableBulkAction(): void
-    {
-    }
+    public function replaceMountedTableBulkAction(): void {}
 
-    public function resetTableSearch(): void
-    {
-    }
+    public function resetTableSearch(): void {}
 
-    public function resetTableColumnSearch(): void
-    {
-    }
+    public function resetTableColumnSearch(): void {}
 
-    public function toggleTableReordering(): void
-    {
-    }
+    public function toggleTableReordering(): void {}
 
     public function parseTableFilterName(): string
     {

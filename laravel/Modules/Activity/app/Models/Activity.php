@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Models;
 
-use Spatie\Activitylog\Models\Activity as SpatieActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Spatie\Activitylog\Models\Activity as SpatieActivity;
 
 /**
  * Class Activity.
- * 
+ *
  * This class extends the BaseActivity model to represent activities in the application.
  *
  * @property int $id
@@ -32,6 +31,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $causer
  * @property-read \Illuminate\Support\Collection<int, mixed> $changes
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent|null $subject
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity causedBy(\Illuminate\Database\Eloquent\Model $causer)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity forBatch(string $batchUuid)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity forEvent(string $event)
@@ -57,6 +57,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereSubjectType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereUpdatedBy($value)
+ *
  * @mixin IdeHelperActivity
  * @mixin \Eloquent
  */
@@ -66,13 +67,12 @@ class Activity extends SpatieActivity
 
     /**
      * Create a new factory instance for the model.
-     *
-     * @return \Modules\Activity\Database\Factories\ActivityFactory
      */
     protected static function newFactory(): \Modules\Activity\Database\Factories\ActivityFactory
     {
         return \Modules\Activity\Database\Factories\ActivityFactory::new();
     }
+
     /** @var list<string> */
     protected $fillable = [
         'id',

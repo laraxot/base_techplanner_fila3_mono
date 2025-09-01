@@ -24,6 +24,7 @@ use Illuminate\Support\Carbon;
  * @property Collection<int, \Modules\Job\Models\Parameter> $parameters
  * @property int|null $parameters_count
  * @property Task|null $task
+ *
  * @method static \Modules\Job\Database\Factories\FrequencyFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Frequency newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Frequency newQuery()
@@ -36,8 +37,10 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|Frequency whereTaskId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Frequency whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Frequency whereUpdatedBy($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin IdeHelperFrequency
  * @mixin \Eloquent
  */

@@ -2,15 +2,11 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Actions;
+
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllWorkersAction;
 use Modules\TechPlanner\Models\Worker;
-use Modules\TechPlanner\Jobs\UpdateWorkerJob;
-use Modules\TechPlanner\Tests\Unit\Actions\TestCase;
 
 /**
  * Test unitario per l'action UpdateAllWorkersAction.
@@ -19,15 +15,14 @@ use Modules\TechPlanner\Tests\Unit\Actions\TestCase;
  */
 class UpdateAllWorkersActionTest extends TestCase
 {
-
     private UpdateAllWorkersAction $action;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllWorkersAction();
-        
+
+        $this->action = new UpdateAllWorkersAction;
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -426,7 +421,7 @@ class UpdateAllWorkersActionTest extends TestCase
         // Arrange
         $activeWorkers = Worker::factory()->count(2)->create();
         $deletedWorkers = Worker::factory()->count(2)->create();
-        
+
         // Soft delete alcuni lavoratori
         $deletedWorkers->each(function ($worker) {
             $worker->delete();
@@ -561,7 +556,7 @@ class UpdateAllWorkersActionTest extends TestCase
         // Arrange
         $workers = Worker::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
+
         $updateData = [
             'description' => $longText,
             'notes' => 'Updated notes',

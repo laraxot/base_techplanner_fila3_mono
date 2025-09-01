@@ -10,12 +10,10 @@ namespace Modules\User\Listeners;
 
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
-use Modules\User\Actions\GetCurrentDeviceAction;
-use Modules\User\Models\AuthenticationLog;
-use Modules\User\Models\DeviceUser;
-use Modules\User\Contracts\HasAuthentications;
 use Illuminate\Support\Facades\Log;
-use Modules\User\Traits\HasAuthentications as HasAuthenticationsTrait;
+use Modules\User\Actions\GetCurrentDeviceAction;
+use Modules\User\Contracts\HasAuthentications;
+use Modules\User\Models\DeviceUser;
 
 class LogoutListener
 {
@@ -38,8 +36,9 @@ class LogoutListener
     {
         try {
             // Verifica se l'utente esiste prima di procedere
-            if (!$event->user) {
+            if (! $event->user) {
                 Log::warning('Tentativo di logout per un utente non autenticato');
+
                 return;
             }
 
@@ -50,14 +49,14 @@ class LogoutListener
                 try {
                     $pivot = DeviceUser::firstOrCreate([
                         'user_id' => $event->user->getAuthIdentifier(),
-                        'device_id' => $device->id
+                        'device_id' => $device->id,
                     ]);
                     $pivot->update(['logout_at' => now()]);
                 } catch (\Exception $e) {
                     Log::error('Errore durante l\'aggiornamento del pivot device-user', [
                         'error' => $e->getMessage(),
                         'user_id' => $event->user->getAuthIdentifier(),
-                        'device_id' => $device->id
+                        'device_id' => $device->id,
                     ]);
                 }
             }
@@ -73,7 +72,7 @@ class LogoutListener
                 } catch (\Exception $e) {
                     Log::error('Errore durante la creazione del log di autenticazione', [
                         'error' => $e->getMessage(),
-                        'user_id' => $event->user->getAuthIdentifier()
+                        'user_id' => $event->user->getAuthIdentifier(),
                     ]);
                 }
             }
@@ -82,14 +81,14 @@ class LogoutListener
             Log::info('Logout effettuato', [
                 'user_id' => $event->user->getAuthIdentifier(),
                 'device_id' => $device->id,
-                'timestamp' => now()
+                'timestamp' => now(),
             ]);
 
         } catch (\Exception $e) {
             Log::error('Errore durante il logout', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
-                'user_id' => $event->user->getAuthIdentifier()
+                'user_id' => $event->user->getAuthIdentifier(),
             ]);
         }
     }
@@ -107,7 +106,7 @@ class LogoutListener
             } catch (\Exception $e) {
                 Log::error('Errore durante la rimozione dei remember tokens', [
                     'error' => $e->getMessage(),
-                    'user_id' => $event->user->getAuthIdentifier()
+                    'user_id' => $event->user->getAuthIdentifier(),
                 ]);
             }
         }

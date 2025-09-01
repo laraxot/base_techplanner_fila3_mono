@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\TeamUser;
+use Modules\Xot\Contracts\UserContract;
 
 class TeamUserPolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, TeamUser $teamUser): bool
     {
-        return $user->hasPermissionTo('team-user.view') || 
+        return $user->hasPermissionTo('team-user.view') ||
                $user->id === $teamUser->user_id ||
                $user->teams->contains($teamUser->team_id) ||
                $user->hasRole('super-admin');
@@ -41,7 +41,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, TeamUser $teamUser): bool
     {
-        return $user->hasPermissionTo('team-user.update') || 
+        return $user->hasPermissionTo('team-user.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -50,7 +50,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, TeamUser $teamUser): bool
     {
-        return $user->hasPermissionTo('team-user.delete') || 
+        return $user->hasPermissionTo('team-user.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -59,7 +59,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, TeamUser $teamUser): bool
     {
-        return $user->hasPermissionTo('team-user.restore') || 
+        return $user->hasPermissionTo('team-user.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -68,7 +68,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, TeamUser $teamUser): bool
     {
-        return $user->hasPermissionTo('team-user.force-delete') || 
+        return $user->hasPermissionTo('team-user.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

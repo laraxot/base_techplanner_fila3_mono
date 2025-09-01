@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\Participant;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello Participant.
@@ -16,7 +13,6 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class ParticipantTest extends TestCase
 {
-
     private Participant $participant;
 
     protected function setUp(): void

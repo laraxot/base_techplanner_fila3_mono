@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\LegalOffice;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello LegalOffice.
@@ -16,7 +13,6 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class LegalOfficeTest extends TestCase
 {
-
     private LegalOffice $legalOffice;
 
     protected function setUp(): void

@@ -14,14 +14,14 @@ return [
             'name' => 'Italiano',
             'script' => 'Latn',
             'native' => 'Italiano',
-            'regional' => 'it_IT'
+            'regional' => 'it_IT',
         ],
         'en' => [
             'name' => 'English',
             'script' => 'Latn',
             'native' => 'English',
-            'regional' => 'en_GB'
-        ]
+            'regional' => 'en_GB',
+        ],
     ],
 
     /*

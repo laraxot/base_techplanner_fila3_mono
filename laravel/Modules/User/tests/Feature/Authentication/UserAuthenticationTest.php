@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-
-
 namespace Modules\User\Tests\Feature\Authentication;
-use Modules\User\Models\User;
-use Modules\User\Models\Role;
-use Modules\User\Models\Permission;
-use Modules\User\Models\AuthenticationLog;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Passport;
+use Modules\User\Models\Permission;
+use Modules\User\Models\Role;
+use Modules\User\Models\User;
 
 beforeEach(function () {
     $this->user = User::factory()->create([

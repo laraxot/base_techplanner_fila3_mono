@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-
+use Illuminate\Support\Collection;
+use Mockery;
 use Modules\Geo\Actions\CalculateDistanceAction;
 use Modules\Geo\Actions\GoogleMaps\CalculateDistanceMatrixAction;
 use Modules\Geo\Datas\LocationData;
 use Modules\Geo\Exceptions\DistanceCalculationException;
 use Tests\TestCase;
-use Illuminate\Support\Collection;
-use Mockery;
 
 class CalculateDistanceActionTest extends TestCase
 {
     private CalculateDistanceAction $action;
+
     private CalculateDistanceMatrixAction $mockDistanceMatrixAction;
 
     protected function setUp(): void
@@ -32,7 +32,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Milano, Italia'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -44,9 +44,9 @@ class CalculateDistanceActionTest extends TestCase
                 [
                     'distance' => ['text' => '572 km', 'value' => 572000],
                     'duration' => ['text' => '5 ore 30 min', 'value' => 19800],
-                    'status' => 'OK'
-                ]
-            ]
+                    'status' => 'OK',
+                ],
+            ],
         ];
 
         $this->mockDistanceMatrixAction
@@ -79,7 +79,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Invalid Location'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -87,7 +87,7 @@ class CalculateDistanceActionTest extends TestCase
         );
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(\InvalidArgumentException::class, 'Latitudine non valida: 100.000000');
     }
 
@@ -100,7 +100,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 200.0, // Invalid longitude > 180
             address: 'Milano, Italia'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -108,7 +108,7 @@ class CalculateDistanceActionTest extends TestCase
         );
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(\InvalidArgumentException::class, 'Longitudine non valida: 200.000000');
     }
 
@@ -121,7 +121,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Invalid Location'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -129,7 +129,7 @@ class CalculateDistanceActionTest extends TestCase
         );
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(\InvalidArgumentException::class, 'Latitudine non valida: -100.000000');
     }
 
@@ -142,7 +142,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: -200.0, // Invalid longitude < -180
             address: 'Milano, Italia'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -150,7 +150,7 @@ class CalculateDistanceActionTest extends TestCase
         );
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(\InvalidArgumentException::class, 'Longitudine non valida: -200.000000');
     }
 
@@ -163,7 +163,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Milano, Italia'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -176,7 +176,7 @@ class CalculateDistanceActionTest extends TestCase
             ->andReturn([]);
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(DistanceCalculationException::class);
     }
 
@@ -189,7 +189,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Milano, Italia'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -198,13 +198,13 @@ class CalculateDistanceActionTest extends TestCase
 
         $malformedResponse = [['invalid_structure']];
 
-               $this->mockDistanceMatrixAction
+        $this->mockDistanceMatrixAction
             ->shouldReceive('execute')
             ->once()
             ->andReturn($malformedResponse);
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(DistanceCalculationException::class);
     }
 
@@ -217,7 +217,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Milano, Italia'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -230,7 +230,7 @@ class CalculateDistanceActionTest extends TestCase
             ->andThrow(new \Exception('API Error'));
 
         // Act & Assert
-        expect(fn() => $this->action->execute($origin, $destination))
+        expect(fn () => $this->action->execute($origin, $destination))
             ->toThrow(DistanceCalculationException::class, 'Errore nel calcolo della distanza: API Error');
     }
 
@@ -293,7 +293,7 @@ class CalculateDistanceActionTest extends TestCase
         $negativeMeters = -100;
 
         // Act & Assert
-        expect(fn() => $this->action->formatDistance($negativeMeters))
+        expect(fn () => $this->action->formatDistance($negativeMeters))
             ->toThrow(\InvalidArgumentException::class, 'La distanza non può essere negativa');
     }
 
@@ -345,7 +345,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 9.1900,
             address: 'Boundary Location'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -357,9 +357,9 @@ class CalculateDistanceActionTest extends TestCase
                 [
                     'distance' => ['text' => '100 km', 'value' => 100000],
                     'duration' => ['text' => '1 ora', 'value' => 3600],
-                    'status' => 'OK'
-                ]
-            ]
+                    'status' => 'OK',
+                ],
+            ],
         ];
 
         $this->mockDistanceMatrixAction
@@ -384,7 +384,7 @@ class CalculateDistanceActionTest extends TestCase
             longitude: 180.0, // Boundary value
             address: 'Boundary Location'
         );
-        
+
         $destination = new LocationData(
             latitude: 41.9028,
             longitude: 12.4964,
@@ -396,9 +396,9 @@ class CalculateDistanceActionTest extends TestCase
                 [
                     'distance' => ['text' => '100 km', 'value' => 100000],
                     'duration' => ['text' => '1 ora', 'value' => 3600],
-                    'status' => 'OK'
-                ]
-            ]
+                    'status' => 'OK',
+                ],
+            ],
         ];
 
         $this->mockDistanceMatrixAction
@@ -429,9 +429,9 @@ class CalculateDistanceActionTest extends TestCase
                 [
                     'distance' => ['text' => '0 m', 'value' => 0],
                     'duration' => ['text' => '0 min', 'value' => 0],
-                    'status' => 'OK'
-                ]
-            ]
+                    'status' => 'OK',
+                ],
+            ],
         ];
 
         $this->mockDistanceMatrixAction

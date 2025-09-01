@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
 
         // Load Media module specific configurations
         $this->loadLaravelMigrations();
-        
+
         // Seed any required data for Media tests
         $this->artisan('module:seed', ['module' => 'Media']);
     }
@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get package providers.
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array<int, class-string>
      */
     protected function getPackageProviders($app): array

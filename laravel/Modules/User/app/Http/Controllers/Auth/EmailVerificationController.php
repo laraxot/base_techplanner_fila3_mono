@@ -9,8 +9,8 @@
  * and that the email has not already been verified. If the verification is
  * successful, it marks the email as verified and dispatches a Verified event.
  *
- * @param  string $id  the ID of the user to be verified
- * @param  string $hash  the hash of the user's email address
+ * @param  string  $id  the ID of the user to be verified
+ * @param  string  $hash  the hash of the user's email address
  * @return \Illuminate\Http\RedirectResponse a redirect response to the home page
  *
  * @throws \Illuminate\Auth\Access\AuthorizationException if the verification fails
@@ -50,7 +50,7 @@ class EmailVerificationController extends Controller
         $user->markEmailAsVerified();
 
         // Verificare che l'utente implementi l'interfaccia MustVerifyEmail
-        if (!($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail)) {
+        if (! ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail)) {
             throw new \InvalidArgumentException('L\'utente deve implementare l\'interfaccia MustVerifyEmail');
         }
 

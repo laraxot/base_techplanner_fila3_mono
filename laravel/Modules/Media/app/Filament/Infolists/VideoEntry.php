@@ -57,24 +57,28 @@ class VideoEntry extends Entry
     public function disk(string|\Closure|null $disk): static
     {
         $this->disk = $disk;
+
         return $this;
     }
 
     public function height(int|string|\Closure|null $height): static
     {
         $this->height = $height;
+
         return $this;
     }
 
     public function circular(bool|\Closure $condition = true): static
     {
         $this->isCircular = $condition;
+
         return $this;
     }
 
     public function square(bool|\Closure $condition = true): static
     {
         $this->isSquare = $condition;
+
         return $this;
     }
 
@@ -82,18 +86,21 @@ class VideoEntry extends Entry
     {
         $this->width($size);
         $this->height($size);
+
         return $this;
     }
 
     public function visibility(string|\Closure $visibility): static
     {
         $this->visibility = $visibility;
+
         return $this;
     }
 
     public function width(int|string|\Closure|null $width): static
     {
         $this->width = $width;
+
         return $this;
     }
 
@@ -105,6 +112,7 @@ class VideoEntry extends Entry
     public function getDiskName(): string
     {
         Assert::string($res = $this->evaluate($this->disk) ?? config('filament.default_filesystem_disk'));
+
         return $res;
     }
 
@@ -129,7 +137,7 @@ class VideoEntry extends Entry
         if (is_scalar($height) || (is_object($height) && method_exists($height, '__toString'))) {
             return is_string($height) ? $height : (string) $height;
         }
-        
+
         // If we can't convert to string, return null
         return null;
     }
@@ -137,6 +145,7 @@ class VideoEntry extends Entry
     public function defaultImageUrl(string|\Closure|null $url): static
     {
         $this->defaultImageUrl = $url;
+
         return $this;
     }
 
@@ -184,15 +193,15 @@ class VideoEntry extends Entry
     public function getDefaultImageUrl(): ?string
     {
         $url = $this->evaluate($this->defaultImageUrl);
-        
+
         if ($url === null) {
             return null;
         }
-        
+
         if (is_scalar($url) || (is_object($url) && method_exists($url, '__toString'))) {
             return is_string($url) ? $url : (string) $url;
         }
-        
+
         return null;
     }
 
@@ -204,11 +213,11 @@ class VideoEntry extends Entry
     public function getVisibility(): string
     {
         $visibility = $this->evaluate($this->visibility);
-        
+
         if (is_scalar($visibility) || (is_object($visibility) && method_exists($visibility, '__toString'))) {
             return is_string($visibility) ? $visibility : (string) $visibility;
         }
-        
+
         // Default to public if invalid value
         return 'public';
     }
@@ -233,7 +242,7 @@ class VideoEntry extends Entry
         if (is_scalar($width) || (is_object($width) && method_exists($width, '__toString'))) {
             return is_string($width) ? $width : (string) $width;
         }
-        
+
         return null;
     }
 
@@ -253,6 +262,7 @@ class VideoEntry extends Entry
     public function extraImgAttributes(array|\Closure $attributes): static
     {
         $this->extraImgAttributes = $attributes;
+
         return $this;
     }
 
@@ -262,11 +272,11 @@ class VideoEntry extends Entry
     public function getExtraImgAttributes(): array
     {
         $attributes = $this->evaluate($this->extraImgAttributes);
-        
+
         if (is_array($attributes)) {
             return $attributes;
         }
-        
+
         // Return empty array if invalid value
         return [];
     }
@@ -279,6 +289,7 @@ class VideoEntry extends Entry
     public function stacked(bool|\Closure $condition = true): static
     {
         $this->isStacked = $condition;
+
         return $this;
     }
 
@@ -290,6 +301,7 @@ class VideoEntry extends Entry
     public function overlap(int|\Closure|null $overlap): static
     {
         $this->overlap = $overlap;
+
         return $this;
     }
 
@@ -301,21 +313,22 @@ class VideoEntry extends Entry
     public function getOverlap(): ?int
     {
         $overlap = $this->evaluate($this->overlap);
-        
+
         if ($overlap === null) {
             return null;
         }
-        
+
         if (is_numeric($overlap)) {
             return (int) $overlap;
         }
-        
+
         return null;
     }
 
     public function ring(string|int|\Closure|null $ring): static
     {
         $this->ring = $ring;
+
         return $this;
     }
 
@@ -327,21 +340,22 @@ class VideoEntry extends Entry
     public function getRing(): ?int
     {
         $ring = $this->evaluate($this->ring);
-        
+
         if ($ring === null) {
             return null;
         }
-        
+
         if (is_numeric($ring)) {
             return (int) $ring;
         }
-        
+
         return null;
     }
 
     public function limit(int|\Closure|null $limit = 3): static
     {
         $this->limit = $limit;
+
         return $this;
     }
 
@@ -353,15 +367,15 @@ class VideoEntry extends Entry
     public function getLimit(): ?int
     {
         $limit = $this->evaluate($this->limit);
-        
+
         if ($limit === null) {
             return null;
         }
-        
+
         if (is_numeric($limit)) {
             return (int) $limit;
         }
-        
+
         return null;
     }
 
@@ -370,12 +384,14 @@ class VideoEntry extends Entry
         $this->hasLimitedRemainingText = $condition;
         $this->limitedRemainingTextSeparate($isSeparate);
         $this->limitedRemainingTextSize($size);
+
         return $this;
     }
 
     public function limitedRemainingTextSeparate(bool|\Closure $condition = true): static
     {
         $this->isLimitedRemainingTextSeparate = $condition;
+
         return $this;
     }
 
@@ -392,6 +408,7 @@ class VideoEntry extends Entry
     public function limitedRemainingTextSize(string|\Closure|null $size): static
     {
         $this->limitedRemainingTextSize = $size;
+
         return $this;
     }
 
@@ -403,21 +420,22 @@ class VideoEntry extends Entry
     public function getLimitedRemainingTextSize(): ?string
     {
         $size = $this->evaluate($this->limitedRemainingTextSize);
-        
+
         if ($size === null) {
             return null;
         }
-        
+
         if (is_scalar($size) || (is_object($size) && method_exists($size, '__toString'))) {
             return is_string($size) ? $size : (string) $size;
         }
-        
+
         return null;
     }
 
     public function checkFileExistence(bool|\Closure $condition = true): static
     {
         $this->shouldCheckFileExistence = $condition;
+
         return $this;
     }
 

@@ -12,15 +12,6 @@ use Modules\User\Filament\Resources\BaseProfileResource\Pages;
 use Modules\User\Models\BaseProfile;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
-
-
-
-use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-
-
-
-
-
 abstract class BaseProfileResource extends XotBaseResource
 {
     use Translatable;

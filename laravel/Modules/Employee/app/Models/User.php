@@ -1,21 +1,22 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Modules\Employee\Models;
 
-
-use Modules\User\Models\BaseUser;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\ModelStates\HasStates;
-use Spatie\Activitylog\LogOptions;
 use Modules\Gdpr\Models\Traits\HasGdpr;
 use Modules\SaluteOra\Enums\UserTypeEnum;
-use Spatie\ModelStates\HasStatesContract;
+use Modules\User\Models\BaseUser;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\ModelStates\HasStates;
+use Spatie\ModelStates\HasStatesContract;
 
 /**
- * Modello User 
- * 
+ * Modello User
+ *
  * Questo modello estende BaseUser e implementa Single Table Inheritance
  * per gestire i tipi di utente (doctor, patient).
  *
@@ -41,9 +42,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property \Carbon\Carbon|null $email_verified_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ *
  * @see \Modules\User\Models\BaseUser
  * @see \Modules\SaluteOra\Models\Doctor
  * @see \Modules\SaluteOra\Models\Patient
+ *
  * @property string|null $registration_number
  * @property string|null $status
  * @property array<array-key, mixed>|null $certifications
@@ -92,6 +95,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property-read int|null $tokens_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Gdpr\Models\Treatment> $treatments
  * @property-read int|null $treatments_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User admins()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User doctors()
  * @method static \Modules\User\Database\Factories\UserFactory factory($count = null, $state = [])
@@ -139,6 +143,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User withoutRole($roles, $guard = null)
+ *
  * @property string|null $dental_problems
  * @property string|null $last_dental_visit
  * @property string|null $pregnancy_certificate
@@ -148,6 +153,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property string|null $certificates
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Membership> $teamUsers
  * @property-read int|null $team_users_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCertificates($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereDentalProblems($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereHealthCard($value)
@@ -155,6 +161,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereIseeCertificate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLastDentalVisit($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePregnancyCertificate($value)
+ *
  * @property string|null $country_code
  * @property string|null $children_count
  * @property string|null $family_members
@@ -166,6 +173,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property array<array-key, mixed>|null $certification
  * @property string|null $last_dental_visit_period
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $all_team_users
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCertification($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereChildrenCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCountryCode($value)
@@ -176,42 +184,43 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLastDentalVisitPeriod($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereNationality($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereYearsInItaly($value)
+ *
  * @property string|null $age_range
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereAgeRange($value)
+ *
  * @mixin IdeHelperUser
  * @mixin \Eloquent
  */
-class User extends BaseUser implements HasMedia,HasStatesContract 
+class User extends BaseUser implements HasMedia, HasStatesContract
 {
-    use LogsActivity;
-    use HasStates;
     use HasGdpr;
+    use HasStates;
     use InteractsWithMedia;
+    use LogsActivity;
 
-    /** @var string  */
+    /** @var string */
     protected $connection = 'employee';
-
 
     /**
      * Mappatura dei tipi di utente con le relative classi
      * Utilizziamo l'enum UserTypeEnum per una gestione tipizzata e sicura
      */
     protected $childTypes = [
-        
+
         'admin' => Admin::class,
         'Employee' => Employee::class,
-        
+
     ];
 
-    /** @var array<string, mixed>  */
+    /** @var array<string, mixed> */
     protected $attributes = [
-        //'state' => Pending::class,
-        //'state' => 'pending',
-        'is_otp'=>false,
-        'is_active'=>true,
+        // 'state' => Pending::class,
+        // 'state' => 'pending',
+        'is_otp' => false,
+        'is_active' => true,
         'type' => 'patient',  // Valore di default secondo la best practice dell'enum
     ];
-
 
     /** @var list<string> */
     protected $fillable = [
@@ -229,15 +238,13 @@ class User extends BaseUser implements HasMedia,HasStatesContract
         'phone',
         'lang',
         'current_team_id',
-        //'is_active',
+        // 'is_active',
         'is_otp',
         'password_expires_at',
-        //'studio_id',
-        //'continuation_token',
-        //'certifications'
+        // 'studio_id',
+        // 'continuation_token',
+        // 'certifications'
     ];
-
-    
 
     /**
      * Cast custom per il campo type:
@@ -253,29 +260,22 @@ class User extends BaseUser implements HasMedia,HasStatesContract
         return array_merge(parent::casts(), [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            //'type' => UserTypeEnum::class, // Sintassi corretta per Laravel 12
-            //'state' => UserState::class,
-            //'certifications' => 'array',
-            //'certification' => 'array',  // ESSENZIALE: Evita "foreach() argument must be of type array|object, string given"
-            //'moderation_data' => 'array',
+            // 'type' => UserTypeEnum::class, // Sintassi corretta per Laravel 12
+            // 'state' => UserState::class,
+            // 'certifications' => 'array',
+            // 'certification' => 'array',  // ESSENZIALE: Evita "foreach() argument must be of type array|object, string given"
+            // 'moderation_data' => 'array',
         ]);
 
-        
     }
-
-   
 
     /**
      * Configurazione per il logging delle attività.
-     *
-     * @return LogOptions
      */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            //->logOnly(['name', 'email', 'type', 'state'])
+            // ->logOnly(['name', 'email', 'type', 'state'])
             ->logOnlyDirty();
     }
-
-   
 }

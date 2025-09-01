@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\Location;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello Location.
@@ -16,7 +13,6 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class LocationTest extends TestCase
 {
-
     private Location $location;
 
     protected function setUp(): void

@@ -33,9 +33,10 @@ class SmsChannel
     /**
      * Invia la notifica attraverso il canale SMS.
      *
-     * @param mixed $notifiable Entità che riceve la notifica
-     * @param \Illuminate\Notifications\Notification $notification Notifica da inviare
+     * @param  mixed  $notifiable  Entità che riceve la notifica
+     * @param  \Illuminate\Notifications\Notification  $notification  Notifica da inviare
      * @return array|null Risultato dell'operazione o null in caso di errore
+     *
      * @throws \Exception Se la notifica non ha il metodo toSms o il driver non è supportato
      */
     public function send($notifiable, Notification $notification)
@@ -46,14 +47,11 @@ class SmsChannel
 
         $smsData = $notification->toSms($notifiable);
 
-
         if (! $smsData instanceof SmsData) {
             throw new Exception('toSms method must return an instance of SmsData');
         }
 
         $action = $this->factory->create();
-        
-
 
         return $action->execute($smsData);
     }

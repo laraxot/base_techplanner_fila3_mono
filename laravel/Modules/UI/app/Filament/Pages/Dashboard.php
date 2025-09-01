@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\UI\Filament\Pages;
 
-use Filament\Pages\Page;
 use Modules\UI\Filament\Widgets;
 use Modules\Xot\Filament\Pages\XotBaseDashboard;
 

@@ -6,7 +6,6 @@ namespace Modules\User\Actions\Socialite\Utils;
 
 use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\User;
-use Webmozart\Assert\Assert;
 
 final class EmailDomainAnalyzer
 {
@@ -22,10 +21,11 @@ final class EmailDomainAnalyzer
 
     public function setUser(User $ssoUser): self
     {
-        //if ($ssoUser === null) {
+        // if ($ssoUser === null) {
         //    throw new \InvalidArgumentException('L\'utente SSO non può essere null');
-        //}
+        // }
         $this->ssoUser = $ssoUser;
+
         return $this;
     }
 
@@ -36,12 +36,12 @@ final class EmailDomainAnalyzer
 
     public function hasFirstPartyDomain(): bool
     {
-        if (!isset($this->ssoUser)) {
+        if (! isset($this->ssoUser)) {
             throw new \RuntimeException('L\'utente SSO non è stato impostato. Utilizzare setUser() prima di chiamare questo metodo.');
         }
 
         $email = $this->ssoUser->getEmail();
-        if (!is_string($email) || empty($email)) {
+        if (! is_string($email) || empty($email)) {
             return false;
         }
 
@@ -58,12 +58,12 @@ final class EmailDomainAnalyzer
 
     public function hasClientDomain(): bool
     {
-        if (!isset($this->ssoUser)) {
+        if (! isset($this->ssoUser)) {
             throw new \RuntimeException('L\'utente SSO non è stato impostato. Utilizzare setUser() prima di chiamare questo metodo.');
         }
 
         $email = $this->ssoUser->getEmail();
-        if (!is_string($email) || empty($email)) {
+        if (! is_string($email) || empty($email)) {
             return false;
         }
 
@@ -81,18 +81,20 @@ final class EmailDomainAnalyzer
     private function firstPartyDomain(): ?string
     {
         $res = config(sprintf('services.%s.email_domains.first_party.tld', $this->ssoProvider));
-        if (!is_string($res) && $res !== null) {
+        if (! is_string($res) && $res !== null) {
             return null;
         }
+
         return $res;
     }
 
     private function clientDomain(): ?string
     {
         $domain = config(sprintf('services.%s.email_domains.client.tld', $this->ssoProvider));
-        if (!is_string($domain) && $domain !== null) {
+        if (! is_string($domain) && $domain !== null) {
             return null;
         }
+
         return $domain;
     }
 }

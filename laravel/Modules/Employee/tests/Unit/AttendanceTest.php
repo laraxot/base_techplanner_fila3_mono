@@ -2,18 +2,14 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\Employee\Tests\Unit;
+
 use Carbon\Carbon;
 use Modules\Employee\Models\Attendance;
 use Modules\User\Models\User;
-use Modules\Employee\Tests\Unit\TestCase;
 
 class AttendanceTest extends TestCase
 {
-
     private User $user;
 
     protected function setUp(): void
@@ -157,7 +153,7 @@ class AttendanceTest extends TestCase
     public function it_can_format_timestamp()
     {
         $timestamp = Carbon::parse('2024-01-15 09:30:00');
-        
+
         $attendance = Attendance::create([
             'user_id' => $this->user->id,
             'timestamp' => $timestamp,
@@ -282,4 +278,4 @@ class AttendanceTest extends TestCase
         $this->assertEquals(1, $validAttendances->count());
         $this->assertEquals('valid', $validAttendances->first()->status);
     }
-} 
+}

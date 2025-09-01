@@ -38,22 +38,16 @@ class Password extends Page implements HasForms
 
     /**
      * Icona per la navigazione.
-     * 
-     * @var string|null
      */
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     /**
      * Vista per la pagina.
-     * 
-     * @var string
      */
     protected static string $view = 'user::filament.pages.password';
 
     /**
      * Ordinamento nella navigazione.
-     * 
-     * @var int|null
      */
     protected static ?int $navigationSort = 1;
 
@@ -68,7 +62,7 @@ class Password extends Page implements HasForms
     /**
      * Definisce la struttura del form.
      *
-     * @param Form $form Il form da configurare
+     * @param  Form  $form  Il form da configurare
      * @return Form Il form configurato
      */
     public function form(Form $form): Form
@@ -109,8 +103,6 @@ class Password extends Page implements HasForms
 
     /**
      * Aggiorna i dati delle impostazioni delle password.
-     *
-     * @return void
      */
     public function updateData(): void
     {
@@ -132,8 +124,6 @@ class Password extends Page implements HasForms
 
     /**
      * Riempie i form con i dati esistenti.
-     *
-     * @return void
      */
     protected function fillForms(): void
     {
@@ -158,8 +148,8 @@ class Password extends Page implements HasForms
     /**
      * Gestisce l'aggiornamento del record.
      *
-     * @param Model $record Il record da aggiornare
-     * @param array<string, mixed> $data I dati per l'aggiornamento
+     * @param  Model  $record  Il record da aggiornare
+     * @param  array<string, mixed>  $data  I dati per l'aggiornamento
      * @return Model Il record aggiornato
      */
     protected function handleRecordUpdate(Model $record, array $data): Model

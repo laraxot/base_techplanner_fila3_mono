@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace Modules\Notify\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Modules\Notify\Datas\WhatsAppData;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notification;
+use Modules\Notify\Datas\WhatsAppData;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
 
 /**
  * Class WhatsAppNotification
  *
  * Notification class for sending WhatsApp messages through various providers.
- * 
- * @package Modules\Notify\Notifications
  */
 class WhatsAppNotification extends Notification implements ShouldQueue
 {
@@ -23,8 +21,6 @@ class WhatsAppNotification extends Notification implements ShouldQueue
 
     /**
      * The WhatsApp data.
-     *
-     * @var WhatsAppData
      */
     protected WhatsAppData $whatsappData;
 
@@ -38,8 +34,8 @@ class WhatsAppNotification extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
-     * @param string|WhatsAppData $content The content of the WhatsApp message or WhatsAppData object
-     * @param array<string, mixed> $config Configuration options including provider
+     * @param  string|WhatsAppData  $content  The content of the WhatsApp message or WhatsAppData object
+     * @param  array<string, mixed>  $config  Configuration options including provider
      */
     public function __construct(string|WhatsAppData $content, array $config = [])
     {
@@ -48,7 +44,7 @@ class WhatsAppNotification extends Notification implements ShouldQueue
         } else {
             $to = $config['to'] ?? '';
             $from = $config['from'] ?? null;
-            
+
             /** @phpstan-ignore-next-line */
             $this->whatsappData = new WhatsAppData(
                 to: SafeStringCastAction::cast($to),
@@ -56,14 +52,13 @@ class WhatsAppNotification extends Notification implements ShouldQueue
                 from: $from !== null ? SafeStringCastAction::cast($from) : null
             );
         }
-        
+
         $this->config = $config;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
      * @return array<int, string>
      */
     public function via(mixed $notifiable): array
@@ -74,9 +69,6 @@ class WhatsAppNotification extends Notification implements ShouldQueue
 
     /**
      * Get the WhatsApp representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return WhatsAppData
      */
     public function toWhatsApp(mixed $notifiable): WhatsAppData
     {
@@ -102,12 +94,11 @@ class WhatsAppNotification extends Notification implements ShouldQueue
 
     /**
      * Get the provider to use for sending the WhatsApp message.
-     *
-     * @return string|null
      */
     public function getProvider(): ?string
     {
         $provider = $this->config['provider'] ?? null;
+
         return is_string($provider) ? $provider : null;
     }
 }

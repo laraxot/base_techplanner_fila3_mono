@@ -8,26 +8,25 @@ use Illuminate\Support\Facades\App;
 
 class LocaleSwitcherRefresh extends Action
 {
+    public string $full_url = '#';
 
-    public string $full_url='#';
-    public string $lang='';
-    
+    public string $lang = '';
 
     protected function setUp(): void
     {
 
         parent::setUp();
-        $lang_options= [
+        $lang_options = [
             'en' => '🇬🇧 English',
             'it' => '🇮🇹 Italiano',
         ];
-        $lang=session()->get('locale');
-        if(!is_string($lang)){
-            $lang='it';
+        $lang = session()->get('locale');
+        if (! is_string($lang)) {
+            $lang = 'it';
         }
         app()->setLocale($lang);
-        $this->lang=app()->getLocale();
-        $this->full_url=request()->fullUrl();
+        $this->lang = app()->getLocale();
+        $this->full_url = request()->fullUrl();
         $this
             ->label($this->lang)
             ->form([
@@ -43,12 +42,12 @@ class LocaleSwitcherRefresh extends Action
 
                 session()->put('locale', $locale);
                 App::setLocale($locale);
-                //Filament::setLocale($locale);
-                
+                // Filament::setLocale($locale);
+
                 return redirect(request()->header('Referer'));
             })
             ->modalHeading('Cambia lingua')
-            //->icon('heroicon-o-language')
+            // ->icon('heroicon-o-language')
             ->color('gray');
     }
 }

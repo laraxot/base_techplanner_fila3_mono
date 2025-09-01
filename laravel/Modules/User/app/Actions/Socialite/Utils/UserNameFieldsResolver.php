@@ -46,16 +46,16 @@ final class UserNameFieldsResolver
     }
 
     /**
-     * @param  string $searchMethod  use self constants (NAME_SEARCH, SURNAME_SEARCH)
+     * @param  string  $searchMethod  use self constants (NAME_SEARCH, SURNAME_SEARCH)
      */
     private function resolveNameFields(User $idpUser, string $searchMethod): string
     {
-        if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+        if (! in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
             throw new \InvalidArgumentException('Metodo di ricerca non valido');
         }
 
         $name = $idpUser->getName();
-        if (!is_string($name) || empty($name)) {
+        if (! is_string($name) || empty($name)) {
             return '';
         }
 
@@ -90,7 +90,7 @@ final class UserNameFieldsResolver
 
         // Tenta di ottenere un nome dai dati raw
         $nameField = '';
-        if (isset($raw['name']) && is_string($raw['name']) && !empty($raw['name'])) {
+        if (isset($raw['name']) && is_string($raw['name']) && ! empty($raw['name'])) {
             $nameField = $raw['name'];
         }
 
@@ -99,11 +99,11 @@ final class UserNameFieldsResolver
         }
 
         $nameSection = $this->resolveNameFieldByNameAttributeAnalysis($nameField, $searchMethod);
-        if (!$nameSection->isNotEmpty()) {
+        if (! $nameSection->isNotEmpty()) {
             // If both sections were empty, try the "hardest way"
             // by analyzing email address
             $email = $idpUser->getEmail();
-            if (!is_string($email) || empty($email)) {
+            if (! is_string($email) || empty($email)) {
                 return '';
             }
 
@@ -120,7 +120,7 @@ final class UserNameFieldsResolver
             // If both sections were empty, try the "hardest way"
             // by analyzing email address
             $email = $idpUser->getEmail();
-            if (!is_string($email) || empty($email)) {
+            if (! is_string($email) || empty($email)) {
                 return '';
             }
 
@@ -142,7 +142,7 @@ final class UserNameFieldsResolver
             return Str::of('');
         }
 
-        if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+        if (! in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
             throw new \InvalidArgumentException('Metodo di ricerca non valido');
         }
 

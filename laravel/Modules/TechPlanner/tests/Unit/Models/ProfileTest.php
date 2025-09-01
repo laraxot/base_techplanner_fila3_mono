@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Unit\Models;
+
 use Modules\TechPlanner\Models\Profile;
-use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello Profile.
@@ -16,7 +13,6 @@ use Modules\TechPlanner\Tests\Unit\Models\TestCase;
  */
 class ProfileTest extends TestCase
 {
-
     private Profile $profile;
 
     protected function setUp(): void
@@ -133,7 +129,7 @@ class ProfileTest extends TestCase
         $socialLinks = [
             'linkedin' => 'https://linkedin.com/in/mioprofilo',
             'twitter' => 'https://twitter.com/mioprofilo',
-            'github' => 'https://github.com/mioprofilo'
+            'github' => 'https://github.com/mioprofilo',
         ];
         $this->profile->social_links = $socialLinks;
         $this->profile->save();
@@ -151,7 +147,7 @@ class ProfileTest extends TestCase
             'language' => 'it',
             'timezone' => 'Europe/Rome',
             'notifications' => ['email', 'sms'],
-            'privacy' => ['public_profile', 'show_email']
+            'privacy' => ['public_profile', 'show_email'],
         ];
         $this->profile->preferences = $preferences;
         $this->profile->save();
@@ -184,15 +180,15 @@ class ProfileTest extends TestCase
                 'position' => 'Senior Developer',
                 'start_date' => '2020-01-01',
                 'end_date' => null,
-                'description' => 'Sviluppo applicazioni web enterprise'
+                'description' => 'Sviluppo applicazioni web enterprise',
             ],
             [
                 'company' => 'StartupLab',
                 'position' => 'Full Stack Developer',
                 'start_date' => '2018-06-01',
                 'end_date' => '2019-12-31',
-                'description' => 'Sviluppo MVP e applicazioni web'
-            ]
+                'description' => 'Sviluppo MVP e applicazioni web',
+            ],
         ];
         $this->profile->experience = $experience;
         $this->profile->save();
@@ -213,8 +209,8 @@ class ProfileTest extends TestCase
                 'field' => 'Computer Science',
                 'start_date' => '2015-09-01',
                 'end_date' => '2018-07-31',
-                'gpa' => 3.8
-            ]
+                'gpa' => 3.8,
+            ],
         ];
         $this->profile->education = $education;
         $this->profile->save();
@@ -234,15 +230,15 @@ class ProfileTest extends TestCase
                 'issuer' => 'Amazon Web Services',
                 'issue_date' => '2022-03-15',
                 'expiry_date' => '2025-03-15',
-                'credential_id' => 'AWS-123456'
+                'credential_id' => 'AWS-123456',
             ],
             [
                 'name' => 'Laravel Certified Developer',
                 'issuer' => 'Laravel',
                 'issue_date' => '2021-11-20',
                 'expiry_date' => null,
-                'credential_id' => 'LAR-789012'
-            ]
+                'credential_id' => 'LAR-789012',
+            ],
         ];
         $this->profile->certifications = $certifications;
         $this->profile->save();
@@ -259,7 +255,7 @@ class ProfileTest extends TestCase
         $languages = [
             'italiano' => ['level' => 'Nativo', 'certification' => null],
             'inglese' => ['level' => 'Avanzato', 'certification' => 'IELTS 7.5'],
-            'francese' => ['level' => 'Intermedio', 'certification' => 'DELF B2']
+            'francese' => ['level' => 'Intermedio', 'certification' => 'DELF B2'],
         ];
         $this->profile->languages = $languages;
         $this->profile->save();
@@ -360,8 +356,8 @@ class ProfileTest extends TestCase
             [
                 'company' => 'TechCorp',
                 'start_date' => '2020-01-01',
-                'end_date' => null
-            ]
+                'end_date' => null,
+            ],
         ];
         $this->profile->save();
 
@@ -373,7 +369,7 @@ class ProfileTest extends TestCase
     {
         $this->profile->certifications = [
             ['name' => 'AWS Certified Developer'],
-            ['name' => 'Laravel Certified Developer']
+            ['name' => 'Laravel Certified Developer'],
         ];
         $this->profile->save();
 

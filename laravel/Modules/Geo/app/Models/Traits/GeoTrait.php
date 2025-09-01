@@ -14,8 +14,8 @@ use Modules\Geo\Services\GeoService;
 /**
  * Modules\Geo\Models\Traits\GeoTrait.
  *
- * @property float  $latitude
- * @property float  $longitude
+ * @property float $latitude
+ * @property float $longitude
  * @property string $country.
  * @property string $country.
  * @property string $administrative_area_level_2.
@@ -149,7 +149,7 @@ where zone_polygon IS NOT NULL
 
     public function getAddress(): string
     {
-        if ('' === $this->country) {
+        if ($this->country === '') {
             $this->country = 'Italia';
         }
 
@@ -158,11 +158,11 @@ where zone_polygon IS NOT NULL
 
     public function getLatitudeAttribute(?float $value): ?float
     {
-        if (null !== $value) {
+        if ($value !== null) {
             return $value;
         }
         $address = $this->address;
-        if (null === $address) {
+        if ($address === null) {
             return null;
         }
         if (isJson($address)) {
@@ -255,8 +255,7 @@ where zone_polygon IS NOT NULL
     }
 
     /**
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return bool|mixed|string
      */
     /*
@@ -290,7 +289,7 @@ where zone_polygon IS NOT NULL
      */
     public function getFullAddressAttribute(?string $value): ?string
     {
-        if (null === $this->address) {
+        if ($this->address === null) {
             return null;
         }
         if (isJson($this->address)) {

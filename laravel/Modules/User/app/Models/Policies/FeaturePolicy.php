@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\Feature;
+use Modules\Xot\Contracts\UserContract;
 
 class FeaturePolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class FeaturePolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Feature $feature): bool
     {
-        return $user->hasPermissionTo('feature.view') || 
+        return $user->hasPermissionTo('feature.view') ||
                $user->hasRole('super-admin');
     }
 
@@ -39,7 +39,7 @@ class FeaturePolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Feature $feature): bool
     {
-        return $user->hasPermissionTo('feature.update') || 
+        return $user->hasPermissionTo('feature.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -48,7 +48,7 @@ class FeaturePolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Feature $feature): bool
     {
-        return $user->hasPermissionTo('feature.delete') || 
+        return $user->hasPermissionTo('feature.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -57,7 +57,7 @@ class FeaturePolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Feature $feature): bool
     {
-        return $user->hasPermissionTo('feature.restore') || 
+        return $user->hasPermissionTo('feature.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -66,7 +66,7 @@ class FeaturePolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Feature $feature): bool
     {
-        return $user->hasPermissionTo('feature.force-delete') || 
+        return $user->hasPermissionTo('feature.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

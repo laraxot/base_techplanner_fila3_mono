@@ -14,38 +14,38 @@ use Webmozart\Assert\Assert;
 class TemporaryUploadPathGenerator
 {
     /**
-     * @param \Modules\Media\Models\Media $media
+     * @param  \Modules\Media\Models\Media  $media
      */
     public function getPath($media): string
     {
-        return $this->getBasePath($media).'/'.md5($media->id . $media->uuid . 'original').'/';
+        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
     }
 
     /**
-     * @param \Modules\Media\Models\Media $media
+     * @param  \Modules\Media\Models\Media  $media
      */
     public function getPathForConversions($media): string
     {
-        return $this->getBasePath($media).'/'.md5($media->id . $media->uuid . 'conversion');
+        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'conversion');
     }
 
     /**
-     * @param \Modules\Media\Models\Media $media
+     * @param  \Modules\Media\Models\Media  $media
      */
     public function getPathForResponsiveImages($media): string
     {
-        return $this->getBasePath($media).'/'.md5($media->id . $media->uuid . 'responsive');
+        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'responsive');
     }
 
     /**
      * Get a unique base path for the given media.
      *
-     * @param \Modules\Media\Models\Media $media
+     * @param  \Modules\Media\Models\Media  $media
      */
     protected function getBasePath($media): string
     {
         Assert::string($id = $media->getKey());
-        $key = md5($media->uuid . $id);
+        $key = md5($media->uuid.$id);
 
         return "tmp/{$key}";
     }

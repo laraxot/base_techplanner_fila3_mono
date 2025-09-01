@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
-use Illuminate\Foundation\Testing\WithFaker;
+
 use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages\CreateLegalOffice;
@@ -14,17 +11,15 @@ use Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages\EditLegalOf
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages\ListLegalOffices;
 use Modules\TechPlanner\Models\LegalOffice;
 use Modules\User\Models\User;
-use Modules\TechPlanner\Tests\Feature\Filament\Resources\TestCase;
 
 class LegalOfficeResourceTest extends TestCase
 {
-
     protected User $admin;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->admin = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',

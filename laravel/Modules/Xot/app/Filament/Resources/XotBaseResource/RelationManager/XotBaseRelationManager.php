@@ -9,9 +9,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Xot\Filament\Traits\HasXotTable;
 use Webmozart\Assert\Assert;
 
@@ -73,7 +71,7 @@ abstract class XotBaseRelationManager extends RelationManager
     public function getTableColumns(): array
     {
         return [];
-        //return $this->getResource()::getTableColumns();
+        // return $this->getResource()::getTableColumns();
     }
 
     // public function table(Table $table): Table
@@ -103,7 +101,6 @@ abstract class XotBaseRelationManager extends RelationManager
     //     return [];
     // }
 
-
     /**
      * Get the resource class.
      *
@@ -122,7 +119,7 @@ abstract class XotBaseRelationManager extends RelationManager
         } catch (\Exception $e) {
             // Fallback if parent method fails
         }
-        
+
         // Fallback: derive the resource class name from the relation manager name
         $class = get_class($this);
         $resource_name = Str::of(class_basename($this))
@@ -135,12 +132,12 @@ abstract class XotBaseRelationManager extends RelationManager
             ->append('Resources\\')
             ->toString();
         $resourceClass = $ns.'\\'.$resource_name;
-        
-        if (!class_exists($resourceClass)) {
+
+        if (! class_exists($resourceClass)) {
             throw new \Exception("Cannot find resource class {$resourceClass}");
         }
-        
-        if (!is_subclass_of($resourceClass, \Modules\Xot\Filament\Resources\XotBaseResource::class)) {
+
+        if (! is_subclass_of($resourceClass, \Modules\Xot\Filament\Resources\XotBaseResource::class)) {
             throw new \Exception("{$resourceClass} must extend XotBaseResource");
         }
 

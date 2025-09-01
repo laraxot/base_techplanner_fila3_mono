@@ -4,37 +4,34 @@ declare(strict_types=1);
 
 namespace Modules\Media\Datas;
 
-use Livewire\Wireable;
-use Illuminate\Support\Str;
-use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
-use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Storage;
-use Modules\Tenant\Services\TenantService;
+use Livewire\Wireable;
 use Spatie\LaravelData\Concerns\WireableData;
+use Spatie\LaravelData\Data;
+
 use function Safe\file_get_contents;
 
 class CloudFrontData extends Data implements Wireable
 {
     use WireableData;
 
-    public string $region; //' => env('CLOUDFRONT_REGION', 'eu-west-1'),
-    public string $base_url; //' => env('CLOUDFRONT_RESOURCE_KEY_BASE_URL'),
-    public ?string $private_key; //' => env('CLOUDFRONT_PRIVATE_KEY'),
-    public ?string $private_key_path; //' => env('CLOUDFRONT_PRIVATE_KEY_PATH'),
-    public string $key_pair_id; //' => env('CLOUDFRONT_KEYPAIR_ID'),
+    public string $region; // ' => env('CLOUDFRONT_REGION', 'eu-west-1'),
 
+    public string $base_url; // ' => env('CLOUDFRONT_RESOURCE_KEY_BASE_URL'),
 
-     /**
+    public ?string $private_key; // ' => env('CLOUDFRONT_PRIVATE_KEY'),
+
+    public ?string $private_key_path; // ' => env('CLOUDFRONT_PRIVATE_KEY_PATH'),
+
+    public string $key_pair_id; // ' => env('CLOUDFRONT_KEYPAIR_ID'),
+
+    /**
      * Singleton instance.
      */
     private static ?self $instance = null;
 
     /**
      * Creates or returns the singleton instance.
-     *
-     * @return self
      */
     public static function make(): self
     {

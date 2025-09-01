@@ -8,16 +8,16 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * TimeOffBalanceWidget - Leave Balance Display Widget
- * 
- * Displays monthly/annual leave balances including vacation days, 
+ *
+ * Displays monthly/annual leave balances including vacation days,
  * ROL, permits, overtime bank, and other time-off categories.
  */
 class TimeOffBalanceWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.time-off-balance-widget';
-    
-    protected int | string | array $columnSpan = 'full';
-    
+
+    protected int|string|array $columnSpan = 'full';
+
     protected static ?int $sort = 3;
 
     /**
@@ -99,9 +99,6 @@ class TimeOffBalanceWidget extends XotBaseWidget
 
     /**
      * Format hours to hours and minutes display
-     *
-     * @param float $hours
-     * @return string
      */
     protected function formatHoursMinutes(float $hours): string
     {
@@ -121,25 +118,21 @@ class TimeOffBalanceWidget extends XotBaseWidget
 
         $formatted = '';
         if ($wholeHours > 0) {
-            $formatted .= $wholeHours . 'h';
+            $formatted .= $wholeHours.'h';
         }
         if ($minutes > 0) {
-            $formatted .= ($wholeHours > 0 ? ' ' : '') . $minutes . 'm';
+            $formatted .= ($wholeHours > 0 ? ' ' : '').$minutes.'m';
         }
 
-        return ($isNegative ? '-' : '') . $formatted;
+        return ($isNegative ? '-' : '').$formatted;
     }
 
     /**
      * Get progress percentage for balance
-     *
-     * @param float $used
-     * @param float|null $total
-     * @return float
      */
     protected function getProgressPercentage(float $used, ?float $total): float
     {
-        if (!$total || $total <= 0) {
+        if (! $total || $total <= 0) {
             return 0;
         }
 
@@ -149,14 +142,12 @@ class TimeOffBalanceWidget extends XotBaseWidget
     /**
      * Get color classes for balance type
      *
-     * @param string $color
-     * @param float $balance
      * @return array<string, string>
      */
     protected function getColorClasses(string $color, float $balance): array
     {
         $isNegative = $balance < 0;
-        
+
         if ($isNegative) {
             return [
                 'bg' => 'bg-red-50',

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Widgets;
 
-use Filament\Widgets\StatsOverviewWidget\Stat;
 use Carbon\Carbon;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseStatsOverviewWidget;
 
@@ -43,7 +43,7 @@ class WorkHourStatsWidget extends XotBaseStatsOverviewWidget
                 ->descriptionIcon('heroicon-m-calendar-days')
                 ->color('success'),
 
-            Stat::make('Clock In/Out', $todayClockIns . '/' . $todayClockOuts)
+            Stat::make('Clock In/Out', $todayClockIns.'/'.$todayClockOuts)
                 ->description('Today\'s clock-ins/outs')
                 ->descriptionIcon('heroicon-m-arrow-path')
                 ->color('info'),

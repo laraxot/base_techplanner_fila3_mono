@@ -8,16 +8,16 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * TodoWidget - HR Task Management Widget
- * 
+ *
  * Displays a list of HR tasks that need to be completed by the user.
  * Features priority-based styling and direct action links.
  */
 class TodoWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.todo-widget';
-    
-    protected int | string | array $columnSpan = 'full';
-    
+
+    protected int|string|array $columnSpan = 'full';
+
     protected static ?int $sort = 1;
 
     /**
@@ -80,9 +80,6 @@ class TodoWidget extends XotBaseWidget
 
     /**
      * Get priority color class
-     *
-     * @param string $priority
-     * @return string
      */
     protected function getPriorityColor(string $priority): string
     {
@@ -96,9 +93,6 @@ class TodoWidget extends XotBaseWidget
 
     /**
      * Get priority badge color
-     *
-     * @param string $priority
-     * @return string
      */
     protected function getPriorityBadgeColor(string $priority): string
     {

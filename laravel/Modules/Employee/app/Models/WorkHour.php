@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Modules\Employee\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Employee\Models\Employee;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class WorkHour.
@@ -33,8 +32,11 @@ use Modules\Employee\Models\Employee;
 class WorkHour extends BaseModel
 {
     public const TYPE_CLOCK_IN = 'clock_in';
+
     public const TYPE_CLOCK_OUT = 'clock_out';
+
     public const TYPE_BREAK_START = 'break_start';
+
     public const TYPE_BREAK_END = 'break_end';
 
     public const TYPES = [
@@ -45,7 +47,9 @@ class WorkHour extends BaseModel
     ];
 
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_APPROVED = 'approved';
+
     public const STATUS_REJECTED = 'rejected';
 
     public const STATUSES = [
@@ -122,8 +126,7 @@ class WorkHour extends BaseModel
     /**
      * Scope a query to only include work hours for a specific employee.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
-     * @param int $employeeId
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForEmployee(Builder $query, int $employeeId): Builder
@@ -134,8 +137,7 @@ class WorkHour extends BaseModel
     /**
      * Scope a query to only include work hours of a specific type.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
-     * @param string $type
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeOfType(Builder $query, string $type): Builder
@@ -146,8 +148,7 @@ class WorkHour extends BaseModel
     /**
      * Scope a query to only include work hours for a specific date.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
-     * @param Carbon $date
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForDate(Builder $query, Carbon $date): Builder
@@ -158,7 +159,7 @@ class WorkHour extends BaseModel
     /**
      * Scope a query to only include work hours for today.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeToday(Builder $query): Builder
@@ -168,8 +169,6 @@ class WorkHour extends BaseModel
 
     /**
      * Get the formatted time.
-     *
-     * @return string
      */
     public function getFormattedTimeAttribute(): string
     {
@@ -178,8 +177,6 @@ class WorkHour extends BaseModel
 
     /**
      * Get the formatted date.
-     *
-     * @return string
      */
     public function getFormattedDateAttribute(): string
     {
@@ -188,8 +185,6 @@ class WorkHour extends BaseModel
 
     /**
      * Get the formatted date and time.
-     *
-     * @return string
      */
     public function getFormattedDateTimeAttribute(): string
     {
@@ -198,8 +193,6 @@ class WorkHour extends BaseModel
 
     /**
      * Check if the work hour is a clock in.
-     *
-     * @return bool
      */
     public function isClockIn(): bool
     {
@@ -208,8 +201,6 @@ class WorkHour extends BaseModel
 
     /**
      * Check if the work hour is a clock out.
-     *
-     * @return bool
      */
     public function isClockOut(): bool
     {
@@ -218,8 +209,6 @@ class WorkHour extends BaseModel
 
     /**
      * Check if the work hour is a break start.
-     *
-     * @return bool
      */
     public function isBreakStart(): bool
     {
@@ -228,8 +217,6 @@ class WorkHour extends BaseModel
 
     /**
      * Check if the work hour is a break end.
-     *
-     * @return bool
      */
     public function isBreakEnd(): bool
     {
@@ -238,15 +225,11 @@ class WorkHour extends BaseModel
 
     /**
      * Get the last work hour entry for an employee on a specific date.
-     *
-     * @param int $employeeId
-     * @param Carbon|null $date
-     * @return WorkHour|null
      */
     public static function getLastEntryForEmployee(int $employeeId, ?Carbon $date = null): ?WorkHour
     {
         $date = $date ?? Carbon::today();
-        
+
         return static::forEmployee($employeeId)
             ->forDate($date)
             ->orderBy('timestamp', 'desc')
@@ -255,16 +238,12 @@ class WorkHour extends BaseModel
 
     /**
      * Get the next expected action for an employee based on their last entry.
-     *
-     * @param int $employeeId
-     * @param Carbon|null $date
-     * @return string
      */
     public static function getNextAction(int $employeeId, ?Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
-        if (!$lastEntry) {
+        if (! $lastEntry) {
             return self::TYPE_CLOCK_IN;
         }
 
@@ -279,29 +258,23 @@ class WorkHour extends BaseModel
 
     /**
      * Validate if a new entry is allowed based on the last entry.
-     *
-     * @param int $employeeId
-     * @param string $type
-     * @param Carbon|null $date
-     * @return bool
      */
     public static function isValidNextEntry(int $employeeId, string $type, ?Carbon $date = null): bool
     {
         $expectedAction = static::getNextAction($employeeId, $date);
+
         return $expectedAction === $type;
     }
 
     /**
      * Get all work hours for an employee on a specific date.
      *
-     * @param int $employeeId
-     * @param Carbon|null $date
      * @return \Illuminate\Database\Eloquent\Collection<int, WorkHour>
      */
     public static function getTodayEntries(int $employeeId, ?Carbon $date = null): \Illuminate\Database\Eloquent\Collection
     {
         $date = $date ?? Carbon::today();
-        
+
         return static::forEmployee($employeeId)
             ->forDate($date)
             ->orderBy('timestamp', 'asc')
@@ -311,14 +284,12 @@ class WorkHour extends BaseModel
     /**
      * Calculate total worked hours for an employee on a specific date.
      *
-     * @param int $employeeId
-     * @param Carbon|null $date
      * @return float Hours worked
      */
     public static function calculateWorkedHours(int $employeeId, ?Carbon $date = null): float
     {
         $entries = static::getTodayEntries($employeeId, $date);
-        
+
         if ($entries->isEmpty()) {
             return 0.0;
         }
@@ -332,18 +303,18 @@ class WorkHour extends BaseModel
                 case self::TYPE_CLOCK_IN:
                     $clockInTime = $entry->timestamp;
                     break;
-                    
+
                 case self::TYPE_BREAK_START:
                     if ($clockInTime) {
                         $totalMinutes += $clockInTime->diffInMinutes($entry->timestamp);
                     }
                     $breakStartTime = $entry->timestamp;
                     break;
-                    
+
                 case self::TYPE_BREAK_END:
                     $clockInTime = $entry->timestamp; // Resume work
                     break;
-                    
+
                 case self::TYPE_CLOCK_OUT:
                     if ($clockInTime) {
                         $totalMinutes += $clockInTime->diffInMinutes($entry->timestamp);
@@ -358,16 +329,12 @@ class WorkHour extends BaseModel
 
     /**
      * Get the current status for an employee.
-     *
-     * @param int $employeeId
-     * @param Carbon|null $date
-     * @return string
      */
     public static function getCurrentStatus(int $employeeId, ?Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
-        if (!$lastEntry) {
+        if (! $lastEntry) {
             return 'not_clocked_in';
         }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 // use Modules\TechPlanner\Http\Controllers\Api\ProjectController;
 // use Modules\TechPlanner\Http\Controllers\Api\ContactController;
 
@@ -24,7 +25,7 @@ Route::prefix('techplanner')->name('api.techplanner.')->group(function () {
             'status' => 'TechPlanner API is working',
         ]);
     })->name('dashboard.summary');
-    
+
     // TODO: Implementare i controller API
     // Route::apiResource('projects', ProjectController::class);
     // Route::apiResource('contacts', ContactController::class);

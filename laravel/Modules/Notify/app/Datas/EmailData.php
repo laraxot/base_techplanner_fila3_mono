@@ -21,7 +21,7 @@ class EmailData extends Data
 
     public string $body_html;
 
-    public string $body='';
+    public string $body = '';
 
     public array $attachments = [];
 
@@ -55,11 +55,11 @@ class EmailData extends Data
 
     public function getFrom(): Address
     {
-        if (!isset($this->from)) {
+        if (! isset($this->from)) {
             Assert::string($from = config('mail.from.name', 'Default Sender'));
             $this->from = $from;
         }
-        if (!isset($this->from_email)) {
+        if (! isset($this->from_email)) {
             Assert::string($from_email = config('mail.from.address', 'default@example.com'));
             $this->from_email = $from_email;
         }
@@ -69,11 +69,11 @@ class EmailData extends Data
 
     public function getMimeEmail(): MimeEmail
     {
-        if ( $this->body=='') {
+        if ($this->body == '') {
             $this->body = strip_tags($this->body_html);
         }
 
-        $email = (new MimeEmail())
+        $email = (new MimeEmail)
             ->from($this->getFrom())
             ->to($this->to)
             ->subject(strip_tags($this->subject))

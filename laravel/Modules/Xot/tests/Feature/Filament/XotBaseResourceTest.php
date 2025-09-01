@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\Xot\Tests\Feature\Filament;
-use Modules\Xot\Filament\Resources\XotBaseResource;
-use Modules\Xot\Tests\TestCase;
-use Filament\Resources\Resource;
 
+use Filament\Resources\Resource;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 beforeEach(function () {
-    $this->resource = new class extends XotBaseResource {
+    $this->resource = new class extends XotBaseResource
+    {
         protected static ?string $model = null;
+
         protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
         protected static ?string $navigationGroup = 'Test Group';
+
         protected static ?int $navigationSort = 1;
     };
 });

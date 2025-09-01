@@ -2,14 +2,10 @@
 
 declare(strict_types=1);
 
-
-
-
 namespace Modules\Employee\Tests\Unit\Models;
-use Carbon\Carbon;
-use Modules\Employee\Models\Employee;
-use Modules\Employee\Models\WorkHour;
 
+use Carbon\Carbon;
+use Modules\Employee\Models\WorkHour;
 
 beforeEach(function () {
     $this->employee = createEmployee();

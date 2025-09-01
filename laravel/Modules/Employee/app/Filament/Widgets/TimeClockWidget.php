@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Widgets;
 
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
-use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Models\Employee;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\WorkHour;
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * Unified Time Clock Widget - Primary time tracking interface
- * 
+ *
  * Features:
  * - 3-column responsive layout: [Time+Date] | [Daily Entries] | [Action Button]
  * - Real-time updates with polling
  * - Smart Clock In/Out logic
  * - Native Filament components
  * - Complete time tracking functionality
- * 
+ *
  * This is the ONLY time tracking widget - consolidates all time tracking features.
  */
 class TimeClockWidget extends XotBaseWidget
@@ -96,12 +96,12 @@ class TimeClockWidget extends XotBaseWidget
 
         // Trova employee dell'utente corrente
         $user = Auth::user();
-        if (!$user) {
+        if (! $user) {
             return;
         }
 
         $employee = Employee::where('user_id', $user->id)->first();
-        if (!$employee) {
+        if (! $employee) {
             return;
         }
 
@@ -137,22 +137,24 @@ class TimeClockWidget extends XotBaseWidget
     {
         try {
             $user = Auth::user();
-            if (!$user) {
+            if (! $user) {
                 Notification::make()
                     ->title('Errore')
                     ->body('Utente non autenticato')
                     ->danger()
                     ->send();
+
                 return;
             }
 
             $employee = Employee::where('user_id', $user->id)->first();
-            if (!$employee) {
+            if (! $employee) {
                 Notification::make()
                     ->title('Errore')
                     ->body('Profilo dipendente non trovato')
                     ->danger()
                     ->send();
+
                 return;
             }
 
@@ -163,6 +165,7 @@ class TimeClockWidget extends XotBaseWidget
                     ->body('Sei già in sessione')
                     ->warning()
                     ->send();
+
                 return;
             }
 
@@ -179,14 +182,14 @@ class TimeClockWidget extends XotBaseWidget
 
             Notification::make()
                 ->title('Successo')
-                ->body('Entrata registrata alle ' . Carbon::now()->format('H:i'))
+                ->body('Entrata registrata alle '.Carbon::now()->format('H:i'))
                 ->success()
                 ->send();
 
         } catch (\Exception $e) {
             Notification::make()
                 ->title('Errore')
-                ->body('Errore durante la timbratura: ' . $e->getMessage())
+                ->body('Errore durante la timbratura: '.$e->getMessage())
                 ->danger()
                 ->send();
         }
@@ -199,32 +202,35 @@ class TimeClockWidget extends XotBaseWidget
     {
         try {
             $user = Auth::user();
-            if (!$user) {
+            if (! $user) {
                 Notification::make()
                     ->title('Errore')
                     ->body('Utente non autenticato')
                     ->danger()
                     ->send();
+
                 return;
             }
 
             $employee = Employee::where('user_id', $user->id)->first();
-            if (!$employee) {
+            if (! $employee) {
                 Notification::make()
                     ->title('Errore')
                     ->body('Profilo dipendente non trovato')
                     ->danger()
                     ->send();
+
                 return;
             }
 
             // Verifica che sia in clock-in
-            if (!$this->isClockedIn) {
+            if (! $this->isClockedIn) {
                 Notification::make()
                     ->title('Attenzione')
                     ->body('Devi prima timbrare l\'entrata')
                     ->warning()
                     ->send();
+
                 return;
             }
 
@@ -241,14 +247,14 @@ class TimeClockWidget extends XotBaseWidget
 
             Notification::make()
                 ->title('Successo')
-                ->body('Uscita registrata alle ' . Carbon::now()->format('H:i'))
+                ->body('Uscita registrata alle '.Carbon::now()->format('H:i'))
                 ->success()
                 ->send();
 
         } catch (\Exception $e) {
             Notification::make()
                 ->title('Errore')
-                ->body('Errore durante la timbratura: ' . $e->getMessage())
+                ->body('Errore durante la timbratura: '.$e->getMessage())
                 ->danger()
                 ->send();
         }

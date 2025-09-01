@@ -6,12 +6,9 @@ namespace Modules\Lang\Actions;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 use Spatie\QueueableAction\QueueableAction;
-use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
+
 use function Safe\glob;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\App;
 
 class GetAllModuleTranslationAction
 {
@@ -22,23 +19,24 @@ class GetAllModuleTranslationAction
      */
     public function execute(): array
     {
-       
 
-        $lang=session()->get('locale');
-        if(is_string($lang) && in_array($lang,['it','en'])){
+        $lang = session()->get('locale');
+        if (is_string($lang) && in_array($lang, ['it', 'en'])) {
             app()->setLocale($lang);
         }
 
-        $lang=app()->getLocale();
+        $lang = app()->getLocale();
         $path = base_path('Modules/*/lang/'.$lang.'/*.php');
-        $files=glob($path);
-        $files=Arr::map($files,function($file){
-            $module_low=Str::of($file)->between('Modules/','/lang/')->lower()->toString();
+        $files = glob($path);
+        $files = Arr::map($files, function ($file) {
+            $module_low = Str::of($file)->between('Modules/', '/lang/')->lower()->toString();
+
             return [
-                'key'=>$module_low.'::'.basename($file,'.php'),
-                'path'=>$file,
+                'key' => $module_low.'::'.basename($file, '.php'),
+                'path' => $file,
             ];
         });
+
         return $files;
     }
 }

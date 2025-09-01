@@ -22,7 +22,7 @@ class ExportXlsLazyAction extends Action
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->label(__('xot::actions.export_xls.label'))
             ->tooltip(__('xot::actions.export_xls.tooltip'))
             ->icon(__('xot::actions.export_xls.icon'))
@@ -50,6 +50,7 @@ class ExportXlsLazyAction extends Action
                             if (is_scalar($field)) {
                                 return (string) $field;
                             }
+
                             return '';
                         }, $rawFields);
                     }
@@ -57,17 +58,17 @@ class ExportXlsLazyAction extends Action
                 }
 
                 $lazy = $livewire->getFilteredTableQuery();
-                
+
                 if ($lazy->count() < 7) {
                     Assert::isInstanceOf($lazy, Builder::class);
-                    
+
                     /** @var array<int, string> $stringFields */
                     $stringFields = array_values($fields);
-                    
+
                     return app(ExportXlsByQuery::class)->execute(
-                        $lazy, 
-                        $filename, 
-                        $stringFields, 
+                        $lazy,
+                        $filename,
+                        $stringFields,
                         null
                     );
                 }
@@ -76,16 +77,16 @@ class ExportXlsLazyAction extends Action
 
                 if ($lazyCursor->count() > 3000) {
                     return app(ExportXlsStreamByLazyCollection::class)->execute(
-                        $lazyCursor, 
-                        $filename, 
-                        $transKey, 
+                        $lazyCursor,
+                        $filename,
+                        $transKey,
                         array_values($fields)
                     );
                 }
 
                 return app(ExportXlsByLazyCollection::class)->execute(
-                    $lazyCursor, 
-                    $filename, 
+                    $lazyCursor,
+                    $filename,
                     array_values($fields)
                 );
             });

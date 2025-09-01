@@ -27,6 +27,7 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property int|null $media_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload query()
@@ -34,16 +35,21 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereUpdatedAt($value)
+ *
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property string|null $deleted_at
  * @property string|null $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TemporaryUpload whereUpdatedBy($value)
+ *
  * @mixin IdeHelperTemporaryUpload
+ *
  * @method static \Modules\Media\Database\Factories\TemporaryUploadFactory factory($count = null, $state = [])
+ *
  * @mixin \Eloquent
  */
 class TemporaryUpload extends Model implements HasMedia
@@ -54,8 +60,6 @@ class TemporaryUpload extends Model implements HasMedia
 
     /**
      * Create a new factory instance for the model.
-     *
-     * @return \Modules\Media\Database\Factories\TemporaryUploadFactory
      */
     protected static function newFactory(): \Modules\Media\Database\Factories\TemporaryUploadFactory
     {

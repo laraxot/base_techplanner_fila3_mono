@@ -10,7 +10,7 @@ use Modules\Notify\Models\NotifyThemeable;
 
 /**
  * NotifyThemeable Factory
- * 
+ *
  * @extends Factory<NotifyThemeable>
  */
 class NotifyThemeableFactory extends Factory

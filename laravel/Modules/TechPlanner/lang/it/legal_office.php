@@ -1,59 +1,46 @@
 <?php
 
-return array (
-  'navigation' => 
-  array (
-    'group' => 'techplanner',
-    'label' => 'Sedi Legali',
-    'icon' => 'techplanner-legal-office',
-    'sort' => 50,
-  ),
-  'fields' => 
-  array (
-    'name' => 
-    array (
-      'label' => 'Nome',
-    ),
-    'address' => 
-    array (
-      'label' => 'Indirizzo',
-    ),
-    'city' => 
-    array (
-      'label' => 'Città',
-    ),
-    'postal_code' => 
-    array (
-      'label' => 'CAP',
-    ),
-    'province' => 
-    array (
-      'label' => 'Provincia',
-    ),
-    'country' => 
-    array (
-      'label' => 'Paese',
-    ),
-    'phone' => 
-    array (
-      'label' => 'Telefono',
-    ),
-    'email' => 
-    array (
-      'label' => 'Email',
-    ),
-    'toggleColumns' => 
-    array (
-      'label' => 'toggleColumns',
-    ),
-    'reorderRecords' => 
-    array (
-      'label' => 'reorderRecords',
-    ),
-  ),
-  'model' => 
-  array (
-    'label' => 'Sede Legale',
-    'plural' => 'Sedi Legali',
-  ),
-);
+return [
+    'navigation' => [
+        'group' => 'techplanner',
+        'label' => 'Sedi Legali',
+        'icon' => 'techplanner-legal-office',
+        'sort' => 50,
+    ],
+    'fields' => [
+        'name' => [
+            'label' => 'Nome',
+        ],
+        'address' => [
+            'label' => 'Indirizzo',
+        ],
+        'city' => [
+            'label' => 'Città',
+        ],
+        'postal_code' => [
+            'label' => 'CAP',
+        ],
+        'province' => [
+            'label' => 'Provincia',
+        ],
+        'country' => [
+            'label' => 'Paese',
+        ],
+        'phone' => [
+            'label' => 'Telefono',
+        ],
+        'email' => [
+            'label' => 'Email',
+        ],
+        'toggleColumns' => [
+            'label' => 'toggleColumns',
+        ],
+        'reorderRecords' => [
+            'label' => 'reorderRecords',
+        ],
+    ],
+    'model' => [
+        'label' => 'Sede Legale',
+        'plural' => 'Sedi Legali',
+    ],
+];
