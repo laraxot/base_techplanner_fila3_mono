@@ -15,7 +15,7 @@ namespace Modules\Job\Tests;
 |
 */
 
-uses(TestCase::class)
+uses(\Modules\Job\Tests\TestCase::class)
     ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
     ->in('Feature', 'Unit');
 
