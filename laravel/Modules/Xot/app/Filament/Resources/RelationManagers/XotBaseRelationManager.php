@@ -70,11 +70,31 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
     // */
     public function getTableActions(): array
     {
-        return [
-            Tables\Actions\EditAction::make(),
-            // Tables\Actions\DeleteAction::make(),
-            Tables\Actions\DetachAction::make(),
-        ];
+
+
+        $actions = [];
+        $resource = $this->getResource();
+        
+         
+        if (method_exists($resource, 'canEdit')) {
+            $actions['edit'] = Tables\Actions\EditAction::make()
+                //->iconButton()
+                ->visible(fn (Model $record): bool => $resource::canEdit($record));
+        }
+
+        if (method_exists($resource, 'canDetach')) {
+            $actions['detach'] = Tables\Actions\DetachAction::make()
+                //->iconButton()
+                ->visible(fn (Model $record): bool => $resource::canDetach($record));
+        }
+        if (method_exists($resource, 'canDelete')) {
+            $actions['delete'] = Tables\Actions\DeleteAction::make()
+                //->iconButton()
+                ->visible(fn (Model $record): bool => $resource::canDelete($record));
+        }
+
+       
+        return $actions;
     }
 
     public function getTableBulkActions(): array
@@ -87,9 +107,31 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     public function getTableHeaderActions(): array
     {
+        /*
         return [
-            Tables\Actions\AttachAction::make(),
+            Tables\Actions\AttachAction::make()
+               ->icon('heroicon-o-link'),
         ];
+        */
+        $actions = [];
+        $resource = $this->getResource();
+        
+         
+        if (method_exists($resource, 'canAttach')) {
+            $actions['attach'] = Tables\Actions\AttachAction::make()
+                ->icon('heroicon-o-link')
+                //->iconButton()
+                ->visible(fn (?Model $record): bool => $resource::canAttach());
+        }
+
+        if (method_exists($resource, 'canCreate')) {
+            $actions['create'] = Tables\Actions\CreateAction::make()
+                //->iconButton()
+                ->visible(fn (?Model $record): bool => $resource::canCreate());
+        }
+
+       
+        return $actions;
     }
 
     public function getTableFilters(): array
@@ -99,7 +141,7 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     public function getResource(): string
     {
-        $resource = static::$resourceClass;
+        $resource = static::$resource;
         Assert::classExists($resource);
         Assert::isAOf($resource, XotBaseResource::class);
 

@@ -8,6 +8,7 @@ use Filament\Forms;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 use Modules\TechPlanner\Models\Appointment;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * ---
@@ -19,10 +20,12 @@ class AppointmentResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
+            /*
             Forms\Components\Select::make('client_id')
                 ->relationship('client', 'name')
                 ->required(),
-            Forms\Components\DatePicker::make('date')
+            */
+            Forms\Components\DateTimePicker::make('date')
                 ->required(),
             Forms\Components\Textarea::make('notes')
                 ->maxLength(65535)
@@ -38,5 +41,21 @@ class AppointmentResource extends XotBaseResource
             'create' => Pages\CreateAppointment::route('/create'),
             'edit' => Pages\EditAppointment::route('/{record}/edit'),
         ];
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return true;
+    }
+
+
+    public static function canDetach(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return true;
     }
 }

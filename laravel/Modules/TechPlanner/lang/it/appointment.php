@@ -21,6 +21,7 @@ return array (
     'date' => 
     array (
       'label' => 'Data',
+      'helper_text' => 'date',
     ),
     'time' => 
     array (
@@ -40,6 +41,7 @@ return array (
     'notes' => 
     array (
       'label' => 'Note',
+      'helper_text' => 'notes',
     ),
     'toggleColumns' => 
     array (
@@ -68,6 +70,26 @@ return array (
     'resetFilters' => 
     array (
       'label' => 'resetFilters',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'applyFilters',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
+    'detach' => 
+    array (
+      'label' => 'detach',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
+    'delete' => 
+    array (
+      'label' => 'delete',
     ),
   ),
   'actions' => 

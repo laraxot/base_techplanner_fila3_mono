@@ -96,10 +96,15 @@ return array (
     'tax_code' => 
     array (
       'label' => 'Codice Fiscale',
+      'description' => 'tax_code',
+      'helper_text' => 'tax_code',
     ),
     'vat_number' => 
     array (
       'label' => 'Partita IVA',
+      'description' => 'vat_number',
+      'helper_text' => 'vat_number',
+      'placeholder' => 'vat_number',
     ),
     'fiscal_code' => 
     array (
@@ -118,16 +123,23 @@ return array (
     'address' => 
     array (
       'label' => 'Indirizzo',
+      'description' => 'address',
+      'helper_text' => 'address',
+      'placeholder' => 'address',
     ),
     'street_number' => 
     array (
       'label' => 'Numero Civico',
+      'description' => 'street_number',
+      'helper_text' => 'street_number',
+      'placeholder' => 'street_number',
     ),
     'postal_code' => 
     array (
       'label' => 'CAP',
       'description' => 'postal_code',
       'helper_text' => 'postal_code',
+      'placeholder' => 'postal_code',
     ),
     'province' => 
     array (
@@ -328,6 +340,7 @@ return array (
     'contacts' => 
     array (
       'heading' => 'contacts',
+      'label' => 'contacts',
     ),
   ),
 );
