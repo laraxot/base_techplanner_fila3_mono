@@ -47,6 +47,6 @@ public_html/css/
 public_html/js/
 public_html/vendor/
 laravel/resources/views/vendor/
-bashscripts
+bashscripts/
 docs/
 
