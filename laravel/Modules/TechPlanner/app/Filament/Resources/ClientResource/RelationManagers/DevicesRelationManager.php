@@ -8,7 +8,7 @@ use Filament\Forms;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\TechPlanner\Filament\Resources\DeviceResource;
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class DevicesRelationManager extends XotBaseRelationManager
 {

@@ -6,7 +6,8 @@ namespace Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers
 
 use Filament\Tables;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class AppointmentsRelationManager extends XotBaseRelationManager
 {
