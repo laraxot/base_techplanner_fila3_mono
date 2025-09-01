@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Modules\Geo\Tests\TestCase;
+use Modules\Gdpr\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,7 @@ use Modules\Geo\Tests\TestCase;
 |
 */
 
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
+pest()->extend(TestCase::class)
     ->in('Feature', 'Unit');
 
 /*
@@ -30,16 +29,12 @@ uses(TestCase::class)
 |
 */
 
-expect()->extend('toBeCountry', function () {
-    return $this->toBeInstanceOf(\Modules\Geo\Models\Country::class);
+expect()->extend('toBeGdprConsent', function () {
+    return $this->toBeInstanceOf(\Modules\Gdpr\Models\GdprConsent::class);
 });
 
-expect()->extend('toBeRegion', function () {
-    return $this->toBeInstanceOf(\Modules\Geo\Models\Region::class);
-});
-
-expect()->extend('toBeCity', function () {
-    return $this->toBeInstanceOf(\Modules\Geo\Models\City::class);
+expect()->extend('toBeGdprRequest', function () {
+    return $this->toBeInstanceOf(\Modules\Gdpr\Models\GdprRequest::class);
 });
 
 /*
@@ -53,17 +48,22 @@ expect()->extend('toBeCity', function () {
 |
 */
 
-function createCountry(array $attributes = []): \Modules\Geo\Models\Country
+function createGdprConsent(array $attributes = []): \Modules\Gdpr\Models\GdprConsent
 {
-    return \Modules\Geo\Models\Country::factory()->create($attributes);
+    return \Modules\Gdpr\Models\GdprConsent::factory()->create($attributes);
 }
 
-function createRegion(array $attributes = []): \Modules\Geo\Models\Region
+function makeGdprConsent(array $attributes = []): \Modules\Gdpr\Models\GdprConsent
 {
-    return \Modules\Geo\Models\Region::factory()->create($attributes);
+    return \Modules\Gdpr\Models\GdprConsent::factory()->make($attributes);
 }
 
-function createCity(array $attributes = []): \Modules\Geo\Models\City
+function createGdprRequest(array $attributes = []): \Modules\Gdpr\Models\GdprRequest
 {
-    return \Modules\Geo\Models\City::factory()->create($attributes);
+    return \Modules\Gdpr\Models\GdprRequest::factory()->create($attributes);
+}
+
+function makeGdprRequest(array $attributes = []): \Modules\Gdpr\Models\GdprRequest
+{
+    return \Modules\Gdpr\Models\GdprRequest::factory()->make($attributes);
 }

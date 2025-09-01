@@ -7,9 +7,7 @@ namespace Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 /**
- * Page per la lista degli appuntamenti.
- * 
- * Estende XotBaseListRecords seguendo le regole Laraxot.
+* ---
  */
 class ListAppointments extends XotBaseListRecords
 {

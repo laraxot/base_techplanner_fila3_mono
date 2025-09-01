@@ -1,0 +1,104 @@
+# REGOLA CRITICA: Pest + DatabaseTransactions Obbligatori
+
+## ⚠️ REGOLE ASSOLUTE ⚠️
+
+### 1. **SEMPRE Pest** - Mai PHPUnit per nuovi test
+### 2. **MAI RefreshDatabase** - Sempre DatabaseTransactions
+
+## Pattern Obbligatori
+
+### ✅ Test Pest Corretto
+```php
+<?php
+
+declare(strict_types=1);
+
+use SomeModel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+uses(DatabaseTransactions::class); // ✅ SEMPRE
+
+describe('Model Tests', function () {
+    
+    beforeEach(function () {
+        $this->user = User::factory()->create();
+    });
+
+    test('can do something', function () {
+        expect(true)->toBeTrue();
+    });
+});
+```
+
+### ❌ Pattern Vietati
+```php
+<?php
+
+// ❌ VIETATO - PHPUnit verboso
+class MyTest extends TestCase
+{
+    use RefreshDatabase; // ❌ LENTISSIMO
+    
+    public function testSomething()
+    {
+        $this->assertTrue(true); // ❌ Sintassi vecchia
+    }
+}
+```
+
+## Motivazioni Critiche
+
+### Performance
+- **DatabaseTransactions**: 0.1-0.5 sec per test
+- **RefreshDatabase**: 5-15 sec per test
+- **Miglioramento**: 30-100x più veloce
+
+### Developer Experience
+- **Pest**: Sintassi pulita e moderna
+- **PHPUnit**: Verboso e ripetitivo
+- **Beneficio**: Codice più leggibile
+
+### Scalabilità
+- **615+ test**: Con RefreshDatabase = ore
+- **615+ test**: Con DatabaseTransactions = minuti
+- **CI/CD**: Pipeline veloci vs timeout
+
+## Configurazione Obbligatoria
+
+### Pest.php
+```php
+use TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+uses(TestCase::class, DatabaseTransactions::class)
+    ->in('Feature', 'Unit', 'Integration');
+```
+
+### TestCase.php
+```php
+abstract class TestCase extends BaseTestCase
+{
+    use CreatesApplication;
+    use DatabaseTransactions; // ✅ SEMPRE
+}
+```
+
+### .env.testing (Richiesto)
+```env
+APP_ENV=testing
+DB_CONNECTION=sqlite
+DB_DATABASE=:memory:
+CACHE_STORE=array
+SESSION_DRIVER=array
+QUEUE_CONNECTION=sync
+```
+
+---
+
+**REGOLA**: Pest + DatabaseTransactions sempre  
+**MOTIVAZIONE**: Performance e modernità  
+**APPLICAZIONE**: Tutti i test nuovi e esistenti
+
+description: Mandatory Pest testing with DatabaseTransactions
+globs: ["**/tests/**/*.php", "**/Pest.php", "**/TestCase.php"]
+alwaysApply: true

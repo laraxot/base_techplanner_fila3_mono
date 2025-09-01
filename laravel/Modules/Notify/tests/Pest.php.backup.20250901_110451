@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Modules\Geo\Tests\TestCase;
+namespace Modules\Notify\Tests;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,7 @@ use Modules\Geo\Tests\TestCase;
 |
 */
 
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
+pest()->extend(TestCase::class)
     ->in('Feature', 'Unit');
 
 /*
@@ -30,16 +29,12 @@ uses(TestCase::class)
 |
 */
 
-expect()->extend('toBeCountry', function () {
-    return $this->toBeInstanceOf(\Modules\Geo\Models\Country::class);
+expect()->extend('toBeNotification', function () {
+    return $this->toBeInstanceOf(\Modules\Notify\Models\Notification::class);
 });
 
-expect()->extend('toBeRegion', function () {
-    return $this->toBeInstanceOf(\Modules\Geo\Models\Region::class);
-});
-
-expect()->extend('toBeCity', function () {
-    return $this->toBeInstanceOf(\Modules\Geo\Models\City::class);
+expect()->extend('toBeMailTemplate', function () {
+    return $this->toBeInstanceOf(\Modules\Notify\Models\MailTemplate::class);
 });
 
 /*
@@ -53,17 +48,22 @@ expect()->extend('toBeCity', function () {
 |
 */
 
-function createCountry(array $attributes = []): \Modules\Geo\Models\Country
+function createNotification(array $attributes = []): \Modules\Notify\Models\Notification
 {
-    return \Modules\Geo\Models\Country::factory()->create($attributes);
+    return \Modules\Notify\Models\Notification::factory()->create($attributes);
 }
 
-function createRegion(array $attributes = []): \Modules\Geo\Models\Region
+function makeNotification(array $attributes = []): \Modules\Notify\Models\Notification
 {
-    return \Modules\Geo\Models\Region::factory()->create($attributes);
+    return \Modules\Notify\Models\Notification::factory()->make($attributes);
 }
 
-function createCity(array $attributes = []): \Modules\Geo\Models\City
+function createMailTemplate(array $attributes = []): \Modules\Notify\Models\MailTemplate
 {
-    return \Modules\Geo\Models\City::factory()->create($attributes);
+    return \Modules\Notify\Models\MailTemplate::factory()->create($attributes);
+}
+
+function makeMailTemplate(array $attributes = []): \Modules\Notify\Models\MailTemplate
+{
+    return \Modules\Notify\Models\MailTemplate::factory()->make($attributes);
 }
