@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class PageManagementBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_page_with_basic_information(): void

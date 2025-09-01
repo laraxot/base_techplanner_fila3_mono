@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class TeamManagementBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_team(): void

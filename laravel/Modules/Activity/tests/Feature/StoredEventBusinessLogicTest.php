@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class StoredEventBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_stored_event_with_basic_information(): void

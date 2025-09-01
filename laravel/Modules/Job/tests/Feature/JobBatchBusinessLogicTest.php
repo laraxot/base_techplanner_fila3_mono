@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class JobBatchBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_job_batch_with_basic_information(): void

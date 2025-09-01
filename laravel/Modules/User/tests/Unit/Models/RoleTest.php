@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class RoleTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_can_create_role_with_minimal_data(): void
     {

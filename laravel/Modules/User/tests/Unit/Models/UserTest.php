@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_can_create_user_with_minimal_data(): void
     {

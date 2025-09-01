@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class TenantTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_can_create_tenant_with_minimal_data(): void
     {

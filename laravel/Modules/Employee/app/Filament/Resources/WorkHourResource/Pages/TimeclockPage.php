@@ -8,7 +8,7 @@ use Filament\Actions;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Xot\Filament\Resources\Pages\XotBasePage;
 
-class TimeclockPage extends XotBasePage
+class TimeClockPage extends XotBasePage
 {
     protected static string $resource = WorkHourResource::class;
 

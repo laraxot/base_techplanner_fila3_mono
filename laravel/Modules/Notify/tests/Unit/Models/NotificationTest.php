@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     protected function setUp(): void
     {

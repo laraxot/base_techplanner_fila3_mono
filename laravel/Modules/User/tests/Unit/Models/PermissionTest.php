@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class PermissionTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_can_create_permission_with_minimal_data(): void
     {

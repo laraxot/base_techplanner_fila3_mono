@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class SnapshotBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_snapshot_with_basic_information(): void

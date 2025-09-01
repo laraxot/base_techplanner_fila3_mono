@@ -22,7 +22,7 @@ use Tests\TestCase;
 #[Group('sushi-json')]
 class SushiToJsonPerformanceTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     private TestSushiModel $model;
 

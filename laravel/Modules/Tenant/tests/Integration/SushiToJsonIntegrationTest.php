@@ -23,7 +23,7 @@ use Tests\TestCase;
 #[Group('sushi-json')]
 class SushiToJsonIntegrationTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     private Tenant $tenant1;
 

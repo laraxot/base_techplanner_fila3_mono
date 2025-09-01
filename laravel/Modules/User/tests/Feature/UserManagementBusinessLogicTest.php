@@ -14,7 +14,7 @@ use Tests\TestCase;
 
 class UserManagementBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_user_with_profile(): void

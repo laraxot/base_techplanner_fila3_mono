@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class BaseModelBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_base_model_instance(): void

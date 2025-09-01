@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modules\Employee\Tests;
+use Modules\Employee\Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-pest()->extend(TestCase::class)
-    ->in('Feature', 'Unit');
+// ✅ CONFIGURAZIONE CORRETTA PEST + DATABASE TRANSACTIONS
+uses(TestCase::class, DatabaseTransactions::class)->in('Feature', 'Unit', 'Integration');
 
 expect()->extend('toBeEmployee', function () {
     return $this->toBeInstanceOf(\Modules\Employee\Models\Employee::class);

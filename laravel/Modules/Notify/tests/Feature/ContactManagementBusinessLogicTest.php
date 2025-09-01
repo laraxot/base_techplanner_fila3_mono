@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class ContactManagementBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_contact_with_basic_information(): void

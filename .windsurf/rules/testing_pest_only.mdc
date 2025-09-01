@@ -1,0 +1,18 @@
+# Testing – Pest Only + No RefreshDatabase (Laraxot)
+
+- Pest obbligatorio per tutti i test
+- Vietato `RefreshDatabase`
+- Obbligatorio `.env.testing` (SQLite :memory: consigliato)
+
+Esempio Pest:
+```php
+it('works', function () {
+    expect(true)->toBeTrue();
+});
+```
+
+Vietato (PHPUnit + RefreshDatabase):
+```php
+use Illuminate\Foundation\Testing\RefreshDatabase;
+class ExampleTest extends TestCase { use RefreshDatabase; }
+```

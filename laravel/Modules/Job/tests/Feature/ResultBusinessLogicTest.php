@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class ResultBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function it_can_create_result_with_basic_information(): void

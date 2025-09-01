@@ -11,15 +11,22 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
 
-// use LaraZeus\Bolt\BoltPlugin;
 
+
+/**
+ * --
+ */
 class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'UI';
 
+    /**
+     * ---
+     */
     public function panel(Panel $panel): Panel
     {
         $panel = parent::panel($panel);
+
 
         // FilamentAsset::register(
         //     [

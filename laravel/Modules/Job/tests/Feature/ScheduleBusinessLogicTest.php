@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Job\Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Job\Models\Schedule;
 use Modules\Job\Models\ScheduleHistory;
-use Tests\TestCase;
 
-class ScheduleBusinessLogicTest extends TestCase
-{
-    use RefreshDatabase;
+beforeEach(function () {
+    // Setup per ogni test se necessario
+});
 
-    /** @test */
-    public function it_can_create_schedule_with_basic_information(): void
-    {
+describe('Schedule Business Logic', function () {
+
+    test('can create schedule with basic information', function () {
         $scheduleData = [
             'name' => 'Backup giornaliero',
             'description' => 'Backup automatico del database ogni giorno alle 2:00',
@@ -31,7 +29,13 @@ class ScheduleBusinessLogicTest extends TestCase
 
         $schedule = Schedule::create($scheduleData);
 
-        $this->assertDatabaseHas('schedules', [
+        expect($schedule)->toBeInstanceOf(Schedule::class);
+        expect($schedule->name)->toBe('Backup giornaliero');
+        expect($schedule->cron_expression)->toBe('0 2 * * *');
+        expect($schedule->timezone)->toBe('Europe/Rome');
+        expect($schedule->is_active)->toBeTrue();
+
+        expect($schedule)->toBeInDatabase('schedules', [
             'id' => $schedule->id,
             'name' => 'Backup giornaliero',
             'description' => 'Backup automatico del database ogni giorno alle 2:00',
@@ -39,16 +43,9 @@ class ScheduleBusinessLogicTest extends TestCase
             'timezone' => 'Europe/Rome',
             'is_active' => 1,
         ]);
+    });
 
-        $this->assertEquals('Backup giornaliero', $schedule->name);
-        $this->assertEquals('0 2 * * *', $schedule->cron_expression);
-        $this->assertEquals('Europe/Rome', $schedule->timezone);
-        $this->assertTrue($schedule->is_active);
-    }
-
-    /** @test */
-    public function it_can_manage_schedule_activation_and_deactivation(): void
-    {
+    test('can manage schedule activation and deactivation', function () {
         $schedule = Schedule::create([
             'name' => 'Test Schedule',
             'description' => 'Test Description',
@@ -58,8 +55,8 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'active',
         ]);
 
-        $this->assertTrue($schedule->is_active);
-        $this->assertEquals('active', $schedule->status);
+        expect($schedule->is_active)->toBeTrue();
+        expect($schedule->status)->toBe('active');
 
         // Disattiva lo schedule
         $schedule->update([
@@ -67,13 +64,11 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'inactive',
         ]);
 
-        $this->assertFalse($schedule->is_active);
-        $this->assertEquals('inactive', $schedule->status);
-    }
+        expect($schedule->is_active)->toBeFalse();
+        expect($schedule->status)->toBe('inactive');
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_cron_expressions(): void
-    {
+    test('can handle schedule cron expressions', function () {
         $dailySchedule = Schedule::create([
             'name' => 'Daily Schedule',
             'description' => 'Eseguito ogni giorno',
@@ -101,14 +96,12 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'active',
         ]);
 
-        $this->assertEquals('0 9 * * *', $dailySchedule->cron_expression);
-        $this->assertEquals('0 10 * * 1', $weeklySchedule->cron_expression);
-        $this->assertEquals('0 8 1 * *', $monthlySchedule->cron_expression);
-    }
+        expect($dailySchedule->cron_expression)->toBe('0 9 * * *');
+        expect($weeklySchedule->cron_expression)->toBe('0 10 * * 1');
+        expect($monthlySchedule->cron_expression)->toBe('0 8 1 * *');
+    });
 
-    /** @test */
-    public function it_can_manage_schedule_execution_limits(): void
-    {
+    test('can manage schedule execution limits', function () {
         $schedule = Schedule::create([
             'name' => 'Limited Schedule',
             'description' => 'Schedule con limiti di esecuzione',
@@ -121,14 +114,12 @@ class ScheduleBusinessLogicTest extends TestCase
             'retry_delay' => 600,
         ]);
 
-        $this->assertEquals(100, $schedule->max_executions);
-        $this->assertEquals(5, $schedule->retry_attempts);
-        $this->assertEquals(600, $schedule->retry_delay);
-    }
+        expect($schedule->max_executions)->toBe(100);
+        expect($schedule->retry_attempts)->toBe(5);
+        expect($schedule->retry_delay)->toBe(600);
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_priority_management(): void
-    {
+    test('can handle schedule priority management', function () {
         $highPrioritySchedule = Schedule::create([
             'name' => 'High Priority',
             'description' => 'Schedule alta priorità',
@@ -159,14 +150,12 @@ class ScheduleBusinessLogicTest extends TestCase
             'priority' => 'low',
         ]);
 
-        $this->assertEquals('high', $highPrioritySchedule->priority);
-        $this->assertEquals('medium', $mediumPrioritySchedule->priority);
-        $this->assertEquals('low', $lowPrioritySchedule->priority);
-    }
+        expect($highPrioritySchedule->priority)->toBe('high');
+        expect($mediumPrioritySchedule->priority)->toBe('medium');
+        expect($lowPrioritySchedule->priority)->toBe('low');
+    });
 
-    /** @test */
-    public function it_can_manage_schedule_timezone_handling(): void
-    {
+    test('can manage schedule timezone handling', function () {
         $romeSchedule = Schedule::create([
             'name' => 'Rome Schedule',
             'description' => 'Schedule fuso orario Roma',
@@ -194,14 +183,12 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'active',
         ]);
 
-        $this->assertEquals('Europe/Rome', $romeSchedule->timezone);
-        $this->assertEquals('UTC', $utcSchedule->timezone);
-        $this->assertEquals('Asia/Tokyo', $tokyoSchedule->timezone);
-    }
+        expect($romeSchedule->timezone)->toBe('Europe/Rome');
+        expect($utcSchedule->timezone)->toBe('UTC');
+        expect($tokyoSchedule->timezone)->toBe('Asia/Tokyo');
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_status_transitions(): void
-    {
+    test('can handle schedule status transitions', function () {
         $schedule = Schedule::create([
             'name' => 'Status Test Schedule',
             'description' => 'Test transizioni stato',
@@ -211,28 +198,26 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'active',
         ]);
 
-        $this->assertEquals('active', $schedule->status);
+        expect($schedule->status)->toBe('active');
 
         // Cambia stato a pausa
         $schedule->update(['status' => 'paused']);
-        $this->assertEquals('paused', $schedule->status);
+        expect($schedule->status)->toBe('paused');
 
         // Cambia stato a errore
         $schedule->update(['status' => 'error']);
-        $this->assertEquals('error', $schedule->status);
+        expect($schedule->status)->toBe('error');
 
         // Cambia stato a manutenzione
         $schedule->update(['status' => 'maintenance']);
-        $this->assertEquals('maintenance', $schedule->status);
+        expect($schedule->status)->toBe('maintenance');
 
         // Ripristina stato attivo
         $schedule->update(['status' => 'active']);
-        $this->assertEquals('active', $schedule->status);
-    }
+        expect($schedule->status)->toBe('active');
+    });
 
-    /** @test */
-    public function it_can_manage_schedule_history_and_logging(): void
-    {
+    test('can manage schedule history and logging', function () {
         $schedule = Schedule::create([
             'name' => 'History Test Schedule',
             'description' => 'Test cronologia esecuzioni',
@@ -259,14 +244,12 @@ class ScheduleBusinessLogicTest extends TestCase
             'execution_time' => null,
         ]);
 
-        $this->assertCount(2, $schedule->scheduleHistories);
-        $this->assertTrue($schedule->scheduleHistories->contains($history1));
-        $this->assertTrue($schedule->scheduleHistories->contains($history2));
-    }
+        expect($schedule->scheduleHistories)->toHaveCount(2);
+        expect($schedule->scheduleHistories->contains($history1))->toBeTrue();
+        expect($schedule->scheduleHistories->contains($history2))->toBeTrue();
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_retry_logic(): void
-    {
+    test('can handle schedule retry logic', function () {
         $schedule = Schedule::create([
             'name' => 'Retry Test Schedule',
             'description' => 'Test logica retry',
@@ -278,21 +261,19 @@ class ScheduleBusinessLogicTest extends TestCase
             'retry_delay' => 300,
         ]);
 
-        $this->assertEquals(3, $schedule->retry_attempts);
-        $this->assertEquals(300, $schedule->retry_delay);
+        expect($schedule->retry_attempts)->toBe(3);
+        expect($schedule->retry_delay)->toBe(300);
 
         // Simula fallimento e retry
         $schedule->update(['status' => 'failed']);
-        $this->assertEquals('failed', $schedule->status);
+        expect($schedule->status)->toBe('failed');
 
         // Simula retry
         $schedule->update(['status' => 'retrying']);
-        $this->assertEquals('retrying', $schedule->status);
-    }
+        expect($schedule->status)->toBe('retrying');
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_execution_tracking(): void
-    {
+    test('can handle schedule execution tracking', function () {
         $schedule = Schedule::create([
             'name' => 'Execution Test Schedule',
             'description' => 'Test tracking esecuzioni',
@@ -303,7 +284,7 @@ class ScheduleBusinessLogicTest extends TestCase
             'max_executions' => 1000,
         ]);
 
-        $this->assertEquals(1000, $schedule->max_executions);
+        expect($schedule->max_executions)->toBe(1000);
 
         // Simula esecuzioni multiple
         for ($i = 1; $i <= 5; $i++) {
@@ -316,12 +297,10 @@ class ScheduleBusinessLogicTest extends TestCase
             ]);
         }
 
-        $this->assertCount(5, $schedule->scheduleHistories);
-    }
+        expect($schedule->scheduleHistories)->toHaveCount(5);
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_validation_and_constraints(): void
-    {
+    test('can handle schedule validation and constraints', function () {
         // Schedule con espressione cron valida
         $validSchedule = Schedule::create([
             'name' => 'Valid Schedule',
@@ -332,7 +311,7 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'active',
         ]);
 
-        $this->assertNotNull($validSchedule->id);
+        expect($validSchedule->id)->not->toBeNull();
 
         // Schedule con espressione cron complessa
         $complexSchedule = Schedule::create([
@@ -344,12 +323,10 @@ class ScheduleBusinessLogicTest extends TestCase
             'status' => 'active',
         ]);
 
-        $this->assertNotNull($complexSchedule->id);
-    }
+        expect($complexSchedule->id)->not->toBeNull();
+    });
 
-    /** @test */
-    public function it_can_handle_schedule_batch_operations(): void
-    {
+    test('can handle schedule batch operations', function () {
         // Crea un batch di schedule
         $batchSchedules = [];
         $priorities = ['high', 'medium', 'low'];
@@ -366,12 +343,12 @@ class ScheduleBusinessLogicTest extends TestCase
             ]);
         }
 
-        $this->assertCount(3, $batchSchedules);
+        expect($batchSchedules)->toHaveCount(3);
 
         foreach ($batchSchedules as $index => $schedule) {
-            $this->assertEquals('Batch Schedule '.($index + 1), $schedule->name);
-            $this->assertEquals('0 '.($index + 1).' * * *', $schedule->cron_expression);
-            $this->assertEquals($priorities[$index], $schedule->priority);
+            expect($schedule->name)->toBe('Batch Schedule '.($index + 1));
+            expect($schedule->cron_expression)->toBe('0 '.($index + 1).' * * *');
+            expect($schedule->priority)->toBe($priorities[$index]);
         }
-    }
+    });
 }

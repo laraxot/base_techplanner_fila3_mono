@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class MediaTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_can_create_media_with_minimal_data(): void
     {

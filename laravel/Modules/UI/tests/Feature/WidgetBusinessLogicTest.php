@@ -19,7 +19,7 @@ use Tests\TestCase;
 
 class WidgetBusinessLogicTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     /** @test */
     public function row_widget_can_render_correctly(): void

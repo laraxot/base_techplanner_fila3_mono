@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class DeviceTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_can_create_device_with_minimal_data(): void
     {

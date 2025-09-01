@@ -2,30 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Tests\Feature;
-
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Xot\Models\BaseMorphPivot;
-use Tests\TestCase;
 
-class BaseMorphPivotBusinessLogicTest extends TestCase
-{
-    use RefreshDatabase;
-
-    /** @test */
-    public function it_extends_pivot_class(): void
-    {
+describe('BaseMorphPivot Business Logic', function () {
+    it('extends pivot class', function () {
         // Arrange & Act
         $pivot = new BaseMorphPivot;
 
         // Assert
-        $this->assertInstanceOf(Pivot::class, $pivot);
-    }
+        expect($pivot)->toBeInstanceOf(Pivot::class);
+    });
 
-    /** @test */
-    public function it_can_manage_morph_type(): void
-    {
+    it('can manage morph type', function () {
         // Arrange
         $pivot = new BaseMorphPivot;
         $pivot->morph_type = 'App\Models\User';
@@ -34,12 +23,10 @@ class BaseMorphPivotBusinessLogicTest extends TestCase
         $morphType = $pivot->morph_type;
 
         // Assert
-        $this->assertEquals('App\Models\User', $morphType);
-    }
+        expect($morphType)->toBe('App\Models\User');
+    });
 
-    /** @test */
-    public function it_can_manage_morph_id(): void
-    {
+    it('can manage morph id', function () {
         // Arrange
         $pivot = new BaseMorphPivot;
         $pivot->morph_id = 123;
@@ -48,12 +35,10 @@ class BaseMorphPivotBusinessLogicTest extends TestCase
         $morphId = $pivot->morph_id;
 
         // Assert
-        $this->assertEquals(123, $morphId);
-    }
+        expect($morphId)->toBe(123);
+    });
 
-    /** @test */
-    public function it_can_manage_related_type(): void
-    {
+    it('can manage related type', function () {
         // Arrange
         $pivot = new BaseMorphPivot;
         $pivot->related_type = 'App\Models\Post';
@@ -62,12 +47,10 @@ class BaseMorphPivotBusinessLogicTest extends TestCase
         $relatedType = $pivot->related_type;
 
         // Assert
-        $this->assertEquals('App\Models\Post', $relatedType);
-    }
+        expect($relatedType)->toBe('App\Models\Post');
+    });
 
-    /** @test */
-    public function it_can_manage_related_id(): void
-    {
+    it('can manage related id', function () {
         // Arrange
         $pivot = new BaseMorphPivot;
         $pivot->related_id = 456;
@@ -76,12 +59,10 @@ class BaseMorphPivotBusinessLogicTest extends TestCase
         $relatedId = $pivot->related_id;
 
         // Assert
-        $this->assertEquals(456, $relatedId);
-    }
+        expect($relatedId)->toBe(456);
+    });
 
-    /** @test */
-    public function it_can_manage_pivot_attributes(): void
-    {
+    it('can manage pivot attributes', function () {
         // Arrange
         $pivot = new BaseMorphPivot;
         $pivot->setAttribute('custom_field', 'custom_value');

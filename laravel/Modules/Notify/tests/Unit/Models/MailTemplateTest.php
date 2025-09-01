@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class MailTemplateTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     protected function setUp(): void
     {

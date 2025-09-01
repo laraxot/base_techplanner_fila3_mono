@@ -1,33 +1,50 @@
 # Testing Best Practices - Laraxot Framework
 
-## 🏆 **Gold Standard Pattern**
+## 🏆 **CRITICAL RULE: PEST TESTING MANDATORY**
 
-Basato sui successi misurabili dei test RegisterTypeWidgetTest.php (9/9 test passati) e RegisterTypeTest.php (10/14 test passati).
+**ALWAYS use Pest testing framework and NEVER use RefreshDatabase trait.**
 
-## ✅ **Pattern Vincente per Widget Test**
+## ✅ **Pest Testing Requirements**
 
-### Struttura Base Obbligatoria
+### Framework Requirements
+- Use Pest instead of PHPUnit class-based tests
+- Use functional syntax with `it()` and `test()` functions  
+- Organize tests in logical groups with `describe()` blocks
+- NEVER use `RefreshDatabase` trait
+
+### Forbidden Patterns
+- ❌ `use RefreshDatabase;` trait in any test
+- ❌ PHPUnit class-based test structure
+- ❌ `class SomeTest extends TestCase`
+- ❌ `public function test_something(): void`
+
+### Correct Pest Structure
 
 ```php
 <?php
 
 declare(strict_types=1);
 
-use Livewire\Livewire;
-use Modules\{Module}\Filament\Widgets\{WidgetName};
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Modules\Xot\Models\BaseMorphPivot;
 
-// ✅ CRITICO: TestCase specifico
-uses(\Modules\Xot\Tests\TestCase::class);
+describe('BaseMorphPivot Business Logic', function () {
+    it('extends pivot class', function () {
+        // Arrange & Act
+        $pivot = new BaseMorphPivot;
 
-// ✅ CRITICO: Mock XotData per ogni test
-beforeEach(function (): void {
-    mockXotData();
-});
+        // Assert
+        expect($pivot)->toBeInstanceOf(Pivot::class);
+    });
 
-// ✅ CRITICO: Test diretti senza describe() o dataset()
-test('widget can be rendered', function () {
-    Livewire::test({WidgetName}::class)
-        ->assertStatus(200);
+    it('can manage morph type', function () {
+        // Arrange
+        $pivot = new BaseMorphPivot;
+        $pivot->morph_type = 'App\Models\User';
+
+        // Act & Assert
+        expect($pivot->morph_type)->toBe('App\Models\User');
+    });
 });
 ```
 
