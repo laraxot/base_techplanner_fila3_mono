@@ -114,8 +114,18 @@
     <div class="hidden h-12 overflow-auto min-h-12 navbar md:flex">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto space-x-12">
             <div class="flex-1 ">
+                @php
+                $nav1 = Arr::first($blocks,fn($item)=>$item->slug =='nav1');
+                @endphp
+                @if($nav1!=null)
+                <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
+                    @foreach($nav1->data['items'] as $item)
+                    <li><a href="">{{ $item['label'] }}</a></li>
+                    @endforeach
+                </ul>
+                @endif
 
-                {{--  dddx(get_defined_vars()) --}}
+                {{--  dddx(get_defined_vars()) 
                 <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
                     <li><a href="">Amministrazione</a></li>
                     <li><a href="">Novità</a></li>
@@ -123,6 +133,7 @@
                     <li><a href="">Vivere il Comune</a></li>
 
                 </ul>
+                --}}
             </div>
             <div class="flex-none">
                 <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
