@@ -16,7 +16,14 @@ trait CreatesApplication
     {
         $app = require __DIR__.'/../../../bootstrap/app.php';
 
+        // Laravel 11+ compatibility - ensure proper bootstrapping
         $app->make(Kernel::class)->bootstrap();
+        
+        // Ensure database connections are properly set up for testing
+        if ($app->environment('testing')) {
+            $app->useEnvironmentPath($app->basePath());
+            $app->loadEnvironmentFrom('.env.testing');
+        }
 
         return $app;
     }

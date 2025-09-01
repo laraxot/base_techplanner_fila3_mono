@@ -9,7 +9,7 @@ return [
             'name' => 'Admin',
         ],
         'sort' => 51,
-        'icon' => 'phone call.navigation',
+        'icon' => 'heroicon-o-phone',
     ],
     'enums' => [
         'inbound' => [

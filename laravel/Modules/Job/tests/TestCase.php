@@ -24,8 +24,8 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
         
-        // ✅ NO migrate manuale - DatabaseTransactions gestisce tutto
-        // ✅ NO seeding manuale - Factories gestiscono i dati
+        // Ensure database is properly set up for testing
+        $this->artisan('migrate:fresh');
         
         // Setup specifico del modulo se necessario
         $this->withoutExceptionHandling();

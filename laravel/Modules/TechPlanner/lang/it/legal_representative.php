@@ -9,7 +9,7 @@ return [
             'name' => 'Admin',
         ],
         'sort' => 84,
-        'icon' => 'legal representative.navigation',
+        'icon' => 'heroicon-o-user-tie',
     ],
     'actions' => [
         'create' => [
