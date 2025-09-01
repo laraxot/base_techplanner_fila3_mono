@@ -10,7 +10,7 @@ return new class extends XotBaseMigration
     /**
      * Table name following Laraxot philosophy.
      */
-    protected string $table_name = 'time_entries';
+    protected string $table_name = 'work_hours';
 
     /**
      * Run the migration following Employee module naming standards.
@@ -28,9 +28,9 @@ return new class extends XotBaseMigration
                 $table->id();
 
                 $table->foreignId('employee_id')
-                    ->constrained('employees')
+                    ->constrained('users')
                     ->onDelete('cascade')
-                    ->comment('Reference to employee');
+                    ->comment('Reference to user (employee)');
 
                 $table->enum('type', ['clock_in', 'clock_out', 'break_start', 'break_end'])
                     ->comment('Type of time entry');
@@ -71,12 +71,12 @@ return new class extends XotBaseMigration
                 $table->timestamps();
 
                 // Performance indexes
-                $table->index(['employee_id', 'timestamp'], 'time_entries_employee_timestamp_idx');
-                $table->index(['timestamp', 'type'], 'time_entries_timestamp_type_idx');
-                $table->index(['status'], 'time_entries_status_idx');
+                $table->index(['employee_id', 'timestamp'], 'work_hours_employee_timestamp_idx');
+                $table->index(['timestamp', 'type'], 'work_hours_timestamp_type_idx');
+                $table->index(['status'], 'work_hours_status_idx');
 
                 // Prevent duplicate entries within same minute
-                $table->unique(['employee_id', 'timestamp', 'type'], 'time_entries_unique_entry');
+                $table->unique(['employee_id', 'timestamp', 'type'], 'work_hours_unique_entry');
             }
         );
     }

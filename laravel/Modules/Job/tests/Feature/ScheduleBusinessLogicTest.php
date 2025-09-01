@@ -351,4 +351,5 @@ describe('Schedule Business Logic', function () {
             expect($schedule->priority)->toBe($priorities[$index]);
         }
     });
-}
+
+});
