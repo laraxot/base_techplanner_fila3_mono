@@ -9,6 +9,9 @@ use Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 use Modules\TechPlanner\Models\Appointment;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
+/**
+ * ---
+ */
 class AppointmentResource extends XotBaseResource
 {
     protected static ?string $model = Appointment::class;
@@ -36,6 +39,7 @@ class AppointmentResource extends XotBaseResource
                 ->columnSpanFull(),
         ];
     }
+
 
     public static function getPages(): array
     {
