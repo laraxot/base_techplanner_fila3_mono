@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modules\Notify\Tests\Unit\Models;
 
+
+
+namespace Modules\Notify\Tests\Unit\Models;
 use Modules\Notify\Models\NotificationTemplateVersion;
 use Modules\Notify\Models\NotificationTemplate;
 use PHPUnit\Framework\TestCase;

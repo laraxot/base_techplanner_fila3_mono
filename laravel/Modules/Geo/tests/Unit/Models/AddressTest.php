@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modules\Geo\Tests\Unit\Models;
 
 use Modules\Geo\Models\Address;
 use Modules\Geo\Models\Comune;
 use Modules\Geo\Models\Province;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
     $this->address = Address::factory()->create();

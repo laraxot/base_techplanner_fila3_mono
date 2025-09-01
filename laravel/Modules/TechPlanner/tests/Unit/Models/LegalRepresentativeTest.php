@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modules\TechPlanner\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+namespace Modules\TechPlanner\Tests\Unit\Models;
 use Modules\TechPlanner\Models\LegalRepresentative;
-use Tests\TestCase;
+use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello LegalRepresentative.
@@ -15,7 +16,6 @@ use Tests\TestCase;
  */
 class LegalRepresentativeTest extends TestCase
 {
-    use RefreshDatabase;
 
     private LegalRepresentative $legalRepresentative;
 

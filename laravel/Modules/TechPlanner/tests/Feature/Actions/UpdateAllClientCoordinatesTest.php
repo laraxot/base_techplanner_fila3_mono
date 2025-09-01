@@ -1,8 +1,6 @@
 <?php
 
-namespace Modules\TechPlanner\Tests\Feature\Actions;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Geo\Actions\UpdateCoordinatesAction;
 use Modules\TechPlanner\Actions\UpdateAllClientCoordinatesAction;
 use Modules\TechPlanner\Models\Client;
@@ -10,7 +8,6 @@ use Tests\TestCase;
 
 class UpdateAllClientCoordinatesTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function test_it_updates_all_client_coordinates(): void
     {

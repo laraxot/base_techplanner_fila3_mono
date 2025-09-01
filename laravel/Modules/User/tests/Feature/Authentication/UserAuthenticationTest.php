@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\User\Tests\Feature\Authentication;
 use Modules\User\Models\User;
 use Modules\User\Models\Role;
 use Modules\User\Models\Permission;

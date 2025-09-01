@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\User\Tests\Feature;
 use Modules\User\Console\Commands\ChangeTypeCommand;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Contracts\UserContract;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Console\Application;
 use Illuminate\Support\Facades\Artisan;
 
-uses(RefreshDatabase::class);
 
 describe('User Command Integration', function () {
     beforeEach(function () {

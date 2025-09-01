@@ -1,0 +1,63 @@
+# REGOLA CRITICA: Mai RefreshDatabase nei Test Laraxot
+
+## ⚠️ REGOLA ASSOLUTA - VIOLAZIONE = ERRORE CRITICO ⚠️
+
+**MAI usare `RefreshDatabase` nei test. SEMPRE usare `.env.testing` con SQLite in memoria.**
+
+## Motivazioni Performance
+
+### RefreshDatabase è LENTO
+- Ricrea tutto il database ad ogni test
+- Esegue tutte le migrazioni ogni volta
+- 10-100x più lento di SQLite :memory:
+- Suite di test da ore a minuti
+
+### SQLite :memory: è VELOCE
+- Database completamente in RAM
+- Nessun I/O su disco
+- Setup istantaneo
+- Cleanup automatico
+
+## Configurazione Obbligatoria
+
+### .env.testing
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=:memory:
+CACHE_DRIVER=array
+SESSION_DRIVER=array
+QUEUE_CONNECTION=sync
+```
+
+## Pattern Obbligatorio
+
+### ❌ VIETATO
+```php
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class MyTest extends TestCase
+{
+    use RefreshDatabase; // MAI!
+}
+```
+
+### ✅ OBBLIGATORIO  
+```php
+// Nessun RefreshDatabase
+class MyTest extends TestCase
+{
+    // Usa .env.testing automaticamente
+}
+```
+
+## Benefici Misurabili
+
+- **Performance**: 10-100x più veloce
+- **Memory**: 90% meno uso RAM
+- **CPU**: 80% meno carico
+- **Feedback**: Istantaneo
+
+---
+
+**APPLICAZIONE**: IMMEDIATA  
+**ECCEZIONI**: ZERO

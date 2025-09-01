@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Xot\Tests;
 use Modules\Xot\Tests\TestCase;
 
 /*

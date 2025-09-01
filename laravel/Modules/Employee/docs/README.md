@@ -4,6 +4,62 @@
 
 Complete Employee module implementation for comprehensive employee management functionality. The module provides employee data management, time tracking, department organization, and follows strict Laraxot conventions.
 
+## Documentation Structure
+
+The documentation is organized into logical categories for better navigation and maintenance:
+
+### 📚 Core Documentation
+- **[README.md](README.md)** - This overview document
+- **[configuration.md](configuration.md)** - Module configuration guide
+- **[naming-standards.md](naming-standards.md)** - Naming conventions and standards
+- **[module_structure.md](module_structure.md)** - Module organization guide
+- **[xotbase_extension_rules.md](xotbase_extension_rules.md)** - Critical Laraxot compliance rules
+
+### 🏗️ Architecture Documentation
+- **[architecture/](architecture/README.md)** - System architecture and design
+  - Data architecture and relationships
+  - Model architecture and structure
+  - Technical architecture overview
+  - Feature comparison matrix
+
+### 🚀 Implementation Guides
+- **[implementation/](implementation/README.md)** - Implementation guides and setup
+  - Master implementation plan
+  - Module setup and installation
+  - Technical implementation details
+  - Development workflows and best practices
+
+### ✨ Feature Documentation
+- **[features/](features/README.md)** - Feature specifications and implementation
+  - Work hour tracking system
+  - Functional requirements
+  - Implementation strategies
+  - Detailed feature specifications
+
+### 🔍 Analysis & Research
+- **[analysis/](analysis/README.md)** - Research and analysis documentation
+  - Reference system analysis
+  - Language and naming best practices
+
+### 🔧 Maintenance & Fixes
+- **[maintenance/](maintenance/README.md)** - Maintenance and troubleshooting
+  - Historical corrections log
+  - PHPStan fixes and solutions
+  - XotBase compliance fixes
+
+### 👨‍💻 Development Guides
+- **[development/](development/README.md)** - Step-by-step development guides
+  - **[employee-management/](development/employee-management/README.md)** - Employee registry and profiles
+  - **[time-tracking/](development/time-tracking/README.md)** - Time tracking and attendance
+  - **[organizational/](development/organizational/README.md)** - Department and position management
+  - **[leave-management/](development/leave-management/README.md)** - Vacation and leave systems
+  - **[document-management/](development/document-management/README.md)** - Document storage and contracts
+  - **[communication/](development/communication/README.md)** - Bulletin board and messaging
+  - **[reporting/](development/reporting/README.md)** - Dashboard and analytics
+  - **[security/](development/security/README.md)** - Roles and permissions
+  - **[mobile/](development/mobile/README.md)** - PWA and mobile development
+  - **[integrations/](development/integrations/README.md)** - External system integrations
+
 ## Critical Laraxot Philosophy Compliance
 
 ### XotBase Extension Rules (ABSOLUTE PRIORITY)
@@ -22,12 +78,37 @@ class EmployeePage extends Modules\Xot\Filament\Pages\XotBasePage
 
 ### Naming Standards (Employee Module)
 
-**ALL DATABASE ELEMENTS MUST BE IN ENGLISH**
+**ALL CODE ELEMENTS MUST BE IN ENGLISH - NO EXCEPTIONS**
 
-- Table names: English only
-- Column names: English only
-- Enum values: English only
-- Comments: English only
+- **Classes**: English only (TimeClockWidget ✅, TimbratureWidget ❌)
+- **Methods**: English only (getTimeEntries ✅, getTimbrature ❌)
+- **Properties**: English only ($timeEntries ✅, $timbrature ❌)
+- **Files**: English only (TimeClockWidget.php ✅, TimbratureWidget.php ❌)
+- **Directories**: English only (TimeClock/ ✅, Timbrature/ ❌)
+- **Table names**: English only (time_entries ✅, timbrature ❌)
+- **Column names**: English only (timestamp ✅, data_timbratura ❌)
+- **Enum values**: English only (clock_in ✅, entrata ❌)
+- **Variables**: English only ($currentTime ✅, $oraCorrente ❌)
+
+**CRITICAL: NO CASE-ONLY VARIATIONS**
+
+**NEVER create multiple classes where names differ ONLY by case:**
+- ❌ `userController` vs `UserController` (case-only difference)
+- ❌ `employeeModel` vs `EmployeeModel` (case-only difference)
+- ✅ `TimeClockWidget` vs `AttendanceWidget` (distinct names)
+- ✅ `UserController` vs `AuthController` (distinct names)
+
+**Why This Rule Exists:**
+- Prevents developer confusion and maintenance nightmares
+- Avoids file system conflicts on case-insensitive systems
+- Ensures clear, unambiguous naming conventions
+- Maintains code clarity and team collaboration
+
+**ITALIAN ALLOWED ONLY IN:**
+- Translation files (lang/it/, lang/en/)
+- View Blade text for users  
+- PHP comments for explanations
+- As absolute last resort when no English alternative exists
 
 ## Module Structure
 
@@ -42,7 +123,7 @@ laravel/Modules/Employee/
 │   └── Providers/        # Service providers
 ├── config/               # Module configuration
 ├── database/             # Migrations and seeders
-├── docs/                 # Module documentation
+├── docs/                 # Module documentation (organized structure)
 ├── lang/                 # Language files
 │   ├── it/              # Italian translations
 │   └── en/              # English translations
@@ -149,7 +230,28 @@ The Employee module uses a custom SVG icon system:
 - Dashboard with employee statistics
 
 ### Widgets
-- Employee statistics overview
+
+#### Primary Widget (Active)
+- **TimeClockWidget** ✨ UNIFIED - Single consolidated time tracking widget
+  - Layout: [TIME+DATE] [TIME ENTRIES] [FILAMENT BUTTON]
+  - Native Filament components (`x-filament::button`)
+  - Real-time updates with polling
+  - Complete time tracking functionality
+  - Consolidates all time tracking features into one widget
+
+#### CRITICAL NAMING RULES
+**NEVER use Italian words in class names** - Fundamental Laraxot philosophy rule:
+- ❌ FORBIDDEN: `TimbratureWidget`, `DipendenteModel`, `OrganizzativaResource`
+- ✅ CORRECT: `TimeClockWidget`, `EmployeeModel`, `OrganizationalResource`
+
+**NEVER create case-only variations** - Prevents confusion and maintenance issues:
+- ❌ FORBIDDEN: `userController` and `UserController` (case difference only)
+- ❌ FORBIDDEN: `UserService` and `userService` (case difference only)
+- ✅ CORRECT: ONE unified class with clear, distinct naming
+
+#### Supporting Widgets (Available)
+- **EmployeeOverviewWidget** - General employee statistics overview
+- **WorkHourStatsWidget** - Time tracking statistics and attendance
 - Recent activity tracking
 - Quick action buttons
 
@@ -232,6 +334,7 @@ php artisan test --coverage --testsuite=Employee
 ### Module Documentation
 - [Model Architecture](model_architecture.md) - Database and model structure
 - [WorkHour Implementation](workhour_implementation.md) - Time tracking system
+- [Filament Widgets](filament_widgets.md) - Dashboard widgets e statistiche
 - [Technical Implementation](technical_implementation.md) - Technical details
 - [Language Best Practices](language_best_practices.md) - Translation standards
 - [SVG Icon Standards](svg_icon_standards.md) - Icon system and standards

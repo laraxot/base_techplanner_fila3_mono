@@ -55,6 +55,85 @@ $data = [
 - Fallback automatici per menu vuoti o mancanti
 - Supporto per traduzioni tramite `@lang('pub_theme::navigation.*')`
 
+## ⚠️ REGOLA CRITICA: Traduzioni nei Temi
+
+### Namespace pub_theme:: per Traduzioni
+
+**SEMPRE utilizzare `@lang('pub_theme::')` invece di `{{ __() }}` nelle view dei temi**
+
+#### ✅ Pattern Corretto
+
+```blade
+{{-- In Themes/Sixteen/resources/views/filament/widgets/auth/login.blade.php --}}
+<h2 class="text-2xl font-extrabold">
+    @lang('pub_theme::auth.login.title')
+</h2>
+<p class="text-sm text-gray-600">
+    @lang('pub_theme::auth.login.subtitle')
+</p>
+<span>@lang('pub_theme::auth.login.or')</span>
+<a href="/register">
+    @lang('pub_theme::auth.login.create_account')
+</a>
+```
+
+#### ❌ Anti-Pattern (da evitare)
+
+```blade
+{{-- MAI usare nei temi --}}
+<h2>{{ __('auth.login.title') }}</h2>
+<p>{{ __('auth.login.subtitle') }}</p>
+<span>{{ __('auth.login.or') }}</span>
+```
+
+### Motivazione Architettonica
+
+1. **Namespace Dinamico**: `pub_theme::` punta automaticamente al tema attivo
+2. **Isolamento**: Ogni tema ha le sue traduzioni specifiche
+3. **Portabilità**: Cambiare tema senza modificare le traduzioni
+4. **Fallback**: Sistema di fallback automatico tra temi
+5. **Manutenibilità**: Traduzioni centralizzate per tema
+
+### Struttura File di Traduzione
+
+```
+Themes/Sixteen/lang/
+├── it/
+│   ├── auth.php          # Traduzioni autenticazione
+│   ├── navigation.php    # Traduzioni navigazione
+│   └── ui.php           # Traduzioni interfaccia
+├── en/
+│   ├── auth.php
+│   ├── navigation.php
+│   └── ui.php
+└── de/
+    ├── auth.php
+    ├── navigation.php
+    └── ui.php
+```
+
+### Registrazione Traduzioni nel ServiceProvider
+
+Il `ThemeServiceProvider` registra automaticamente le traduzioni:
+
+```php
+// In ThemeServiceProvider::boot()
+$this->loadTranslationsFrom(__DIR__ . '/../../lang', 'pub_theme');
+```
+
+### Traduzioni Mancanti - Implementazione Completa
+
+Per il file `login.blade.php` sono necessarie queste traduzioni aggiuntive:
+
+```php
+// Themes/Sixteen/lang/it/auth.php
+'login' => [
+    'subtitle' => 'Inserisci le tue credenziali per continuare',
+    'submitting' => 'Accesso in corso...',
+    // ... altre traduzioni esistenti
+],
+```
+
 ## Struttura dei Componenti per Tema
 
 ### Tema Sixteen (Attivo)
@@ -77,14 +156,55 @@ $data = [
 
 ## Risoluzione dei Problemi
 
-### Errore "view not found"
+### Errore "view not found: pub_theme::components.blocks.navigation.simple"
 
-Se si riceve l'errore `view not found: pub_theme::components.blocks.navigation.simple`:
+**Sintomi**: 
+- Errore `view not found: [pub_theme::components.blocks.navigation.simple] path: [/path/to/view]`
+- L'errore si verifica durante il caricamento della pagina
+- Il percorso mostrato nell'errore è corretto e il file esiste
 
-1. **Verifica tema attivo**: Controlla `laravel/config/local/techplanner/xra.php`
-2. **Verifica esistenza file**: Assicurati che il componente esista nel tema attivo
-3. **Verifica namespace**: Il namespace `pub_theme::` deve puntare al tema corretto
-4. **Cache**: Pulisci la cache delle view con `php artisan view:clear`
+**Diagnosi Rapida**:
+```bash
+# Verifica che la view esista
+php artisan tinker --execute="dd(view()->exists('pub_theme::components.blocks.navigation.simple'));"
+
+# Verifica namespace registrati
+php artisan tinker --execute="dd(view()->getFinder()->getHints()['pub_theme'] ?? 'NOT_FOUND');"
+```
+
+**Soluzioni in Ordine di Priorità**:
+
+1. **Cache (SOLUZIONE PRINCIPALE)**: 
+   ```bash
+   php artisan view:clear
+   php artisan config:clear
+   php artisan cache:clear
+   composer dump-autoload
+   ```
+
+2. **Verifica tema attivo**: Controlla `laravel/config/local/techplanner/xra.php`
+   ```php
+   'pub_theme' => 'Sixteen',
+   ```
+
+3. **Verifica esistenza file**: Assicurati che il componente esista nel tema attivo
+   ```bash
+   ls -la "laravel/Themes/Sixteen/resources/views/components/blocks/navigation/simple.blade.php"
+   ```
+
+4. **Verifica ServiceProvider**: Controlla che `ThemeServiceProvider` sia registrato in `composer.json`
+   ```json
+   "extra": {
+       "laravel": {
+           "providers": [
+               "Themes\\Sixteen\\Providers\\ThemeServiceProvider"
+           ]
+       }
+   }
+   ```
+
+**Causa Radice**: 
+Il problema si verifica quando il `BlockData` viene istanziato prima che tutti i service provider abbiano completato il processo di bootstrap, causando un controllo `view()->exists()` che fallisce temporaneamente.
 
 ### Aggiunta di Nuovi Componenti
 
@@ -113,6 +233,16 @@ Per aggiungere un nuovo componente:
 - Ottimizzare le immagini
 
 ## Changelog
+
+### 2025-01-06 - Fix Errore "view not found" per pub_theme namespace
+- **Problema**: `Exception: view not found: [pub_theme::components.blocks.navigation.simple]`
+- **Causa**: Cache delle view corrotte che impedivano la risoluzione del namespace `pub_theme::`
+- **Soluzione**: 
+  - Pulito cache view, config e autoload
+  - Verificato registrazione corretta ThemeServiceProvider
+  - Aggiunta documentazione diagnostica completa
+  - Identificata causa radice nel timing di caricamento service provider
+- **Comando risoluzione**: `php artisan view:clear && php artisan config:clear && php artisan cache:clear && composer dump-autoload`
 
 ### 2024-01-XX - Standardizzazione Componente Navigation Simple
 - **Problema**: Errore `view not found: pub_theme::components.blocks.navigation.simple`

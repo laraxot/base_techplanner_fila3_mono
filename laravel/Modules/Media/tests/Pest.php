@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Media\Tests;
 use Modules\Media\Tests\TestCase;
 
 /*

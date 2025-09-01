@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Job\Tests;
 use Modules\Job\Tests\TestCase;
 
 /*

@@ -39,18 +39,45 @@ laravel/Modules/{ModuleName}/resources/svg/
 
 ### Employee Module
 - **Stato**: ✅ Complete e implementate
-- **File**: `icon.svg`, `icon1.svg`, `icon2.svg`, `icon2.svg`
+- **File**: `icon.svg`, `icon1.svg`, `icon2.svg`, `logo.svg`
 - **Specifiche**: `employee-icon.svg`, `employee-icon1.svg`, `employee-icon2.svg`
 
 ### Xot Module
-- **Stato**: ✅ Complete e implementate
-- **File**: `icon.svg` e molte altre icone specifiche
+- **Stato**: ✅ Complete e implementate con aggiornamento 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni framework)
 - **Funzionalità**: Cache, config, database, health, log, module, session, terminal
+- **Animazioni**: Core pulse, module orbit, connection flow, framework glow
 
 ### User Module
-- **Stato**: ✅ Complete e implementate
-- **File**: `icon.svg` e icone per funzionalità specifiche
+- **Stato**: ✅ Complete e implementate con aggiornamento 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni utente)
 - **Funzionalità**: User, permission, role, team, profile, social, token
+- **Animazioni**: Breathe, gentle glow, connect pulse
+
+### Media Module
+- **Stato**: ✅ Aggiornato 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni camera)
+- **Animazioni**: Focus adjust, aperture spin, flash blink, wave flow
+
+### Notify Module
+- **Stato**: ✅ Aggiornato 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni notifiche)
+- **Animazioni**: Bell ring, notification wave, pulse alert, sound ripple
+
+### Tenant Module
+- **Stato**: ✅ Aggiornato 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni multi-tenant)
+- **Animazioni**: Building glow, network pulse, connection flow, isolation shield
+
+### Lang Module
+- **Stato**: ✅ Aggiornato 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni localizzazione)
+- **Animazioni**: Globe rotate, text flow, translate pulse, flag wave
+
+### Job Module
+- **Stato**: ✅ Aggiornato 2025-01-06
+- **File**: `icon.svg`, `logo.svg` (aggiornato con animazioni code di lavoro)
+- **Animazioni**: Queue process, worker activity, progress flow, status blink
 
 ## Moduli da Verificare e Implementare
 

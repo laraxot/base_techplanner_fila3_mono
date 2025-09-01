@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Modules\TechPlanner\Tests\Unit\Actions;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllEventsAction;
 use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Jobs\UpdateEventJob;
-use Tests\TestCase;
+use Modules\TechPlanner\Tests\Unit\Actions\TestCase;
 
 /**
  * Test unitario per l'action UpdateAllEventsAction.
@@ -18,7 +19,6 @@ use Tests\TestCase;
  */
 class UpdateAllEventsActionTest extends TestCase
 {
-    use RefreshDatabase;
 
     private UpdateAllEventsAction $action;
 

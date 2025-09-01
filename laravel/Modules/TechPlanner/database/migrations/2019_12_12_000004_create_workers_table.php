@@ -68,12 +68,7 @@ return new class extends XotBaseMigration
                 if (! $this->hasColumn('updated_at')) {
                     $table->timestamps();
                 }
-                if (! $this->hasColumn('updated_by')) {
-                    $table->string('updated_by')->nullable()->after('updated_at');
-                }
-                if (! $this->hasColumn('created_by')) {
-                    $table->string('created_by')->nullable()->after('created_at');
-                }
+                
 
                 if (! $this->hasColumn('full_name')) {
                     $table->string('full_name')->nullable()->after('first_name');

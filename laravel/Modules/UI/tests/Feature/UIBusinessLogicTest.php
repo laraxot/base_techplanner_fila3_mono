@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\UI\Tests\Feature;
 use Modules\UI\Models\Component;
 use Modules\UI\Models\Theme;
 use Modules\UI\Models\Asset;

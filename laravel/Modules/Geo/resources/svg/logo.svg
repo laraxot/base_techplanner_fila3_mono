@@ -1,3 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-labelledby="geo-logo-title" role="img">
+  <title id="geo-logo-title">Geographic Location Services Logo</title>
+  <defs>
+    <style>
+      .logo-primary { 
+        stroke: currentColor; 
+        opacity: 0.9;
+        transition: all 0.3s ease;
+      }
+      .logo-secondary { 
+        stroke: currentColor; 
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+      .logo-accent { 
+        stroke: currentColor; 
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .logo-primary { opacity: 0.95; }
+        .logo-secondary { opacity: 0.8; }
+        .logo-accent { opacity: 0.6; }
+      }
+      @keyframes location-ping {
+        0% { opacity: 0.8; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.2); }
+        100% { opacity: 0.8; transform: scale(1); }
+      }
+      .logo-animate {
+        animation: location-ping 2s ease-in-out infinite;
+      }
+      svg:hover .logo-primary {
+        opacity: 1;
+        stroke-width: 2;
+      }
+      svg:hover .logo-secondary {
+        opacity: 0.9;
+      }
+      svg:hover .logo-accent {
+        opacity: 0.7;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .logo-animate { animation: none; }
+        svg:hover .logo-primary { transition: none; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Globe/Earth -->
+  <circle cx="12" cy="12" r="9" class="logo-primary"/>
+  <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9" class="logo-secondary"/>
+  <path d="M21 12c0-4.97-4.03-9-9-9" class="logo-secondary"/>
+  
+  <!-- Location pin with animation -->
+  <path d="M12 2l3 7-3 2-3-2 3-7z" class="logo-primary logo-animate"/>
+  <circle cx="12" cy="6" r="2" class="logo-secondary"/>
+  
+  <!-- Geographic grid -->
+  <path d="M3 12h18" class="logo-accent"/>
+  <path d="M12 3v18" class="logo-accent"/>
+  <path d="M6 5.5c0 3.5 2.5 6.5 6 6.5s6-3 6-6.5" class="logo-accent"/>
+  <path d="M6 18.5c0-3.5 2.5-6.5 6-6.5s6 3 6 6.5" class="logo-accent"/>
 </svg>

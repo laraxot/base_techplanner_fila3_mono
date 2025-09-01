@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Notify\Tests;
 use Modules\Notify\Tests\TestCase;
 
 /*

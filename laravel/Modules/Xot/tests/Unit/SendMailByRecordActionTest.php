@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Xot\Tests\Unit;
 use Modules\Xot\Actions\Mail\SendMailByRecordAction;
 use Illuminate\Database\Eloquent\Model;
 

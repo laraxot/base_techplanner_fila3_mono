@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-use Tests\TestCase;
+
+
+namespace Modules\UI\Tests\Feature;
+use Modules\UI\Tests\Feature\TestCase;
 use function Pest\Laravel\{get};
 
 uses(TestCase::class);

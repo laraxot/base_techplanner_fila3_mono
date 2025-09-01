@@ -1,0 +1,188 @@
+# REGOLA CRITICA: Mai Nomi che Differiscono Solo per Maiuscole
+
+## ⚠️ ERRORE GRAVISSIMO ⚠️
+
+**MAI creare classi, file o componenti con nomi che differiscono solo per maiuscole/minuscole.**
+
+## Esempio di Errore Critico Identificato
+
+### ❌ ERRORE GRAVISSIMO
+```php
+// DUE FILE CHE DIFFERISCONO SOLO PER MAIUSCOLE
+TimeclockWidget.php     // ❌ CONFUSIONE TOTALE
+TimeClockWidget.php     // ❌ CONFLITTO GARANTITO
+```
+
+### ✅ CORREZIONE OBBLIGATORIA
+```php
+// UN SOLO FILE CON NOME CHIARO
+TimeClockWidget.php     // ✅ UNICO E DESCRITTIVO
+```
+
+## Motivazioni Critiche
+
+### 1. **Confusione Sviluppatori**
+- Impossibile distinguere visivamente
+- Errori di import garantiti
+- Debugging nightmare
+- Code review compromesso
+
+### 2. **Conflitti Filesystem**
+- **Windows/macOS**: Case-insensitive filesystem
+- **Conflitti Git**: Merge hell garantito
+- **Deploy issues**: Problemi in produzione
+- **Autoload failures**: Composer confuso
+
+### 3. **Manutenibilità Distrutta**
+- Quale file modificare?
+- Duplicazione logica accidentale
+- Refactoring impossibile
+- Technical debt esplosivo
+
+### 4. **Violazione KISS**
+- Complessità inutile
+- Principio semplicità violato
+- Anti-pattern classico
+- Code smell gravissimo
+
+### 5. **Professional Standards**
+- Viola best practices universali
+- PSR standards compromessi
+- Team collaboration impossible
+- Quality gate failure
+
+## Pattern Corretti per Varianti
+
+### ✅ Se Servono Varianti - Nomi Descrittivi
+```php
+// CORRETTO - Nomi completamente diversi
+TimeClockBasicWidget.php      // Widget base
+TimeClockAdvancedWidget.php   // Widget avanzato
+TimeClockCompactWidget.php    // Widget compatto
+TimeClockMobileWidget.php     // Widget mobile
+
+// OPPURE - Domini diversi
+TimeClockWidget.php           // Per timbrature
+AttendanceWidget.php          // Per presenze
+ScheduleWidget.php           // Per turni
+LeaveWidget.php              // Per ferie
+```
+
+### ❌ Mai Queste Variazioni
+```php
+// VIETATO - Solo case differences
+TimeclockWidget.php          // ❌ GRAVISSIMO
+TimeClockWidget.php          // ❌ CONFUSIONE
+TimeClock_Widget.php         // ❌ UNDERSCORE NON AIUTA
+timeClockWidget.php          // ❌ CAMELCASE NON RISOLVE
+```
+
+## Controlli Automatici
+
+### Script di Rilevamento
+```bash
+#!/bin/bash
+# Trova nomi che differiscono solo per case
+function find_case_conflicts() {
+    echo "🔍 Checking for case-only name conflicts..."
+    
+    # Lista tutti i file PHP
+    find . -name "*.php" -type f | while read file; do
+        basename_lower=$(basename "$file" .php | tr '[:upper:]' '[:lower:]')
+        
+        # Cerca altri file con stesso nome (case-insensitive)
+        conflicts=$(find . -name "*.php" -type f | grep -v "^$file$" | while read other; do
+            other_lower=$(basename "$other" .php | tr '[:upper:]' '[:lower:]')
+            if [ "$basename_lower" = "$other_lower" ]; then
+                echo "$other"
+            fi
+        done)
+        
+        if [ ! -z "$conflicts" ]; then
+            echo "❌ CONFLICT FOUND:"
+            echo "  $file"
+            echo "$conflicts" | sed 's/^/  /'
+            echo ""
+        fi
+    done
+}
+```
+
+### Pre-commit Hook
+```bash
+#!/bin/bash
+# .git/hooks/pre-commit
+
+# Controlla conflitti di case
+conflicts=$(find . -name "*.php" | xargs -I {} basename {} .php | sort | uniq -d -i)
+if [ ! -z "$conflicts" ]; then
+    echo "❌ ERRORE CRITICO: File con nomi che differiscono solo per maiuscole!"
+    echo "$conflicts"
+    exit 1
+fi
+```
+
+## Correzione Immediata
+
+### 1. Analisi Conflitto Attuale
+```
+TimeclockWidget.php     ← Esistente (da verificare contenuto)
+TimeClockWidget.php     ← Nuovo (creato da me)
+```
+
+### 2. Strategia di Unificazione
+1. **Leggere entrambi i file**
+2. **Identificare funzionalità migliori**
+3. **Unire in un unico widget**
+4. **Eliminare il duplicato**
+5. **Aggiornare riferimenti**
+
+### 3. Nome Finale Corretto
+```php
+// UNICO WIDGET FINALE
+TimeClockWidget.php     // Nome chiaro e professionale
+```
+
+## Regole di Naming per Varianti
+
+### Pattern Descrittivi
+```php
+// Se servono davvero varianti multiple
+TimeClockBasicWidget     // Funzionalità base
+TimeClockAdvancedWidget  // Funzionalità avanzate
+TimeClockMobileWidget    // Ottimizzato mobile
+TimeClockAdminWidget     // Per amministratori
+```
+
+### Suffissi Standard
+- **Basic** / **Advanced** - Livello funzionalità
+- **Compact** / **Expanded** - Dimensione/layout
+- **Mobile** / **Desktop** - Target device
+- **Admin** / **User** - Target audience
+- **Simple** / **Complex** - Complessità
+
+## Impatto della Regola
+
+### Prevenzione
+- **File conflicts**: Zero conflitti filesystem
+- **Import errors**: Autoload sempre corretto
+- **Team confusion**: Nomi chiari per tutti
+- **Merge conflicts**: Git operations smooth
+
+### Qualità
+- **Code clarity**: Nomi inequivocabili
+- **Maintenance**: Refactoring sicuro
+- **Documentation**: Riferimenti precisi
+- **Testing**: Test files chiari
+
+---
+
+**AZIONE IMMEDIATA**: Unire TimeclockWidget + TimeClockWidget  
+**REGOLA PERMANENTE**: Mai case-only differences  
+**PREVENZIONE**: Controlli automatici attivi
+
+Procedo immediatamente con l'unificazione dei widget duplicati!
+
+description: Critical rule against case-only naming differences
+globs: ["**/*.php", "**/*.js", "**/*.ts", "**/*.vue", "**/*.blade.php"]
+alwaysApply: true

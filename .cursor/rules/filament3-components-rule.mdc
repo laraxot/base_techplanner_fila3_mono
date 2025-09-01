@@ -1,0 +1,172 @@
+# Regola Critica: Componenti Filament 3 Nativi
+
+## ⚠️ REGOLA ASSOLUTA ⚠️
+
+**SEMPRE usare componenti Filament nativi. MAI componenti HTML standard o custom.**
+
+## Componenti Obbligatori
+
+### ✅ Pulsanti - SEMPRE Filament
+```blade
+{{-- CORRETTO --}}
+<x-filament::button wire:click="action" color="success" size="lg">
+    Testo Pulsante
+</x-filament::button>
+
+{{-- VIETATO --}}
+<button wire:click="action" class="bg-green-500...">
+    Testo Pulsante  
+</button>
+```
+
+### ✅ Icone - SEMPRE Filament
+```blade
+{{-- CORRETTO --}}
+<x-filament::icon name="heroicon-m-clock" class="w-5 h-5" />
+
+{{-- VIETATO --}}
+<svg class="w-5 h-5">...</svg>
+```
+
+### ✅ Widget Wrapper - SEMPRE Filament
+```blade
+{{-- CORRETTO --}}
+<x-filament-widgets::widget>
+    <!-- Contenuto widget -->
+</x-filament-widgets::widget>
+
+{{-- VIETATO --}}
+<div class="widget">
+    <!-- Contenuto widget -->
+</div>
+```
+
+## Attributi Filament Standard
+
+### Colori Semantici
+- `color="success"` - Verde per azioni positive
+- `color="danger"` - Rosso per azioni di stop/eliminazione  
+- `color="warning"` - Giallo per attenzione
+- `color="primary"` - Blu per azioni principali
+- `color="secondary"` - Grigio per azioni secondarie
+
+### Dimensioni
+- `size="xs"` - Extra small
+- `size="sm"` - Small
+- `size="md"` - Medium (default)
+- `size="lg"` - Large
+- `size="xl"` - Extra large
+
+### Stati
+- `disabled` - Pulsante disabilitato
+- `loading` - Stato di caricamento
+- `outlined` - Stile outline
+
+## Pattern Widget Custom
+
+### Layout 3 Colonne
+```blade
+<x-filament-widgets::widget>
+    <div class="grid grid-cols-3 gap-6 items-center h-20">
+        {{-- Colonna 1 --}}
+        <div class="text-center">
+            <!-- Contenuto -->
+        </div>
+        
+        {{-- Colonna 2 --}}
+        <div class="text-center">
+            <!-- Contenuto -->
+        </div>
+        
+        {{-- Colonna 3 --}}
+        <div class="text-center">
+            <x-filament::button wire:click="action" color="success">
+                Azione
+            </x-filament::button>
+        </div>
+    </div>
+</x-filament-widgets::widget>
+```
+
+### Responsive Grid
+```blade
+{{-- Desktop: 3 colonne, Mobile: 1 colonna --}}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+```
+
+## Motivazioni
+
+### 1. Consistenza UI
+- Design uniforme in tutta l'applicazione
+- Tema e dark mode automatici
+- Accessibilità built-in
+
+### 2. Manutenibilità  
+- Aggiornamenti Filament automatici
+- Nessun CSS custom da mantenere
+- Pattern standardizzati
+
+### 3. Performance
+- Componenti ottimizzati
+- Bundle size ridotto
+- Lazy loading automatico
+
+### 4. Accessibilità
+- ARIA labels automatici
+- Keyboard navigation
+- Screen reader support
+
+## Errori Comuni
+
+### ❌ Button HTML Standard
+```blade
+<button class="bg-blue-500 text-white px-4 py-2 rounded">
+    Azione
+</button>
+```
+
+### ❌ CSS Custom Inutile
+```blade
+<div class="custom-widget-wrapper">
+    <!-- Styling custom non necessario -->
+</div>
+```
+
+### ❌ Icone SVG Inline
+```blade
+<svg viewBox="0 0 24 24">
+    <path d="..."/>
+</svg>
+```
+
+## Best Practices
+
+### 1. Widget Semplici
+- Una responsabilità per widget
+- Layout pulito e chiaro
+- Azioni immediate
+
+### 2. Componenti Nativi
+- Sempre Filament per UI
+- Styling automatico
+- Tema consistency
+
+### 3. Performance
+- Polling ottimizzato
+- Query efficienti
+- Caching quando necessario
+
+### 4. Accessibilità
+- Testi descrittivi
+- Colori semantici
+- Keyboard friendly
+
+---
+
+**REGOLA**: Sempre componenti Filament nativi, mai HTML standard  
+**MOTIVAZIONE**: Consistenza, manutenibilità, accessibilità  
+**APPLICAZIONE**: Tutti i widget e interfacce custom
+
+description: Filament 3 native components usage rule
+globs: ["**/*.blade.php", "**/Widgets/*.php", "**/Pages/*.php"]
+alwaysApply: true

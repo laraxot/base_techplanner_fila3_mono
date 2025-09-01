@@ -24,11 +24,13 @@ return [
     // Anmeldung
     'login' => [
         'title' => 'Anmelden',
+        'subtitle' => 'Geben Sie Ihre Anmeldedaten ein, um fortzufahren',
         'email' => 'E-Mail',
         'password' => 'Passwort',
         'remember_me' => 'Angemeldet bleiben',
         'forgot_password' => 'Passwort vergessen?',
         'submit' => 'Anmelden',
+        'submitting' => 'Anmeldung läuft...',
         'or' => 'oder',
         'create_account' => 'ein neues Konto erstellen',
         'link' => 'Anmelden',

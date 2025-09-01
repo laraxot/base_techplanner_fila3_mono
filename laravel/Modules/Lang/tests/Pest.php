@@ -67,3 +67,29 @@ function makeLanguage(array $attributes = []): \Modules\Lang\Models\Language
 {
     return \Modules\Lang\Models\Language::factory()->make($attributes);
 }
+
+function createTranslationFile(string $path, array $translations): void
+{
+    $directory = dirname($path);
+    if (!file_exists($directory)) {
+        mkdir($directory, 0755, true);
+    }
+    
+    $content = "<?php\n\nreturn " . var_export($translations, true) . ";\n";
+    file_put_contents($path, $content);
+}
+
+function cleanupTranslationFile(string $path): void
+{
+    if (file_exists($path)) {
+        unlink($path);
+    }
+    
+    $directory = dirname($path);
+    if (file_exists($directory) && is_dir($directory)) {
+        $files = array_diff(scandir($directory), ['.', '..']);
+        if (empty($files)) {
+            rmdir($directory);
+        }
+    }
+}

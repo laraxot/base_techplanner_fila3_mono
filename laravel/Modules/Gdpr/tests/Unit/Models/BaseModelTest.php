@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modules\Gdpr\Tests\Unit\Models;
 
 use Modules\Gdpr\Models\BaseModel;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
     $this->baseModel = new class extends BaseModel {

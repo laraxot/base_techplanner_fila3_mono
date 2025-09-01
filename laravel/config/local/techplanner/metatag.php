@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 return [
-    'title' => 'Predict local',
-    'sitename' => 'Predict Local',
-    'subtitle' => 'Find restaurants, specials, and coupons for free',
+    'title' => 'Sottana',
+    'sitename' => 'Sottana',
+    'subtitle' => 'Find Solutions',
     'sottotitolo_comune' => '',
     'generator' => '',
     'charset' => 'UTF-8',

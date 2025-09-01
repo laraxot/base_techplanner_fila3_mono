@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Pages;
 
 use Modules\Xot\Filament\Pages\XotBaseDashboard;
+use Modules\Employee\Filament\Widgets;
 
 /**
  * Dashboard per il modulo Employee.
@@ -26,6 +27,43 @@ class Dashboard extends XotBaseDashboard
     // protected static ?int $navigationSort
     
     // ✅ XotBaseDashboard auto-configura tutto basandosi sul modulo
-    
-    // protected static string $view = 'employee::filament.pages.dashboard';
+
+    /**
+     * Widget da visualizzare nell'header del dashboard.
+     *
+     * @return array<class-string<\Filament\Widgets\Widget>>
+     */
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            \Modules\Employee\Filament\Widgets\TimeClockWidget::class,
+            /*
+            \Modules\Employee\Filament\Widgets\EmployeeOverviewWidget::class,
+            \Modules\Employee\Filament\Resources\WorkHourResource\Widgets\WorkHourStatsWidget::class,
+            \Modules\Employee\Filament\Widgets\TodoWidget::class,
+            */
+        ];
+    }
+
+    /**
+     * Get the widgets that should be displayed in the footer.
+     *
+     * @return array<class-string>
+     */
+    protected function getFooterWidgets(): array
+    {
+        return [
+            /*
+            \Modules\Employee\Filament\Widgets\UpcomingScheduleWidget::class,
+            \Modules\Employee\Filament\Widgets\TimeOffBalanceWidget::class,
+            \Modules\Employee\Filament\Widgets\TodayPresenceWidget::class,
+            \Modules\Employee\Filament\Widgets\PendingRequestsWidget::class,
+            */
+        ];
+    }
+
+    public function getWidgets(): array
+    {
+        return [];
+    }
 }

@@ -108,10 +108,13 @@ $data = [
 
 Se si riceve l'errore `view not found: pub_theme::components.blocks.navigation.simple`:
 
-1. **Verifica tema attivo**: Controlla `laravel/config/local/techplanner/xra.php`
-2. **Verifica esistenza file**: Assicurati che il componente esista nel tema attivo
-3. **Verifica namespace**: Il namespace `pub_theme::` deve puntare al tema corretto
-4. **Cache**: Pulisci la cache delle view con `php artisan view:clear`
+1. **Verifica CmsServiceProvider**: Assicurati che `Modules\Cms\Providers\CmsServiceProvider::class` sia registrato in `config/app.php`
+2. **Verifica configurazione**: Controlla che `register_pub_theme` sia `true` in `laravel/config/local/techplanner/xra.php`
+3. **Verifica tema attivo**: Controlla che `pub_theme` punti al tema corretto (es. 'Sixteen')
+4. **Verifica esistenza file**: Assicurati che il componente esista nel tema attivo
+5. **Cache**: Pulisci la cache delle view con `php artisan view:clear`
+
+**Nota**: Il namespace `pub_theme::` viene registrato automaticamente dal `CmsServiceProvider` quando `register_pub_theme` è abilitato.
 
 ### Aggiunta di Nuovi Componenti
 

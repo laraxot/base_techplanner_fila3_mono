@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
+
+
+
 namespace Modules\Employee\Tests\Unit\Models;
-
 use Modules\Employee\Models\BaseModel;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Model;
-use Tests\TestCase;
+use Modules\Employee\Tests\Unit\Models\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
     $this->baseModel = new class extends BaseModel {

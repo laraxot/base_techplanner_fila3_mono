@@ -2,16 +2,27 @@
 
 declare(strict_types=1);
 
+
+
+
 namespace Modules\Employee\Tests\Unit\Models;
 
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\Department;
 use Modules\Employee\Models\Position;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
-use Tests\TestCase;
+use Modules\Employee\Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
+uses(TestCase::class);
+
+beforeEach(function () {
+    DB::beginTransaction();
+});
+
+afterEach(function () {
+    DB::rollBack();
+});
 
 beforeEach(function () {
     $this->employee = Employee::factory()->create([

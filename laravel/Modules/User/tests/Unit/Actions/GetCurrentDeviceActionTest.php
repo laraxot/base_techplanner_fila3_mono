@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Modules\User\Tests\Unit\Actions;
 
+
+
+namespace Modules\User\Tests\Unit\Actions;
 use Modules\User\Actions\GetCurrentDeviceAction;
 use Modules\User\Models\Device;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\User\Tests\Unit\Actions\TestCase;
 use Jenssegers\Agent\Agent;
 use Mockery;
 
 class GetCurrentDeviceActionTest extends TestCase
 {
-    use RefreshDatabase;
 
     private GetCurrentDeviceAction $action;
     private Agent $mockAgent;

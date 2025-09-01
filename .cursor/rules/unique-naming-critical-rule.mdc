@@ -1,0 +1,184 @@
+# REGOLA CRITICA: Nomi Unici - Mai Solo Differenze Maiuscole
+
+## ⚠️ ERRORE GRAVISSIMO IDENTIFICATO ⚠️
+
+**MAI avere classi/file con nomi che differiscono solo per maiuscole/minuscole.**
+
+## Errore Critico Attuale
+
+### ❌ CONFLITTO IDENTIFICATO
+```
+TimeclockWidget.php      ← Esistente
+TimeClockWidget.php      ← Creato da me (CONFLITTO!)
+```
+
+**Problema**: Solo differenza maiuscole 'c' vs 'C'  
+**Gravità**: CRITICA - Confusione totale garantita
+
+## Motivazioni della Regola
+
+### 1. **Confusione Sviluppatori**
+- Impossibile distinguere quale usare
+- Errori di import frequenti
+- Code review nightmare
+- Debugging complicato
+
+### 2. **Conflitti Filesystem**
+- **Windows/macOS**: Case-insensitive filesystem
+- **Git conflicts**: Merge hell
+- **Deploy issues**: File overwrite
+- **Autoload confusion**: Composer non sa quale caricare
+
+### 3. **Manutenibilità Distrutta**
+- Quale file modificare?
+- Duplicazione logica accidentale
+- Refactoring impossibile
+- Technical debt esplosivo
+
+### 4. **Violazione KISS Principle**
+- Complessità inutile e pericolosa
+- Anti-pattern classico
+- Code smell gravissimo
+- Principio semplicità violato
+
+### 5. **Team Collaboration**
+- Confusione nei pull request
+- Discussioni sui nomi invece che sulla logica
+- Onboarding sviluppatori complicato
+- Standard team compromessi
+
+## Pattern Corretti per Widget Multipli
+
+### ✅ Nomi Completamente Diversi
+```php
+// CORRETTO - Nomi descrittivi unici
+TimeClockWidget.php           // Widget principale timbrature
+AttendanceOverviewWidget.php  // Panoramica presenze
+WorkHourStatsWidget.php       // Statistiche ore lavoro
+EmployeeScheduleWidget.php    // Programmazione turni
+```
+
+### ✅ Suffissi Descrittivi se Necessari
+```php
+// CORRETTO - Varianti con suffissi chiari
+TimeClockBasicWidget.php      // Versione base
+TimeClockAdvancedWidget.php   // Versione avanzata
+TimeClockMobileWidget.php     // Ottimizzato mobile
+TimeClockAdminWidget.php      // Per amministratori
+```
+
+### ❌ Pattern Vietati
+```php
+// VIETATO - Solo case differences
+TimeclockWidget.php          // ❌ GRAVISSIMO
+TimeClockWidget.php          // ❌ CONFUSIONE
+TimeClock_Widget.php         // ❌ UNDERSCORE NON AIUTA
+timeClockWidget.php          // ❌ CAMELCASE NON RISOLVE
+TimeClockwidget.php          // ❌ PEGGIO ANCORA
+```
+
+## Strategia di Unificazione
+
+### Analisi Funzionalità
+1. **Leggere entrambi i widget**
+2. **Identificare funzionalità uniche**
+3. **Determinare widget migliore come base**
+4. **Unire funzionalità nel widget finale**
+5. **Eliminare duplicato**
+6. **Aggiornare tutti i riferimenti**
+
+### Naming Convention Finale
+```php
+// UNICO WIDGET FINALE
+TimeClockWidget.php          // Nome chiaro e professionale
+
+// ELIMINARE
+TimeclockWidget.php          // Confusione eliminata
+```
+
+## Controlli Automatici
+
+### Script di Rilevamento
+```bash
+#!/bin/bash
+# Trova conflitti case-only
+function find_case_conflicts() {
+    echo "🔍 Searching for case-only conflicts..."
+    
+    # Crea lista file lowercase
+    find . -name "*.php" -type f | while read file; do
+        basename_lower=$(basename "$file" .php | tr '[:upper:]' '[:lower:]')
+        echo "$basename_lower|$file"
+    done | sort | while IFS='|' read lower_name file_path; do
+        # Conta file con stesso nome lowercase
+        count=$(find . -name "*.php" -type f | while read f; do
+            f_lower=$(basename "$f" .php | tr '[:upper:]' '[:lower:]')
+            if [ "$f_lower" = "$lower_name" ]; then
+                echo "$f"
+            fi
+        done | wc -l)
+        
+        if [ $count -gt 1 ]; then
+            echo "❌ CONFLICT: $lower_name"
+            find . -name "*.php" -type f | while read f; do
+                f_lower=$(basename "$f" .php | tr '[:upper:]' '[:lower:]')
+                if [ "$f_lower" = "$lower_name" ]; then
+                    echo "  $f"
+                fi
+            done
+        fi
+    done | sort -u
+}
+```
+
+### Pre-commit Validation
+```bash
+# .git/hooks/pre-commit
+#!/bin/bash
+
+# Rileva conflitti case-only
+conflicts=$(find . -name "*.php" | xargs -I {} basename {} .php | sort | uniq -d -i)
+
+if [ ! -z "$conflicts" ]; then
+    echo "❌ ERRORE CRITICO: File con nomi case-only conflicts!"
+    echo "Conflitti trovati:"
+    echo "$conflicts"
+    echo ""
+    echo "Rinominare i file prima del commit."
+    exit 1
+fi
+```
+
+## Azione Immediata Richiesta
+
+### Checklist Correzione
+- [ ] Analizzare TimeclockWidget.php esistente
+- [ ] Analizzare TimeClockWidget.php creato
+- [ ] Identificare funzionalità da unire
+- [ ] Creare widget unificato finale
+- [ ] Eliminare widget duplicato
+- [ ] Aggiornare Dashboard.php
+- [ ] Testare funzionalità
+- [ ] Documentare correzione
+
+### Widget da Unire
+1. **TimeclockWidget.php** (esistente)
+2. **TimeClockWidget.php** (mio nuovo)
+
+### Risultato Finale
+- **UN SOLO** `TimeClockWidget.php`
+- **Funzionalità unite** dal meglio di entrambi
+- **Nome inglese** professionale
+- **Zero conflitti** di naming
+
+---
+
+**PRIORITÀ**: 🚨 **CRITICA - UNIFICAZIONE IMMEDIATA**  
+**IMPATTO**: Elimina confusione e conflitti  
+**AZIONE**: Unire widget e documentare regola
+
+Procedo immediatamente con l'analisi e unificazione dei widget duplicati!
+
+description: Critical rule against case-only naming differences
+globs: ["**/*.php", "**/*.js", "**/*.ts", "**/*.vue", "**/*.blade.php"]
+alwaysApply: true

@@ -1,3 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-labelledby="gdpr-logo-title" role="img">
+  <title id="gdpr-logo-title">GDPR Privacy Protection Logo</title>
+  <defs>
+    <style>
+      .logo-primary { 
+        stroke: currentColor; 
+        opacity: 0.9;
+        transition: all 0.3s ease;
+      }
+      .logo-secondary { 
+        stroke: currentColor; 
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+      .logo-accent { 
+        stroke: currentColor; 
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .logo-primary { opacity: 0.95; }
+        .logo-secondary { opacity: 0.8; }
+        .logo-accent { opacity: 0.6; }
+      }
+      @keyframes shield-pulse {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      .logo-animate {
+        animation: shield-pulse 2.5s ease-in-out infinite;
+      }
+      svg:hover .logo-primary {
+        opacity: 1;
+        stroke-width: 2;
+      }
+      svg:hover .logo-secondary {
+        opacity: 0.9;
+      }
+      svg:hover .logo-accent {
+        opacity: 0.7;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .logo-animate { animation: none; }
+        svg:hover .logo-primary { transition: none; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Privacy shield -->
+  <path d="M12 2l8 3v6c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l8-3z" class="logo-primary logo-animate"/>
+  
+  <!-- Lock/Security symbol -->
+  <rect x="9" y="11" width="6" height="5" rx="1" class="logo-secondary"/>
+  <path d="M10 11V9a2 2 0 0 1 4 0v2" class="logo-secondary"/>
+  <circle cx="12" cy="13.5" r="0.5" class="logo-primary"/>
+  
+  <!-- Data protection indicators -->
+  <circle cx="8" cy="8" r="1" class="logo-accent"/>
+  <circle cx="16" cy="8" r="1" class="logo-accent"/>
+  <circle cx="12" cy="6" r="1" class="logo-accent"/>
 </svg>

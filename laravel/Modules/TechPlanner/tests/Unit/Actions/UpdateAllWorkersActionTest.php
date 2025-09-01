@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Modules\TechPlanner\Tests\Unit\Actions;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllWorkersAction;
 use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Jobs\UpdateWorkerJob;
-use Tests\TestCase;
+use Modules\TechPlanner\Tests\Unit\Actions\TestCase;
 
 /**
  * Test unitario per l'action UpdateAllWorkersAction.
@@ -18,7 +19,6 @@ use Tests\TestCase;
  */
 class UpdateAllWorkersActionTest extends TestCase
 {
-    use RefreshDatabase;
 
     private UpdateAllWorkersAction $action;
 

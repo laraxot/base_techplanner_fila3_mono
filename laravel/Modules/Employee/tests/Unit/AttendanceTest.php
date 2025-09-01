@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Modules\Employee\Tests\Unit;
 
+
+
+namespace Modules\Employee\Tests\Unit;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Employee\Models\Attendance;
 use Modules\User\Models\User;
-use Tests\TestCase;
+use Modules\Employee\Tests\Unit\TestCase;
 
 class AttendanceTest extends TestCase
 {
-    use RefreshDatabase;
 
     private User $user;
 

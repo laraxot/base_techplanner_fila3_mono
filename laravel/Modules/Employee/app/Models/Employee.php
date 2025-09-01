@@ -76,5 +76,71 @@ class Employee extends User
         ];
     }
 
-   
+    /**
+     * Get the work hours for this employee.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\Employee\Models\WorkHour>
+     */
+    public function workHours(): HasMany
+    {
+        return $this->hasMany(WorkHour::class, 'employee_id');
+    }
+
+    /**
+     * Get the department this employee belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\Employee\Models\Department, \Modules\Employee\Models\Employee>
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    /**
+     * Get the manager of this employee.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\Employee\Models\Employee, \Modules\Employee\Models\Employee>
+     */
+    public function manager(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'manager_id');
+    }
+
+    /**
+     * Get the subordinates of this employee.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\Employee\Models\Employee>
+     */
+    public function subordinates(): HasMany
+    {
+        return $this->hasMany(Employee::class, 'manager_id');
+    }
+
+    /**
+     * Check if employee is active today.
+     *
+     * @return bool
+     */
+    public function isActiveToday(): bool
+    {
+        return $this->workHours()
+            ->whereDate('timestamp', today())
+            ->exists();
+    }
+
+    /**
+     * Get employee's status label.
+     *
+     * @return string
+     */
+    public function getStatusLabelAttribute(): string
+    {
+        return match($this->status) {
+            'active' => 'Attivo',
+            'inactive' => 'Inattivo',
+            'on_leave' => 'In Ferie',
+            'terminated' => 'Cessato',
+            default => 'Sconosciuto',
+        };
+    }
 }

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Cms\Tests\Feature\Frontoffice;
 use Illuminate\Support\Facades\Artisan;
 
 uses(\Modules\Cms\Tests\TestCase::class);

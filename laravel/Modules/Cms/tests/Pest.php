@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-use Tests\TestCase;
+
+
+namespace Modules\Cms\Tests;
+use Modules\Cms\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------

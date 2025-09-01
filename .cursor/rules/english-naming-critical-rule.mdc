@@ -1,0 +1,206 @@
+# REGOLA CRITICA: SOLO INGLESE nei Nomi Codice
+
+## ⚠️ ERRORE GRAVISSIMO ⚠️
+
+**MAI usare parole italiane nei nomi di classi, file, metodi, variabili o qualsiasi identificatore del codice.**
+
+## Esempi di Errori Gravi
+
+### ❌ ERRORI GRAVISSIMI - MAI FARE
+```php
+// CLASSI
+class TimbratureWidget  // ❌ GRAVISSIMO
+class DipendentiResource  // ❌ GRAVISSIMO  
+class PresenzePage  // ❌ GRAVISSIMO
+class UtentiController  // ❌ GRAVISSIMO
+
+// METODI
+public function getTimbrate()  // ❌ GRAVISSIMO
+public function calcolaSalario()  // ❌ GRAVISSIMO
+public function verificaPresenza()  // ❌ GRAVISSIMO
+
+// VARIABILI
+$dipendenti = [];  // ❌ GRAVISSIMO
+$timbrature = [];  // ❌ GRAVISSIMO
+$oreLavorate = 0;  // ❌ GRAVISSIMO
+
+// FILE
+TimbratureWidget.php  // ❌ GRAVISSIMO
+DipendentiController.php  // ❌ GRAVISSIMO
+```
+
+### ✅ CORREZIONI OBBLIGATORIE
+```php
+// CLASSI
+class TimeTrackingWidget  // ✅ CORRETTO
+class EmployeeResource  // ✅ CORRETTO
+class AttendancePage  // ✅ CORRETTO
+class UserController  // ✅ CORRETTO
+
+// METODI
+public function getTimeEntries()  // ✅ CORRETTO
+public function calculateSalary()  // ✅ CORRETTO
+public function checkAttendance()  // ✅ CORRETTO
+
+// VARIABILI
+$employees = [];  // ✅ CORRETTO
+$timeEntries = [];  // ✅ CORRETTO
+$workedHours = 0;  // ✅ CORRETTO
+
+// FILE
+TimeTrackingWidget.php  // ✅ CORRETTO
+EmployeeController.php  // ✅ CORRETTO
+```
+
+## Motivazioni Critiche
+
+### 1. Internazionalizzazione
+- Codice deve essere leggibile da sviluppatori internazionali
+- Standard globali richiedono inglese
+- Facilita collaborazione con team esteri
+
+### 2. Manutenibilità
+- Nomi inglesi sono più precisi e universali
+- Evita confusione tra traduzioni e logica
+- Standard dell'industria software
+
+### 3. Professional Standards
+- Laravel usa inglese
+- Filament usa inglese  
+- Tutti i framework usano inglese
+- PSR standards richiedono inglese
+
+### 4. SEO e Ricerca
+- Documentazione più facilmente ricercabile
+- Stack Overflow e forum internazionali
+- Naming conventions riconosciute
+
+## Traduzioni vs Codice
+
+### ✅ CORRETTO - Separazione Netta
+```php
+// CODICE: Sempre inglese
+class EmployeeResource extends XotBaseResource
+{
+    public function getEmployees(): Collection
+    {
+        return Employee::all();
+    }
+}
+
+// TRADUZIONI: Italiano nei file lang
+'employee' => [
+    'title' => 'Dipendente',
+    'plural' => 'Dipendenti', 
+    'clock_in' => 'Timbra entrata',
+]
+```
+
+### ❌ ERRATO - Mescolare Lingue
+```php
+// MAI mescolare italiano nel codice
+class DipendentePage  // ❌ GRAVISSIMO
+{
+    public function getTimbrate()  // ❌ GRAVISSIMO
+    {
+        return Timbratura::all();  // ❌ GRAVISSIMO
+    }
+}
+```
+
+## Dizionario Traduzioni Obbligatorie
+
+### Termini HR/Employee
+- **Timbrature** → `TimeEntries` / `ClockEntries`
+- **Dipendenti** → `Employees`
+- **Presenze** → `Attendance`
+- **Ferie** → `Leave` / `Vacation`
+- **Permessi** → `Permissions` / `TimeOff`
+- **Straordinari** → `Overtime`
+- **Turni** → `Shifts`
+- **Dipartimenti** → `Departments`
+
+### Termini Generali
+- **Utenti** → `Users`
+- **Ruoli** → `Roles`
+- **Autorizzazioni** → `Permissions`
+- **Configurazioni** → `Settings`
+- **Notifiche** → `Notifications`
+- **Rapporti** → `Reports`
+
+### Termini Azioni
+- **Crea** → `Create`
+- **Modifica** → `Edit` / `Update`
+- **Elimina** → `Delete`
+- **Visualizza** → `Show` / `View`
+- **Approva** → `Approve`
+- **Rifiuta** → `Reject`
+
+## Correzione Immediata Richiesta
+
+### 1. Rinominare TimbratureWidget
+```bash
+# DEVE essere rinominato immediatamente
+TimbratureWidget.php → TimeTrackingWidget.php
+# oppure
+TimbratureWidget.php → ClockWidget.php
+```
+
+### 2. Aggiornare Riferimenti
+```php
+// Dashboard.php
+\Modules\Employee\Filament\Widgets\TimbratureWidget::class
+// DIVENTA
+\Modules\Employee\Filament\Widgets\TimeTrackingWidget::class
+```
+
+### 3. Cercare Altri Errori
+```bash
+# Cercare tutti i file con nomi italiani
+find . -name "*[iI]talian*" -o -name "*[tT]imbr*" -o -name "*[dD]ipend*" -o -name "*[pP]resenz*"
+```
+
+## Controlli Automatici
+
+### Pre-commit Hook
+```bash
+# Bloccare commit con nomi italiani
+if find . -name "*.php" | grep -E "(Timbr|Dipend|Presenz|Utent)"; then
+    echo "❌ ERRORE CRITICO: Nomi italiani nel codice!"
+    exit 1
+fi
+```
+
+### Regex Patterns da Bloccare
+```regex
+# Pattern da evitare nei nomi file/classi
+(Timbr|Dipend|Presenz|Utent|Feri|Permess|Straord|Turni|Dipartiment)
+```
+
+## Azione Immediata
+
+### Checklist Correzione
+- [ ] Rinominare TimbratureWidget → TimeTrackingWidget
+- [ ] Aggiornare Dashboard.php  
+- [ ] Cercare altri nomi italiani nel progetto
+- [ ] Aggiornare documentazione
+- [ ] Creare controlli automatici
+- [ ] Testare che tutto funzioni
+
+### Script di Ricerca
+```bash
+# Trova tutti i possibili errori
+grep -r -E "(class|interface|trait).*[A-Z][a-z]*(Timbr|Dipend|Presenz|Utent)" . --include="*.php"
+```
+
+---
+
+**PRIORITÀ**: 🚨 **CRITICA - CORREZIONE IMMEDIATA**  
+**IMPATTO**: Compromette standard professionali  
+**AZIONE**: Rinominare e documentare per prevenzione futura
+
+Procedo immediatamente con la correzione del `TimbratureWidget` → `TimeTrackingWidget`!
+
+description: Critical rule for English-only naming in code
+globs: ["**/*.php", "**/*.js", "**/*.ts", "**/*.vue"]
+alwaysApply: true

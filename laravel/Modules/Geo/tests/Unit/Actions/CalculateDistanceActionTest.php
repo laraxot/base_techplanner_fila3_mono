@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\Geo\Tests\Unit\Actions;
 
 use Modules\Geo\Actions\CalculateDistanceAction;
 use Modules\Geo\Actions\GoogleMaps\CalculateDistanceMatrixAction;

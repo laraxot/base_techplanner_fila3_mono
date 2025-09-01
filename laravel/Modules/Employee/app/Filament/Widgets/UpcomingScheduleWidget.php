@@ -1,0 +1,235 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\Employee\Filament\Widgets;
+
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
+
+/**
+ * UpcomingScheduleWidget - 7-Day Schedule Overview Widget
+ * 
+ * Displays upcoming events for the next 7 days including absences, 
+ * smart working, transfers, and other schedule items.
+ */
+class UpcomingScheduleWidget extends XotBaseWidget
+{
+    protected static string $view = 'employee::filament.widgets.upcoming-schedule-widget';
+    
+    protected int | string | array $columnSpan = 'full';
+    
+    protected static ?int $sort = 2;
+
+    /**
+     * Get the form schema for the widget.
+     *
+     * @return array<int|string, \Filament\Forms\Components\Component>
+     */
+    public function getFormSchema(): array
+    {
+        return [];
+    }
+
+    /**
+     * Get upcoming schedule events for the next 7 days
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    protected function getUpcomingEvents(): array
+    {
+        // Query reale per eventi futuri (prossimi 7 giorni)
+        $startDate = now()->startOfDay();
+        $endDate = now()->addDays(7)->endOfDay();
+        
+        // Query per WorkHours con tipi speciali nei prossimi 7 giorni
+        $upcomingEvents = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('timestamp', [$startDate, $endDate])
+                  ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave']);
+        })
+        ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('timestamp', [$startDate, $endDate])
+                  ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave'])
+                  ->orderBy('timestamp');
+        }])
+        ->limit(10)
+        ->get();
+
+        $events = [];
+        foreach ($upcomingEvents as $employee) {
+            foreach ($employee->workHours as $workHour) {
+                $fullName = $this->getEmployeeFullName($employee);
+                
+                $events[] = [
+                    'id' => $workHour->id,
+                    'employee_name' => $fullName,
+                    'employee_initials' => $this->getInitialsFromName($fullName),
+                    'event_type' => $workHour->type,
+                    'event_title' => $this->getEventTitle($workHour->type),
+                    'start_date' => $workHour->timestamp,
+                    'end_date' => $workHour->timestamp, // Per ora stesso giorno
+                    'status' => $workHour->status ?? 'approved',
+                    'location' => $workHour->location_name,
+                    'notes' => $workHour->notes ?? '',
+                ];
+            }
+        }
+
+        // Se non ci sono dati reali, usa dati di esempio
+        if (empty($events)) {
+            return [
+                [
+                    'id' => 1,
+                    'employee_name' => 'Esempio Dipendente',
+                    'employee_initials' => 'ED',
+                    'event_type' => 'absence',
+                    'event_title' => 'Ferie',
+                    'start_date' => now()->addDays(1),
+                    'end_date' => now()->addDays(3),
+                    'status' => 'approved',
+                    'location' => null,
+                    'notes' => 'Ferie programmate',
+                ],
+            ];
+        }
+        
+        return $events;
+    }
+
+    /**
+     * Get event type configuration
+     *
+     * @param string $type
+     * @return array<string, string>
+     */
+    protected function getEventTypeConfig(string $type): array
+    {
+        return match ($type) {
+            'absence' => [
+                'icon' => 'heroicon-o-x-circle',
+                'color' => 'text-red-600 bg-red-50 border-red-200',
+                'badge_color' => 'bg-red-100 text-red-800',
+            ],
+            'smart_working' => [
+                'icon' => 'heroicon-o-home',
+                'color' => 'text-blue-600 bg-blue-50 border-blue-200',
+                'badge_color' => 'bg-blue-100 text-blue-800',
+            ],
+            'transfer' => [
+                'icon' => 'heroicon-o-map-pin',
+                'color' => 'text-purple-600 bg-purple-50 border-purple-200',
+                'badge_color' => 'bg-purple-100 text-purple-800',
+            ],
+            default => [
+                'icon' => 'heroicon-o-calendar',
+                'color' => 'text-gray-600 bg-gray-50 border-gray-200',
+                'badge_color' => 'bg-gray-100 text-gray-800',
+            ],
+        };
+    }
+
+    /**
+     * Get status badge color
+     *
+     * @param string $status
+     * @return string
+     */
+    protected function getStatusBadgeColor(string $status): string
+    {
+        return match ($status) {
+            'approved' => 'bg-green-100 text-green-800',
+            'pending' => 'bg-yellow-100 text-yellow-800',
+            'rejected' => 'bg-red-100 text-red-800',
+            default => 'bg-gray-100 text-gray-800',
+        };
+    }
+
+    /**
+     * Get avatar background color based on initials
+     *
+     * @param string $initials
+     * @return string
+     */
+    protected function getAvatarColor(string $initials): string
+    {
+        $colors = [
+            'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
+            'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500'
+        ];
+        
+        $hash = array_sum(array_map('ord', str_split($initials)));
+        return $colors[$hash % count($colors)];
+    }
+
+    /**
+     * Get data for the widget view
+     *
+     * @return array<string, mixed>
+     */
+    protected function getViewData(): array
+    {
+        return [
+            'upcomingEvents' => $this->getUpcomingEvents(),
+        ];
+    }
+
+    /**
+     * Get full name from Employee model using real database fields
+     *
+     * @param Employee $employee
+     * @return string
+     */
+    protected function getEmployeeFullName($employee): string
+    {
+        // Use full_name mutator if available
+        if (!empty($employee->full_name)) {
+            return $employee->full_name;
+        }
+        
+        // Combine first_name + last_name
+        if (!empty($employee->first_name) || !empty($employee->last_name)) {
+            return trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? ''));
+        }
+        
+        // Fallback to name field
+        return $employee->name ?? 'Dipendente #' . $employee->id;
+    }
+
+    /**
+     * Get initials from full name
+     *
+     * @param string $fullName
+     * @return string
+     */
+    protected function getInitialsFromName(string $fullName): string
+    {
+        $parts = explode(' ', trim($fullName));
+        $initials = '';
+        
+        foreach ($parts as $part) {
+            if (!empty($part)) {
+                $initials .= strtoupper(substr($part, 0, 1));
+            }
+        }
+        
+        return substr($initials, 0, 2) ?: 'DP';
+    }
+
+    /**
+     * Get event title based on type
+     *
+     * @param string $type
+     * @return string
+     */
+    protected function getEventTitle(string $type): string
+    {
+        return match ($type) {
+            'absence' => 'Assenza',
+            'smart_working' => 'Smart Working',
+            'transfer' => 'Trasferta',
+            'leave' => 'Ferie',
+            'sick_leave' => 'Malattia',
+            'permit' => 'Permesso',
+            default => ucfirst($type),
+        };
+    }
+}

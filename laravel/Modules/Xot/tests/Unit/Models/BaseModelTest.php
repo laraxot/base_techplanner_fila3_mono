@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Tests\Unit\Models;
 
+
+
+namespace Modules\Xot\Tests\Unit\Models;
 use Modules\Xot\Models\BaseModel;
 use Modules\Xot\Tests\TestCase;
 use Illuminate\Database\Eloquent\Model;

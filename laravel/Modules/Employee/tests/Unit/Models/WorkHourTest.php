@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Modules\Employee\Tests\Unit\Models;
 
+
+
+namespace Modules\Employee\Tests\Unit\Models;
 use Modules\Employee\Models\WorkHour;
 use Modules\Employee\Models\Employee;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Collection;
-use Tests\TestCase;
+use Modules\Employee\Tests\Unit\Models\TestCase;
 use Carbon\Carbon;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
     $this->employee = Employee::factory()->create();

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\User\Tests\Feature\Filament;
 use Livewire\Livewire;
 use Modules\User\Models\User;
 use Modules\User\Models\Role;

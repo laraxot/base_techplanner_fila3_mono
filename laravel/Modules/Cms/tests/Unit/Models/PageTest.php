@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Modules\Cms\Tests\Unit\Models;
 
+
+
+namespace Modules\Cms\Tests\Unit\Models;
 use Modules\Cms\Models\Page;
 use Modules\Cms\Models\PageContent;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Collection;
-use Tests\TestCase;
+use Modules\Cms\Tests\Unit\Models\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
     $this->page = Page::factory()->create();

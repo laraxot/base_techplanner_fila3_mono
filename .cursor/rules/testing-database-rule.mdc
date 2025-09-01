@@ -1,0 +1,184 @@
+# Regola Critica: Database Testing senza RefreshDatabase
+
+## ⚠️ REGOLA ASSOLUTA ⚠️
+
+**MAI usare RefreshDatabase nei test. SEMPRE usare .env.testing con database dedicato.**
+
+## Motivazioni Critiche
+
+### 1. Performance
+- RefreshDatabase esegue TUTTE le migrazioni ad ogni test
+- Con 615+ file di test, diventa un collo di bottiglia insostenibile
+- .env.testing + SQLite in memoria = 100x più veloce
+
+### 2. Isolamento Ambienti
+- Database di test completamente separato da sviluppo
+- Nessun rischio di corrompere dati di sviluppo
+- Configurazioni specifiche per testing
+
+### 3. Filosofia Laraxot
+- Separazione netta tra ambienti (dev, test, prod)
+- Configurazione esplicita tramite .env
+- Performance first per feedback rapido
+- Scalabilità per progetti enterprise
+
+### 4. Manutenibilità
+- Un approccio consistente per tutti i test
+- Configurazione centralizzata
+- Debugging più semplice
+
+## Pattern Corretto
+
+### ❌ VIETATO
+```php
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class MyTest extends TestCase
+{
+    use RefreshDatabase; // ❌ MAI USARE
+}
+```
+
+### ✅ OBBLIGATORIO
+```php
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class MyTest extends TestCase
+{
+    use DatabaseTransactions; // ✅ SEMPRE USARE
+}
+```
+
+## Configurazione .env.testing
+
+### File Obbligatorio
+```env
+# .env.testing
+APP_ENV=testing
+APP_KEY=base64:test-key-here
+APP_DEBUG=false
+
+# Database di test (SQLite in memoria)
+DB_CONNECTION=sqlite
+DB_DATABASE=:memory:
+
+# Cache di test
+CACHE_DRIVER=array
+SESSION_DRIVER=array
+QUEUE_CONNECTION=sync
+
+# Disable external services
+MAIL_MAILER=array
+BROADCAST_DRIVER=log
+```
+
+## Implementazione TestCase
+
+### Pattern Base
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Tests;
+
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+abstract class TestCase extends BaseTestCase
+{
+    use CreatesApplication;
+    use DatabaseTransactions; // ✅ Sempre questo
+    
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Setup specifico se necessario
+    }
+}
+```
+
+## Correzioni Immediate Richieste
+
+### 1. Cercare tutti i test con RefreshDatabase
+```bash
+grep -r "RefreshDatabase" Modules/*/tests/ --include="*.php"
+```
+
+### 2. Sostituire con DatabaseTransactions
+```php
+// PRIMA
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use RefreshDatabase;
+
+// DOPO  
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use DatabaseTransactions;
+```
+
+### 3. Verificare .env.testing
+- Creare se mancante
+- Configurare database SQLite in memoria
+- Disabilitare servizi esterni
+
+## Benefici Immediati
+
+### Performance
+- Test suite 50-100x più veloce
+- Feedback immediato durante sviluppo
+- CI/CD pipeline più efficiente
+
+### Affidabilità
+- Nessuna interferenza tra test
+- Isolamento completo per ogni test
+- Rollback automatico delle transazioni
+
+### Manutenibilità
+- Configurazione centralizzata
+- Pattern consistente
+- Debug semplificato
+
+## Penalità per Violazione
+
+### ⚠️ CONSEGUENZE
+- Test lentissimi (minuti invece di secondi)
+- Possibile corruzione database di sviluppo
+- CI/CD pipeline che fallisce per timeout
+- Esperienza sviluppatore degradata
+
+### 🚨 AZIONE IMMEDIATA
+- Correggere TUTTI i test esistenti
+- Aggiornare documentazione
+- Implementare controlli automatici
+- Non procedere finché non è corretto
+
+## Workflow di Correzione
+
+### Fase 1: Analisi
+1. Trovare tutti i test con RefreshDatabase
+2. Verificare configurazione .env.testing
+3. Documentare pattern attuale
+
+### Fase 2: Correzione
+1. Creare/aggiornare .env.testing
+2. Sostituire RefreshDatabase con DatabaseTransactions
+3. Aggiornare TestCase base
+4. Testare che tutto funzioni
+
+### Fase 3: Validazione
+1. Eseguire suite completa di test
+2. Verificare performance
+3. Documentare pattern corretto
+4. Aggiornare regole permanenti
+
+---
+
+**REGOLA ASSOLUTA**: Mai più RefreshDatabase, sempre .env.testing + DatabaseTransactions
+
+**Creato**: 2025-01-06
+**Priorità**: CRITICA
+**Status**: DA IMPLEMENTARE IMMEDIATAMENTE
+
+description: Testing database rule for Laraxot projects
+globs: ["**/*Test.php", "**/test*.php", "**/Pest.php", "**/TestCase.php"]
+alwaysApply: true

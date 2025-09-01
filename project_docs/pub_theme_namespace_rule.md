@@ -164,6 +164,13 @@ Themes/{NomeTema}/
 
 ## Risoluzione di Errori Comuni
 
+### "View not found: pub_theme::..."
+**Causa**: CmsServiceProvider non registrato nell'applicazione
+**Soluzione**: 
+1. Verificare che `Modules\Cms\Providers\CmsServiceProvider::class` sia presente in `config/app.php`
+2. Verificare che `register_pub_theme` sia `true` in `config/local/techplanner/xra.php`
+3. Pulire cache con `php artisan view:clear`
+
 ### "View not found: sixteen::..."
 **Causa**: Utilizzo di namespace specifico del tema
 **Soluzione**: Cambiare in `pub_theme::`
@@ -198,7 +205,17 @@ Ogni volta che si lavora con temi e CMS, consultare questa regola per garantire 
 
 ---
 
-**Creato in seguito all'errore del 2025-01-06**: Utilizzo errato di `sixteen::` invece di `pub_theme::` nei blocchi CMS.
+## Changelog Errori Risolti
+
+### 2025-01-06 - Errore "view not found: pub_theme::components.blocks.navigation.simple"
+**Causa**: `CmsServiceProvider` non registrato in `config/app.php`
+**Impatto**: Namespace `pub_theme::` non risolto, blocchi CMS non funzionanti
+**Soluzione**: Aggiunto `Modules\Cms\Providers\CmsServiceProvider::class` in `config/app.php`
+**Prevenzione**: Verificare sempre la registrazione dei ServiceProvider dei moduli core
+
+### 2025-01-06 - Utilizzo errato di namespace specifici
+**Causa**: Utilizzo di `sixteen::` invece di `pub_theme::` nei blocchi CMS
+**Soluzione**: Standardizzazione su `pub_theme::` per tutti i riferimenti ai temi
 
 **Motto**: "pub_theme:: è dinamico, sixteen:: è statico - usa sempre il dinamico!"
 

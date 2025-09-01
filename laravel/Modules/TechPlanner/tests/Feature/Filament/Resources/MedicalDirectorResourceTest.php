@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource;
@@ -13,11 +14,10 @@ use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource\Pages\EditMed
 use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource\Pages\ListMedicalDirectors;
 use Modules\TechPlanner\Models\MedicalDirector;
 use Modules\User\Models\User;
-use Tests\TestCase;
+use Modules\TechPlanner\Tests\Feature\Filament\Resources\TestCase;
 
 class MedicalDirectorResourceTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
 
     protected User $admin;
 

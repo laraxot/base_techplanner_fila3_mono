@@ -7,7 +7,7 @@ namespace Modules\Tenant\Tests\Unit\Traits;
 use Tests\TestCase;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Tenant\Models\TestSushiModel;
 use Modules\Tenant\Services\TenantService;
 use Mockery;
@@ -17,7 +17,7 @@ use Mockery;
  */
 class SushiToJsonTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     private TestSushiModel $model;
     private string $testJsonPath;

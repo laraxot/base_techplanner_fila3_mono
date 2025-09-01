@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Tests\Feature\Filament;
 
+
+
+namespace Modules\Xot\Tests\Feature\Filament;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Xot\Tests\TestCase;
 use Filament\Resources\Resource;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
     $this->resource = new class extends XotBaseResource {

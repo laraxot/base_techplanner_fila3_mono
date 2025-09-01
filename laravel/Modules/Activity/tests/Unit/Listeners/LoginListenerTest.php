@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+
+
+namespace Modules\Activity\Tests\Unit\Listeners;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
 use Modules\Activity\Listeners\LoginListener;

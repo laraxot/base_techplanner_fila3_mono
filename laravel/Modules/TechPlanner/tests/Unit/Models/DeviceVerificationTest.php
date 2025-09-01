@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modules\TechPlanner\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
+
+namespace Modules\TechPlanner\Tests\Unit\Models;
 use Modules\TechPlanner\Models\DeviceVerification;
-use Tests\TestCase;
+use Modules\TechPlanner\Tests\Unit\Models\TestCase;
 
 /**
  * Test unitario per il modello DeviceVerification.
@@ -15,7 +16,6 @@ use Tests\TestCase;
  */
 class DeviceVerificationTest extends TestCase
 {
-    use RefreshDatabase;
 
     private DeviceVerification $deviceVerification;
 
