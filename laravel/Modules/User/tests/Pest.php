@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modules\User\Tests\Pest;
-
-
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithFaker;
+use Modules\User\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,11 @@ namespace Modules\User\Tests\Pest;
 |
 */
 
+uses(
+    TestCase::class,
+    DatabaseTransactions::class, // ✅ CORRETTO - Rollback automatico
+    WithFaker::class,
+)->in('Feature', 'Unit');
 
     ->in('Feature', 'Unit');
 
@@ -25,9 +30,7 @@ namespace Modules\User\Tests\Pest;
 | Expectations
 |--------------------------------------------------------------------------
 |
-| When you're writing tests, you often need to check that values meet certain conditions. The
-| "expect()" function gives you access to a set of "expectations" methods that you can use
-| to assert different things. Of course, you may extend the Expectation API at any time.
+| Here you may define your custom expectations to be used in your tests.
 |
 */
 
@@ -35,12 +38,20 @@ expect()->extend('toBeUser', function () {
     return $this->toBeInstanceOf(\Modules\User\Models\User::class);
 });
 
-expect()->extend('toBeTeam', function () {
-    return $this->toBeInstanceOf(\Modules\User\Models\Team::class);
+expect()->extend('toHaveProperty', function (string $property) {
+    return expect(property_exists($this->value, $property))->toBeTrue();
 });
 
-expect()->extend('toBeProfile', function () {
-    return $this->toBeInstanceOf(\Modules\User\Models\Profile::class);
+expect()->extend('toHaveRole', function (string $roleName) {
+    return expect($this->value->hasRole($roleName))->toBeTrue();
+});
+
+expect()->extend('toHavePermission', function (string $permissionName) {
+    return expect($this->value->hasPermissionTo($permissionName))->toBeTrue();
+});
+
+expect()->extend('toHaveTeamRole', function (\Modules\User\Models\Team $team, string $role) {
+    return expect($this->value->hasTeamRole($team, $role))->toBeTrue();
 });
 
 /*
@@ -48,9 +59,7 @@ expect()->extend('toBeProfile', function () {
 | Functions
 |--------------------------------------------------------------------------
 |
-| While Pest is very powerful out-of-the-box, you may have some testing code specific to your
-| project that you don't want to repeat in every file. Here you can also expose helpers as
-| global functions to help you to reduce the number of lines of code in your test files.
+| Here you may define your custom helper functions to be used in your tests.
 |
 */
 
@@ -64,6 +73,16 @@ function makeUser(array $attributes = []): \Modules\User\Models\User
     return \Modules\User\Models\User::factory()->make($attributes);
 }
 
+function createRole(array $attributes = []): \Modules\User\Models\Role
+{
+    return \Modules\User\Models\Role::factory()->create($attributes);
+}
+
+function createPermission(array $attributes = []): \Modules\User\Models\Permission
+{
+    return \Modules\User\Models\Permission::factory()->create($attributes);
+}
+
 function createTeam(array $attributes = []): \Modules\User\Models\Team
 {
     return \Modules\User\Models\Team::factory()->create($attributes);
@@ -72,4 +91,14 @@ function createTeam(array $attributes = []): \Modules\User\Models\Team
 function createProfile(array $attributes = []): \Modules\User\Models\Profile
 {
     return \Modules\User\Models\Profile::factory()->create($attributes);
+}
 
+function createTenant(array $attributes = []): \Modules\User\Models\Tenant
+{
+    return \Modules\User\Models\Tenant::factory()->create($attributes);
+}
+
+function createAuthenticationLog(array $attributes = []): \Modules\User\Models\AuthenticationLog
+{
+    return \Modules\User\Models\AuthenticationLog::factory()->create($attributes);
+}

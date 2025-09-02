@@ -23,27 +23,6 @@ class ViewClient extends XotBaseViewRecord
                     \Filament\Infolists\Components\TextEntry::make('vat_number')->label('VAT Number'),
                     \Filament\Infolists\Components\TextEntry::make('fiscal_code')->label('Fiscal Code'),
                 ]),
-
-            \Filament\Infolists\Components\Section::make('Contact Information')
-                ->schema([
-                    \Filament\Infolists\Components\TextEntry::make('address')->label('Address'),
-                    \Filament\Infolists\Components\TextEntry::make('street_number')->label('Street Number'),
-                    \Filament\Infolists\Components\TextEntry::make('city')->label('City'),
-                    \Filament\Infolists\Components\TextEntry::make('postal_code')->label('Postal Code'),
-                    \Filament\Infolists\Components\TextEntry::make('province')->label('Province'),
-                    \Filament\Infolists\Components\TextEntry::make('country')->label('Country'),
-                    \Filament\Infolists\Components\TextEntry::make('phone')->label('Phone'),
-                    \Filament\Infolists\Components\TextEntry::make('mobile')->label('Mobile'),
-                    \Filament\Infolists\Components\TextEntry::make('fax')->label('Fax'),
-                    \Filament\Infolists\Components\TextEntry::make('email')->label('Email'),
-                ]),
-
-            \Filament\Infolists\Components\Section::make('Additional Information')
-                ->schema([
-                    \Filament\Infolists\Components\TextEntry::make('competent_health_unit')->label('Competent Health Unit'),
-                    \Filament\Infolists\Components\TextEntry::make('company_office')->label('Company Office'),
-                    \Filament\Infolists\Components\TextEntry::make('notes')->label('Notes'),
-                ]),
         ];
     }
 

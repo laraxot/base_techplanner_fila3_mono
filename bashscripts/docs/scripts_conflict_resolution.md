@@ -1,4 +1,7 @@
+# Risoluzione Conflitti negli Script Bash
+=======
 # Script di Risoluzione dei Conflitti
+>>>>>>> f1e7ef1046 (.)
 
 ## Panoramica
 
@@ -84,6 +87,102 @@ Verifica e corregge i problemi comuni di namespace nei file PHP, che sono spesso
 
 #### Descrizione
 Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
+# Risoluzione Conflitti negli Script Bash
+=======
+# Script di Risoluzione dei Conflitti
+
+## Panoramica
+
+Questo documento fornisce una guida completa agli script di automazione per la risoluzione dei conflitti git nel progetto Laraxot PTVX. Gli script descritti sono progettati per aiutare gli sviluppatori a identificare, analizzare e risolvere i conflitti di merge in modo efficiente.
+
+## Script Disponibili
+
+### 1. find_conflicts.sh
+
+#### Descrizione
+Identifica e elenca tutti i file con conflitti git non risolti nel repository.
+
+#### Utilizzo
+```bash
+./bashscripts/git/find_conflicts.sh
+```
+
+#### Output
+Un elenco di file che contengono marcatori di conflitto git.
+
+#### Come Funziona
+1. Utilizza `git grep` per cercare i marcatori  in tutti i file
+2. Organizza i risultati per tipo di file (PHP, MD, JSON, ecc.)
+3. Mostra un riepilogo della quantità di conflitti per tipo
+
+### 2. resolve_conflicts.sh
+
+#### Descrizione
+Uno script interattivo che aiuta a risolvere i conflitti di merge proponendo varie strategie di risoluzione.
+
+#### Utilizzo
+```bash
+./bashscripts/utils/resolve_conflicts.sh [percorso_file]
+```
+
+#### Funzionalità
+1. Visualizza il contenuto del file con conflitti
+2. Propone diverse strategie di risoluzione:
+   - Mantenere la versione HEAD
+   - Mantenere la versione incoming
+   - Fusione manuale guidata
+   - Aprire il file in un editor
+3. Applica la strategia selezionata e rimuove i marcatori di conflitto
+4. Crea backup dei file prima delle modifiche
+
+### 3. fix_all_git_conflicts.sh
+
+#### Descrizione
+Script di risoluzione automatica che mantiene la versione HEAD per tutti i conflitti.
+
+#### Utilizzo
+```bash
+./bashscripts/utils/fix_all_git_conflicts.sh
+```
+
+#### Funzionalità
+1. Identifica tutti i file con conflitti
+2. Crea backup dei file originali
+3. Mantiene automaticamente la versione HEAD
+4. Rimuove i marcatori di conflitto
+5. Produce un report delle modifiche
+
+#### Limitazioni
+- Non adatto per conflitti complessi che richiedono fusione manuale
+- Può perdere modifiche importanti dalla versione non-HEAD
+
+### 4. check_namespaces.sh
+
+#### Descrizione
+Verifica e corregge i problemi comuni di namespace nei file PHP, che sono spesso causa di conflitti.
+
+#### Utilizzo
+```bash
+./bashscripts/utils/check_namespaces.sh [directory]
+```
+
+=======
+#### Funzionalità
+1. Cerca i namespace che includono incorrettamente il segmento 'app'
+2. Suggerisce correzioni secondo le convenzioni del progetto
+3. Può applicare automaticamente le correzioni se richiesto
+
+### 5. conflict_analyzer.sh
+
+#### Descrizione
+Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
+>>>>>>> 1831d11e78 (.)
+=======
+1. **Struttura principale**: Duplicazione dell'intero script, con marker di conflitto nidificati
+2. **Messaggi di sistema**: Presenza di messaggi informativi sulla risoluzione del conflitto
+>>>>>>> 04d882f8f6 (.)
+=======
+>>>>>>> f1e7ef1046 (.)
 
 ### sync_to_disk.sh
 
@@ -188,7 +287,11 @@ I seguenti file sono stati recentemente risolti:
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: fix_all_git_conflicts.md](fix_all_git_conflicts.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
+=======
+>>>>>>> f1e7ef1046 (.)
+=======
 
+>>>>>>> f71d08e230 (.)
 ### fix_structure.sh
 
 Mantenere la versione più avanzata con funzioni di logging colorate, migliorando:
@@ -255,6 +358,12 @@ I seguenti file sono stati recentemente risolti:
 - `sync_to_disk.sh`: Mantenuta versione avanzata con migliore feedback e gestione esclusioni
 - `fix_merge_conflicts.sh`: Corretta la logica di individuazione e rimozione dei marker di conflitto per garantire la pulizia completa di tutti i tre tipi di marker 
 
+=======
+Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
+>>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
+=======
+=======
+>>>>>>> f1e7ef1046 (.)
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
 
 #### Utilizzo
@@ -400,3 +509,14 @@ Per pulire un repository con molti conflitti non risolti:
 - [Conflitti nei File di Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/config_file_conflicts.md)
 - [Convenzioni di Namespace](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/NAMESPACE-CONVENTIONS.md)
 - [Risoluzione Conflitti nei Moduli](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
+>>>>>>> 1831d11e78 (.)
+=======
+>>>>>>> 0c55086029 (.)
+=======
+Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](scripts-conflict-resolution.md) nella root del progetto. 
+>>>>>>> 04d882f8f6 (.)
+=======
+>>>>>>> d83fe8da (.)
+>>>>>>> f1e7ef1046 (.)
+=======
+>>>>>>> f71d08e230 (.)

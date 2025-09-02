@@ -70,4 +70,4 @@ class ThemeService
 
         return config('sixteen.' . $key, $default);
     }
-} 
+}

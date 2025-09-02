@@ -1,13 +1,11 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
-// import preset from './../../vendor/filament/support/tailwind.config.preset';
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import colors from 'tailwindcss/colors';
 
-
 module.exports = {
-    // presets: [preset],
+    // presets: [], // avoid theme-local Filament preset paths
     darkMode: 'class',
     theme: {
         extend: {
@@ -64,7 +62,7 @@ module.exports = {
                     800: '#B37F00',
                     900: '#996D00',
                 },
-                // Manteniamo compatibilità con i colori esistenti
+                // Compatibilità con i colori esistenti
                 primary: {
                     50: '#eff6ff',
                     100: '#dbeafe',
@@ -124,19 +122,28 @@ module.exports = {
     },
 
     content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+        "./assets/**/*.js",
+        "./assets/**/*.css",
+        "./resources/views/**/*.blade.php",
+        "./resources/views/filament/**/*.blade.php",
+        "./app/Filament/**/*.php",
 
-        '../../app/Filament/**/*.php',
-        '../../resources/views/**/*.blade.php',
-        '../../vendor/filament/**/*.blade.php',
+        "../../app/Filament/**/*.php",
+        "../../resources/views/**/*.blade.php",
+        "../../vendor/filament/**/*.blade.php",
         "../../Modules/**/Filament/**/*.php",
         "../../Modules/**/resources/views/**/*.blade.php",
         "../../storage/framework/views/*.php",
         "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "../../Themes/**/resources/views/**/*.blade.php",
+
         "./node_modules/flowbite/**/*.js",
-        "./resources/views/**/*.blade.php",  //----------- e' un tema !!!!
-        "../../Themes/**/resources/views/**/*.blade.php",  //----------- e' un tema !!!!
         "../../../public_html/vendor/**/*.blade.php",
     ],
+    // Filament preset palette (for compatibility with plugins expecting these keys)
     colors: {
         custom: {
             50: 'rgba(var(--c-50), <alpha-value>)',
@@ -233,7 +240,8 @@ module.exports = {
     plugins: [
         forms,
         typography,
-        daisyui
+        daisyui,
+        require('flowbite/plugin'),
     ],
     daisyui: {
         themes: ['light', 'dark'],

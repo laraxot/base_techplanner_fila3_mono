@@ -40,3 +40,9 @@ docs/cache/
 
 # Git-specific
 .git-blame-ignore-revs
+
+# Standard ignores (auto)
+*.old
+*.old1
+*.bakcup
+*.backup.*

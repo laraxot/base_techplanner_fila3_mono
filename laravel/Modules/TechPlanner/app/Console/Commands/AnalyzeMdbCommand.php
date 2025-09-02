@@ -6,7 +6,6 @@ namespace Modules\TechPlanner\Console\Commands;
 
 use Modules\Xot\Console\Commands\XotBaseCommand;
 use Symfony\Component\Process\Process;
-
 use function Safe\chmod;
 
 class AnalyzeMdbCommand extends XotBaseCommand

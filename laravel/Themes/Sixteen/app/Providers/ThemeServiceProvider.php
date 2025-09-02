@@ -9,9 +9,6 @@ use Modules\Xot\Providers\XotBaseThemeServiceProvider;
 /**
  * Service Provider per il tema Sixteen.
  * 
- * Questo provider gestisce la registrazione e configurazione
- * del tema Sixteen nell'applicazione Laravel.
- * 
  * IMPORTANTE: Il tema Sixteen usa il namespace 'pub_theme' per le viste,
  * non 'sixteen', per essere compatibile con il sistema di temi.
  */
@@ -30,22 +27,11 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
         parent::boot();
         
         // Caricamento specifico per pub_theme namespace
-        // IMPORTANTE: pub_theme è il namespace standard per i temi
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'pub_theme');
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'pub_theme');
         
         // Caricamento delle configurazioni del tema
         $this->loadConfigFrom(__DIR__ . '/../../config', 'sixteen');
-        
-        // Pubblicazione degli assets del tema
-        $this->publishes([
-            __DIR__ . '/../../resources/assets' => public_path('themes/sixteen/assets'),
-        ], 'sixteen-assets');
-        
-        // Pubblicazione delle configurazioni del tema
-        $this->publishes([
-            __DIR__ . '/../../config' => config_path('themes/sixteen'),
-        ], 'sixteen-config');
         
         // Registrazione Layout Shortcuts AGID
         $this->registerLayoutShortcuts();
@@ -94,4 +80,4 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
             }
         }
     }
-} 
+}

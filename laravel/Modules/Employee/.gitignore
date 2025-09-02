@@ -31,3 +31,7 @@ docs/phpstan/
 
 # Other
 
+
+# Standard ignores (auto)
+*.bakcup
+*.backup.*

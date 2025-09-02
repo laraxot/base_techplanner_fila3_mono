@@ -41,13 +41,6 @@ return new class extends XotBaseMigration
 
                 // if ($table->hasForeignKey('machines', 'machines_client_id_foreign')) {
                 //    $table->dropForeign('machines_client_id_foreign');
-                // }
-                $table->integer('client_id')
-                    ->nullable()
-                    ->change();
-                $table->integer('appointment_id')
-                    ->nullable()
-                    ->change();
                 if ($this->hasColumn('status')) {
                     $table->string('status')->nullable()->change();
                 }

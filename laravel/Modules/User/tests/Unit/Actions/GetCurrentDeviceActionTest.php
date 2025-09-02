@@ -6,7 +6,16 @@ namespace Modules\User\Tests\Unit\Actions\GetCurrentDeviceActionTest;
 
 namespace Modules\User\Tests\Unit\Actions;
 
+use Modules\User\Actions\GetCurrentDeviceAction;
+use Modules\User\Models\Device;
+use Tests\TestCase;
+use Jenssegers\Agent\Agent;
+use Mockery;
 
+class GetCurrentDeviceActionTest extends TestCase
+{
+
+    private GetCurrentDeviceAction $action;
     private Agent $mockAgent;
 
     protected function setUp(): void

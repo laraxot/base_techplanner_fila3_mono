@@ -5,8 +5,11 @@ declare(strict_types=1);
 use Modules\Job\Models\TaskFrequency;
 use Modules\Job\Actions\CreateTaskFrequencyAction;
 use Modules\Job\Actions\GetTaskFrequenciesAction;
+use Modules\Job\Tests\TestCase;
 
-describe('TaskFrequencies Integration', function () {
+
+
+describe('Task Frequencies Integration', function () {
     beforeEach(function () {
         $this->action = new GetTaskFrequenciesAction();
     });

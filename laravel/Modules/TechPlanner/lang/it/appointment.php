@@ -21,7 +21,6 @@ return array (
     'date' => 
     array (
       'label' => 'Data',
-      'helper_text' => 'date',
     ),
     'time' => 
     array (
@@ -41,7 +40,6 @@ return array (
     'notes' => 
     array (
       'label' => 'Note',
-      'helper_text' => 'notes',
     ),
     'toggleColumns' => 
     array (
@@ -62,34 +60,6 @@ return array (
     'machines_count' => 
     array (
       'label' => 'machines_count',
-    ),
-    'reorderRecords' => 
-    array (
-      'label' => 'reorderRecords',
-    ),
-    'resetFilters' => 
-    array (
-      'label' => 'resetFilters',
-    ),
-    'applyFilters' => 
-    array (
-      'label' => 'applyFilters',
-    ),
-    'openFilters' => 
-    array (
-      'label' => 'openFilters',
-    ),
-    'detach' => 
-    array (
-      'label' => 'detach',
-    ),
-    'edit' => 
-    array (
-      'label' => 'edit',
-    ),
-    'delete' => 
-    array (
-      'label' => 'delete',
     ),
   ),
   'actions' => 
@@ -117,12 +87,5 @@ return array (
   array (
     'label' => 'Appuntamento',
     'plural' => 'Appuntamenti',
-  ),
-  'plural' => 
-  array (
-    'model' => 
-    array (
-      'label' => 'appointment.plural.model',
-    ),
   ),
 );

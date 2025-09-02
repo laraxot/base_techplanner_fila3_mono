@@ -8,6 +8,9 @@
 
 aurmich/dev
 
+aurmich/dev
+=======
+>>>>>>> f71d08e230 (.)
 # 🔧 Fase 8: Manutenzione
 
 ## 📋 Panoramica
@@ -17,7 +20,9 @@ Questa fase si concentra sulla manutenzione e il supporto continuo del sistema.
 - [Roadmap Principale](../roadmap.md)
 - [Documentazione Script](../project.md)
 - [Fase 7: Documentazione](../roadmap/07_documentation.md)
+=======
 
+>>>>>>> f71d08e230 (.)
 # 🔧 Fase 8: Manutenzione
 
 ## 📋 Panoramica
@@ -36,7 +41,9 @@ Questa fase si concentra sulla manutenzione e il supporto continuo del sistema.
 
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
+=======
 
+>>>>>>> f71d08e230 (.)
 # 🔧 Fase 8: Manutenzione
 
 ## 📋 Panoramica
@@ -48,7 +55,9 @@ Questa fase si concentra sulla manutenzione e il supporto continuo del sistema.
 - [Fase 7: Documentazione](../roadmap/07_documentation.md)
 
  43df3e0 (.)
+=======
 
+>>>>>>> 1831d11e78 (.)
 aurmich/dev
 
 
@@ -106,7 +115,9 @@ Questa fase si concentra sulla manutenzione e il supporto continuo del sistema.
 
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco HEAD (23 linee vs 1)[0m
  43df3e0 (.)
+=======
 
+>>>>>>> 1831d11e78 (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 08_maintenance.md

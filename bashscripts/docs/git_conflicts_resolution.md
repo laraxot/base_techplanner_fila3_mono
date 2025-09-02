@@ -1,3 +1,5 @@
+# Risoluzione Conflitti Git - Modulo Predict
+=======
 # Risoluzione Conflitti Git
 
 ## Panoramica
@@ -29,14 +31,8 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 
 ## Processo di Risoluzione
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
 =======
->>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
 =======
@@ -47,8 +43,10 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
+>>>>>>> f71d08e230 (.)
 ## Note Importanti
 - Tutti i file sono stati mantenuti nella versione<!-- REVISIONE MANUALE: File aggiornato per chiarezza e tracciabilità. Vedi anche [README globale](/docs/README.md) e gli altri file di risoluzione conflitti. -->
+>>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
 
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
@@ -57,12 +55,6 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 - I namespace sono stati mantenuti corretti secondo la struttura del modulo
 - Sono stati rimossi solo i marcatori di conflitto, mantenendo il codice funzionale
 - I file di backup sono stati creati con il timestamp per sicurezza
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 337c5266 (.)
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -96,6 +88,17 @@ git status
 git status
 
 # Trovare i marker di conflitto
+=======
+## Struttura del Modulo
+Il modulo Predict mantiene la seguente struttura di namespace:
+- `Modules\Predict\Filament\Resources` per le risorse Filament
+- `Modules\Predict\Providers` per i service provider
+- `Modules\Predict\Database\Factories` per le factory
+- `Modules\Predict\lang\it` per i file di traduzione
+>>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
+=======
+# Trovare i marker di conflitto
+>>>>>>> 1831d11e78 (.)
 
 ## Verifica Post-Risoluzione
 Si consiglia di:
@@ -106,6 +109,11 @@ Si consiglia di:
 5. Testare le traduzioni
 6. Verificare il funzionamento delle factory nei test
 7. Testare il modulo in ambiente di sviluppo
+
+## Backup
+Tutti i file modificati hanno un backup con timestamp nel formato:
+`.backup-YYYYMMDD-HHMMSS`
+=======
 ```
 
 ### Fase 2: Analisi
@@ -113,6 +121,7 @@ Per ogni file in conflitto:
 1. Comprendere il contesto delle modifiche
 2. Determinare quali modifiche devono essere mantenute
 3. Considerare le dipendenze e gli impatti delle modifiche
+>>>>>>> 1831d11e78 (.)
 
 ## Prossimi Passi
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
@@ -122,30 +131,13 @@ Per ogni file in conflitto:
 - `Modules\Predict\Providers` per i service provider
 - `Modules\Predict\Database\Factories` per le factory
 - `Modules\Predict\lang\it` per i file di traduzione
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
 =======
->>>>>>> 85c5198c (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 3c18aa7e (.)
-<<<<<<< HEAD
-=======
-
->>>>>>> 337c5266 (.)
 =======
 
 =======
 >>>>>>> 3c18aa7e (.)
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
-<<<<<<< HEAD
->>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
 =======
@@ -163,6 +155,19 @@ Scegliere una delle seguenti strategie:
 2. **Mantenere la versione incoming**: Se la versione del branch è corretta
 3. **Fusione manuale**: Integrare le modifiche di entrambe le versioni
 4. **Approccio per i file .md**: Per i file di documentazione, mantenere entrambe le versioni
+## Verifica Post-Risoluzione
+Si consiglia di:
+1. Eseguire i test del modulo
+2. Verificare il corretto funzionamento delle risorse Filament
+3. Controllare che i namespace siano corretti
+4. Verificare che non ci siano errori di sintassi
+5. Testare le traduzioni
+6. Verificare il funzionamento delle factory nei test
+
+## Backup
+Tutti i file modificati hanno un backup con timestamp nel formato:
+`.backup-YYYYMMDD-HHMMSS`
+=======
 
 Per i file di codice PHP, verificare sempre la compatibilità con PHPStan livello 9 dopo la risoluzione.
 
@@ -206,11 +211,16 @@ namespace Modules\NomeModulo\App\Filament;
 4. **Commit Atomici**: Effettuare commit piccoli e atomici
 5. **Documentare**: Mantenere aggiornata la documentazione
 6. **Seguire le Convenzioni**: Rispettare sempre le convenzioni di namespace e tipizzazione
+>>>>>>> 1831d11e78 (.)
 
 ## Prossimi Passi
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
 2. Eseguire `php artisan config:clear` per pulire la cache
 3. Verificare che tutte le risorse Filament siano registrate correttamente
+=======
+4. Testare il modulo in ambiente di sviluppo 
+>>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
+=======
 4. Testare il modulo in ambiente di sviluppo 
 
 ## Risoluzione di Casi Specifici
@@ -247,3 +257,11 @@ Il progetto include alcuni script per facilitare la gestione dei conflitti:
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti nei File di Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/config_file_conflicts.md)
 - [Convenzioni Namespace](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/NAMESPACE-CONVENTIONS.md)
+>>>>>>> 1831d11e78 (.)
+=======
+>>>>>>> 0c55086029 (.)
+=======
+>>>>>>> d83fe8da (.)
+>>>>>>> f1e7ef1046 (.)
+=======
+>>>>>>> f71d08e230 (.)

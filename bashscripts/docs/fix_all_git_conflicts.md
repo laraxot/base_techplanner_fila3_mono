@@ -57,7 +57,8 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
-
+=======
+>>>>>>> f71d08e230 (.)
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
@@ -68,7 +69,9 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 Lo script può essere integrato con Git hooks per verificare automaticamente la presenza di conflitti prima del commit:
 
 ```bash
+=======
 
+>>>>>>> f71d08e230 (.)
 # .git/hooks/pre-commit
 #!/bin/bash
 ```
@@ -94,3 +97,6 @@ Dopo l'esecuzione dello script, è consigliabile verificare che tutti i conflitt
 - [Script di Automazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/scripts.md)
 - [Conflitti nei File di Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/config_file_conflicts.md)
 - [Risoluzione Conflitti nei Moduli](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
+[Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
+=======
+>>>>>>> 1831d11e78 (.)

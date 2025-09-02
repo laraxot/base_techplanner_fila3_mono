@@ -55,9 +55,6 @@ return array (
     'company_name' => 
     array (
       'label' => 'Ragione Sociale',
-      'description' => 'company_name',
-      'helper_text' => 'company_name',
-      'placeholder' => 'company_name',
     ),
     'latitude' => 
     array (
@@ -99,16 +96,10 @@ return array (
     'tax_code' => 
     array (
       'label' => 'Codice Fiscale',
-      'description' => 'tax_code',
-      'helper_text' => 'tax_code',
-      'placeholder' => 'tax_code',
     ),
     'vat_number' => 
     array (
       'label' => 'Partita IVA',
-      'description' => 'vat_number',
-      'helper_text' => 'vat_number',
-      'placeholder' => 'vat_number',
     ),
     'fiscal_code' => 
     array (
@@ -121,29 +112,20 @@ return array (
     array (
       'label' => 'ASL Competente',
       'description' => 'competent_health_unit',
-      'helper_text' => 'competent_health_unit',
-      'placeholder' => 'competent_health_unit',
     ),
     'address' => 
     array (
       'label' => 'Indirizzo',
-      'description' => 'address',
-      'helper_text' => 'address',
-      'placeholder' => 'address',
     ),
     'street_number' => 
     array (
       'label' => 'Numero Civico',
-      'description' => 'street_number',
-      'helper_text' => 'street_number',
-      'placeholder' => 'street_number',
     ),
     'postal_code' => 
     array (
       'label' => 'CAP',
       'description' => 'postal_code',
       'helper_text' => 'postal_code',
-      'placeholder' => 'postal_code',
     ),
     'province' => 
     array (
@@ -178,9 +160,6 @@ return array (
     'activity' => 
     array (
       'label' => 'Attività',
-      'description' => 'activity',
-      'helper_text' => 'activity',
-      'placeholder' => 'activity',
     ),
     'name' => 
     array (
@@ -341,13 +320,5 @@ return array (
   array (
     'label' => 'Cliente',
     'plural' => 'Clienti',
-  ),
-  'sections' => 
-  array (
-    'contacts' => 
-    array (
-      'heading' => 'contacts',
-      'label' => 'contacts',
-    ),
   ),
 );

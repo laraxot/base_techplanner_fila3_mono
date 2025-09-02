@@ -15,9 +15,7 @@ name('login');
     </x-slot>
 
 
-=======
     @livewire(Modules\User\Widget\Auth\Login::class)
-=======
     <!-- Beautiful Login Page Section -->
     <section class="login-page-bg flex items-center justify-center p-4">
         <div class="fade-in-up w-full max-w-md">
@@ -101,6 +99,4 @@ name('login');
                 </div>
             </div>
     </section>
-=======
-    @livewire(Modules\User\Widget\Auth\Login::class)
 </x-layouts.app>

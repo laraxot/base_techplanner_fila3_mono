@@ -60,7 +60,7 @@
                             aria-hidden="true"
                         />
                         <span class="ml-1 text-xs font-medium hidden sm:inline-block group-hover:underline">
-                            {{ Str::limit($contact['value'], 15) }}
+                            {{ Str::limit($contact['display_value'] ?? $contact['value'], 15) }}
                         </span>
                     </a>
                 @else
@@ -76,7 +76,7 @@
                             aria-hidden="true"
                         />
                         <span class="ml-1 text-xs font-medium hidden sm:inline-block">
-                            {{ Str::limit($contact['value'], 15) }}
+                            {{ Str::limit($contact['display_value'] ?? $contact['value'], 15) }}
                         </span>
                     </span>
                 @endif
@@ -84,31 +84,3 @@
         @endforeach
     </div>
 @endif
-                    
-                    <span class="ml-1 text-xs font-medium group-hover:underline">
-                        {{ $contact['display_value'] ?? $contact['value'] }}
-                    </span>
-                </a>
-            @else
-                {{-- Contatto non cliccabile (es. fax) --}}
-                <div class="inline-flex items-center {{ $enumCase->getColor() }}"
-                     role="listitem"
-                     aria-label="{{ $enumCase->getLabel() }}: {{ $contact['value'] }}"
-                     title="{{ $contact['value'] }}">
-                    
-                    @svg($enumCase->getIcon(), 'w-4 h-4 flex-shrink-0', ['aria-hidden' => 'true'])
-                    
-                    <span class="ml-1 text-xs font-medium">
-                        {{ $contact['display_value'] ?? $contact['value'] }}
-                    </span>
-                </div>
-            @endif
-        @endif
-    @empty
-        <span class="text-gray-400 text-sm italic" 
-              role="status" 
-              aria-label="{{ __('notify::contact-column.aria_labels.no_contacts') }}">
-            {{ __('notify::contact-column.no_contacts') }}
-        </span>
-    @endforelse
-</div>

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Tenant\Tests\Integration;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 use Illuminate\Support\Facades\File;
-use Modules\Tenant\Models\Tenant;
+use Illuminate\Support\Facades\Auth;
+use Modules\User\Models\Tenant;
 use Modules\Tenant\Models\TestSushiModel;
 use Modules\Tenant\Services\TenantService;
 use PHPUnit\Framework\Attributes\Group;
@@ -23,8 +24,6 @@ use Tests\TestCase;
 #[Group('sushi-json')]
 class SushiToJsonIntegrationTest extends TestCase
 {
-    use RefreshDatabase;
-
     private Tenant $tenant1;
     private Tenant $tenant2;
     private string $tenant1Path;

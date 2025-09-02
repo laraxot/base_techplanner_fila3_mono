@@ -53,3 +53,7 @@ docs/phpstan/
 .windsurf/
 .cursor/
 
+
+# Standard ignores (auto)
+*.bakcup
+*.backup.*

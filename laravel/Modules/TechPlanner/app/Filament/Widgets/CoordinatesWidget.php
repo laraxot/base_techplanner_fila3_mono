@@ -60,4 +60,5 @@ class CoordinatesWidget extends XotBaseWidget
         $this->latitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_latitude', Cookie::get('user_latitude', 0)));
         $this->longitude = app(\Modules\Xot\Actions\Cast\SafeFloatCastAction::class)->execute(Session::get('user_longitude', Cookie::get('user_longitude', 0)));
     }
+
 }

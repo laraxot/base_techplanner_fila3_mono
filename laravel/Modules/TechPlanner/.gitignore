@@ -57,3 +57,8 @@ Homestead.json
 *.sql
 *.old
 *.old1
+
+# Standard ignores (auto)
+*.bak
+*.bakcup
+*.backup.*

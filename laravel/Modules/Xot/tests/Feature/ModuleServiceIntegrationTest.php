@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Modules\Xot\Services\ModuleService;
+use Nwidart\Modules\Facades\Module;
 use Illuminate\Support\Facades\File;
 
 describe('ModuleService Integration', function () {

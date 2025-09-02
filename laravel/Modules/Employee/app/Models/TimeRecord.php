@@ -68,7 +68,9 @@ class TimeRecord extends BaseModel
     }
 
     /**
-     * Get the user that owns the timbratura.
+     * Get the user that owns the time record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, static>
      */
     public function user(): BelongsTo
     {
@@ -76,7 +78,9 @@ class TimeRecord extends BaseModel
     }
 
     /**
-     * Get the user that created the timbratura.
+     * Get the user that created the time record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, static>
      */
     public function createdBy(): BelongsTo
     {
@@ -84,7 +88,9 @@ class TimeRecord extends BaseModel
     }
 
     /**
-     * Get the user that updated the timbratura.
+     * Get the user that updated the time record.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, static>
      */
     public function updatedBy(): BelongsTo
     {
@@ -94,7 +100,8 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include time records for a specific user.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param int $userId
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForUser($query, int $userId)
@@ -105,7 +112,8 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include time records of a specific type.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param string $type
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeOfType($query, string $type)
@@ -116,7 +124,8 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include time records for a specific date.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param Carbon $date
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForDate($query, Carbon $date)
@@ -127,7 +136,7 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include valid time records.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
+     * @param \Illuminate\Database\Eloquent\Builder<static> $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeValid($query)
@@ -137,6 +146,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the formatted timestamp.
+     *
+     * @return string
      */
     public function getFormattedTimestampAttribute(): string
     {
@@ -145,6 +156,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the formatted time only.
+     *
+     * @return string
      */
     public function getFormattedTimeAttribute(): string
     {
@@ -153,6 +166,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the formatted date only.
+     *
+     * @return string
      */
     public function getFormattedDateAttribute(): string
     {
@@ -161,6 +176,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record is an entry.
+     *
+     * @return bool
      */
     public function isEntry(): bool
     {
@@ -169,6 +186,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record is an exit.
+     *
+     * @return bool
      */
     public function isExit(): bool
     {
@@ -177,6 +196,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record is manual.
+     *
+     * @return bool
      */
     public function isManual(): bool
     {
@@ -185,9 +206,11 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record has location data.
+     *
+     * @return bool
      */
     public function hasLocation(): bool
     {
-        return ! empty($this->latitude) && ! empty($this->longitude);
+        return !empty($this->latitude) && !empty($this->longitude);
     }
 }

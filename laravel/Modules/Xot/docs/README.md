@@ -39,5 +39,51 @@ Per accedere alla documentazione dettagliata originale, vedere il backup in:
 
 ## Links
 - [Root Documentation](../../../docs/)
-- [SaluteOra Module](../SaluteOra/docs/)
 - [Original Documentation Backup](../../../docs-consolidation-backup-*/Xot-docs-original/)
+
+## Roadmap
+
+### Funzionalità Future
+- [ ] Sistema di plugin avanzato
+- [ ] API REST base
+- [ ] Sistema di eventi avanzato
+- [ ] Cache intelligente
+- [ ] Monitoring avanzato
+- [ ] Sistema di backup automatico
+
+### Miglioramenti
+- [ ] Performance optimization
+- [ ] Advanced caching
+- [ ] Real-time updates
+- [ ] Analytics avanzate
+- [ ] API REST completa
+
+## Contributi
+
+### Sviluppo
+1. Fork del repository
+2. Creazione branch feature
+3. Implementazione funzionalità
+4. Test completi
+5. Pull request con documentazione
+
+### Standard di Codice
+- PSR-12 coding standards
+- PHPStan livello 9+
+- Test coverage >90%
+- Documentazione PHPDoc completa
+
+## Licenza
+Questo modulo è rilasciato sotto la licenza MIT. Vedi il file LICENSE per i dettagli.
+
+## Supporto
+Per supporto tecnico o domande:
+
+- **Issues**: GitHub Issues
+- **Documentazione**: Questa documentazione
+- **Wiki**: Wiki del progetto
+- **Chat**: Canale Slack/Teams
+
+---
+
+*Ultimo aggiornamento: 2025-09-02*

@@ -129,45 +129,19 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 
 ### Comandi di Verifica
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
 =======
->>>>>>> d20d0523 (.)
 
 =======
 >>>>>>> 85c5198c (.)
-<<<<<<< HEAD
 =======
->>>>>>> f198176d (.)
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 337c5266 (.)
 =======
 
 =======
-<<<<<<< HEAD
 =======
->>>>>>> 9de04485 (.)
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
@@ -179,6 +153,9 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
+=======
+>>>>>>> e1b46df35 (.)
+>>>>>>> f71d08e230 (.)
 # Verifica configurazione
 composer config --list | grep minimum-stability
 
@@ -234,45 +211,19 @@ composer check-platform-reqs
 
 ### Log di Debug
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
 =======
->>>>>>> d20d0523 (.)
 
 =======
 >>>>>>> 85c5198c (.)
-<<<<<<< HEAD
 =======
->>>>>>> f198176d (.)
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 337c5266 (.)
 =======
 
 =======
-<<<<<<< HEAD
 =======
->>>>>>> 9de04485 (.)
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
@@ -284,6 +235,9 @@ composer check-platform-reqs
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
+=======
+>>>>>>> e1b46df35 (.)
+>>>>>>> f71d08e230 (.)
 # Abilita debug composer
 composer update -vvv
 
@@ -307,20 +261,9 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 *Aggiornamento completato il: $(date)*
 *File modificati: 4*
 *File già configurati: 18*
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 85c5198c (.)
-<<<<<<< HEAD
+*Totale file verificati: 22* 
 =======
 *Totale file verificati: 22* 
->>>>>>> 3c18aa7e (.)
-<<<<<<< HEAD
-=======
->>>>>>> 337c5266 (.)
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -330,17 +273,15 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 >>>>>>> 9de04485 (.)
 =======
 =======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 *Totale file verificati: 22* 
->>>>>>> 3c18aa7e (.)
 >>>>>>> 59901687 (.)
-<<<<<<< HEAD
->>>>>>> 85c5198c (.)
 =======
 =======
 *Totale file verificati: 22* 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
+=======
+*Totale file verificati: 22* 
+>>>>>>> e1b46df35 (.)
+>>>>>>> f71d08e230 (.)

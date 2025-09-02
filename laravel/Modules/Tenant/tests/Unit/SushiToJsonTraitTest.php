@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Modules\Tenant\Models\TestSushiModel;
 use Modules\Tenant\Services\TenantService;
-
-uses(Tests\TestCase::class);
+use Mockery;
+use Mockery\MockInterface;
 
 /**
  * Test unitari per il trait SushiToJson.
@@ -15,18 +15,35 @@ uses(Tests\TestCase::class);
  * Testa tutte le funzionalità del trait in isolamento,
  * utilizzando mock per le dipendenze esterne.
  */
-
-beforeEach(function () {
-    // Configura il modello di test
-    $this->model = new TestSushiModel();
+class SushiToJsonTraitTest extends TestCase
+{
+    private TestSushiModel $model;
+    private string $testJsonPath;
+    private string $testDirectory;
+    private MockInterface $mockTenantService;
 
     // Configura percorsi di test
     $this->testDirectory = storage_path('tests/sushi-json');
     $this->testJsonPath = $this->testDirectory.'/test_sushi.json';
 
-    // Crea directory di test
-    if (! File::exists($this->testDirectory)) {
-        File::makeDirectory($this->testDirectory, 0755, true, true);
+        // Mock completo del TenantService
+        $this->mockTenantService = Mockery::mock(TenantService::class);
+        $this->app->instance(TenantService::class, $this->mockTenantService);
+
+        // Configura il modello di test
+        $this->model = new TestSushiModel();
+
+        // Configura percorsi di test
+        $this->testDirectory = storage_path('tests/sushi-json');
+        $this->testJsonPath = $this->testDirectory.'/test_sushi.json';
+
+        // Crea directory di test
+        if (! File::exists($this->testDirectory)) {
+            File::makeDirectory($this->testDirectory, 0755, true, true);
+        }
+
+        // Mock TenantService per i test
+        $this->mockTenantService();
     }
 
     // Mock TenantService per i test
@@ -36,8 +53,28 @@ beforeEach(function () {
             ->andReturn($this->testJsonPath);
     });
 
-    // Helper per creare dati di test
-    $this->createTestData = function () {
+        if (File::exists($this->testDirectory)) {
+            File::deleteDirectory($this->testDirectory);
+        }
+
+        parent::tearDown();
+    }
+
+    /**
+     * Mock del TenantService per i test.
+     */
+    private function mockTenantService(): void
+    {
+        $this->mockTenantService->shouldReceive('filePath')
+            ->with('database/content/test_sushi.json')
+            ->andReturn($this->testJsonPath);
+    }
+
+    /**
+     * Crea dati JSON di test.
+     */
+    private function createTestData(): array
+    {
         return [
             '1' => [
                 'id' => 1,
@@ -151,7 +188,10 @@ describe('SushiToJson Trait', function () {
             File::deleteDirectory($this->testDirectory);
         }
 
-        $testData = ($this->createTestData)();
+        // Mock per nuovo percorso
+        $this->mockTenantService->shouldReceive('filePath')
+            ->with('database/content/test_sushi.json')
+            ->andReturn($newPath);
 
         $result = $this->model->saveToJson($testData);
 
@@ -168,6 +208,11 @@ describe('SushiToJson Trait', function () {
 
         $testData = ($this->createTestData)();
 
+        $this->mockTenantService->shouldReceive('filePath')
+            ->with('database/content/test_sushi.json')
+            ->andReturn($this->testJsonPath);
+
+        $testData = ['test' => 'data'];
         $result = $this->model->saveToJson($testData);
 
         expect($result)->toBeFalse();
@@ -247,8 +292,58 @@ describe('SushiToJson Trait', function () {
         expect($path)->toBe($this->testJsonPath);
     });
 
-    it('handles large datasets efficiently', function () {
-        // Crea dataset grande (1000 record)
+    /**
+     * Test per la gestione degli errori durante operazioni JSON.
+     */
+    public function testErrorHandlingDuringJsonOperations(): void
+    {
+        // Test con file non leggibile
+        $this->testJsonPath = '/dev/null/test.json';
+
+        $this->mockTenantService->shouldReceive('filePath')
+            ->with('database/content/test_sushi.json')
+            ->andReturn($this->testJsonPath);
+
+        $this->expectException(\Exception::class);
+
+        $this->model->getSushiRows();
+    }
+
+    /**
+     * Test per la validazione dei dati con schema definito.
+     */
+    public function testDataValidationWithSchema(): void
+    {
+        $model = new TestSushiModel();
+        $model->schema = [
+            'name' => 'string',
+            'description' => 'string',
+            'status' => 'string',
+        ];
+
+        $testData = [
+            '1' => [
+                'id' => 1,
+                'name' => 'Valid Item',
+                'description' => 'Valid Description',
+                'status' => 'active',
+            ],
+        ];
+
+        File::put($this->testJsonPath, json_encode($testData, JSON_PRETTY_PRINT));
+
+        $rows = $model->getSushiRows();
+
+        $this->assertArrayHasKey('1', $rows);
+        $this->assertEquals('Valid Item', $rows['1']['name']);
+    }
+
+    /**
+     * Test per la performance con file JSON grandi.
+     */
+    public function testPerformanceWithLargeJsonFiles(): void
+    {
+        // Crea dati di test con molteplici record
         $largeData = [];
         for ($i = 1; $i <= 1000; $i++) {
             $largeData[$i] = [

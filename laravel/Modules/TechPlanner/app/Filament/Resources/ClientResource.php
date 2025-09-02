@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Notify\Filament\Forms\Components\ContactSection;
+use Filament\Forms\Components\Textarea;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
-use Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
 use Modules\TechPlanner\Models\Client;
+use Modules\Notify\Filament\Forms\Components\ContactSection;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
 /**

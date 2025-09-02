@@ -4,7 +4,7 @@
 
             <div class="relative z-50 flex items-center w-auto h-full">
                 <a href="{{ route('home') }}" class="flex items-center mr-0 md:mr-5 shrink-0">
-                   	<x-filament-panels::logo />
+                    	<x-filament-panels::logo />
                 </a>
                 <div @click="mobileMenuOpen=!mobileMenuOpen" class="relative flex items-center justify-center w-8 h-8 ml-5 overflow-hidden text-gray-500 bg-gray-100 rounded cursor-pointer md:hidden hover:text-gray-700 hover:bg-gray-200">
                     <div :class="{ 'rotate-0' : mobileMenuOpen }" class="flex flex-col items-center justify-center w-4 h-4 duration-300 ease-in-out">
@@ -21,15 +21,6 @@
                     @foreach($_theme->getMenu('headernav_right') as $item)
                         <x-ui.nav-link href="{{ $_theme->getMenuUrl($item) }}">{{ $item['title'] }}</x-ui.nav-link>
                     @endforeach
-
-                    {{-- 
-                    <x-ui.nav-link href="/">Home</x-ui.nav-link>
-                    <x-ui.nav-link href="/genesis/about">About</x-ui.nav-link>
-                    @if(view()->exists('pages.blog.index'))
-                        <x-ui.nav-link href="/blog">Blog</x-ui.nav-link>
-                    @endif
-                    <x-ui.nav-link href="/genesis/power-ups">Power-ups</x-ui.nav-link> 
-                    --}}
                 </nav>
             </div>
            
@@ -40,18 +31,9 @@
                 <x-ui.light-dark-switch></x-ui.light-dark-switch>
             </div>
             @auth
-                {{--  
-                <div class="flex items-center w-auto">
-                    <x-ui.button type="primary" submit="true" tag="a" href="{{ route('profile.edit') }}">
-                        View Dashboard
-                    </x-ui.button>
-                </div>
-                --}}
-                
                 <div class="flex items-center w-auto">
                     <x-profile.dropdown></x-profile.dropdown>
                 </div>
-                
             @else
                 <div class="flex items-center w-auto">
                     <x-ui.button type="secondary" submit="true" tag="a" href="{{ route('login') }}">
@@ -68,4 +50,3 @@
         </div>
     </div>
 </header>
-

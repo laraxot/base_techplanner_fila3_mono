@@ -13,6 +13,6 @@ name('login');
     <x-slot name="title">
         {{ __('Login') }}
     </x-slot>
-    @livewire(Modules\User\Filament\Widgets\Auth\LoginWidget::class)
-   
+
+    @livewire(\Modules\User\Filament\Widgets\Auth\LoginWidget::class)
 </x-layouts.app>
