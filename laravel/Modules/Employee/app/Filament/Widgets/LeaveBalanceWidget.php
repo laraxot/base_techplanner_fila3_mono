@@ -52,8 +52,8 @@ class LeaveBalanceWidget extends XotBaseWidget
                                         ->content(function () use ($employee): \Illuminate\Contracts\View\View {
                                             // @phpstan-ignore-next-line argument.type
                                             return view('employee::widgets.leave-balance.balance-display', [
-                                            'balances' => $this->getMonthlyBalances($employee),
-                                            'type' => 'monthly',
+                                                'balances' => $this->getMonthlyBalances($employee),
+                                                'type' => 'monthly',
                                             ]);
                                         }),
                                 ]),
@@ -65,8 +65,8 @@ class LeaveBalanceWidget extends XotBaseWidget
                                         ->content(function () use ($employee): \Illuminate\Contracts\View\View {
                                             // @phpstan-ignore-next-line argument.type
                                             return view('employee::widgets.leave-balance.balance-display', [
-                                            'balances' => $this->getAnnualBalances($employee),
-                                            'type' => 'annual',
+                                                'balances' => $this->getAnnualBalances($employee),
+                                                'type' => 'annual',
                                             ]);
                                         }),
                                 ]),

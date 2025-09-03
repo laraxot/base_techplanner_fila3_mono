@@ -23,4 +23,4 @@ class ViewDatabaseConnection extends ViewRecord
                 ->color('success'),
         ];
     }
-} 
+}

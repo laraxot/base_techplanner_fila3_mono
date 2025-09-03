@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Gdpr\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
 use Modules\Gdpr\Filament\Resources\ConsentResource\Pages;
 use Modules\Gdpr\Models\Consent;
 use Modules\Xot\Filament\Resources\XotBaseResource;

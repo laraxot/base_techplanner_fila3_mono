@@ -19,4 +19,3 @@ class RatingFactory extends Factory
         return [];
     }
 }
-

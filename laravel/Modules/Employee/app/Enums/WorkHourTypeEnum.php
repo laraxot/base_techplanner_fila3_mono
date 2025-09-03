@@ -6,14 +6,14 @@ namespace Modules\Employee\Enums;
 
 /**
  * Work Hour Type Enum
- * 
+ *
  * Defines the types of time tracking entries available in the system.
  * Replaces constants from WorkHour model for better type safety.
  */
 enum WorkHourTypeEnum: string
 {
     case CLOCK_IN = 'clock_in';
-    case CLOCK_OUT = 'clock_out'; 
+    case CLOCK_OUT = 'clock_out';
     case BREAK_START = 'break_start';
     case BREAK_END = 'break_end';
 

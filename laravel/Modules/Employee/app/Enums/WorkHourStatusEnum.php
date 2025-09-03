@@ -6,7 +6,7 @@ namespace Modules\Employee\Enums;
 
 /**
  * Work Hour Status Enum
- * 
+ *
  * Defines the approval status states for time tracking entries.
  * Replaces constants from WorkHour model for better type safety.
  */
@@ -57,7 +57,7 @@ enum WorkHourStatusEnum: string
     {
         return match ($this) {
             self::PENDING => 'warning',
-            self::APPROVED => 'success', 
+            self::APPROVED => 'success',
             self::REJECTED => 'danger',
         };
     }

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Tenant\Tests\Integration;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Auth;
-use Modules\User\Models\Tenant;
 use Modules\Tenant\Models\TestSushiModel;
 use Modules\Tenant\Services\TenantService;
+use Modules\User\Models\Tenant;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 use Tests\TestCase;
 
 /**
@@ -25,8 +24,11 @@ use Tests\TestCase;
 class SushiToJsonIntegrationTest extends TestCase
 {
     private Tenant $tenant1;
+
     private Tenant $tenant2;
+
     private string $tenant1Path;
+
     private string $tenant2Path;
 
     protected function setUp(): void
@@ -72,7 +74,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('tenant-isolation')]
-    public function itCreatesJsonFileWithTenantIsolation(): void
+    public function it_creates_json_file_with_tenant_isolation(): void
     {
         // Configura tenant 1
         $this->actingAs($this->createUserForTenant($this->tenant1));
@@ -123,7 +125,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('tenant-isolation')]
-    public function itLoadsDataWithTenantIsolation(): void
+    public function it_loads_data_with_tenant_isolation(): void
     {
         // Crea dati per entrambi i tenant
         $this->createTenantData();
@@ -156,7 +158,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('data-integrity')]
-    public function itHandlesComplexDataStructures(): void
+    public function it_handles_complex_data_structures(): void
     {
         $this->actingAs($this->createUserForTenant($this->tenant1));
         $this->setCurrentTenant($this->tenant1);
@@ -205,7 +207,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('file-management')]
-    public function itManagesFilePermissionsCorrectly(): void
+    public function it_manages_file_permissions_correctly(): void
     {
         $this->actingAs($this->createUserForTenant($this->tenant1));
         $this->setCurrentTenant($this->tenant1);
@@ -235,7 +237,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('concurrency')]
-    public function itHandlesConcurrentAccessSafely(): void
+    public function it_handles_concurrent_access_safely(): void
     {
         $this->actingAs($this->createUserForTenant($this->tenant1));
         $this->setCurrentTenant($this->tenant1);
@@ -277,7 +279,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('performance')]
-    public function itHandlesLargeDatasetsEfficiently(): void
+    public function it_handles_large_datasets_efficiently(): void
     {
         $this->actingAs($this->createUserForTenant($this->tenant1));
         $this->setCurrentTenant($this->tenant1);
@@ -286,12 +288,12 @@ class SushiToJsonIntegrationTest extends TestCase
 
         // Crea dataset grande (500 record)
         $largeData = [];
-        for ($i = 1; $i <= 500; ++$i) {
+        for ($i = 1; $i <= 500; $i++) {
             $largeData[$i] = [
                 'id' => $i,
                 'name' => "Large Dataset Item {$i}",
                 'description' => "Description for large dataset item {$i}",
-                'status' => 0 === $i % 2 ? 'active' : 'inactive',
+                'status' => $i % 2 === 0 ? 'active' : 'inactive',
                 'metadata' => [
                     'category' => 'Category '.($i % 10),
                     'priority' => $i % 5 + 1,
@@ -320,7 +322,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('unicode')]
-    public function itHandlesUnicodeAndSpecialCharacters(): void
+    public function it_handles_unicode_and_special_characters(): void
     {
         $this->actingAs($this->createUserForTenant($this->tenant1));
         $this->setCurrentTenant($this->tenant1);
@@ -364,7 +366,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('edge-cases')]
-    public function itHandlesEmptyAndNullValues(): void
+    public function it_handles_empty_and_null_values(): void
     {
         $this->actingAs($this->createUserForTenant($this->tenant1));
         $this->setCurrentTenant($this->tenant1);
@@ -415,7 +417,7 @@ class SushiToJsonIntegrationTest extends TestCase
 
     #[Test]
     #[Group('tenant-configuration')]
-    public function itWorksWithDifferentTenantConfigurations(): void
+    public function it_works_with_different_tenant_configurations(): void
     {
         // Testa con tenant che ha configurazioni diverse
         $customTenant = Tenant::factory()->create([

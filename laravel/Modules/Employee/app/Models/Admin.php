@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Parental\HasParent;
 
 /**
@@ -14,7 +13,7 @@ use Parental\HasParent;
  * Child class of User model for administrative users.
  *
  * @property int $id
- * @property string $name  
+ * @property string $name
  * @property string $email
  * @property string $password
  * @property string $type

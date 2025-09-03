@@ -3,13 +3,11 @@
 namespace Modules\Notify\Filament\Resources;
 
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Modules\Notify\Filament\Resources\NotificationResource\Pages;
 use Modules\Notify\Models\Notification;
 use Modules\Xot\Filament\Resources\XotBaseResource;
-use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class NotificationResource extends XotBaseResource
 {
@@ -19,32 +17,25 @@ class NotificationResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
-            'type' => TextInput::make('type')
-                ->required()
-                ->label('Notification Type'),
+            TextInput::make('type')
+                ->required(),
 
-            'notifiable_type' => TextInput::make('notifiable_type')
-                ->required()
-                ->label('Notifiable Type'),
+            TextInput::make('notifiable_type')
+                ->required(),
 
-            'notifiable_id' => TextInput::make('notifiable_id')
+            TextInput::make('notifiable_id')
                 ->required()
-                ->numeric()
-                ->label('Notifiable ID'),
-            'data' => Textarea::make('data')
-                ->label('Notification Data')
+                ->numeric(),
+            Textarea::make('data')
                 ->columnSpanFull(),
 
-            'read_at' => DateTimePicker::make('read_at')
-                ->label('Read At')
+            DateTimePicker::make('read_at')
                 ->nullable(),
 
-            'created_by' => TextInput::make('created_by')
-                ->label('Created By')
+            TextInput::make('created_by')
                 ->disabled(),
 
-            'updated_by' => TextInput::make('updated_by')
-                ->label('Updated By')
+            TextInput::make('updated_by')
                 ->disabled(),
         ];
     }

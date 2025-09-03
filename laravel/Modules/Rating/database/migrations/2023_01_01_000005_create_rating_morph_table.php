@@ -11,7 +11,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateRatingMorphTable.
  */
-return new class extends XotBaseMigration
+return new class() extends XotBaseMigration
 {
     /**
      * db up.
@@ -50,7 +50,7 @@ return new class extends XotBaseMigration
                     $table->boolean('is_winner')->default(0);
                 }
 
-                if (! $this->hasColumn('reward')) { 
+                if (! $this->hasColumn('reward')) {
                     $table->decimal('reward', 10, 3)->default(0);
                 }
 
@@ -59,7 +59,6 @@ return new class extends XotBaseMigration
                 } else {
                     $table->decimal('value', 10, 3)->nullable();
                 }
-               
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }

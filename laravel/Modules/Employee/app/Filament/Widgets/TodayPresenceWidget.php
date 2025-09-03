@@ -40,22 +40,22 @@ class TodayPresenceWidget extends XotBaseWidget
     {
         // Mock implementation since Employee->workHours relation doesn't exist
         $employees = Employee::limit(10)->get();
-        
+
         $presentEmployees = [];
         $absentEmployees = [];
-        
+
         foreach ($employees as $index => $employee) {
             $employeeData = [
                 'id' => $employee->id,
                 'name' => $employee->full_name ?? 'N/A',
                 'initials' => $this->generateInitials($employee->full_name ?? ''),
             ];
-            
+
             // Mock logic: first 6 are present, rest absent
             if ($index < 6) {
                 $presentEmployees[] = array_merge($employeeData, [
                     'department' => 'SVILUPPO',
-                    'check_in_time' => '08:' . str_pad((string) (30 + $index * 5), 2, '0', STR_PAD_LEFT),
+                    'check_in_time' => '08:'.str_pad((string) (30 + $index * 5), 2, '0', STR_PAD_LEFT),
                     'location' => 'Ufficio',
                     'status' => 'present',
                     'work_type' => $index % 2 === 0 ? 'office' : 'remote',
@@ -95,7 +95,6 @@ class TodayPresenceWidget extends XotBaseWidget
 
         return $initials;
     }
-
 
     /**
      * Get avatar background color based on initials

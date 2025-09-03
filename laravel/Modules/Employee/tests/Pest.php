@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modules\Employee\Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Modules\Employee\Tests\TestCase;
 
 // ✅ CONFIGURAZIONE CORRETTA PEST + DATABASE TRANSACTIONS
 uses(TestCase::class, DatabaseTransactions::class)->in('Feature', 'Unit', 'Integration');

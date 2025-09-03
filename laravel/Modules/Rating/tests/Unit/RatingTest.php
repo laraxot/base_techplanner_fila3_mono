@@ -2,12 +2,11 @@
 
 namespace Modules\Rating\Tests\Unit;
 
-use Modules\Rating\Tests\TestCase;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Rating\Enums\SupportedLocale;
-use Modules\Rating\Enums\RuleEnum;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
+use Modules\Rating\Tests\TestCase;
 
 class RatingTest extends TestCase
 {
@@ -22,7 +21,7 @@ class RatingTest extends TestCase
 
         $this->assertDatabaseHas('ratings', [
             'id' => $rating->id,
-            'name' => 'Test Rating'
+            'name' => 'Test Rating',
         ]);
     }
 
@@ -39,27 +38,27 @@ class RatingTest extends TestCase
             'value' => 4.5,
             'note' => 'Test note',
             'is_winner' => true,
-            'reward' => 10
+            'reward' => 10,
         ]);
 
         $this->assertDatabaseHas('rating_morphs', [
             'id' => $ratingMorph->id,
-            'rating_id' => $rating->id
+            'rating_id' => $rating->id,
         ]);
     }
 
     public function test_supported_locale_enum(): void
     {
         $locale = SupportedLocale::IT;
-        
+
         $this->assertEquals('it', $locale->value);
         $this->assertEquals('Italiano', $locale->label());
-        
+
         $localeFromString = SupportedLocale::fromString('en');
         $this->assertEquals(SupportedLocale::EN, $localeFromString);
-        
+
         $locales = SupportedLocale::toArray();
         $this->assertArrayHasKey('it', $locales);
         $this->assertArrayHasKey('en', $locales);
     }
-} 
+}

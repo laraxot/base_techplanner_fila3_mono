@@ -58,7 +58,7 @@ class Position extends BaseModel
     /**
      * Scope a query to only include active positions.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeActive($query)
@@ -68,8 +68,6 @@ class Position extends BaseModel
 
     /**
      * Check if the position is active.
-     *
-     * @return bool
      */
     public function isActive(): bool
     {
@@ -78,8 +76,6 @@ class Position extends BaseModel
 
     /**
      * Get the position level as a human-readable string.
-     *
-     * @return string
      */
     public function getLevelLabelAttribute(): string
     {

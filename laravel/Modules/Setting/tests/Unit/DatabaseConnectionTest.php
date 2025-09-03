@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Modules\Setting\Tests\Unit;
 
 use Illuminate\Support\Facades\Config;
@@ -15,7 +17,7 @@ class DatabaseConnectionTest extends TestCase
      *
      * @return void
      */
-    public function testDatabaseConnectionModelCanBeInstantiated()
+    public function test_database_connection_model_can_be_instantiated()
     {
         $connection = new DatabaseConnection();
 
@@ -27,7 +29,7 @@ class DatabaseConnectionTest extends TestCase
      *
      * @return void
      */
-    public function testCastsAreConfiguredCorrectly()
+    public function test_casts_are_configured_correctly()
     {
         $connection = new DatabaseConnection();
 
@@ -43,7 +45,7 @@ class DatabaseConnectionTest extends TestCase
      *
      * @return void
      */
-    public function testTestConnectionSucceeds()
+    public function test_test_connection_succeeds()
     {
         // Mock PDO instance
         $pdoMock = Mockery::mock(\PDO::class);
@@ -88,7 +90,7 @@ class DatabaseConnectionTest extends TestCase
      *
      * @return void
      */
-    public function testTestConnectionFails()
+    public function test_test_connection_fails()
     {
         // Mock DB facade per simulare un errore di connessione
         DB::shouldReceive('connection')

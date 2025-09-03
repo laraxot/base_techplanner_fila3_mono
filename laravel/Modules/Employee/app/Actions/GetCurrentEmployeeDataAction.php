@@ -35,8 +35,8 @@ class GetCurrentEmployeeDataAction
     {
         /** @var User|null $user */
         $user = User::find($userId);
-        
-        if (!$user) {
+
+        if (! $user) {
             return [
                 'id' => $userId,
                 'name' => 'Unknown User',
@@ -56,7 +56,7 @@ class GetCurrentEmployeeDataAction
         // Try to get employee-specific data
         /** @var Employee|null $employee */
         $employee = Employee::find($userId);
-        
+
         if ($employee) {
             $data['employeeNumber'] = $employee->employee_number ?? '';
             $data['status'] = $employee->status->value ?? 'active';

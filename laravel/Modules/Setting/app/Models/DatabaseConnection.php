@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\Setting\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Arr;
 use Sushi\Sushi;
-use Webmozart\Assert\Assert;
 
 /**
  * @property string $name
@@ -59,7 +58,7 @@ class DatabaseConnection extends Model
     public function getRows(): array
     {
         $connections = config('database.connections');
-        
+
         return Arr::map(
             $connections,
             fn (array $value, string $key): array => [
@@ -109,6 +108,7 @@ class DatabaseConnection extends Model
             return true;
         } catch (\Exception $e) {
             report($e);
+
             return false;
         }
     }

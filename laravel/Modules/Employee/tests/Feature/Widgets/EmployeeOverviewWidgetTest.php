@@ -127,7 +127,7 @@ describe('EmployeeOverviewWidget', function () {
         }
 
         // Act
-        $widget = new EmployeeOverviewWidget;
+        $widget = new EmployeeOverviewWidget();
         $stats = $widget->getStats();
 
         // Assert - Il primo stat dovrebbe avere chart data

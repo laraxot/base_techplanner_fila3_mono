@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Widgets;
 
-use Carbon\Carbon;
-use Filament\Forms;
 use Filament\Forms\Components\Component;
-use Filament\Forms\Form as FilamentForm;
-use Filament\Tables;
-use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Models\WorkHour;
@@ -18,42 +13,42 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 class WorkHoursSummaryWidget extends XotBaseWidget
 {
     protected static ?int $sort = 3;
-    
-    protected int | string | array $columnSpan = 'full';
-    
+
+    protected int|string|array $columnSpan = 'full';
+
     protected static string $view = 'employee::filament.widgets.work-hours-summary';
-    
+
     public function getViewData(): array
     {
         $startOfWeek = now()->startOfWeek();
         $endOfWeek = now()->endOfWeek();
-        
+
         /** @var int $employeeId */
         $employeeId = (int) (Auth::id() ?? 0);
-        
+
         $workHours = WorkHour::query()
             ->where('employee_id', $employeeId)
             ->whereBetween('timestamp', [$startOfWeek, $endOfWeek])
             ->get();
-            
+
         // Calculate total worked hours by processing clock in/out pairs
         $totalHours = 0.0;
         $dailyHours = [];
-        
+
         /** @var \Illuminate\Database\Eloquent\Collection<int, WorkHour> $workHours */
         $groupedByDate = $workHours->groupBy(function (WorkHour $item): string {
             return $item->timestamp->format('Y-m-d');
         });
-        
+
         foreach ($groupedByDate as $date => $dayEntries) {
             $hoursForDay = WorkHour::calculateWorkedHours($employeeId, $dayEntries->first()?->timestamp);
             $dailyHours[$date] = $hoursForDay;
             $totalHours += $hoursForDay;
         }
-        
-        $daysWorked = count(array_filter($dailyHours, fn($hours) => $hours > 0));
+
+        $daysWorked = count(array_filter($dailyHours, fn ($hours) => $hours > 0));
         $averageHoursPerDay = $daysWorked > 0 ? round($totalHours / $daysWorked, 2) : 0;
-        
+
         return [
             'totalHours' => $totalHours,
             'daysWorked' => $daysWorked,
@@ -63,24 +58,26 @@ class WorkHoursSummaryWidget extends XotBaseWidget
             'endOfWeek' => $endOfWeek->format('M j, Y'),
         ];
     }
-    
+
     public static function getNavigationIcon(): string
     {
         return 'heroicon-o-clock';
     }
-    
+
     public static function getNavigationLabel(): string
     {
         $label = __('employee::work_hours.weekly_summary');
+
         return is_string($label) ? $label : 'Weekly Summary';
     }
-    
+
     public static function getNavigationGroup(): ?string
     {
         $group = __('employee::navigation.work_hours');
+
         return is_string($group) ? $group : null;
     }
-    
+
     /**
      * Get the form schema for the widget.
      *
@@ -92,7 +89,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
             // No form fields needed for this widget
         ];
     }
-    
+
     /**
      * Get the header widgets for the widget.
      *
@@ -104,17 +101,15 @@ class WorkHoursSummaryWidget extends XotBaseWidget
             // Add any header widgets if needed
         ];
     }
-    
+
     /**
      * Get the form model for the widget.
-     *
-     * @return string|Model|null
      */
     public function getFormModel(): string|Model|null
     {
         return null; // No model needed for this widget
     }
-    
+
     /**
      * Get the form actions for the widget.
      *
@@ -124,7 +119,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
     {
         return [];
     }
-    
+
     /**
      * Save the form data.
      */

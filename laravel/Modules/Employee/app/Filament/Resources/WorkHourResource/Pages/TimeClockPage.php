@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Pages;
 
-use Carbon\Carbon;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
@@ -22,7 +21,7 @@ use Modules\Xot\Filament\Resources\Pages\XotBasePage;
 
 /**
  * Class TimeClockPage
- * 
+ *
  * Main page for employee time tracking and work hours management.
  * Displays the time clock widget and work hours list with filtering options.
  */
@@ -31,7 +30,6 @@ class TimeClockPage extends XotBasePage
     protected static string $resource = WorkHourResource::class;
 
     protected static string $view = 'employee::filament.pages.work-hours';
-
 
     public ?array $filters = [
         'date_from' => null,
@@ -58,17 +56,17 @@ class TimeClockPage extends XotBasePage
                             ->label('From Date')
                             ->default(now()->startOfMonth())
                             ->maxDate(fn (callable $get) => $get('date_to') ?: now()),
-                        
+
                         DatePicker::make('date_to')
                             ->label('To Date')
                             ->default(now()->endOfMonth())
                             ->minDate(fn (callable $get) => $get('date_from')),
-                        
+
                         Forms\Components\Select::make('type')
                             ->label('Type')
                             ->options(WorkHourTypeEnum::class)
                             ->placeholder('All Types'),
-                        
+
                         Forms\Components\Select::make('status')
                             ->label('Status')
                             ->options(WorkHourStatusEnum::class)
@@ -88,7 +86,7 @@ class TimeClockPage extends XotBasePage
                     ->dateTime('d/m/Y H:i')
                     ->sortable()
                     ->searchable(),
-                
+
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
                     ->formatStateUsing(fn (string $state): string => __("employee::enums.work_hour_type.{$state}"))
@@ -99,7 +97,7 @@ class TimeClockPage extends XotBasePage
                         WorkHourTypeEnum::BREAK_END->value => 'info',
                         default => 'gray',
                     }),
-                
+
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->formatStateUsing(fn (string $state): string => __("employee::enums.work_hour_status.{$state}"))
@@ -109,15 +107,15 @@ class TimeClockPage extends XotBasePage
                         WorkHourStatusEnum::REJECTED->value => 'danger',
                         default => 'gray',
                     }),
-                
+
                 Tables\Columns\TextColumn::make('location_name')
                     ->label('Location')
                     ->searchable(),
-                
+
                 Tables\Columns\TextColumn::make('notes')
                     ->label('Notes')
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created')
                     ->dateTime('d/m/Y H:i')
@@ -131,7 +129,7 @@ class TimeClockPage extends XotBasePage
                 Tables\Actions\Action::make('edit')
                     ->icon('heroicon-o-pencil')
                     ->url(fn (WorkHour $record): string => WorkHourResource::getUrl('edit', ['record' => $record])),
-                
+
                 Tables\Actions\Action::make('delete')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
@@ -179,9 +177,9 @@ class TimeClockPage extends XotBasePage
     public function exportWorkHours(): void
     {
         $this->validate();
-        
+
         // TODO: Implement export functionality
-        
+
         Notification::make()
             ->title('Export started')
             ->body('Your work hours export has been queued. You will receive a notification when it is ready.')
@@ -196,7 +194,7 @@ class TimeClockPage extends XotBasePage
                 ->label('Export')
                 ->icon('heroicon-o-arrow-down-tray')
                 ->action('exportWorkHours'),
-                
+
             Actions\Action::make('back_to_list')
                 ->label('Back to Dashboard')
                 ->icon('heroicon-o-home')
@@ -214,67 +212,67 @@ class TimeClockPage extends XotBasePage
             'currentStatus' => $this->getCurrentStatus(),
         ];
     }
-    
+
     protected function getWorkHoursToday(): string
     {
         $today = now()->startOfDay();
-        
+
         $clockIn = WorkHour::query()
             ->where('employee_id', Auth::id())
             ->where('type', WorkHourTypeEnum::CLOCK_IN->value)
             ->whereDate('created_at', $today)
             ->first();
-            
-        if (!$clockIn) {
+
+        if (! $clockIn) {
             return '00:00';
         }
-        
+
         $clockOut = WorkHour::query()
             ->where('employee_id', Auth::id())
             ->where('type', WorkHourTypeEnum::CLOCK_OUT->value)
             ->whereDate('created_at', $today)
             ->first();
-            
+
         $endTime = $clockOut ? $clockOut->created_at : now();
         $totalMinutes = $endTime->diffInMinutes($clockIn->created_at);
-        
+
         // Subtract break time if any
         $breakStart = WorkHour::query()
             ->where('employee_id', Auth::id())
             ->where('type', WorkHourTypeEnum::BREAK_START->value)
             ->whereDate('created_at', $today)
             ->first();
-            
+
         if ($breakStart) {
             $breakEnd = WorkHour::query()
                 ->where('employee_id', Auth::id())
                 ->where('type', WorkHourTypeEnum::BREAK_END->value)
                 ->whereDate('created_at', $today)
                 ->first();
-                
+
             if ($breakEnd) {
                 $breakMinutes = $breakEnd->created_at->diffInMinutes($breakStart->created_at);
                 $totalMinutes -= $breakMinutes;
             }
         }
-        
+
         $hours = floor($totalMinutes / 60);
         $minutes = $totalMinutes % 60;
-        
+
         return sprintf('%02d:%02d', $hours, $minutes);
     }
-    
+
     protected function getCurrentStatus(): string
     {
         $lastAction = WorkHour::query()
             ->where('employee_id', Auth::id())
             ->latest('timestamp')
             ->first();
-            
-        if (!$lastAction) {
+
+        if (! $lastAction) {
             return 'not_clocked_in';
         }
-        
+
         return match ($lastAction->type) {
             WorkHourTypeEnum::CLOCK_IN->value => 'clocked_in',
             WorkHourTypeEnum::CLOCK_OUT->value => 'clocked_out',

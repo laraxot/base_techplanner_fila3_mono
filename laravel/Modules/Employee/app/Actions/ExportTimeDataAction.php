@@ -25,9 +25,9 @@ class ExportTimeDataAction
     {
         // Ottieni dati completi per il periodo
         $timeData = $this->getTimeDataForExport($userId, $startDate, $endDate);
-        
+
         // Genera file in base al formato
-        return match($format) {
+        return match ($format) {
             'xlsx' => $this->exportToExcel($timeData, $userId, $startDate, $endDate),
             'csv' => $this->exportToCsv($timeData, $userId, $startDate, $endDate),
             'pdf' => $this->exportToPdf($timeData, $userId, $startDate, $endDate),
@@ -44,7 +44,7 @@ class ExportTimeDataAction
     {
         // Usa Action esistente per ottenere dati base
         $baseData = app(BuildWorkHoursForRangeAction::class)->execute($userId, $startDate, $endDate);
-        
+
         // Aggiungi dati dettagliati per export
         $weekData = app(BuildWeeklyTimeTableAction::class)->execute($userId, $startDate, $endDate);
         $employeeData = app(GetCurrentEmployeeDataAction::class)->execute($userId);
@@ -65,7 +65,7 @@ class ExportTimeDataAction
             ],
             'summary' => $baseData['summary'],
             'weekData' => $weekData,
-            'entries' => $allEntries->map(function($entry) {
+            'entries' => $allEntries->map(function ($entry) {
                 return [
                     'date' => $entry->timestamp->format('d/m/Y'),
                     'time' => $entry->timestamp->format('H:i'),
@@ -85,13 +85,13 @@ class ExportTimeDataAction
     private function exportToExcel(array $data, int $userId, Carbon $startDate, Carbon $endDate): string
     {
         $filename = "timbrature_{$userId}_{$startDate->format('Ymd')}_{$endDate->format('Ymd')}.xlsx";
-        
+
         // Qui implementeresti l'export Excel usando Laravel Excel o simile
         // Per ora creo un CSV strutturato
         $csvData = $this->buildCsvData($data);
-        
+
         Storage::put("exports/time_data/{$filename}", $csvData);
-        
+
         return Storage::path("exports/time_data/{$filename}");
     }
 
@@ -102,9 +102,9 @@ class ExportTimeDataAction
     {
         $filename = "timbrature_{$userId}_{$startDate->format('Ymd')}_{$endDate->format('Ymd')}.csv";
         $csvData = $this->buildCsvData($data);
-        
+
         Storage::put("exports/time_data/{$filename}", $csvData);
-        
+
         return Storage::path("exports/time_data/{$filename}");
     }
 
@@ -114,12 +114,12 @@ class ExportTimeDataAction
     private function exportToPdf(array $data, int $userId, Carbon $startDate, Carbon $endDate): string
     {
         $filename = "timbrature_{$userId}_{$startDate->format('Ymd')}_{$endDate->format('Ymd')}.pdf";
-        
+
         // Qui implementeresti l'export PDF usando DomPDF o simile
         $pdfContent = $this->buildPdfContent($data);
-        
+
         Storage::put("exports/time_data/{$filename}", $pdfContent);
-        
+
         return Storage::path("exports/time_data/{$filename}");
     }
 
@@ -129,15 +129,15 @@ class ExportTimeDataAction
     private function buildCsvData(array $data): string
     {
         $csv = [];
-        
+
         // Header
         $csv[] = [
             'Data',
-            'Ora', 
+            'Ora',
             'Tipo',
             'Stato',
             'Ubicazione',
-            'Note'
+            'Note',
         ];
 
         // Dati entries
@@ -161,7 +161,7 @@ class ExportTimeDataAction
         // Converti in stringa CSV
         $output = '';
         foreach ($csv as $row) {
-            $output .= '"' . implode('","', $row) . '"' . "\n";
+            $output .= '"'.implode('","', $row).'"'."\n";
         }
 
         return $output;
@@ -181,7 +181,7 @@ class ExportTimeDataAction
      */
     private function translateEntryType(string $type): string
     {
-        return match($type) {
+        return match ($type) {
             'clock_in' => 'Entrata',
             'clock_out' => 'Uscita',
             'break_start' => 'Inizio Pausa',
@@ -195,7 +195,7 @@ class ExportTimeDataAction
      */
     private function translateEntryStatus(string $status): string
     {
-        return match($status) {
+        return match ($status) {
             'pending' => 'In Attesa',
             'approved' => 'Approvata',
             'rejected' => 'Rifiutata',
@@ -211,7 +211,7 @@ class ExportTimeDataAction
     {
         $hours = intdiv($minutes, 60);
         $mins = $minutes % 60;
-        
+
         return sprintf('%d:%02d', $hours, $mins);
     }
 }

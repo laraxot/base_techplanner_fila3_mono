@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Actions\TimeTracking;
 
-use Spatie\QueueableAction\QueueableAction;
+use Carbon\Carbon;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\TimeEntry;
-use Carbon\Carbon;
+use Spatie\QueueableAction\QueueableAction;
 
 class ClockOutAction
 {
@@ -21,7 +21,7 @@ class ClockOutAction
             ->latest()
             ->first();
 
-        if (!$lastEntry || $lastEntry->type === 'clock_out') {
+        if (! $lastEntry || $lastEntry->type === 'clock_out') {
             // Optionally throw an exception or handle the case where user is not clocked in
             return;
         }

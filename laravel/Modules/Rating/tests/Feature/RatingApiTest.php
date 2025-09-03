@@ -2,11 +2,10 @@
 
 namespace Modules\Rating\Tests\Feature;
 
-use Modules\Rating\Tests\TestCase;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Tests\TestCase;
 
 class RatingApiTest extends TestCase
 {
@@ -32,9 +31,9 @@ class RatingApiTest extends TestCase
                         'id',
                         'name',
                         'created_at',
-                        'updated_at'
-                    ]
-                ]
+                        'updated_at',
+                    ],
+                ],
             ]);
     }
 
@@ -51,7 +50,7 @@ class RatingApiTest extends TestCase
             ->assertJson([
                 'data' => [
                     'name' => 'New Rating',
-                ]
+                ],
             ]);
     }
 
@@ -71,7 +70,7 @@ class RatingApiTest extends TestCase
             ->assertJson([
                 'data' => [
                     'name' => 'Updated Rating',
-                ]
+                ],
             ]);
     }
 
@@ -97,7 +96,7 @@ class RatingApiTest extends TestCase
             'model_type' => 'test_model',
             'model_id' => 1,
             'value' => 4.5,
-            'note' => 'Great!'
+            'note' => 'Great!',
         ];
 
         $response = $this->postJson("/api/ratings/{$rating->id}/rate", $data);
@@ -107,8 +106,8 @@ class RatingApiTest extends TestCase
                 'data' => [
                     'rating_id' => $rating->id,
                     'value' => 4.5,
-                    'note' => 'Great!'
-                ]
+                    'note' => 'Great!',
+                ],
             ]);
     }
-} 
+}

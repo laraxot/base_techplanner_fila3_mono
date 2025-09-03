@@ -9,5 +9,3 @@ return [
         'no_entries' => 'No entries',
     ],
 ];
-
-

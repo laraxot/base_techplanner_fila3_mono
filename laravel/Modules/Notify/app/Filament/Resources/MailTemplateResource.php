@@ -35,7 +35,6 @@ class MailTemplateResource extends LangBaseResource
             Group::make()
                 ->schema([
                     TextInput::make('name')
-                        ->label('Nome Template')
                         ->required()
                         //->live(debounce: 200)
                         //->reactive()
@@ -43,7 +42,6 @@ class MailTemplateResource extends LangBaseResource
                             $set('slug', Str::slug($state));
                         }),
                     TextInput::make('slug')
-                        ->label('Slug')
                         ->required()
                         ->unique(ignoreRecord: true)
                 ])

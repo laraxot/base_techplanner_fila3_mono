@@ -13,7 +13,7 @@ uses(TestCase::class);
 
 beforeEach(function () {
     $this->mockClient = $this->mock(Client::class);
-    $this->action = new LookupPlaceAction;
+    $this->action = new LookupPlaceAction();
 
     // Replace the client instance with our mock
     $reflection = new \ReflectionClass($this->action);

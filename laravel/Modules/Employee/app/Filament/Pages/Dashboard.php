@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Pages;
 
-use Modules\Xot\Filament\Pages\XotBaseDashboard;
 use Modules\Employee\Filament\Widgets\TimeClockWidget;
+use Modules\Xot\Filament\Pages\XotBaseDashboard;
 
 /**
  * Dashboard per il modulo Employee.

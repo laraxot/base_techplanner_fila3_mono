@@ -8,7 +8,6 @@ use Filament\Infolists\Infolist;
 use Filament\Actions\DeleteAction;
 use Modules\Media\Datas\ConvertData;
 use Filament\Infolists\Components\Split;
-use Filament\Resources\Pages\ViewRecord;
 use Filament\Infolists\Components\Actions;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
@@ -22,7 +21,7 @@ use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 use Modules\Media\Actions\Video\ConvertVideoByConvertDataAction;
 use Modules\Media\Filament\Resources\MediaResource\Widgets\ConvertWidget;
 
-class ViewMedia extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
+class ViewMedia extends XotBaseViewRecord
 {
     protected static string $resource = MediaResource::class;
 

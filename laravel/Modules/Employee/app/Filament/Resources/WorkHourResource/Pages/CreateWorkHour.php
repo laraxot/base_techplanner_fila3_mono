@@ -6,10 +6,10 @@ namespace Modules\Employee\Filament\Resources\WorkHourResource\Pages;
 
 use Carbon\Carbon;
 use Filament\Notifications\Notification;
-use Modules\Employee\Filament\Resources\WorkHourResource;
-use Modules\Employee\Models\WorkHour;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Filament\Resources\WorkHourResource;
+use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
 class CreateWorkHour extends XotBaseCreateRecord
@@ -38,12 +38,12 @@ class CreateWorkHour extends XotBaseCreateRecord
 
         // Validate if this entry is allowed based on the last entry
         $timestampValue = $data['timestamp'] ?? null;
-        if (!is_string($timestampValue) && !($timestampValue instanceof \DateTimeInterface)) {
+        if (! is_string($timestampValue) && ! ($timestampValue instanceof \DateTimeInterface)) {
             throw new \InvalidArgumentException('Invalid timestamp format');
         }
-        
+
         $employeeIdValue = $data['employee_id'] ?? null;
-        if (!is_numeric($employeeIdValue)) {
+        if (! is_numeric($employeeIdValue)) {
             throw new \InvalidArgumentException('Invalid employee ID');
         }
         $employeeId = (int) $employeeIdValue;

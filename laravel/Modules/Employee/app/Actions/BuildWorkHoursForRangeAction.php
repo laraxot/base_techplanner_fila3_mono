@@ -42,16 +42,17 @@ class BuildWorkHoursForRangeAction
         $sessions = [];
 
         foreach ($entries as $entry) {
-            if (WorkHourTypeEnum::CLOCK_IN === $entry->type) {
+            if ($entry->type === WorkHourTypeEnum::CLOCK_IN) {
                 $sessions[] = [
                     'in' => $entry->timestamp,
                     'out' => null,
                     'status' => 'active',
                 ];
+
                 continue;
             }
 
-            if (WorkHourTypeEnum::CLOCK_OUT === $entry->type) {
+            if ($entry->type === WorkHourTypeEnum::CLOCK_OUT) {
                 $last = \count($sessions) - 1;
                 if ($last >= 0 && $sessions[$last]['out'] === null) {
                     $sessions[$last]['out'] = $entry->timestamp;
@@ -110,5 +111,3 @@ class BuildWorkHoursForRangeAction
         ];
     }
 }
-
-

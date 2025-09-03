@@ -34,18 +34,18 @@ class EditWorkHour extends XotBaseEditRecord
         $currentRecord = $this->record;
 
         // Ensure we have a WorkHour record
-        if (!($currentRecord instanceof WorkHour)) {
+        if (! ($currentRecord instanceof WorkHour)) {
             throw new \InvalidArgumentException('Expected WorkHour record');
         }
 
         // Validate and cast form data
         $timestampValue = $data['timestamp'] ?? null;
-        if (!is_string($timestampValue) && !($timestampValue instanceof \DateTimeInterface)) {
+        if (! is_string($timestampValue) && ! ($timestampValue instanceof \DateTimeInterface)) {
             throw new \InvalidArgumentException('Invalid timestamp format');
         }
-        
+
         $employeeIdValue = $data['employee_id'] ?? null;
-        if (!is_numeric($employeeIdValue)) {
+        if (! is_numeric($employeeIdValue)) {
             throw new \InvalidArgumentException('Invalid employee ID');
         }
         $employeeId = (int) $employeeIdValue;

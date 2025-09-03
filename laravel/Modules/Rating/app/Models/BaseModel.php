@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Rating\Models;
 
-use Modules\Xot\Traits\Updater;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Traits\Updater;
 
 /**
  * Class BaseModel.
  */
 abstract class BaseModel extends Model
 {
-    use Updater;
     use HasFactory;
+    use Updater;
 
     /**
      * Indicates whether attributes are snake cased on arrays.
@@ -64,7 +64,7 @@ abstract class BaseModel extends Model
         ];
     }
 
-     /**
+    /**
      * Create a new factory instance for the model.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory<static>

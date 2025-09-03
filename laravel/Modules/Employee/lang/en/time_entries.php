@@ -19,5 +19,3 @@ return [
         'no_entries' => 'No time entries for this period',
     ],
 ];
-
-

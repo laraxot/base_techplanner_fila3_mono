@@ -39,8 +39,11 @@ class WorkHour extends BaseModel
      * @deprecated Use WorkHourTypeEnum::class instead
      */
     public const TYPE_CLOCK_IN = 'clock_in';
+
     public const TYPE_CLOCK_OUT = 'clock_out';
+
     public const TYPE_BREAK_START = 'break_start';
+
     public const TYPE_BREAK_END = 'break_end';
 
     /**
@@ -57,7 +60,9 @@ class WorkHour extends BaseModel
      * @deprecated Use WorkHourStatusEnum::class instead
      */
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_APPROVED = 'approved';
+
     public const STATUS_REJECTED = 'rejected';
 
     /**
@@ -161,7 +166,7 @@ class WorkHour extends BaseModel
     /**
      * Scope a query to only include work hours for a specific date.
      *
-     * @param Builder<WorkHour> $query
+     * @param  Builder<WorkHour>  $query
      */
     public function scopeForDate(Builder $query, Carbon $date): void
     {
@@ -171,7 +176,7 @@ class WorkHour extends BaseModel
     /**
      * Scope a query to only include work hours for today.
      *
-     * @param Builder<WorkHour> $query
+     * @param  Builder<WorkHour>  $query
      */
     public function scopeToday(Builder $query): void
     {
@@ -201,8 +206,6 @@ class WorkHour extends BaseModel
     {
         return $this->timestamp->format('d/m/Y H:i:s');
     }
-
-    
 
     /**
      * Get the last work hour entry for an employee on a specific date.

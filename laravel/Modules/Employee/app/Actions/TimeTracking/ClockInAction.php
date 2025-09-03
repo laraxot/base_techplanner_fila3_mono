@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Actions\TimeTracking;
 
-use Spatie\QueueableAction\QueueableAction;
+use Carbon\Carbon;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\TimeEntry;
-use Carbon\Carbon;
+use Spatie\QueueableAction\QueueableAction;
 
 class ClockInAction
 {

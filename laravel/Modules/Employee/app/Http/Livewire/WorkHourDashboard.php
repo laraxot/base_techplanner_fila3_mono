@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Livewire;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Modules\Employee\Enums\WorkHourStatusEnum;
+use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Enums\WorkHourTypeEnum;
-use Modules\Employee\Enums\WorkHourStatusEnum;
-use Illuminate\Contracts\View\View;
 
 class WorkHourDashboard extends Component
 {
@@ -148,6 +147,7 @@ class WorkHourDashboard extends Component
     {
         if (! $this->employee) {
             $this->recentEntries = [];
+
             return;
         }
 

@@ -20,22 +20,20 @@ use Modules\Geo\Services\GoogleMapsService;
 class GetElevationAction
 {
     /**
-     * @param GoogleMapsService $googleMapsService Servizio per le richieste a Google Maps
+     * @param  GoogleMapsService  $googleMapsService  Servizio per le richieste a Google Maps
      */
     public function __construct(
         private readonly GoogleMapsService $googleMapsService,
-    ) {
-    }
+    ) {}
 
     /**
      * Ottiene l'elevazione per una posizione geografica.
      *
-     * @param LocationData $location La posizione di cui ottenere l'elevazione
-     *
-     * @throws ElevationException        Se il recupero dell'elevazione fallisce
-     * @throws \InvalidArgumentException Se le coordinate non sono valide
-     *
+     * @param  LocationData  $location  La posizione di cui ottenere l'elevazione
      * @return float L'elevazione in metri sul livello del mare
+     *
+     * @throws ElevationException Se il recupero dell'elevazione fallisce
+     * @throws \InvalidArgumentException Se le coordinate non sono valide
      */
     public function execute(LocationData $location): float
     {
@@ -48,16 +46,17 @@ class GetElevationAction
                 $location->longitude
             );
 
-            if (!isset($response['results']) || !is_array($response['results']) || empty($response['results'])) {
+            if (! isset($response['results']) || ! is_array($response['results']) || empty($response['results'])) {
                 throw ElevationException::invalidResponse();
             }
 
             $firstResult = $response['results'][0] ?? null;
-            if (!is_array($firstResult) || !isset($firstResult['elevation'])) {
+            if (! is_array($firstResult) || ! isset($firstResult['elevation'])) {
                 throw ElevationException::invalidResponse();
             }
 
             $elevation = $firstResult['elevation'];
+
             return is_numeric($elevation) ? (float) $elevation : 0.0;
         } catch (\Throwable $e) {
             if ($e instanceof ElevationException) {
@@ -71,8 +70,7 @@ class GetElevationAction
     /**
      * Formatta l'elevazione in una stringa leggibile.
      *
-     * @param float $meters Elevazione in metri
-     *
+     * @param  float  $meters  Elevazione in metri
      * @return string Elevazione formattata con unità di misura
      */
     public function formatElevation(float $meters): string
@@ -83,7 +81,7 @@ class GetElevationAction
     /**
      * Valida le coordinate di una posizione.
      *
-     * @param LocationData $location Posizione da validare
+     * @param  LocationData  $location  Posizione da validare
      *
      * @throws \InvalidArgumentException Se le coordinate non sono valide
      */

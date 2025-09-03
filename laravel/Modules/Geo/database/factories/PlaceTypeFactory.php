@@ -9,16 +9,16 @@ use Modules\Geo\Models\PlaceType;
 
 /**
  * PlaceType Factory
- * 
+ *
  * Factory for creating PlaceType model instances for testing and seeding.
- * 
+ *
  * @extends Factory<PlaceType>
  */
 class PlaceTypeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<PlaceType>
      */
     protected $model = PlaceType::class;
@@ -51,8 +51,6 @@ class PlaceTypeFactory extends Factory
 
     /**
      * Create place type for hospital.
-     *
-     * @return static
      */
     public function hospital(): static
     {
@@ -64,8 +62,6 @@ class PlaceTypeFactory extends Factory
 
     /**
      * Create place type for clinic.
-     *
-     * @return static
      */
     public function clinic(): static
     {
@@ -77,8 +73,6 @@ class PlaceTypeFactory extends Factory
 
     /**
      * Create place type for medical office.
-     *
-     * @return static
      */
     public function medicalOffice(): static
     {
@@ -90,8 +84,6 @@ class PlaceTypeFactory extends Factory
 
     /**
      * Create place type for pharmacy.
-     *
-     * @return static
      */
     public function pharmacy(): static
     {
@@ -103,8 +95,6 @@ class PlaceTypeFactory extends Factory
 
     /**
      * Create place type for laboratory.
-     *
-     * @return static
      */
     public function laboratory(): static
     {

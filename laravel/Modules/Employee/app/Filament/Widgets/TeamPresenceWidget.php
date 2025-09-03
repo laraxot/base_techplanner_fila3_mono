@@ -9,7 +9,6 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Illuminate\Support\Facades\DB;
 use Modules\Employee\Models\Employee;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
@@ -30,7 +29,7 @@ class TeamPresenceWidget extends XotBaseWidget
         'xl' => 1,
     ];
 
-    public string|null $selectedDepartment = 'SVILUPPO';
+    public ?string $selectedDepartment = 'SVILUPPO';
 
     /**
      * Get the form schema for the widget.
@@ -55,10 +54,10 @@ class TeamPresenceWidget extends XotBaseWidget
                         ->content(function () use ($presenceData): \Illuminate\Contracts\View\View {
                             // @phpstan-ignore-next-line argument.type
                             return view('employee::widgets.team-presence.stats-display', [
-                            'present' => $presenceData['present'],
-                            'absent' => $presenceData['absent'],
-                            'presentCount' => is_countable($presenceData['present']) ? count($presenceData['present']) : 0,
-                            'absentCount' => is_countable($presenceData['absent']) ? count($presenceData['absent']) : 0,
+                                'present' => $presenceData['present'],
+                                'absent' => $presenceData['absent'],
+                                'presentCount' => is_countable($presenceData['present']) ? count($presenceData['present']) : 0,
+                                'absentCount' => is_countable($presenceData['absent']) ? count($presenceData['absent']) : 0,
                             ]);
                         }),
 
@@ -66,8 +65,8 @@ class TeamPresenceWidget extends XotBaseWidget
                         ->content(function () use ($presenceData): \Illuminate\Contracts\View\View {
                             // @phpstan-ignore-next-line argument.type
                             return view('employee::widgets.team-presence.presence-list', [
-                            'present' => is_array($presenceData['present']) ? $presenceData['present'] : [],
-                            'absent' => is_array($presenceData['absent']) ? $presenceData['absent'] : [],
+                                'present' => is_array($presenceData['present']) ? $presenceData['present'] : [],
+                                'absent' => is_array($presenceData['absent']) ? $presenceData['absent'] : [],
                             ]);
                         }),
 
@@ -113,19 +112,19 @@ class TeamPresenceWidget extends XotBaseWidget
 
         // Simplified mock presence data since Employee->workHours relation and status field don't exist
         // This provides widget functionality while being PHPStan compliant
-        
+
         $employees = Employee::limit(10)->get();
-        
+
         $present = [];
         $absent = [];
-        
+
         foreach ($employees as $index => $employee) {
             $employeeData = [
                 'name' => $employee->full_name ?? 'N/A',
                 'avatar' => null,
                 'initials' => $this->generateInitials($employee->full_name ?? ''),
             ];
-            
+
             // Mock presence logic: alternate between present/absent for demo
             if ($index % 2 === 0) {
                 $present[] = array_merge($employeeData, [

@@ -12,19 +12,19 @@ use Modules\Xot\Datas\XotData;
 /**
  * Modules\Rating\Models\RatingMorph.
  *
- * @property int                             $id
- * @property bool                            $is_winner
- * @property string|null                     $post_type
- * @property int|null                        $post_id
- * @property string|null                     $related_type
- * @property int|null                        $related_id
- * @property Rating|null                     $rating
- * @property string|null                     $created_by
- * @property string|null                     $updated_by
- * @property string|null                     $deleted_by
+ * @property int $id
+ * @property bool $is_winner
+ * @property string|null $post_type
+ * @property int|null $post_id
+ * @property string|null $related_type
+ * @property int|null $related_id
+ * @property Rating|null $rating
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property string|null $deleted_by
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int|null                        $auth_user_id
+ * @property int|null $auth_user_id
  *
  * @method static \Illuminate\Database\Eloquent\Builder|RatingMorph newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RatingMorph newQuery()
@@ -44,9 +44,9 @@ use Modules\Xot\Datas\XotData;
  *
  * @property string|null $user_id
  * @property string|null $model_type
- * @property int|null    $model_id
- * @property int         $rating_id
- * @property int|null    $value
+ * @property int|null $model_id
+ * @property int $rating_id
+ * @property int|null $value
  * @property string|null $note
  * @property string|null $deleted_at
  *
@@ -61,8 +61,8 @@ use Modules\Xot\Datas\XotData;
  *
  * @property \Illuminate\Database\Eloquent\Model|\Eloquent $model
  * @property \Illuminate\Database\Eloquent\Model|null $profile
- * @property \Modules\Xot\Contracts\UserContract|null      $user
- * @property string                                        $reward
+ * @property \Modules\Xot\Contracts\UserContract|null $user
+ * @property string $reward
  *
  * @method static \Illuminate\Database\Eloquent\Builder|RatingMorph whereReward($value)
  *

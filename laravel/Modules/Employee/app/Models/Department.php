@@ -69,7 +69,7 @@ class Department extends BaseModel
     /**
      * Scope a query to only include active departments.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeActive($query)
@@ -79,8 +79,6 @@ class Department extends BaseModel
 
     /**
      * Check if the department is active.
-     *
-     * @return bool
      */
     public function isActive(): bool
     {

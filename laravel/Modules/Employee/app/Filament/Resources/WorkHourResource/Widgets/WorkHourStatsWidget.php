@@ -6,9 +6,9 @@ namespace Modules\Employee\Filament\Resources\WorkHourResource\Widgets;
 
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Enums\WorkHourStatusEnum;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseStatsOverviewWidget;
 
 class WorkHourStatsWidget extends XotBaseStatsOverviewWidget

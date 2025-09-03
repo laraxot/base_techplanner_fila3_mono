@@ -8,11 +8,11 @@ use Filament\Actions\DeleteAction;
 use Modules\Notify\Filament\Resources\ContactResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
-class EditContact extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
+class EditContact extends XotBaseEditRecord
 {
     protected static string $resource = ContactResource::class;
 
-    protected function getHeaderActions(): array
+    public function getHeaderActions(): array
     {
         return [
             DeleteAction::make(),

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Tenant\Tests\Performance;
 
-use Tests\TestCase;
-use Modules\Tenant\Models\Traits\SushiToJson;
-use Modules\Tenant\Services\TenantService;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Modules\Tenant\Models\Traits\SushiToJson;
+use Modules\Tenant\Services\TenantService;
+use Tests\TestCase;
 
 /**
  * Test di performance per il trait SushiToJson.
  *
  * Testa le prestazioni del trait con file JSON di diverse dimensioni
  * e verifica che i tempi di esecuzione rimangano accettabili.
- * 
+ *
  * IMPORTANTE: NO RefreshDatabase - solo oggetti in-memory per performance
  */
 #[Group('performance')]
@@ -23,9 +23,11 @@ use Illuminate\Support\Facades\Storage;
 class SushiToJsonPerformanceTest extends TestCase
 {
     // NO RefreshDatabase - test di performance devono essere veloci!
-    
+
     private TestSushiModel $model;
+
     private string $testJsonPath;
+
     private string $testDirectory;
 
     protected function setUp(): void
@@ -40,7 +42,7 @@ class SushiToJsonPerformanceTest extends TestCase
         $this->testJsonPath = $this->testDirectory.'/test_sushi.json';
 
         // Crea directory di test
-        if (!File::exists($this->testDirectory)) {
+        if (! File::exists($this->testDirectory)) {
             File::makeDirectory($this->testDirectory, 0755, true, true);
         }
 
@@ -80,12 +82,12 @@ class SushiToJsonPerformanceTest extends TestCase
     private function createTestData(int $recordCount): array
     {
         $data = [];
-        for ($i = 1; $i <= $recordCount; ++$i) {
+        for ($i = 1; $i <= $recordCount; $i++) {
             $data[$i] = [
                 'id' => $i,
                 'name' => "Test Item {$i}",
                 'description' => "This is a detailed description for test item {$i} with additional information to increase the size of the data",
-                'status' => (0 === $i % 2) ? 'active' : 'inactive',
+                'status' => ($i % 2 === 0) ? 'active' : 'inactive',
                 'category' => 'Category '.($i % 10 + 1),
                 'priority' => ($i % 5 + 1),
                 'tags' => ["tag{$i}", "priority{$i}", "category{$i}"],
@@ -281,15 +283,15 @@ class SushiToJsonPerformanceTest extends TestCase
     public function test_multiple_operations_performance(): void
     {
         $data = $this->createTestData(1000);
-        
+
         $startTime = microtime(true);
-        
+
         // Operazioni multiple
         $jsonString = json_encode($data, JSON_PRETTY_PRINT);
         $parsedData = json_decode($jsonString, true);
         $compressed = gzencode($jsonString);
         $decompressed = gzdecode($compressed);
-        
+
         $endTime = microtime(true);
         $totalTime = ($endTime - $startTime) * 1000;
 
@@ -305,13 +307,13 @@ class SushiToJsonPerformanceTest extends TestCase
     public function test_memory_usage_performance(): void
     {
         $data = $this->createTestData(10000);
-        
+
         $memoryBefore = memory_get_usage();
         $jsonString = json_encode($data, JSON_PRETTY_PRINT);
         $memoryAfter = memory_get_usage();
-        
+
         $memoryUsed = $memoryAfter - $memoryBefore;
-        
+
         // Memory target: < 50MB per 10000 record
         expect($memoryUsed)->toBeLessThan(50 * 1024 * 1024);
         expect($jsonString)->toBeString();
@@ -324,20 +326,20 @@ class SushiToJsonPerformanceTest extends TestCase
     {
         $data = $this->createTestData(1000);
         $jsonString = json_encode($data, JSON_PRETTY_PRINT);
-        
+
         // Test scrittura cache
         $startTime = microtime(true);
         cache(['test_performance' => $jsonString], 60);
         $writeTime = (microtime(true) - $startTime) * 1000;
-        
+
         // Test lettura cache
         $startTime = microtime(true);
         $cachedContent = cache('test_performance');
         $readTime = (microtime(true) - $startTime) * 1000;
-        
+
         // Cleanup
         cache()->forget('test_performance');
-        
+
         // Performance target: < 50ms per operazioni cache
         expect($writeTime)->toBeLessThan(50.0);
         expect($readTime)->toBeLessThan(50.0);
@@ -351,20 +353,20 @@ class SushiToJsonPerformanceTest extends TestCase
     {
         $data = $this->createTestData(500);
         $jsonString = json_encode($data, JSON_PRETTY_PRINT);
-        
+
         // Test scrittura session
         $startTime = microtime(true);
         session(['test_performance' => $jsonString]);
         $writeTime = (microtime(true) - $startTime) * 1000;
-        
+
         // Test lettura session
         $startTime = microtime(true);
         $sessionContent = session('test_performance');
         $readTime = (microtime(true) - $startTime) * 1000;
-        
+
         // Cleanup
         session()->forget('test_performance');
-        
+
         // Performance target: < 30ms per operazioni session
         expect($writeTime)->toBeLessThan(30.0);
         expect($readTime)->toBeLessThan(30.0);
@@ -380,6 +382,7 @@ class TestSushiModel
     use SushiToJson;
 
     protected $table = 'test_sushi';
+
     protected $guarded = [];
 
     public function getSushiConnection()

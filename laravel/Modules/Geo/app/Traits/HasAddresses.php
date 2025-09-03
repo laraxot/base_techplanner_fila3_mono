@@ -11,15 +11,13 @@ use Modules\Geo\Models\Address;
 
 /**
  * Trait HasAddresses
- * 
+ *
  * Questo trait fornisce funzionalità per gestire indirizzi multipli su qualsiasi modello.
  */
 trait HasAddresses
 {
     /**
      * Relazione a tutti gli indirizzi.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function addresses(): MorphMany
     {
@@ -28,8 +26,6 @@ trait HasAddresses
 
     /**
      * Relazione all'indirizzo principale.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function primaryAddress(): MorphOne
     {
@@ -39,8 +35,6 @@ trait HasAddresses
 
     /**
      * Relazione all'indirizzo di casa.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function homeAddress(): MorphOne
     {
@@ -50,8 +44,6 @@ trait HasAddresses
 
     /**
      * Relazione all'indirizzo di lavoro.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function workAddress(): MorphOne
     {
@@ -61,8 +53,6 @@ trait HasAddresses
 
     /**
      * Relazione all'indirizzo di fatturazione.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function billingAddress(): MorphOne
     {
@@ -72,8 +62,6 @@ trait HasAddresses
 
     /**
      * Relazione all'indirizzo di spedizione.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function shippingAddress(): MorphOne
     {
@@ -83,9 +71,6 @@ trait HasAddresses
 
     /**
      * Imposta un indirizzo come principale.
-     *
-     * @param \Modules\Geo\Models\Address $address
-     * @return void
      */
     public function setPrimaryAddress(Address $address): void
     {
@@ -105,9 +90,7 @@ trait HasAddresses
     /**
      * Aggiunge un nuovo indirizzo.
      *
-     * @param array<string, mixed> $data
-     * @param bool $isPrimary
-     * @return \Modules\Geo\Models\Address
+     * @param  array<string, mixed>  $data
      */
     public function addAddress(array $data, bool $isPrimary = false): Address
     {
@@ -118,18 +101,20 @@ trait HasAddresses
 
         // Crea il nuovo indirizzo
         $data['is_primary'] = $isPrimary;
+
         return $this->addresses()->create($data);
     }
 
     /**
      * Ottiene gli indirizzi per tipo.
      *
-     * @param \Modules\Geo\Enums\AddressTypeEnum|string $type
+     * @param  \Modules\Geo\Enums\AddressTypeEnum|string  $type
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAddressesByType($type)
     {
         $typeValue = $type instanceof AddressTypeEnum ? $type->value : $type;
+
         return $this->addresses()->where('type', $typeValue)->get();
     }
 }

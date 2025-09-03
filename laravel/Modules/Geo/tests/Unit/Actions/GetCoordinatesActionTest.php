@@ -16,7 +16,7 @@ class GetCoordinatesActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = new GetCoordinatesAction;
+        $this->action = new GetCoordinatesAction();
     }
 
     /** @test */

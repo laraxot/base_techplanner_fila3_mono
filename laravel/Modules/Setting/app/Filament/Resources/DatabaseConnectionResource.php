@@ -9,8 +9,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Modules\Setting\Models\DatabaseConnection;
 use Modules\Setting\Filament\Resources\DatabaseConnectionResource\Pages;
+use Modules\Setting\Models\DatabaseConnection;
 
 class DatabaseConnectionResource extends Resource
 {

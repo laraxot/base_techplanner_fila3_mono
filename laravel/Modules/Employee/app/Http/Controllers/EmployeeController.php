@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class EmployeeController extends Controller
@@ -26,6 +26,7 @@ class EmployeeController extends Controller
     {
         /** @var view-string $view */
         $view = 'employee::create';
+
         return view($view);
     }
 
@@ -45,6 +46,7 @@ class EmployeeController extends Controller
     {
         /** @var view-string $view */
         $view = 'employee::show';
+
         return view($view);
     }
 
@@ -55,6 +57,7 @@ class EmployeeController extends Controller
     {
         /** @var view-string $view */
         $view = 'employee::edit';
+
         return view($view);
     }
 

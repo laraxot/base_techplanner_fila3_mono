@@ -80,7 +80,7 @@ return [
         'try_again' => 'Riprova',
         'processing' => 'Disconnessione in corso...',
     ],
-    
+
     'user_dropdown' => [
         'manage_account' => 'Gestisci Account',
         'profile' => 'Profilo',

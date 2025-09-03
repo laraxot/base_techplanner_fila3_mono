@@ -65,15 +65,15 @@ class BuildWeeklyTimeTableAction
         $current = (clone $start)->startOfDay();
         while ($current->lte($end)) {
             $dateKey = $current->toDateString();
-            
+
             // Filtra entries per questo giorno
-            $dayEntries = $entries->filter(function($entry) use ($current) {
+            $dayEntries = $entries->filter(function ($entry) use ($current) {
                 return $entry->timestamp->isSameDay($current);
             });
 
             // Costruisci sessioni per questo giorno
             $sessions = $this->buildDaySessions($dayEntries);
-            
+
             // Calcola ore lavorate
             $workedHours = $this->calculateDayHours($sessions);
             $contractHours = $this->getContractHours($current); // 8 ore standard
@@ -104,7 +104,7 @@ class BuildWeeklyTimeTableAction
         }
 
         // Calcola media giornaliera
-        $workDays = collect($days)->filter(fn($day) => !$day['isWeekend'])->count();
+        $workDays = collect($days)->filter(fn ($day) => ! $day['isWeekend'])->count();
         $weekSummary['averageDaily'] = $workDays > 0 ? round($weekSummary['totalWorked'] / $workDays, 2) : 0;
 
         return [
@@ -116,7 +116,7 @@ class BuildWeeklyTimeTableAction
     /**
      * Costruisce sessioni per un singolo giorno.
      *
-     * @param Collection<int, WorkHour> $dayEntries
+     * @param  Collection<int, WorkHour>  $dayEntries
      * @return array<int, array{time: string, type: string, status: string, duration?: float}>
      */
     private function buildDaySessions(Collection $dayEntries): array
@@ -128,10 +128,10 @@ class BuildWeeklyTimeTableAction
             switch ($entry->type) {
                 case WorkHourTypeEnum::CLOCK_IN:
                     // Chiudi sessione precedente se aperta
-                    if ($currentSession && !isset($currentSession['end'])) {
+                    if ($currentSession && ! isset($currentSession['end'])) {
                         $sessions[] = $currentSession;
                     }
-                    
+
                     // Inizia nuova sessione
                     $currentSession = [
                         'time' => $entry->timestamp->format('H:i'),
@@ -165,7 +165,7 @@ class BuildWeeklyTimeTableAction
                     // Aggiungi marker fine pausa
                     $sessions[] = [
                         'time' => $entry->timestamp->format('H:i'),
-                        'type' => 'break_end', 
+                        'type' => 'break_end',
                         'status' => 'working',
                     ];
                     break;
@@ -183,7 +183,7 @@ class BuildWeeklyTimeTableAction
     /**
      * Calcola ore lavorate in un giorno.
      *
-     * @param array<int, array{time: string, type: string, status: string, duration?: float}> $sessions
+     * @param  array<int, array{time: string, type: string, status: string, duration?: float}>  $sessions
      */
     private function calculateDayHours(array $sessions): float
     {
@@ -210,7 +210,7 @@ class BuildWeeklyTimeTableAction
     /**
      * Determina stato del giorno.
      *
-     * @param array<int, array{time: string, type: string, status: string, duration?: float}> $sessions
+     * @param  array<int, array{time: string, type: string, status: string, duration?: float}>  $sessions
      */
     private function determineDayStatus(array $sessions, float $workedHours, float $contractHours): string
     {

@@ -6,13 +6,11 @@ namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
-use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Models\User;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
@@ -119,8 +117,6 @@ class TimeClockWidget extends XotBaseWidget
         $this->updateSessionStatus();
     }
 
-    
-
     /**
      * Load today's entries.
      */
@@ -160,7 +156,7 @@ class TimeClockWidget extends XotBaseWidget
 
         $lastEntry = end($this->todayEntries);
         if (is_array($lastEntry) && isset($lastEntry['type']) && is_string($lastEntry['type'])) {
-            $this->isClockedIn = 'clock_in' === $lastEntry['type'];
+            $this->isClockedIn = $lastEntry['type'] === 'clock_in';
             $this->sessionStatus = $this->isClockedIn ? 'active' : 'completed';
         } else {
             $this->isClockedIn = false;
@@ -171,7 +167,7 @@ class TimeClockWidget extends XotBaseWidget
     /**
      * Build day sessions by pairing clock in/out.
      *
-     * @param Collection<int, WorkHour> $entries
+     * @param  Collection<int, WorkHour>  $entries
      */
     private function buildSessions(Collection $entries): void
     {
@@ -179,7 +175,7 @@ class TimeClockWidget extends XotBaseWidget
         $sessions = [];
 
         foreach ($entries as $entry) {
-            if (WorkHourTypeEnum::CLOCK_IN === $entry->type) {
+            if ($entry->type === WorkHourTypeEnum::CLOCK_IN) {
                 $sessions[] = [
                     'status' => 'active',
                     'in' => $entry->timestamp->format('H:i'),
@@ -189,7 +185,7 @@ class TimeClockWidget extends XotBaseWidget
                 continue;
             }
 
-            if (WorkHourTypeEnum::CLOCK_OUT === $entry->type) {
+            if ($entry->type === WorkHourTypeEnum::CLOCK_OUT) {
                 $lastIndex = count($sessions) - 1;
                 if ($lastIndex >= 0 && ($sessions[$lastIndex]['out'] ?? null) === null) {
                     $sessions[$lastIndex]['out'] = $entry->timestamp->format('H:i');

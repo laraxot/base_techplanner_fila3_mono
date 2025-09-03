@@ -6,9 +6,8 @@ namespace Modules\Geo\Models;
 
 use Filament\Forms\Get;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int|null $region_id
@@ -19,12 +18,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read int|null $localities_count
  * @property-read \Modules\Geo\Models\Region|null $region
  * @property-read \Modules\SaluteOra\Models\Profile|null $updater
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Province whereRegionId($value)
+ *
  * @mixin IdeHelperProvince
  * @mixin \Eloquent
  */
@@ -39,13 +40,13 @@ class Province extends BaseModel
         'name' => 'string',
     ];
 
-
-    public function getRows(): array{
-        $rows=Comune::select("regione->codice as region_id","provincia->codice as id","provincia->nome as name")
+    public function getRows(): array
+    {
+        $rows = Comune::select('regione->codice as region_id', 'provincia->codice as id', 'provincia->nome as name')
             ->distinct()
-            ->orderBy("provincia->nome")
+            ->orderBy('provincia->nome')
             ->get();
-       
+
         return $rows->toArray();
     }
 
@@ -61,13 +62,13 @@ class Province extends BaseModel
 
     public static function getOptions(Get $get): array
     {
-        $region=$get('administrative_area_level_1') ?? $get('region');
-        return self::where('region_id',$region)
+        $region = $get('administrative_area_level_1') ?? $get('region');
+
+        return self::where('region_id', $region)
             ->orderBy('name')
             ->get()
-            ->pluck("name", "id")
+            ->pluck('name', 'id')
             ->toArray();
 
-            
     }
 }

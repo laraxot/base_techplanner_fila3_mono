@@ -46,7 +46,7 @@ class GetAddressFromMapboxLatLngAction
     {
         $apiKey = config('services.mapbox.api_key');
 
-        if (empty($apiKey) || !is_string($apiKey)) {
+        if (empty($apiKey) || ! is_string($apiKey)) {
             throw InvalidLocationException::invalidData('API key di Mapbox non configurata');
         }
 
@@ -67,8 +67,8 @@ class GetAddressFromMapboxLatLngAction
         }
 
         $data = $response->json();
-        
-        if (!is_array($data)) {
+
+        if (! is_array($data)) {
             throw InvalidLocationException::invalidData('Risposta di Mapbox non valida');
         }
 
@@ -88,7 +88,7 @@ class GetAddressFromMapboxLatLngAction
         // Estrai il contesto dal risultato
         /** @var array<int, array{id?: string, text?: string, short_code?: string}> $contextItems */
         $contextItems = $location['context'] ?? [];
-        
+
         $context = [];
         foreach ($contextItems as $item) {
             $id = $item['id'] ?? '';
@@ -98,7 +98,7 @@ class GetAddressFromMapboxLatLngAction
             // Determina il tipo di contesto dal prefisso dell'ID
             $type = explode('.', $id)[0] ?? '';
 
-            if (!empty($type)) {
+            if (! empty($type)) {
                 $context[$type] = [
                     'text' => $text,
                     'short_code' => $shortCode,
@@ -108,17 +108,17 @@ class GetAddressFromMapboxLatLngAction
 
         // Costruisce la struttura dati richiesta da MapboxMapData
         $center = $location['center'] ?? [0.0, 0.0];
-        
+
         // Validazione del tipo e dell'array center
-        if (!is_array($center) || count($center) < 2) {
+        if (! is_array($center) || count($center) < 2) {
             $center = [0.0, 0.0];
         }
-        
+
         /** @var array{center: array{float, float}, text: string, address: string|null, context: array{country: string|null, country_code: string|null, place: string|null, postcode: string|null, locality: string|null, region: string|null, neighborhood: string|null}} $mappedData */
         $mappedData = [
             'center' => [
                 (float) ($center[0] ?? 0.0),
-                (float) ($center[1] ?? 0.0)
+                (float) ($center[1] ?? 0.0),
             ],
             'text' => (string) ($location['text'] ?? ''),
             'address' => isset($location['address']) ? (string) $location['address'] : null,

@@ -13,6 +13,7 @@ use Tests\TestCase;
 class CalculateDistanceActionTest extends TestCase
 {
     private CalculateDistanceAction $action;
+
     private CalculateDistanceMatrixAction $mockDistanceMatrixAction;
 
     protected function setUp(): void
