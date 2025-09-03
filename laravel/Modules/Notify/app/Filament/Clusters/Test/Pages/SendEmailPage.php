@@ -32,7 +32,6 @@ class SendEmailPage extends XotBasePage
 
     public ?array $emailData = [];
 
-    protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';
 
     protected static string $view = 'notify::filament.pages.send-email';
 

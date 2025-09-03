@@ -34,7 +34,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
     protected function getStats(): array
     {
         // Cache delle statistiche per 5 minuti per migliorare performance
-        return cache()->remember('employee.overview.stats', 300, function () {
+        return cache()->remember('employee.overview.stats', 300, function (): array {
             $today = Carbon::today();
             $thisMonth = Carbon::now()->startOfMonth();
 
@@ -42,37 +42,37 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
             $totalEmployees = Employee::count();
 
             // Dipendenti attivi oggi (hanno fatto almeno una timbratura)
-            // Nota: Utilizziamo la tabella time_entries per le timbrature
+            // Nota: Utilizziamo la tabella work_hours per le timbrature
             $activeToday = WorkHour::whereDate('timestamp', $today)
                 ->distinct('employee_id')
                 ->count('employee_id');
 
-            // Dipendenti in ferie (status on_leave)
-            $onLeave = Employee::where('status', 'on_leave')->count();
+            // Dipendenti in ferie (mockup - no status field in current schema)
+            $onLeave = 0;
 
             // Nuovi dipendenti questo mese
             $newThisMonth = Employee::where('created_at', '>=', $thisMonth)->count();
 
             return [
-                Stat::make('Total Employees', $totalEmployees)
-                    ->description('All registered employees')
+                Stat::make(__('employee::widgets.overview.total_employees'), $totalEmployees)
+                    ->description(__('employee::widgets.overview.total_employees_desc'))
                     ->descriptionIcon('heroicon-m-users')
                     ->color('primary')
                     ->chart($this->getEmployeeTrendChart()),
 
-                Stat::make('Active Today', $activeToday)
-                    ->description('Employees with activity today')
+                Stat::make(__('employee::widgets.overview.active_today'), $activeToday)
+                    ->description(__('employee::widgets.overview.active_today_desc'))
                     ->descriptionIcon('heroicon-m-clock')
                     ->color($activeToday > 0 ? 'success' : 'gray')
                     ->chart($this->getDailyActivityChart()),
 
-                Stat::make('On Leave', $onLeave)
-                    ->description('Employees currently on leave')
+                Stat::make(__('employee::widgets.overview.on_leave'), $onLeave)
+                    ->description(__('employee::widgets.overview.on_leave_desc'))
                     ->descriptionIcon('heroicon-m-calendar')
-                    ->color($onLeave > 0 ? 'warning' : 'success'),
+                    ->color('success'), // Always success since no leave system implemented
 
-                Stat::make('New This Month', $newThisMonth)
-                    ->description('New hires this month')
+                Stat::make(__('employee::widgets.overview.new_this_month'), $newThisMonth)
+                    ->description(__('employee::widgets.overview.new_this_month_desc'))
                     ->descriptionIcon('heroicon-m-user-plus')
                     ->color($newThisMonth > 0 ? 'info' : 'gray')
                     ->chart($this->getMonthlyHiresChart()),

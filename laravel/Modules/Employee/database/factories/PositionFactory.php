@@ -15,7 +15,7 @@ class PositionFactory extends Factory
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var class-string<\Modules\Employee\Models\Position>
      */
     protected $model = Position::class;
 

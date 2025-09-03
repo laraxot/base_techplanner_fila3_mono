@@ -6,6 +6,7 @@ namespace Modules\Employee\Database\Seeders;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Modules\Employee\Models\WorkHour;
 use Modules\User\Models\User;
 
@@ -17,6 +18,7 @@ class WorkHourSeeder extends Seeder
     public function run(): void
     {
         // Get all users or create some if none exist
+        /** @var \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $users */
         $users = User::all();
 
         if ($users->isEmpty()) {
@@ -54,7 +56,7 @@ class WorkHourSeeder extends Seeder
     /**
      * Create a complete work day sequence for a user.
      */
-    private function createWorkDayEntries(int $userId, Carbon $date): void
+    private function createWorkDayEntries(int $employeeId, Carbon $date): void
     {
         // Clock in (8:00-9:30 AM)
         $clockInTime = $date->copy()->setTime(
@@ -64,45 +66,41 @@ class WorkHourSeeder extends Seeder
         );
 
         WorkHour::create([
-            'user_id' => $userId,
-            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
-            'date' => $date->toDateString(),
-            'time' => $clockInTime,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'employee_id' => $employeeId,
+            'timestamp' => $clockInTime,
+            'type' => 'clock_in',
             'notes' => rand(1, 100) <= 20 ? 'Started work' : null,
+            'status' => 'approved',
         ]);
 
         // Break start (12:00-1:00 PM)
         $breakStartTime = $clockInTime->copy()->addHours(rand(3, 5))->addMinutes(rand(0, 30));
         WorkHour::create([
-            'user_id' => $userId,
-            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
-            'date' => $date->toDateString(),
-            'time' => $breakStartTime,
-            'type' => WorkHour::TYPE_BREAK_START,
+            'employee_id' => $employeeId,
+            'timestamp' => $breakStartTime,
+            'type' => 'break_start',
             'notes' => rand(1, 100) <= 10 ? 'Lunch break' : null,
+            'status' => 'approved',
         ]);
 
         // Break end (30-60 minutes later)
         $breakEndTime = $breakStartTime->copy()->addMinutes(rand(30, 60));
         WorkHour::create([
-            'user_id' => $userId,
-            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
-            'date' => $date->toDateString(),
-            'time' => $breakEndTime,
-            'type' => WorkHour::TYPE_BREAK_END,
+            'employee_id' => $employeeId,
+            'timestamp' => $breakEndTime,
+            'type' => 'break_end',
             'notes' => rand(1, 100) <= 10 ? 'Back from lunch' : null,
+            'status' => 'approved',
         ]);
 
         // Clock out (5:00-7:00 PM)
         $clockOutTime = $breakEndTime->copy()->addHours(rand(3, 5))->addMinutes(rand(0, 30));
         WorkHour::create([
-            'user_id' => $userId,
-            'badge_id' => 'EMP'.str_pad((string) $userId, 4, '0', STR_PAD_LEFT),
-            'date' => $date->toDateString(),
-            'time' => $clockOutTime,
-            'type' => WorkHour::TYPE_CLOCK_OUT,
+            'employee_id' => $employeeId,
+            'timestamp' => $clockOutTime,
+            'type' => 'clock_out',
             'notes' => rand(1, 100) <= 20 ? 'End of work day' : null,
+            'status' => 'approved',
         ]);
     }
 
@@ -111,38 +109,35 @@ class WorkHourSeeder extends Seeder
      *
      * @param  \Illuminate\Support\Collection<int, User>  $users
      */
-    private function createIncompleteWorkDays($users): void
+    private function createIncompleteWorkDays(Collection $users): void
     {
         foreach ($users as $user) {
             $today = Carbon::today();
 
             // User who clocked in but didn't clock out
             WorkHour::create([
-                'user_id' => $user->id,
-                'badge_id' => 'EMP'.str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
-                'date' => $today->toDateString(),
-                'time' => $today->copy()->setTime(8, 30, 0),
-                'type' => WorkHour::TYPE_CLOCK_IN,
+                'employee_id' => $user->id,
+                'timestamp' => $today->copy()->setTime(8, 30, 0),
+                'type' => 'clock_in',
                 'notes' => 'Current work session',
+                'status' => 'pending',
             ]);
 
             // User on break
             $yesterday = Carbon::yesterday();
             WorkHour::create([
-                'user_id' => $user->id,
-                'badge_id' => 'EMP'.str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
-                'date' => $yesterday->toDateString(),
-                'time' => $yesterday->copy()->setTime(8, 0, 0),
-                'type' => WorkHour::TYPE_CLOCK_IN,
+                'employee_id' => $user->id,
+                'timestamp' => $yesterday->copy()->setTime(8, 0, 0),
+                'type' => 'clock_in',
+                'status' => 'approved',
             ]);
 
             WorkHour::create([
-                'user_id' => $user->id,
-                'badge_id' => 'EMP'.str_pad((string) $user->id, 4, '0', STR_PAD_LEFT),
-                'date' => $yesterday->toDateString(),
-                'time' => $yesterday->copy()->setTime(12, 0, 0),
-                'type' => WorkHour::TYPE_BREAK_START,
+                'employee_id' => $user->id,
+                'timestamp' => $yesterday->copy()->setTime(12, 0, 0),
+                'type' => 'break_start',
                 'notes' => 'Extended lunch break',
+                'status' => 'pending',
             ]);
         }
     }

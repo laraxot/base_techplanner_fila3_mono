@@ -37,8 +37,6 @@ class SendPushNotificationPage extends XotBasePage
 
     public ?array $notificationData = [];
 
-    // protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';
 
     protected static string $view = 'notify::filament.pages.send-push-notification';
 

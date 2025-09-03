@@ -163,23 +163,23 @@ document.addEventListener('DOMContentLoaded', function() {
 Usage Examples:
 
 1. Basic cookiebar (default):
-<x-sixteen::bootstrap-italia.cookiebar />
+<x-pub_theme::bootstrap-italia.cookiebar />
 
 2. Custom message and preferences URL:
-<x-sixteen::bootstrap-italia.cookiebar 
+<x-pub_theme::bootstrap-italia.cookiebar 
     message="Questo sito web utilizza cookies per migliorare l'esperienza utente.<br />Continuando la navigazione si acconsente all'uso dei cookies."
     preferences-url="/cookie-preferences" />
 
 3. Custom button text:
-<x-sixteen::bootstrap-italia.cookiebar 
+<x-pub_theme::bootstrap-italia.cookiebar 
     accept-text="Acconsento"
     preferences-text="Gestisci preferenze" />
 
 4. Conditionally show:
-<x-sixteen::bootstrap-italia.cookiebar :show="!session('cookies_accepted')" />
+<x-pub_theme::bootstrap-italia.cookiebar :show="!session('cookies_accepted')" />
 
 Integration with Layout:
 Place this component just after the opening <body> tag in your main layout:
 
-@include('sixteen::components.bootstrap-italia.cookiebar')
+@include('pub_theme::components.bootstrap-italia.cookiebar')
 --}}

@@ -9,6 +9,7 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Models\Employee;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
@@ -35,7 +36,8 @@ class LeaveBalanceWidget extends XotBaseWidget
      */
     public function getFormSchema(): array
     {
-        $employee = Employee::find(auth()->id());
+        $userId = Auth::id();
+        $employee = $userId ? Employee::find($userId) : null;
         $currentMonth = Carbon::now()->translatedFormat('F Y');
 
         return [
@@ -47,20 +49,26 @@ class LeaveBalanceWidget extends XotBaseWidget
                                 ->label(__('employee::widgets.leave_balance.monthly'))
                                 ->schema([
                                     Placeholder::make('monthly_balances')
-                                        ->content(fn () => view('employee::widgets.leave-balance.balance-display', [
+                                        ->content(function () use ($employee): \Illuminate\Contracts\View\View {
+                                            // @phpstan-ignore-next-line argument.type
+                                            return view('employee::widgets.leave-balance.balance-display', [
                                             'balances' => $this->getMonthlyBalances($employee),
                                             'type' => 'monthly',
-                                        ])),
+                                            ]);
+                                        }),
                                 ]),
 
                             Tab::make('annual')
                                 ->label(__('employee::widgets.leave_balance.annual'))
                                 ->schema([
                                     Placeholder::make('annual_balances')
-                                        ->content(fn () => view('employee::widgets.leave-balance.balance-display', [
+                                        ->content(function () use ($employee): \Illuminate\Contracts\View\View {
+                                            // @phpstan-ignore-next-line argument.type
+                                            return view('employee::widgets.leave-balance.balance-display', [
                                             'balances' => $this->getAnnualBalances($employee),
                                             'type' => 'annual',
-                                        ])),
+                                            ]);
+                                        }),
                                 ]),
                         ])
                         ->activeTab(1),
@@ -71,6 +79,8 @@ class LeaveBalanceWidget extends XotBaseWidget
 
     /**
      * Get monthly leave balances for employee.
+     *
+     * @return array<string, array<string, mixed>>
      */
     protected function getMonthlyBalances(?Employee $employee): array
     {
@@ -128,6 +138,8 @@ class LeaveBalanceWidget extends XotBaseWidget
 
     /**
      * Get annual leave balances for employee.
+     *
+     * @return array<string, array<string, mixed>>
      */
     protected function getAnnualBalances(?Employee $employee): array
     {
@@ -184,6 +196,8 @@ class LeaveBalanceWidget extends XotBaseWidget
 
     /**
      * Get default balances when no employee found.
+     *
+     * @return array<string, array<string, mixed>>
      */
     protected function getDefaultBalances(): array
     {

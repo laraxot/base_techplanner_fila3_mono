@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Tests\Feature;
 
 use Carbon\Carbon;
+use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
 
 beforeEach(function () {
@@ -17,109 +18,109 @@ describe('Work Hour Management Business Logic', function () {
     test('employee can clock in at start of day', function () {
         $clockIn = createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         expect($clockIn->isClockIn())->toBeTrue();
         expect(WorkHour::getCurrentStatus($this->employee->id))->toBe('clocked_in');
-        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHour::TYPE_BREAK_START);
+        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHourTypeEnum::BREAK_START);
     });
 
     test('employee can take break after clocking in', function () {
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         $breakStart = createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_START,
+            'type' => WorkHourTypeEnum::BREAK_START,
             'timestamp' => $this->today->copy()->setTime(12, 0),
         ]);
 
         expect($breakStart->isBreakStart())->toBeTrue();
         expect(WorkHour::getCurrentStatus($this->employee->id))->toBe('on_break');
-        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHour::TYPE_BREAK_END);
+        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHourTypeEnum::BREAK_END);
     });
 
     test('employee can end break and resume work', function () {
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_START,
+            'type' => WorkHourTypeEnum::BREAK_START,
             'timestamp' => $this->today->copy()->setTime(12, 0),
         ]);
 
         $breakEnd = createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_END,
+            'type' => WorkHourTypeEnum::BREAK_END,
             'timestamp' => $this->today->copy()->setTime(13, 0),
         ]);
 
         expect($breakEnd->isBreakEnd())->toBeTrue();
         expect(WorkHour::getCurrentStatus($this->employee->id))->toBe('clocked_in');
-        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHour::TYPE_CLOCK_OUT);
+        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHourTypeEnum::CLOCK_OUT);
     });
 
     test('employee can clock out at end of day', function () {
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_START,
+            'type' => WorkHourTypeEnum::BREAK_START,
             'timestamp' => $this->today->copy()->setTime(12, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_END,
+            'type' => WorkHourTypeEnum::BREAK_END,
             'timestamp' => $this->today->copy()->setTime(13, 0),
         ]);
 
         $clockOut = createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_OUT,
+            'type' => WorkHourTypeEnum::CLOCK_OUT,
             'timestamp' => $this->today->copy()->setTime(17, 0),
         ]);
 
         expect($clockOut->isClockOut())->toBeTrue();
         expect(WorkHour::getCurrentStatus($this->employee->id))->toBe('clocked_out');
-        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHour::TYPE_CLOCK_IN);
+        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHourTypeEnum::CLOCK_IN);
     });
 
     test('calculates correct worked hours with break', function () {
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_START,
+            'type' => WorkHourTypeEnum::BREAK_START,
             'timestamp' => $this->today->copy()->setTime(12, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_END,
+            'type' => WorkHourTypeEnum::BREAK_END,
             'timestamp' => $this->today->copy()->setTime(13, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_OUT,
+            'type' => WorkHourTypeEnum::CLOCK_OUT,
             'timestamp' => $this->today->copy()->setTime(17, 0),
         ]);
 
@@ -131,13 +132,13 @@ describe('Work Hour Management Business Logic', function () {
     test('calculates correct worked hours without break', function () {
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_OUT,
+            'type' => WorkHourTypeEnum::CLOCK_OUT,
             'timestamp' => $this->today->copy()->setTime(17, 0),
         ]);
 
@@ -147,33 +148,33 @@ describe('Work Hour Management Business Logic', function () {
     });
 
     test('validates correct entry sequence', function () {
-        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_IN))->toBeTrue();
+        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHourTypeEnum::CLOCK_IN))->toBeTrue();
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
-        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_BREAK_START))->toBeTrue();
-        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_OUT))->toBeFalse();
+        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHourTypeEnum::BREAK_START))->toBeTrue();
+        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHourTypeEnum::CLOCK_OUT))->toBeFalse();
     });
 
     test('prevents invalid entry sequences', function () {
-        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_BREAK_START))->toBeFalse();
-        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_OUT))->toBeFalse();
+        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHourTypeEnum::BREAK_START))->toBeFalse();
+        expect(WorkHour::isValidNextEntry($this->employee->id, WorkHourTypeEnum::CLOCK_OUT))->toBeFalse();
     });
 
     test('gets today entries in chronological order', function () {
         $clockIn = createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         $breakStart = createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_BREAK_START,
+            'type' => WorkHourTypeEnum::BREAK_START,
             'timestamp' => $this->today->copy()->setTime(12, 0),
         ]);
 
@@ -189,26 +190,26 @@ describe('Work Hour Management Business Logic', function () {
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $employee2->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(10, 0),
         ]);
 
         expect(WorkHour::getCurrentStatus($this->employee->id))->toBe('clocked_in');
         expect(WorkHour::getCurrentStatus($employee2->id))->toBe('clocked_in');
-        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHour::TYPE_BREAK_START);
-        expect(WorkHour::getNextAction($employee2->id))->toBe(WorkHour::TYPE_BREAK_START);
+        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHourTypeEnum::BREAK_START);
+        expect(WorkHour::getNextAction($employee2->id))->toBe(WorkHourTypeEnum::BREAK_START);
     });
 
     test('handles empty work hour records', function () {
         expect(WorkHour::calculateWorkedHours($this->employee->id, $this->today))->toBe(0.0);
         expect(WorkHour::getCurrentStatus($this->employee->id))->toBe('not_clocked_in');
-        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHour::TYPE_CLOCK_IN);
+        expect(WorkHour::getNextAction($this->employee->id))->toBe(WorkHourTypeEnum::CLOCK_IN);
     });
 
     test('filters work hours by date correctly', function () {
@@ -216,13 +217,13 @@ describe('Work Hour Management Business Logic', function () {
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $yesterday->setTime(9, 0),
         ]);
 
         createWorkHour([
             'employee_id' => $this->employee->id,
-            'type' => WorkHour::TYPE_CLOCK_IN,
+            'type' => WorkHourTypeEnum::CLOCK_IN,
             'timestamp' => $this->today->copy()->setTime(9, 0),
         ]);
 

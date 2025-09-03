@@ -95,7 +95,7 @@
                     class="inline-flex rounded-md {{ $typeClasses['bg'] }} {{ $typeClasses['text'] }} hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     @click="show = false"
                 >
-                    <span class="sr-only">{{ __('sixteen::notifications.close') }}</span>
+                    <span class="sr-only">{{ __('pub_theme::notifications.close') }}</span>
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>

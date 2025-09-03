@@ -30,7 +30,6 @@ use Filament\Notifications\Notification as FilamentNotification;
 class SendSmsPage extends XotBasePage
 {
     public ?array $smsData = [];
-    protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';
     protected static string $view = 'notify::filament.pages.send-sms';
     protected static ?string $cluster = Test::class;
 

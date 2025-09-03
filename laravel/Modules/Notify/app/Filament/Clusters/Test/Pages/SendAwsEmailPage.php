@@ -29,7 +29,6 @@ class SendAwsEmailPage extends XotBasePage
 
     public ?array $emailData = [];
 
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
     protected static string $view = 'notify::filament.pages.send-email';
 

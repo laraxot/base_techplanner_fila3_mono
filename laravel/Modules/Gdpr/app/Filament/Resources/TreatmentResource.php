@@ -41,36 +41,6 @@ class TreatmentResource extends XotBaseResource
         ];
     }
 
-    public function getTableColumns(): array
-    {
-        return [
-            // Tables\Columns\TextColumn::make('id')
-            //
-            //     ->searchable(),
-            Tables\Columns\IconColumn::make('active')
-                ->boolean(),
-            Tables\Columns\IconColumn::make('required')
-                ->boolean(),
-            Tables\Columns\TextColumn::make('name')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('documentVersion')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('documentUrl')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('weight')
-                ->numeric()
-                ->sortable(),
-            Tables\Columns\TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
-            Tables\Columns\TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
-        ];
-    }
-
     public static function getPages(): array
     {
         return [

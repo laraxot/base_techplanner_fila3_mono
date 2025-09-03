@@ -11,10 +11,79 @@
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
         </testsuite>
+        <testsuite name="AI">
+            <directory>Modules/AI/tests</directory>
+        </testsuite>
+        <testsuite name="Activity">
+            <directory>Modules/Activity/tests</directory>
+        </testsuite>
+        <testsuite name="Blog">
+            <directory>Modules/Blog/tests</directory>
+        </testsuite>
+        <testsuite name="Cms">
+            <directory>Modules/Cms/tests</directory>
+        </testsuite>
+        <testsuite name="Comment">
+            <directory>Modules/Comment/tests</directory>
+        </testsuite>
+        <testsuite name="DbForge">
+            <directory>Modules/DbForge/tests</directory>
+        </testsuite>
+        <testsuite name="Employee">
+            <directory>Modules/Employee/tests</directory>
+        </testsuite>
+        <testsuite name="FormBuilder">
+            <directory>Modules/FormBuilder/tests</directory>
+        </testsuite>
+        <testsuite name="Gdpr">
+            <directory>Modules/Gdpr/tests</directory>
+        </testsuite>
+        <testsuite name="Geo">
+            <directory>Modules/Geo/tests</directory>
+        </testsuite>
+        <testsuite name="Job">
+            <directory>Modules/Job/tests</directory>
+        </testsuite>
+        <testsuite name="Lang">
+            <directory>Modules/Lang/tests</directory>
+        </testsuite>
+        <testsuite name="Media">
+            <directory>Modules/Media/tests</directory>
+        </testsuite>
+        <testsuite name="Notify">
+            <directory>Modules/Notify/tests</directory>
+        </testsuite>
+        <testsuite name="Rating">
+            <directory>Modules/Rating/tests</directory>
+        </testsuite>
+        <testsuite name="Seo">
+            <directory>Modules/Seo/tests</directory>
+        </testsuite>
+        <testsuite name="Setting">
+            <directory>Modules/Setting/tests</directory>
+        </testsuite>
+        <testsuite name="TechPlanner">
+            <directory>Modules/TechPlanner/tests</directory>
+        </testsuite>
+        <testsuite name="Tenant">
+            <directory>Modules/Tenant/tests</directory>
+        </testsuite>
+        <testsuite name="UI">
+            <directory>Modules/UI/tests</directory>
+        </testsuite>
+        <testsuite name="User">
+            <directory>Modules/User/tests</directory>
+        </testsuite>
+        <testsuite name="Xot">
+            <directory>Modules/Xot/tests</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>app</directory>
+            <directory>Modules/*/app</directory>
+            <directory>Modules/*/src</directory>
+            <directory>Modules/*/App</directory>
         </include>
     </source>
     <php>

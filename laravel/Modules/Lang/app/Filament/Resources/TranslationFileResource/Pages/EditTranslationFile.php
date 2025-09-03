@@ -9,10 +9,10 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Modules\Lang\Actions\SaveTransAction;
 use Modules\Lang\Filament\Actions\LocaleSwitcherRefresh;
-use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
+use Modules\Lang\Filament\Resources\Pages\LangBaseEditRecord;
 use Modules\Lang\Filament\Resources\TranslationFileResource;
 
-class EditTranslationFile extends XotBaseEditRecord
+class EditTranslationFile extends LangBaseEditRecord
 {
     protected static string $resource = TranslationFileResource::class;
 
@@ -25,12 +25,6 @@ class EditTranslationFile extends XotBaseEditRecord
         ];
     }
 
-    /**
-     * @return array<string>
-     */
-    public function getTranslatableLocales(){
-        return ['it', 'en'];
-    }
    
     protected function mutateFormDataBeforeSave(array $data): array
     {

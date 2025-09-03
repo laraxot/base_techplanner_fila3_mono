@@ -48,50 +48,50 @@ resources/views/components/blocks/
 
 ### Alert Base
 ```blade
-<x-sixteen::blocks.alerts.alert 
+<x-pub_theme::blocks.alerts.alert 
     variant="info" 
     dismissible="true"
     title="Informazione"
 >
     Questo è un messaggio di informazione.
-</x-sixteen::blocks.alerts.alert>
+</x-pub_theme::blocks.alerts.alert>
 ```
 
 **Varianti**: `info`, `success`, `warning`, `danger`
 
 ### Alert con Link
 ```blade
-<x-sixteen::blocks.alerts.alert-link 
+<x-pub_theme::blocks.alerts.alert-link 
     variant="success"
     href="/dettagli"
     link-text="Visualizza dettagli"
 >
     Operazione completata con successo.
-</x-sixteen::blocks.alerts.alert-link>
+</x-pub_theme::blocks.alerts.alert-link>
 ```
 
 ### Toast
 ```blade
-<x-sixteen::blocks.alerts.toast 
+<x-pub_theme::blocks.alerts.toast 
     variant="success"
     position="top-right"
     duration="5000"
 >
     Messaggio toast di successo
-</x-sixteen::blocks.alerts.toast>
+</x-pub_theme::blocks.alerts.toast>
 ```
 
 ## Componenti Button
 
 ### Button Base
 ```blade
-<x-sixteen::blocks.buttons.button 
+<x-pub_theme::blocks.buttons.button 
     variant="primary"
     size="md"
     icon="heroicon-o-plus"
 >
     Aggiungi elemento
-</x-sixteen::blocks.buttons.button>
+</x-pub_theme::blocks.buttons.button>
 ```
 
 **Varianti**: `primary`, `secondary`, `outline`, `ghost`, `danger`
@@ -99,24 +99,24 @@ resources/views/components/blocks/
 
 ### Button Group
 ```blade
-<x-sixteen::blocks.buttons.button-group>
-    <x-sixteen::blocks.buttons.button-group-item variant="primary">
+<x-pub_theme::blocks.buttons.button-group>
+    <x-pub_theme::blocks.buttons.button-group-item variant="primary">
         Sinistra
-    </x-sixteen::blocks.buttons.button-group-item>
-    <x-sixteen::blocks.buttons.button-group-item variant="secondary">
+    </x-pub_theme::blocks.buttons.button-group-item>
+    <x-pub_theme::blocks.buttons.button-group-item variant="secondary">
         Centro
-    </x-sixteen::blocks.buttons.button-group-item>
-    <x-sixteen::blocks.buttons.button-group-item variant="outline">
+    </x-pub_theme::blocks.buttons.button-group-item>
+    <x-pub_theme::blocks.buttons.button-group-item variant="outline">
         Destra
-    </x-sixteen::blocks.buttons.button-group-item>
-</x-sixteen::blocks.buttons.button-group>
+    </x-pub_theme::blocks.buttons.button-group-item>
+</x-pub_theme::blocks.buttons.button-group>
 ```
 
 ## Componenti Card
 
 ### Card Base
 ```blade
-<x-sixteen::blocks.cards.card 
+<x-pub_theme::blocks.cards.card 
     variant="default"
     with-header="true"
     with-footer="true"
@@ -129,30 +129,30 @@ resources/views/components/blocks/
     
     <x-slot name="footer">
         <div class="flex justify-end space-x-2">
-            <x-sixteen::blocks.buttons.button size="sm">Annulla</x-sixteen::blocks.buttons.button>
-            <x-sixteen::blocks.buttons.button variant="primary" size="sm">Salva</x-sixteen::blocks.buttons.button>
+            <x-pub_theme::blocks.buttons.button size="sm">Annulla</x-pub_theme::blocks.buttons.button>
+            <x-pub_theme::blocks.buttons.button variant="primary" size="sm">Salva</x-pub_theme::blocks.buttons.button>
         </div>
     </x-slot>
-</x-sixteen::blocks.cards.card>
+</x-pub_theme::blocks.cards.card>
 ```
 
 ### Card con Overlay
 ```blade
-<x-sixteen::blocks.cards.card-overlay 
+<x-pub_theme::blocks.cards.card-overlay 
     image-src="/path/to/image.jpg"
     overlay-title="Titolo Overlay"
     overlay-subtitle="Sottotitolo"
     overlay-position="bottom"
 >
     <p>Contenuto dell'overlay</p>
-</x-sixteen::blocks.cards.card-overlay>
+</x-pub_theme::blocks.cards.card-overlay>
 ```
 
 ## Componenti Form
 
 ### Input
 ```blade
-<x-sixteen::blocks.forms.input 
+<x-pub_theme::blocks.forms.input 
     name="email"
     label="Indirizzo email"
     placeholder="Inserisci la tua email"
@@ -164,7 +164,7 @@ resources/views/components/blocks/
 
 ### Select
 ```blade
-<x-sixteen::blocks.forms.select 
+<x-pub_theme::blocks.forms.select 
     name="country"
     label="Paese"
     placeholder="Seleziona un paese"
@@ -179,7 +179,7 @@ resources/views/components/blocks/
 
 ### Checkbox
 ```blade
-<x-sixteen::blocks.forms.checkbox 
+<x-pub_theme::blocks.forms.checkbox 
     name="terms"
     label="Accetto i termini e condizioni"
     help-text="Devi accettare i termini per continuare"
@@ -189,7 +189,7 @@ resources/views/components/blocks/
 
 ### Radio
 ```blade
-<x-sixteen::blocks.forms.radio 
+<x-pub_theme::blocks.forms.radio 
     name="gender"
     value="male"
     label="Maschio"
@@ -198,7 +198,7 @@ resources/views/components/blocks/
 
 ### Switch
 ```blade
-<x-sixteen::blocks.forms.switch 
+<x-pub_theme::blocks.forms.switch 
     name="notifications"
     label="Ricevi notifiche"
     help-text="Riceverai notifiche via email"
@@ -207,7 +207,7 @@ resources/views/components/blocks/
 
 ### Textarea
 ```blade
-<x-sixteen::blocks.forms.textarea 
+<x-pub_theme::blocks.forms.textarea 
     name="description"
     label="Descrizione"
     placeholder="Inserisci una descrizione"
@@ -218,7 +218,7 @@ resources/views/components/blocks/
 
 ### File Upload
 ```blade
-<x-sixteen::blocks.forms.file-upload 
+<x-pub_theme::blocks.forms.file-upload 
     name="document"
     label="Carica documento"
     accept=".pdf,.doc,.docx"
@@ -232,7 +232,7 @@ resources/views/components/blocks/
 
 ### Navbar
 ```blade
-<x-sixteen::blocks.navigation.navbar 
+<x-pub_theme::blocks.navigation.navbar 
     brand="Logo Azienda"
     brand-href="/"
     variant="light"
@@ -241,12 +241,12 @@ resources/views/components/blocks/
     <a href="/home" class="text-gray-700 hover:text-blue-600">Home</a>
     <a href="/about" class="text-gray-700 hover:text-blue-600">Chi siamo</a>
     <a href="/contact" class="text-gray-700 hover:text-blue-600">Contatti</a>
-</x-sixteen::blocks.navigation.navbar>
+</x-pub_theme::blocks.navigation.navbar>
 ```
 
 ### Breadcrumb
 ```blade
-<x-sixteen::blocks.navigation.breadcrumb 
+<x-pub_theme::blocks.navigation.breadcrumb 
     :items="[
         ['label' => 'Home', 'href' => '/'],
         ['label' => 'Prodotti', 'href' => '/products'],
@@ -257,7 +257,7 @@ resources/views/components/blocks/
 
 ### Pagination
 ```blade
-<x-sixteen::blocks.navigation.pagination 
+<x-pub_theme::blocks.navigation.pagination 
     :current-page="3"
     :total-pages="10"
     base-url="/products"
@@ -271,18 +271,18 @@ resources/views/components/blocks/
 
 ### Container
 ```blade
-<x-sixteen::blocks.layout.container 
+<x-pub_theme::blocks.layout.container 
     fluid="false"
     max-width="xl"
     padding="true"
 >
     Contenuto del container
-</x-sixteen::blocks.layout.container>
+</x-pub_theme::blocks.layout.container>
 ```
 
 ### Grid
 ```blade
-<x-sixteen::blocks.layout.grid 
+<x-pub_theme::blocks.layout.grid 
     cols="3"
     gap="md"
     responsive="true"
@@ -290,14 +290,14 @@ resources/views/components/blocks/
     <div>Colonna 1</div>
     <div>Colonna 2</div>
     <div>Colonna 3</div>
-</x-sixteen::blocks.layout.grid>
+</x-pub_theme::blocks.layout.grid>
 ```
 
 ## Componenti Feedback
 
 ### Progress
 ```blade
-<x-sixteen::blocks.feedback.progress 
+<x-pub_theme::blocks.feedback.progress 
     :value="75"
     :max="100"
     variant="primary"
@@ -310,7 +310,7 @@ resources/views/components/blocks/
 
 ### Spinner
 ```blade
-<x-sixteen::blocks.feedback.spinner 
+<x-pub_theme::blocks.feedback.spinner 
     variant="primary"
     size="md"
     label="Caricamento in corso..."
@@ -321,19 +321,19 @@ resources/views/components/blocks/
 
 ### Badge
 ```blade
-<x-sixteen::blocks.utilities.badge 
+<x-pub_theme::blocks.utilities.badge 
     variant="success"
     size="md"
     pill="true"
     dismissible="true"
 >
     Nuovo
-</x-sixteen::blocks.utilities.badge>
+</x-pub_theme::blocks.utilities.badge>
 ```
 
 ### Tooltip
 ```blade
-<x-sixteen::blocks.utilities.tooltip 
+<x-pub_theme::blocks.utilities.tooltip 
     content="Informazioni aggiuntive"
     position="top"
     variant="dark"
@@ -342,7 +342,7 @@ resources/views/components/blocks/
     <button class="px-4 py-2 bg-blue-600 text-white rounded">
         Hover me
     </button>
-</x-sixteen::blocks.utilities.tooltip>
+</x-pub_theme::blocks.utilities.tooltip>
 ```
 
 ## Best Practices
@@ -388,9 +388,9 @@ resources/views/components/blocks/
 
 **Tailwind CSS (Tema Sixteen):**
 ```blade
-<x-sixteen::blocks.alerts.alert variant="info" title="Informazione">
+<x-pub_theme::blocks.alerts.alert variant="info" title="Informazione">
     Messaggio di informazione
-</x-sixteen::blocks.alerts.alert>
+</x-pub_theme::blocks.alerts.alert>
 ```
 
 ## Configurazione

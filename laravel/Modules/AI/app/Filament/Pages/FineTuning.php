@@ -21,8 +21,6 @@ use function Safe\file_get_contents;
 
 class FineTuning extends XotBasePage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-cog';
-
     protected static string $view = 'ai::filament.pages.fine-tuning';
 
     public string $learning_rate = '0.001';

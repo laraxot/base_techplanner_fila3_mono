@@ -15,6 +15,13 @@ The documentation is organized into logical categories for better navigation and
 - **[module_structure.md](module_structure.md)** - Module organization guide
 - **[xotbase_extension_rules.md](xotbase_extension_rules.md)** - Critical Laraxot compliance rules
 
+### 📋 Business Logic Documentation (Actions Pattern)
+- **[business_logic_new/README.md](business_logic_new/README.md)** - Actions pattern overview and guidelines
+- **[business_logic_new/overview.md](business_logic_new/overview.md)** - Complete business logic with Actions
+- **[business_logic_new/time_tracking.md](business_logic_new/time_tracking.md)** - Time tracking Actions implementation
+- **[business_logic_new/employee_management.md](business_logic_new/employee_management.md)** - Employee management Actions
+- **[laraxot_actions_pattern.md](laraxot_actions_pattern.md)** - 🚨 CRITICAL: Actions pattern rules
+
 ### 🏗️ Architecture Documentation
 - **[architecture/](architecture/README.md)** - System architecture and design
   - Data architecture and relationships

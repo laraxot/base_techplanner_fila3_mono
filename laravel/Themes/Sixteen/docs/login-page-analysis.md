@@ -92,23 +92,23 @@ login.blade.php (Layout PA + Branding)
 ```
 
 ### 2. Componenti Sixteen da Utilizzare
-- **Layout**: `x-sixteen::blocks.layout.container`
-- **Form**: `x-sixteen::blocks.forms.input`
-- **Button**: `x-sixteen::blocks.buttons.button`
-- **Alert**: `x-sixteen::blocks.alerts.alert`
-- **Card**: `x-sixteen::blocks.cards.card`
+- **Layout**: `x-pub_theme::blocks.layout.container`
+- **Form**: `x-pub_theme::blocks.forms.input`
+- **Button**: `x-pub_theme::blocks.buttons.button`
+- **Alert**: `x-pub_theme::blocks.alerts.alert`
+- **Card**: `x-pub_theme::blocks.cards.card`
 
 ### 3. Struttura Proposta
 ```blade
-<x-sixteen::layouts.main>
-    <x-sixteen::blocks.layout.container>
+<x-pub_theme::layouts.main>
+    <x-pub_theme::blocks.layout.container>
         <!-- Header con Logo PA -->
-        <x-sixteen::blocks.cards.card>
+        <x-pub_theme::blocks.cards.card>
             <!-- Form Login con componenti Sixteen -->
             @livewire(\Modules\User\Http\Livewire\Auth\Login::class)
-        </x-sixteen::blocks.cards.card>
-    </x-sixteen::blocks.layout.container>
-</x-sixteen::layouts.main>
+        </x-pub_theme::blocks.cards.card>
+    </x-pub_theme::blocks.layout.container>
+</x-pub_theme::layouts.main>
 ```
 
 ## 🔧 Modifiche Necessarie

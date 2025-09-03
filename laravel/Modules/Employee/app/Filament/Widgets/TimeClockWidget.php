@@ -7,12 +7,16 @@ namespace Modules\Employee\Filament\Widgets;
 use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+use Modules\Employee\Enums\WorkHourStatusEnum;
+use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Models\User;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
- * Unified Time Clock Widget - Primary time tracking interface
+ * Unified Time Clock Widget - Primary time tracking interface.
  *
  * Features:
  * - 3-column responsive layout: [Time+Date] | [Daily Entries] | [Action Button]
@@ -51,19 +55,26 @@ class TimeClockWidget extends XotBaseWidget
     public string $todayDate = '';
 
     /**
-     * Lista timbrature di oggi.
+     * Today's work-hour entries.
      *
-     * @var array<int, array{time: string, type: string}>
+     * @var array<int, array{time: string, type: string, status: string}>
      */
     public array $todayEntries = [];
 
     /**
-     * Stato sessione corrente.
+     * Day sessions (in/out pairs).
+     *
+     * @var array<int, array{status: string, in?: string|null, out?: string|null}>
+     */
+    public array $sessions = [];
+
+    /**
+     * Current session state.
      */
     public bool $isClockedIn = false;
 
     /**
-     * Stato descrittivo della sessione.
+     * Descriptive session status.
      */
     public string $sessionStatus = 'not_started';
 
@@ -92,37 +103,64 @@ class TimeClockWidget extends XotBaseWidget
     {
         // Aggiorna ora e data
         $this->currentTime = Carbon::now()->format('H:i');
-        $this->todayDate = Carbon::now()->locale('it')->isoFormat('dddd D MMMM YYYY');
+        $carbon = Carbon::now();
+        $carbon->locale('it');
+        $this->todayDate = $carbon->isoFormat('dddd D MMMM YYYY');
 
-        // Trova employee dell'utente corrente
-        $user = Auth::user();
-        if (! $user) {
+        $userId = Auth::id();
+        if ($userId === null) {
+            $this->todayEntries = [];
+            $this->sessions = [];
+
             return;
         }
 
-        $employee = Employee::where('user_id', $user->id)->first();
-        if (! $employee) {
-            return;
-        }
+        $this->loadTodayEntries((string) $userId);
+        $this->updateSessionStatus();
+    }
 
-        // Query timbrature di oggi (logica reale)
-        $entries = WorkHour::where('employee_id', $employee->id)
+    
+
+    /**
+     * Load today's entries.
+     */
+    private function loadTodayEntries(string $userId): void
+    {
+        /** @var \Illuminate\Database\Eloquent\Collection<int, WorkHour> $entries */
+        $entries = WorkHour::query()
+            ->where('employee_id', $userId)
             ->whereDate('timestamp', today())
             ->orderBy('timestamp', 'asc')
             ->get();
 
-        // Popola array per la vista
-        $this->todayEntries = $entries->map(function (WorkHour $entry): array {
+        /** @var array<int, array{time: string, type: string, status: string}> $todayEntries */
+        $todayEntries = $entries->map(function (WorkHour $entry): array {
             return [
                 'time' => $entry->timestamp->format('H:i'),
-                'type' => $entry->type,
+                'type' => $entry->type->value,
+                'status' => $entry->status->value,
             ];
-        })->toArray();
+        })->values()->all();
+        $this->todayEntries = $todayEntries;
 
-        // Determina stato sessione
-        $lastEntry = $entries->last();
-        if ($lastEntry) {
-            $this->isClockedIn = $lastEntry->type === 'clock_in';
+        $this->buildSessions($entries);
+    }
+
+    /**
+     * Update current session state.
+     */
+    private function updateSessionStatus(): void
+    {
+        if (empty($this->todayEntries)) {
+            $this->isClockedIn = false;
+            $this->sessionStatus = 'not_started';
+
+            return;
+        }
+
+        $lastEntry = end($this->todayEntries);
+        if (is_array($lastEntry) && isset($lastEntry['type']) && is_string($lastEntry['type'])) {
+            $this->isClockedIn = 'clock_in' === $lastEntry['type'];
             $this->sessionStatus = $this->isClockedIn ? 'active' : 'completed';
         } else {
             $this->isClockedIn = false;
@@ -131,132 +169,112 @@ class TimeClockWidget extends XotBaseWidget
     }
 
     /**
-     * Azione timbratura entrata.
+     * Build day sessions by pairing clock in/out.
+     *
+     * @param Collection<int, WorkHour> $entries
      */
-    public function clockIn(): void
+    private function buildSessions(Collection $entries): void
     {
-        try {
-            $user = Auth::user();
-            if (! $user) {
-                Notification::make()
-                    ->title('Errore')
-                    ->body('Utente non autenticato')
-                    ->danger()
-                    ->send();
+        /** @var array<int, array{status: string, in?: string|null, out?: string|null}> $sessions */
+        $sessions = [];
 
-                return;
+        foreach ($entries as $entry) {
+            if (WorkHourTypeEnum::CLOCK_IN === $entry->type) {
+                $sessions[] = [
+                    'status' => 'active',
+                    'in' => $entry->timestamp->format('H:i'),
+                    'out' => null,
+                ];
+
+                continue;
             }
 
-            $employee = Employee::where('user_id', $user->id)->first();
-            if (! $employee) {
-                Notification::make()
-                    ->title('Errore')
-                    ->body('Profilo dipendente non trovato')
-                    ->danger()
-                    ->send();
-
-                return;
+            if (WorkHourTypeEnum::CLOCK_OUT === $entry->type) {
+                $lastIndex = count($sessions) - 1;
+                if ($lastIndex >= 0 && ($sessions[$lastIndex]['out'] ?? null) === null) {
+                    $sessions[$lastIndex]['out'] = $entry->timestamp->format('H:i');
+                    $sessions[$lastIndex]['status'] = 'completed';
+                } else {
+                    $sessions[] = [
+                        'status' => 'completed',
+                        'in' => null,
+                        'out' => $entry->timestamp->format('H:i'),
+                    ];
+                }
             }
-
-            // Verifica che non sia già in clock-in
-            if ($this->isClockedIn) {
-                Notification::make()
-                    ->title('Attenzione')
-                    ->body('Sei già in sessione')
-                    ->warning()
-                    ->send();
-
-                return;
-            }
-
-            // Crea timbratura entrata
-            WorkHour::create([
-                'employee_id' => $employee->id,
-                'type' => 'clock_in',
-                'timestamp' => Carbon::now(),
-                'status' => 'pending',
-                'notes' => 'Entrata da dashboard widget',
-            ]);
-
-            $this->updateData();
-
-            Notification::make()
-                ->title('Successo')
-                ->body('Entrata registrata alle '.Carbon::now()->format('H:i'))
-                ->success()
-                ->send();
-
-        } catch (\Exception $e) {
-            Notification::make()
-                ->title('Errore')
-                ->body('Errore durante la timbratura: '.$e->getMessage())
-                ->danger()
-                ->send();
         }
+
+        $this->sessions = $sessions;
     }
 
     /**
-     * Azione timbratura uscita.
+     * Clock-in action.
+     */
+    public function clockIn(): void
+    {
+        if ($this->isClockedIn) {
+            $this->notifyWarning('Sei già in sessione');
+
+            return;
+        }
+
+        $this->createWorkHour(WorkHourTypeEnum::CLOCK_IN, 'Entrata registrata');
+    }
+
+    /**
+     * Clock-out action.
      */
     public function clockOut(): void
     {
-        try {
-            $user = Auth::user();
-            if (! $user) {
-                Notification::make()
-                    ->title('Errore')
-                    ->body('Utente non autenticato')
-                    ->danger()
-                    ->send();
+        if (! $this->isClockedIn) {
+            $this->notifyWarning('Devi prima timbrare l\'entrata');
 
-                return;
-            }
-
-            $employee = Employee::where('user_id', $user->id)->first();
-            if (! $employee) {
-                Notification::make()
-                    ->title('Errore')
-                    ->body('Profilo dipendente non trovato')
-                    ->danger()
-                    ->send();
-
-                return;
-            }
-
-            // Verifica che sia in clock-in
-            if (! $this->isClockedIn) {
-                Notification::make()
-                    ->title('Attenzione')
-                    ->body('Devi prima timbrare l\'entrata')
-                    ->warning()
-                    ->send();
-
-                return;
-            }
-
-            // Crea timbratura uscita
-            WorkHour::create([
-                'employee_id' => $employee->id,
-                'type' => 'clock_out',
-                'timestamp' => Carbon::now(),
-                'status' => 'pending',
-                'notes' => 'Uscita da dashboard widget',
-            ]);
-
-            $this->updateData();
-
-            Notification::make()
-                ->title('Successo')
-                ->body('Uscita registrata alle '.Carbon::now()->format('H:i'))
-                ->success()
-                ->send();
-
-        } catch (\Exception $e) {
-            Notification::make()
-                ->title('Errore')
-                ->body('Errore durante la timbratura: '.$e->getMessage())
-                ->danger()
-                ->send();
+            return;
         }
+
+        $this->createWorkHour(WorkHourTypeEnum::CLOCK_OUT, 'Uscita registrata');
+    }
+
+    /**
+     * Create a work-hour entry.
+     */
+    private function createWorkHour(WorkHourTypeEnum $type, string $successMessage): void
+    {
+        $userId = Auth::id();
+
+        WorkHour::query()->create([
+            'employee_id' => $userId,
+            'type' => $type,
+            'timestamp' => Carbon::now(),
+            'status' => WorkHourStatusEnum::PENDING,
+            'notes' => $successMessage.' da dashboard widget',
+        ]);
+
+        $this->updateData();
+        $this->notifySuccess($successMessage.' alle '.Carbon::now()->format('H:i'));
+    }
+
+    /**
+     * Notifica di successo (DRY principle).
+     */
+    private function notifySuccess(string $message): void
+    {
+        Notification::make()->title('Successo')->body($message)->success()->send();
+    }
+
+    /**
+     * Notifica di avviso (DRY principle).
+     */
+    private function notifyWarning(string $message): void
+    {
+        Notification::make()->title('Attenzione')->body($message)->warning()->send();
+    }
+
+    /**
+     * Notifica di errore (DRY principle).
+     */
+    private function notifyError(string $message): void
+    {
+        Notification::make()->title('Errore')->body($message)->danger()->send();
     }
 }

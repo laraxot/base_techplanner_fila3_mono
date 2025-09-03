@@ -285,14 +285,14 @@ document.addEventListener('DOMContentLoaded', function() {
 Usage Examples:
 
 1. Basic upload:
-<x-sixteen::bootstrap-italia.upload 
+<x-pub_theme::bootstrap-italia.upload 
     name="document"
     file-info="PDF (Max 5MB)"
     accept=".pdf"
     required />
 
 2. Multiple file upload:
-<x-sixteen::bootstrap-italia.upload 
+<x-pub_theme::bootstrap-italia.upload 
     name="documents[]"
     :multiple="true"
     label="Upload documenti"
@@ -300,27 +300,27 @@ Usage Examples:
     accept=".pdf,.doc,.docx" />
 
 3. Upload in loading state:
-<x-sixteen::bootstrap-italia.upload 
+<x-pub_theme::bootstrap-italia.upload 
     state="loading"
     file-info="PDF (3.7MB)"
     label="documento.pdf"
     loading-text="Caricamento in corso..." />
 
 4. Upload in success state:
-<x-sixteen::bootstrap-italia.upload 
+<x-pub_theme::bootstrap-italia.upload 
     state="success"
     file-info="PDF (3.7MB)"
     label="documento.pdf"
     success-text="Caricamento completato" />
 
 5. Custom text and description:
-<x-sixteen::bootstrap-italia.upload 
+<x-pub_theme::bootstrap-italia.upload 
     drag-text="Trascina qui i tuoi file"
     select-text="oppure seleziona dal computer"
     description="Formati supportati: PDF, DOC, DOCX. Dimensione massima: 10MB per file" />
 
 6. Image upload with custom icon:
-<x-sixteen::bootstrap-italia.upload 
+<x-pub_theme::bootstrap-italia.upload 
     name="avatar"
     accept="image/*"
     icon-path="/assets/image-upload-icon.svg"

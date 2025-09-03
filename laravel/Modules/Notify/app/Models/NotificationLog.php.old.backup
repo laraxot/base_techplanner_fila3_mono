@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Modules\Notify\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Modules\Xot\Traits\Updater;
 use Modules\User\Models\Traits\HasTenants;
-========
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Model;
@@ -45,10 +45,8 @@ use Modules\Xot\Traits\Updater;
 class NotificationLog extends BaseModel
 {
     use HasFactory;
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
+
     use HasTenants;
-========
->>>>>>>> 8f3a81e (.):app/Models/notificationlog.php.up
     use Updater;
 
     public const STATUS_PENDING = 'pending';
@@ -59,7 +57,7 @@ class NotificationLog extends BaseModel
     public const STATUS_OPENED = 'opened';
     public const STATUS_CLICKED = 'clicked';
 
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
+
     /**
      * Tabella associata al modello.
      *
@@ -72,12 +70,12 @@ class NotificationLog extends BaseModel
      *
      * @var list<string>
      */
-========
+
     /** @var string */
     protected $table = 'notification_logs';
 
     /** @var array<int, string> */
->>>>>>>> 8f3a81e (.):app/Models/notificationlog.php.up
+
     protected $fillable = [
         'template_id',
         'notifiable_type',
@@ -110,16 +108,13 @@ class NotificationLog extends BaseModel
     {
         return $this->morphTo();
     }
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
+
     
     /**
      * Ottiene il template della notifica.
      *
      * @return BelongsTo
      */
-========
-
->>>>>>>> 8f3a81e (.):app/Models/notificationlog.php.up
     public function template(): BelongsTo
     {
         // Prova prima con MailTemplate
@@ -131,7 +126,7 @@ class NotificationLog extends BaseModel
         // Se non trova MailTemplate, prova con NotificationTemplate
         return $this->belongsTo(NotificationTemplate::class, 'template_id');
     }
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
+
     
     /**
      * Scope per filtrare per stato.
@@ -140,14 +135,10 @@ class NotificationLog extends BaseModel
      * @param string $status
      * @return \Illuminate\Database\Eloquent\Builder
      */
-========
-
->>>>>>>> 8f3a81e (.):app/Models/notificationlog.php.up
     public function scopeWithStatus($query, string $status)
     {
         return $query->where('status', $status);
     }
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
     
     /**
      * Scope per filtrare per canale.
@@ -156,14 +147,10 @@ class NotificationLog extends BaseModel
      * @param string $channel
      * @return \Illuminate\Database\Eloquent\Builder
      */
-========
-
->>>>>>>> 8f3a81e (.):app/Models/notificationlog.php.up
     public function scopeForChannel($query, string $channel)
     {
         return $query->where('channel', $channel);
     }
-<<<<<<<< HEAD:app/Models/NotificationLog.php.old
     
     /**
      * Scope per filtrare per tipo di notificabile.
@@ -172,9 +159,6 @@ class NotificationLog extends BaseModel
      * @param Model $notifiable
      * @return \Illuminate\Database\Eloquent\Builder
      */
-========
-
->>>>>>>> 8f3a81e (.):app/Models/notificationlog.php.up
     public function scopeForNotifiable($query, Model $notifiable)
     {
         return $query->where('notifiable_type', get_class($notifiable))

@@ -32,7 +32,6 @@ use Filament\Notifications\Notification as FilamentNotification;
 class SendSpatieEmailPage extends XotBasePage
 {
     public ?array $emailData = [];
-    protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';
     protected static string $view = 'notify::filament.pages.send-email';
     protected static ?string $cluster = Test::class;
 

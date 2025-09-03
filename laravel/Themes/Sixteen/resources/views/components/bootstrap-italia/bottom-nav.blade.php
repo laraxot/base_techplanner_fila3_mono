@@ -210,7 +210,7 @@
 Usage Examples:
 
 1. Basic bottom navigation:
-<x-sixteen::bootstrap-italia.bottom-nav 
+<x-pub_theme::bootstrap-italia.bottom-nav 
     :items="[
         ['label' => 'Home', 'url' => '/', 'icon' => 'it-home', 'active' => true],
         ['label' => 'Servizi', 'url' => '/servizi', 'icon' => 'it-settings'],
@@ -219,7 +219,7 @@ Usage Examples:
     ]" />
 
 2. Bottom nav with badges:
-<x-sixteen::bootstrap-italia.bottom-nav 
+<x-pub_theme::bootstrap-italia.bottom-nav 
     :badges="true"
     :items="[
         ['label' => 'Home', 'url' => '/', 'icon' => 'it-home'],
@@ -229,7 +229,7 @@ Usage Examples:
     ]" />
 
 3. Dark theme bottom navigation:
-<x-sixteen::bootstrap-italia.bottom-nav 
+<x-pub_theme::bootstrap-italia.bottom-nav 
     theme="dark"
     :items="[
         ['label' => 'Dashboard', 'url' => '/dashboard', 'icon' => 'it-chart-line'],
@@ -239,7 +239,7 @@ Usage Examples:
     ]" />
 
 4. Non-fixed bottom navigation (visible on desktop):
-<x-sixteen::bootstrap-italia.bottom-nav 
+<x-pub_theme::bootstrap-italia.bottom-nav 
     :fixed="false"
     :hidden-on-desktop="false"
     :items="[
@@ -250,7 +250,7 @@ Usage Examples:
     ]" />
 
 5. Bottom nav with mixed states:
-<x-sixteen::bootstrap-italia.bottom-nav 
+<x-pub_theme::bootstrap-italia.bottom-nav 
     :items="[
         ['label' => 'Principale', 'url' => '/', 'icon' => 'it-home', 'active' => true],
         ['label' => 'Ricerca', 'url' => '/ricerca', 'icon' => 'it-search'],
@@ -259,7 +259,7 @@ Usage Examples:
     ]" />
 
 6. Custom content with slot:
-<x-sixteen::bootstrap-italia.bottom-nav>
+<x-pub_theme::bootstrap-italia.bottom-nav>
     <a href="/" class="nav-link text-center d-flex flex-column align-items-center active">
         <svg class="icon icon-sm mb-1">
             <use href="#it-home"></use>
@@ -280,10 +280,10 @@ Usage Examples:
         </svg>
         <small>Azione</small>
     </button>
-</x-sixteen::bootstrap-italia.bottom-nav>
+</x-pub_theme::bootstrap-italia.bottom-nav>
 
 7. Administrative area navigation:
-<x-sixteen::bootstrap-italia.bottom-nav 
+<x-pub_theme::bootstrap-italia.bottom-nav 
     :badges="true"
     :items="[
         ['label' => 'Dashboard', 'url' => '/admin', 'icon' => 'it-chart-bar', 'active' => true],

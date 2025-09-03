@@ -10,31 +10,31 @@ I componenti del tema Sixteen sono progettati per implementare le **Linee Guida 
 Layout principale per le applicazioni web della PA.
 
 ```blade
-<x-sixteen::layout.app>
+<x-pub_theme::layout.app>
     <x-slot name="header">
-        <x-sixteen::header.main>
+        <x-pub_theme::header.main>
             <x-slot name="logo">
-                <x-sixteen::logo />
+                <x-pub_theme::logo />
             </x-slot>
             <x-slot name="navigation">
-                <x-sixteen::navigation.main />
+                <x-pub_theme::navigation.main />
             </x-slot>
-        </x-sixteen::header.main>
+        </x-pub_theme::header.main>
     </x-slot>
     
     <x-slot name="sidebar">
-        <x-sixteen::sidebar.main />
+        <x-pub_theme::sidebar.main />
     </x-slot>
     
     <x-slot name="footer">
-        <x-sixteen::footer.main />
+        <x-pub_theme::footer.main />
     </x-slot>
     
     <!-- Main content -->
     <main class="flex-1">
         {{ $slot }}
     </main>
-</x-sixteen::layout.app>
+</x-pub_theme::layout.app>
 ```
 
 **Proprietà:**
@@ -46,11 +46,11 @@ Layout principale per le applicazioni web della PA.
 Container responsive per contenuti centrati.
 
 ```blade
-<x-sixteen::layout.container size="lg">
+<x-pub_theme::layout.container size="lg">
     <div class="prose prose-lg max-w-none">
         {{ $slot }}
     </div>
-</x-sixteen::layout.container>
+</x-pub_theme::layout.container>
 ```
 
 **Sizes disponibili:**
@@ -66,7 +66,7 @@ Container responsive per contenuti centrati.
 Campo di input con validazione e accessibilità.
 
 ```blade
-<x-sixteen::form.input
+<x-pub_theme::form.input
     name="email"
     type="email"
     label="Indirizzo Email"
@@ -91,7 +91,7 @@ Campo di input con validazione e accessibilità.
 Campo select con opzioni dinamiche.
 
 ```blade
-<x-sixteen::form.select
+<x-pub_theme::form.select
     name="provincia"
     label="Provincia"
     :options="$province"
@@ -111,7 +111,7 @@ Campo select con opzioni dinamiche.
 Campo di testo multi-riga.
 
 ```blade
-<x-sixteen::form.textarea
+<x-pub_theme::form.textarea
     name="descrizione"
     label="Descrizione"
     placeholder="Inserisci una descrizione dettagliata"
@@ -125,7 +125,7 @@ Campo di testo multi-riga.
 Campo checkbox con label personalizzabile.
 
 ```blade
-<x-sixteen::form.checkbox
+<x-pub_theme::form.checkbox
     name="privacy"
     label="Accetto la privacy policy"
     required
@@ -137,7 +137,7 @@ Campo checkbox con label personalizzabile.
 Gruppo di radio button.
 
 ```blade
-<x-sixteen::form.radio-group
+<x-pub_theme::form.radio-group
     name="tipo_utente"
     label="Tipo di utente"
     :options="[
@@ -155,14 +155,14 @@ Gruppo di radio button.
 Pulsante per azioni principali.
 
 ```blade
-<x-sixteen::button.primary
+<x-pub_theme::button.primary
     type="submit"
     :disabled="$isLoading"
     wire:loading.attr="disabled"
 >
-    <x-sixteen::icon.spinner wire:loading />
+    <x-pub_theme::icon.spinner wire:loading />
     Conferma Operazione
-</x-sixteen::button.primary>
+</x-pub_theme::button.primary>
 ```
 
 **Varianti:**
@@ -177,7 +177,7 @@ Pulsante per azioni principali.
 Pulsante con icona.
 
 ```blade
-<x-sixteen::button.icon
+<x-pub_theme::button.icon
     variant="primary"
     icon="heroicon-o-plus"
     aria-label="Aggiungi elemento"
@@ -188,14 +188,14 @@ Pulsante con icona.
 Gruppo di pulsanti correlati.
 
 ```blade
-<x-sixteen::button.group>
-    <x-sixteen::button.secondary>
+<x-pub_theme::button.group>
+    <x-pub_theme::button.secondary>
         Annulla
-    </x-sixteen::button.secondary>
-    <x-sixteen::button.primary>
+    </x-pub_theme::button.secondary>
+    <x-pub_theme::button.primary>
         Salva
-    </x-sixteen::button.primary>
-</x-sixteen::button.group>
+    </x-pub_theme::button.primary>
+</x-pub_theme::button.group>
 ```
 
 ## Alert Components
@@ -204,48 +204,48 @@ Gruppo di pulsanti correlati.
 Alert per operazioni completate con successo.
 
 ```blade
-<x-sixteen::alert.success>
+<x-pub_theme::alert.success>
     <x-slot name="icon">
-        <x-sixteen::icon.check-circle />
+        <x-pub_theme::icon.check-circle />
     </x-slot>
     Operazione completata con successo
-</x-sixteen::alert.success>
+</x-pub_theme::alert.success>
 ```
 
 ### Warning Alert
 Alert per avvisi e informazioni importanti.
 
 ```blade
-<x-sixteen::alert.warning>
+<x-pub_theme::alert.warning>
     <x-slot name="icon">
-        <x-sixteen::icon.exclamation-triangle />
+        <x-pub_theme::icon.exclamation-triangle />
     </x-slot>
     Attenzione: alcuni dati potrebbero essere incompleti
-</x-sixteen::alert.warning>
+</x-pub_theme::alert.warning>
 ```
 
 ### Error Alert
 Alert per errori e problemi.
 
 ```blade
-<x-sixteen::alert.error>
+<x-pub_theme::alert.error>
     <x-slot name="icon">
-        <x-sixteen::icon.x-circle />
+        <x-pub_theme::icon.x-circle />
     </x-slot>
     Si è verificato un errore durante l'operazione
-</x-sixteen::alert.error>
+</x-pub_theme::alert.error>
 ```
 
 ### Info Alert
 Alert per informazioni generali.
 
 ```blade
-<x-sixteen::alert.info>
+<x-pub_theme::alert.info>
     <x-slot name="icon">
-        <x-sixteen::icon.information-circle />
+        <x-pub_theme::icon.information-circle />
     </x-slot>
     Informazione importante per l'utente
-</x-sixteen::alert.info>
+</x-pub_theme::alert.info>
 ```
 
 ## Card Components
@@ -254,7 +254,7 @@ Alert per informazioni generali.
 Card semplice per contenuti.
 
 ```blade
-<x-sixteen::card>
+<x-pub_theme::card>
     <x-slot name="header">
         <h3 class="text-lg font-semibold">Titolo Card</h3>
     </x-slot>
@@ -264,22 +264,22 @@ Card semplice per contenuti.
     </div>
     
     <x-slot name="footer">
-        <x-sixteen::button.group>
-            <x-sixteen::button.secondary>Annulla</x-sixteen::button.secondary>
-            <x-sixteen::button.primary>Salva</x-sixteen::button.primary>
-        </x-sixteen::button.group>
+        <x-pub_theme::button.group>
+            <x-pub_theme::button.secondary>Annulla</x-pub_theme::button.secondary>
+            <x-pub_theme::button.primary>Salva</x-pub_theme::button.primary>
+        </x-pub_theme::button.group>
     </x-slot>
-</x-sixteen::card>
+</x-pub_theme::card>
 ```
 
 ### Interactive Card
 Card con interazioni.
 
 ```blade
-<x-sixteen::card.interactive>
+<x-pub_theme::card.interactive>
     <x-slot name="header">
         <h3 class="text-lg font-semibold">Card Interattiva</h3>
-        <x-sixteen::button.icon
+        <x-pub_theme::button.icon
             variant="ghost"
             icon="heroicon-o-ellipsis-vertical"
             size="sm"
@@ -287,7 +287,7 @@ Card con interazioni.
     </x-slot>
     
     Contenuto della card interattiva
-</x-sixteen::card.interactive>
+</x-pub_theme::card.interactive>
 ```
 
 ## Navigation Components
@@ -296,40 +296,40 @@ Card con interazioni.
 Navigazione principale dell'applicazione.
 
 ```blade
-<x-sixteen::navigation.main>
-    <x-sixteen::navigation.item
+<x-pub_theme::navigation.main>
+    <x-pub_theme::navigation.item
         href="/dashboard"
         icon="heroicon-o-home"
         :active="request()->is('dashboard*')"
     >
         Dashboard
-    </x-sixteen::navigation.item>
+    </x-pub_theme::navigation.item>
     
-    <x-sixteen::navigation.item
+    <x-pub_theme::navigation.item
         href="/users"
         icon="heroicon-o-users"
         :active="request()->is('users*')"
     >
         Utenti
-    </x-sixteen::navigation.item>
-</x-sixteen::navigation.main>
+    </x-pub_theme::navigation.item>
+</x-pub_theme::navigation.main>
 ```
 
 ### Breadcrumb
 Navigazione a breadcrumb.
 
 ```blade
-<x-sixteen::navigation.breadcrumb>
-    <x-sixteen::navigation.breadcrumb-item href="/">
+<x-pub_theme::navigation.breadcrumb>
+    <x-pub_theme::navigation.breadcrumb-item href="/">
         Home
-    </x-sixteen::navigation.breadcrumb-item>
-    <x-sixteen::navigation.breadcrumb-item href="/users">
+    </x-pub_theme::navigation.breadcrumb-item>
+    <x-pub_theme::navigation.breadcrumb-item href="/users">
         Utenti
-    </x-sixteen::navigation.breadcrumb-item>
-    <x-sixteen::navigation.breadcrumb-item>
+    </x-pub_theme::navigation.breadcrumb-item>
+    <x-pub_theme::navigation.breadcrumb-item>
         Dettagli Utente
-    </x-sixteen::navigation.breadcrumb-item>
-</x-sixteen::navigation.breadcrumb>
+    </x-pub_theme::navigation.breadcrumb-item>
+</x-pub_theme::navigation.breadcrumb>
 ```
 
 ## Table Components
@@ -338,43 +338,43 @@ Navigazione a breadcrumb.
 Tabella dati con ordinamento e paginazione.
 
 ```blade
-<x-sixteen::table.data>
+<x-pub_theme::table.data>
     <x-slot name="header">
-        <x-sixteen::table.header-cell sortable="name">
+        <x-pub_theme::table.header-cell sortable="name">
             Nome
-        </x-sixteen::table.header-cell>
-        <x-sixteen::table.header-cell sortable="email">
+        </x-pub_theme::table.header-cell>
+        <x-pub_theme::table.header-cell sortable="email">
             Email
-        </x-sixteen::table.header-cell>
-        <x-sixteen::table.header-cell sortable="created_at">
+        </x-pub_theme::table.header-cell>
+        <x-pub_theme::table.header-cell sortable="created_at">
             Data Creazione
-        </x-sixteen::table.header-cell>
-        <x-sixteen::table.header-cell>
+        </x-pub_theme::table.header-cell>
+        <x-pub_theme::table.header-cell>
             Azioni
-        </x-sixteen::table.header-cell>
+        </x-pub_theme::table.header-cell>
     </x-slot>
     
     @foreach($users as $user)
-        <x-sixteen::table.row>
-            <x-sixteen::table.cell>
+        <x-pub_theme::table.row>
+            <x-pub_theme::table.cell>
                 {{ $user->name }}
-            </x-sixteen::table.cell>
-            <x-sixteen::table.cell>
+            </x-pub_theme::table.cell>
+            <x-pub_theme::table.cell>
                 {{ $user->email }}
-            </x-sixteen::table.cell>
-            <x-sixteen::table.cell>
+            </x-pub_theme::table.cell>
+            <x-pub_theme::table.cell>
                 {{ $user->created_at->format('d/m/Y') }}
-            </x-sixteen::table.cell>
-            <x-sixteen::table.cell>
-                <x-sixteen::button.icon
+            </x-pub_theme::table.cell>
+            <x-pub_theme::table.cell>
+                <x-pub_theme::button.icon
                     variant="ghost"
                     icon="heroicon-o-pencil"
                     size="sm"
                 />
-            </x-sixteen::table.cell>
-        </x-sixteen::table.row>
+            </x-pub_theme::table.cell>
+        </x-pub_theme::table.row>
     @endforeach
-</x-sixteen::table.data>
+</x-pub_theme::table.data>
 ```
 
 ## Modal Components
@@ -383,40 +383,40 @@ Tabella dati con ordinamento e paginazione.
 Modal semplice per contenuti.
 
 ```blade
-<x-sixteen::modal
+<x-pub_theme::modal
     name="confirm-delete"
     title="Conferma Eliminazione"
     description="Sei sicuro di voler eliminare questo elemento? Questa azione è irreversibile."
 >
     <x-slot name="footer">
-        <x-sixteen::button.group>
-            <x-sixteen::button.secondary wire:click="closeModal">
+        <x-pub_theme::button.group>
+            <x-pub_theme::button.secondary wire:click="closeModal">
                 Annulla
-            </x-sixteen::button.secondary>
-            <x-sixteen::button.danger wire:click="delete">
+            </x-pub_theme::button.secondary>
+            <x-pub_theme::button.danger wire:click="delete">
                 Elimina
-            </x-sixteen::button.danger>
-        </x-sixteen::button.group>
+            </x-pub_theme::button.danger>
+        </x-pub_theme::button.group>
     </x-slot>
-</x-sixteen::modal>
+</x-pub_theme::modal>
 ```
 
 ### Form Modal
 Modal con form integrato.
 
 ```blade
-<x-sixteen::modal.form
+<x-pub_theme::modal.form
     name="edit-user"
     title="Modifica Utente"
     wire:submit="save"
 >
-    <x-sixteen::form.input
+    <x-pub_theme::form.input
         name="name"
         label="Nome"
         wire:model="form.name"
     />
     
-    <x-sixteen::form.input
+    <x-pub_theme::form.input
         name="email"
         type="email"
         label="Email"
@@ -424,16 +424,16 @@ Modal con form integrato.
     />
     
     <x-slot name="footer">
-        <x-sixteen::button.group>
-            <x-sixteen::button.secondary wire:click="closeModal">
+        <x-pub_theme::button.group>
+            <x-pub_theme::button.secondary wire:click="closeModal">
                 Annulla
-            </x-sixteen::button.secondary>
-            <x-sixteen::button.primary type="submit">
+            </x-pub_theme::button.secondary>
+            <x-pub_theme::button.primary type="submit">
                 Salva
-            </x-sixteen::button.primary>
-        </x-sixteen::button.group>
+            </x-pub_theme::button.primary>
+        </x-pub_theme::button.group>
     </x-slot>
-</x-sixteen::modal.form>
+</x-pub_theme::modal.form>
 ```
 
 ## Icon Components
@@ -442,17 +442,17 @@ Modal con form integrato.
 Icone da Heroicons.
 
 ```blade
-<x-sixteen::icon.home />
-<x-sixteen::icon.user class="w-6 h-6" />
-<x-sixteen::icon.arrow-right class="text-blue-600" />
+<x-pub_theme::icon.home />
+<x-pub_theme::icon.user class="w-6 h-6" />
+<x-pub_theme::icon.arrow-right class="text-blue-600" />
 ```
 
 ### Custom Icons
 Icone personalizzate del tema.
 
 ```blade
-<x-sixteen::icon.logo class="w-8 h-8" />
-<x-sixteen::icon.flag-italy class="w-4 h-4" />
+<x-pub_theme::icon.logo class="w-8 h-8" />
+<x-pub_theme::icon.flag-italy class="w-4 h-4" />
 ```
 
 ## Utility Components
@@ -461,34 +461,34 @@ Icone personalizzate del tema.
 Indicatore di caricamento.
 
 ```blade
-<x-sixteen::loading.spinner />
-<x-sixteen::loading.spinner size="lg" />
-<x-sixteen::loading.spinner color="primary" />
+<x-pub_theme::loading.spinner />
+<x-pub_theme::loading.spinner size="lg" />
+<x-pub_theme::loading.spinner color="primary" />
 ```
 
 ### Empty State
 Stato vuoto per liste o contenuti.
 
 ```blade
-<x-sixteen::empty-state
+<x-pub_theme::empty-state
     icon="heroicon-o-document"
     title="Nessun documento trovato"
     description="Non ci sono documenti da visualizzare al momento."
 >
-    <x-sixteen::button.primary>
+    <x-pub_theme::button.primary>
         Crea Primo Documento
-    </x-sixteen::button.primary>
-</x-sixteen::empty-state>
+    </x-pub_theme::button.primary>
+</x-pub_theme::empty-state>
 ```
 
 ### Badge
 Badge per etichette e stati.
 
 ```blade
-<x-sixteen::badge.success>Attivo</x-sixteen::badge.success>
-<x-sixteen::badge.warning>In Attesa</x-sixteen::badge.warning>
-<x-sixteen::badge.error>Errore</x-sixteen::badge.error>
-<x-sixteen::badge.info>Info</x-sixteen::badge.info>
+<x-pub_theme::badge.success>Attivo</x-pub_theme::badge.success>
+<x-pub_theme::badge.warning>In Attesa</x-pub_theme::badge.warning>
+<x-pub_theme::badge.error>Errore</x-pub_theme::badge.error>
+<x-pub_theme::badge.info>Info</x-pub_theme::badge.info>
 ```
 
 ## Customizzazione

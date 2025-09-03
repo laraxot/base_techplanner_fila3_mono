@@ -64,17 +64,17 @@ route('pages.view', ['slug' => 'legal-notes'])
         <ul>
             <li>
                 <a href="{{ route('pages.view', ['slug' => 'privacy']) }}">
-                    {{ __('sixteen::footer.privacy') }}
+                    {{ __('pub_theme::footer.privacy') }}
                 </a>
             </li>
             <li>
                 <a href="{{ route('pages.view', ['slug' => 'accessibility']) }}">
-                    {{ __('sixteen::footer.accessibility') }}
+                    {{ __('pub_theme::footer.accessibility') }}
                 </a>
             </li>
             <li>
                 <a href="{{ route('pages.view', ['slug' => 'help']) }}">
-                    {{ __('sixteen::footer.help') }}
+                    {{ __('pub_theme::footer.help') }}
                 </a>
             </li>
         </ul>

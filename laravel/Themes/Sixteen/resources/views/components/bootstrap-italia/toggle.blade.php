@@ -147,32 +147,32 @@
 Usage Examples:
 
 1. Basic toggle:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle1"
     name="notifications"
     label="Abilita notifiche" />
 
 2. Checked toggle:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle2"
     name="auto_save"
     label="Salvataggio automatico"
     :checked="true" />
 
 3. Disabled toggle:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle3"
     name="premium_feature"
     label="Funzionalità premium"
     :disabled="true" />
 
 4. Inline toggles:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle4"
     name="setting1"
     label="Impostazione 1"
     :inline="true" />
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle5"
     name="setting2"
     label="Impostazione 2"
@@ -180,7 +180,7 @@ Usage Examples:
     :lever-right="true" />
 
 5. Grouped toggles with fieldset:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     legend="Gruppo di toggle"
     :inline="true"
     :toggles="[
@@ -202,27 +202,27 @@ Usage Examples:
     ]" />
 
 6. Simple grouped toggles:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     :toggles="[
         ['id' => 'email_notifications', 'label' => 'Notifiche email', 'name' => 'notifications[email]'],
         ['id' => 'sms_notifications', 'label' => 'Notifiche SMS', 'name' => 'notifications[sms]']
     ]" />
 
 7. Toggle with custom value:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     name="consent"
     label="Accetto i termini e condizioni"
     value="accepted"
     :required="true" />
 
 8. Toggle with slot content:
-<x-sixteen::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
     name="custom_toggle"
     label="Toggle personalizzato">
     <small class="form-text text-muted">
         Informazioni aggiuntive sul toggle
     </small>
-</x-sixteen::bootstrap-italia.toggle>
+</x-pub_theme::bootstrap-italia.toggle>
 
 Bootstrap Italia Classes Reference:
 - .form-check: Container for form check elements

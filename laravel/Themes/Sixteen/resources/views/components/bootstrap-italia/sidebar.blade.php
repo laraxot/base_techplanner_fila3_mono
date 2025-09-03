@@ -162,7 +162,7 @@
 Usage Examples:
 
 1. Simple sidebar with header:
-<x-sixteen::bootstrap-italia.sidebar 
+<x-pub_theme::bootstrap-italia.sidebar 
     title="Sezione del sito"
     :links="[
         ['label' => 'Link lista 1', 'url' => '/link1', 'active' => true],
@@ -172,7 +172,7 @@ Usage Examples:
     ]" />
 
 2. Sidebar with icon in header:
-<x-sixteen::bootstrap-italia.sidebar 
+<x-pub_theme::bootstrap-italia.sidebar 
     title="Documenti"
     subtitle="Area riservata"
     header-icon="it-folder"
@@ -181,7 +181,7 @@ Usage Examples:
     :links="$documentLinks" />
 
 3. Secondary styled sidebar:
-<x-sixteen::bootstrap-italia.sidebar 
+<x-pub_theme::bootstrap-italia.sidebar 
     title="Menu secondario"
     :secondary="true"
     :links="[
@@ -191,7 +191,7 @@ Usage Examples:
     ]" />
 
 4. Nested sidebar navigation:
-<x-sixteen::bootstrap-italia.sidebar 
+<x-pub_theme::bootstrap-italia.sidebar 
     title="Amministrazione"
     :nested="true"
     :links="[
@@ -223,13 +223,13 @@ Usage Examples:
     ]" />
 
 5. Dark theme sidebar:
-<x-sixteen::bootstrap-italia.sidebar 
+<x-pub_theme::bootstrap-italia.sidebar 
     title="Navigazione"
     :dark="true"
     :links="$navigationLinks" />
 
 6. Sidebar with mixed states:
-<x-sixteen::bootstrap-italia.sidebar 
+<x-pub_theme::bootstrap-italia.sidebar 
     title="Menu completo"
     :links="[
         ['label' => 'Home', 'url' => '/', 'icon' => 'it-home', 'active' => true],
@@ -239,7 +239,7 @@ Usage Examples:
     ]" />
 
 7. Custom content with slot:
-<x-sixteen::bootstrap-italia.sidebar title="Menu personalizzato">
+<x-pub_theme::bootstrap-italia.sidebar title="Menu personalizzato">
     <ul class="link-list">
         <li class="list-item active">
             <a href="#" class="list-link">
@@ -259,7 +259,7 @@ Usage Examples:
     <div class="mt-3">
         <button class="btn btn-primary btn-sm">Azione personalizzata</button>
     </div>
-</x-sixteen::bootstrap-italia.sidebar>
+</x-pub_theme::bootstrap-italia.sidebar>
 
 Layout Integration:
 Use sidebar in a layout with main content:
@@ -267,7 +267,7 @@ Use sidebar in a layout with main content:
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-lg-3">
-            <x-sixteen::bootstrap-italia.sidebar ... />
+            <x-pub_theme::bootstrap-italia.sidebar ... />
         </div>
         <div class="col-12 col-lg-9">
             <!-- Main content -->

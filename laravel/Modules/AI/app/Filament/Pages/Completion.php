@@ -27,8 +27,6 @@ class Completion extends XotBasePage implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
     protected static string $view = 'ai::filament.pages.completion';
 
     public ?array $completionData = [];

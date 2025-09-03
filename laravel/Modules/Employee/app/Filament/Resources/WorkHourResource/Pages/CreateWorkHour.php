@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Enums\WorkHourStatusEnum;
+use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
 class CreateWorkHour extends XotBaseCreateRecord
@@ -16,6 +18,7 @@ class CreateWorkHour extends XotBaseCreateRecord
 
     protected function getRedirectUrl(): string
     {
+        /** @var string */
         return $this->getResource()::getUrl('index');
     }
 
@@ -23,7 +26,7 @@ class CreateWorkHour extends XotBaseCreateRecord
     {
         // Set default status if not provided
         if (! isset($data['status'])) {
-            $data['status'] = WorkHour::STATUS_PENDING;
+            $data['status'] = WorkHourStatusEnum::PENDING->value;
         }
 
         return $data;
@@ -34,25 +37,34 @@ class CreateWorkHour extends XotBaseCreateRecord
         $data = $this->form->getState();
 
         // Validate if this entry is allowed based on the last entry
-        $timestamp = Carbon::parse($data['timestamp']);
-        $lastEntry = WorkHour::getLastEntryForEmployee($data['employee_id'], $timestamp);
-        $expectedAction = WorkHour::getNextAction($data['employee_id'], $timestamp);
+        $timestampValue = $data['timestamp'] ?? null;
+        if (!is_string($timestampValue) && !($timestampValue instanceof \DateTimeInterface)) {
+            throw new \InvalidArgumentException('Invalid timestamp format');
+        }
+        
+        $employeeIdValue = $data['employee_id'] ?? null;
+        if (!is_numeric($employeeIdValue)) {
+            throw new \InvalidArgumentException('Invalid employee ID');
+        }
+        $employeeId = (int) $employeeIdValue;
 
-        if ($data['type'] !== $expectedAction) {
-            $lastEntryType = $lastEntry ? match ($lastEntry->type) {
-                WorkHour::TYPE_CLOCK_IN => 'Clock In',
-                WorkHour::TYPE_CLOCK_OUT => 'Clock Out',
-                WorkHour::TYPE_BREAK_START => 'Break Start',
-                WorkHour::TYPE_BREAK_END => 'Break End',
-                default => $lastEntry->type,
+        $timestamp = Carbon::parse($timestampValue);
+        $lastEntry = WorkHour::getLastEntryForEmployee($employeeId, $timestamp);
+        $expectedAction = WorkHour::getNextAction($employeeId, $timestamp);
+
+        if ($data['type'] !== $expectedAction->value) {
+            $lastEntryType = $lastEntry ? (string) match ($lastEntry->type) {
+                WorkHourTypeEnum::CLOCK_IN => 'Clock In',
+                WorkHourTypeEnum::CLOCK_OUT => 'Clock Out',
+                WorkHourTypeEnum::BREAK_START => 'Break Start',
+                WorkHourTypeEnum::BREAK_END => 'Break End',
             } : 'None';
 
-            $expectedActionLabel = match ($expectedAction) {
-                WorkHour::TYPE_CLOCK_IN => 'Clock In',
-                WorkHour::TYPE_CLOCK_OUT => 'Clock Out',
-                WorkHour::TYPE_BREAK_START => 'Break Start',
-                WorkHour::TYPE_BREAK_END => 'Break End',
-                default => $expectedAction,
+            $expectedActionLabel = (string) match ($expectedAction) {
+                WorkHourTypeEnum::CLOCK_IN => 'Clock In',
+                WorkHourTypeEnum::CLOCK_OUT => 'Clock Out',
+                WorkHourTypeEnum::BREAK_START => 'Break Start',
+                WorkHourTypeEnum::BREAK_END => 'Break End',
             };
 
             Notification::make()
@@ -65,7 +77,9 @@ class CreateWorkHour extends XotBaseCreateRecord
         }
 
         // Check for duplicate entries within the same minute
-        $existingEntry = WorkHour::where('employee_id', $data['employee_id'])
+        /** @var WorkHour|null $existingEntry */
+        $existingEntry = WorkHour::query()
+            ->where('employee_id', $employeeId)
             ->where('timestamp', $timestamp)
             ->where('type', $data['type'])
             ->first();

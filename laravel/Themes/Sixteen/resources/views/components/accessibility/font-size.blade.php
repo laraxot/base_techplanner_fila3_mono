@@ -42,10 +42,10 @@
     }"
     class="flex items-center space-x-2"
     role="group"
-    aria-label="{{ __('sixteen::accessibility.font_size_adjuster') }}"
+    aria-label="{{ __('pub_theme::accessibility.font_size_adjuster') }}"
 >
     <span class="sr-only">
-        {{ __('sixteen::accessibility.current_font_size') }}: 
+        {{ __('pub_theme::accessibility.current_font_size') }}: 
         <span x-text="Math.round(fontSize * 100)"></span>%
     </span>
     
@@ -57,7 +57,7 @@
             'text-gray-700 hover:text-blue-600': fontSize > {{ $minSize }},
         }"
         class="p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        :aria-label="__('sixteen::accessibility.decrease_font_size')"
+        :aria-label="__('pub_theme::accessibility.decrease_font_size')"
         :aria-disabled="fontSize <= {{ $minSize }}"
     >
         <x-filament::icon name="heroicon-o-minus" class="w-4 h-4" />
@@ -79,7 +79,7 @@
             'text-gray-700 hover:text-blue-600': fontSize < {{ $maxSize }},
         }"
         class="p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        :aria-label="__('sixteen::accessibility.increase_font_size')"
+        :aria-label="__('pub_theme::accessibility.increase_font_size')"
         :aria-disabled="fontSize >= {{ $maxSize }}"
     >
         <x-filament::icon name="heroicon-o-plus" class="w-4 h-4" />
@@ -93,7 +93,7 @@
             'text-gray-700 hover:text-blue-600': fontSize !== {{ $defaultSize }},
         }"
         class="p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        :aria-label="__('sixteen::accessibility.reset_font_size')"
+        :aria-label="__('pub_theme::accessibility.reset_font_size')"
         :aria-disabled="fontSize === {{ $defaultSize }}"
     >
         <x-filament::icon name="heroicon-o-arrow-path" class="w-4 h-4" />

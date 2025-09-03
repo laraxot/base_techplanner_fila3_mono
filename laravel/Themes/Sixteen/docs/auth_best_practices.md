@@ -36,9 +36,9 @@ php artisan config:clear
 <x-pub_theme::ui.text-link href="/register">Register</x-pub_theme::ui.text-link>
 
 <!-- ❌ ERRATO per temi -->
-<x-sixteen::layouts.main>
-<x-sixteen::ui.logo class="w-auto h-10" />
-<x-sixteen::ui.text-link href="/register">Register</x-sixteen::ui.text-link>
+<x-pub_theme::layouts.main>
+<x-pub_theme::ui.logo class="w-auto h-10" />
+<x-pub_theme::ui.text-link href="/register">Register</x-pub_theme::ui.text-link>
 ```
 
 ### Verifica Registrazione Tema:

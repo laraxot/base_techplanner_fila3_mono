@@ -63,12 +63,4 @@ class MediaConvertResource extends XotBaseResource
         ];
     }
 
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListMediaConverts::route('/'),
-            'create' => Pages\CreateMediaConvert::route('/create'),
-            'edit' => Pages\EditMediaConvert::route('/{record}/edit'),
-        ];
-    }
 }

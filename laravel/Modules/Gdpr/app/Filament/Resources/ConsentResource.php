@@ -28,27 +28,6 @@ class ConsentResource extends XotBaseResource
         ];
     }
 
-    public function getTableColumns(): array
-    {
-        return [
-            Tables\Columns\TextColumn::make('id')
-
-                ->searchable(),
-            Tables\Columns\TextColumn::make('treatment.name')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('subject_id')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
-            Tables\Columns\TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
-        ];
-    }
-
     public static function getPages(): array
     {
         return [

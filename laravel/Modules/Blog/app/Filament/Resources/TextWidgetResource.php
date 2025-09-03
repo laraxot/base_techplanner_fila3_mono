@@ -61,28 +61,6 @@ class TextWidgetResource extends XotBaseResource
         ];
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('key'),
-                Tables\Columns\IconColumn::make('active')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-            ])
-            ->filters([
-            ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
-    }
-
     public static function getRelations(): array
     {
         return [

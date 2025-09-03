@@ -30,7 +30,6 @@ use Filament\Notifications\Notification as FilamentNotification;
 class SendWhatsAppPage extends XotBasePage
 {
     public ?array $whatsappData = [];
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
     protected static string $view = 'notify::filament.pages.send-whatsapp';
     protected static ?string $cluster = Test::class;
     

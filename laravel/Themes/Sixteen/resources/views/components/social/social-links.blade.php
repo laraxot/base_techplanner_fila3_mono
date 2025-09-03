@@ -60,7 +60,7 @@
 
 <nav 
     class="{{ $variantClasses[$variant] }}" 
-    aria-label="{{ __('sixteen::social.follow_us') }}"
+    aria-label="{{ __('pub_theme::social.follow_us') }}"
 >
     @foreach($links as $platform => $url)
         @if(isset($socialPlatforms[$platform]) && $url)
@@ -71,7 +71,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="{{ $sizeClasses[$size] }} {{ $platformConfig['bg'] }} {{ $platformConfig['color'] }} rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-current focus:ring-offset-2"
-                :aria-label="__('sixteen::social.follow_on', ['platform' => $platformConfig['name']])"
+                :aria-label="__('pub_theme::social.follow_on', ['platform' => $platformConfig['name']])"
             >
                 <x-filament::icon 
                     :name="$platformConfig['icon']" 
@@ -79,7 +79,7 @@
                 />
                 
                 <span class="sr-only">
-                    {{ __('sixteen::social.follow_on', ['platform' => $platformConfig['name']]) }}
+                    {{ __('pub_theme::social.follow_on', ['platform' => $platformConfig['name']]) }}
                 </span>
             </a>
         @endif

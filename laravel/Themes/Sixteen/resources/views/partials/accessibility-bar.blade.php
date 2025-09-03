@@ -6,7 +6,7 @@
 
 <aside 
     class="bg-gray-100 border-b border-gray-200 px-4 py-2"
-    aria-label="{{ __('sixteen::accessibility.accessibility_tools') }}"
+    aria-label="{{ __('pub_theme::accessibility.accessibility_tools') }}"
     role="region"
 >
     <div class="container-italia mx-auto">
@@ -18,7 +18,7 @@
                     class="w-5 h-5 text-blue-600"
                 />
                 <span class="text-sm font-medium text-gray-700">
-                    {{ __('sixteen::accessibility.accessibility_tools') }}
+                    {{ __('pub_theme::accessibility.accessibility_tools') }}
                 </span>
             </div>
 
@@ -28,20 +28,20 @@
                 <div class="flex items-center space-x-2">
                     @if($showLabels)
                         <span class="text-sm text-gray-600">
-                            {{ __('sixteen::accessibility.high_contrast') }}:
+                            {{ __('pub_theme::accessibility.high_contrast') }}:
                         </span>
                     @endif
-                    <x-sixteen::components.accessibility.contrast-toggle />
+                    <x-pub_theme::accessibility.contrast-toggle />
                 </div>
 
                 {{-- Regolatore dimensione caratteri --}}
                 <div class="flex items-center space-x-2">
                     @if($showLabels)
                         <span class="text-sm text-gray-600">
-                            {{ __('sixteen::accessibility.font_size') }}:
+                            {{ __('pub_theme::accessibility.font_size') }}:
                         </span>
                     @endif
-                    <x-sixteen::components.accessibility.font-size />
+                    <x-pub_theme::accessibility.font-size />
                 </div>
 
                 {{-- Link accessibilità --}}
@@ -49,17 +49,17 @@
                     <a
                         href="{{ route('pages.view', ['slug' => 'accessibility']) }}"
                         class="text-sm text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                        :aria-label="__('sixteen::accessibility.accessibility_statement')"
+                        :aria-label="__('pub_theme::accessibility.accessibility_statement')"
                     >
-                        {{ __('sixteen::accessibility.accessibility_statement') }}
+                        {{ __('pub_theme::accessibility.accessibility_statement') }}
                     </a>
                     
                     <a
                         href="{{ route('pages.view', ['slug' => 'privacy']) }}"
                         class="text-sm text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                        :aria-label="__('sixteen::accessibility.privacy_policy')"
+                        :aria-label="__('pub_theme::accessibility.privacy_policy')"
                     >
-                        {{ __('sixteen::accessibility.privacy_policy') }}
+                        {{ __('pub_theme::accessibility.privacy_policy') }}
                     </a>
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <button
                 @click="$el.parentElement.parentElement.style.display = 'none'"
                 class="p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                :aria-label="__('sixteen::accessibility.close_accessibility_bar')"
+                :aria-label="__('pub_theme::accessibility.close_accessibility_bar')"
             >
                 <x-filament::icon name="heroicon-o-x-mark" class="w-4 h-4" />
             </button>
@@ -77,7 +77,7 @@
 </aside>
 
 {{-- Skiplinks --}}
-<x-sixteen::components.accessibility.skiplinks />
+<x-pub_theme::accessibility.skiplinks />
 
 {{-- Script per preferenze sistema --}}
 <script>

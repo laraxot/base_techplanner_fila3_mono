@@ -143,42 +143,42 @@
 Usage Examples:
 
 1. Basic notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notification standard" />
 
 2. Success notification with message:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Operazione completata"
     message="I dati sono stati salvati correttamente."
     type="success" />
 
 3. Error notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Errore durante il salvataggio"
     message="Si è verificato un errore imprevisto. Riprova più tardi."
     type="error" />
 
 4. Info notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Informazione importante"
     message="Il sistema sarà in manutenzione dalle 02:00 alle 04:00."
     type="info" />
 
 5. Warning notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Attenzione"
     message="La sessione scadrà tra 5 minuti."
     type="warning" />
 
 6. Dismissible notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica eliminabile"
     message="Puoi chiudere questa notifica cliccando sulla X."
     type="info"
     :dismissible="true" />
 
 7. Auto-hide notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica temporanea"
     message="Questa notifica scomparirà automaticamente dopo 3 secondi."
     type="success"
@@ -186,39 +186,39 @@ Usage Examples:
     :delay="3000" />
 
 8. Fixed position notifications:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica fissa in alto"
     message="Questa notifica è posizionata in alto nella pagina."
     type="info"
     position="top-fix" />
 
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica fissa in basso"
     message="Questa notifica è posizionata in basso nella pagina."
     type="warning"
     position="bottom-fix" />
 
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica fissa a destra"
     message="Questa notifica è posizionata a destra nella pagina."
     type="success"
     position="right-fix" />
 
 9. Notification without icon:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica senza icona"
     message="Questa notifica non ha l'icona."
     :with-icon="false" />
 
 10. Custom icon notification:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica con icona personalizzata"
     message="Questa notifica usa un'icona personalizzata."
     type="info"
     custom-icon="it-star-outline" />
 
 11. Complex notification with slot content:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Aggiornamento disponibile"
     type="info"
     :dismissible="true">
@@ -227,10 +227,10 @@ Usage Examples:
         <button class="btn btn-primary btn-sm me-2">Aggiorna ora</button>
         <button class="btn btn-outline-secondary btn-sm">Ricorda più tardi</button>
     </div>
-</x-sixteen::bootstrap-italia.notifiche>
+</x-pub_theme::bootstrap-italia.notifiche>
 
 12. Form validation notifications:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Errori di validazione"
     type="error"
     :dismissible="true">
@@ -239,17 +239,17 @@ Usage Examples:
         <li>La password deve essere di almeno 8 caratteri</li>
         <li>I termini e condizioni devono essere accettati</li>
     </ul>
-</x-sixteen::bootstrap-italia.notifiche>
+</x-pub_theme::bootstrap-italia.notifiche>
 
 13. System status notifications:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Sistema operativo"
     message="Tutti i servizi funzionano correttamente."
     type="success"
     position="top-fix" />
 
 14. Data processing notifications:
-<x-sixteen::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Elaborazione in corso"
     type="info"
     :auto-hide="false">
@@ -259,23 +259,23 @@ Usage Examples:
         </div>
         <span>I tuoi dati sono in fase di elaborazione...</span>
     </div>
-</x-sixteen::bootstrap-italia.notifiche>
+</x-pub_theme::bootstrap-italia.notifiche>
 
 15. Multiple notifications stack:
 <div class="notifications-container">
-    <x-sixteen::bootstrap-italia.notifiche 
+    <x-pub_theme::bootstrap-italia.notifiche 
         title="Messaggio 1"
         type="success"
         :dismissible="true"
         class="mb-2" />
     
-    <x-sixteen::bootstrap-italia.notifiche 
+    <x-pub_theme::bootstrap-italia.notifiche 
         title="Messaggio 2"
         type="warning"
         :dismissible="true"
         class="mb-2" />
     
-    <x-sixteen::bootstrap-italia.notifiche 
+    <x-pub_theme::bootstrap-italia.notifiche 
         title="Messaggio 3"
         type="info"
         :dismissible="true" />

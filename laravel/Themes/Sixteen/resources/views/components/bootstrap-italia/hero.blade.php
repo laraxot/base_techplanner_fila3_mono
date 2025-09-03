@@ -119,7 +119,7 @@
 Usage Examples:
 
 1. Basic text hero:
-<x-sixteen::bootstrap-italia.hero 
+<x-pub_theme::bootstrap-italia.hero 
     title="Titolo della sezione"
     subtitle="Titolo occhiello"
     description="Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras."
@@ -127,14 +127,14 @@ Usage Examples:
     cta-url="/action" />
 
 2. Image-only hero:
-<x-sixteen::bootstrap-italia.hero 
+<x-pub_theme::bootstrap-italia.hero 
     type="image"
     image="/path/to/hero-image.jpg"
     image-alt="Descrizione immagine"
     image-title="Titolo immagine" />
 
 3. Hero with background image and overlay:
-<x-sixteen::bootstrap-italia.hero 
+<x-pub_theme::bootstrap-italia.hero 
     type="background"
     title="Titolo con sfondo"
     description="Testo sovrapposto all'immagine di sfondo"
@@ -143,29 +143,29 @@ Usage Examples:
     cta-text="Scopri di più" />
 
 4. Centered hero:
-<x-sixteen::bootstrap-italia.hero 
+<x-pub_theme::bootstrap-italia.hero 
     title="Titolo Centrato"
     description="Contenuto centrato nella pagina"
     :centered="true"
     bg-class="bg-light" />
 
 5. Small hero:
-<x-sixteen::bootstrap-italia.hero 
+<x-pub_theme::bootstrap-italia.hero 
     title="Hero Piccolo"
     :small="true"
     cta-text="Azione"
     cta-class="btn btn-primary" />
 
 6. Custom content with slot:
-<x-sixteen::bootstrap-italia.hero title="Titolo personalizzato">
+<x-pub_theme::bootstrap-italia.hero title="Titolo personalizzato">
     <div class="custom-content">
         <p>Contenuto personalizzato nel slot</p>
         <button class="btn btn-success">Azione custom</button>
     </div>
-</x-sixteen::bootstrap-italia.hero>
+</x-pub_theme::bootstrap-italia.hero>
 
 7. Different heading level:
-<x-sixteen::bootstrap-italia.hero 
+<x-pub_theme::bootstrap-italia.hero 
     title="Sottosezione"
     heading-level="h2"
     bg-class="bg-secondary" />

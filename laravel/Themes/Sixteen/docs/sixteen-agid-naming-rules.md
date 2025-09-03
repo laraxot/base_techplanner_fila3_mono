@@ -145,7 +145,7 @@ Tutti i blocchi nella stessa categoria condividono **identici props**:
 <x-pub_theme::blocks.forms.login-card-agid />
 <x-pub_theme::layouts.auth-agid />
 <x-pub_theme::components.button-agid />
-<x-sixteen::agid.login-form />
+<x-pub_theme::agid.login-form />
 ```
 
 ### **Logica Errata**

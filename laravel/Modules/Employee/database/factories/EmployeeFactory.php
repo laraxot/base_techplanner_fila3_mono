@@ -15,7 +15,7 @@ class EmployeeFactory extends Factory
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var class-string<\Modules\Employee\Models\Employee>
      */
     protected $model = Employee::class;
 
@@ -30,8 +30,8 @@ class EmployeeFactory extends Factory
             'user_id' => null, // Will be set when needed
             'employee_code' => 'EMP'.$this->faker->unique()->numberBetween(1000, 9999),
             'personal_data' => [
-                'first_name' => $this->faker->firstName(),
-                'last_name' => $this->faker->lastName(),
+                'first_name' => $this->faker->name(),
+                'last_name' => $this->faker->name(),
                 'date_of_birth' => $this->faker->date(),
                 'gender' => $this->faker->randomElement(['M', 'F', 'O']),
                 'nationality' => $this->faker->countryCode(),
@@ -43,7 +43,7 @@ class EmployeeFactory extends Factory
                 'address' => [
                     'street' => $this->faker->streetAddress(),
                     'city' => $this->faker->city(),
-                    'state' => $this->faker->state(),
+                    'state' => 'IT',
                     'postal_code' => $this->faker->postcode(),
                     'country' => $this->faker->country(),
                 ],

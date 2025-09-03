@@ -7,6 +7,8 @@ namespace Modules\Employee\Filament\Resources\WorkHourResource\Widgets;
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Xot\Filament\Widgets\XotBaseStatsOverviewWidget;
 
 class WorkHourStatsWidget extends XotBaseStatsOverviewWidget
@@ -18,19 +20,21 @@ class WorkHourStatsWidget extends XotBaseStatsOverviewWidget
         $thisWeekEnd = Carbon::now()->endOfWeek();
 
         // Get stats for today
-        $todayTotal = WorkHour::whereDate('timestamp', $today)->count();
-        $todayClockIns = WorkHour::where('type', WorkHour::TYPE_CLOCK_IN)
+        $todayTotal = WorkHour::query()->whereDate('timestamp', $today)->count();
+        $todayClockIns = WorkHour::query()
+            ->where('type', WorkHourTypeEnum::CLOCK_IN->value)
             ->whereDate('timestamp', $today)
             ->count();
-        $todayClockOuts = WorkHour::where('type', WorkHour::TYPE_CLOCK_OUT)
+        $todayClockOuts = WorkHour::query()
+            ->where('type', WorkHourTypeEnum::CLOCK_OUT->value)
             ->whereDate('timestamp', $today)
             ->count();
 
         // Get stats for this week
-        $weekTotal = WorkHour::whereBetween('timestamp', [$thisWeekStart, $thisWeekEnd])->count();
+        $weekTotal = WorkHour::query()->whereBetween('timestamp', [$thisWeekStart, $thisWeekEnd])->count();
 
         // Get pending approvals count
-        $pendingApprovals = WorkHour::where('status', WorkHour::STATUS_PENDING)->count();
+        $pendingApprovals = WorkHour::query()->where('status', WorkHourStatusEnum::PENDING->value)->count();
 
         return [
             Stat::make('Today\'s Entries', $todayTotal)

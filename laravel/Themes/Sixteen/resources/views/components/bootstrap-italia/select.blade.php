@@ -116,7 +116,7 @@
 Usage Examples:
 
 1. Basic select:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     id="defaultSelect"
     label="Etichetta"
     :options="[
@@ -128,19 +128,19 @@ Usage Examples:
     ]" />
 
 2. Select with custom placeholder:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     label="Seleziona categoria"
     placeholder="Seleziona una categoria"
     :options="['cat1' => 'Categoria 1', 'cat2' => 'Categoria 2']" />
 
 3. Disabled select:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     label="Etichetta"
     :disabled="true"
     :options="['Value 1' => 'Opzione 1']" />
 
 4. Select with optgroups:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     id="defaultSelectGroup"
     label="Etichetta"
     :optgroups="[
@@ -155,21 +155,21 @@ Usage Examples:
     ]" />
 
 5. Required select with help text:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     label="Campo obbligatorio"
     :required="true"
     help-text="Seleziona una delle opzioni disponibili"
     :options="['option1' => 'Prima opzione', 'option2' => 'Seconda opzione']" />
 
 6. Multiple select:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     label="Selezione multipla"
     :multiple="true"
     name="categories[]"
     :options="$categories" />
 
 7. Select with pre-selected value:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     label="Con valore selezionato"
     selected="Value 2"
     :options="[
@@ -179,7 +179,7 @@ Usage Examples:
     ]" />
 
 8. Advanced options array format:
-<x-sixteen::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
     label="Opzioni avanzate"
     :options="[
         ['value' => 'opt1', 'label' => 'Opzione 1', 'selected' => true],

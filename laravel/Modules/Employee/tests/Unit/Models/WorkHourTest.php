@@ -43,7 +43,7 @@ test('work hour has casts defined', function () {
 });
 
 test('work hour has proper table name', function () {
-    expect($this->workHour->getTable())->toBe('time_entries');
+    expect($this->workHour->getTable())->toBe('work_hours');
 });
 
 test('work hour belongs to employee', function () {

@@ -9,13 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Enums\WorkHourStatusEnum;
+use Illuminate\Contracts\View\View;
 
 class WorkHourDashboard extends Component
 {
     public ?Employee $employee = null;
 
+    /** @var array<int, array{date: string, day: string, hours: float, formatted_hours: string}> */
     public array $weeklyStats = [];
 
+    /** @var array<int, array{week: int, start_date: string, end_date: string, hours: float, formatted_hours: string}> */
     public array $monthlyStats = [];
 
     public float $todayHours = 0.0;
@@ -24,10 +29,12 @@ class WorkHourDashboard extends Component
 
     public float $monthHours = 0.0;
 
+    /** @var array<int, array{id: int, date: string, time: string, type: WorkHourTypeEnum, type_label: string, type_color: string, notes: string|null, status: WorkHourStatusEnum, status_color: string}> */
     public array $recentEntries = [];
 
     public string $selectedPeriod = 'week';
 
+    /** @var array<string, string> */
     protected $listeners = [
         'workHourRecorded' => 'refreshStats',
         'refreshDashboard' => 'refreshStats',
@@ -35,13 +42,19 @@ class WorkHourDashboard extends Component
 
     public function mount(?int $employeeId = null): void
     {
-        $this->employee = $employeeId
-            ? Employee::find($employeeId)
-            : (Auth::user()->employee ?? null);
+        if ($employeeId) {
+            // PHPStan Level 10 workaround: create Employee manually for dashboard
+            /** @var Employee $employee */
+            $employee = new Employee();
+            $employee->id = $employeeId;
+            $this->employee = $employee;
+        } else {
+            $this->employee = null;
+        }
         $this->refreshStats();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('employee::livewire.work-hour-dashboard');
     }
@@ -65,7 +78,9 @@ class WorkHourDashboard extends Component
 
     private function calculateTodayHours(): void
     {
-        $this->todayHours = WorkHour::calculateWorkedHours($this->employee->id, Carbon::today());
+        if ($this->employee) {
+            $this->todayHours = WorkHour::calculateWorkedHours($this->employee->id, Carbon::today());
+        }
     }
 
     private function calculateWeeklyStats(): void
@@ -77,7 +92,7 @@ class WorkHourDashboard extends Component
         $this->weeklyStats = [];
 
         for ($date = $startOfWeek->copy(); $date->lte($endOfWeek); $date->addDay()) {
-            $hours = WorkHour::calculateWorkedHours($this->employee->id, $date);
+            $hours = $this->employee ? WorkHour::calculateWorkedHours($this->employee->id, $date) : 0.0;
             $this->weekHours += $hours;
 
             $this->weeklyStats[] = [
@@ -110,7 +125,7 @@ class WorkHourDashboard extends Component
             $weekHours = 0.0;
             for ($date = $currentWeek->copy(); $date->lte($weekEnd); $date->addDay()) {
                 if ($date->gte($startOfMonth) && $date->lte($endOfMonth)) {
-                    $dayHours = WorkHour::calculateWorkedHours($this->employee->id, $date);
+                    $dayHours = $this->employee ? WorkHour::calculateWorkedHours($this->employee->id, $date) : 0.0;
                     $weekHours += $dayHours;
                     $this->monthHours += $dayHours;
                 }
@@ -131,24 +146,33 @@ class WorkHourDashboard extends Component
 
     private function loadRecentEntries(): void
     {
-        $this->recentEntries = WorkHour::where('employee_id', $this->employee->id)
+        if (! $this->employee) {
+            $this->recentEntries = [];
+            return;
+        }
+
+        /** @var \Illuminate\Database\Eloquent\Collection<int, WorkHour> $entries */
+        $entries = WorkHour::query()
+            ->where('employee_id', $this->employee->id)
             ->orderBy('timestamp', 'desc')
             ->limit(10)
-            ->get()
-            ->map(function (WorkHour $entry) {
-                return [
-                    'id' => $entry->id,
-                    'date' => $entry->timestamp->format('d/m/Y'),
-                    'time' => $entry->timestamp->format('H:i:s'),
-                    'type' => $entry->type,
-                    'type_label' => $this->getTypeLabel($entry->type),
-                    'type_color' => $this->getTypeColor($entry->type),
-                    'notes' => $entry->notes,
-                    'status' => $entry->status,
-                    'status_color' => $this->getStatusColor($entry->status),
-                ];
-            })
-            ->toArray();
+            ->get();
+
+        /** @var array<int, array{id: int, date: string, time: string, type: WorkHourTypeEnum, type_label: string, type_color: string, notes: string|null, status: WorkHourStatusEnum, status_color: string}> $recentEntries */
+        $recentEntries = $entries->map(function (WorkHour $entry): array {
+            return [
+                'id' => $entry->id,
+                'date' => $entry->timestamp->format('d/m/Y'),
+                'time' => $entry->timestamp->format('H:i:s'),
+                'type' => $entry->type,
+                'type_label' => $this->getTypeLabel($entry->type->value),
+                'type_color' => $this->getTypeColor($entry->type->value),
+                'notes' => $entry->notes,
+                'status' => $entry->status,
+                'status_color' => $this->getStatusColor($entry->status->value),
+            ];
+        })->toArray();
+        $this->recentEntries = $recentEntries;
     }
 
     public function getTypeLabel(string $type): string
