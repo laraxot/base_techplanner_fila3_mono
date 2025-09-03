@@ -47,19 +47,4 @@ class MediaResource extends XotBaseResource
         ];
     }
 
-    /**
-     * @return PageRegistration[]
-     *
-     * @psalm-return array{index: PageRegistration, create: PageRegistration, edit: PageRegistration}
-     */
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListMedia::route('/'),
-            'create' => Pages\CreateMedia::route('/create'),
-            'edit' => Pages\EditMedia::route('/{record}/edit'),
-            'view' => Pages\ViewMedia::route('/{record}'),
-            'convert' => Pages\ConvertMedia::route('/{record}/convert'),
-        ];
-    }
 }

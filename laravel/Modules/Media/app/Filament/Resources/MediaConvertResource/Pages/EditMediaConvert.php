@@ -6,8 +6,9 @@ namespace Modules\Media\Filament\Resources\MediaConvertResource\Pages;
 
 use Filament\Actions;
 use Modules\Media\Filament\Resources\MediaConvertResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 
-class EditMediaConvert extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
+class EditMediaConvert extends XotBaseEditRecord
 {
     protected static string $resource = MediaConvertResource::class;
 
