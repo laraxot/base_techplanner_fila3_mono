@@ -16,6 +16,8 @@ class ContactResource extends XotBaseResource
 {
     protected static ?string $model = Contact::class;
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     /**
      * Get the form schema for the resource.
      *
@@ -45,4 +47,12 @@ class ContactResource extends XotBaseResource
         return [];
     }
 
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListContacts::route('/'),
+            'create' => Pages\CreateContact::route('/create'),
+            'edit' => Pages\EditContact::route('/{record}/edit'),
+        ];
+    }
 }

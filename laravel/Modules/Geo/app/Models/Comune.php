@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Models;
 
+use Sushi\Sushi;
+
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Tenant\Models\Traits\SushiToJson;
-use Sushi\Sushi;
 
 /**
  * Modello per i comuni italiani con Sushi.
- *
+ * 
  * Implementa il pattern Facade per fornire un'interfaccia unificata a tutti i dati geografici:
  * regioni, province, città, CAP, codici ISTAT, ecc.
  * Tutti i dati sono estratti da file JSON e gestiti tramite Sushi.
@@ -35,7 +38,6 @@ use Sushi\Sushi;
  * @property string|null $codiceCatastale
  * @property-read \Modules\User\Models\Profile|null $creator
  * @property-read \Modules\User\Models\Profile|null $updater
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comune newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comune newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comune query()
@@ -49,20 +51,20 @@ use Sushi\Sushi;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comune whereRegione($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comune whereSigla($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Comune whereZona($value)
- *
  * @mixin IdeHelperComune
  * @mixin \Eloquent
  */
 class Comune extends BaseModel
 {
+
     use SushiToJson;
 
-    public string $jsonDirectory = '';
+    public string $jsonDirectory='';
 
     /** @var array<int, string> */
     public $translatable = [
     ];
-
+    
     /** @var list<string> */
     protected $fillable = [
         'id',
@@ -134,6 +136,7 @@ class Comune extends BaseModel
     /**
      * Get all provinces for a region
      *
+     * @param string $regione
      * @return Collection<string>
      */
     public static function getProvinceByRegione(string $regione): Collection
@@ -149,6 +152,7 @@ class Comune extends BaseModel
     /**
      * Get all comuni for a province
      *
+     * @param string $provincia
      * @return Collection<static>
      */
     public static function getComuniByProvincia(string $provincia): Collection
@@ -162,7 +166,7 @@ class Comune extends BaseModel
     /**
      * Find a comune by name (case insensitive)
      *
-     * @param  string  $nome  The name of the comune to find (case insensitive)
+     * @param string $nome The name of the comune to find (case insensitive)
      * @return static|null The found comune or null if not found
      */
     public static function findByNome(string $nome): ?self
@@ -176,7 +180,7 @@ class Comune extends BaseModel
     /**
      * Find comuni by CAP code (partial match supported)
      *
-     * @param  string  $cap  The CAP code to search for
+     * @param string $cap The CAP code to search for
      * @return Collection<static> Collection of matching comuni
      */
     public static function findByCap(string $cap): Collection
@@ -187,19 +191,22 @@ class Comune extends BaseModel
 
     /**
      * Find a city by ID
-     *
+     * 
+     * @param int $id
      * @return array{id: int, nome: string, provincia: string, regione: string, cap: string, codice_catastale: string, popolazione: int, altitudine: int, superficie: float, lat: float, lng: float, zona_altimetrica: string}|null
      */
     public static function findComune(int $id): ?array
     {
         $comune = static::query()->where('id', $id)->first();
-
+        
         /** @phpstan-ignore return.type */
         return $comune ? $comune->toArray() : null;
     }
 
     /**
      * Get the directory where Comune JSON files are stored.
+     *
+     * @return string
      */
     public function getJsonDirectory(): string
     {
@@ -208,6 +215,9 @@ class Comune extends BaseModel
 
     /**
      * Set the directory where Comune JSON files are stored.
+     *
+     * @param string $directory
+     * @return void
      */
     public function setJsonDirectory(string $directory): void
     {

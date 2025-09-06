@@ -9,7 +9,7 @@ use Modules\Geo\Models\Region;
 
 /**
  * Factory for Region model.
- *
+ * 
  * @extends Factory<Region>
  */
 class RegionFactory extends Factory
@@ -62,6 +62,8 @@ class RegionFactory extends Factory
 
     /**
      * Create a region from Northern Italy.
+     *
+     * @return static
      */
     public function northern(): static
     {
@@ -88,6 +90,8 @@ class RegionFactory extends Factory
 
     /**
      * Create a region from Central Italy.
+     *
+     * @return static
      */
     public function central(): static
     {
@@ -112,6 +116,8 @@ class RegionFactory extends Factory
 
     /**
      * Create a region from Southern Italy.
+     *
+     * @return static
      */
     public function southern(): static
     {
@@ -136,6 +142,9 @@ class RegionFactory extends Factory
 
     /**
      * Create a specific region by name.
+     *
+     * @param string $name
+     * @return static
      */
     public function named(string $name): static
     {

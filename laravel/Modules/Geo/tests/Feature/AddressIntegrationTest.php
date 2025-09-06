@@ -12,7 +12,7 @@ use Modules\Geo\Enums\AddressTypeEnum;
 /**
  * Build an in-memory Address-like object with sane defaults.
  *
- * @param  array<string, mixed>  $overrides
+ * @param array<string, mixed> $overrides
  */
 function makeAddress(array $overrides = []): object
 {
@@ -145,8 +145,7 @@ describe('Address Integration', function () {
         $primary = null;
         foreach ($patientAddresses as $addr) {
             if ($addr->is_primary === true) {
-                $primary = $addr;
-                break;
+                $primary = $addr; break;
             }
         }
 

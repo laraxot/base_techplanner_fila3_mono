@@ -56,4 +56,4 @@ return [
         'primary_exclusivity' => 'Impostando questo come principale, tutti gli altri diventeranno secondari',
         'single_primary' => 'Con un solo indirizzo, questo è automaticamente il principale',
     ],
-];
+]; 

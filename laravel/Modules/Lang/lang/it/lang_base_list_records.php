@@ -1,9 +1,11 @@
 <?php
 
-return [
-    'actions' => [
-        'activeLocale' => [
-            'label' => 'activeLocale',
-        ],
-    ],
-];
+return array (
+  'actions' => 
+  array (
+    'activeLocale' => 
+    array (
+      'label' => 'activeLocale',
+    ),
+  ),
+);

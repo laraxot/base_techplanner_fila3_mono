@@ -6,10 +6,11 @@ namespace Modules\Geo\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Geo\Models\Address;
+use Modules\Geo\Models\Comune;
 
 /**
  * Address Factory
- *
+ * 
  * @extends Factory<Address>
  */
 class AddressFactory extends Factory

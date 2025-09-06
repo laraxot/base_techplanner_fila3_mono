@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Gdpr\Filament\Resources;
 
 use Filament\Forms;
+use Filament\Tables;
 use Modules\Gdpr\Filament\Resources\ConsentResource\Pages;
 use Modules\Gdpr\Models\Consent;
 use Modules\Xot\Filament\Resources\XotBaseResource;
@@ -24,6 +25,27 @@ class ConsentResource extends XotBaseResource
             'subject_id' => Forms\Components\TextInput::make('subject_id')
                 ->required()
                 ->maxLength(191),
+        ];
+    }
+
+    public function getTableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('id')
+
+                ->searchable(),
+            Tables\Columns\TextColumn::make('treatment.name')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('subject_id')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
         ];
     }
 

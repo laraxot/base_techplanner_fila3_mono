@@ -14,15 +14,24 @@ use Filament\Forms\Components\TextInput;
 use Modules\Lang\Models\TranslationFile;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Lang\Filament\Resources\LangBaseResource;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Lang\Filament\Actions\LocaleSwitcherRefresh;
 use Modules\Lang\Filament\Resources\TranslationFileResource\Pages;
 use Modules\Lang\Filament\Resources\TranslationFileResource\RelationManagers;
 
-class TranslationFileResource extends LangBaseResource
+class TranslationFileResource extends XotBaseResource
 {
     protected static ?string $model = TranslationFile::class;
 
+    public static function getDefaultTranslatableLocale(): string
+    {
+        return Config::string('app.locale', 'it');
+    }
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['it', 'en'];
+    }
 
     
 

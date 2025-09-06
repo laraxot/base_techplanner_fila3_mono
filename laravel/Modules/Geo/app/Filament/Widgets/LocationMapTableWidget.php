@@ -165,7 +165,7 @@ class LocationMapTableWidget extends MapTableWidget
         foreach ($locations as $location) {
             if ($location->latitude && $location->longitude) {
                 $iconUrl = $this->getMarkerIcon($location);
-
+                
                 $data[] = [
                     'location' => [
                         'lat' => (float) $location->latitude,
@@ -206,33 +206,36 @@ class LocationMapTableWidget extends MapTableWidget
             ->modalSubmitAction(false);
     }
 
+    /**
+     * @return string|null
+     */
     public function getMarkerIcon(Place $place): ?string
     {
         $type = $place->placeType->slug ?? 'default';
         /** @var array<string, mixed>|null $markerConfig */
         $markerConfig = config("geo.markers.types.{$type}");
 
-        if (! is_array($markerConfig)) {
+        if (!is_array($markerConfig)) {
             /** @var array<string, mixed>|null $defaultConfig */
             $defaultConfig = config('geo.markers.types.default');
             $markerConfig = $defaultConfig;
         }
 
-        if (! is_array($markerConfig)) {
+        if (!is_array($markerConfig)) {
             return null;
         }
 
         // Validazione sicura per accesso nested all'icona
         /** @var mixed $iconConfig */
         $iconConfig = $markerConfig['icon'] ?? null;
-
-        if (! is_array($iconConfig)) {
+        
+        if (!is_array($iconConfig)) {
             return null;
         }
 
         /** @var string|null $iconUrl */
         $iconUrl = $iconConfig['url'] ?? null;
-
+        
         return is_string($iconUrl) ? $iconUrl : null;
     }
 }

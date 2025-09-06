@@ -12,29 +12,28 @@ use Modules\Xot\Contracts\ProfileContract;
 /**
  * Class Location.
  *
- * @property int $id
- * @property string|null $model_type
- * @property string|null $model_id
- * @property string|null $name
- * @property float|null $lat
- * @property float|null $lng
- * @property string|null $street
- * @property string|null $city
- * @property string|null $state
- * @property string|null $zip
- * @property string|null $formatted_address
- * @property string|null $description
- * @property bool|null $processed
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $updated_by
- * @property string|null $created_by
- * @property string|null $deleted_at
- * @property string|null $deleted_by
- * @property array $location
+ * @property int                  $id
+ * @property string|null          $model_type
+ * @property string|null          $model_id
+ * @property string|null          $name
+ * @property float|null           $lat
+ * @property float|null           $lng
+ * @property string|null          $street
+ * @property string|null          $city
+ * @property string|null          $state
+ * @property string|null          $zip
+ * @property string|null          $formatted_address
+ * @property string|null          $description
+ * @property bool|null            $processed
+ * @property Carbon|null          $created_at
+ * @property Carbon|null          $updated_at
+ * @property string|null          $updated_by
+ * @property string|null          $created_by
+ * @property string|null          $deleted_at
+ * @property string|null          $deleted_by
+ * @property array                $location
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Location query()
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereCity(string $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Location whereLat(float $value)
@@ -58,12 +57,12 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|Location whereStreet($value)
  * @method static Builder<static>|Location whereUpdatedAt($value)
  * @method static Builder<static>|Location whereUpdatedBy($value)
- *
  * @mixin IdeHelperLocation
  * @mixin \Eloquent
  */
 class Location extends BaseModel
 {
+    
     protected $fillable = [
         'name',
         'lat',

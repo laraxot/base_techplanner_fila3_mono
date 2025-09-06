@@ -49,15 +49,12 @@ Homestead.json
 *.exe
 *:Zone.Identifier
 .DS_Store
+*.old
+*.old1
+*.backup
 *.bak
 
 # Documentation and cache
 docs/phpstan/
 docs/cache/
 cache/
-
-# Standard ignores (auto)
-*.old
-*.old1
-*.bakcup
-*.backup.*

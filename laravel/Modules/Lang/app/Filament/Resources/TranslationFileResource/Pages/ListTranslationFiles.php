@@ -7,9 +7,9 @@ use Filament\Tables\Columns;
 use Filament\Resources\Pages\ListRecords;
 use Modules\Lang\Filament\Actions\LocaleSwitcherRefresh;
 use Modules\Lang\Filament\Resources\TranslationFileResource;
-use Modules\Lang\Filament\Resources\Pages\LangBaseListRecords;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
-class ListTranslationFiles extends LangBaseListRecords
+class ListTranslationFiles extends XotBaseListRecords
 {
     protected static string $resource = TranslationFileResource::class;
 

@@ -7,7 +7,7 @@ namespace Modules\Notify\Filament\Resources\ContactResource\Pages;
 use Modules\Notify\Filament\Resources\ContactResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
-class CreateContact extends XotBaseCreateRecord
+class CreateContact extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord
 {
     protected static string $resource = ContactResource::class;
 }

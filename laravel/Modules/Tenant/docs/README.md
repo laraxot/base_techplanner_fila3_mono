@@ -25,7 +25,6 @@ Il modulo **Tenant** è il cuore del sistema multi-tenancy dell'applicazione, fo
 ## ⚡ **Funzionalità Core**
 
 ### 🏢 **Tenant Management**
-
 ```php
 // Creazione tenant con isolamento automatico
 use Modules\Tenant\Actions\CreateTenantAction;
@@ -47,7 +46,6 @@ Tenant::setCurrent($tenant);
 ```
 
 ### 🗄️ **Database Isolation**
-
 ```php
 // Isolamento automatico database per tenant
 class TenantAwareModel extends Model
@@ -66,7 +64,6 @@ $appointments = Appointment::where('status', 'pending')->get(); // Solo appuntam
 ```
 
 ### 🏗️ **Modular Monolith Architecture**
-
 ```php
 // Struttura a livelli per modularità
 namespace Modules\Tenant\Domain;
@@ -113,109 +110,21 @@ class CreateTenantAction
 }
 ```
 
-## 🧪 Testing e Qualità del Codice
-
-### Principi Fondamentali
-
-Il modulo Tenant segue rigorosamente i principi di testing senza `RefreshDatabase` per garantire:
-
-- **Performance**: Test unitari < 100ms ciascuno
-- **Isolamento**: Ogni test è indipendente
-- **Velocità**: Suite completa < 30 secondi
-- **Manutenibilità**: Test chiari e semplici
-
-### ❌ Anti-Pattern VIETATI
-
-```php
-// ❌ VIETATO ASSOLUTAMENTE
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-class TenantTest extends TestCase
-{
-    use RefreshDatabase; // VIETATO!
-    
-    public function test_something()
-    {
-        $tenant = Tenant::factory()->create(); // VIETATO!
-        // ...
-    }
-}
-```
-
-### ✅ Pattern Corretti
-
-```php
-// ✅ CORRETTO - Test unitario con oggetti in-memory
-it('can process tenant data', function () {
-    $tenant = new Tenant([
-        'name' => 'Test Tenant',
-        'domain' => 'test.local'
-    ]);
-    
-    $processor = new TenantProcessor();
-    $result = $processor->process($tenant);
-    
-    expect($result)->toBe('processed');
-});
-
-// ✅ CORRETTO - Test con mock
-it('can handle tenant service', function () {
-    $mockService = Mockery::mock(TenantService::class);
-    $mockService->shouldReceive('validate')->andReturn(true);
-    
-    $handler = new TenantHandler($mockService);
-    $result = $handler->validate('test.local');
-    
-    expect($result)->toBeTrue();
-});
-```
-
-### Test di Performance
-
-Il modulo include test di performance specifici per operazioni JSON:
-
-```php
-// ✅ CORRETTO - Test performance senza database
-public function test_json_conversion_performance_1000_records(): void
-{
-    $data = $this->createTestData(1000); // Oggetti in-memory
-    $startTime = microtime(true);
-    
-    $jsonString = json_encode($data, JSON_PRETTY_PRINT);
-    
-    $executionTime = (microtime(true) - $startTime) * 1000;
-    
-    // Performance target: < 200ms per 1000 record
-    expect($executionTime)->toBeLessThan(200.0);
-}
-```
-
-### Best Practices di Testing
-
-1. **Test Unitari**: Solo logica di business, NO database
-2. **Mock e Stub**: Per dipendenze esterne
-3. **Oggetti In-Memory**: Per dati di test
-4. **Isolamento**: Test non devono interferire tra loro
-5. **Performance**: Ogni test < 100ms
-
 ## 🎯 **Stato Qualità - Gennaio 2025**
 
 ### ✅ **PHPStan Level 9 Compliance**
-
 - **File Core Certificati**: 8/8 file core raggiungono Level 9
 - **Type Safety**: 100% sui servizi principali
 - **Runtime Safety**: 100% con error handling robusto
 - **Template Types**: Risolti tutti i problemi Collection generics
 
 ### ✅ **Translation Standards Compliance**
-
 - **Helper Text**: 100% corretti (vuoti quando uguali alla chiave)
 - **Localizzazione**: 100% valori tradotti appropriatamente
 - **Sintassi**: 100% sintassi moderna `[]` e `declare(strict_types=1)`
 - **Struttura**: 100% struttura espansa completa
 
 ### 📊 **Metriche Performance**
-
 - **Tenant Switch**: < 50ms per switch tenant
 - **Database Isolation**: 100% isolamento garantito
 - **Query Performance**: Ottimizzate con indici tenant-aware
@@ -224,7 +133,6 @@ public function test_json_conversion_performance_1000_records(): void
 ## 🚀 **Quick Start**
 
 ### 📦 **Installazione**
-
 ```bash
 # Abilitare il modulo
 php artisan module:enable Tenant
@@ -240,7 +148,6 @@ php artisan tenant:setup-default
 ```
 
 ### ⚙️ **Configurazione**
-
 ```php
 // config/tenant.php
 return [
@@ -267,8 +174,7 @@ return [
 ];
 ```
 
-### 🧪 **Testing (Comandi)**
-
+### 🧪 **Testing**
 ```bash
 # Test del modulo
 php artisan test --testsuite=Tenant
@@ -283,37 +189,31 @@ php artisan tenant:test-isolation
 ## 📚 **Documentazione Completa**
 
 ### 🏗️ **Architettura**
-
 - [Modular Monolith](modular_monolith_architecture.md) - Architettura modular monolith
 - [Structure](structure.md) - Struttura modulo tenant
 - [Dependencies](dependencies.md) - Gestione dipendenze
 - [Testing](testing.md) - Testing multi-tenant
 
-### 🏢 **Gestione dei Tenant**
-
+### 🏢 **Tenant Management**
 - [Tenant Models](models/README.md) - Modelli tenant
 - [Tenant Events](events.md) - Eventi tenant
 - [Tenant Middleware](middleware.md) - Middleware tenant
 - [Tenant Isolation](isolation.md) - Isolamento tenant
 
 ### 🎨 **Filament Integration**
-
 - [Tenant Resources](filament_resources.md) - Resource Filament per tenant
 - [Tenant Dashboard](dashboard.md) - Dashboard tenant
 - [Tenant Settings](settings.md) - Impostazioni tenant
 - [Tenant Analytics](analytics.md) - Analytics tenant
 
 ### 🔧 **Development**
-
 - [PHPStan Fixes](phpstan/README.md) - Log completo correzioni PHPStan
 - [Conflict Resolution](risoluzione_conflitti.md) - Risoluzione conflitti
 - [Best Practices](best-practices.md) - Linee guida sviluppo
-- [Testing Best Practices](../../../docs/testing-best-practices-no-refresh-database.md) - Dettagli sui test senza `RefreshDatabase`
 
 ## 🎨 **Componenti Filament**
 
 ### 🏢 **Tenant Resource**
-
 ```php
 // Filament Resource per gestione tenant
 class TenantResource extends XotBaseResource
@@ -351,7 +251,6 @@ class TenantResource extends XotBaseResource
 ```
 
 ### 📊 **Tenant Stats Widget**
-
 ```php
 // Widget statistiche tenant
 class TenantStatsWidget extends XotBaseWidget
@@ -373,7 +272,6 @@ class TenantStatsWidget extends XotBaseWidget
 ## 🔧 **Best Practices**
 
 ### 1️⃣ **Tenant Isolation**
-
 ```php
 // ✅ CORRETTO - Isolamento automatico
 class User extends TenantAwareModel
@@ -396,7 +294,6 @@ $users = User::all(); // Solo utenti del tenant corrente
 ```
 
 ### 2️⃣ **Event-Driven Communication**
-
 ```php
 // ✅ CORRETTO - Comunicazione tramite eventi
 class TenantCreated
@@ -418,7 +315,6 @@ class CreateTenantDatabaseListener
 ```
 
 ### 3️⃣ **Service Provider Registration**
-
 ```php
 // ✅ CORRETTO - Registrazione servizi tenant
 class TenantServiceProvider extends XotBaseServiceProvider
@@ -442,7 +338,6 @@ class TenantServiceProvider extends XotBaseServiceProvider
 ### **Problemi Comuni**
 
 #### 🏢 **Tenant Not Found**
-
 ```bash
 # Verificare configurazione tenant
 php artisan tenant:list
@@ -450,22 +345,18 @@ php artisan tenant:list
 # Verificare database tenant
 php artisan tenant:check-database
 ```
-
 **Soluzione**: Consulta [Tenant Management](models/README.md)
 
 #### 🗄️ **Database Isolation Issues**
-
 ```php
 // Verificare middleware tenant
 Route::middleware(['auth', 'tenant'])->group(function () {
     // Routes protette da tenant
 });
 ```
-
 **Soluzione**: Consulta [Database Isolation](isolation.md)
 
 #### 🔐 **Security Issues**
-
 ```bash
 # Verificare isolamento cache
 php artisan tenant:check-cache-isolation
@@ -473,13 +364,11 @@ php artisan tenant:check-cache-isolation
 # Verificare isolamento sessioni
 php artisan tenant:check-session-isolation
 ```
-
 **Soluzione**: Consulta [Security Isolation](security.md)
 
 ## 🤝 **Contributing**
 
 ### 📋 **Checklist Contribuzione**
-
 - [ ] Codice passa PHPStan Level 9
 - [ ] Test unitari aggiunti
 - [ ] Documentazione aggiornata
@@ -488,7 +377,6 @@ php artisan tenant:check-session-isolation
 - [ ] Performance verificata
 
 ### 🎯 **Convenzioni**
-
 - **Tenant Scope**: Sempre applicare scope tenant ai modelli
 - **Event Communication**: Usare eventi per comunicazione tra moduli
 - **Database Isolation**: Garantire isolamento completo dei dati
@@ -497,21 +385,18 @@ php artisan tenant:check-session-isolation
 ## 🧩 **Traits e Componenti**
 
 ### 🏗️ **Traits Disponibili**
-
 - **[SushiToJson](traits/sushi-to-jsons.md)** - Persistenza JSON per modelli Sushi
 - **[SushiToCsv](traits/sushi-to-csv.md)** - Persistenza CSV per modelli Sushi
 - **[README Traits](traits/README.md)** - Panoramica completa dei traits
 
 **Caratteristiche principali:**
-
 - ✅ **Multi-tenant Ready** - Isolamento completo per ogni tenant
 - ✅ **Sushi Integration** - Estensione package Sushi per persistenza file
 - ✅ **CRUD Operations** - Operazioni complete create, read, update, delete
 - ✅ **Audit Trail** - Logging completo per tutte le operazioni
 - ✅ **Schema Validation** - Validazione schema dati personalizzabile
 
-### 🔧 **Componenti Core del Modulo**
-
+### 🔧 **Componenti Core**
 - **TenantService** - Gestione tenant e isolamento
 - **TenantScope** - Scope automatico per modelli
 - **TenantMiddleware** - Middleware per protezione route
@@ -520,20 +405,17 @@ php artisan tenant:check-session-isolation
 ## 📊 **Roadmap**
 
 ### 🎯 **Q1 2025**
-
 - [ ] **Advanced Isolation** - Isolamento avanzato per cache e sessioni
 - [ ] **Tenant Analytics** - Analytics dettagliati per ogni tenant
 - [ ] **Auto Scaling** - Scaling automatico per tenant
 - [ ] **Traits Completion** - Completamento metodi WIP nei traits
 
 ### 🎯 **Q2 2025**
-
 - [ ] **Tenant Migration** - Migrazione automatica tenant
 - [ ] **Backup Automation** - Backup automatici per tenant
 - [ ] **Performance Monitoring** - Monitoraggio performance per tenant
 
 ### 🎯 **Q3 2025**
-
 - [ ] **Microservices Ready** - Preparazione per microservizi
 - [ ] **Advanced Security** - Sicurezza avanzata per tenant
 - [ ] **AI Tenant Management** - AI per gestione tenant
@@ -541,7 +423,7 @@ php artisan tenant:check-session-isolation
 ## 📞 **Support & Maintainers**
 
 - **🏢 Team**: Laraxot Development Team
-- **📧 Email**: <tenant@laraxot.com>
+- **📧 Email**: tenant@laraxot.com
 - **🐛 Issues**: [GitHub Issues](https://github.com/laraxot/tenant-module/issues)
 - **📚 Docs**: [Documentazione Completa](https://docs.laraxot.com/tenant)
 - **💬 Discord**: [Laraxot Community](https://discord.gg/laraxot)
@@ -573,3 +455,4 @@ php artisan tenant:check-session-isolation
 **🐛 PHPStan Level 9**: File core certificati ✅  
 **🌐 Translation Standards**: File traduzione certificati ✅  
 **🚀 Performance**: 93/100 score
+

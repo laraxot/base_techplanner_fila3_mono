@@ -43,7 +43,7 @@ class OSMMapWidget extends MapWidget
         $places = Place::with(['address', 'placeType'])->get();
 
         return $places
-            ->filter(fn (Place $place) => $place->latitude !== null && $place->longitude !== null)
+            ->filter(fn(Place $place) => $place->latitude !== null && $place->longitude !== null)
             ->map(function (Place $place): array {
                 $marker = [
                     'position' => [
@@ -98,7 +98,7 @@ class OSMMapWidget extends MapWidget
     {
         /** @var view-string $viewName */
         $viewName = 'geo::filament.widgets.osm-map-info-window';
-
+        
         return view($viewName, [
             'place' => $place,
         ])->render();
@@ -130,7 +130,7 @@ class OSMMapWidget extends MapWidget
     {
         /** @var view-string $viewName */
         $viewName = 'geo::filament.widgets.osm-map-widget';
-
+        
         return view($viewName, [
             'data' => $this->getData(),
         ]);

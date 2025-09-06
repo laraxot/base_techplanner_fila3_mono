@@ -6,7 +6,6 @@ namespace Modules\Geo\Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
-use Modules\Geo\Actions\GetDistanceExpressionAction;
 
 trait GeographicalScopes
 {
@@ -28,6 +27,20 @@ trait GeographicalScopes
 
     public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): Expression
     {
-        return app(GetDistanceExpressionAction::class)->execute($latitude, $longitude, $alias);
+        $sql = "
+            (6371 * acos(
+                cos(radians($latitude)) *
+                cos(radians(latitude)) *
+                cos(radians(longitude) - radians($longitude)) +
+                sin(radians($latitude)) *
+                sin(radians(latitude))
+            ))
+        ";
+        if (null !== $alias) {
+            $sql .= " AS $alias";
+        }
+
+        return \DB::raw($sql);
+        // AS distance
     }
 }

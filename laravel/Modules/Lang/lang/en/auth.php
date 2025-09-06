@@ -82,7 +82,7 @@ return [
         'try_again' => 'Try again',
         'processing' => 'Logging out...',
     ],
-
+    
     'user_dropdown' => [
         'manage_account' => 'Manage Account',
         'profile' => 'Profile',

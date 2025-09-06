@@ -47,84 +47,49 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
     {
         return $this->getResource()::getFormSchema();
     }
-
-    /**
-     * Get table columns from the resource's index page
-     */
+//*
     public function getTableColumns(): array
     {
-        $index = Arr::get($this->getResource()::getPages(), 'index');
-        if (! $index) {
+        $index=Arr::get($this->getResource()::getPages(),'index');
+        if(!$index){
+            //throw new \Exception('Index page not found');
             return [];
         }
-        
         /** @phpstan-ignore method.nonObject */
-        $index_page = $index->getPage();
-
-        if (! method_exists($index_page, 'getTableColumns')) {
+        $index_page=$index->getPage();
+        
+        if(!method_exists($index_page,'getTableColumns')){
+            //throw new \Exception('method  getTableColumns on '.print_r($index_page,true).' not found');
             return [];
         }
-        
         /** @phpstan-ignore argument.type */
-        $res = app($index_page)->getTableColumns();
+        $res= app($index_page)->getTableColumns();
 
         return $res;
     }
-
-    /**
-     * Get table actions with dynamic visibility based on resource permissions
-     */
+//*/
     public function getTableActions(): array
     {
-        $actions = [];
-        $resource = $this->getResource();
-        
-        if (method_exists($resource, 'canEdit')) {
-            $actions['edit'] = Tables\Actions\EditAction::make()
-                ->visible(fn (Model $record): bool => $resource::canEdit($record));
-        }
-
-        if (method_exists($resource, 'canDetach')) {
-            $actions['detach'] = Tables\Actions\DetachAction::make()
-                ->visible(fn (Model $record): bool => $resource::canDetach($record));
-        }
-        
-        if (method_exists($resource, 'canDelete')) {
-            $actions['delete'] = Tables\Actions\DeleteAction::make()
-                ->visible(fn (Model $record): bool => $resource::canDelete($record));
-        }
-
-        return $actions;
+        return [
+            Tables\Actions\EditAction::make(),
+            //Tables\Actions\DeleteAction::make(),
+            Tables\Actions\DetachAction::make(),
+        ];
     }
 
     public function getTableBulkActions(): array
     {
         return [
-            // Tables\Actions\DeleteBulkAction::make(),
+            //Tables\Actions\DeleteBulkAction::make(),
             Tables\Actions\DetachBulkAction::make(),
         ];
     }
 
-    /**
-     * Get table header actions with dynamic visibility based on resource permissions
-     */
     public function getTableHeaderActions(): array
     {
-        $actions = [];
-        $resource = $this->getResource();
-        
-        if (method_exists($resource, 'canAttach')) {
-            $actions['attach'] = Tables\Actions\AttachAction::make()
-                ->icon('heroicon-o-link')
-                ->visible(fn (?Model $record): bool => $resource::canAttach());
-        }
-
-        if (method_exists($resource, 'canCreate')) {
-            $actions['create'] = Tables\Actions\CreateAction::make()
-                ->visible(fn (?Model $record): bool => $resource::canCreate());
-        }
-
-        return $actions;
+        return [
+            Tables\Actions\AttachAction::make(),
+        ];
     }
 
     public function getTableFilters(): array
@@ -134,7 +99,7 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     public function getResource(): string
     {
-        $resource = static::$resource;
+        $resource = static::$resourceClass;
         Assert::classExists($resource);
         Assert::isAOf($resource, XotBaseResource::class);
 

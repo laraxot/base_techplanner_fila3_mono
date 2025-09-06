@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Filament\Resources;
 
-use Cheesegrits\FilamentGoogleMaps\Fields\Map;
 use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Modules\Geo\Filament\Resources\LocationResource\Pages;
 use Modules\Geo\Models\Location;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Geo\Filament\Resources\LocationResource\Pages;
+use Modules\Geo\Filament\Resources\LocationResource\RelationManagers;
+use Modules\Geo\Filament\Resources\LocationResource\Filters\RadiusFilter;
+use Modules\Geo\Filament\Resources\LocationResource\Actions\RadiusAction;
+use Cheesegrits\FilamentGoogleMaps\Fields\Map;
+use Filament\Tables\Filters\FiltersLayout;
 
 /**
  * Resource per la gestione dei luoghi geografici.
@@ -34,7 +40,8 @@ class LocationResource extends XotBaseResource
     /**
      * Converte le coordinate in formato float.
      *
-     * @param  array{lat?: string|float|null, lng?: string|float|null}  $coordinates  Le coordinate da convertire
+     * @param array{lat?: string|float|null, lng?: string|float|null} $coordinates Le coordinate da convertire
+     *
      * @return array{lat: float, lng: float} Le coordinate convertite in float
      */
     private static function formatCoordinates(array $coordinates): array

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Gdpr\Providers;
 
 use Modules\Xot\Providers\XotBaseEventServiceProvider;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as BaseEventServiceProvider;
 
 class EventServiceProvider extends XotBaseEventServiceProvider
 {
@@ -25,5 +26,7 @@ class EventServiceProvider extends XotBaseEventServiceProvider
     /**
      * Configure the proper event listeners for email verification.
      */
-    protected function configureEmailVerification(): void {}
+    protected function configureEmailVerification(): void
+    {
+    }
 }

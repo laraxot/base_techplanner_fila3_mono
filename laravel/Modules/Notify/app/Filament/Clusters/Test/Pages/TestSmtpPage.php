@@ -34,6 +34,7 @@ class TestSmtpPage extends XotBasePage implements HasForms
 
     public ?string $error_message = null;
 
+    protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';
 
     protected static string $view = 'notify::filament.pages.send-email';
 

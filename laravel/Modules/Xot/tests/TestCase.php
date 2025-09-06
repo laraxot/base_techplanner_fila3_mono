@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Hash;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
 
-/**
- * TestCase base per il modulo Xot.
- * 
- * Implementa test isolati senza operazioni database,
- * utilizzando mock per le dipendenze esterne.
- */
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
+    //use DatabaseMigrations;
+
+    // =============================================================================
+    // SHARED TEST HELPER FUNCTIONS (DRY Pattern)
+    // =============================================================================
+    // Queste funzioni erano duplicate in molti file di test
+    // Centralizzate qui per manutenibilità e coerenza
+    // =============================================================================
 
     /**
      * Generate a unique email for testing to prevent database conflicts.
@@ -77,7 +80,7 @@ abstract class TestCase extends BaseTestCase
         
         // Mock dei metodi critici con fallback sicuri
         $mockXotData->shouldReceive('getUserClass')
-            ->andReturn(\Modules\User\Models\User::class);
+            ->andReturn(\Modules\SaluteOra\Models\User::class);
             
         $mockXotData->shouldReceive('getUserResourceClassByType')
             ->with('patient')
@@ -141,7 +144,7 @@ abstract class TestCase extends BaseTestCase
         
         if ($expectedType !== null) {
             /** @var UserContract|null $user */
-            $user = \Illuminate\Support\Facades\Auth::user();
+            $user = auth()->user();
             $this->assertNotNull($user);
             
             if ($user && method_exists($user, 'type')) {

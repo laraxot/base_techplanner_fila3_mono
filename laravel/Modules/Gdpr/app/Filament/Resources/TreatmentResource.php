@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Gdpr\Filament\Resources;
 
 use Filament\Forms;
+use Filament\Tables;
 use Modules\Gdpr\Filament\Resources\TreatmentResource\Pages;
 use Modules\Gdpr\Models\Treatment;
 use Modules\Xot\Filament\Resources\XotBaseResource;
@@ -37,6 +38,36 @@ class TreatmentResource extends XotBaseResource
             'weight' => Forms\Components\TextInput::make('weight')
                 ->required()
                 ->numeric(),
+        ];
+    }
+
+    public function getTableColumns(): array
+    {
+        return [
+            // Tables\Columns\TextColumn::make('id')
+            //
+            //     ->searchable(),
+            Tables\Columns\IconColumn::make('active')
+                ->boolean(),
+            Tables\Columns\IconColumn::make('required')
+                ->boolean(),
+            Tables\Columns\TextColumn::make('name')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('documentVersion')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('documentUrl')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('weight')
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
         ];
     }
 

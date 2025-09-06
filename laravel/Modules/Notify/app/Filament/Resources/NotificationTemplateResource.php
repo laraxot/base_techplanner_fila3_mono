@@ -5,10 +5,17 @@ declare(strict_types=1);
 namespace Modules\Notify\Filament\Resources;
 
 use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Notify\Enums\NotificationTypeEnum;
 use Modules\Notify\Filament\Resources\NotificationTemplateResource\Pages;
 use Modules\Notify\Models\NotificationTemplate;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Dotswan\FilamentGrapesjs\Forms\Components\Grapesjs;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class NotificationTemplateResource extends XotBaseResource
 {
@@ -83,4 +90,11 @@ class NotificationTemplateResource extends XotBaseResource
         ];
     }
 
+    /*
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->orderBy('name');
+    }
+            */
 }

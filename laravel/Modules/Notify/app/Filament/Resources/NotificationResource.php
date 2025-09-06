@@ -3,11 +3,13 @@
 namespace Modules\Notify\Filament\Resources;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Modules\Notify\Filament\Resources\NotificationResource\Pages;
 use Modules\Notify\Models\Notification;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class NotificationResource extends XotBaseResource
 {
@@ -17,25 +19,32 @@ class NotificationResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
-            TextInput::make('type')
-                ->required(),
-
-            TextInput::make('notifiable_type')
-                ->required(),
-
-            TextInput::make('notifiable_id')
+            'type' => TextInput::make('type')
                 ->required()
-                ->numeric(),
-            Textarea::make('data')
+                ->label('Notification Type'),
+
+            'notifiable_type' => TextInput::make('notifiable_type')
+                ->required()
+                ->label('Notifiable Type'),
+
+            'notifiable_id' => TextInput::make('notifiable_id')
+                ->required()
+                ->numeric()
+                ->label('Notifiable ID'),
+            'data' => Textarea::make('data')
+                ->label('Notification Data')
                 ->columnSpanFull(),
 
-            DateTimePicker::make('read_at')
+            'read_at' => DateTimePicker::make('read_at')
+                ->label('Read At')
                 ->nullable(),
 
-            TextInput::make('created_by')
+            'created_by' => TextInput::make('created_by')
+                ->label('Created By')
                 ->disabled(),
 
-            TextInput::make('updated_by')
+            'updated_by' => TextInput::make('updated_by')
+                ->label('Updated By')
                 ->disabled(),
         ];
     }
