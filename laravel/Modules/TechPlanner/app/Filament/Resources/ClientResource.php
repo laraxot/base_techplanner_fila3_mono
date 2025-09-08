@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Modules\Notify\Filament\Forms\Components\ContactSection;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
 use Modules\TechPlanner\Models\Client;
-use Modules\Notify\Filament\Forms\Components\ContactSection;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
 /**
@@ -31,7 +31,7 @@ class ClientResource extends XotBaseResource
             'address' => TextInput::make('address')->nullable(),
             'street_number' => TextInput::make('street_number'),         // numero_civico
             'city' => TextInput::make('city')->nullable()
-            ->default(fn($record) => dddx($record)),
+            ->default(fn ($record) => dddx($record)),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
