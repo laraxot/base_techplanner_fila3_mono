@@ -123,7 +123,7 @@ grep -r "__(" /var/www/html/_bases/base_saluteora/laravel/Modules/UI/app/Enums/
 **"Ogni enum del modulo UI DEVE utilizzare transClass() per TUTTE le sue proprietà traducibili."**
 
 ## Collegamenti
-- [../../../../project_docs/enum-transclass-rule.md](../../../../project_docs/enum-transclass-rule.md)
+- [../../../../docs/enum-transclass-rule.md](../../../../docs/enum-transclass-rule.md)
 - [../filament/no-label-rule.md](../filament/no-label-rule.md)
 - [../clean-code/no-obvious-comments.md](../clean-code/no-obvious-comments.md)
 

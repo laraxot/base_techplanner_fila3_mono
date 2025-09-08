@@ -28,8 +28,9 @@ class CleanupNotificationLogsCommand extends Command
      */
     public function handle(): int
     {
-        if (!config('notify.cleanup.enabled')) {
+        if (! config('notify.cleanup.enabled')) {
             $this->warn('La pulizia automatica dei log è disabilitata nella configurazione.');
+
             return Command::FAILURE;
         }
 
@@ -48,7 +49,7 @@ class CleanupNotificationLogsCommand extends Command
 
         $totalDeleted = 0;
         $query->chunkById($batchSize, function ($logs) use (&$totalDeleted) {
-            $count = $logs->count();
+            $count = $logs->count(); /** @phpstan-ignore method.nonObject */
             $logs->each->delete();
             $totalDeleted += $count;
             $this->info("Eliminati {$count} log...");
@@ -58,4 +59,4 @@ class CleanupNotificationLogsCommand extends Command
 
         return Command::SUCCESS;
     }
-} 
+}

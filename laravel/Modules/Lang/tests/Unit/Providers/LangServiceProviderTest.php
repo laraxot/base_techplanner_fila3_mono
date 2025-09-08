@@ -52,7 +52,7 @@ describe('LangServiceProvider Translation Loading', function () {
     it('loads translations with correct namespace', function () {
         $this->provider->boot();
         // Verifica il namespace delle traduzioni
-        $translation = __('lang::common.welcome');
+        $translation = (string) __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome'); // Non dovrebbe essere la chiave
     });
@@ -60,7 +60,7 @@ describe('LangServiceProvider Translation Loading', function () {
     it('handles missing translation keys gracefully', function () {
         $this->provider->boot();
         // Verifica gestione chiavi mancanti
-        $missingTranslation = __('lang::nonexistent.key');
+        $missingTranslation = (string) __('lang::nonexistent.key');
         expect($missingTranslation)->toBe('lang::nonexistent.key'); // Dovrebbe restituire la chiave se non trovata
     });
 });
@@ -80,7 +80,7 @@ describe('LangServiceProvider Translation Structure', function () {
             'create',
         ];
         foreach ($commonKeys as $key) {
-            $translation = __("lang::common.{$key}");
+            $translation = (string) __("lang::common.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::common.{$key}");
         }
@@ -97,7 +97,7 @@ describe('LangServiceProvider Translation Structure', function () {
             'confirmed',
         ];
         foreach ($validationKeys as $key) {
-            $translation = __("lang::validation.{$key}");
+            $translation = (string) __("lang::validation.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::validation.{$key}");
         }
@@ -113,7 +113,7 @@ describe('LangServiceProvider Translation Structure', function () {
             'server_error',
         ];
         foreach ($errorKeys as $key) {
-            $translation = __("lang::errors.{$key}");
+            $translation = (string) __("lang::errors.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::errors.{$key}");
         }
@@ -127,7 +127,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a italiano
         app()->setLocale('it');
 
-        $translation = __('lang::common.welcome');
+        $translation = (string) __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -138,7 +138,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a inglese
         app()->setLocale('en');
 
-        $translation = __('lang::common.welcome');
+        $translation = (string) __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -149,7 +149,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a tedesco
         app()->setLocale('de');
 
-        $translation = __('lang::common.welcome');
+        $translation = (string) __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -160,7 +160,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a una non supportata
         app()->setLocale('fr');
 
-        $translation = __('lang::common.welcome');
+        $translation = (string) __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -226,7 +226,7 @@ describe('LangServiceProvider Translation Quality', function () {
             'search', 'filter', 'sort', 'refresh', 'export', 'import',
         ];
         foreach ($commonKeys as $key) {
-            $translation = __("lang::common.{$key}");
+            $translation = (string) __("lang::common.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::common.{$key}");
             expect(strlen($translation))->toBeGreaterThan(0);
@@ -236,9 +236,9 @@ describe('LangServiceProvider Translation Quality', function () {
     it('provides consistent translation style', function () {
         $this->provider->boot();
         $translations = [
-            __('lang::common.welcome'),
-            __('lang::common.loading'),
-            __('lang::common.success'),
+            (string) __('lang::common.welcome'),
+            (string) __('lang::common.loading'),
+            (string) __('lang::common.success'),
         ];
         // Verifica che tutte le traduzioni abbiano uno stile coerente
         foreach ($translations as $translation) {
@@ -257,7 +257,7 @@ describe('LangServiceProvider Translation Quality', function () {
             'create' => 'Crea',
         ];
         foreach ($contextualPairs as $key => $expected) {
-            $translation = __("lang::common.{$key}");
+            $translation = (string) __("lang::common.{$key}");
             expect($translation)->toBe($expected);
         }
     });
@@ -279,12 +279,12 @@ describe('LangServiceProvider Performance', function () {
         $this->provider->boot();
         // Prima chiamata
         $startTime = microtime(true);
-        $translation1 = __('lang::common.welcome');
+        $translation1 = (string) __('lang::common.welcome');
         $endTime = microtime(true);
         $firstCallTime = $endTime - $startTime;
         // Seconda chiamata (dovrebbe essere più veloce)
         $startTime = microtime(true);
-        $translation2 = __('lang::common.welcome');
+        $translation2 = (string) __('lang::common.welcome');
         $endTime = microtime(true);
         $secondCallTime = $endTime - $startTime;
         expect($translation1)->toBe($translation2);
@@ -300,7 +300,7 @@ describe('LangServiceProvider Performance', function () {
 
         foreach ($languages as $locale) {
             app()->setLocale($locale);
-            $translation = __('lang::common.welcome');
+            $translation = (string) __('lang::common.welcome');
             expect($translation)->toBeString();
         }
 
@@ -337,13 +337,13 @@ describe('LangServiceProvider Integration', function () {
         $this->provider->boot();
         // Verifica integrazione con il sistema di traduzione di Laravel
         expect(Lang::has('lang::common.welcome'))->toBeTrue();
-        expect(__('lang::common.welcome'))->toBeString();
+        expect((string) __('lang::common.welcome'))->toBeString();
     });
 
     it('works with Filament components', function () {
         $this->provider->boot();
         // Verifica che le traduzioni siano disponibili per i componenti Filament
-        $translation = __('lang::common.save');
+        $translation = (string) __('lang::common.save');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.save');
     });
@@ -392,11 +392,11 @@ describe('LangServiceProvider Maintenance', function () {
     it('maintains state consistency', function () {
         $this->provider->boot();
 
-        $translation1 = __('lang::common.welcome');
+        $translation1 = (string) __('lang::common.welcome');
 
         $this->provider->boot();
 
-        $translation2 = __('lang::common.welcome');
+        $translation2 = (string) __('lang::common.welcome');
 
         expect($translation1)->toBe($translation2);
     });

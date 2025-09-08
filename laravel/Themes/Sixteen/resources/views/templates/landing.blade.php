@@ -66,13 +66,13 @@
                                         <p class="text-gray-600 mb-4">{{ $action['description'] }}</p>
                                     @endif
                                     
-                                    <x-bootstrap-italia.button 
+                                    <x-button 
                                         href="{{ $action['url'] }}"
                                         variant="primary"
                                         size="md"
                                         class="w-full">
                                         {{ $action['button_text'] ?? 'Accedi' }}
-                                    </x-bootstrap-italia.button>
+                                    </x-button>
                                 </div>
                             @endforeach
                         </div>
@@ -210,18 +210,18 @@
                 <p class="text-gray-600 mb-6">Il tuo feedback ci aiuta a migliorare</p>
                 
                 <div class="flex justify-center space-x-4">
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         href="#"
                         variant="primary"
                         @click="$dispatch('open-modal', { id: 'feedback-modal' })">
                         Lascia un feedback
-                    </x-bootstrap-italia.button>
+                    </x-button>
                     
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         href="{{ route('contact') }}"
                         variant="secondary">
                         Segnala un problema
-                    </x-bootstrap-italia.button>
+                    </x-button>
                 </div>
             </div>
         </div>
@@ -230,7 +230,7 @@
 
 @section('modals')
     {{-- Feedback Modal --}}
-    <x-bootstrap-italia.modal id="feedback-modal" title="Valuta il Servizio">
+    <x-modal id="feedback-modal" title="Valuta il Servizio">
         <form action="{{ route('services.feedback', $service) }}" method="POST">
             @csrf
             
@@ -263,19 +263,19 @@
             </div>
             
             <div class="mt-6 flex justify-end space-x-3">
-                <x-bootstrap-italia.button 
+                <x-button 
                     type="button" 
                     variant="secondary"
                     @click="$dispatch('close-modal', { id: 'feedback-modal' })">
                     Annulla
-                </x-bootstrap-italia.button>
+                </x-button>
                 
-                <x-bootstrap-italia.button 
+                <x-button 
                     type="submit" 
                     variant="primary">
                     Invia Feedback
-                </x-bootstrap-italia.button>
+                </x-button>
             </div>
         </form>
-    </x-bootstrap-italia.modal>
+    </x-modal>
 @endsection

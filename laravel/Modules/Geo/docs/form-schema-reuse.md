@@ -92,6 +92,6 @@ $addressSchema['locality'] = Forms\Components\TextInput::make('locality')
 ## Riferimenti
 
 - [address-resource.md](address-resource.md)
-- [pattern-filament-pages.md](../project_docs/pattern-filament-pages.md)
+- [pattern-filament-pages.md](../docs/pattern-filament-pages.md)
 - [AddressResource](../app/Filament/Resources/AddressResource.php)
 - [StudioResource](../../SaluteOra/app/Filament/Resources/StudioResource.php)

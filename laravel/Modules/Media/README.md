@@ -77,7 +77,7 @@ Check out more of my work at marco76tv!
 [![Stars](https://img.shields.io/badge/stars-100+-yellow.svg)](https://github.com/laraxot/module_media)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/module_media/main/project_docs/assets/media-banner.png" alt="Media Module Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/module_media/main/docs/assets/media-banner.png" alt="Media Module Banner" width="800">
 </div>
 
 ## 🇮🇹 Italiano

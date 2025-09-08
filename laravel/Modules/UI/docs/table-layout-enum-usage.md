@@ -242,5 +242,5 @@ $columns = $this->layout->getTableColumns($listColumns, $gridColumns);
 - [Filament Components Guide](components.md)
 - [Translation Standards](translations.md)
 - [Table Components](table-components.md)
-- [HasXotTable Trait](../../Xot/project_docs/has-xot-table.md)
-- [Root Documentation: UI Components](../../../project_docs/components/ui-components.md)
+- [HasXotTable Trait](../../Xot/docs/has-xot-table.md)
+- [Root Documentation: UI Components](../../../docs/components/ui-components.md)

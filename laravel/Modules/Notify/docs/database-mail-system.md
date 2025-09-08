@@ -307,5 +307,5 @@ php artisan notify:mail-template:test
 - [Mail Queue](mail-queue.md)
 
 ## Vedi Anche
-- [Laravel Mail](https://laravel.com/project_docs/mail)
-- [Filament Forms](https://filamentphp.com/project_docs/forms)
+- [Laravel Mail](https://laravel.com/docs/mail)
+- [Filament Forms](https://filamentphp.com/docs/forms)

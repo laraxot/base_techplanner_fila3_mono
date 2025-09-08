@@ -3,7 +3,7 @@
 ## Pacchetti Raccomandati
 
 ### Gestione Notifiche
-- [laravel/notifications](https://laravel.com/project_docs/notifications)
+- [laravel/notifications](https://laravel.com/docs/notifications)
   > Sistema di notifiche integrato di Laravel. Base per l'implementazione delle notifiche.
 
 - [laravel-notification-channels/telegram](https://github.com/laravel-notification-channels/telegram)
@@ -16,17 +16,17 @@
 ## Collegamenti ai Moduli Correlati
 
 ### Moduli Core
-- [Modulo Lang](../../../Lang/project_docs/links.md)
+- [Modulo Lang](../../../Lang/docs/links.md)
   > Gestione delle traduzioni per i messaggi di notifica.
 
-- [Modulo User](../../../User/project_docs/links.md)
+- [Modulo User](../../../User/docs/links.md)
   > Gestione delle preferenze di notifica degli utenti.
 
 ### Moduli di Supporto
-- [Modulo Queue](../../../Queue/project_docs/links.md)
+- [Modulo Queue](../../../Queue/docs/links.md)
   > Sistema di code per l'invio asincrono delle notifiche.
 
-- [Modulo Mail](../../../Mail/project_docs/links.md)
+- [Modulo Mail](../../../Mail/docs/links.md)
   > Gestione dell'invio delle email di notifica.
 
 ## Implementazioni di Esempio

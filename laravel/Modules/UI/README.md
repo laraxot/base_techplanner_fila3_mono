@@ -98,7 +98,7 @@ Discover more of my work at marco76tv!
 [![Stars](https://img.shields.io/badge/stars-100+-yellow.svg)](https://github.com/laraxot/module_ui)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/module_ui/main/project_docs/assets/ui-banner.png" alt="UI Module Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/module_ui/main/docs/assets/ui-banner.png" alt="UI Module Banner" width="800">
 </div>
 
 ## 🇮🇹 Italiano

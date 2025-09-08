@@ -174,7 +174,7 @@ public static function form(Form $form): Form
 
 ## Collegamenti Utili
 
-- [Documentazione Laravel Mail](https://laravel.com/project_docs/mail)
+- [Documentazione Laravel Mail](https://laravel.com/docs/mail)
 - [MJML Documentation](https://mjml.io/documentation/)
 - [Mailgun API](https://documentation.mailgun.com/en/latest/api_reference.html)
 - [Filament Documentation](https://filamentphp.com/docs)

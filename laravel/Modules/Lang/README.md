@@ -18,7 +18,7 @@
 [![Management](https://img.shields.io/badge/management-Filament-purple.svg)](docs/management.md)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/lang/main/project_docs/assets/lang-banner.png" alt="Lang Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/lang/main/docs/assets/lang-banner.png" alt="Lang Banner" width="800">
   <br>
   <em>🎯 Il sistema di traduzioni più avanzato e completo per Laravel!</em>
 </div>

@@ -26,17 +26,17 @@
 ## Collegamenti ai Moduli Correlati
 
 ### Moduli Core
-- [Modulo Queue](../../../Queue/project_docs/links.md)
+- [Modulo Queue](../../../Queue/docs/links.md)
   > Sistema base di gestione delle code. Fondamentale per l'elaborazione asincrona.
 
-- [Modulo Lang](../../../Lang/project_docs/links.md)
+- [Modulo Lang](../../../Lang/docs/links.md)
   > Gestione delle traduzioni per i messaggi dei job. Internazionalizzazione degli output.
 
 ### Moduli di Supporto
-- [Modulo Notify](../../../Notify/project_docs/links.md)
+- [Modulo Notify](../../../Notify/docs/links.md)
   > Sistema di notifiche per lo stato dei job. Comunicazione degli eventi di elaborazione.
 
-- [Modulo Log](../../../Log/project_docs/links.md)
+- [Modulo Log](../../../Log/docs/links.md)
   > Gestione dei log per il tracciamento dei job. Monitoraggio e debug delle elaborazioni.
 
 ## Implementazioni di Esempio

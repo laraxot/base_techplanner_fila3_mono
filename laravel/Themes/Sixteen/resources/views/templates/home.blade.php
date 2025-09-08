@@ -20,19 +20,19 @@
                     
                     {{-- Quick Actions --}}
                     <div class="flex flex-wrap gap-4">
-                        <x-bootstrap-italia.button 
+                        <x-button 
                             href="{{ route('services') }}"
                             variant="primary"
                             size="lg">
                             Servizi Online
-                        </x-bootstrap-italia.button>
+                        </x-button>
                         
-                        <x-bootstrap-italia.button 
+                        <x-button 
                             href="{{ route('news') }}"
                             variant="outline"
                             size="lg">
                             Notizie
-                        </x-bootstrap-italia.button>
+                        </x-button>
                     </div>
                 </div>
                 
@@ -89,11 +89,11 @@
             </div>
             
             <div class="text-center mt-8">
-                <x-bootstrap-italia.button 
+                <x-button 
                     href="{{ route('services') }}"
                     variant="secondary">
                     Tutti i Servizi
-                </x-bootstrap-italia.button>
+                </x-button>
             </div>
         </div>
     </section>
@@ -103,11 +103,11 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-900">Ultime Notizie</h2>
-                <x-bootstrap-italia.button 
+                <x-button 
                     href="{{ route('news') }}"
                     variant="link">
                     Vedi tutte
-                </x-bootstrap-italia.button>
+                </x-button>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -131,11 +131,11 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-900">Prossimi Eventi</h2>
-                <x-bootstrap-italia.button 
+                <x-button 
                     href="{{ route('events') }}"
                     variant="link">
                     Calendario completo
-                </x-bootstrap-italia.button>
+                </x-button>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

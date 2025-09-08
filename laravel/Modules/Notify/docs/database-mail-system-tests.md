@@ -375,9 +375,9 @@ php artisan test --coverage --filter=MailTemplate
 
 ## Collegamenti
 - [Database Mail System](database-mail-system.md)
-- [Testing Guide](../../../project_docs/testing-guide.md)
-- [CI/CD Pipeline](../../../project_docs/ci-cd.md)
+- [Testing Guide](../../../docs/testing-guide.md)
+- [CI/CD Pipeline](../../../docs/ci-cd.md)
 
 ## Vedi Anche
-- [Laravel Testing](https://laravel.com/project_docs/testing)
+- [Laravel Testing](https://laravel.com/docs/testing)
 - [PHPUnit Documentation](https://phpunit.de/documentation.html)

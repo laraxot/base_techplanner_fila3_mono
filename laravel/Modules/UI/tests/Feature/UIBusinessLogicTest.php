@@ -238,7 +238,7 @@ describe('UI Business Logic Integration', function () {
 
     describe('Component Service Business Rules', function () {
         it('enforces component rendering rules', function () {
-            $service = new ComponentService();
+            $service = new ComponentService;
 
             $component = Component::factory()->create([
                 'name' => 'renderable-component',
@@ -257,7 +257,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces component caching rules', function () {
-            $service = new ComponentService();
+            $service = new ComponentService;
 
             $component = Component::factory()->create([
                 'name' => 'cacheable-component',
@@ -278,7 +278,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces component validation rules', function () {
-            $service = new ComponentService();
+            $service = new ComponentService;
 
             $component = Component::factory()->create([
                 'name' => 'validated-component',
@@ -300,7 +300,7 @@ describe('UI Business Logic Integration', function () {
 
     describe('Theme Service Business Rules', function () {
         it('enforces theme compilation rules', function () {
-            $service = new ThemeService();
+            $service = new ThemeService;
 
             $theme = Theme::factory()->create([
                 'name' => 'Compilable Theme',
@@ -318,7 +318,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces theme asset compilation', function () {
-            $service = new ThemeService();
+            $service = new ThemeService;
 
             $theme = $this->theme;
             $assets = Asset::factory()->count(3)->create([
@@ -340,7 +340,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces theme configuration inheritance', function () {
-            $service = new ThemeService();
+            $service = new ThemeService;
 
             $parentTheme = Theme::factory()->create([
                 'name' => 'Parent Theme',
@@ -465,8 +465,8 @@ describe('UI Business Logic Integration', function () {
             $bundledCssCount = 1; // Un file CSS bundle
             $bundledJsCount = 1;  // Un file JS bundle
 
-            expect($bundledCssCount)->toBeLessThan($cssAssets->count());
-            expect($bundledJsCount)->toBeLessThan($jsAssets->count());
+            expect($bundledCssCount)->toBeLessThan($cssAssets->count()/** @phpstan-ignore method.nonObject */);
+            expect($bundledJsCount)->toBeLessThan($jsAssets->count()/** @phpstan-ignore method.nonObject */);
         });
 
         it('enforces lazy loading rules', function () {

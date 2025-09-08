@@ -83,7 +83,7 @@ Per tutti gli indirizzi italiani è obbligatorio:
 - **Sempre** estendere BaseModel.
 - **Aggiornare la documentazione e Xot/docs in caso di modifica della policy.
 
-> Vedi anche: Xot/project_docs/standards/coding-standards.md, Xot/project_docs/filosofia.md, Xot/project_docs/zen.md
+> Vedi anche: Xot/docs/standards/coding-standards.md, Xot/docs/filosofia.md, Xot/docs/zen.md
 
 ## Perché usare nullableUuidMorphs('model') invece di nullableMorphs('addressable')?
 
@@ -124,4 +124,4 @@ Per tutti gli indirizzi italiani è obbligatorio:
 
 ---
 
-> Vedi anche: Xot/project_docs/standards/coding-standards.md, Xot/project_docs/filosofia.md, Xot/project_docs/zen.md
+> Vedi anche: Xot/docs/standards/coding-standards.md, Xot/docs/filosofia.md, Xot/docs/zen.md

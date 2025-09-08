@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 declare(strict_types=1);
 
 return [
@@ -207,7 +206,6 @@ return [
             'placeholder' => '',
             'help' => 'Nome del guard di autenticazione',
         ],
-<<<<<<< HEAD
     ],
     'actions' => [
         'create' => [
@@ -429,7 +427,6 @@ return [
                 'title' => 'Errore reset password',
             ],
         ],
-<<<<<<< HEAD
         'user_not_found' => 'Utente non trovato',
         'password_fields_required' => 'Tutti i campi password sono obbligatori',
         'password_current_incorrect' => 'La password attuale non è corretta',
@@ -490,7 +487,6 @@ return [
         'line2' => 'Se non hai creato un account, non è necessaria alcuna azione',
         'salutation' => 'Cordiali saluti, :app_name',
     ],
-<<<<<<< HEAD
     'model' => [
         'label' => 'Utente',
         'plural' => 'Utenti',
@@ -548,9 +544,6 @@ return [
         'error' => 'Si è verificato un errore',
     ],
     'search_placeholder' => 'Cerca per nome, email o ruolo...',
-<<<<<<< HEAD
-];
-=======
 ];
 
 >>>>>>> 42fc572 (.)

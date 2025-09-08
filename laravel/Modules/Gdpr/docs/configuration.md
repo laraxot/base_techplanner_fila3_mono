@@ -192,9 +192,9 @@ public/vendor/gdpr/
 ## Collegamenti Bidirezionali
 
 ### Collegamenti ad Altri Moduli
-- [Configurazione User](../User/project_docs/configuration.md)
-- [Configurazione Activity](../Activity/project_docs/configuration.md)
-- [Configurazione Xot](../Xot/project_docs/configuration.md)
+- [Configurazione User](../User/docs/configuration.md)
+- [Configurazione Activity](../Activity/docs/configuration.md)
+- [Configurazione Xot](../Xot/docs/configuration.md)
 
 ### Collegamenti Interni
 - [README Principale](./README.md)
@@ -203,7 +203,7 @@ public/vendor/gdpr/
 - [Implementazione](./implementation.md) 
 
 ## Collegamenti tra versioni di configuration.md
-* [configuration.md](../../../../project_docs/configuration.md)
-* [configuration.md](../../Xot/project_docs/configuration.md)
-* [configuration.md](../../Cms/project_docs/configuration.md)
+* [configuration.md](../../../../docs/configuration.md)
+* [configuration.md](../../Xot/docs/configuration.md)
+* [configuration.md](../../Cms/docs/configuration.md)
 

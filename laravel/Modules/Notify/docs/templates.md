@@ -331,5 +331,5 @@ Se hai problemi con il bottone, copia e incolla questo link nel tuo browser: {{ 
 
 ## Vedi Anche
 
-- [Laravel Mail](https://laravel.com/project_docs/mail)
-- [Markdown Mail](https://laravel.com/project_docs/mail#markdown-mailables)
+- [Laravel Mail](https://laravel.com/docs/mail)
+- [Markdown Mail](https://laravel.com/docs/mail#markdown-mailables)

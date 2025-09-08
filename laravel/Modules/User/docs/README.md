@@ -521,10 +521,8 @@ class UserServiceProvider extends XotBaseServiceProvider
 ## Collegamenti
 - [Indice Documentazione](../../../project_docs/INDEX.md)
 - [README Principale](../../../README.md)
-<<<<<<< HEAD
 - [API Reference](../project_docs/api.md)
 - [Changelog](../project_docs/CHANGELOG.md) 
-=======
 - [API Reference](../docs/api.md)
 - [Changelog](../docs/CHANGELOG.md) 
 ## Collegamenti tra versioni di README.md
@@ -955,5 +953,4 @@ Schema::table('teams', function (Blueprint $table) {
   - **Regola**: docs_project solo per documentazione generale del progetto, file specifici di moduli nelle rispettive cartelle docs
 
 ## Collegamenti
->>>>>>> 199538c (.)
 

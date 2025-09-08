@@ -10,10 +10,10 @@ Comprehensive demo and testing page for all implemented components
 @section('content')
 <div class="bootstrap-italia-showcase">
     {{-- Skiplinks for accessibility --}}
-    <x-bootstrap-italia.skiplinks />
+    <x-skiplinks />
 
     {{-- Hero Section --}}
-    <x-bootstrap-italia.hero type="centered" size="small">
+    <x-hero type="centered" size="small">
         <x-slot name="content">
             <div class="container text-center">
                 <h1 class="display-4 fw-bold text-primary mb-3">
@@ -38,11 +38,11 @@ Comprehensive demo and testing page for all implemented components
                 </div>
             </div>
         </x-slot>
-    </x-bootstrap-italia.hero>
+    </x-hero>
 
     <div class="container my-5">
         {{-- Navigation Tabs for Categories --}}
-        <x-bootstrap-italia.tab orientation="horizontal" full-width="true">
+        <x-tab orientation="horizontal" full-width="true">
             <x-slot name="tabs">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#core-components" type="button" role="tab">
@@ -77,7 +77,7 @@ Comprehensive demo and testing page for all implemented components
                     </button>
                 </li>
             </x-slot>
-        </x-bootstrap-italia.tab>
+        </x-tab>
 
         {{-- Tab Content --}}
         <div class="tab-content mt-4">
@@ -89,7 +89,7 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h3 class="mb-3">Hero Component</h3>
                             <div class="demo-container">
-                                <x-bootstrap-italia.hero type="image" size="small" background-image="https://via.placeholder.com/1200x400/0066cc/ffffff?text=Demo+Hero">
+                                <x-hero type="image" size="small" background-image="https://via.placeholder.com/1200x400/0066cc/ffffff?text=Demo+Hero">
                                     <x-slot name="content">
                                         <div class="container">
                                             <h2 class="text-white">Demo Hero Section</h2>
@@ -97,7 +97,7 @@ Comprehensive demo and testing page for all implemented components
                                             <a href="#" class="btn btn-light">Learn More</a>
                                         </div>
                                     </x-slot>
-                                </x-bootstrap-italia.hero>
+                                </x-hero>
                             </div>
                         </div>
                     </div>
@@ -108,18 +108,18 @@ Comprehensive demo and testing page for all implemented components
                             <h4 class="mb-3">Badge Component</h4>
                             <div class="demo-container bg-light p-4 rounded">
                                 <div class="d-flex flex-wrap gap-2">
-                                    <x-bootstrap-italia.badge color="primary">Primary</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="success">Success</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="warning">Warning</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="danger">Danger</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="info">Info</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="secondary">Secondary</x-bootstrap-italia.badge>
+                                    <x-badge color="primary">Primary</x-badge>
+                                    <x-badge color="success">Success</x-badge>
+                                    <x-badge color="warning">Warning</x-badge>
+                                    <x-badge color="danger">Danger</x-badge>
+                                    <x-badge color="info">Info</x-badge>
+                                    <x-badge color="secondary">Secondary</x-badge>
                                 </div>
                                 <div class="mt-3">
                                     <h6>Different Sizes:</h6>
-                                    <x-bootstrap-italia.badge color="primary" size="sm">Small</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="primary" size="md">Medium</x-bootstrap-italia.badge>
-                                    <x-bootstrap-italia.badge color="primary" size="lg">Large</x-bootstrap-italia.badge>
+                                    <x-badge color="primary" size="sm">Small</x-badge>
+                                    <x-badge color="primary" size="md">Medium</x-badge>
+                                    <x-badge color="primary" size="lg">Large</x-badge>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h4 class="mb-3">Accordion Component</h4>
                             <div class="demo-container">
-                                <x-bootstrap-italia.accordion>
+                                <x-accordion>
                                     <x-slot name="items">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
@@ -157,7 +157,7 @@ Comprehensive demo and testing page for all implemented components
                                             </div>
                                         </div>
                                     </x-slot>
-                                </x-bootstrap-italia.accordion>
+                                </x-accordion>
                             </div>
                         </div>
                     </div>
@@ -170,21 +170,21 @@ Comprehensive demo and testing page for all implemented components
                                 <div class="row">
                                     <div class="col-md-4">
                                         <h6>Progress Bars</h6>
-                                        <x-bootstrap-italia.progress-indicators type="bar" :percentage="75" color="primary" label="Primary Progress" />
-                                        <x-bootstrap-italia.progress-indicators type="bar" :percentage="60" color="success" label="Success Progress" class="mt-2" />
-                                        <x-bootstrap-italia.progress-indicators type="bar" :percentage="40" color="warning" label="Warning Progress" class="mt-2" />
+                                        <x-progress-indicators type="bar" :percentage="75" color="primary" label="Primary Progress" />
+                                        <x-progress-indicators type="bar" :percentage="60" color="success" label="Success Progress" class="mt-2" />
+                                        <x-progress-indicators type="bar" :percentage="40" color="warning" label="Warning Progress" class="mt-2" />
                                     </div>
                                     <div class="col-md-4">
                                         <h6>Spinners</h6>
                                         <div class="d-flex gap-3 align-items-center">
-                                            <x-bootstrap-italia.progress-indicators type="spinner" size="sm" active="true" />
-                                            <x-bootstrap-italia.progress-indicators type="spinner" size="md" active="true" />
-                                            <x-bootstrap-italia.progress-indicators type="spinner" size="lg" active="true" />
+                                            <x-progress-indicators type="spinner" size="sm" active="true" />
+                                            <x-progress-indicators type="spinner" size="md" active="true" />
+                                            <x-progress-indicators type="spinner" size="lg" active="true" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <h6>Donut Progress</h6>
-                                        <x-bootstrap-italia.progress-indicators type="donut" :percentage="85" label="Completion Rate" />
+                                        <x-progress-indicators type="donut" :percentage="85" label="Completion Rate" />
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h4 class="mb-3">Select Component</h4>
                             <div class="demo-container bg-light p-4 rounded">
-                                <x-bootstrap-italia.select 
+                                <x-select 
                                     name="demo_select"
                                     label="Choose an Option"
                                     :options="[
@@ -220,7 +220,7 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h4 class="mb-3">Radio Component</h4>
                             <div class="demo-container bg-light p-4 rounded">
-                                <x-bootstrap-italia.radio 
+                                <x-radio 
                                     name="demo_radio"
                                     legend="Choose your preference"
                                     :options="[
@@ -239,7 +239,7 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h4 class="mb-3">Upload Component</h4>
                             <div class="demo-container bg-light p-4 rounded">
-                                <x-bootstrap-italia.upload 
+                                <x-upload 
                                     name="demo_upload"
                                     label="Upload Files"
                                     accept=".pdf,.doc,.docx"
@@ -255,12 +255,12 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h4 class="mb-3">Toggle Component</h4>
                             <div class="demo-container bg-light p-4 rounded">
-                                <x-bootstrap-italia.toggle 
+                                <x-toggle 
                                     name="demo_toggle"
                                     label="Enable notifications"
                                     checked="true"
                                 />
-                                <x-bootstrap-italia.toggle 
+                                <x-toggle 
                                     name="demo_toggle_2"
                                     label="Dark mode"
                                     lever-left="true"
@@ -281,7 +281,7 @@ Comprehensive demo and testing page for all implemented components
                             <h4 class="mb-3">Sidebar Component</h4>
                             <div class="demo-container">
                                 <div style="height: 300px; overflow: hidden;">
-                                    <x-bootstrap-italia.sidebar>
+                                    <x-sidebar>
                                         <x-slot name="menu">
                                             <ul class="list-unstyled">
                                                 <li><a href="#" class="nav-link"><svg class="icon icon-sm me-2"><use href="#it-home"></use></svg>Dashboard</a></li>
@@ -289,7 +289,7 @@ Comprehensive demo and testing page for all implemented components
                                                 <li><a href="#" class="nav-link"><svg class="icon icon-sm me-2"><use href="#it-settings"></use></svg>Settings</a></li>
                                             </ul>
                                         </x-slot>
-                                    </x-bootstrap-italia.sidebar>
+                                    </x-sidebar>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@ Comprehensive demo and testing page for all implemented components
                             <h4 class="mb-3">Bottom Navigation</h4>
                             <div class="demo-container">
                                 <div style="position: relative; height: 100px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
-                                    <x-bootstrap-italia.bottom-nav fixed="false">
+                                    <x-bottom-nav fixed="false">
                                         <x-slot name="links">
                                             <a href="#" class="nav-link active">
                                                 <svg class="icon"><use href="#it-home"></use></svg>
@@ -316,7 +316,7 @@ Comprehensive demo and testing page for all implemented components
                                                 <span class="bottom-nav-label">Profile</span>
                                             </a>
                                         </x-slot>
-                                    </x-bootstrap-italia.bottom-nav>
+                                    </x-bottom-nav>
                                 </div>
                             </div>
                         </div>
@@ -334,7 +334,7 @@ Comprehensive demo and testing page for all implemented components
                             <div class="demo-container">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <x-bootstrap-italia.notifiche 
+                                        <x-notifiche 
                                             type="success"
                                             title="Success Notification"
                                             message="This is a success message with icon"
@@ -343,7 +343,7 @@ Comprehensive demo and testing page for all implemented components
                                         />
                                     </div>
                                     <div class="col-md-6">
-                                        <x-bootstrap-italia.notifiche 
+                                        <x-notifiche 
                                             type="warning"
                                             title="Warning Notification"
                                             message="This is a warning message that requires attention"
@@ -369,7 +369,7 @@ Comprehensive demo and testing page for all implemented components
                             <div class="demo-container bg-light p-4 rounded">
                                 <div class="mb-3">
                                     <label class="form-label">Interactive Rating:</label>
-                                    <x-bootstrap-italia.rating 
+                                    <x-rating 
                                         name="demo_rating"
                                         stars="5"
                                         value="3"
@@ -377,7 +377,7 @@ Comprehensive demo and testing page for all implemented components
                                 </div>
                                 <div>
                                     <label class="form-label">Read-only Rating:</label>
-                                    <x-bootstrap-italia.rating 
+                                    <x-rating 
                                         stars="5"
                                         value="4"
                                         readonly="true"
@@ -392,7 +392,7 @@ Comprehensive demo and testing page for all implemented components
                         <div class="component-demo">
                             <h4 class="mb-3">Tab Component</h4>
                             <div class="demo-container">
-                                <x-bootstrap-italia.tab orientation="vertical">
+                                <x-tab orientation="vertical">
                                     <x-slot name="tabs">
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#vertical-tab1" type="button">
@@ -415,7 +415,7 @@ Comprehensive demo and testing page for all implemented components
                                             <p>This is the settings tab where you can configure various options.</p>
                                         </div>
                                     </x-slot>
-                                </x-bootstrap-italia.tab>
+                                </x-tab>
                             </div>
                         </div>
                     </div>
@@ -425,7 +425,7 @@ Comprehensive demo and testing page for all implemented components
     </div>
 
     {{-- Cookiebar Demo --}}
-    <x-bootstrap-italia.cookiebar />
+    <x-cookiebar />
 </div>
 
 {{-- Component Guide Modal --}}
@@ -443,19 +443,19 @@ Comprehensive demo and testing page for all implemented components
                         <div class="list-group list-group-flush">
                             <div class="list-group-item d-flex justify-content-between">
                                 <span>Core Components</span>
-                                <x-bootstrap-italia.badge color="success">8/8</x-bootstrap-italia.badge>
+                                <x-badge color="success">8/8</x-badge>
                             </div>
                             <div class="list-group-item d-flex justify-content-between">
                                 <span>Form Components</span>
-                                <x-bootstrap-italia.badge color="success">4/4</x-bootstrap-italia.badge>
+                                <x-badge color="success">4/4</x-badge>
                             </div>
                             <div class="list-group-item d-flex justify-content-between">
                                 <span>Navigation</span>
-                                <x-bootstrap-italia.badge color="success">3/3</x-bootstrap-italia.badge>
+                                <x-badge color="success">3/3</x-badge>
                             </div>
                             <div class="list-group-item d-flex justify-content-between">
                                 <span>Interactive</span>
-                                <x-bootstrap-italia.badge color="success">4/4</x-bootstrap-italia.badge>
+                                <x-badge color="success">4/4</x-badge>
                             </div>
                         </div>
                     </div>
@@ -463,15 +463,15 @@ Comprehensive demo and testing page for all implemented components
                         <h6>Compliance Status</h6>
                         <div class="mb-2">
                             <small class="text-muted">WCAG 2.1 AA Compliance</small>
-                            <x-bootstrap-italia.progress-indicators type="bar" :percentage="100" color="success" />
+                            <x-progress-indicators type="bar" :percentage="100" color="success" />
                         </div>
                         <div class="mb-2">
                             <small class="text-muted">Bootstrap Italia Standards</small>
-                            <x-bootstrap-italia.progress-indicators type="bar" :percentage="95" color="success" />
+                            <x-progress-indicators type="bar" :percentage="95" color="success" />
                         </div>
                         <div class="mb-2">
                             <small class="text-muted">Italian PA Requirements</small>
-                            <x-bootstrap-italia.progress-indicators type="bar" :percentage="98" color="success" />
+                            <x-progress-indicators type="bar" :percentage="98" color="success" />
                         </div>
                     </div>
                 </div>

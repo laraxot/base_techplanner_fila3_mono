@@ -259,5 +259,5 @@ return [
 
 - [Modello Address](../models/address.md)
 - [Trait HasAddress](../traits/hasaddress-implementation.md)
-- [XotBaseResource](../../Xot/project_docs/filament/xotbase-resource.md)
-- [Documentazione Filament](https://filamentphp.com/project_docs/3.x/panels/resources/getting-started)
+- [XotBaseResource](../../Xot/docs/filament/xotbase-resource.md)
+- [Documentazione Filament](https://filamentphp.com/docs/3.x/panels/resources/getting-started)

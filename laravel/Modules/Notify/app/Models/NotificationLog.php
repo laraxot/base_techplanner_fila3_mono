@@ -33,6 +33,42 @@ use Modules\Xot\Traits\Updater;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Modules\Notify\Models\NotificationTemplate|null $template
  * @property-read \Illuminate\Database\Eloquent\Model $notifiable
+ * @property string $title
+ * @property string $content
+ * @property string $channels
+ * @property string|null $error
+ * @property-read \Modules\Predict\Models\Profile|null $creator
+ * @property-read string $channel_label
+ * @property-read string $status_label
+ * @property-read \Modules\Predict\Models\Profile|null $updater
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog forChannel(string $channel)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog forNotifiable(\Illuminate\Database\Eloquent\Model $notifiable)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereChannels($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereError($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereNotifiableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereNotifiableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereSentAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog withStatus(string $status)
+ * @method static NotificationLog|null first()
+ * @method static \Illuminate\Database\Eloquent\Collection<int, NotificationLog> get()
+ * @method static NotificationLog create(array $attributes = [])
+ * @method static NotificationLog firstOrCreate(array $attributes = [], array $values = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog where(string|\Closure $column, mixed $operator = null, mixed $value = null, string $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|NotificationLog whereNotNull(string|\Illuminate\Contracts\Database\Query\Expression $columns)
+ * @method static int count(string $columns = '*')
+ *
+ * @mixin \Eloquent
  */
 class NotificationLog extends Model
 {
@@ -41,12 +77,19 @@ class NotificationLog extends Model
     use Updater;
 
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_PROCESSING = 'processing';
+
     public const STATUS_SENT = 'sent';
+
     public const STATUS_DELIVERED = 'delivered';
+
     public const STATUS_FAILED = 'failed';
+
     public const STATUS_SKIPPED = 'skipped';
+
     public const STATUS_OPENED = 'opened';
+
     public const STATUS_CLICKED = 'clicked';
 
     /**
@@ -55,7 +98,7 @@ class NotificationLog extends Model
      * @var string
      */
     protected $table = 'notification_logs';
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -77,7 +120,7 @@ class NotificationLog extends Model
         'clicked_at',
         'tenant_id',
     ];
-    
+
     /**
      * Get the attributes that should be cast.
      *
@@ -97,17 +140,15 @@ class NotificationLog extends Model
             'updated_at' => 'datetime',
         ];
     }
-    
+
     /**
      * Get the notifiable entity.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function notifiable(): MorphTo
     {
         return $this->morphTo();
     }
-    
+
     /**
      * Get the notification template.
      *
@@ -117,36 +158,33 @@ class NotificationLog extends Model
     {
         return $this->belongsTo(NotificationTemplate::class, 'template_id');
     }
-    
+
     /**
      * Scope to filter by status.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
-     * @param string $status
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeWithStatus($query, string $status)
     {
         return $query->where('status', $status);
     }
-    
+
     /**
      * Scope to filter by channel.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
-     * @param string $channel
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForChannel($query, string $channel)
     {
         return $query->where('channel', $channel);
     }
-    
+
     /**
      * Scope to filter by notifiable entity.
      *
-     * @param \Illuminate\Database\Eloquent\Builder<static> $query
-     * @param \Illuminate\Database\Eloquent\Model $notifiable
+     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForNotifiable($query, Model $notifiable)
@@ -157,8 +195,6 @@ class NotificationLog extends Model
 
     /**
      * Mark the notification as sent.
-     *
-     * @return self
      */
     public function markAsSent(): self
     {
@@ -172,8 +208,6 @@ class NotificationLog extends Model
 
     /**
      * Mark the notification as delivered.
-     *
-     * @return self
      */
     public function markAsDelivered(): self
     {
@@ -187,9 +221,6 @@ class NotificationLog extends Model
 
     /**
      * Mark the notification as failed.
-     *
-     * @param string|null $message
-     * @return self
      */
     public function markAsFailed(?string $message = null): self
     {
@@ -204,8 +235,6 @@ class NotificationLog extends Model
 
     /**
      * Mark the notification as opened.
-     *
-     * @return self
      */
     public function markAsOpened(): self
     {
@@ -219,8 +248,6 @@ class NotificationLog extends Model
 
     /**
      * Mark the notification as clicked.
-     *
-     * @return self
      */
     public function markAsClicked(): self
     {
@@ -234,21 +261,17 @@ class NotificationLog extends Model
 
     /**
      * Get the status label attribute.
-     *
-     * @return string
      */
     public function getStatusLabelAttribute(): string
     {
-        return __('notify::notification.fields.status.' . $this->status);
+        return (string) __('notify::notification.fields.status.'.$this->status);
     }
 
     /**
      * Get the channel label attribute.
-     *
-     * @return string
      */
     public function getChannelLabelAttribute(): string
     {
-        return __('notify::notification.fields.channel.options.' . $this->channel . '.label');
+        return (string) __('notify::notification.fields.channel.options.'.$this->channel.'.label');
     }
 }

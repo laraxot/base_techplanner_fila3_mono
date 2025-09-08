@@ -31,7 +31,7 @@ class AttachmentResource extends LangBaseResource
         return [
             'title' => TextInput::make('title')
                 ->required()
-                //->live(onBlur: true)
+                ->live(onBlur: true)
                 //->afterStateUpdated(function ($state, callable $set) {
                 //    $set('slug', Str::slug($state));
                 //})
@@ -41,8 +41,10 @@ class AttachmentResource extends LangBaseResource
                 ->required()
                 //->unique(ignoreRecord: true)
                 ,
+                
             'description' => Textarea::make('description'),
-             'disk'=>Select::make('disk')->options(AttachmentDiskEnum::class),
+            
+            'disk' => Select::make('disk')->options(AttachmentDiskEnum::class),
             
             'attachment' => FileUpload::make('attachment')
                 ->directory('attachments')

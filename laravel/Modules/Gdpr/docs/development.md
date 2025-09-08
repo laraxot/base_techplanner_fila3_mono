@@ -282,6 +282,6 @@ jobs:
 - [Roadmap](roadmap.md) 
 
 ## Collegamenti tra versioni di development.md
-* [development.md](laravel/Modules/Gdpr/project_docs/development.md)
-* [development.md](laravel/Modules/Xot/project_docs/packages/development.md)
+* [development.md](laravel/Modules/Gdpr/docs/development.md)
+* [development.md](laravel/Modules/Xot/docs/packages/development.md)
 

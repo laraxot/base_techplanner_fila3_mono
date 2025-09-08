@@ -3,7 +3,7 @@
 [![PHPStan Level 9](https://img.shields.io/badge/PHPStan-Level%209-brightgreen.svg)](https://phpstan.org/)
 [![Laravel 12.x](https://img.shields.io/badge/Laravel-12.x-red.svg)](https://laravel.com/)
 [![Filament 3.x](https://img.shields.io/badge/Filament-3.x-blue.svg)](https://filamentphp.com/)
-[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/project_docs/localization)
+[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/docs/localization)
 [![API Integration](https://img.shields.io/badge/API-Google%20Maps%20%7C%20Mapbox%20%7C%20Here-orange.svg)](https://developers.google.com/maps)
 [![Database JSON](https://img.shields.io/badge/Database-JSON%20Comuni%20IT-yellow.svg)](https://github.com/italia/anpr)
 [![Quality Score](https://img.shields.io/badge/Quality%20Score-98%25-brightgreen.svg)](https://github.com/laraxot/geo-module)

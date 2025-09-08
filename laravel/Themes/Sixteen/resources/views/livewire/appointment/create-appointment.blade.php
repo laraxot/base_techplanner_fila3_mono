@@ -66,17 +66,17 @@
                 </p>
 
                 <div class="flex justify-center space-x-4">
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         href="{{ route('appointments.index') }}"
                         variant="primary">
                         Le Mie Prenotazioni
-                    </x-bootstrap-italia.button>
+                    </x-button>
                     
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         wire:click="restart"
                         variant="secondary">
                         Nuova Prenotazione
-                    </x-bootstrap-italia.button>
+                    </x-button>
                 </div>
             </div>
         @else
@@ -258,18 +258,18 @@
                                         Codice Fiscale della persona
                                     </label>
                                     <div class="flex space-x-2">
-                                        <x-bootstrap-italia.input 
+                                        <x-input 
                                             type="text"
                                             wire:model="citizenData.fiscal_code"
                                             placeholder="Inserisci codice fiscale"
                                             class="flex-1"
                                             wire:keydown.enter="searchCitizen($event.target.value)" />
-                                        <x-bootstrap-italia.button 
+                                        <x-button 
                                             type="button"
                                             wire:click="searchCitizen($citizenData['fiscal_code'] ?? '')"
                                             variant="secondary">
                                             Cerca
-                                        </x-bootstrap-italia.button>
+                                        </x-button>
                                     </div>
                                 </div>
 
@@ -313,7 +313,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">
                                 Note aggiuntive (opzionale)
                             </label>
-                            <x-bootstrap-italia.textarea 
+                            <x-textarea 
                                 wire:model="notes"
                                 placeholder="Eventuali note o informazioni aggiuntive..."
                                 rows="3" />
@@ -323,7 +323,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">
                                 Contatto di emergenza (opzionale)
                             </label>
-                            <x-bootstrap-italia.input 
+                            <x-input 
                                 type="text"
                                 wire:model="emergencyContact"
                                 placeholder="Nome e telefono di riferimento" />
@@ -399,29 +399,29 @@
 
             {{-- Navigation Buttons --}}
             <div class="flex justify-between">
-                <x-bootstrap-italia.button 
+                <x-button 
                     wire:click="previousStep"
                     variant="secondary"
                     {{ $isFirstStep ? 'disabled' : '' }}>
                     <x-heroicon-o-arrow-left class="w-4 h-4 mr-2" />
                     Indietro
-                </x-bootstrap-italia.button>
+                </x-button>
 
                 @if($currentStep < $totalSteps)
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         wire:click="nextStep"
                         variant="primary">
                         Avanti
                         <x-heroicon-o-arrow-right class="w-4 h-4 ml-2" />
-                    </x-bootstrap-italia.button>
+                    </x-button>
                 @else
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         wire:click="confirmAppointment"
                         variant="primary"
                         wire:loading.attr="disabled">
                         <span wire:loading.remove>Conferma Prenotazione</span>
                         <span wire:loading>Conferma in corso...</span>
-                    </x-bootstrap-italia.button>
+                    </x-button>
                 @endif
             </div>
         @endif

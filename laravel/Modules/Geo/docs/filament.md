@@ -141,7 +141,7 @@ Modules/Geo/app/Filament/Resources/
 
 ### Collegamenti
 - [address-implementation.md](./address-implementation.md)
-- [Xot/project_docs/filament/README.md](../../Xot/project_docs/filament/README.md)
+- [Xot/docs/filament/README.md](../../Xot/docs/filament/README.md)
 - [place-address-schemaorg.md](./place-address-schemaorg.md)
 
 ### TODO

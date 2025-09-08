@@ -11,15 +11,15 @@ https://filamentphp.com/plugins/statik-flexible-content-blocks
 
 https://tailblocks.cc/
 https://tailwindcomponents.com/
-https://flowbite.com/project_docs/getting-started/introduction/
+https://flowbite.com/docs/getting-started/introduction/
 https://merakiui.com/
 https://tailwindui.com/
 https://www.tailwindtoolbox.com/
-https://tw-elements.com/project_docs/standard/navigation/navbar/
+https://tw-elements.com/docs/standard/navigation/navbar/
 
 
 
 
 https://freefrontend.com/tailwind-navbars/
 
-https://preline.co/project_docs/mega-menu.html
+https://preline.co/docs/mega-menu.html

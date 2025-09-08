@@ -16,18 +16,18 @@
                         Accedi ai servizi digitali, consulta le informazioni e resta aggiornato su tutte le iniziative del territorio.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <x-bootstrap-italia.button 
+                        <x-button 
                             variant="outline-primary" 
                             href="/servizi" 
                             class="bg-white text-primary-600 hover:bg-primary-50">
                             Esplora i servizi
-                        </x-bootstrap-italia.button>
-                        <x-bootstrap-italia.button 
+                        </x-button>
+                        <x-button 
                             variant="secondary" 
                             href="/contatti"
                             class="bg-primary-700 hover:bg-primary-800 border-primary-700">
                             Contatta l'ufficio
-                        </x-bootstrap-italia.button>
+                        </x-button>
                     </div>
                 </div>
                 <div class="hidden lg:block">
@@ -108,9 +108,9 @@
             </div>
             
             <div class="text-center mt-10">
-                <x-bootstrap-italia.button variant="outline-primary" href="/servizi">
+                <x-button variant="outline-primary" href="/servizi">
                     Tutti i servizi
-                </x-bootstrap-italia.button>
+                </x-button>
             </div>
         </div>
     </section>
@@ -127,9 +127,9 @@
                         Resta aggiornato su eventi e iniziative del territorio
                     </p>
                 </div>
-                <x-bootstrap-italia.button variant="outline-primary" href="/notizie">
+                <x-button variant="outline-primary" href="/notizie">
                     Tutte le notizie
-                </x-bootstrap-italia.button>
+                </x-button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -189,18 +189,18 @@
                     I nostri uffici sono a tua disposizione per fornirti supporto e assistenza
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <x-bootstrap-italia.button 
+                    <x-button 
                         variant="outline-primary" 
                         href="/contatti"
                         class="bg-white text-primary-600 hover:bg-primary-50">
                         Contatta gli uffici
-                    </x-bootstrap-italia.button>
-                    <x-bootstrap-italia.button 
+                    </x-button>
+                    <x-button 
                         variant="secondary" 
                         href="tel:+390612345678"
                         class="bg-primary-700 hover:bg-primary-800 border-primary-700">
                         Chiama: 06 1234567
-                    </x-bootstrap-italia.button>
+                    </x-button>
                 </div>
             </div>
         </div>

@@ -76,7 +76,7 @@ Analizzando i progetti `laravel-shop-main` e `laravel-shop-command-bus`, ho iden
 
 ## Struttura Modulare e Domain-Driven Design
 
-Basandoci sulla documentazione di Laravel Modules ([https://laravelmodules.com/project_docs/12/getting-started/introduction](https://laravelmodules.com/project_docs/12/getting-started/introduction)), possiamo strutturare il nostro mercato delle previsioni come un modulo isolato all'interno del progetto più ampio:
+Basandoci sulla documentazione di Laravel Modules ([https://laravelmodules.com/docs/12/getting-started/introduction](https://laravelmodules.com/docs/12/getting-started/introduction)), possiamo strutturare il nostro mercato delle previsioni come un modulo isolato all'interno del progetto più ampio:
 
 - **Isolamento del Modulo**: Creare un modulo `PredictionMarket` in `Modules/PredictionMarket` ci permette di sviluppare e testare il sistema in modo indipendente, con la possibilità di riutilizzarlo in altri progetti. Questo modulo avrà la propria struttura di directory con `app`, `config`, `database`, ecc.
 - **Organizzazione DDD Interna**: All'interno del modulo, possiamo adottare una struttura ispirata al Domain-Driven Design, simile a quella di Spatie. Ad esempio, `Modules/PredictionMarket/app/Domain/Market` conterrà aggregate, eventi e proiettori relativi ai mercati delle previsioni.

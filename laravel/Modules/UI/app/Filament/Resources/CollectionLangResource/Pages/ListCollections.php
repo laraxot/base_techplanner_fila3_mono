@@ -2,11 +2,9 @@
 
 namespace Modules\UI\Filament\Resources\CollectionLangResource\Pages;
 
-use Modules\UI\Filament\Resources\CollectionLangResource;
-use Filament\Actions;
 use Filament\Tables\Columns;
-use Filament\Resources\Pages\ListRecords;
 use Modules\Lang\Filament\Resources\Pages\LangBaseListRecords;
+use Modules\UI\Filament\Resources\CollectionLangResource;
 
 class ListCollections extends LangBaseListRecords
 {
@@ -16,17 +14,17 @@ class ListCollections extends LangBaseListRecords
     {
         return [
             Columns\TextColumn::make('name')
-                    ->forceSearchCaseInsensitive()
-                    ->label(__('Collections Name'))
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(),
+                ->forceSearchCaseInsensitive()
+                ->label((string) __('Collections Name'))
+                ->searchable()
+                ->sortable()
+                ->toggleable(),
             Columns\TextColumn::make('values-list')
-                    ->badge()
-                    ->separator(',')
-                    ->label(__('Collections Values'))
-                    ->searchable(['values'])
-                    ->toggleable(),
+                ->badge()
+                ->separator(',')
+                ->label((string) __('Collections Values'))
+                ->searchable(['values'])
+                ->toggleable(),
         ];
     }
 }

@@ -5,63 +5,63 @@ declare(strict_types=1);
 namespace Modules\Job\Models\Policies;
 
 use Modules\Job\Models\Task;
-use Modules\Xot\Contracts\UserContract;
+use Modules\Xot\Contracts\ProfileContract;
 
 class TaskPolicy extends JobBasePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(UserContract $user): bool
+    public function viewAny(ProfileContract $user): bool
     {
-        return $user->hasPermissionTo('task.viewAny');
+        return $user->hasPermissionTo('task.viewAny'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Task $task): bool
+    public function view(ProfileContract $user, Task $task): bool
     {
-        return $user->hasPermissionTo('task.view');
+        return $user->hasPermissionTo('task.view'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(UserContract $user): bool
+    public function create(ProfileContract $user): bool
     {
-        return $user->hasPermissionTo('task.create');
+        return $user->hasPermissionTo('task.create'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Task $task): bool
+    public function update(ProfileContract $user, Task $task): bool
     {
-        return $user->hasPermissionTo('task.update');
+        return $user->hasPermissionTo('task.update'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Task $task): bool
+    public function delete(ProfileContract $user, Task $task): bool
     {
-        return $user->hasPermissionTo('task.delete');
+        return $user->hasPermissionTo('task.delete'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Task $task): bool
+    public function restore(ProfileContract $user, Task $task): bool
     {
-        return $user->hasPermissionTo('task.restore');
+        return $user->hasPermissionTo('task.restore'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(UserContract $user, Task $task): bool
+    public function forceDelete(ProfileContract $user, Task $task): bool
     {
-        return $user->hasPermissionTo('task.forceDelete');
+        return $user->hasPermissionTo('task.forceDelete'); /** @phpstan-ignore method.nonObject */
     }
 }

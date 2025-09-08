@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\User\Contracts\UserContract;
+use Modules\Xot\Contracts\ProfileContract;
 use Modules\User\Models\OauthAuthCode;
 
 class OauthAuthCodePolicy extends UserBasePolicy
@@ -12,56 +12,56 @@ class OauthAuthCodePolicy extends UserBasePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(UserContract $user): bool
+    public function viewAny(ProfileContract $user): bool
     {
-        return $user->hasPermissionTo('oauth-auth-code.view.any');
+        return $user->hasPermissionTo('oauth-auth-code.view.any'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, OauthAuthCode $oauthAuthCode): bool
+    public function view(ProfileContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-        return $user->hasRole('super-admin');
+        return $user->hasRole('super-admin'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(UserContract $user): bool
+    public function create(ProfileContract $user): bool
     {
-        return $user->hasPermissionTo('oauth-auth-code.create');
+        return $user->hasPermissionTo('oauth-auth-code.create'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, OauthAuthCode $oauthAuthCode): bool
+    public function update(ProfileContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-        return $user->hasRole('super-admin');
+        return $user->hasRole('super-admin'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, OauthAuthCode $oauthAuthCode): bool
+    public function delete(ProfileContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-        return $user->hasRole('super-admin');
+        return $user->hasRole('super-admin'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, OauthAuthCode $oauthAuthCode): bool
+    public function restore(ProfileContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-        return $user->hasRole('super-admin');
+        return $user->hasRole('super-admin'); /** @phpstan-ignore method.nonObject */
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(UserContract $user, OauthAuthCode $oauthAuthCode): bool
+    public function forceDelete(ProfileContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-        return $user->hasRole('super-admin');
+        return $user->hasRole('super-admin'); /** @phpstan-ignore method.nonObject */
     }
 }

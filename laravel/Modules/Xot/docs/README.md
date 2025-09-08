@@ -44,10 +44,7 @@ Per accedere alla documentazione dettagliata originale, vedere il backup in:
 - **Documentation**: Documentazione essenziale
 
 ## Links
-<<<<<<< HEAD
 - [Root Documentation](../../../project_docs/)
-=======
 - [Root Documentation](../../../docs/)
 - [SaluteOra Module](../SaluteOra/docs/)
->>>>>>> ded3027d (.)
 - [Original Documentation Backup](../../../docs-consolidation-backup-*/Xot-docs-original/)
