@@ -3,8 +3,8 @@
 ## Principi Fondamentali
 
 1. **Struttura Modulare**
-   - Ogni modulo ha la sua documentazione in `/Modules/{ModuleName}/docs/`
-   - Le regole generali sono in `/Modules/Xot/docs/`
+   - Ogni modulo ha la sua documentazione in `/Modules/{ModuleName}/project_docs/`
+   - Le regole generali sono in `/Modules/Xot/project_docs/`
    - La root `/docs` contiene solo indici e collegamenti
 
 2. **Collegamenti Bidirezionali**
@@ -14,7 +14,7 @@
 
 3. **Organizzazione dei Contenuti**
    ```
-   Modules/Xot/docs/
+   Modules/Xot/project_docs/
    ├── guidelines/           # Linee guida generali
    ├── conventions/          # Convenzioni di codice
    ├── architecture/         # Architettura del framework
@@ -80,7 +80,7 @@ public function example(): void
 
 ### 1. Struttura Base
 ```
-Modules/{ModuleName}/docs/
+Modules/{ModuleName}/project_docs/
 ├── README.md              # Panoramica del modulo
 ├── installation.md        # Istruzioni di installazione
 ├── configuration.md       # Configurazione
@@ -166,7 +166,7 @@ php artisan api:generate
 
 ## Collegamenti tra versioni di documentation.md
 * [documentation.md](docs/rules/documentation.md)
-* [documentation.md](../../../Xot/docs/documentation.md)
-* [documentation.md](../../../Xot/docs/guidelines/documentation.md)
-* [documentation.md](../../../Cms/docs/roadmap/features/documentation.md)
+* [documentation.md](../../../Xot/project_docs/documentation.md)
+* [documentation.md](../../../Xot/project_docs/guidelines/documentation.md)
+* [documentation.md](../../../Cms/project_docs/roadmap/features/documentation.md)
 

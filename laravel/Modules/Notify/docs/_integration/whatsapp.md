@@ -12,6 +12,6 @@ twilio - vonage
 https://www.twilio.com/blog/create-laravel-php-notification-channel-whatsapp-twilio
 
 ufficial 
-https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
+https://developers.facebook.com/project_docs/whatsapp/cloud-api/get-started
 
 

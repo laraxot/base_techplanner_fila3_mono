@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\DeviceProfile;
 
 class DeviceProfilePolicy extends UserBasePolicy
 {
@@ -21,8 +22,7 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function view(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-
-               $user->id === $deviceProfile->user_id ||
+        return $user->id === $deviceProfile->user_id ||
                $user->hasRole('super-admin');
     }
 
@@ -39,7 +39,7 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function update(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-
+        return $user->id === $deviceProfile->user_id ||
                $user->hasRole('super-admin');
     }
 
@@ -48,7 +48,7 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-
+        return $user->id === $deviceProfile->user_id ||
                $user->hasRole('super-admin');
     }
 
@@ -57,8 +57,7 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -66,4 +65,6 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-
+        return $user->hasRole('super-admin');
+    }
+}

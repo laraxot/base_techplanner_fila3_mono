@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\TeamUser;
 
 class TeamUserPolicy extends UserBasePolicy
 {
@@ -21,10 +22,9 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, TeamUser $teamUser): bool
     {
-
-               $user->id === $teamUser->user_id ||
-               $user->teams->contains($teamUser->team_id) ||
-               $user->hasRole('super-admin');
+        return $user->id === $teamUser->user_id ||
+            $user->teams->contains($teamUser->team_id) ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -40,8 +40,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, TeamUser $teamUser): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -49,8 +48,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, TeamUser $teamUser): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -58,8 +56,7 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, TeamUser $teamUser): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -67,7 +64,6 @@ class TeamUserPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, TeamUser $teamUser): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 }

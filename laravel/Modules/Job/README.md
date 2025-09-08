@@ -18,7 +18,7 @@
 [![Scheduler](https://img.shields.io/badge/scheduler-advanced-purple.svg)](docs/scheduler.md)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/job/main/docs/assets/job-banner.png" alt="Job Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/job/main/project_docs/assets/job-banner.png" alt="Job Banner" width="800">
   <br>
   <em>🎯 Il sistema di code e job più avanzato e performante per Laravel!</em>
 </div>

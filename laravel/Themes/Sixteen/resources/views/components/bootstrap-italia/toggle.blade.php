@@ -148,11 +148,17 @@ Usage Examples:
 
 1. Basic toggle:
 <x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle1"
     name="notifications"
     label="Abilita notifiche" />
 
 2. Checked toggle:
+<x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
 <x-pub_theme::bootstrap-italia.toggle 
     id="toggle2"
     name="auto_save"
@@ -161,6 +167,9 @@ Usage Examples:
 
 3. Disabled toggle:
 <x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle3"
     name="premium_feature"
     label="Funzionalità premium"
@@ -168,10 +177,16 @@ Usage Examples:
 
 4. Inline toggles:
 <x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
+<x-pub_theme::bootstrap-italia.toggle 
     id="toggle4"
     name="setting1"
     label="Impostazione 1"
     :inline="true" />
+<x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
 <x-pub_theme::bootstrap-italia.toggle 
     id="toggle5"
     name="setting2"
@@ -180,6 +195,9 @@ Usage Examples:
     :lever-right="true" />
 
 5. Grouped toggles with fieldset:
+<x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
 <x-pub_theme::bootstrap-italia.toggle 
     legend="Gruppo di toggle"
     :inline="true"
@@ -203,12 +221,18 @@ Usage Examples:
 
 6. Simple grouped toggles:
 <x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
+<x-pub_theme::bootstrap-italia.toggle 
     :toggles="[
         ['id' => 'email_notifications', 'label' => 'Notifiche email', 'name' => 'notifications[email]'],
         ['id' => 'sms_notifications', 'label' => 'Notifiche SMS', 'name' => 'notifications[sms]']
     ]" />
 
 7. Toggle with custom value:
+<x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
 <x-pub_theme::bootstrap-italia.toggle 
     name="consent"
     label="Accetto i termini e condizioni"
@@ -217,11 +241,17 @@ Usage Examples:
 
 8. Toggle with slot content:
 <x-pub_theme::bootstrap-italia.toggle 
+<x-pub_theme::bootstrap-italia.toggle 
+=======
+<x-pub_theme::bootstrap-italia.toggle 
     name="custom_toggle"
     label="Toggle personalizzato">
     <small class="form-text text-muted">
         Informazioni aggiuntive sul toggle
     </small>
+</x-pub_theme::bootstrap-italia.toggle>
+</x-pub_theme::bootstrap-italia.toggle>
+=======
 </x-pub_theme::bootstrap-italia.toggle>
 
 Bootstrap Italia Classes Reference:

@@ -4,7 +4,7 @@
 [![Laravel 12.x](https://img.shields.io/badge/Laravel-12.x-red.svg)](https://laravel.com/)
 [![Filament 3.x](https://img.shields.io/badge/Filament-3.x-blue.svg)](https://filamentphp.com/)
 [![PHPStan Level 9](https://img.shields.io/badge/PHPStan-Level%209-brightgreen.svg)](https://phpstan.org/)
-[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/docs/localization)
+[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/project_docs/localization)
 [![PostGIS Ready](https://img.shields.io/badge/PostGIS-Geographic%20DB-blue.svg)](https://postgis.net/)
 [![Google Maps API](https://img.shields.io/badge/Google%20Maps-API%20Ready-green.svg)](https://developers.google.com/maps)
 [![Pest Tests](https://img.shields.io/badge/Pest%20Tests-✅%20Passing-brightgreen.svg)](tests/)
@@ -24,7 +24,7 @@
 [![Components](https://img.shields.io/badge/components-10+-purple.svg)](docs/components.md)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/geo/main/docs/assets/geo-banner.png" alt="Geo Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/geo/main/project_docs/assets/geo-banner.png" alt="Geo Banner" width="800">
   <br>
   <em>🎯 Il sistema di geolocalizzazione più avanzato e completo per Laravel!</em>
 </div>

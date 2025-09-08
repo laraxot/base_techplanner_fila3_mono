@@ -42,6 +42,11 @@
                         </span>
                     @endif
                     <x-pub_theme::accessibility.font-size />
+                            {{ __('pub_theme::accessibility.font_size') }}:
+                        </span>
+                    @endif
+                    <x-pub_theme::components.accessibility.font-size />
+=======
                 </div>
 
                 {{-- Link accessibilità --}}
@@ -52,11 +57,25 @@
                         :aria-label="__('pub_theme::accessibility.accessibility_statement')"
                     >
                         {{ __('pub_theme::accessibility.accessibility_statement') }}
+                        :aria-label="__('pub_theme::accessibility.accessibility_statement')"
+                    >
+                        {{ __('pub_theme::accessibility.accessibility_statement') }}
+=======
+                        :aria-label="__('pub_theme::accessibility.accessibility_statement')"
+                    >
+                        {{ __('pub_theme::accessibility.accessibility_statement') }}
                     </a>
                     
                     <a
                         href="{{ route('pages.view', ['slug' => 'privacy']) }}"
                         class="text-sm text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
+                        :aria-label="__('pub_theme::accessibility.privacy_policy')"
+                    >
+                        {{ __('pub_theme::accessibility.privacy_policy') }}
+                        :aria-label="__('pub_theme::accessibility.privacy_policy')"
+                    >
+                        {{ __('pub_theme::accessibility.privacy_policy') }}
+=======
                         :aria-label="__('pub_theme::accessibility.privacy_policy')"
                     >
                         {{ __('pub_theme::accessibility.privacy_policy') }}
@@ -69,6 +88,9 @@
                 @click="$el.parentElement.parentElement.style.display = 'none'"
                 class="p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
                 :aria-label="__('pub_theme::accessibility.close_accessibility_bar')"
+                :aria-label="__('pub_theme::accessibility.close_accessibility_bar')"
+=======
+                :aria-label="__('pub_theme::accessibility.close_accessibility_bar')"
             >
                 <x-filament::icon name="heroicon-o-x-mark" class="w-4 h-4" />
             </button>
@@ -77,6 +99,9 @@
 </aside>
 
 {{-- Skiplinks --}}
+<x-pub_theme::accessibility.skiplinks />
+<x-pub_theme::components.accessibility.skiplinks />
+=======
 <x-pub_theme::accessibility.skiplinks />
 
 {{-- Script per preferenze sistema --}}

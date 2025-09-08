@@ -7,10 +7,10 @@ https://www.tailwindtoolbox.com/components/megamenu
 
 
 
-https://tw-elements.com/docs/standard/navigation/mega-menu/
+https://tw-elements.com/project_docs/standard/navigation/mega-menu/
 
 
-https://flowbite.com/docs/components/mega-menu/
+https://flowbite.com/project_docs/components/mega-menu/
 
 
 

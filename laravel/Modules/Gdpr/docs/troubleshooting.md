@@ -196,9 +196,9 @@ class GdprMetrics
 ## Collegamenti Bidirezionali
 
 ### Collegamenti ad Altri Moduli
-- [Troubleshooting User](../User/docs/troubleshooting.md)
-- [Troubleshooting Activity](../Activity/docs/troubleshooting.md)
-- [Troubleshooting Xot](../Xot/docs/troubleshooting.md)
+- [Troubleshooting User](../User/project_docs/troubleshooting.md)
+- [Troubleshooting Activity](../Activity/project_docs/troubleshooting.md)
+- [Troubleshooting Xot](../Xot/project_docs/troubleshooting.md)
 
 ### Collegamenti Interni
 - [README Principale](./README.md)
@@ -207,7 +207,7 @@ class GdprMetrics
 - [Testing](./testing.md) 
 
 ## Collegamenti tra versioni di troubleshooting.md
-* [troubleshooting.md](../../Xot/docs/phpstan/troubleshooting.md)
-* [troubleshooting.md](../../Xot/docs/troubleshooting.md)
-* [troubleshooting.md](../../Cms/docs/frontoffice/troubleshooting.md)
+* [troubleshooting.md](../../Xot/project_docs/phpstan/troubleshooting.md)
+* [troubleshooting.md](../../Xot/project_docs/troubleshooting.md)
+* [troubleshooting.md](../../Cms/project_docs/frontoffice/troubleshooting.md)
 

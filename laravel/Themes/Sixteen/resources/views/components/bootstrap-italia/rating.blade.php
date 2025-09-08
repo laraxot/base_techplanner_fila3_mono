@@ -150,10 +150,16 @@ Usage Examples:
 
 1. Basic rating input:
 <x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
+<x-pub_theme::bootstrap-italia.rating 
     name="service_rating" 
     legend="Valuta il servizio" />
 
 2. Rating with current value:
+<x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
 <x-pub_theme::bootstrap-italia.rating 
     name="experience_rating"
     legend="Come valuti la tua esperienza?"
@@ -161,12 +167,18 @@ Usage Examples:
 
 3. Rating with descriptive label:
 <x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
+<x-pub_theme::bootstrap-italia.rating 
     name="quality_rating"
     legend="Qualità del servizio"
     :value="3"
     :show-label="true" />
 
 4. Read-only rating display:
+<x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
 <x-pub_theme::bootstrap-italia.rating 
     name="readonly_rating"
     legend="Valutazione media"
@@ -176,11 +188,17 @@ Usage Examples:
 
 5. Required rating:
 <x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
+<x-pub_theme::bootstrap-italia.rating 
     name="required_rating"
     legend="Valutazione obbligatoria"
     :required="true" />
 
 6. Custom rating scale (1-10):
+<x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
 <x-pub_theme::bootstrap-italia.rating 
     name="detailed_rating"
     legend="Valutazione dettagliata"
@@ -188,6 +206,9 @@ Usage Examples:
     :value="7" />
 
 7. Custom labels for rating values:
+<x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
 <x-pub_theme::bootstrap-italia.rating 
     name="custom_rating"
     legend="Come ti senti?"
@@ -202,6 +223,9 @@ Usage Examples:
 
 8. Large stars:
 <x-pub_theme::bootstrap-italia.rating 
+<x-pub_theme::bootstrap-italia.rating 
+=======
+<x-pub_theme::bootstrap-italia.rating 
     name="large_rating"
     legend="Rating con stelle grandi"
     size="lg"
@@ -211,6 +235,9 @@ Usage Examples:
 <form>
     <div class="mb-4">
         <x-pub_theme::bootstrap-italia.rating 
+        <x-pub_theme::bootstrap-italia.rating 
+=======
+        <x-pub_theme::bootstrap-italia.rating 
             name="overall_satisfaction"
             legend="Soddisfazione complessiva"
             :show-label="true"
@@ -219,6 +246,9 @@ Usage Examples:
     
     <div class="mb-4">
         <x-pub_theme::bootstrap-italia.rating 
+        <x-pub_theme::bootstrap-italia.rating 
+=======
+        <x-pub_theme::bootstrap-italia.rating 
             name="ease_of_use"
             legend="Facilità d'uso"
             :show-label="true"
@@ -226,6 +256,9 @@ Usage Examples:
     </div>
     
     <div class="mb-4">
+        <x-pub_theme::bootstrap-italia.rating 
+        <x-pub_theme::bootstrap-italia.rating 
+=======
         <x-pub_theme::bootstrap-italia.rating 
             name="response_time"
             legend="Tempistica di risposta"
@@ -240,6 +273,9 @@ Usage Examples:
 <div class="rating-summary">
     <div class="row align-items-center">
         <div class="col-auto">
+            <x-pub_theme::bootstrap-italia.rating 
+            <x-pub_theme::bootstrap-italia.rating 
+=======
             <x-pub_theme::bootstrap-italia.rating 
                 name="avg_rating"
                 legend="Valutazione media"
@@ -286,6 +322,9 @@ Usage Examples:
     
     <div class="mt-3 text-center">
         <x-pub_theme::bootstrap-italia.rating 
+        <x-pub_theme::bootstrap-italia.rating 
+=======
+        <x-pub_theme::bootstrap-italia.rating 
             name="avg_display"
             legend="Media complessiva"
             :value="4"
@@ -301,6 +340,9 @@ Usage Examples:
     labels: ['Pessimo', 'Scarso', 'Sufficiente', 'Buono', 'Ottimo']
 }">
     <x-pub_theme::bootstrap-italia.rating 
+    <x-pub_theme::bootstrap-italia.rating 
+=======
+    <x-pub_theme::bootstrap-italia.rating 
         name="interactive_rating"
         legend="Valuta questo contenuto"
         x-model="rating" />
@@ -313,6 +355,9 @@ Usage Examples:
 
 13. Product rating display:
 <div class="product-rating d-flex align-items-center">
+    <x-pub_theme::bootstrap-italia.rating 
+    <x-pub_theme::bootstrap-italia.rating 
+=======
     <x-pub_theme::bootstrap-italia.rating 
         name="product_rating"
         legend="Valutazione prodotto"
@@ -330,6 +375,9 @@ Usage Examples:
         <div class="d-flex justify-content-between align-items-start mb-2">
             <h6 class="card-title mb-0">Mario Rossi</h6>
             <x-pub_theme::bootstrap-italia.rating 
+            <x-pub_theme::bootstrap-italia.rating 
+=======
+            <x-pub_theme::bootstrap-italia.rating 
                 name="review_rating"
                 legend="Valutazione recensione"
                 :value="5"
@@ -345,6 +393,9 @@ Usage Examples:
 15. Rating with validation feedback:
 <form x-data="{ rating: 0, submitted: false }">
     <div class="mb-3">
+        <x-pub_theme::bootstrap-italia.rating 
+        <x-pub_theme::bootstrap-italia.rating 
+=======
         <x-pub_theme::bootstrap-italia.rating 
             name="validation_rating"
             legend="La tua valutazione (obbligatoria)"

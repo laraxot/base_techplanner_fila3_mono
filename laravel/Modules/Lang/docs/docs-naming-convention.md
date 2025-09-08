@@ -69,10 +69,10 @@ Tutti i file e le cartelle all'interno delle directory `docs/` DEVONO utilizzare
 ### Controllo Automatico
 ```bash
 # Trova file con nomi non conformi
-find . -path "*/docs/*" -name "*[A-Z]*" ! -name "README.md"
+find . -path "*/project_docs/*" -name "*[A-Z]*" ! -name "README.md"
 
 # Trova cartelle con nomi non conformi
-find . -path "*/docs/*" -type d -name "*[A-Z]*"
+find . -path "*/project_docs/*" -type d -name "*[A-Z]*"
 ```
 
 ### Processo di Correzione

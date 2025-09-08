@@ -218,7 +218,7 @@ Prima di committare la documentazione:
 Quando si fa riferimento a concetti o classi in altri moduli, utilizzare collegamenti relativi:
 
 ```markdown
-Per ulteriori informazioni, consultare la [documentazione del modulo UI](../UI/docs/README.md).
+Per ulteriori informazioni, consultare la [documentazione del modulo UI](../UI/project_docs/README.md).
 ```
 
 ### 2. Documentazione Centralizzata
@@ -226,7 +226,7 @@ Per ulteriori informazioni, consultare la [documentazione del modulo UI](../UI/d
 Alcuni argomenti comuni a più moduli dovrebbero essere documentati nel modulo Xot e poi referenziati dagli altri moduli:
 
 ```markdown
-Per le best practices generali sul framework, consultare la [guida principale](../Xot/docs/best-practices.md).
+Per le best practices generali sul framework, consultare la [guida principale](../Xot/project_docs/best-practices.md).
 ```
 
 ## Esempi di Eccellenza

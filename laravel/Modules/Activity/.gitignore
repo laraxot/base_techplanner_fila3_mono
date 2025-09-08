@@ -54,6 +54,13 @@ Homestead.json
 *.backup
 *.backup.*
 
+# Backup files
+*.old
+*.old1
+*.backup
+*.backup.*
+*.bak
+
 # Documentation and cache
 docs/phpstan/
 docs/cache/

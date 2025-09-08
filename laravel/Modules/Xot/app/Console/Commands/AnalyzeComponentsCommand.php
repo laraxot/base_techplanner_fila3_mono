@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -23,29 +25,38 @@ class AnalyzeComponentsCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle(GetComponentsAction $getComponentsAction)
+    public function handle(GetComponentsAction $getComponentsAction): int
     {
         $module = $this->option('module');
         $type = $this->option('type');
-        $prefix = $this->option('prefix') ?? '';
-        $force = $this->option('force') ?? false;
+        $prefixOption = $this->option('prefix');
+        $forceOption = $this->option('force');
 
-        $path = $module ? base_path("laravel/Modules/{$module}") : base_path('laravel/Modules');
-        $namespace = $module ? "Modules\\{$module}" : 'Modules';
+        // Type-safe casting of command options
+        $prefix = is_string($prefixOption) ? $prefixOption : '';
+        $force = is_bool($forceOption) ? $forceOption : false;
+
+        // Type-safe module handling
+        $moduleStr = is_string($module) ? $module : '';
+        $path = $moduleStr !== '' ? base_path("laravel/Modules/{$moduleStr}") : base_path('laravel/Modules');
+        $namespace = $moduleStr !== '' ? "Modules\\{$moduleStr}" : 'Modules';
 
         $components = $getComponentsAction->execute($path, $namespace, $prefix, $force);
 
         $this->table(
             ['Componente', 'Tipo', 'Modulo', 'Path'],
             collect($components)->map(function ($component) {
+                // Type-safe component access
+                if (! is_array($component)) {
+                    return ['Invalid component', 'N/A', 'N/A', 'N/A'];
+                }
+
                 return [
-                    $component['comp_name'],
-                    $component['type'],
-                    $component['module'],
-                    $component['path'],
+                    $component['comp_name'] ?? 'N/A',
+                    $component['type'] ?? 'N/A',
+                    $component['module'] ?? 'N/A',
+                    $component['path'] ?? 'N/A',
                 ];
             })
         );

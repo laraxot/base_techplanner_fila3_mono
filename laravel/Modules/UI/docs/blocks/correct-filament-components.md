@@ -118,7 +118,7 @@ Per il componente `user-dropdown.blade.php`, l'implementazione corretta è:
 
 - [API dei Componenti Filament](../filament/components-api.md)
 - [Gestione dei Dati nei Blocchi](./blade-data-handling.md)
-- [Documentazione Filament Ufficiale](https://filamentphp.com/docs/3.x/support/blade-components)
+- [Documentazione Filament Ufficiale](https://filamentphp.com/project_docs/3.x/support/blade-components)
 
 ---
 

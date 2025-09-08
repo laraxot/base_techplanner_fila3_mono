@@ -648,3 +648,4 @@ describe('BaseCalendarWidget Integration', function () {
         expect($events2)->toHaveCount(2);
     });
 });
+

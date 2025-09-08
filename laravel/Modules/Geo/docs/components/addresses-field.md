@@ -463,7 +463,7 @@ public function address(): BelongsTo
 - [AddressResource Documentation](../address-resource.md)
 - [Form Schema Reuse](../form-schema-reuse.md)
 - [Address Model Documentation](../address-model-italian.md)
-- [Studio Resource Implementation](../../SaluteOra/docs/studio-resource.md)
+- [Studio Resource Implementation](../../SaluteOra/project_docs/studio-resource.md)
 
 ### File Correlati
 - [AddressesField.php](../../app/Filament/Forms/Components/AddressesField.php)

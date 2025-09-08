@@ -1,11 +1,13 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
+// import preset from './../../vendor/filament/support/tailwind.config.preset';
+import preset from "./vendor/filament/support/tailwind.config.preset";
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import colors from 'tailwindcss/colors';
 
 module.exports = {
-    // presets: [], // avoid theme-local Filament preset paths
+    presets: [preset],
     darkMode: 'class',
     theme: {
         extend: {
@@ -130,7 +132,8 @@ module.exports = {
         "./resources/views/**/*.blade.php",
         "./resources/views/filament/**/*.blade.php",
         "./app/Filament/**/*.php",
-
+        "./vendor/filament/**/*.blade.php",
+        
         "../../app/Filament/**/*.php",
         "../../resources/views/**/*.blade.php",
         "../../vendor/filament/**/*.blade.php",
@@ -139,8 +142,9 @@ module.exports = {
         "../../storage/framework/views/*.php",
         "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "../../Themes/**/resources/views/**/*.blade.php",
-
+        
         "./node_modules/flowbite/**/*.js",
+        "../../../public_html/vendor/**/*.blade.php",
         "../../../public_html/vendor/**/*.blade.php",
     ],
     // Filament preset palette (for compatibility with plugins expecting these keys)
@@ -241,7 +245,7 @@ module.exports = {
         forms,
         typography,
         daisyui,
-        require('flowbite/plugin'),
+        require("flowbite/plugin"),
     ],
     daisyui: {
         themes: ['light', 'dark'],

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\TeamInvitation;
 
 class TeamInvitationPolicy extends UserBasePolicy
 {
@@ -21,9 +22,8 @@ class TeamInvitationPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, TeamInvitation $teamInvitation): bool
     {
-
-               $user->teams->contains($teamInvitation->team_id) ||
-               $user->hasRole('super-admin');
+        return $user->teams->contains($teamInvitation->team_id) ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -39,8 +39,7 @@ class TeamInvitationPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, TeamInvitation $teamInvitation): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -48,8 +47,7 @@ class TeamInvitationPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, TeamInvitation $teamInvitation): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -57,8 +55,7 @@ class TeamInvitationPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, TeamInvitation $teamInvitation): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -66,7 +63,6 @@ class TeamInvitationPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, TeamInvitation $teamInvitation): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 }

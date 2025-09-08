@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\ProfileTeam;
 
 class ProfileTeamPolicy extends UserBasePolicy
 {
@@ -21,10 +22,9 @@ class ProfileTeamPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, ProfileTeam $profileTeam): bool
     {
-
-               $user->id === $profileTeam->user_id ||
-               $user->teams->contains($profileTeam->team_id) ||
-               $user->hasRole('super-admin');
+        return $user->id === $profileTeam->user_id ||
+            $user->teams->contains($profileTeam->team_id) ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -40,8 +40,8 @@ class ProfileTeamPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, ProfileTeam $profileTeam): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->id === $profileTeam->user_id ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -49,8 +49,8 @@ class ProfileTeamPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, ProfileTeam $profileTeam): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->id === $profileTeam->user_id ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -58,8 +58,7 @@ class ProfileTeamPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, ProfileTeam $profileTeam): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -67,4 +66,6 @@ class ProfileTeamPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, ProfileTeam $profileTeam): bool
     {
-
+        return $user->hasRole('super-admin');
+    }
+}

@@ -77,21 +77,21 @@ public function handle(Request $request, Closure $next): Response
 ## Collegamenti ai Moduli Correlati
 
 ### Moduli Core
-- [Modulo GDPR](../../../Gdpr/docs/links.md)
+- [Modulo GDPR](../../../Gdpr/project_docs/links.md)
   > Documentazione sulla gestione delle traduzioni per il modulo GDPR.
 
-- [Modulo User](../../../User/docs/links.md)
+- [Modulo User](../../../User/project_docs/links.md)
   > Gestione delle traduzioni per l'interfaccia utente e le notifiche.
 
 ### Moduli di Supporto
-- [Modulo Notify](../../../Notify/docs/links.md)
+- [Modulo Notify](../../../Notify/project_docs/links.md)
   > Sistema di notifiche multilingua.
 
-- [Modulo CMS](../../../Cms/docs/links.md)
+- [Modulo CMS](../../../Cms/project_docs/links.md)
   > Gestione dei contenuti multilingua.
 
 ### Moduli Tematici
-- [Theme One](../../../../Themes/One/docs/links.md)
+- [Theme One](../../../../Themes/One/project_docs/links.md)
   > Gestione delle traduzioni specifiche per il tema One.
 
 ## Best Practices

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\Extra;
 
 class ExtraPolicy extends UserBasePolicy
 {
@@ -21,7 +22,7 @@ class ExtraPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Extra $extra): bool
     {
-
+        return $user->id === $extra->user_id ||
                $user->hasRole('super-admin');
     }
 
@@ -38,7 +39,7 @@ class ExtraPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Extra $extra): bool
     {
-
+        return $user->id === $extra->user_id ||
                $user->hasRole('super-admin');
     }
 
@@ -47,7 +48,7 @@ class ExtraPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Extra $extra): bool
     {
-
+        return $user->id === $extra->user_id ||
                $user->hasRole('super-admin');
     }
 
@@ -56,8 +57,7 @@ class ExtraPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Extra $extra): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -65,4 +65,6 @@ class ExtraPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Extra $extra): bool
     {
-
+        return $user->hasRole('super-admin');
+    }
+}

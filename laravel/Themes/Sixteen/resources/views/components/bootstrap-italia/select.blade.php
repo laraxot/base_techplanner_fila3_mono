@@ -117,6 +117,9 @@ Usage Examples:
 
 1. Basic select:
 <x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
+<x-pub_theme::bootstrap-italia.select 
     id="defaultSelect"
     label="Etichetta"
     :options="[
@@ -129,17 +132,26 @@ Usage Examples:
 
 2. Select with custom placeholder:
 <x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
+<x-pub_theme::bootstrap-italia.select 
     label="Seleziona categoria"
     placeholder="Seleziona una categoria"
     :options="['cat1' => 'Categoria 1', 'cat2' => 'Categoria 2']" />
 
 3. Disabled select:
 <x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
+<x-pub_theme::bootstrap-italia.select 
     label="Etichetta"
     :disabled="true"
     :options="['Value 1' => 'Opzione 1']" />
 
 4. Select with optgroups:
+<x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
 <x-pub_theme::bootstrap-italia.select 
     id="defaultSelectGroup"
     label="Etichetta"
@@ -156,6 +168,9 @@ Usage Examples:
 
 5. Required select with help text:
 <x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
+<x-pub_theme::bootstrap-italia.select 
     label="Campo obbligatorio"
     :required="true"
     help-text="Seleziona una delle opzioni disponibili"
@@ -163,12 +178,18 @@ Usage Examples:
 
 6. Multiple select:
 <x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
+<x-pub_theme::bootstrap-italia.select 
     label="Selezione multipla"
     :multiple="true"
     name="categories[]"
     :options="$categories" />
 
 7. Select with pre-selected value:
+<x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
 <x-pub_theme::bootstrap-italia.select 
     label="Con valore selezionato"
     selected="Value 2"
@@ -179,6 +200,9 @@ Usage Examples:
     ]" />
 
 8. Advanced options array format:
+<x-pub_theme::bootstrap-italia.select 
+<x-pub_theme::bootstrap-italia.select 
+=======
 <x-pub_theme::bootstrap-italia.select 
     label="Opzioni avanzate"
     :options="[

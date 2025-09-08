@@ -179,6 +179,9 @@ Usage Examples:
 
 1. Basic megamenu with columns:
 <x-pub_theme::bootstrap-italia.megamenu 
+<x-pub_theme::bootstrap-italia.megamenu 
+=======
+<x-pub_theme::bootstrap-italia.megamenu 
     title="Servizi"
     :columns="[
         [
@@ -212,6 +215,9 @@ Usage Examples:
 
 2. Megamenu with call-to-action:
 <x-pub_theme::bootstrap-italia.megamenu 
+<x-pub_theme::bootstrap-italia.megamenu 
+=======
+<x-pub_theme::bootstrap-italia.megamenu 
     title="Informazioni"
     :columns="$infoColumns"
     :cta="[
@@ -225,6 +231,9 @@ Usage Examples:
 
 3. Dark theme megamenu:
 <x-pub_theme::bootstrap-italia.megamenu 
+<x-pub_theme::bootstrap-italia.megamenu 
+=======
+<x-pub_theme::bootstrap-italia.megamenu 
     title="Documenti"
     theme="dark-desktop"
     :full-width="true"
@@ -233,6 +242,9 @@ Usage Examples:
     explore-all-url="/documenti" />
 
 4. Megamenu with accessible links:
+<x-pub_theme::bootstrap-italia.megamenu 
+<x-pub_theme::bootstrap-italia.megamenu 
+=======
 <x-pub_theme::bootstrap-italia.megamenu 
     title="Amministrazione"
     :columns="[
@@ -254,6 +266,9 @@ Usage Examples:
 
 5. Custom content with slot:
 <x-pub_theme::bootstrap-italia.megamenu title="Custom Menu">
+<x-pub_theme::bootstrap-italia.megamenu title="Custom Menu">
+=======
+<x-pub_theme::bootstrap-italia.megamenu title="Custom Menu">
     <div class="row">
         <div class="col-12">
             <h4>Contenuto personalizzato</h4>
@@ -262,12 +277,20 @@ Usage Examples:
         </div>
     </div>
 </x-pub_theme::bootstrap-italia.megamenu>
+</x-pub_theme::bootstrap-italia.megamenu>
+=======
+</x-pub_theme::bootstrap-italia.megamenu>
 
 Navigation Integration:
 Place megamenu items within a navbar with .has-megamenu class:
 
 <nav class="navbar navbar-expand-lg has-megamenu {{ $themeClasses ? implode(' ', $themeClasses) : '' }}">
     <div class="navbar-nav">
+        <x-pub_theme::bootstrap-italia.megamenu ... />
+        <x-pub_theme::bootstrap-italia.megamenu ... />
+        <x-pub_theme::bootstrap-italia.megamenu ... />
+        <x-pub_theme::bootstrap-italia.megamenu ... />
+=======
         <x-pub_theme::bootstrap-italia.megamenu ... />
         <x-pub_theme::bootstrap-italia.megamenu ... />
     </div>

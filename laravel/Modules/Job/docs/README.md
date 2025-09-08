@@ -179,6 +179,13 @@ php artisan queue:table
 php artisan queue:failed-table
 ```
 
+<<<<<<< HEAD
+## Documentazione correlata
+- [Modulo Xot](../../Xot/project_docs/README.md)
+- [Modulo User](../../User/project_docs/README.md)
+- [Modulo UI](../../UI/project_docs/README.md)
+- [README generali](../../../../project_docs/README.md)
+=======
 ## 📚 Documentazione Correlata
 
 ### Moduli Interconnessi
@@ -191,6 +198,7 @@ php artisan queue:failed-table
 - [Collegamenti documentazione centrale](../../../../docs/collegamenti-documentazione.md)
 
 ## 🔍 Analisi PHPStan
+>>>>>>> 1f60bdbd (.)
 
 ```bash
 # Esegui analisi statica

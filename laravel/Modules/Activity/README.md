@@ -4,7 +4,7 @@
 [![Laravel 12.x](https://img.shields.io/badge/Laravel-12.x-red.svg)](https://laravel.com/)
 [![Filament 3.x](https://img.shields.io/badge/Filament-3.x-blue.svg)](https://filamentphp.com/)
 [![PHPStan Level 9](https://img.shields.io/badge/PHPStan-Level%209-brightgreen.svg)](https://phpstan.org/)
-[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/docs/localization)
+[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/project_docs/localization)
 [![Event Sourcing](https://img.shields.io/badge/Event-Sourcing%20Ready-orange.svg)](https://martinfowler.com/eaaDev/EventSourcing.html)
 [![Audit Trail](https://img.shields.io/badge/Audit-Trail%20Ready-yellow.svg)](https://en.wikipedia.org/wiki/Audit_trail)
 [![Pest Tests](https://img.shields.io/badge/Pest%20Tests-✅%20Passing-brightgreen.svg)](tests/)
@@ -24,7 +24,7 @@
 [![Analytics](https://img.shields.io/badge/analytics-advanced-purple.svg)](docs/analytics.md)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/activity/main/docs/assets/activity-banner.png" alt="Activity Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/activity/main/project_docs/assets/activity-banner.png" alt="Activity Banner" width="800">
   <br>
   <em>🎯 Il sistema di tracking attività più potente e dettagliato per Laravel!</em>
 </div>

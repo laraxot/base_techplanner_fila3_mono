@@ -148,11 +148,20 @@ Usage Examples:
 
 2. Success notification with message:
 <x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+    title="Notification standard" />
+
+2. Success notification with message:
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
     title="Operazione completata"
     message="I dati sono stati salvati correttamente."
     type="success" />
 
 3. Error notification:
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Errore durante il salvataggio"
     message="Si è verificato un errore imprevisto. Riprova più tardi."
@@ -160,11 +169,17 @@ Usage Examples:
 
 4. Info notification:
 <x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Informazione importante"
     message="Il sistema sarà in manutenzione dalle 02:00 alle 04:00."
     type="info" />
 
 5. Warning notification:
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Attenzione"
     message="La sessione scadrà tra 5 minuti."
@@ -172,12 +187,18 @@ Usage Examples:
 
 6. Dismissible notification:
 <x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica eliminabile"
     message="Puoi chiudere questa notifica cliccando sulla X."
     type="info"
     :dismissible="true" />
 
 7. Auto-hide notification:
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica temporanea"
     message="Questa notifica scomparirà automaticamente dopo 3 secondi."
@@ -187,17 +208,26 @@ Usage Examples:
 
 8. Fixed position notifications:
 <x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica fissa in alto"
     message="Questa notifica è posizionata in alto nella pagina."
     type="info"
     position="top-fix" />
 
 <x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica fissa in basso"
     message="Questa notifica è posizionata in basso nella pagina."
     type="warning"
     position="bottom-fix" />
 
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica fissa a destra"
     message="Questa notifica è posizionata a destra nella pagina."
@@ -206,11 +236,17 @@ Usage Examples:
 
 9. Notification without icon:
 <x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
+<x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica senza icona"
     message="Questa notifica non ha l'icona."
     :with-icon="false" />
 
 10. Custom icon notification:
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Notifica con icona personalizzata"
     message="Questa notifica usa un'icona personalizzata."
@@ -218,6 +254,9 @@ Usage Examples:
     custom-icon="it-star-outline" />
 
 11. Complex notification with slot content:
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Aggiornamento disponibile"
     type="info"
@@ -231,6 +270,11 @@ Usage Examples:
 
 12. Form validation notifications:
 <x-pub_theme::bootstrap-italia.notifiche 
+</x-pub_theme::bootstrap-italia.notifiche>
+
+12. Form validation notifications:
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
     title="Errori di validazione"
     type="error"
     :dismissible="true">
@@ -243,12 +287,20 @@ Usage Examples:
 
 13. System status notifications:
 <x-pub_theme::bootstrap-italia.notifiche 
+</x-pub_theme::bootstrap-italia.notifiche>
+
+13. System status notifications:
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
     title="Sistema operativo"
     message="Tutti i servizi funzionano correttamente."
     type="success"
     position="top-fix" />
 
 14. Data processing notifications:
+<x-pub_theme::bootstrap-italia.notifiche 
+<x-pub_theme::bootstrap-italia.notifiche 
+=======
 <x-pub_theme::bootstrap-italia.notifiche 
     title="Elaborazione in corso"
     type="info"
@@ -264,17 +316,29 @@ Usage Examples:
 15. Multiple notifications stack:
 <div class="notifications-container">
     <x-pub_theme::bootstrap-italia.notifiche 
+</x-pub_theme::bootstrap-italia.notifiche>
+
+15. Multiple notifications stack:
+<div class="notifications-container">
+    <x-pub_theme::bootstrap-italia.notifiche 
+=======
         title="Messaggio 1"
         type="success"
         :dismissible="true"
         class="mb-2" />
     
     <x-pub_theme::bootstrap-italia.notifiche 
+    <x-pub_theme::bootstrap-italia.notifiche 
+=======
+    <x-pub_theme::bootstrap-italia.notifiche 
         title="Messaggio 2"
         type="warning"
         :dismissible="true"
         class="mb-2" />
     
+    <x-pub_theme::bootstrap-italia.notifiche 
+    <x-pub_theme::bootstrap-italia.notifiche 
+=======
     <x-pub_theme::bootstrap-italia.notifiche 
         title="Messaggio 3"
         type="info"

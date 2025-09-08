@@ -272,16 +272,16 @@ Il modulo **Notify** gestisce il sistema completo di notifiche per progetti Lara
 ## Collegamenti e Riferimenti
 
 ### Documentazione Correlata
-- [Modulo User](../User/docs/README.md) - Gestione utenti e permessi
-- [Modulo Gdpr](../Gdpr/docs/README.md) - Compliance GDPR
-- [Modulo Media](../Media/docs/README.md) - Gestione file e media
-- [Documentazione Root](../../../docs/README.md) - Panoramica progetto
+- [Modulo User](../User/project_docs/README.md) - Gestione utenti e permessi
+- [Modulo Gdpr](../Gdpr/project_docs/README.md) - Compliance GDPR
+- [Modulo Media](../Media/project_docs/README.md) - Gestione file e media
+- [Documentazione Root](../../../project_docs/README.md) - Panoramica progetto
 
 ### Risorse Esterne
-- [Laravel Notifications](https://laravel.com/docs/notifications)
-- [SendGrid API](https://sendgrid.com/docs/api-reference/)
+- [Laravel Notifications](https://laravel.com/project_docs/notifications)
+- [SendGrid API](https://sendgrid.com/project_docs/api-reference/)
 - [Twilio API](https://www.twilio.com/docs)
-- [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging)
+- [Firebase Cloud Messaging](https://firebase.google.com/project_docs/cloud-messaging)
 
 ---
 

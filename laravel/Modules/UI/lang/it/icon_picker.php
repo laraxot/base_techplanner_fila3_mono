@@ -6,6 +6,9 @@ return array (
     'newstate' => 
     array (
       'label' => 'newstate',
+      'description' => 'newstate',
+      'helper_text' => 'newstate',
+      'placeholder' => 'newstate',
     ),
     'pack' => 
     array (

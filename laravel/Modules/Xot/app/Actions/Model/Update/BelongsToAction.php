@@ -31,12 +31,12 @@ class BelongsToAction
         }
         */
 
-        if (! Arr::isAssoc($relationDTO->data) && 1 === \count($relationDTO->data)) {
+        if (! Arr::isAssoc($relationDTO->data) && \count($relationDTO->data) === 1) {
             $related_id = Arr::first($relationDTO->data);
-            if (null === $related_id) {
+            if ($related_id === null) {
                 return;
             }
-            
+
             $related = $relationDTO->related->find($related_id);
             // Verifica che $related non sia una Collection, ma un singolo modello
             if ($related instanceof \Illuminate\Database\Eloquent\Collection) {
@@ -55,7 +55,7 @@ class BelongsToAction
         if (Arr::isAssoc($relationDTO->data)) {
             $sub = $rows->firstOrCreate();
             // $sub = $rows->first() ?? $rows->getModel();
-            if (null === $sub) {
+            if ($sub === null) {
                 throw new \Exception('['.__LINE__.']['.class_basename($this).']');
             }
 
@@ -67,7 +67,15 @@ class BelongsToAction
 
         if ($rows->exists()) {
             // $rows->update($data); // non passa per il mutator
-            $model->{Str::camel($relationDTO->name)}->update($data);
+            $relationName = Str::camel($relationDTO->name);
+            $relatedModel = $model->{$relationName};
+
+            // Type assertion: la relazione deve restituire un modello che supporta update()
+            if (! $relatedModel instanceof Model) {
+                throw new \InvalidArgumentException('Related model must be an instance of Model to support update()');
+            }
+
+            $relatedModel->update($data);
 
             return;
         }

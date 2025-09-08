@@ -286,9 +286,9 @@ $consent = $response->json()['data'];
 ## Collegamenti Bidirezionali
 
 ### Collegamenti ad Altri Moduli
-- [API User](../User/docs/api.md)
-- [API Activity](../Activity/docs/api.md)
-- [API Xot](../Xot/docs/api.md)
+- [API User](../User/project_docs/api.md)
+- [API Activity](../Activity/project_docs/api.md)
+- [API Xot](../Xot/project_docs/api.md)
 
 ### Collegamenti Interni
 - [README Principale](./README.md)
@@ -297,7 +297,7 @@ $consent = $response->json()['data'];
 - [Testing](./testing.md) 
 
 ## Collegamenti tra versioni di api.md
-* [api.md](../../Chart/docs/advanced/api.md)
-* [api.md](../../Dental/docs/api.md)
-* [api.md](../../Patient/docs/api.md)
+* [api.md](../../Chart/project_docs/advanced/api.md)
+* [api.md](../../Dental/project_docs/api.md)
+* [api.md](../../Patient/project_docs/api.md)
 

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\SocialiteUser;
 
 class SocialiteUserPolicy extends UserBasePolicy
 {
@@ -21,9 +22,8 @@ class SocialiteUserPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, SocialiteUser $socialiteUser): bool
     {
-
-               $user->id === $socialiteUser->user_id ||
-               $user->hasRole('super-admin');
+        return $user->id === $socialiteUser->user_id ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -39,9 +39,8 @@ class SocialiteUserPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, SocialiteUser $socialiteUser): bool
     {
-
-               $user->id === $socialiteUser->user_id ||
-               $user->hasRole('super-admin');
+        return $user->id === $socialiteUser->user_id ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -49,9 +48,8 @@ class SocialiteUserPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, SocialiteUser $socialiteUser): bool
     {
-
-               $user->id === $socialiteUser->user_id ||
-               $user->hasRole('super-admin');
+        return $user->id === $socialiteUser->user_id ||
+            $user->hasRole('super-admin');
     }
 
     /**
@@ -59,8 +57,7 @@ class SocialiteUserPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, SocialiteUser $socialiteUser): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -68,7 +65,6 @@ class SocialiteUserPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, SocialiteUser $socialiteUser): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 }

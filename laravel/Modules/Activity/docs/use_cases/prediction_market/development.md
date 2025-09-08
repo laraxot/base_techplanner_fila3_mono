@@ -335,7 +335,7 @@ Configura strumenti di monitoraggio come:
 ## 📚 Risorse Aggiuntive
 
 - [Documentazione Ufficiale Laravel](https://laravel.com/docs)
-- [Event Sourcing in Laravel](https://spatie.be/docs/laravel-event-sourcing/v5/introduction)
+- [Event Sourcing in Laravel](https://spatie.be/project_docs/laravel-event-sourcing/v5/introduction)
 - [Domain-Driven Design](https://domainlanguage.com/ddd/)
 - [CQRS Pattern](https://martinfowler.com/bliki/CQRS.html)
 

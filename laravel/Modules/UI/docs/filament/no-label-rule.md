@@ -86,7 +86,7 @@ find /var/www/html/_bases/base_saluteora/laravel/Modules/UI/ -name "*.php" -exec
 **"Se vedi ->label() in qualsiasi componente del modulo UI, ELIMINALO IMMEDIATAMENTE."**
 
 ## Collegamenti
-- [../../../docs/filament-no-label-rule.md](../../../../docs/filament-no-label-rule.md)
+- [../../../project_docs/filament-no-label-rule.md](../../../../project_docs/filament-no-label-rule.md)
 - [automatic-translations.md](automatic-translations.md)
 - [label-translation-system.md](label-translation-system.md)
 - [best-practices.md](best-practices.md)

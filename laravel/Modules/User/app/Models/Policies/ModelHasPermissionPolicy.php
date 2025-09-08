@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\ModelHasPermission;
 
 class ModelHasPermissionPolicy extends UserBasePolicy
 {
@@ -21,8 +22,7 @@ class ModelHasPermissionPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, ModelHasPermission $modelHasPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -38,8 +38,7 @@ class ModelHasPermissionPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, ModelHasPermission $modelHasPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -47,8 +46,7 @@ class ModelHasPermissionPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, ModelHasPermission $modelHasPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -56,8 +54,7 @@ class ModelHasPermissionPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, ModelHasPermission $modelHasPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -65,4 +62,6 @@ class ModelHasPermissionPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, ModelHasPermission $modelHasPermission): bool
     {
-
+        return $user->hasRole('super-admin');
+    }
+}

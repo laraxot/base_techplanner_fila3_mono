@@ -302,3 +302,4 @@ describe('HasTeams Trait Performance', function () {
         expect($teamNames)->toContain('Team 1', 'Team 50', 'Team 100');
     });
 });
+

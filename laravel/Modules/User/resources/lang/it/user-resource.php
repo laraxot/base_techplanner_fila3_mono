@@ -8,7 +8,7 @@ return [
             'help' => 'Il nome dell\'utente',
             'validation' => [
                 'required' => 'Il nome è obbligatorio',
-
+            ],
         ],
         'email' => [
             'label' => 'Email',
@@ -18,7 +18,7 @@ return [
                 'required' => 'L\'email è obbligatoria',
                 'email' => 'Inserisci un\'email valida',
                 'max' => 'L\'email non può superare i 255 caratteri',
-
+            ],
         ],
         'password' => [
             'label' => 'Password',
@@ -27,7 +27,7 @@ return [
             'validation' => [
                 'required' => 'La password è obbligatoria',
                 'min' => 'La password deve essere di almeno 8 caratteri',
-
+            ],
         ],
         'password_confirmation' => [
             'label' => 'Conferma Password',
@@ -37,33 +37,40 @@ return [
                 'required' => 'La conferma della password è obbligatoria',
                 'min' => 'La password deve essere di almeno 8 caratteri',
                 'max' => 'La password non può superare i 255 caratteri',
-
+            ],
+        ],
     ],
     'actions' => [
         'create' => [
             'label' => 'Nuovo Utente',
-
+        ],
     ],
     'teams' => [
         'personal_team' => [
             'label' => 'Team Personale',
-
+        ],
     ],
     'devices' => [
         'fields' => [
             'uuid' => [
                 'label' => 'UUID',
-
+            ],
+        ],
     ],
     'permissions' => [
         'fields' => [
             'name' => [
                 'label' => 'Nome',
-
+            ],
+        ],
     ],
     'widgets' => [
         'recent_logins' => [
             'fields' => [
                 'user' => [
                     'label' => 'Utente',
-
+                ],
+            ],
+        ],
+    ],
+];

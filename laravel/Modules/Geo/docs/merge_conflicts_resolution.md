@@ -106,4 +106,4 @@ Strategia: DRY, KISS, analisi contestuale
 - [Geo Module Architecture](architecture.md)
 - [Geo Models Documentation](models/)
 - [Geo Actions Documentation](../app/Actions/)
-- [Merge Conflict Best Practices](../../Xot/docs/conflicts/)
+- [Merge Conflict Best Practices](../../Xot/project_docs/conflicts/)

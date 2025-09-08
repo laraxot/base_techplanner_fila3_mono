@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\User\Tests\Unit\Actions\GetCurrentDeviceActionTest;
-
 namespace Modules\User\Tests\Unit\Actions;
 
 use Modules\User\Actions\GetCurrentDeviceAction;
@@ -127,7 +125,7 @@ class GetCurrentDeviceActionTest extends TestCase
         $emptyMobileId = '';
 
         // Act & Assert
-
+        expect(fn () => $this->action->execute($emptyMobileId))
             ->toThrow(\InvalidArgumentException::class, 'L\'ID mobile non può essere vuoto');
     }
 

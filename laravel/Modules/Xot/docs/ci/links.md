@@ -53,16 +53,16 @@ Deptrac
 
 
 ## Collegamenti tra versioni di links.md
-* [links.md](../../../Gdpr/docs/links.md)
-* [links.md](../../../Notify/docs/links.md)
-* [links.md](../../../Xot/docs/ci/links.md)
-* [links.md](../../../Xot/docs/open_sources/links.md)
-* [links.md](../../../User/docs/links.md)
-* [links.md](../../../Lang/docs/links.md)
-* [links.md](../../../Job/docs/links.md)
-* [links.md](../../../Tenant/docs/it/links/links.md)
-* [links.md](../../../Cms/docs/links.md)
-* [links.md](../../../../Themes/One/docs/links.md)
+* [links.md](../../../Gdpr/project_docs/links.md)
+* [links.md](../../../Notify/project_docs/links.md)
+* [links.md](../../../Xot/project_docs/ci/links.md)
+* [links.md](../../../Xot/project_docs/open_sources/links.md)
+* [links.md](../../../User/project_docs/links.md)
+* [links.md](../../../Lang/project_docs/links.md)
+* [links.md](../../../Job/project_docs/links.md)
+* [links.md](../../../Tenant/project_docs/it/links/links.md)
+* [links.md](../../../Cms/project_docs/links.md)
+* [links.md](../../../../Themes/One/project_docs/links.md)
 
 
 ### Versione Incoming
@@ -98,17 +98,17 @@ Deptrac
 ## Collegamenti ai Moduli Correlati
 
 ### Moduli Core
-- [Modulo Lang](../../../Lang/docs/links.md)
+- [Modulo Lang](../../../Lang/project_docs/links.md)
   > Gestione delle traduzioni per il core system. Fondamentale per l'internazionalizzazione.
 
-- [Modulo User](../../../User/docs/links.md)
+- [Modulo User](../../../User/project_docs/links.md)
   > Gestione degli utenti e delle autorizzazioni base. Integrazione con il sistema di autenticazione.
 
 ### Moduli di Supporto
-- [Modulo Queue](../../../Queue/docs/links.md)
+- [Modulo Queue](../../../Queue/project_docs/links.md)
   > Sistema di code per operazioni asincrone. Gestione dei processi in background.
 
-- [Modulo Cache](../../../Cache/docs/links.md)
+- [Modulo Cache](../../../Cache/project_docs/links.md)
   > Gestione della cache del sistema. Ottimizzazione delle performance.
 
 ## Implementazioni di Esempio

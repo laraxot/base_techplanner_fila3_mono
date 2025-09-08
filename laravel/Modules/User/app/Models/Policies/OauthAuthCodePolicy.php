@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\OauthAuthCode;
 
 class OauthAuthCodePolicy extends UserBasePolicy
 {
@@ -21,8 +22,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function view(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -38,8 +38,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function update(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -47,8 +46,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -56,8 +54,7 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -65,4 +62,6 @@ class OauthAuthCodePolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, OauthAuthCode $oauthAuthCode): bool
     {
-
+        return $user->hasRole('super-admin');
+    }
+}

@@ -10,14 +10,14 @@ use Modules\User\Models\User;
 
 /**
  * Authentication Factory
-
+ *
  * @extends Factory<Authentication>
  */
 class AuthenticationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-
+     *
      * @var class-string<Authentication>
      */
     protected $model = Authentication::class;
@@ -36,8 +36,9 @@ class AuthenticationFactory extends Factory
             'type' => $this->faker->randomElement(['login', 'logout', 'password_reset', 'email_verification']),
             'ip_address' => $this->faker->ipv4(),
             'user_agent' => $this->faker->userAgent(),
-
-                : null,
+            'login_successful' => $loginSuccessful,
+            'login_at' => $loginAt,
+            'logout_at' => $loginSuccessful ? $this->faker->dateTimeBetween($loginAt, 'now') : null,
             'authenticatable_type' => User::class,
             'authenticatable_id' => User::factory(),
         ];
@@ -45,7 +46,6 @@ class AuthenticationFactory extends Factory
 
     /**
      * Indicate that the authentication was successful.
-
      */
     public function successful(): static
     {
@@ -56,7 +56,6 @@ class AuthenticationFactory extends Factory
 
     /**
      * Indicate that the authentication failed.
-
      */
     public function failed(): static
     {
@@ -68,7 +67,6 @@ class AuthenticationFactory extends Factory
 
     /**
      * Set the authentication type to login.
-
      */
     public function login(): static
     {
@@ -79,7 +77,6 @@ class AuthenticationFactory extends Factory
 
     /**
      * Set the authentication type to logout.
-
      */
     public function logout(): static
     {
@@ -91,7 +88,6 @@ class AuthenticationFactory extends Factory
 
     /**
      * Create authentication record for a specific user.
-
      */
     public function forUser(User $user): static
     {
@@ -100,4 +96,4 @@ class AuthenticationFactory extends Factory
             'authenticatable_id' => $user->id,
         ]);
     }
-
+}

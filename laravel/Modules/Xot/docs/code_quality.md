@@ -53,11 +53,11 @@ This document outlines the best practices for maintaining high code quality with
 - Update this document if new tools or standards for code quality are introduced.
 
 ## Links to Related Documentation
-- [Xot Base Classes](../Xot/docs/XOT_BASE_CLASSES.md)
-- [Filament Extension Pattern](../../Notify/docs/FILAMENT_EXTENSION_PATTERN.md)
-- [Filament Extension Pattern Analysis](../../Notify/docs/FILAMENT_EXTENSION_PATTERN_ANALYSIS.md)
-- [Patient Module - Namespace Conventions](../../Patient/docs/NAMESPACE_CONVENTIONS.md)
-- [Patient Module - Validation Errors](../../Patient/docs/VALIDATION_ERRORS.md)
+- [Xot Base Classes](../Xot/project_docs/XOT_BASE_CLASSES.md)
+- [Filament Extension Pattern](../../Notify/project_docs/FILAMENT_EXTENSION_PATTERN.md)
+- [Filament Extension Pattern Analysis](../../Notify/project_docs/FILAMENT_EXTENSION_PATTERN_ANALYSIS.md)
+- [Patient Module - Namespace Conventions](../../Patient/project_docs/NAMESPACE_CONVENTIONS.md)
+- [Patient Module - Validation Errors](../../Patient/project_docs/VALIDATION_ERRORS.md)
 - [PHP Strict Types](./PHP-STRICT-TYPES.md)
 - [PHPStan Implementation Guide](./PHPSTAN-IMPLEMENTATION-GUIDE.md)
 - [Naming Conventions](./NAMING-CONVENTIONS.md)

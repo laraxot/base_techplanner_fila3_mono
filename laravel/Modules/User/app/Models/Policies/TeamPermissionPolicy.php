@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Contracts\UserContract;
+use Modules\User\Models\TeamPermission;
 
 class TeamPermissionPolicy extends UserBasePolicy
 {
@@ -21,9 +22,7 @@ class TeamPermissionPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, TeamPermission $teamPermission): bool
     {
-
-               $user->teams->contains($teamPermission->team_id) ||
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -39,8 +38,7 @@ class TeamPermissionPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, TeamPermission $teamPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -48,8 +46,7 @@ class TeamPermissionPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, TeamPermission $teamPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -57,8 +54,7 @@ class TeamPermissionPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, TeamPermission $teamPermission): bool
     {
-
-               $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     /**
@@ -66,4 +62,6 @@ class TeamPermissionPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, TeamPermission $teamPermission): bool
     {
-
+        return $user->hasRole('super-admin');
+    }
+}

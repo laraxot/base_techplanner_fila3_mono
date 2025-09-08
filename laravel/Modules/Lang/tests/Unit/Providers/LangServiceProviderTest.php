@@ -414,3 +414,4 @@ describe('LangServiceProvider Maintenance', function () {
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
 });
+

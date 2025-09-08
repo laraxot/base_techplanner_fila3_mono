@@ -277,6 +277,6 @@ public function test_it_can_filter_models_by_city()
 ## Riferimenti
 
 - [Modello Address](../models/address.md)
-- [Documentazione Laravel Eloquent Traits](https://laravel.com/docs/10.x/eloquent-traits)
+- [Documentazione Laravel Eloquent Traits](https://laravel.com/project_docs/10.x/eloquent-traits)
 - [Pattern Relazioni Polimorfe](../morphs-relationship-patterns.md)
 - [Risorsa Filament per Address](../filament/address-resource.md)

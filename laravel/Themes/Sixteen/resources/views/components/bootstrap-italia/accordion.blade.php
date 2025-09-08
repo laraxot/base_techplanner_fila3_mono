@@ -77,7 +77,7 @@
 Usage Examples:
 
 1. Array-based accordion (recommended for multiple items):
-<x-pub_theme::bootstrap-italia.accordion 
+<x-pub_theme::bootstrap-italia.accordion
     :items="[
         [
             'id' => 'item1',
@@ -101,12 +101,12 @@ Usage Examples:
     accordion-id="collapseExample" />
 
 2. Flush accordion (no borders):
-<x-pub_theme::bootstrap-italia.accordion 
+<x-pub_theme::bootstrap-italia.accordion
     :flush="true"
     :items="$accordionData" />
 
 3. Custom heading level:
-<x-pub_theme::bootstrap-italia.accordion 
+<x-pub_theme::bootstrap-italia.accordion
     :items="$items"
     heading-level="h3" />
 

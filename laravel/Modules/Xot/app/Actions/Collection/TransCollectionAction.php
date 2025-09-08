@@ -20,14 +20,12 @@ class TransCollectionAction
     /**
      * Esegue la traduzione di una collezione.
      *
-
      * @return Collection<int|string, string>
      */
     public function execute(
         Collection $collection,
         ?string $transKey,
     ): Collection {
-
             return $collection->map(fn (mixed $item): string => SafeStringCastAction::cast($item));
         }
 
@@ -39,7 +37,6 @@ class TransCollectionAction
     /**
      * Traduce un singolo elemento.
      *
-
      * @return string L'elemento tradotto o l'elemento originale se la traduzione non esiste
      */
     public function trans(mixed $item): string

@@ -4,8 +4,8 @@
 [![Laravel 12.x](https://img.shields.io/badge/Laravel-12.x-red.svg)](https://laravel.com/)
 [![Filament 3.x](https://img.shields.io/badge/Filament-3.x-blue.svg)](https://filamentphp.com/)
 [![PHPStan Level 9](https://img.shields.io/badge/PHPStan-Level%209-brightgreen.svg)](https://phpstan.org/)
-[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/docs/localization)
-[![Email Templates](https://img.shields.io/badge/Email-Templates%20Ready-blue.svg)](https://spatie.be/docs/laravel-mail-templates)
+[![Translation Ready](https://img.shields.io/badge/Translation-IT%20%7C%20EN%20%7C%20DE-green.svg)](https://laravel.com/project_docs/localization)
+[![Email Templates](https://img.shields.io/badge/Email-Templates%20Ready-blue.svg)](https://spatie.be/project_docs/laravel-mail-templates)
 [![SMS Ready](https://img.shields.io/badge/SMS-Multi%20Provider-green.svg)](docs/sms.md)
 [![Pest Tests](https://img.shields.io/badge/Pest%20Tests-✅%20Passing-brightgreen.svg)](tests/)
 [![PHP Version](https://img.shields.io/badge/PHP-8.3+-blue.svg)](https://php.net)
@@ -24,7 +24,7 @@
 [![Templates](https://img.shields.io/badge/templates-50+-purple.svg)](docs/templates.md)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/laraxot/notify/main/docs/assets/notify-banner.png" alt="Notify Banner" width="800">
+  <img src="https://raw.githubusercontent.com/laraxot/notify/main/project_docs/assets/notify-banner.png" alt="Notify Banner" width="800">
   <br>
   <em>🎯 Il sistema di notifiche più potente e flessibile per Laravel!</em>
 </div>

@@ -136,9 +136,9 @@ if (! $this->hasIndex('nome_indice')) {
 
 Ogni modulo può avere best practices specifiche per le migrazioni. Consultare la documentazione del modulo per ulteriori dettagli:
 
-- [Best Practices per le Migrazioni nel Modulo Patient](/laravel/Modules/Patient/docs/MIGRATION_BEST_PRACTICES.md)
-- [Best Practices per le Migrazioni nel Modulo Tenant](/laravel/Modules/Tenant/docs/MIGRATION_BEST_PRACTICES.md)
-- [Best Practices per le Migrazioni nel Modulo User](/laravel/Modules/User/docs/MIGRATION_BEST_PRACTICES.md)
+- [Best Practices per le Migrazioni nel Modulo Patient](/laravel/Modules/Patient/project_docs/MIGRATION_BEST_PRACTICES.md)
+- [Best Practices per le Migrazioni nel Modulo Tenant](/laravel/Modules/Tenant/project_docs/MIGRATION_BEST_PRACTICES.md)
+- [Best Practices per le Migrazioni nel Modulo User](/laravel/Modules/User/project_docs/MIGRATION_BEST_PRACTICES.md)
 
 ## Errori Comuni e Come Evitarli
 

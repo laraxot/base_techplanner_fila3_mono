@@ -432,6 +432,6 @@ Cordiali saluti,<br>
 
 ## Vedi Anche
 
-- [Laravel Mail](https://laravel.com/docs/mail)
+- [Laravel Mail](https://laravel.com/project_docs/mail)
 - [Spatie Mail Templates](https://github.com/spatie/laravel-database-mail-templates)
 - [TinyMCE](https://www.tiny.cloud)

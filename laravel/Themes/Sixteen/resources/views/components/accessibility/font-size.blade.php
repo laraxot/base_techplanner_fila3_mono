@@ -45,7 +45,7 @@
     aria-label="{{ __('pub_theme::accessibility.font_size_adjuster') }}"
 >
     <span class="sr-only">
-        {{ __('pub_theme::accessibility.current_font_size') }}: 
+        {{ __('pub_theme::accessibility.current_font_size') }}:
         <span x-text="Math.round(fontSize * 100)"></span>%
     </span>
     
