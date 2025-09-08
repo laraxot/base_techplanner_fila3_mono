@@ -30,7 +30,8 @@ class ClientResource extends XotBaseResource
             'fiscal_code' => TextInput::make('fiscal_code')->nullable(),
             'address' => TextInput::make('address')->nullable(),
             'street_number' => TextInput::make('street_number'),         // numero_civico
-            'city' => TextInput::make('city')->nullable(),
+            'city' => TextInput::make('city')->nullable()
+            ->default(fn($record) => dddx($record)),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
