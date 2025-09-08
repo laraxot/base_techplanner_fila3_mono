@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Modules\Notify\Filament\Forms\Components;
+namespace Modules\Geo\Filament\Forms\Components;
 
 use Filament\Forms;
 use Webmozart\Assert\Assert;
 use Filament\Forms\Components\Section;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Notify\Enums\ContactTypeEnum;
+use Modules\Geo\Filament\Resources\AddressResource;
 
 
 // use Squire\Models\Country;
 
-class ContactSection extends Section
+class AddressSection extends Section
 {
     
     //protected string $view = 'filament-forms::components.group';
@@ -31,7 +32,9 @@ class ContactSection extends Section
 
     protected function getFormSchema(): array
     {
-        $res=ContactTypeEnum::getFormSchema(); 
+        $res=AddressResource::getFormSchema(); 
+        unset($res['name']);
+        unset($res['is_primary']);
         return $res;   
     }
 

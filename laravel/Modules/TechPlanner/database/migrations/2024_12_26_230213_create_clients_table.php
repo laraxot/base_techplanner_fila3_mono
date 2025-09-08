@@ -36,6 +36,31 @@ return new class extends XotBaseMigration
                         $table->string($contact_type->value)->nullable();
                     }
                 }
+                if (! $this->hasColumn('route')) {
+                    $table->string('route')->nullable();
+                }
+                if (! $this->hasColumn('administrative_area_level_1')) {
+                    $table->string('administrative_area_level_1')->nullable()->index();
+                }
+                if (! $this->hasColumn('administrative_area_level_2')) {
+                    $table->string('administrative_area_level_2')->nullable()->index();
+                }
+                if (! $this->hasColumn('administrative_area_level_3')) {
+                    $table->string('administrative_area_level_3')->nullable()->index();
+                }
+                if (! $this->hasColumn('locality')) {
+                    $table->string('locality')->nullable()->index();
+                }
+                if (! $this->hasColumn('sublocality')) {
+                    $table->string('sublocality')->nullable()->index();
+                }
+                if (! $this->hasColumn('sublocality_level_1')) {
+                    $table->string('sublocality_level_1')->nullable()->index();
+                }
+                if (! $this->hasColumn('sublocality_level_2')) {
+                    $table->string('sublocality_level_2')->nullable()->index();
+                }
+                
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }

@@ -27,9 +27,8 @@ return new class() extends XotBaseMigration
             static function (Blueprint $table): void {
                 $table->id();
 
-                $table->foreignId('employee_id')
-                    ->constrained('users')
-                    ->onDelete('cascade');
+                $table->uuid('employee_id');
+                $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
 
                 $table->enum('type', ['clock_in', 'clock_out', 'break_start', 'break_end']);
 
@@ -50,9 +49,8 @@ return new class() extends XotBaseMigration
                 $table->enum('status', ['pending', 'approved', 'rejected'])
                     ->default('pending');
 
-                $table->foreignId('approved_by')->nullable()
-                    ->constrained('users')
-                    ->onDelete('set null');
+                $table->uuid('approved_by')->nullable();
+                $table->foreign('approved_by')->references('id')->on('users')->onDelete('set null');
 
                 $table->dateTime('approved_at')->nullable();
 

@@ -1,2 +1,60 @@
 <?php
 
+return [
+    'navigation' => [
+        'label' => 'Rappresentante Legale',
+        'name' => 'Rappresentante Legale',
+        'plural' => 'Rappresentanti Legali',
+        'group' => [
+            'name' => 'Admin',
+        ],
+        'sort' => 84,
+        'icon' => 'heroicon-o-user-tie',
+    ],
+    'actions' => [
+        'create' => [
+            'label' => 'create',
+        ],
+        'importDevice' => [
+            'label' => 'importDevice',
+        ],
+        'importMedicalDirector' => [
+            'label' => 'importMedicalDirector',
+        ],
+    ],
+    'fields' => [
+        'edit' => [
+            'label' => 'edit',
+        ],
+        'title' => [
+            'label' => 'Titolo',
+        ],
+        'subtitle' => [
+            'label' => 'Sottotitolo',
+        ],
+        'price' => [
+            'label' => 'Prezzo',
+        ],
+        'price_currency' => [
+            'label' => 'Valuta Prezzo',
+        ],
+        'status' => [
+            'label' => 'Stato',
+        ],
+        'applyFilters' => [
+            'label' => 'applyFilters',
+        ],
+        'toggleColumns' => [
+            'label' => 'toggleColumns',
+        ],
+        'reorderRecords' => [
+            'label' => 'reorderRecords',
+        ],
+        'resetFilters' => [
+            'label' => 'resetFilters',
+        ],
+        'openFilters' => [
+            'label' => 'openFilters',
+        ],
+    ],
+];

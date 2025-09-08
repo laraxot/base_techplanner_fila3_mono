@@ -61,6 +61,18 @@ return array (
     array (
       'label' => 'machines_count',
     ),
+    'reorderRecords' => 
+    array (
+      'label' => 'reorderRecords',
+    ),
+    'resetFilters' => 
+    array (
+      'label' => 'resetFilters',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'applyFilters',
+    ),
   ),
   'actions' => 
   array (

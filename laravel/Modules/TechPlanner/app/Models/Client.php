@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Geo\Models\Traits\HasAddress;
 use Modules\Geo\Models\Traits\GeographicalScopes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Client.
@@ -25,6 +26,7 @@ use Modules\Geo\Models\Traits\GeographicalScopes;
 class Client extends BaseModel
 {
     use GeographicalScopes;
+    //use HasAddress;
 
     protected $fillable = [
         'name',
@@ -44,6 +46,8 @@ class Client extends BaseModel
         'tax_code',              // cf
         'vat_number',            // partita_iva
         'address',               // indirizzo
+        'route',
+        'street_number',
         'province',              // provincia
         'postal_code',           // cap
         'phone',                 // telefono
@@ -56,6 +60,13 @@ class Client extends BaseModel
         'activity',              // attivita
         'longitude',
         'latitude',
+        'administrative_area_level_1',
+        'administrative_area_level_2',
+        'administrative_area_level_3',
+        'locality',
+        'sublocality',
+        'sublocality_level_1',
+        'sublocality_level_2',
     ];
 
     public function getFullAddressAttribute(?string $value): string

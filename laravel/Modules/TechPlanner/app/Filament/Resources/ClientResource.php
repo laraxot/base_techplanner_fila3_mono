@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
+use Modules\TechPlanner\Models\Client;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Geo\Filament\Forms\Components\AddressSection;
 use Modules\Notify\Filament\Forms\Components\ContactSection;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
-use Modules\TechPlanner\Models\Client;
-use Modules\Xot\Filament\Resources\XotBaseResource;
 
 /**
  * @property ClientResource $resource
@@ -20,6 +21,14 @@ class ClientResource extends XotBaseResource
 
     public static function getFormSchema(): array
     {
+        $fixes=Client::whereNull('city')->whereNotNull('company_office')->get();//company_office
+        foreach($fixes as $client){
+            $client->update(['city'=>$client->company_office]);
+        }
+        $fixes=Client::whereNull('route')->whereNotNull('address')->get();//company_office
+        foreach($fixes as $client){
+            $client->update(['route'=>$client->address]);
+        }
         return [
             'business_closed' => TextInput::make('business_closed'),                // cessato
             // 'name' => TextInput::make('name'),
@@ -28,20 +37,14 @@ class ClientResource extends XotBaseResource
             'tax_code' => TextInput::make('tax_code'),              // cf
             'vat_number' => TextInput::make('vat_number')->nullable(),
             'fiscal_code' => TextInput::make('fiscal_code')->nullable(),
-            'address' => TextInput::make('address')->nullable(),
+            'street_address' => TextInput::make('address')->nullable(),
             'street_number' => TextInput::make('street_number'),         // numero_civico
-            'city' => TextInput::make('city')->nullable()
-            ->default(fn ($record) => dddx($record)),
+            'city' => TextInput::make('city')->nullable(),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
+            //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
             'contacts' => ContactSection::make('contacts'),
-            /*
-            'phone' => TextInput::make('phone')->nullable(),
-            'mobile' => TextInput::make('mobile'),                // cellulare
-            'fax' => TextInput::make('fax'),                   // fax
-            'email' => TextInput::make('email')->nullable(),
-            */
             // --------------------------------------
             'competent_health_unit' => TextInput::make('competent_health_unit'), // az_ulss_competente
             'company_office' => TextInput::make('company_office'),        // sede_ditta
