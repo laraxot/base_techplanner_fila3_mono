@@ -24,10 +24,7 @@ class LeaveBalanceWidget extends XotBaseWidget
 
     protected static ?string $maxHeight = '400px';
 
-    protected int|string|array $columnSpan = [
-        'md' => 2,
-        'xl' => 1,
-    ];
+    protected int|string|array $columnSpan = 1;
 
     /**
      * Get the form schema for the widget.

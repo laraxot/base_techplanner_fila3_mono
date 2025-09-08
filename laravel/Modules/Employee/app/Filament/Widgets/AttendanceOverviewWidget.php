@@ -26,10 +26,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
     protected static ?string $maxHeight = '500px';
 
-    protected int|string|array $columnSpan = [
-        'md' => 3,
-        'xl' => 2,
-    ];
+    protected int|string|array $columnSpan = 1;
 
     public ?string $selectedDepartment = 'SVILUPPO';
 

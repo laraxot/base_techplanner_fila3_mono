@@ -25,6 +25,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
      * Ordine di visualizzazione del widget.
      */
     protected static ?int $sort = 1;
+    protected int|string|array $columnSpan = 1;
 
     /**
      * Restituisce le statistiche da visualizzare nel widget.

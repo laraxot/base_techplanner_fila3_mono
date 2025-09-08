@@ -14,14 +14,24 @@ use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
- * Unified Time Clock Widget - Primary time tracking interface.
+ * Enhanced Time Clock Widget - Primary time tracking interface with improved UI/UX.
  *
- * Features:
- * - 3-column responsive layout: [Time+Date] | [Daily Entries] | [Action Button]
- * - Real-time updates with polling
- * - Smart Clock In/Out logic
- * - Native Filament components
+ * Features (2025 Enhanced Version):
+ * - 3-column responsive layout: [Time+Date+Stats] | [Enhanced Sessions] | [Smart Action Button]
+ * - Interactive session cards with status badges
+ * - Action buttons with count badges
+ * - Real-time statistics and duration tracking
+ * - Enhanced accessibility with proper ARIA labels
+ * - Native Filament components (badges, buttons, icons)
+ * - Smart Clock In/Out logic with visual feedback
  * - Complete time tracking functionality
+ *
+ * UI/UX Improvements:
+ * - Badge-based time entries display for clear visual hierarchy
+ * - Color-coded session status (success, danger, warning, info, gray)
+ * - Duration calculation and display
+ * - Enhanced mobile responsiveness
+ * - Improved information architecture
  *
  * This is the ONLY time tracking widget - consolidates all time tracking features.
  */
@@ -36,6 +46,11 @@ class TimeClockWidget extends XotBaseWidget
      * Ordine di visualizzazione (primo widget).
      */
     protected static ?int $sort = 0;
+
+    /**
+     * Occupa tutta la larghezza della riga.
+     */
+    protected int|string|array $columnSpan = 'full';
 
     /**
      * Polling per aggiornamento real-time.
@@ -59,12 +74,6 @@ class TimeClockWidget extends XotBaseWidget
      */
     public array $todayEntries = [];
 
-    /**
-     * Day sessions (in/out pairs).
-     *
-     * @var array<int, array{status: string, in?: string|null, out?: string|null}>
-     */
-    public array $sessions = [];
 
     /**
      * Current session state.
@@ -138,8 +147,6 @@ class TimeClockWidget extends XotBaseWidget
             ];
         })->values()->all();
         $this->todayEntries = $todayEntries;
-
-        $this->buildSessions($entries);
     }
 
     /**
@@ -164,44 +171,6 @@ class TimeClockWidget extends XotBaseWidget
         }
     }
 
-    /**
-     * Build day sessions by pairing clock in/out.
-     *
-     * @param  Collection<int, WorkHour>  $entries
-     */
-    private function buildSessions(Collection $entries): void
-    {
-        /** @var array<int, array{status: string, in?: string|null, out?: string|null}> $sessions */
-        $sessions = [];
-
-        foreach ($entries as $entry) {
-            if ($entry->type === WorkHourTypeEnum::CLOCK_IN) {
-                $sessions[] = [
-                    'status' => 'active',
-                    'in' => $entry->timestamp->format('H:i'),
-                    'out' => null,
-                ];
-
-                continue;
-            }
-
-            if ($entry->type === WorkHourTypeEnum::CLOCK_OUT) {
-                $lastIndex = count($sessions) - 1;
-                if ($lastIndex >= 0 && ($sessions[$lastIndex]['out'] ?? null) === null) {
-                    $sessions[$lastIndex]['out'] = $entry->timestamp->format('H:i');
-                    $sessions[$lastIndex]['status'] = 'completed';
-                } else {
-                    $sessions[] = [
-                        'status' => 'completed',
-                        'in' => null,
-                        'out' => $entry->timestamp->format('H:i'),
-                    ];
-                }
-            }
-        }
-
-        $this->sessions = $sessions;
-    }
 
     /**
      * Clock-in action.

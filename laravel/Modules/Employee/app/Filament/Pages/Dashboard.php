@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Pages;
 
-use Modules\Employee\Filament\Widgets\TimeClockWidget;
+use Modules\Employee\Filament\Widgets;
 use Modules\Xot\Filament\Pages\XotBaseDashboard;
 
 /**
@@ -24,10 +24,32 @@ class Dashboard extends XotBaseDashboard
     // protected static ?string $navigationLabel
     // protected static ?int $navigationSort
 
+
+    /**
+     * Widget da visualizzare nella pagina con configurazione columnSpan personalizzata.
+     * TimeClockWidget a tutta larghezza, altri widget in griglia 3x2 (4 colonne ciascuno).
+     *
+     * @return array<class-string>
+     */
     public function getWidgets(): array
     {
         return [
-            TimeClockWidget::class,
+            Widgets\TimeClockWidget::class,
+            Widgets\TodoWidget::class,
+            Widgets\UpcomingScheduleWidget::class,
+            Widgets\PendingRequestsWidget::class,
+            Widgets\TimeOffBalanceWidget::class,
+            Widgets\TodayPresenceWidget::class,
         ];
     }
+
+
+    /**
+     * Configura il numero di colonne per i widget (3 widget per riga).
+     */
+    protected function getWidgetsColumns(): int | array
+    {
+        return 3;
+    }
+
 }

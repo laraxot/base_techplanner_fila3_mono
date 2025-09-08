@@ -16,7 +16,7 @@ class TodoWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.todo-widget';
 
-    protected int|string|array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 1;
 
     protected static ?int $sort = 1;
 

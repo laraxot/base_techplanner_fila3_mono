@@ -1,7 +1,8 @@
 <x-filament-widgets::widget>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center h-24" wire:poll.1s="updateData">
-        {{-- Colonna Sinistra: Ora e Data --}}
-        <div class="text-center">
+    <div class="flex items-center gap-6 h-24 w-full" wire:poll.1s="updateData">
+        
+        {{-- Left Column: Time and Date --}}
+        <div class="flex-1 text-center">
             <div class="text-5xl font-mono font-bold text-gray-900 dark:text-gray-100">
                 {{ $currentTime }}
             </div>
@@ -10,8 +11,8 @@
             </div>
         </div>
 
-        {{-- Colonna Centro: Timbrature --}}
-        <div class="text-center">
+        {{-- Center Column: Time Entries --}}
+        <div class="flex-1 text-center">
             @if($isClockedIn)
                 <div class="text-sm font-medium text-green-600 dark:text-green-400 mb-2">
                     Sessione attiva
@@ -22,22 +23,28 @@
                 </div>
             @endif
             
-            <div class="space-y-1">
+            <div class="flex flex-wrap gap-1 justify-center">
                 @forelse($todayEntries as $entry)
-                    <div class="text-sm text-gray-700 dark:text-gray-300">
-                        <span class="inline-block w-2 h-2 {{ $entry['type'] === 'clock_in' ? 'bg-green-500' : 'bg-red-500' }} rounded-full mr-2"></span>
-                        {{ $entry['time'] }}
-                    </div>
+                    <x-filament::badge 
+                        :color="$entry['type'] === 'clock_in' ? 'success' : 'danger'"
+                        size="sm"
+                        class="cursor-pointer hover:scale-105 transition-transform">
+                        {{ $entry['type'] === 'clock_in' ? '→' : '←' }} {{ $entry['time'] }}
+                    </x-filament::badge>
                 @empty
-                    <div class="text-xs text-gray-400 italic">
-                        Nessuna timbratura per oggi.
-                    </div>
+                    <x-filament::badge 
+                        color="gray" 
+                        size="sm"
+                        icon="heroicon-o-clock"
+                        class="italic">
+                        Nessuna timbratura
+                    </x-filament::badge>
                 @endforelse
             </div>
         </div>
 
-        {{-- Colonna Destra: Pulsante Filament --}}
-        <div class="text-center">
+        {{-- Right Column: Action Button --}}
+        <div class="flex-1 text-center">
             @if($isClockedIn)
                 <x-filament::button 
                     wire:click="clockOut" 

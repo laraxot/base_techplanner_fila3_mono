@@ -17,7 +17,7 @@ class TodayPresenceWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.today-presence-widget';
 
-    protected int|string|array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 1;
 
     protected static ?int $sort = 4;
 
