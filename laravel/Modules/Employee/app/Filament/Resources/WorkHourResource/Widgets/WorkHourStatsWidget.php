@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Widgets;
 
-use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Carbon\Carbon;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
@@ -20,21 +20,19 @@ class WorkHourStatsWidget extends XotBaseStatsOverviewWidget
         $thisWeekEnd = Carbon::now()->endOfWeek();
 
         // Get stats for today
-        $todayTotal = WorkHour::query()->whereDate('timestamp', $today)->count();
-        $todayClockIns = WorkHour::query()
-            ->where('type', WorkHourTypeEnum::CLOCK_IN->value)
+        $todayTotal = WorkHour::whereDate('timestamp', $today)->count();
+        $todayClockIns = WorkHour::where('type', WorkHourTypeEnum::CLOCK_IN->value)
             ->whereDate('timestamp', $today)
             ->count();
-        $todayClockOuts = WorkHour::query()
-            ->where('type', WorkHourTypeEnum::CLOCK_OUT->value)
+        $todayClockOuts = WorkHour::where('type', WorkHourTypeEnum::CLOCK_OUT->value)
             ->whereDate('timestamp', $today)
             ->count();
 
         // Get stats for this week
-        $weekTotal = WorkHour::query()->whereBetween('timestamp', [$thisWeekStart, $thisWeekEnd])->count();
+        $weekTotal = WorkHour::whereBetween('timestamp', [$thisWeekStart, $thisWeekEnd])->count();
 
         // Get pending approvals count
-        $pendingApprovals = WorkHour::query()->where('status', WorkHourStatusEnum::PENDING->value)->count();
+        $pendingApprovals = WorkHour::where('status', WorkHourStatusEnum::PENDING->value)->count();
 
         return [
             Stat::make('Today\'s Entries', $todayTotal)
@@ -47,7 +45,7 @@ class WorkHourStatsWidget extends XotBaseStatsOverviewWidget
                 ->descriptionIcon('heroicon-m-calendar-days')
                 ->color('success'),
 
-            Stat::make('Clock In/Out', $todayClockIns.'/'.$todayClockOuts)
+            Stat::make('Clock In/Out', $todayClockIns . '/' . $todayClockOuts)
                 ->description('Today\'s clock-ins/outs')
                 ->descriptionIcon('heroicon-m-arrow-path')
                 ->color('info'),
