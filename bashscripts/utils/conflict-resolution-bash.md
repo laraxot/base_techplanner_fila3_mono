@@ -48,16 +48,35 @@ Spesso i conflitti riguardano funzioni duplicate o con logiche diverse. Ecco una
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 574afe9e (.)
+>>>>>>> 7de7063d (.)
+=======
+=======
+
+=======
+>>>>>>> 71ff9e32 (.)
+=======
+=======
+
+=======
 
 =======
 =======
-=======
-
-=======
-
-=======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Funzione di log avanzata: accetta sia log "message" che log "level" "message"
 log() {
     if [ $# -eq 2 ]; then
@@ -91,16 +110,35 @@ Quando si risolvono conflitti tra versioni che richiedono un numero diverso di p
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 574afe9e (.)
+>>>>>>> 7de7063d (.)
+=======
+=======
+
+=======
+>>>>>>> 71ff9e32 (.)
+=======
+=======
+
+=======
 
 =======
 =======
-=======
-
-=======
-
-=======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     echo "Usage: $0 <path> <remote_repo> [branch]"

@@ -156,6 +156,8 @@ return [
 ```bash
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 
 =======
 
@@ -164,6 +166,7 @@ return [
 =======
 >>>>>>> 3c18aa7e (.)
 =======
+>>>>>>> 71ff9e32 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -179,6 +182,7 @@ return [
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+>>>>>>> f52d0712 (.)
 =======
 
 =======
@@ -209,7 +213,11 @@ return [
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Pubblicazione delle configurazioni
 php artisan vendor:publish --tag=zeus-bolt-config
 
@@ -341,6 +349,21 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 *Ultimo aggiornamento: Dicembre 2024*
 *Versione: 1.0*
 <<<<<<< HEAD
+<<<<<<< HEAD
+*Autore: AI Assistant* 
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> d20d0523 (.)
+*Autore: AI Assistant* 
+=======
+*Autore: AI Assistant* 
+>>>>>>> 9c02579 (.)
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -380,7 +403,11 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -403,4 +430,8 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

@@ -26,7 +26,11 @@
         "larastan/larastan": "^3.0"
 =======
         "larastan/larastan": "*"
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
     },
     "config": {
         "sort-packages": true,

@@ -26,6 +26,14 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 
 =======
 ```bash
+<<<<<<< HEAD
+>>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
+=======
+```bash
+>>>>>>> f1e7ef1046 (.)
+=======
+>>>>>>> f71d08e230 (.)
+=======
 =======
 ```bash
 =======
@@ -33,6 +41,9 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 ```bash
 >>>>>>> develop
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 =======
 ```bash
 >>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
@@ -41,6 +52,7 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 >>>>>>> f1e7ef1046 (.)
 =======
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 1. Inizializzazione
 git init
 git checkout -b "$BRANCH"
@@ -55,10 +67,23 @@ git commit -am "🔧 Aggiornamento subtree"
 git merge origin/"$BRANCH" --allow-unrelated-histories
 =======
 <<<<<<< HEAD
+git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
+>>>>>>> 1831d11e78 (.)
+=======
+git merge origin/"$BRANCH" --allow-unrelated-histories"
+>>>>>>> f1e7ef1046 (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 71ff9e32 (.)
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 =======
 >>>>>>> develop
 git merge origin/"$BRANCH" --allow-unrelated-histories"
@@ -66,6 +91,7 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> f1e7ef1046 (.)
+>>>>>>> 71ff9e32 (.)
 git push -u origin "$BRANCH"
 ```
 
@@ -75,12 +101,22 @@ git push -u origin "$BRANCH"
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
+<<<<<<< HEAD
+
+>>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 
 >>>>>>> develop
 =======
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 1. Pull standard
 git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH" --squash
 
@@ -94,12 +130,27 @@ git merge -s subtree FETCH_HEAD --allow-unrelated-histories
 aurmich/dev
 =======
 <<<<<<< HEAD
+```
+
+<<<<<<< HEAD
+>>>>>>> 1831d11e78 (.)
+=======
+```
+
+>>>>>>> f1e7ef1046 (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 71ff9e32 (.)
 =======
 ```
 
 =======
 ```
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 =======
 >>>>>>> develop
 ```
@@ -109,6 +160,7 @@ aurmich/dev
 ```
 
 >>>>>>> f1e7ef1046 (.)
+>>>>>>> 71ff9e32 (.)
 Esegue una sequenza complessa di operazioni:
 ```bash
 1. git add -A && git commit -am "."
@@ -131,7 +183,11 @@ Esegue una sequenza complessa di operazioni:
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 Esegue una sequenza con fallback:
 ```bash
 1. git subtree pull -P $LOCAL_PATH $REMOTE_REPO $REMOTE_BRANCH --squash
@@ -151,7 +207,11 @@ aurmich/dev
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ```
 
 ## 🚨 Analisi Errori Comuni
@@ -169,12 +229,22 @@ fatal: you must provide the --prefix option
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
+<<<<<<< HEAD
+
+>>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 
 >>>>>>> develop
 =======
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Verifica variabili
 if [ -z "$LOCAL_PATH" ] || [ -z "$REMOTE_REPO" ]; then
     echo "❌ Error: Missing required variables"
@@ -197,7 +267,11 @@ fi
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 **Causa**: Divergenze tra repository locale e remoto
 
 **Soluzione**:
@@ -214,7 +288,11 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 =======
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
@@ -223,7 +301,11 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> f1e7ef1046 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 # Riprova push
 if ! git push -u origin "$BRANCH"; then
@@ -349,4 +431,8 @@ aurmich/dev
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

@@ -48,6 +48,9 @@ grep -r "interface.*Contract" --include="*.php" /var/www/html/saluteora/laravel/
 
 ## Riferimenti
 
+- [Laravel Contracts Documentation](https://laravel.com/docs/contracts)
+- [SaluteOra Code Quality Guidelines](/var/www/html/saluteora/laravel/docs/code-quality.md)
+=======
 - [Laravel Contracts Documentation](https://laravel.com/project_docs/contracts)
 - [SaluteOra Code Quality Guidelines](/var/www/html/saluteora/laravel/project_docs/code-quality.md)
 - [Modulo Xot Contracts](/var/www/html/saluteora/laravel/Modules/Xot/app/Contracts/)

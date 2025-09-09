@@ -17,6 +17,8 @@ use Tests\TestCase;
  */
 class SushiToJsonIntegrationTest extends TestCase
 {
+    use RefreshDatabase;
+
     private TestSushiModel $model;
 
     private string $testJsonPath;

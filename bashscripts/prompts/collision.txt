@@ -2,6 +2,16 @@
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 574afe9e (.)
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -24,7 +34,11 @@
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Guida per la Risoluzione dei Conflitti Git - Laraxot
 
 ## Obiettivo
@@ -32,6 +46,11 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -43,6 +62,7 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 =======
 >>>>>>> 42ab2308 (.)
+>>>>>>> f52d0712 (.)
 =======
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
@@ -66,6 +86,9 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -74,7 +97,11 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Principi Fondamentali
 - **Analisi manuale obbligatoria**: Ogni conflitto deve essere analizzato e risolto manualmente
@@ -86,6 +113,11 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+- **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 - **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
@@ -93,12 +125,16 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+>>>>>>> f52d0712 (.)
 <<<<<<< HEAD
 - **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -113,7 +149,11 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 >>>>>>> 574afe9e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Workflow Sistematico
 
@@ -124,6 +164,12 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -137,7 +183,11 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista dettagliata dei conflitti
@@ -146,6 +196,10 @@ git diff --name-only --diff-filter=U
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -154,10 +208,14 @@ git diff --name-only --diff-filter=U
 =======
 >>>>>>> 42ab2308 (.)
 =======
+>>>>>>> f52d0712 (.)
 
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
@@ -167,7 +225,11 @@ git diff --name-only --diff-filter=U
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ```
 
 **Criteri di priorità:**
@@ -198,9 +260,16 @@ Per ogni file conflittuale:
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+- Compatibilità con l'architettura Laraxot
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 - Compatibilità con l'architettura Laraxot
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -212,11 +281,15 @@ Per ogni file conflittuale:
 - Compatibilità con l'architettura Laraxot
 =======
 >>>>>>> 42ab2308 (.)
+>>>>>>> f52d0712 (.)
 - Compatibilità con l'architettura del progetto
 >>>>>>> 3c18aa7e (.)
 =======
 - Compatibilità con l'architettura del progetto
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
@@ -227,7 +300,11 @@ Per ogni file conflittuale:
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - Effetti sui moduli dipendenti
 
 ### 3. Risoluzione del Conflitto
@@ -242,6 +319,11 @@ Per ogni file conflittuale:
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+- Utilizzare `declare(strict_types=1);`
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 - Utilizzare `declare(strict_types=1);`
@@ -249,12 +331,16 @@ Per ogni file conflittuale:
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+>>>>>>> f52d0712 (.)
 <<<<<<< HEAD
 - Utilizzare `declare(strict_types=1);`
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -269,7 +355,11 @@ Per ogni file conflittuale:
 =======
 >>>>>>> 574afe9e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 **Per file Markdown (.md):**
 - Mantenere entrambe le versioni quando possibile
@@ -280,6 +370,11 @@ Per ogni file conflittuale:
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+- Rispettare convenzioni naming (minuscolo)
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 - Rispettare convenzioni naming (minuscolo)
@@ -287,12 +382,16 @@ Per ogni file conflittuale:
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+>>>>>>> f52d0712 (.)
 <<<<<<< HEAD
 - Rispettare convenzioni naming (minuscolo)
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -307,7 +406,11 @@ Per ogni file conflittuale:
 =======
 >>>>>>> 574afe9e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 **Per file di configurazione:**
 - Privilegiare le configurazioni più recenti
@@ -422,6 +525,12 @@ Al termine del processo, fornire:
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -435,7 +544,11 @@ Al termine del processo, fornire:
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista file con conflitti per tipo
@@ -443,6 +556,10 @@ git diff --name-only --diff-filter=U
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -452,6 +569,7 @@ git diff --name-only --diff-filter=U
 =======
 >>>>>>> 42ab2308 (.)
 =======
+>>>>>>> f52d0712 (.)
 
 
 # Lista file con conflitti per tipo
@@ -462,6 +580,9 @@ git diff --name-only --diff-filter=U
 # Lista file con conflitti per tipo
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -470,7 +591,11 @@ git diff --name-only --diff-filter=U
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ```
 
 ### Verifica PHPStan
@@ -563,6 +688,12 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -576,7 +707,11 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - **Documentation Naming**: Tutti i file e cartelle in docs/ in minuscolo (eccetto README.md)
 
 ## Regole Critiche per Progetti Laraxot
@@ -607,6 +742,10 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -615,6 +754,7 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 =======
 >>>>>>> 42ab2308 (.)
 =======
+>>>>>>> f52d0712 (.)
 =======
 >>>>>>> 574afe9e (.)
 
@@ -626,6 +766,9 @@ Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’al
 =======
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -634,4 +777,8 @@ Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’al
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

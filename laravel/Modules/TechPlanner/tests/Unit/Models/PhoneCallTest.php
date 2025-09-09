@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\TechPlanner\Models\PhoneCall;
+use Tests\TestCase;
+=======
 use Modules\TechPlanner\Models\PhoneCall;
 
 /**
@@ -13,6 +17,9 @@ use Modules\TechPlanner\Models\PhoneCall;
  */
 class PhoneCallTest extends TestCase
 {
+    use RefreshDatabase;
+
+=======
     private PhoneCall $phoneCall;
 
     protected function setUp(): void

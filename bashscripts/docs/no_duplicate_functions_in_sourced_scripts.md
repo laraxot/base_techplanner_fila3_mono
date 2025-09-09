@@ -30,12 +30,22 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 source ./bashscripts/lib/custom.sh
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Utilizzo le funzioni definite in custom.sh senza ridefinirle
 validate_input "$@"
 process_files "$1"
@@ -47,12 +57,22 @@ process_files "$1"
 source ./bashscripts/lib/custom.sh
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # GRAVE ERRORE: ridefinire funzioni già presenti in custom.sh
 function validate_input() {
   # Implementazione duplicata che potrebbe divergere dall'originale

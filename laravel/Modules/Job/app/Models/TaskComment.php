@@ -22,15 +22,6 @@ use Modules\Xot\Traits\Updater;
  * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Modules\Job\Models\Task $task
  * @property-read \Modules\User\Models\User $user
- * @property-read \Modules\TechPlanner\Models\Profile|null $creator
- * @property-read \Modules\TechPlanner\Models\Profile|null $updater
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComment onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComment query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComment withTrashed(bool $withTrashed = true)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TaskComment withoutTrashed()
- * @mixin \Eloquent
  */
 class TaskComment extends Model
 {

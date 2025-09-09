@@ -72,34 +72,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile withoutRole($roles, $guard = null)
  * @mixin IdeHelperProfile
- * @property string $user_id
- * @property string|null $fiscal_code
- * @property string|null $notes
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $updated_by
- * @property string|null $created_by
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $deleted_by
- * @property string $credits
- * @property string|null $slug
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereCredits($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereExtra($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereFiscalCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereNotes($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Profile whereUserId($value)
  * @mixin \Eloquent
  */
 class Profile extends BaseProfile implements HasMedia

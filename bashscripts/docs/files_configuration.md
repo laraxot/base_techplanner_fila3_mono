@@ -79,12 +79,22 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -252,7 +262,11 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 =======
 =======
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -415,12 +429,22 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 =======
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -508,7 +532,11 @@ f000df5 (.)
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
 
@@ -518,7 +546,11 @@ Questa documentazione descrive i file di configurazione utilizzati nel progetto.
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ### Descrizione
 Il file `.gitignore` specifica i file e le directory che Git dovrebbe ignorare durante le operazioni di commit e sincronizzazione.
 
@@ -601,7 +633,11 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 =======
 =======
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -714,4 +750,8 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 - [Conflitti di Merge](/bashscripts/docs/CONFLICT_RESOLUTION_BASH.md) 
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

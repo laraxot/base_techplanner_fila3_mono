@@ -9,13 +9,13 @@ use Modules\Xot\Contracts\UserContract;
 
 class TenantPolicy extends UserBasePolicy
 {
-	/**
-	 * Determine whether the user can view any models.
-	 */
-	public function viewAny(UserContract $user): bool
-	{
-		return $user->hasPermissionTo('tenant.view.any');
-	}
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function viewAny(UserContract $user): bool
+    {
+        return $user->hasPermissionTo('tenant.view.any');
+    }
 
     /**
      * Determine whether the user can view the model.
@@ -27,13 +27,13 @@ class TenantPolicy extends UserBasePolicy
                $user->hasRole('super-admin');
     }
 
-	/**
-	 * Determine whether the user can create models.
-	 */
-	public function create(UserContract $user): bool
-	{
-		return $user->hasPermissionTo('tenant.create');
-	}
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(UserContract $user): bool
+    {
+        return $user->hasPermissionTo('tenant.create');
+    }
 
     /**
      * Determine whether the user can update the model.

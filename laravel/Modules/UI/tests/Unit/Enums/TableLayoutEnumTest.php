@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\UI\Tests\Unit\Enums\TableLayoutEnumTest;
-
 namespace Modules\UI\Tests\Unit\Enums;
 
 use Filament\Tables\Columns\Layout\Stack;

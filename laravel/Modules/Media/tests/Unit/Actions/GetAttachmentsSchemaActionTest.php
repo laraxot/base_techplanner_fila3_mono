@@ -6,6 +6,7 @@ namespace Modules\Media\Tests\Unit\Actions;
 
 use Filament\Forms\Components\FileUpload;
 use Modules\Media\Actions\GetAttachmentsSchemaAction;
+use Tests\TestCase;
 
 class GetAttachmentsSchemaActionTest extends TestCase
 {

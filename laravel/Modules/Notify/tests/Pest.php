@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Notify\Tests;
+use Modules\Notify\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,7 @@ namespace Modules\Notify\Tests;
 |
 */
 
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
+pest()->extend(TestCase::class)
     ->in('Feature', 'Unit');
 
 /*

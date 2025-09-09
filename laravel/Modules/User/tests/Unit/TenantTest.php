@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\User\Tests\Unit\TenantTest;
-
-namespace Modules\User\Tests\Unit\Widgets;
-
 use Modules\User\Models\Tenant;
 
 uses(Tests\TestCase::class);

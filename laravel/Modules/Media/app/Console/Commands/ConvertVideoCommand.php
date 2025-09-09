@@ -50,8 +50,6 @@ class ConvertVideoCommand extends Command
             // @phpstan-ignore method.nonObject
             ->save($file_new);
 
-        /** @var \Illuminate\Contracts\Filesystem\Cloud $storage */
-        $storage = Storage::disk($disk);
-        return $storage->url($file_new);
+        return Storage::disk($disk)->url($file_new);
     }
 }

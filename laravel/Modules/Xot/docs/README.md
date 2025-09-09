@@ -231,18 +231,6 @@ return [
 - [Traits Documentation](traits/README.md) - Documentazione traits completa
 - [Service Providers](providers/README.md) - Pattern service providers
 
-<<<<<<< HEAD
-## Architecture
-- Base classes per tutti i moduli
-- Service providers centralizzati
-- Convenzioni e standard
-- Actions per operazioni PDF e business logic
-
-### Actions
-- [GetPdfContentByRecordAction](actions/get-pdf-content-by-record-action.md) - Generazione contenuto PDF da record Eloquent
-- [ContentPdfAction](archive/actions/content-pdf-action.md) - Generazione PDF da HTML/viste
-- [StreamDownloadPdfAction](archive/actions/pdf-stream-download-action.md) - Download PDF diretto
-=======
 ### 🎯 **Guide Complete**
 - [Filament Complete Guide](consolidated/filament-complete-guide.md) - Guida completa Filament
 - [PHPStan Complete Guide](consolidated/phpstan-complete-guide.md) - Guida completa PHPStan
@@ -372,16 +360,6 @@ I file di documentazione originali sono stati consolidati per seguire i principi
 Per accedere alla documentazione dettagliata originale, vedere il backup in:
 `docs-consolidation-backup-*/Xot-docs-original/`
 
-<<<<<<< HEAD
-## Principles
-- **DRY**: Un solo punto di verità
-- **KISS**: Semplicità e chiarezza
-- **Type Safety**: Tipizzazione rigorosa
-- **Documentation**: Documentazione essenziale
-
-## Links
-- [Root Documentation](../../../project_docs/)
-=======
 ## Quick Links Legacy
 - [Root Documentation](../../../docs/)
 - [SaluteOra Module](../SaluteOra/docs/)

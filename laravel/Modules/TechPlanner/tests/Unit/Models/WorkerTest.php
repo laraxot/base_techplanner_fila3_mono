@@ -148,6 +148,10 @@ class WorkerTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $workerId = $this->worker->id;
+        
+        $this->worker->delete();
+        
+=======
 
         $this->worker->delete();
 
@@ -159,6 +163,8 @@ class WorkerTest extends TestCase
     public function it_can_be_restored(): void
     {
         $workerId = $this->worker->id;
+        
+=======
 
         $this->worker->delete();
         $this->assertSoftDeleted('workers', ['id' => $workerId]);

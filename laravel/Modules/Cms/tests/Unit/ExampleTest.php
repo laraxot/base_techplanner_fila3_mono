@@ -40,6 +40,7 @@ describe('CMS Module', function () {
             ->and(GetModulesNavigationItems::class)->toBeString();
     });
 });
+
 uses(Modules\Cms\Tests\TestHelper::class);
 
 beforeEach(function (): void {

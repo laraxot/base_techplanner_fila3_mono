@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $name
  * @property int $id
  * @property string|null $postal_code
- * @property-read \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property-read \Modules\Xot\Contracts\ProfileContract|null $updater
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Locality newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Locality newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Locality query()

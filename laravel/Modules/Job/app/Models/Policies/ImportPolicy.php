@@ -5,63 +5,63 @@ declare(strict_types=1);
 namespace Modules\Job\Models\Policies;
 
 use Modules\Job\Models\Import;
-use Modules\Xot\Contracts\ProfileContract;
+use Modules\Xot\Contracts\UserContract;
 
 class ImportPolicy extends JobBasePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(ProfileContract $user): bool
+    public function viewAny(UserContract $user): bool
     {
-        return $user->hasPermissionTo('import.viewAny'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(ProfileContract $user, Import $import): bool
+    public function view(UserContract $user, Import $import): bool
     {
-        return $user->hasPermissionTo('import.view'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.view');
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(ProfileContract $user): bool
+    public function create(UserContract $user): bool
     {
-        return $user->hasPermissionTo('import.create'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.create');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(ProfileContract $user, Import $import): bool
+    public function update(UserContract $user, Import $import): bool
     {
-        return $user->hasPermissionTo('import.update'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(ProfileContract $user, Import $import): bool
+    public function delete(UserContract $user, Import $import): bool
     {
-        return $user->hasPermissionTo('import.delete'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(ProfileContract $user, Import $import): bool
+    public function restore(UserContract $user, Import $import): bool
     {
-        return $user->hasPermissionTo('import.restore'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(ProfileContract $user, Import $import): bool
+    public function forceDelete(UserContract $user, Import $import): bool
     {
-        return $user->hasPermissionTo('import.forceDelete'); /** @phpstan-ignore method.nonObject */
+        return $user->hasPermissionTo('import.forceDelete');
     }
 }

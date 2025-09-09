@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages;
 
 use Filament\Actions;
+use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
+use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
+=======
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
 

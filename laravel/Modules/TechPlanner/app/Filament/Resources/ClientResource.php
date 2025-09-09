@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
+use Filament\Forms;
+=======
 use Modules\TechPlanner\Models\Client;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -29,6 +31,7 @@ class ClientResource extends XotBaseResource
         foreach($fixes as $client){
             $client->update(['route'=>$client->address]);
         }
+=======
         return [
             'business_closed' => TextInput::make('business_closed'),
             'activity' => TextInput::make('activity'),
@@ -43,6 +46,7 @@ class ClientResource extends XotBaseResource
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
+=======
             //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
             'contacts' => ContactSection::make('contacts'),
             'competent_health_unit' => TextInput::make('competent_health_unit'),

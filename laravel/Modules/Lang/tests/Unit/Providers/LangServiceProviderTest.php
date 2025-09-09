@@ -24,6 +24,7 @@ describe('LangServiceProvider Basic Functionality', function () {
         $reflection = new ReflectionClass($this->provider);
         $property = $reflection->getProperty('module_name');
         $property->setAccessible(true);
+
         expect($property->getValue($this->provider))->toBe('Lang');
     });
 });
@@ -31,12 +32,14 @@ describe('LangServiceProvider Basic Functionality', function () {
 describe('LangServiceProvider Registration', function () {
     it('can register services', function () {
         $this->provider->register();
+
         // Verifica che il provider sia registrato
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
 
     it('can boot services', function () {
         $this->provider->boot();
+
         // Verifica che il provider sia avviato
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
@@ -45,22 +48,25 @@ describe('LangServiceProvider Registration', function () {
 describe('LangServiceProvider Translation Loading', function () {
     it('loads translations from correct path', function () {
         $this->provider->boot();
+
         // Verifica che le traduzioni siano caricate
         expect(Lang::has('lang::common.welcome'))->toBeTrue();
     });
 
     it('loads translations with correct namespace', function () {
         $this->provider->boot();
+
         // Verifica il namespace delle traduzioni
-        $translation = (string) __('lang::common.welcome');
+        $translation = __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome'); // Non dovrebbe essere la chiave
     });
 
     it('handles missing translation keys gracefully', function () {
         $this->provider->boot();
+
         // Verifica gestione chiavi mancanti
-        $missingTranslation = (string) __('lang::nonexistent.key');
+        $missingTranslation = __('lang::nonexistent.key');
         expect($missingTranslation)->toBe('lang::nonexistent.key'); // Dovrebbe restituire la chiave se non trovata
     });
 });
@@ -68,6 +74,7 @@ describe('LangServiceProvider Translation Loading', function () {
 describe('LangServiceProvider Translation Structure', function () {
     it('provides common translations', function () {
         $this->provider->boot();
+
         $commonKeys = [
             'welcome',
             'loading',
@@ -79,8 +86,9 @@ describe('LangServiceProvider Translation Structure', function () {
             'edit',
             'create',
         ];
+
         foreach ($commonKeys as $key) {
-            $translation = (string) __("lang::common.{$key}");
+            $translation = __("lang::common.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::common.{$key}");
         }
@@ -88,6 +96,7 @@ describe('LangServiceProvider Translation Structure', function () {
 
     it('provides validation translations', function () {
         $this->provider->boot();
+
         $validationKeys = [
             'required',
             'email',
@@ -96,8 +105,9 @@ describe('LangServiceProvider Translation Structure', function () {
             'unique',
             'confirmed',
         ];
+
         foreach ($validationKeys as $key) {
-            $translation = (string) __("lang::validation.{$key}");
+            $translation = __("lang::validation.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::validation.{$key}");
         }
@@ -105,6 +115,7 @@ describe('LangServiceProvider Translation Structure', function () {
 
     it('provides error translations', function () {
         $this->provider->boot();
+
         $errorKeys = [
             'general',
             'not_found',
@@ -112,8 +123,9 @@ describe('LangServiceProvider Translation Structure', function () {
             'validation',
             'server_error',
         ];
+
         foreach ($errorKeys as $key) {
-            $translation = (string) __("lang::errors.{$key}");
+            $translation = __("lang::errors.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::errors.{$key}");
         }
@@ -220,13 +232,15 @@ describe('LangServiceProvider Translation Files', function () {
 describe('LangServiceProvider Translation Quality', function () {
     it('provides complete translation coverage', function () {
         $this->provider->boot();
+
         $commonKeys = [
             'welcome', 'loading', 'error', 'success', 'cancel', 'save',
             'delete', 'edit', 'create', 'update', 'back', 'next', 'previous',
             'search', 'filter', 'sort', 'refresh', 'export', 'import',
         ];
+
         foreach ($commonKeys as $key) {
-            $translation = (string) __("lang::common.{$key}");
+            $translation = __("lang::common.{$key}");
             expect($translation)->toBeString();
             expect($translation)->not->toBe("lang::common.{$key}");
             expect(strlen($translation))->toBeGreaterThan(0);
@@ -235,11 +249,13 @@ describe('LangServiceProvider Translation Quality', function () {
 
     it('provides consistent translation style', function () {
         $this->provider->boot();
+
         $translations = [
-            (string) __('lang::common.welcome'),
-            (string) __('lang::common.loading'),
-            (string) __('lang::common.success'),
+            __('lang::common.welcome'),
+            __('lang::common.loading'),
+            __('lang::common.success'),
         ];
+
         // Verifica che tutte le traduzioni abbiano uno stile coerente
         foreach ($translations as $translation) {
             expect($translation)->toBeString();
@@ -250,14 +266,16 @@ describe('LangServiceProvider Translation Quality', function () {
 
     it('provides contextually appropriate translations', function () {
         $this->provider->boot();
+
         $contextualPairs = [
             'save' => 'Salva',
             'delete' => 'Elimina',
             'edit' => 'Modifica',
             'create' => 'Crea',
         ];
+
         foreach ($contextualPairs as $key => $expected) {
-            $translation = (string) __("lang::common.{$key}");
+            $translation = __("lang::common.{$key}");
             expect($translation)->toBe($expected);
         }
     });
@@ -277,16 +295,19 @@ describe('LangServiceProvider Performance', function () {
 
     it('caches translations for performance', function () {
         $this->provider->boot();
+
         // Prima chiamata
         $startTime = microtime(true);
-        $translation1 = (string) __('lang::common.welcome');
+        $translation1 = __('lang::common.welcome');
         $endTime = microtime(true);
         $firstCallTime = $endTime - $startTime;
+
         // Seconda chiamata (dovrebbe essere più veloce)
         $startTime = microtime(true);
-        $translation2 = (string) __('lang::common.welcome');
+        $translation2 = __('lang::common.welcome');
         $endTime = microtime(true);
         $secondCallTime = $endTime - $startTime;
+
         expect($translation1)->toBe($translation2);
         expect($secondCallTime)->toBeLessThanOrEqual($firstCallTime);
     });
@@ -300,7 +321,7 @@ describe('LangServiceProvider Performance', function () {
 
         foreach ($languages as $locale) {
             app()->setLocale($locale);
-            $translation = (string) __('lang::common.welcome');
+            $translation = __('lang::common.welcome');
             expect($translation)->toBeString();
         }
 
@@ -315,18 +336,21 @@ describe('LangServiceProvider Error Handling', function () {
     it('handles missing translation files gracefully', function () {
         // Simula file di traduzione mancanti
         $this->provider->boot();
+
         // Dovrebbe gestire graziosamente i file mancanti
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
 
     it('handles malformed translation files gracefully', function () {
         $this->provider->boot();
+
         // Dovrebbe gestire graziosamente i file malformati
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
 
     it('handles empty translation files gracefully', function () {
         $this->provider->boot();
+
         // Dovrebbe gestire graziosamente i file vuoti
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
@@ -335,21 +359,24 @@ describe('LangServiceProvider Error Handling', function () {
 describe('LangServiceProvider Integration', function () {
     it('works with Laravel translation system', function () {
         $this->provider->boot();
+
         // Verifica integrazione con il sistema di traduzione di Laravel
         expect(Lang::has('lang::common.welcome'))->toBeTrue();
-        expect((string) __('lang::common.welcome'))->toBeString();
+        expect(__('lang::common.welcome'))->toBeString();
     });
 
     it('works with Filament components', function () {
         $this->provider->boot();
+
         // Verifica che le traduzioni siano disponibili per i componenti Filament
-        $translation = (string) __('lang::common.save');
+        $translation = __('lang::common.save');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.save');
     });
 
     it('works with Blade templates', function () {
         $this->provider->boot();
+
         // Verifica che le traduzioni siano disponibili nei template Blade
         $translation = @lang('lang::common.welcome');
         expect($translation)->toBeString();
@@ -360,6 +387,7 @@ describe('LangServiceProvider Integration', function () {
 describe('LangServiceProvider Configuration', function () {
     it('respects Laravel configuration', function () {
         $this->provider->boot();
+
         // Verifica che rispetti la configurazione di Laravel
         $defaultLocale = config('app.locale');
         expect($defaultLocale)->toBeString();
@@ -368,12 +396,14 @@ describe('LangServiceProvider Configuration', function () {
 
     it('can be configured via config files', function () {
         $this->provider->boot();
+
         // Verifica che possa essere configurato tramite file di configurazione
         expect(config('app.fallback_locale'))->toBeString();
     });
 
     it('integrates with other service providers', function () {
         $this->provider->boot();
+
         // Verifica integrazione con altri service provider
         expect(app())->toBeInstanceOf(\Illuminate\Contracts\Foundation\Application::class);
     });
@@ -414,4 +444,3 @@ describe('LangServiceProvider Maintenance', function () {
         expect($this->provider)->toBeInstanceOf(LangServiceProvider::class);
     });
 });
-

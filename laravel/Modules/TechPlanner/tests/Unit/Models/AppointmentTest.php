@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+=======
 use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
@@ -17,11 +19,16 @@ use Modules\TechPlanner\Models\Worker;
  */
 class AppointmentTest extends TestCase
 {
+    use RefreshDatabase;
+
+=======
     private Appointment $appointment;
 
     protected function setUp(): void
     {
         parent::setUp();
+        
+=======
 
         $this->appointment = Appointment::factory()->create();
     }
@@ -210,6 +217,8 @@ class AppointmentTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $appointmentId = $this->appointment->id;
+        
+=======
 
         $this->appointment->delete();
         
@@ -227,6 +236,8 @@ class AppointmentTest extends TestCase
     public function it_can_be_restored(): void
     {
         $appointmentId = $this->appointment->id;
+        
+=======
 
         $this->appointment->delete();
         $this->assertSoftDeleted('appointments', ['id' => $appointmentId]);
@@ -265,6 +276,8 @@ class AppointmentTest extends TestCase
     public function it_has_is_ongoing_check(): void
     {
         $now = now();
+        
+=======
 
         // Appuntamento in corso
         $this->appointment->update([
@@ -295,6 +308,8 @@ class AppointmentTest extends TestCase
     public function it_has_is_past_check(): void
     {
         $now = now();
+        
+=======
 
         // Appuntamento passato
         $this->appointment->update([
@@ -317,6 +332,8 @@ class AppointmentTest extends TestCase
     public function it_has_is_future_check(): void
     {
         $now = now();
+        
+=======
 
         // Appuntamento futuro
         $this->appointment->update([
@@ -339,6 +356,8 @@ class AppointmentTest extends TestCase
     public function it_has_is_today_check(): void
     {
         $today = now();
+        
+=======
 
         // Appuntamento oggi
         $this->appointment->update([
@@ -361,6 +380,8 @@ class AppointmentTest extends TestCase
     public function it_has_is_this_week_check(): void
     {
         $thisWeek = now();
+        
+=======
 
         // Appuntamento questa settimana
         $this->appointment->update([

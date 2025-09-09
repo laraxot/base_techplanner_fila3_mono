@@ -58,7 +58,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereUpdatedBy($value)
  * @mixin IdeHelperActivity
- * @method static \Modules\Activity\Database\Factories\ActivityFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class Activity extends SpatieActivity

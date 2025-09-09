@@ -6,7 +6,11 @@
 >>>>>>> 1831d11e78 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # 🛠️ Fase 2: Manutenzione
 
 ## 📋 Panoramica
@@ -55,7 +59,11 @@ Questa fase si concentra sulla manutenzione e ottimizzazione del sistema, garant
 >>>>>>> 1831d11e78 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 2. **Sicurezza**:
    - Verifica integrità dati
    - Backup crittografati
@@ -67,7 +75,11 @@ Questa fase si concentra sulla manutenzione e ottimizzazione del sistema, garant
 >>>>>>> 1831d11e78 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 3. **Performance**:
    - Ottimizzazione risorse
    - Caching intelligente
@@ -252,6 +264,10 @@ aurmich/dev
 >>>>>>> 1831d11e78 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 

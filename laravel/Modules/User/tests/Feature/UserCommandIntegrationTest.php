@@ -9,6 +9,8 @@ use Modules\User\Console\Commands\ChangeTypeCommand;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
 
+uses(RefreshDatabase::class);
+
 describe('User Command Integration', function () {
     beforeEach(function () {
         $this->command = new ChangeTypeCommand;
@@ -189,7 +191,7 @@ describe('User Command Integration', function () {
 
     it('can access Laravel facades', function () {
         // Test that Laravel facades are available
-        expect(class_exists('Illuminate\\Support\\Facades\\Facade'))->toBeTrue();
+        expect(class_exists('Illuminate\Support\Facades\Facade'))->toBeTrue();
     });
 
     it('handles reflection operations correctly', function () {

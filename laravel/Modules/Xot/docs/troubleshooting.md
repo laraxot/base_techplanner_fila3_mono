@@ -431,6 +431,24 @@ SQLSTATE[42S02]: Base table or view not found
 SQLSTATE[23000]: Integrity constraint violation
 ```
 
+#### **Soluzioni**
+
+**Utilizzare RefreshDatabase**
+```php
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class MioModelloTest extends XotBaseTestCase
+{
+    use RefreshDatabase;
+    
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        // Setup database per i test
+    }
+}
+```
 
 **Verificare Migrazioni**
 ```bash

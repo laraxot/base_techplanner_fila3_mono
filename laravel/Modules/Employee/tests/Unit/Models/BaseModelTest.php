@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Tests\Unit\Models;
 
+use Modules\Employee\Models\BaseModel;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+=======
 use Illuminate\Database\Eloquent\Model;
 use Modules\Employee\Models\BaseModel;
 

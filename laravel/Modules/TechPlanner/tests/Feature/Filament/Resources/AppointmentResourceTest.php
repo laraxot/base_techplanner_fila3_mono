@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+=======
 use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages\CreateAppointment;
@@ -13,6 +16,8 @@ use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Worker;
 use Modules\User\Models\User;
+use Tests\TestCase;
+=======
 
 class AppointmentResourceTest extends TestCase
 {
@@ -31,6 +36,8 @@ class AppointmentResourceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+=======
 
         $this->admin = User::factory()->create([
             'name' => 'Admin User',

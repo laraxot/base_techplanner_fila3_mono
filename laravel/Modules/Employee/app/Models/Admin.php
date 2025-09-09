@@ -6,6 +6,11 @@ namespace Modules\Employee\Models;
 
 use Parental\HasParent;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
+=======
 /**
  * Employee Module Admin Model
  *
@@ -203,6 +208,12 @@ class Admin extends User
     protected function casts(): array
     {
         return array_merge(parent::casts(), [
+            //'certifications' => 'array',
+            //'availability' => 'array',
+        ]);
+    }
+}
+=======
             // 'certifications' => 'array',
             // 'availability' => 'array',
         ]);

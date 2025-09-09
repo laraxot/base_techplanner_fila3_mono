@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\User\Tests\Unit\PermissionTest;
-
-namespace Modules\User\Tests\Unit\Widgets;
-
 use Modules\User\Models\Permission;
 use Modules\User\Models\Role;
 

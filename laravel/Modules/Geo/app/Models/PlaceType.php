@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PlaceType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PlaceType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PlaceType query()
- * @property-read \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property-read \Modules\Xot\Contracts\ProfileContract|null $updater
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
  * @mixin IdeHelperPlaceType
  * @mixin \Eloquent
  */

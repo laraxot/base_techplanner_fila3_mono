@@ -27,8 +27,6 @@ The documentation is organized into logical categories for better navigation and
 - **[README.md](README.md)** - This overview document
 - **[Configuration Guide](configuration.md)** - Module configuration guide
 - **[Getting Started](GETTING_STARTED.md)** - Installation and setup guide
-<<<<<<< HEAD
-=======
 - **[Git Conflicts Resolution Summary](git-conflicts-resolution-summary.md)** - Summary of Git conflicts resolution process
 
 ### 📋 Core Documentation

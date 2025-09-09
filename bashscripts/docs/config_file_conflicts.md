@@ -3,7 +3,11 @@
 >>>>>>> f1e7ef1046 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Gestione dei Conflitti nei File di Configurazione
 
 ## Panoramica
@@ -38,7 +42,11 @@ File come:
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 - `.env`
 - `.env.example`
@@ -318,7 +326,11 @@ git commit -m "Risolto conflitto in file di configurazione"
 =======
 
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 Il file presenta conflitti riguardanti le funzionalità PostCSS da abilitare:
 
 1. **Versione 1**: Configurazione base con solo tailwindcss e autoprefixer
@@ -395,9 +407,15 @@ I seguenti file di configurazione sono stati recentemente risolti:
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> 04d882f8f6 (.)
+=======
+>>>>>>> f1e7ef1046 (.)
 =======
 =======
 =======
+=======
+>>>>>>> f52d0712 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -501,8 +519,16 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
+>>>>>>> f71d08e230 (.)
 =======
 >>>>>>> develop
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f52d0712 (.)
 =======
 >>>>>>> 04d882f8f6 (.)
 =======
@@ -613,6 +639,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -718,7 +745,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> f71d08e230 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1137,7 +1168,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1440,7 +1475,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> f71d08e230 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - [Risoluzione Conflitti Git](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/git_conflicts_resolution.md)
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti Merge Risolti Xot](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
@@ -1450,7 +1489,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 =======
 # Risoluzione dei Conflitti nei File di Configurazione
 
@@ -1561,7 +1604,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1679,7 +1726,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md) 
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - [Risoluzione Conflitti Git](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/git_conflicts_resolution.md)
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti Merge Risolti Xot](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
@@ -1705,4 +1756,8 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

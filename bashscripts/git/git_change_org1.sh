@@ -6,7 +6,11 @@
 <<<<<<< HEAD
 =======
 >>>>>>> e9356a3a (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 #!/bin/bash
 
 # Ensure that the script is provided with the new organization name
@@ -217,5 +221,9 @@ git submodule foreach --quiet '
 
 sed -i 's/\r$//' "$SCRIPT_PATH"
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 echo "All submodules and the main repository remote URL have been updated!"

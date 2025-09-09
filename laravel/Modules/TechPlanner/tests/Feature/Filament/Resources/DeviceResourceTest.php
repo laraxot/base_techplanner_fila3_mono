@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+=======
 use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\DeviceResource;
 use Modules\TechPlanner\Filament\Resources\DeviceResource\Pages\CreateDevice;
@@ -11,6 +14,8 @@ use Modules\TechPlanner\Filament\Resources\DeviceResource\Pages\EditDevice;
 use Modules\TechPlanner\Filament\Resources\DeviceResource\Pages\ListDevices;
 use Modules\TechPlanner\Models\Device;
 use Modules\User\Models\User;
+use Tests\TestCase;
+=======
 
 class DeviceResourceTest extends TestCase
 {
@@ -23,6 +28,8 @@ class DeviceResourceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+=======
 
         // Crea un utente admin per i test
         $this->admin = User::factory()->create([

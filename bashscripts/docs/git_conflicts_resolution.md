@@ -3,7 +3,11 @@
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Risoluzione Conflitti Git
 
 ## Panoramica
@@ -49,6 +53,12 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
+<<<<<<< HEAD
+## Note Importanti
+- Tutti i file sono stati mantenuti nella versione<!-- REVISIONE MANUALE: File aggiornato per chiarezza e tracciabilità. Vedi anche [README globale](/docs/README.md) e gli altri file di risoluzione conflitti. -->
+>>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 ## Note Importanti
 - Tutti i file sono stati mantenuti nella versione<!-- REVISIONE MANUALE: File aggiornato per chiarezza e tracciabilità. Vedi anche [README globale](/docs/README.md) e gli altri file di risoluzione conflitti. -->
@@ -67,7 +77,11 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 >>>>>>> develop
 ## Note Importanti
 - Tutti i file sono stati mantenuti nella versione<!-- REVISIONE MANUALE: File aggiornato per chiarezza e tracciabilità. Vedi anche [README globale](/docs/README.md) e gli altri file di risoluzione conflitti. -->
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
+>>>>>>> 71ff9e32 (.)
 
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
@@ -97,7 +111,11 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ### Fase 1: Identificazione
 ```bash
 # Visualizzare tutti i file con conflitti
@@ -134,7 +152,11 @@ Il modulo Predict mantiene la seguente struttura di namespace:
 =======
 # Trovare i marker di conflitto
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Verifica Post-Risoluzione
 Si consiglia di:
@@ -153,7 +175,11 @@ Tutti i file modificati hanno un backup con timestamp nel formato:
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ```
 
 ### Fase 2: Analisi
@@ -165,7 +191,11 @@ Per ogni file in conflitto:
 >>>>>>> 1831d11e78 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Prossimi Passi
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
@@ -176,9 +206,14 @@ Per ogni file in conflitto:
 - `Modules\Predict\Database\Factories` per le factory
 - `Modules\Predict\lang\it` per i file di traduzione
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 =======
 =======
+>>>>>>> f52d0712 (.)
 
 =======
 >>>>>>> develop
@@ -187,8 +222,11 @@ Per ogni file in conflitto:
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
 =======
+>>>>>>> 71ff9e32 (.)
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 9de04485 (.)
@@ -208,7 +246,11 @@ Per ogni file in conflitto:
 =======
 
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 ### Fase 3: Risoluzione
 Scegliere una delle seguenti strategie:
 
@@ -232,7 +274,11 @@ Tutti i file modificati hanno un backup con timestamp nel formato:
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 Per i file di codice PHP, verificare sempre la compatibilità con PHPStan livello 9 dopo la risoluzione.
 
@@ -280,7 +326,11 @@ namespace Modules\NomeModulo\App\Filament;
 >>>>>>> 1831d11e78 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Prossimi Passi
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
@@ -292,7 +342,11 @@ namespace Modules\NomeModulo\App\Filament;
 >>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 =======
 4. Testare il modulo in ambiente di sviluppo 
 
@@ -344,4 +398,8 @@ Il progetto include alcuni script per facilitare la gestione dei conflitti:
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

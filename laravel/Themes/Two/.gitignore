@@ -29,12 +29,15 @@ package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
 node_modules
+node_modules
+node_modules
 
 # Standard ignores (auto)
 node_modules/
 vendor/
 *.old
 *.old1
+*.old2
 *.bak
 *.bakcup
 *.backup.*

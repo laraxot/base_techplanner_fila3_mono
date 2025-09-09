@@ -52,14 +52,7 @@ trait HasXotTable
     {
         $actions = [];
 
-        $resource = $this->getResource();
-        
-        if (method_exists($resource, 'canCreate')) {
-            $actions['create'] = Tables\Actions\CreateAction::make()
-                ->iconButton()
-                ->tooltip(__('user::actions.create'))
-                ->visible(fn (?Model $record): bool => $resource::canCreate());
-        }
+        $actions['create'] = Tables\Actions\CreateAction::make();
 
         if ($this->shouldShowAssociateAction()) {
             $actions['associate'] = Tables\Actions\AssociateAction::make()

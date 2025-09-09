@@ -46,6 +46,7 @@ Homestead.json
 .git-rewrite/
 
 # Documentation cache only
+# Documentation cache only
 # Documentation
 /docs/
 

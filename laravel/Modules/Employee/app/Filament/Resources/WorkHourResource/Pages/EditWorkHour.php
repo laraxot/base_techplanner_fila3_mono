@@ -22,16 +22,12 @@ class EditWorkHour extends XotBaseEditRecord
         ];
     }
 
-    protected function getRedirectUrl(): ?string
-    {
-        /** @var string */
-        return $this->getResource()::getUrl('index');
-    }
-
-    protected function beforeSave(): void
+    protected function getRedirectUrl(): string
     {
         $data = $this->form->getState();
         $currentRecord = $this->record;
+        
+
 
         // Ensure we have a WorkHour record
         if (! ($currentRecord instanceof WorkHour)) {
@@ -59,7 +55,7 @@ class EditWorkHour extends XotBaseEditRecord
             $currentRecord->type === $data['type'] &&
             $currentRecord->timestamp->eq(Carbon::parse((string) ($data['timestamp'] ?? '')))
         ) {
-            return;
+            return "";
         }
 
         // Ensure we have a WorkHour record
@@ -88,7 +84,7 @@ class EditWorkHour extends XotBaseEditRecord
             $currentRecord->type === $data['type'] &&
             $currentRecord->timestamp->eq($newTimestamp)
         ) {
-            return;
+            return "";
         }
 
         // Check for duplicate entries within the same minute (excluding current record)

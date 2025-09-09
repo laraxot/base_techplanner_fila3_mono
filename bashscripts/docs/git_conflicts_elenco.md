@@ -3,21 +3,43 @@
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git (">>>>>>>") che devono essere controllati e risolti.
 =======
 <<<<<<< HEAD
+# Elenco File con Marcatori di Conflitto Git 
+
+Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
+<<<<<<< HEAD
+>>>>>>> 04d882f8f6 (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 71ff9e32 (.)
 =======
 # Elenco File con Marcatori di Conflitto Git 
 
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 =======
 >>>>>>> develop
 # Elenco File con Marcatori di Conflitto Git 
 
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
 >>>>>>> 04d882f8f6 (.)
+>>>>>>> 71ff9e32 (.)
 
 ## File con Marcatori di Conflitto
 
 ### ✅ File Documentazione (NON sono conflitti reali)
 I seguenti file contengono ">>>>>>>" come parte di documentazione o esempi, NON come conflitti reali:
+=======
+<<<<<<< HEAD
+I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
+<<<<<<< HEAD
+>>>>>>> 04d882f8f6 (.)
+=======
+=======
+I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
+>>>>>>> f52d0712 (.)
 =======
 <<<<<<< HEAD
 =======
@@ -26,6 +48,7 @@ I seguenti file contengono  come parte di documentazione o esempi, NON come conf
 >>>>>>> develop
 I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
 >>>>>>> 04d882f8f6 (.)
+>>>>>>> 71ff9e32 (.)
 
 - `bashscripts/utils/resolve_conflicts.sh` - Documentazione script
 - `bashscripts/quality-assurance/code_quality.md` - Esempi di conflitti
@@ -70,12 +93,22 @@ I seguenti file potrebbero contenere conflitti reali che necessitano di attenzio
 - **Totale file con ">>>>>>>" markers: 21**
 =======
 <<<<<<< HEAD
+- **Totale file con  markers: 21**
+<<<<<<< HEAD
+>>>>>>> 04d882f8f6 (.)
+=======
+=======
+- **Totale file con  markers: 21**
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 - **Totale file con  markers: 21**
 =======
 >>>>>>> develop
 - **Totale file con  markers: 21**
 >>>>>>> 04d882f8f6 (.)
+>>>>>>> 71ff9e32 (.)
 - **File con conflitti reali potenziali: 0** ✅ TUTTI VERIFICATI
 - **File di documentazione/esempi: 21** ✅ TUTTI VERIFICATI
 
@@ -93,11 +126,21 @@ I seguenti file potrebbero contenere conflitti reali che necessitano di attenzio
 Tutti i 21 file che contengono la stringa ">>>>>>>" sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+Tutti i 21 file che contengono la stringa  sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
+>>>>>>> 04d882f8f6 (.)
+=======
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 =======
 >>>>>>> develop
 Tutti i 21 file che contengono la stringa  sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> 04d882f8f6 (.)
+>>>>>>> 71ff9e32 (.)
 
 ---
 *Ultimo aggiornamento: $(date)*

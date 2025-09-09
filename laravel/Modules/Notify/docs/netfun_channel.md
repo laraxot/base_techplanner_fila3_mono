@@ -678,3 +678,9 @@ Log::info('SMS inviato', [
 - [Laravel Testing](https://laravel.com/project_docs/testing)
 - [Laravel Logging](https://laravel.com/project_docs/logging)
 - [Laravel Cache](https://laravel.com/project_docs/cache) 
+- [Laravel Notifications](https://laravel.com/docs/notifications)
+- [Laravel Queues](https://laravel.com/docs/queues)
+- [Laravel Testing](https://laravel.com/docs/testing)
+- [Laravel Logging](https://laravel.com/docs/logging)
+- [Laravel Cache](https://laravel.com/docs/cache) 
+=======

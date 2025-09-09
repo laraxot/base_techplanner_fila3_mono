@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Tests\Unit\Models;
 
+use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Models\Employee;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Collection;
+use Tests\TestCase;
+=======
 use Carbon\Carbon;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
@@ -72,6 +78,8 @@ test('work hour can be filtered by type', function () {
         'type' => WorkHour::TYPE_CLOCK_OUT,
         'timestamp' => now()->addHours(8),
     ]);
+    
+=======
 
     $clockIns = WorkHour::ofType(WorkHour::TYPE_CLOCK_IN)->get();
     $clockOuts = WorkHour::ofType(WorkHour::TYPE_CLOCK_OUT)->get();
@@ -109,6 +117,8 @@ test('work hour can be filtered by date', function () {
         'employee_id' => $this->employee->id,
         'timestamp' => $yesterday,
     ]);
+    
+=======
 
     $todayWorkHours = WorkHour::forDate($today)->get();
     
@@ -124,6 +134,8 @@ test('work hour can be filtered by date', function () {
 
 test('work hour can be filtered by employee', function () {
     $employee2 = Employee::factory()->create();
+    
+=======
 
     $workHour1 = WorkHour::factory()->create(['employee_id' => $this->employee->id]);
     $workHour2 = WorkHour::factory()->create(['employee_id' => $employee2->id]);
@@ -173,6 +185,8 @@ test('work hour can calculate worked hours', function () {
         'type' => WorkHour::TYPE_CLOCK_OUT,
         'timestamp' => now(),
     ]);
+    
+=======
 
     $workedHours = WorkHour::calculateWorkedHours($this->employee->id);
     
@@ -191,6 +205,8 @@ test('work hour can get current status', function () {
         'type' => WorkHour::TYPE_CLOCK_IN,
         'timestamp' => now()->subHours(1),
     ]);
+    
+=======
 
     $status = WorkHour::getCurrentStatus($this->employee->id);
     
@@ -209,6 +225,8 @@ test('work hour validates next entry type', function () {
         'type' => WorkHour::TYPE_CLOCK_IN,
         'timestamp' => now()->subHours(1),
     ]);
+    
+=======
 
     $isValid = WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_OUT);
     
@@ -237,6 +255,8 @@ test('work hour can get today entries', function () {
         'employee_id' => $this->employee->id,
         'timestamp' => $today->copy()->setTime(17, 0),
     ]);
+    
+=======
 
     $todayEntries = WorkHour::getTodayEntries($this->employee->id, $today);
     

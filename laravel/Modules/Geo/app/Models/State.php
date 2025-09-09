@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Modules\Xot\Contracts\ProfileContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static \Illuminate\Database\Eloquent\Builder|State newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|State newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|State query()
- * @property-read ProfileContract|null $creator
- * @property-read ProfileContract|null $updater
+ * @property-read \Modules\SaluteOra\Models\Profile|null $creator
+ * @property-read \Modules\SaluteOra\Models\Profile|null $updater
  * @mixin IdeHelperState
- * @method static \Modules\Geo\Database\Factories\StateFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class State extends BaseModel

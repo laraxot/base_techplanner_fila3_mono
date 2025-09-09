@@ -53,6 +53,7 @@ return [
         'reset' => 'Reimposta',
         'select' => 'Seleziona',
         'choose' => 'Scegli...',
+=======
 
     ],
     'messages' => [

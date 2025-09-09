@@ -9,6 +9,7 @@ use Mockery;
 use Modules\Media\Actions\SaveAttachmentsAction;
 use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
+use Tests\TestCase;
 
 class SaveAttachmentsActionTest extends TestCase
 {

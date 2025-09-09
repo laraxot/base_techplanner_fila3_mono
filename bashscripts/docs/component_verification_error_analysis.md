@@ -121,6 +121,8 @@ name('login');
 ```bash
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 
 =======
 
@@ -129,6 +131,7 @@ name('login');
 =======
 >>>>>>> 3c18aa7e (.)
 =======
+>>>>>>> 71ff9e32 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -144,6 +147,7 @@ name('login');
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+>>>>>>> f52d0712 (.)
 =======
 
 =======
@@ -174,7 +178,11 @@ name('login');
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php" | head -20
 
@@ -191,6 +199,8 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 ```bash
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 
 =======
 
@@ -199,6 +209,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
+>>>>>>> 71ff9e32 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -214,6 +225,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+>>>>>>> f52d0712 (.)
 =======
 
 =======
@@ -244,7 +256,11 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -303,6 +319,8 @@ L'errore è stato causato da:
 *Analisi completata il: $(date)*
 *Stato: Errore critico identificato*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 *Priorità: CRITICA* 
 =======
 *Priorità: CRITICA* 
@@ -312,6 +330,7 @@ L'errore è stato causato da:
 =======
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
+>>>>>>> 71ff9e32 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -328,6 +347,7 @@ L'errore è stato causato da:
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+>>>>>>> f52d0712 (.)
 *Priorità: CRITICA* 
 =======
 *Priorità: CRITICA* 
@@ -361,4 +381,8 @@ L'errore è stato causato da:
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

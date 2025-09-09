@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Tests\Feature\Filament\XotBaseResourceTest;
-
 namespace Modules\Xot\Tests\Feature\Filament;
 
 use Filament\Resources\Resource;

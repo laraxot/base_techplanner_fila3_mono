@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\UI\Tests\Unit\Filament\Widgets\RowWidgetTest;
-
 namespace Modules\UI\Tests\Unit\Filament\Widgets;
 
 use Filament\Widgets\Widget;

@@ -92,23 +92,18 @@ login.blade.php (Layout PA + Branding)
 ```
 
 ### 2. Componenti Sixteen da Utilizzare
-<<<<<<< HEAD
-=======
 - **Layout**: `x-sixteen::blocks.layout.container`
 - **Form**: `x-sixteen::blocks.forms.input`
 - **Button**: `x-sixteen::blocks.buttons.button`
 - **Alert**: `x-sixteen::blocks.alerts.alert`
 - **Card**: `x-sixteen::blocks.cards.card`
->>>>>>> develop
 - **Layout**: `x-pub_theme::blocks.layout.container`
 - **Form**: `x-pub_theme::blocks.forms.input`
 - **Button**: `x-pub_theme::blocks.buttons.button`
 - **Alert**: `x-pub_theme::blocks.alerts.alert`
 - **Card**: `x-pub_theme::blocks.cards.card`
-<<<<<<< HEAD
 =======
 =======
->>>>>>> develop
 
 ### 3. Struttura Proposta
 ```blade

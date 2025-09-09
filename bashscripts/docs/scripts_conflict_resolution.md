@@ -1,12 +1,22 @@
 # Risoluzione Conflitti negli Script Bash
 =======
 <<<<<<< HEAD
+# Script di Risoluzione dei Conflitti
+<<<<<<< HEAD
+>>>>>>> f1e7ef1046 (.)
+=======
+=======
+# Script di Risoluzione dei Conflitti
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 # Script di Risoluzione dei Conflitti
 =======
 >>>>>>> develop
 # Script di Risoluzione dei Conflitti
 >>>>>>> f1e7ef1046 (.)
+>>>>>>> 71ff9e32 (.)
 
 ## Panoramica
 
@@ -195,7 +205,11 @@ Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
 2. **Messaggi di sistema**: Presenza di messaggi informativi sulla risoluzione del conflitto
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ### sync_to_disk.sh
 
@@ -304,12 +318,22 @@ I seguenti file sono stati recentemente risolti:
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
+<<<<<<< HEAD
+
+>>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 
 >>>>>>> develop
 =======
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 ### fix_structure.sh
 
 Mantenere la versione più avanzata con funzioni di logging colorate, migliorando:
@@ -387,7 +411,11 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
 
 #### Utilizzo
@@ -552,4 +580,8 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

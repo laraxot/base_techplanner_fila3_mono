@@ -33,6 +33,8 @@ class EventTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+=======
 
         $this->event = Event::factory()->create();
     }
@@ -176,6 +178,10 @@ class EventTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $eventId = $this->event->id;
+        
+        $this->event->delete();
+        
+=======
 
         $this->event->delete();
 
@@ -187,6 +193,8 @@ class EventTest extends TestCase
     public function it_can_be_restored(): void
     {
         $eventId = $this->event->id;
+        
+=======
 
         $this->event->delete();
         $this->assertSoftDeleted('events', ['id' => $eventId]);
@@ -221,6 +229,8 @@ class EventTest extends TestCase
     public function it_has_is_ongoing_check(): void
     {
         $now = now();
+        
+=======
 
         // Evento in corso
         $this->event->update([
@@ -251,6 +261,8 @@ class EventTest extends TestCase
     public function it_has_is_past_check(): void
     {
         $now = now();
+        
+=======
 
         // Evento passato
         $this->event->update([
@@ -273,6 +285,8 @@ class EventTest extends TestCase
     public function it_has_is_future_check(): void
     {
         $now = now();
+        
+=======
 
         // Evento futuro
         $this->event->update([
@@ -295,6 +309,8 @@ class EventTest extends TestCase
     public function it_has_is_today_check(): void
     {
         $today = now();
+        
+=======
 
         // Evento oggi
         $this->event->update([
@@ -317,6 +333,8 @@ class EventTest extends TestCase
     public function it_has_is_this_week_check(): void
     {
         $thisWeek = now();
+        
+=======
 
         // Evento questa settimana
         $this->event->update([
@@ -339,6 +357,8 @@ class EventTest extends TestCase
     public function it_has_is_this_month_check(): void
     {
         $thisMonth = now();
+        
+=======
 
         // Evento questo mese
         $this->event->update([

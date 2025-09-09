@@ -15,8 +15,7 @@ use Modules\Geo\Tests\TestCase;
 |
 */
 
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
+pest()->extend(TestCase::class)
     ->in('Feature', 'Unit');
 
 /*

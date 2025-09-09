@@ -65,4 +65,8 @@ chmod +x bashscripts/utils/script.sh
 >>>>>>> 04d882f8f6 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

@@ -11,16 +11,16 @@ parameters:
         - ./database
 
     excludePaths:
-        - ./vendor (?)
+        - ./vendor
         - ./tests
-        - ./app_old (?)
+        - ./app_old
 
     scanFiles:
         - ../../vendor/pbmedia/laravel-ffmpeg/src/Support/FFMpeg.php
         - ../../vendor/pbmedia/laravel-ffmpeg/src/MediaOpener.php
         - ../../vendor/pbmedia/laravel-ffmpeg/src/FFMpeg/MediaExporter.php
 
-    # checkMissingIterableValueType: false
-    # checkGenericClassInNonGenericObjectType: false
-    # treatPhpDocTypesAsCertain: false
-    # reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false

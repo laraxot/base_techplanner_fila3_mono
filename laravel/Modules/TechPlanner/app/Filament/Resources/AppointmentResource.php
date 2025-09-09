@@ -24,6 +24,21 @@ class AppointmentResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
+            Forms\Components\Select::make('client_id')
+                ->relationship('client', 'name')
+                ->required(),
+            Forms\Components\DatePicker::make('date')
+                ->required(),
+            Forms\Components\TimePicker::make('time')
+                ->required(),
+            Forms\Components\Select::make('status')
+                ->options([
+                    'scheduled' => 'Scheduled',
+                    'confirmed' => 'Confirmed',
+                    'completed' => 'Completed',
+                    'cancelled' => 'Cancelled',
+                ])
+=======
             /*
             Forms\Components\Select::make('client_id')
                 ->relationship('client', 'name')
@@ -37,6 +52,7 @@ class AppointmentResource extends XotBaseResource
         ];
     }
 
+=======
 
     public static function getPages(): array
     {

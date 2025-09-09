@@ -9,12 +9,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -142,12 +152,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 - Monitoraggio continuo
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -275,12 +295,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 - Monitoraggio continuo
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -410,12 +440,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -424,12 +464,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> 1831d11e78 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
+>>>>>>> 71ff9e32 (.)
 ## 🎯 Funzionalità Future
 
 ### 1. Verifica Dipendenze
@@ -555,12 +605,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 aurmich/dev
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -688,12 +748,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 - Monitoraggio continuo
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -821,12 +891,22 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 - Monitoraggio continuo
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -1115,12 +1195,22 @@ aurmich/dev
  43df3e0 (.)
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> 1831d11e78 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
+>>>>>>> 71ff9e32 (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 05_security.md

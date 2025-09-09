@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\UI\Filament\Widgets;
 
+use Filament\Forms;
+=======
 use Filament\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cookie;
@@ -24,6 +26,12 @@ class DarkModeSwitcherWidget extends XotBaseWidget
 
     public function toggleDarkMode(): void
     {
+        $this->darkMode = !$this->darkMode;
+        
+        // Set cookie for persistence
+        Cookie::queue('dark_mode', $this->darkMode ? 'true' : 'false', 60 * 24 * 30);
+        
+=======
         $this->darkMode = ! $this->darkMode;
 
         // Set cookie for persistence
@@ -35,6 +43,8 @@ class DarkModeSwitcherWidget extends XotBaseWidget
 
     /**
      * Schema del form per la configurazione del widget.
+     * 
+=======
      *
      * @return array<int, \Filament\Forms\Components\Component>
      */

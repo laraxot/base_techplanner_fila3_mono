@@ -53,12 +53,22 @@ php artisan migrate
 ```bash
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Instalar Laravel Modules
 composer require nwidart/laravel-modules
 
@@ -136,12 +146,22 @@ La documentación completa está disponible en el directorio `docs/`:
 ```bash
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Crear un nuevo módulo
 php artisan module:make NombreModulo
 
@@ -191,12 +211,22 @@ Este kit de herramientas aborda estos desafíos proporcionando herramientas auto
 - [English](../../README.md)
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # 🚀 Kit de Herramientas de Automatización Git
 
 [![PHPStan](https://img.shields.io/badge/PHPStan-Level%209-brightgreen.svg?style=for-the-badge&logo=php&logoColor=white)](phpstan/ANALISI_MODULI_PHPSTAN.md)
@@ -252,12 +282,22 @@ php artisan migrate
 ```bash
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Instalar Laravel Modules
 composer require nwidart/laravel-modules
 
@@ -335,12 +375,22 @@ La documentación completa está disponible en el directorio `docs/`:
 ```bash
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Crear un nuevo módulo
 php artisan module:make NombreModulo
 
@@ -395,4 +445,8 @@ Este kit de herramientas aborda estos desafíos proporcionando herramientas auto
 >>>>>>> f71d08e230 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

@@ -6,6 +6,7 @@ namespace Modules\Employee\Database\Seeders;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+=======
 use Illuminate\Support\Collection;
 use Modules\Employee\Models\WorkHour;
 use Modules\User\Models\User;

@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     'login' => [
         'title' => 'Accesso ai servizi',
+=======
 
         'description' => 'Inserisci le tue credenziali per accedere a :service',
         'no_account' => 'Non hai un account?',
@@ -12,6 +13,7 @@ return [
         'remember' => 'Ricordami',
         'forgot_password' => 'Password dimenticata?',
         'submit' => 'Accedi',
+=======
 
         'help' => 'Hai bisogno di aiuto?',
         'email' => 'Indirizzo email',

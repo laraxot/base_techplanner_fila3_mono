@@ -5,12 +5,22 @@ Il seguente formato propone una ristrutturazione completa del file di prompt `do
 ```
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # SISTEMA DI DOCUMENTAZIONE MODULARE
 
 ## 1. PRINCIPI FONDAMENTALI

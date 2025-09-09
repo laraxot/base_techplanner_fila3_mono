@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Tests\Pest;
-
-
+use Modules\Xot\Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +14,7 @@ namespace Modules\Xot\Tests\Pest;
 |
 */
 
-
+pest()->extend(TestCase::class)
     ->in('Feature', 'Unit');
 
 /*

@@ -1,5 +1,7 @@
 # Script di Verifica della Qualità del Codice
 
+<<<<<<< HEAD
+=======
 Questa documentazione descrive gli script utilizzati per verificare e migliorare la qualità del codice nel progetto.
 <<<<<<< HEAD
 =======
@@ -332,6 +334,7 @@ git checkout HEAD -- storage/quality-reports/
 - [Blackfire Profiler](https://blackfire.io/docs/introduction)
 
 =======
+>>>>>>> f52d0712 (.)
 Questa documentazione descrive gli script e le procedure utilizzate per verificare e migliorare la qualità del codice nel progetto Laravel.
 >>>>>>> develop
 
@@ -357,12 +360,20 @@ bashscripts/check_form_schema.php
 php bashscripts/check_form_schema.php
 ```
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 ### Output
 Esempio di output:
 ```
+=======
+#### Output di Esempio
+```text
+>>>>>>> 7de7063d (.)
 XotBaseResource Classes Form Schema Check
-====
+========================================
 
+<<<<<<< HEAD
 ❌ 3 classi senza getFormSchema:
 - UserResource in Modules/User/Http/Resources/UserResource.php
 - ProfileResource in Modules/Profile/Http/Resources/ProfileResource.php
@@ -377,12 +388,88 @@ XotBaseResource Classes Form Schema Check
 - Utilizzare strumenti come PHPStan e PHP-CS-Fixer per garantire la qualità del codice
 
 ## Altri Script di Verifica della Qualità
+=======
+=======
+#### Output di Esempio
+```text
+=======
+### Output
+Esempio di output:
+```
+>>>>>>> 71ff9e32 (.)
+XotBaseResource Classes Form Schema Check
+====
+
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+✅ Analisi completata: 15 classi trovate
+❌ 3 classi mancanti del metodo getFormSchema():
+
+- UserResource in Modules/User/app/Filament/Resources/UserResource.php
+  → Linea: 12, Estende: XotBaseResource
+  
+- ProfileResource in Modules/User/app/Filament/Resources/ProfileResource.php  
+  → Linea: 18, Estende: XotBaseResource
+  
+- EventResource in Modules/Activity/app/Filament/Resources/EventResource.php
+  → Linea: 25, Estende: XotBaseResource
+
+📊 Statistiche:
+- Classi conformi: 12/15 (80%)
+- Classi da correggere: 3/15 (20%)
+```
+
+#### Miglioramenti Implementati
+- **Tipizzazione forte**: Uso di type hints PHP 8+
+- **Funzioni sicure**: Implementazione di controlli robusti
+- **Documentazione PHPDoc**: Annotazioni complete per ogni metodo
+- **Gestione errori**: Controlli espliciti con cast di tipo
+- **Sicurezza**: Validazione per `SplFileInfo` e path traversal
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+>>>>>>> f52d0712 (.)
+=======
+❌ 3 classi senza getFormSchema:
+- UserResource in Modules/User/Http/Resources/UserResource.php
+- ProfileResource in Modules/Profile/Http/Resources/ProfileResource.php
+- EventResource in Modules/Event/Http/Resources/EventResource.php
+```
+
+### Best Practice e Integrazione
+- Utilizzare tipi PHP forti e annotazioni PHPDoc
+- Integrare lo script nel workflow CI/CD (es. GitHub Actions, GitLab CI)
+- Eseguire lo script prima di ogni commit importante e durante le review
+- Preferire l'uso di Spatie Laravel Data per la validazione e la tipizzazione dei dati
+- Utilizzare strumenti come PHPStan e PHP-CS-Fixer per garantire la qualità del codice
+
+## Altri Script di Verifica della Qualità
+>>>>>>> 71ff9e32 (.)
 
 ### check_before_phpstan.sh
 Esegue controlli preliminari prima dell'analisi con PHPStan.
 
 ### phpstan_docs_generator.sh
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 Genera la documentazione dei risultati di PHPStan.
+
+## Raccomandazioni Generali
+- Documentare sempre le regole di qualità e i criteri di accettazione
+- Aggiornare la documentazione ogni volta che vengono introdotti nuovi controlli
+- Integrare i controlli di qualità nel processo di sviluppo e deploy
+
+## check_form_schema.php
+
+### Descrizione
+Script PHP che verifica se le classi che estendono `XotBaseResource` implementano correttamente il metodo `getFormSchema()`, essenziale per il corretto funzionamento del sistema di form.
+=======
+=======
+>>>>>>> f52d0712 (.)
+=======
+Genera la documentazione dei risultati di PHPStan.
+>>>>>>> 71ff9e32 (.)
 
 ## Raccomandazioni Generali
 - Documentare sempre le regole di qualità e i criteri di accettazione
@@ -496,8 +583,20 @@ XotBaseResource Classes Form Schema Check
 
 ## Altri Script di Verifica della Qualità
 
+<<<<<<< HEAD
+### KISS (Keep It Simple, Stupid)
+- **Struttura lineare**: Script comprensibili e diretti
+- **Output chiari**: Report facilmente interpretabili
+- **Configurazione minimale**: Solo parametri essenziali
+- **Interfaccia intuitiva**: Comandi semplici e consistenti
+<<<<<<< HEAD
+>>>>>>> 7de7063d (.)
+=======
+>>>>>>> f52d0712 (.)
+=======
 ### check_before_phpstan.sh
 Esegue controlli preliminari prima dell'analisi con PHPStan.
+>>>>>>> 71ff9e32 (.)
 
 # Script di Verifica della Qualità del Codice
 
@@ -623,6 +722,24 @@ Esegue controlli preliminari prima dell'analisi con PHPStan.
 =======
 ---
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+## Altri Script di Verifica della Qualità
+
+### check_before_phpstan.sh
+Esegue controlli preliminari prima dell'analisi con PHPStan.
+
+### phpstan_docs_generator.sh 
+
+## Risorse Utili
+- [PHPStan](https://phpstan.org/)
+- [Spatie Laravel Data](https://spatie.be/docs/laravel-data/v4/introduction)
+- [CI/CD Best Practices](https://docs.github.com/en/actions/guides/building-and-testing-php) 
+=======
+*Ultimo aggiornamento: Agosto 2025*  
+*Versione: 2.1.0*
+>>>>>>> 7de7063d (.)
+=======
 *Ultimo aggiornamento: Agosto 2025*  
 *Versione: 2.1.0*
 =======
@@ -631,4 +748,8 @@ Esegue controlli preliminari prima dell'analisi con PHPStan.
 
 *Ultimo aggiornamento: Agosto 2025*  
 *Versione: 2.1.0*
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

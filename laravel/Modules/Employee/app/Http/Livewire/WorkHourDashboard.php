@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Livewire;
 
 use Carbon\Carbon;
+
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Modules\Employee\Enums\WorkHourStatusEnum;
@@ -16,6 +17,7 @@ use Modules\Employee\Models\WorkHour;
 class WorkHourDashboard extends Component
 {
     public ?Employee $employee = null;
+
 
     /** @var array<int, array{date: string, day: string, hours: float, formatted_hours: string}> */
     public array $weeklyStats = [];
@@ -37,6 +39,8 @@ class WorkHourDashboard extends Component
     /** @var array<string, string> */
     protected $listeners = [
         'workHourRecorded' => 'refreshStats',
+        'refreshDashboard' => 'refreshStats'
+
         'refreshDashboard' => 'refreshStats',
     ];
     public function mount(?int $employeeId = null): void

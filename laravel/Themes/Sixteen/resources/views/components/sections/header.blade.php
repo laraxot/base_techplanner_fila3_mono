@@ -148,6 +148,8 @@
 
                 {{--  dddx(get_defined_vars()) 
                 <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
+                    {{--  
+=======
                     <li><a href="">Amministrazione</a></li>
                     <li><a href="">Novità</a></li>
                     <li><a href="">Servizi</a></li>

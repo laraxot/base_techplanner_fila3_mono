@@ -12,6 +12,7 @@ use Themes\Sixteen\Console\Commands\SixteenInstallCommand;
 use Themes\Sixteen\Console\Commands\SixteenPublishCommand;
 use Themes\Sixteen\Contracts\MenuFilterInterface;
 use Themes\Sixteen\Filters\{HrefMenuFilter, ActiveMenuFilter, GateMenuFilter};
+=======
 
 /**
  * Enhanced Service Provider per il tema Sixteen.
@@ -37,6 +38,11 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
     {
         parent::boot();
         
+        // Caricamento specifico per pub_theme namespace
+        // IMPORTANTE: pub_theme è il namespace standard per i temi
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'pub_theme');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'pub_theme');
+=======
         // Core theme loading
         $this->loadCoreThemeResources();
         
@@ -74,6 +80,15 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
         
         // Register SPID/CIE services
         $this->registerAuthServices();
+        // Registrazione dei servizi del tema
+        $this->app->singleton('sixteen.theme', function ($app) {
+            return new \Themes\Sixteen\Services\ThemeService();
+        });
+    }
+
+    /**
+     * Registra i layout shortcuts AGID per il tema.
+=======
     }
 
     /**
@@ -227,6 +242,8 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
         // Registrazione dei layout shortcuts per facilitare l'uso
         $this->app['view']->addNamespace('layouts', __DIR__ . '/../../resources/views/layouts');
         
+        // Alias per layout AGID-compliant
+=======
         // Enhanced composer per layout AGID-compliant
         $this->app['view']->composer('layouts.guest-agid', function ($view) {
             $themeService = app('sixteen.theme');
@@ -253,4 +270,6 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
             }
         }
     }
+}
+=======
 }

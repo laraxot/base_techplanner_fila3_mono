@@ -6,7 +6,7 @@ https://www.embla-carousel.com/examples/predefined/
 
 
 
-https://tw-elements.com/project_docs/standard/components/carousel/
+https://tw-elements.com/docs/standard/components/carousel/
 
 https://keen-slider.io/examples
 

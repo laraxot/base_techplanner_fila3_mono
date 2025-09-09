@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\UI\Tests\Feature\KalshiHeroComponentTest;
-
-namespace Modules\UI\Tests\Feature;
-
 use Illuminate\Support\Facades\View;
 use Tests\TestCase;
 

@@ -847,7 +847,11 @@ protected function casts(): array
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 
 facciamo un recfactor radicale di tutte le cartelle docs, in ottica dry + kiss, ti ricordo che dentro le cartelle docs, ne i nomi dei files ne i nomi delle cartelle devono contenere caratteri maiuscoli ad eccezzione di README.md
@@ -882,4 +886,8 @@ dentro le cartelle "docs" ne i nomi dei files ne i nomi delle sottocartelle di "
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

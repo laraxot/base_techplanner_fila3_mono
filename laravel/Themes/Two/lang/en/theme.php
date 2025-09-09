@@ -11,6 +11,7 @@ return [
         'services' => 'Servizi',
         'contact' => 'Contatti',
 
+=======
         'login' => 'Login',
         'login' => 'Accedi',
         'login' => 'Accedi',
@@ -55,6 +56,7 @@ return [
         'reset' => 'Reimposta',
         'select' => 'Seleziona',
         'choose' => 'Scegli...',
+=======
 
     ],
     'messages' => [

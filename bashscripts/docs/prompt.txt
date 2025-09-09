@@ -3,7 +3,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - Usare metodi specifici: getListTableColumns(), getTableFilters(), getTableActions()
 =======
 - Usare metodi specifici: getTableColumns(), getTableFilters(), getTableActions()
@@ -53,7 +57,11 @@
 <<<<<<< HEAD
 =======
 >>>>>>> e9356a3a (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -147,7 +155,11 @@
 <<<<<<< HEAD
 >>>>>>> f198176d (.)
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 85c5198c (.)
@@ -253,7 +265,11 @@
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -432,7 +448,11 @@
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
@@ -449,4 +469,8 @@
 >>>>>>> e9356a3a (.)
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

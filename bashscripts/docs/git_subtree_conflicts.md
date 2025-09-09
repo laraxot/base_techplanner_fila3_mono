@@ -60,12 +60,22 @@ source ./bashscripts/lib/custom.sh
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
+<<<<<<< HEAD
+
+>>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> 71ff9e32 (.)
 =======
 
 >>>>>>> develop
 =======
 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Validate input
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     log "error" "Parametri errati"
@@ -188,12 +198,22 @@ La soluzione ottimale è mantenere la versione che accetta 3 parametri, ma con g
 source ./bashscripts/lib/custom.sh
 =======
 <<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> f52d0712 (.)
+=======
+<<<<<<< HEAD
 =======
 
 =======
 >>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
+>>>>>>> 71ff9e32 (.)
 # Validate input
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     log "error" "Parametri errati"
@@ -351,7 +371,11 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Problema
 
@@ -486,10 +510,23 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 =======
 =======
 <<<<<<< HEAD
+5338a990 (.)
+<<<<<<< HEAD
+>>>>>>> 1831d11e78 (.)
+=======
+5338a990 (.)
+>>>>>>> f1e7ef1046 (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 71ff9e32 (.)
 =======
 5338a990 (.)
 =======
 5338a990 (.)
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 =======
 >>>>>>> develop
 5338a990 (.)
@@ -497,6 +534,7 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 =======
 5338a990 (.)
 >>>>>>> f1e7ef1046 (.)
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti negli Script Git Subtree
 
 ## Problema
@@ -767,7 +805,11 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 >>>>>>> f71d08e230 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti negli Script Git Subtree
 =======
 f000df5 (.)
@@ -775,7 +817,11 @@ f000df5 (.)
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 ## Problema
 
@@ -916,7 +962,11 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Risoluzione dei Conflitti negli Script Git Subtree
 
 ## Problema
@@ -1084,4 +1134,8 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

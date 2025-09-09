@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Actions;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
+use Modules\TechPlanner\Actions\UpdateAllWorkersAction;
+use Modules\TechPlanner\Models\Worker;
+use Modules\TechPlanner\Jobs\UpdateWorkerJob;
+use Tests\TestCase;
+=======
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllWorkersAction;
 use Modules\TechPlanner\Models\Worker;
@@ -15,6 +22,9 @@ use Modules\TechPlanner\Models\Worker;
  */
 class UpdateAllWorkersActionTest extends TestCase
 {
+    use RefreshDatabase;
+
+=======
     private UpdateAllWorkersAction $action;
 
     protected function setUp(): void
@@ -427,6 +437,8 @@ class UpdateAllWorkersActionTest extends TestCase
         // Arrange
         $activeWorkers = Worker::factory()->count(2)->create();
         $deletedWorkers = Worker::factory()->count(2)->create();
+        
+=======
 
         // Soft delete alcuni lavoratori
         $deletedWorkers->each(function ($worker) {
@@ -562,6 +574,8 @@ class UpdateAllWorkersActionTest extends TestCase
         // Arrange
         $workers = Worker::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
+        
+=======
 
         $updateData = [
             'description' => $longText,

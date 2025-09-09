@@ -15,7 +15,9 @@ class PermissionRolePolicy extends UserBasePolicy
     public function viewAny(UserContract $user): bool
     {
         return $user->hasPermissionTo('permission-role.view.any');
-    }    /**
+    }
+
+    /**
      * Determine whether the user can view the model.
      */
     public function view(UserContract $user, PermissionRole $permissionRole): bool
@@ -30,7 +32,9 @@ class PermissionRolePolicy extends UserBasePolicy
     public function create(UserContract $user): bool
     {
         return $user->hasPermissionTo('permission-role.create');
-    }    /**
+    }
+
+    /**
      * Determine whether the user can update the model.
      */
     public function update(UserContract $user, PermissionRole $permissionRole): bool

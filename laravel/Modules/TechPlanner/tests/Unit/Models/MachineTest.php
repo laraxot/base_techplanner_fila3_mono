@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\TechPlanner\Models\Machine;
+use Tests\TestCase;
+=======
 use Modules\TechPlanner\Models\Machine;
 
 /**
@@ -13,6 +17,9 @@ use Modules\TechPlanner\Models\Machine;
  */
 class MachineTest extends TestCase
 {
+    use RefreshDatabase;
+
+=======
     private Machine $machine;
 
     protected function setUp(): void

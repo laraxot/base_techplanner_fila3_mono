@@ -75,6 +75,9 @@ class EmployeeFactory extends Factory
 
     /**
      * Indicate that the employee is active.
+     *
+     * @return static
+=======
      */
     public function active(): static
     {
@@ -85,6 +88,9 @@ class EmployeeFactory extends Factory
 
     /**
      * Indicate that the employee is inactive.
+     *
+     * @return static
+=======
      */
     public function inactive(): static
     {

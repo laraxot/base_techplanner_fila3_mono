@@ -67,7 +67,11 @@ public static function table\(Table \$table\): Table\s*\{[\s\S]*?\n\s*\}
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 
 public static function form\(Form \$form\): Form\s*\{\s*return \$form\s*->schema\(\[\s*([\s\S]*?)\s*\]\);\s*\}
@@ -83,7 +87,11 @@ public static function getFormSchema(): array
 >>>>>>> f71d08e230 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
     {
         return [
             $1
@@ -149,7 +157,11 @@ public static function table\(Table \$table\): Table\s*\{[\s\S]*?\n\s*\}
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
  cb513be (.)
  43df3e0 (.)
@@ -161,4 +173,8 @@ public static function table\(Table \$table\): Table\s*\{[\s\S]*?\n\s*\}
 >>>>>>> f71d08e230 (.)
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

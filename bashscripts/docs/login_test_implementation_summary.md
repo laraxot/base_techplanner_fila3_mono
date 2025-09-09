@@ -120,6 +120,8 @@ test('successful login regenerates session', function (): void {
 =======
 <<<<<<< HEAD
 
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> 85c5198c (.)
 =======
@@ -145,18 +147,47 @@ test('successful login regenerates session', function (): void {
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
 =======
+>>>>>>> 71ff9e32 (.)
 =======
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9c02579 (.)
+
+=======
+=======
+>>>>>>> f52d0712 (.)
 =======
 
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> 9c02579 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
+=======
+>>>>>>> e1b46df35 (.)
+>>>>>>> f71d08e230 (.)
 =======
 =======
 =======
 =======
 =======
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # Complete test suite
 ./vendor/bin/pest Modules/Cms/tests/Feature/Auth/LoginTest.php
 
@@ -292,4 +323,8 @@ Questa implementazione fornisce una **base solida** per tutti i futuri test di a
 =======
 =======
 *Module: Cms Testing Suite* 
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

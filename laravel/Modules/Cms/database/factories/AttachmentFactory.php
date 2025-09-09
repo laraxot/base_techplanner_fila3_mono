@@ -19,3 +19,4 @@ class AttachmentFactory extends Factory
         return [];
     }
 }
+

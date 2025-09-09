@@ -13,7 +13,11 @@ aurmich/dev
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 =======
 
 =======
@@ -37,6 +41,20 @@ aurmich/dev
 =======
 
 =======
+<<<<<<< HEAD
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 9de04485 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> f198176d (.)
+>>>>>>> d20d0523 (.)
+>>>>>>> f71d08e230 (.)
+=======
 =======
 =======
 =======
@@ -44,7 +62,11 @@ aurmich/dev
 =======
 
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 # 📚 Fase 7: Documentazione
 
 ## 📋 Panoramica
@@ -170,7 +192,11 @@ Questa fase si concentra sulla documentazione completa del sistema, garantendo u
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - [Fase 8: Manutenzione](../roadmap/08_maintenance.md)
 
 ## 📅 Timeline
@@ -217,7 +243,11 @@ Questa fase si concentra sulla documentazione completa del sistema, garantendo u
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 
 
 - [Fase 8: Manutenzione](../roadmap/08_maintenance.md) 
@@ -361,7 +391,11 @@ aurmich/dev
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)
 - [Fase 8: Manutenzione](../roadmap/08_maintenance.md) 
 
 aurmich/dev
@@ -444,4 +478,8 @@ aurmich/dev
 =======
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> f52d0712 (.)
+=======
 >>>>>>> develop
+>>>>>>> 71ff9e32 (.)

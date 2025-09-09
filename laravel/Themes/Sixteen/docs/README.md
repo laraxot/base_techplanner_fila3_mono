@@ -1,9 +1,7 @@
 # Tema Sixteen - Bootstrap Italia per Laravel/Tailwind
-<<<<<<< HEAD
 =======
 =======
 # Tema Sixteen - Documentazione Completa
->>>>>>> develop
 
 ## 🎯 Panoramica del Progetto
 
@@ -135,8 +133,6 @@ colors: {
 }
 ```
 
-<<<<<<< HEAD
-### Tipografia PA Compliant
 =======
 ### Custom Components
 ```php
@@ -214,7 +210,6 @@ Section::make('Dati Personali')
 ### Variabili CSS Custom
 ### Tipografia PA Compliant
 =======
->>>>>>> develop
 ```css
 /* Font system conformi alle linee guida */
 font-family: {
@@ -403,20 +398,6 @@ npm run lighthouse
 
 ---
 
-<<<<<<< HEAD
-## 🏅 Status Badge
-
-![AGID Compliance](https://img.shields.io/badge/AGID-48%25%20Compliant-yellow)
-![WCAG 2.1](https://img.shields.io/badge/WCAG%202.1-AA-green)
-![Laravel](https://img.shields.io/badge/Laravel-12+-red)
-![Tailwind](https://img.shields.io/badge/Tailwind-3.4+-blue)
-
-**Versione**: 2.0.0  
-**Ultimo aggiornamento**: Settembre 1, 2025  
-**Mantenuto da**: Team Bootstrap Italia Migration  
-**Licenza**: MIT
-=======
 **Versione**: 1.0.0  
 **Ultimo aggiornamento**: Gennaio 2025  
 **Compatibilità**: Laravel 10+, Filament 3.x, Tailwind CSS 3.x 
->>>>>>> develop
