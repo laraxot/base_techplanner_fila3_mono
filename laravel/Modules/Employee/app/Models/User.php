@@ -51,4 +51,12 @@ class User extends BaseUser implements HasMedia, HasStatesContract
     use HasStates;
     use InteractsWithMedia;
     use LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'email', 'type', 'is_active'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 }

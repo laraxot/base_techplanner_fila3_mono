@@ -304,7 +304,8 @@ class WorkHour extends BaseModel
                     $clockInTime = $entry->timestamp;
                     break;
                     
-                case self::TYPE_BREAK_START:                case WorkHourTypeEnum::CLOCK_IN->value:
+                case self::TYPE_BREAK_START:
+                case WorkHourTypeEnum::CLOCK_IN->value:
                     $clockInTime = $entry->timestamp;
                     break;
 
@@ -340,8 +341,21 @@ class WorkHour extends BaseModel
      * @param int $employeeId
      * @param Carbon|null $date
      * @return string
-     */    public static function getCurrentStatus(int $employeeId, ?Carbon $date = null): string
+     */
+    public static function getCurrentStatus(int $employeeId, ?Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
         if (! $lastEntry) {
+            return "not_clocked_in";
+        }
+
+        return match ($lastEntry->type) {
+            WorkHourTypeEnum::CLOCK_IN->value => "clocked_in",
+            WorkHourTypeEnum::BREAK_START->value => "on_break",
+            WorkHourTypeEnum::BREAK_END->value => "clocked_in",
+            WorkHourTypeEnum::CLOCK_OUT->value => "clocked_out",
+            default => "not_clocked_in",
+        };
+    }
+}

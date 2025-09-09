@@ -6,11 +6,10 @@ namespace Modules\Employee\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Employee\Models\WorkHour;use Modules\Employee\Enums\WorkHourStatusEnum;
+use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
-use Modules\Employee\Enums\WorkHourTypeEnum;
-use Modules\Employee\Enums\WorkHourStatusEnum;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Employee\Models\WorkHour>

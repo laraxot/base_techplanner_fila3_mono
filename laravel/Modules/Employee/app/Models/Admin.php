@@ -210,3 +210,4 @@ class Admin extends User
             //'availability' => 'array',
         ]);
     }
+}

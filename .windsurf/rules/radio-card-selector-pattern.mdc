@@ -150,7 +150,7 @@ class StudioOnlySelector extends Component {
 ```php
 RadioCardSelector::make('studio_id')
     ->cards(fn (Get $get) => $this->getStudioCards($get))
-    ->sectionTitle(__('saluteora::studio_selector.title'))
+    ->sectionTitle(__('techplanner::studio_selector.title'))
 ```
 
 ### E-commerce

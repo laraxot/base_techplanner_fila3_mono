@@ -5,9 +5,9 @@
 ### 1. Dynamic Translation Keys with transClass()
 - **Pattern**: `transClass($this->model, 'widgets.states_chart.heading')`
 - **Generated Keys**: 
-  - `saluteora::patient.widgets.states_chart.heading` (when model = Patient::class)
-  - `saluteora::doctor.widgets.states_chart.heading` (when model = Doctor::class)
-  - `saluteora::appointment.widgets.states_chart.heading` (when model = Appointment::class)
+  - `techplanner::patient.widgets.states_chart.heading` (when model = Patient::class)
+  - `techplanner::doctor.widgets.states_chart.heading` (when model = Doctor::class)
+  - `techplanner::appointment.widgets.states_chart.heading` (when model = Appointment::class)
 - **Rule**: ALWAYS check ALL possible models that can use a widget
 
 ### 2. Complete State Translation Structure
@@ -27,7 +27,7 @@
 - **Files**: `laravel/Modules/SaluteOra/lang/{locale}/widgets.php` and `states.php`
 
 ### 5. Translation Key Generation Logic
-- **Base**: `saluteora::` (module namespace)
+- **Base**: `techplanner::` (module namespace)
 - **Model**: Extracted from `$this->model` class name (lowercase)
 - **Path**: `widgets.{widget_name}.{key}` or `states.{state_name}.{key}`
 - **Rule**: Understand the dynamic key generation to predict missing translations
@@ -36,17 +36,17 @@
 
 ### Widget Translations
 ```
-saluteora::{model}.widgets.{widget_name}.heading
-saluteora::{model}.widgets.{widget_name}.title
-saluteora::{model}.widgets.{widget_name}.label
-saluteora::{model}.widgets.{widget_name}.description
+techplanner::{model}.widgets.{widget_name}.heading
+techplanner::{model}.widgets.{widget_name}.title
+techplanner::{model}.widgets.{widget_name}.label
+techplanner::{model}.widgets.{widget_name}.description
 ```
 
 ### State Translations
 ```
-saluteora::{model}.states.{state_name}.label
-saluteora::{model}.states.{state_name}.description
-saluteora::{model}.states.{state_name}.tooltip
+techplanner::{model}.states.{state_name}.label
+techplanner::{model}.states.{state_name}.description
+techplanner::{model}.states.{state_name}.tooltip
 ```
 
 ## Audit Checklist
