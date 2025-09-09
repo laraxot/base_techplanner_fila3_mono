@@ -5,6 +5,8 @@ namespace Modules\Xot\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\Finder;
+use function Safe\preg_match;
+use function Safe\preg_replace;
 
 class McpCheckCommand extends Command
 {

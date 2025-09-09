@@ -147,28 +147,28 @@ class DatabasePopulator
         // Patients with unique email handling
         $this->createRecords('Patients', function() {
             DB::statement('DELETE FROM users WHERE type = "patient"');
-            return \Modules\SaluteOra\Models\Patient::factory(500)->create();
+            return \Modules\TechPlanner\Models\Patient::factory(500)->create();
         });
         
         // Doctors with unique email handling  
         $this->createRecords('Doctors', function() {
             DB::statement('DELETE FROM users WHERE type = "doctor"');
-            return \Modules\SaluteOra\Models\Doctor::factory(50)->create();
+            return \Modules\TechPlanner\Models\Doctor::factory(50)->create();
         });
         
         // Appointments
         $this->createRecords('Appointments', function() {
-            return \Modules\SaluteOra\Models\Appointment::factory(1000)->create();
+            return \Modules\TechPlanner\Models\Appointment::factory(1000)->create();
         });
         
         // Reports
         $this->createRecords('Reports', function() {
-            return \Modules\SaluteOra\Models\Report::factory(300)->create();
+            return \Modules\TechPlanner\Models\Report::factory(300)->create();
         });
         
         // Profiles
         $this->createRecords('Profiles', function() {
-            return \Modules\SaluteOra\Models\Profile::factory(600)->create();
+            return \Modules\TechPlanner\Models\Profile::factory(600)->create();
         });
     }
 
