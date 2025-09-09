@@ -13,8 +13,6 @@ use Tests\TestCase;
 class UpdateAllClientCoordinatesTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     public function test_it_updates_all_client_coordinates(): void
     {
         // Arrange

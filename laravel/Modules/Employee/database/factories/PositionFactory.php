@@ -38,9 +38,7 @@ class PositionFactory extends Factory
     /**
      * Indicate that the position is active.
      *
-     * @return static
-=======
-     */
+     * @return static     */
     public function active(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -51,9 +49,7 @@ class PositionFactory extends Factory
     /**
      * Indicate that the position is inactive.
      *
-     * @return static
-=======
-     */
+     * @return static     */
     public function inactive(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -65,9 +61,7 @@ class PositionFactory extends Factory
      * Set a specific position title.
      *
      * @param string $title
-     * @return static
-=======
-     */
+     * @return static     */
     public function withTitle(string $title): static
     {
         return $this->state(fn (array $attributes) => [
@@ -92,9 +86,7 @@ class PositionFactory extends Factory
      * Set a specific description.
      *
      * @param string $description
-     * @return static
-=======
-     */
+     * @return static     */
     public function withDescription(string $description): static
     {
         return $this->state(fn (array $attributes) => [

@@ -1,4 +1,4 @@
-# AI Guidelines per Laraxot base_saluteora
+# AI Guidelines per Laraxot base_techplanner_fila3_mono
 
 ## Regole Critiche
 
@@ -110,10 +110,10 @@ $this->getMockBuilder(BaseModel::class)->disableOriginalConstructor()...
 5. **TESTA** la struttura e presenza di metodi, non l'implementazione interna
 
 ### 5. Struttura del Progetto
-- Root progetto: `/var/www/html/_bases/base_saluteora/`
-- Root Laravel: `/var/www/html/_bases/base_saluteora/laravel/`
-- Moduli: `/var/www/html/_bases/base_saluteora/laravel/Modules/{ModuleName}/`
-- Temi: `/var/www/html/_bases/base_saluteora/laravel/Themes/One/`
+- Root progetto: `/var/www/html/_bases/base_techplanner_fila3_mono/`
+- Root Laravel: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/`
+- Moduli: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules/{ModuleName}/`
+- Temi: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Themes/One/`
 
 ### 6. Concentrarsi sulla Logica di Business
 **SEMPRE** concentrarsi sulla logica di business, non sui dettagli implementativi.

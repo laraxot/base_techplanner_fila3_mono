@@ -6,7 +6,7 @@
 
 ### Percorso del file
 ```
-/var/www/html/_bases/base_saluteora/laravel/phpstan.neon
+/var/www/html/_bases/base_techplanner_fila3_mono/laravel/phpstan.neon
 ```
 
 ### Motivazione

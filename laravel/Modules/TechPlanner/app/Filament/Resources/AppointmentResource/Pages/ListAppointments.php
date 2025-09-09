@@ -7,9 +7,8 @@ namespace Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 use Filament\Actions;
 use Filament\Tables;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
-=======
+
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
-use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 /**
  * @property AppointmentResource $resource

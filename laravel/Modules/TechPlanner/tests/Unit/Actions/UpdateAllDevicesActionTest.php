@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllDevicesAction;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Jobs\UpdateDeviceJob;
-use Tests\TestCase;
-=======
-use Illuminate\Support\Facades\Queue;
+use Tests\TestCase;use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllDevicesAction;
 use Modules\TechPlanner\Models\Device;
 
@@ -23,8 +21,6 @@ use Modules\TechPlanner\Models\Device;
 class UpdateAllDevicesActionTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private UpdateAllDevicesAction $action;
 
     protected function setUp(): void
@@ -438,8 +434,6 @@ class UpdateAllDevicesActionTest extends TestCase
         $activeDevices = Device::factory()->count(2)->create();
         $deletedDevices = Device::factory()->count(2)->create();
         
-=======
-
         // Soft delete alcuni dispositivi
         $deletedDevices->each(function ($device) {
             $device->delete();
@@ -575,8 +569,6 @@ class UpdateAllDevicesActionTest extends TestCase
         $devices = Device::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
         
-=======
-
         $updateData = [
             'description' => $longText,
             'notes' => 'Updated notes',

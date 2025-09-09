@@ -151,8 +151,6 @@ class WorkerTest extends TestCase
         
         $this->worker->delete();
         
-=======
-
         $this->worker->delete();
 
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
@@ -164,8 +162,6 @@ class WorkerTest extends TestCase
     {
         $workerId = $this->worker->id;
         
-=======
-
         $this->worker->delete();
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
 

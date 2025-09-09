@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
-use Filament\Forms;
-=======
-use Modules\TechPlanner\Models\Client;
+use Filament\Forms;use Modules\TechPlanner\Models\Client;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Modules\Xot\Filament\Resources\XotBaseResource;
@@ -30,9 +28,7 @@ class ClientResource extends XotBaseResource
         $fixes=Client::whereNull('route')->whereNotNull('address')->get();//company_office
         foreach($fixes as $client){
             $client->update(['route'=>$client->address]);
-        }
-=======
-        return [
+        }        return [
             'business_closed' => TextInput::make('business_closed'),
             'activity' => TextInput::make('activity'),
             'company_name' => TextInput::make('company_name')->required(),
@@ -45,9 +41,7 @@ class ClientResource extends XotBaseResource
             'city' => TextInput::make('city')->nullable(),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
-            'country' => TextInput::make('country')->nullable(),
-=======
-            //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
+            'country' => TextInput::make('country')->nullable(),            //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
             'contacts' => ContactSection::make('contacts'),
             'competent_health_unit' => TextInput::make('competent_health_unit'),
             'company_office' => TextInput::make('company_office'),

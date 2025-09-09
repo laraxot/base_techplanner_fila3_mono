@@ -82,7 +82,7 @@ clear-cache-all.php                 # Pulizia cache completa
 ### Esecuzione Diretta
 ```bash
 # Dalla root del progetto
-cd /var/www/html/_bases/base_saluteora
+cd /var/www/html/_bases/base_techplanner_fila3_mono
 php bashscripts/database/seeding/saluteora-mass-seeding.php
 ```
 

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-=======
-use Modules\TechPlanner\Models\Appointment;
+use Illuminate\Foundation\Testing\RefreshDatabase;use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\Location;
@@ -20,16 +18,12 @@ use Modules\TechPlanner\Models\Worker;
 class AppointmentTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private Appointment $appointment;
 
     protected function setUp(): void
     {
         parent::setUp();
         
-=======
-
         $this->appointment = Appointment::factory()->create();
     }
 
@@ -218,8 +212,6 @@ class AppointmentTest extends TestCase
     {
         $appointmentId = $this->appointment->id;
         
-=======
-
         $this->appointment->delete();
         
 
@@ -237,8 +229,6 @@ class AppointmentTest extends TestCase
     {
         $appointmentId = $this->appointment->id;
         
-=======
-
         $this->appointment->delete();
         $this->assertSoftDeleted('appointments', ['id' => $appointmentId]);
 
@@ -277,8 +267,6 @@ class AppointmentTest extends TestCase
     {
         $now = now();
         
-=======
-
         // Appuntamento in corso
         $this->appointment->update([
             'start_time' => $now->subMinutes(30),
@@ -309,8 +297,6 @@ class AppointmentTest extends TestCase
     {
         $now = now();
         
-=======
-
         // Appuntamento passato
         $this->appointment->update([
             'start_time' => $now->subHours(3),
@@ -333,8 +319,6 @@ class AppointmentTest extends TestCase
     {
         $now = now();
         
-=======
-
         // Appuntamento futuro
         $this->appointment->update([
             'start_time' => $now->addHours(1),
@@ -357,8 +341,6 @@ class AppointmentTest extends TestCase
     {
         $today = now();
         
-=======
-
         // Appuntamento oggi
         $this->appointment->update([
             'start_time' => $today->copy()->startOfDay()->addHours(9),
@@ -381,8 +363,6 @@ class AppointmentTest extends TestCase
     {
         $thisWeek = now();
         
-=======
-
         // Appuntamento questa settimana
         $this->appointment->update([
             'start_time' => $thisWeek->copy()->startOfWeek()->addDays(2)->addHours(9),

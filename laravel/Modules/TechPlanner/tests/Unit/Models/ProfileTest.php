@@ -6,9 +6,7 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\Profile;
-use Tests\TestCase;
-=======
-use Modules\TechPlanner\Models\Profile;
+use Tests\TestCase;use Modules\TechPlanner\Models\Profile;
 
 /**
  * Test unitario per il modello Profile.
@@ -18,8 +16,6 @@ use Modules\TechPlanner\Models\Profile;
 class ProfileTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private Profile $profile;
 
     protected function setUp(): void

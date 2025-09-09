@@ -7,9 +7,7 @@ namespace Modules\Employee\Tests\Unit\Models;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\Department;
 use Modules\Employee\Models\Position;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-=======
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Testing\RefreshDatabase;use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\Models\Department;
 use Modules\Employee\Models\Employee;
@@ -151,8 +149,6 @@ test('employee can check if active', function () {
 test('employee can check if has manager', function () {
     expect($this->employee->hasManager())->toBeFalse();
     
-=======
-
     $manager = Employee::factory()->create();
     $this->employee->update(['manager_id' => $manager->id]);
     
@@ -170,8 +166,6 @@ test('employee can check if has manager', function () {
 test('employee can check if has subordinates', function () {
     expect($this->employee->hasSubordinates())->toBeFalse();
     
-=======
-
     Employee::factory()->create(['manager_id' => $this->employee->id]);
     
 
@@ -187,8 +181,6 @@ test('employee can be filtered by status', function () {
     $activeEmployee = Employee::factory()->create(['status' => 'attivo']);
     $inactiveEmployee = Employee::factory()->create(['status' => 'inattivo']);
     
-=======
-
     $activeEmployees = Employee::active()->get();
     $inactiveEmployees = Employee::inactive()->get();
 

@@ -6,9 +6,7 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\LegalRepresentative;
-use Tests\TestCase;
-=======
-use Modules\TechPlanner\Models\LegalRepresentative;
+use Tests\TestCase;use Modules\TechPlanner\Models\LegalRepresentative;
 
 /**
  * Test unitario per il modello LegalRepresentative.
@@ -18,8 +16,6 @@ use Modules\TechPlanner\Models\LegalRepresentative;
 class LegalRepresentativeTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private LegalRepresentative $legalRepresentative;
 
     protected function setUp(): void

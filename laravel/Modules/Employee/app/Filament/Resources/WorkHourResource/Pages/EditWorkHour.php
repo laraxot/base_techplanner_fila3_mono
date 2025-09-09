@@ -24,39 +24,14 @@ class EditWorkHour extends XotBaseEditRecord
 
     protected function getRedirectUrl(): string
     {
+        /** @var string */
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function beforeSave(): void
+    {
         $data = $this->form->getState();
         $currentRecord = $this->record;
-        
-
-
-        // Ensure we have a WorkHour record
-        if (! ($currentRecord instanceof WorkHour)) {
-            throw new \InvalidArgumentException('Expected WorkHour record');
-        }
-
-        // Validate and cast form data
-        $timestampValue = $data['timestamp'] ?? null;
-        if (! is_string($timestampValue) && ! ($timestampValue instanceof \DateTimeInterface)) {
-            throw new \InvalidArgumentException('Invalid timestamp format');
-        }
-
-        $employeeIdValue = $data['employee_id'] ?? null;
-        if (! is_numeric($employeeIdValue)) {
-            throw new \InvalidArgumentException('Invalid employee ID');
-        }
-        $employeeId = (int) $employeeIdValue;
-
-        $newTimestamp = Carbon::parse($timestampValue);
-
-        // Skip validation if no changes to critical fields
-        if (
-            $currentRecord instanceof WorkHour &&
-            $currentRecord->employee_id === $data['employee_id'] &&
-            $currentRecord->type === $data['type'] &&
-            $currentRecord->timestamp->eq(Carbon::parse((string) ($data['timestamp'] ?? '')))
-        ) {
-            return "";
-        }
 
         // Ensure we have a WorkHour record
         if (! ($currentRecord instanceof WorkHour)) {
@@ -77,14 +52,13 @@ class EditWorkHour extends XotBaseEditRecord
 
         $newTimestamp = Carbon::parse(is_string($timestampValue) ? $timestampValue : $timestampValue->format('Y-m-d H:i:s'));
 
-        
         // Skip validation if no changes to critical fields
         if (
             $currentRecord->employee_id === $data['employee_id'] &&
             $currentRecord->type === $data['type'] &&
             $currentRecord->timestamp->eq($newTimestamp)
         ) {
-            return "";
+            return;
         }
 
         // Check for duplicate entries within the same minute (excluding current record)

@@ -76,9 +76,7 @@ class EmployeeFactory extends Factory
     /**
      * Indicate that the employee is active.
      *
-     * @return static
-=======
-     */
+     * @return static     */
     public function active(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -89,9 +87,7 @@ class EmployeeFactory extends Factory
     /**
      * Indicate that the employee is inactive.
      *
-     * @return static
-=======
-     */
+     * @return static     */
     public function inactive(): static
     {
         return $this->state(fn (array $attributes) => [

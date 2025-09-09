@@ -6,9 +6,7 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\LegalOffice;
-use Tests\TestCase;
-=======
-use Modules\TechPlanner\Models\LegalOffice;
+use Tests\TestCase;use Modules\TechPlanner\Models\LegalOffice;
 
 /**
  * Test unitario per il modello LegalOffice.
@@ -18,8 +16,6 @@ use Modules\TechPlanner\Models\LegalOffice;
 class LegalOfficeTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private LegalOffice $legalOffice;
 
     protected function setUp(): void

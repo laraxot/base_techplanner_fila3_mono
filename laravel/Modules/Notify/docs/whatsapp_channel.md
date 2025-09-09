@@ -339,4 +339,3 @@ class WhatsAppTest extends TestCase
 - [Laravel Testing](https://laravel.com/docs/testing)
 - [Laravel Logging](https://laravel.com/docs/logging)
 - [Laravel Cache](https://laravel.com/docs/cache) 
-=======

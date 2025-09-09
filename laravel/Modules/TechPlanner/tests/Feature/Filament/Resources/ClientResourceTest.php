@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-=======
-use Livewire\Livewire;
+use Illuminate\Foundation\Testing\WithFaker;use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\ClientResource;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages\CreateClient;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages\EditClient;
@@ -15,8 +13,6 @@ use Modules\TechPlanner\Filament\Resources\ClientResource\Pages\ListClients;
 use Modules\TechPlanner\Models\Client;
 use Modules\User\Models\User;
 use Tests\TestCase;
-=======
-
 class ClientResourceTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
@@ -29,8 +25,6 @@ class ClientResourceTest extends TestCase
     {
         parent::setUp();
         
-=======
-
         // Crea un utente admin per i test
         $this->admin = User::factory()->create([
             'name' => 'Admin User',

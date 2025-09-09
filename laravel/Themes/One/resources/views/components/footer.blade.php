@@ -58,8 +58,8 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contatti</h3>
                 <ul class="space-y-2">
                     <li class="text-gray-600 dark:text-gray-300 text-sm">
-                        <a href="mailto:supporto@saluteora.it" class="hover:text-primary-600 dark:hover:text-primary-400">
-                            supporto@saluteora.it
+                        <a href="mailto:support@example.com" class="hover:text-primary-600 dark:hover:text-primary-400">
+                            support@example.com
                         </a>
                     </li>
                     <li class="text-gray-600 dark:text-gray-300 text-sm">

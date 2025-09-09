@@ -99,7 +99,7 @@
                         <ul class="space-y-4">
                             <li class="text-sm">
                                 <span class="opacity-90">Email:</span><br>
-                                info@saluteora.it
+                                info@example.com
                             </li>
                             <li class="text-sm">
                                 <span class="opacity-90">Telefono:</span><br>

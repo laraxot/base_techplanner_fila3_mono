@@ -39,8 +39,6 @@ class WorkHourDashboard extends Component
     /** @var array<string, string> */
     protected $listeners = [
         'workHourRecorded' => 'refreshStats',
-        'refreshDashboard' => 'refreshStats'
-
         'refreshDashboard' => 'refreshStats',
     ];
     public function mount(?int $employeeId = null): void

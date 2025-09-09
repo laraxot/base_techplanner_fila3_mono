@@ -143,7 +143,7 @@ class MailTemplate extends SpatieMailTemplate implements MailTemplateInterface
         return $this->hasMany(MailTemplateLog::class, 'template_id');
     }
 
-     * Create a new version of the template.
+     /** Create a new version of the template.
      *
      * @param string $createdBy The user who created the version
      * @param string|null $notes Optional notes about the changes

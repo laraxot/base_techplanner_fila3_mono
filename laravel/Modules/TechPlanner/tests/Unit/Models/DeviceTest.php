@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Modules\TechPlanner\Models\Device;
-=======
-use Modules\TechPlanner\Models\Client;
+use Modules\TechPlanner\Models\Device;use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\DeviceVerification;
 use Modules\TechPlanner\Models\Worker;
@@ -20,16 +18,12 @@ use Modules\TechPlanner\Models\Worker;
 class DeviceTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private Device $device;
 
     protected function setUp(): void
     {
         parent::setUp();
         
-=======
-
         $this->device = Device::factory()->create();
     }
 
@@ -152,8 +146,6 @@ class DeviceTest extends TestCase
     {
         $deviceId = $this->device->id;
         
-=======
-
         $this->device->delete();
         
 
@@ -171,8 +163,6 @@ class DeviceTest extends TestCase
     {
         $deviceId = $this->device->id;
         
-=======
-
         $this->device->delete();
         $this->assertSoftDeleted('devices', ['id' => $deviceId]);
 

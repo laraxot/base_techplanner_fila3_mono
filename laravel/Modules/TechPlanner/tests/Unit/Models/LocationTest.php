@@ -6,9 +6,7 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\Location;
-use Tests\TestCase;
-=======
-use Modules\TechPlanner\Models\Location;
+use Tests\TestCase;use Modules\TechPlanner\Models\Location;
 
 /**
  * Test unitario per il modello Location.
@@ -18,8 +16,6 @@ use Modules\TechPlanner\Models\Location;
 class LocationTest extends TestCase
 {
     use RefreshDatabase;
-
-=======
     private Location $location;
 
     protected function setUp(): void
