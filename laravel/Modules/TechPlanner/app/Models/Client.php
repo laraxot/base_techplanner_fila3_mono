@@ -140,7 +140,7 @@ class Client extends BaseModel
 
     public function getFullAddressAttribute(?string $value): string
     {
-        if (null !== $value) {        if ($value !== null) {
+        if ($value !== null) {
             return $value;
         }
         $address = sprintf(
@@ -306,12 +306,6 @@ class Client extends BaseModel
      */
     private function getContactHref(string $type, string $value): string
     {
-        return match($type) {
-            'phone', 'mobile' => 'tel:' . preg_replace('/[^+\d]/', '', $value),
-            'email', 'pec' => 'mailto:' . $value,
-            'whatsapp' => 'https://wa.me/' . preg_replace('/[^+\d]/', '', $value),     */
-    private function getContactHref(string $type, string $value): string
-    {
         return match ($type) {
             'phone', 'mobile' => 'tel:'.preg_replace('/[^+\d]/', '', $value),
             'email', 'pec' => 'mailto:'.$value,
@@ -325,7 +319,8 @@ class Client extends BaseModel
      *
      * @param string $type
      * @param string $value
-     * @return string     */
+     * @return string
+     */
     private function getContactDisplayValue(string $type, string $value): string
     {
         return match ($type) {

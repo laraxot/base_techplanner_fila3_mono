@@ -62,16 +62,16 @@ class GetCurrentEmployeeDataAction
             $data['status'] = $employee->status->value ?? 'active';
             $data['hireDate'] = $employee->hire_date?->format('d/m/Y') ?? '';
 
-            // Department info
-            if ($employee->department) {
+            // Department info - check if department relation exists
+            if (method_exists($employee, 'department') && $employee->department) {
                 $data['department'] = [
                     'id' => $employee->department->id,
                     'name' => $employee->department->name,
                 ];
             }
 
-            // Position info
-            if ($employee->position) {
+            // Position info - check if position relation exists
+            if (method_exists($employee, 'position') && $employee->position) {
                 $data['position'] = [
                     'id' => $employee->position->id,
                     'name' => $employee->position->name,

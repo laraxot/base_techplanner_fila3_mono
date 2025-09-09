@@ -51,7 +51,6 @@ return [
                     'whatsapp' => ['label' => 'WhatsApp'],
                     'telegram' => ['label' => 'Telegram']
                 ],
-                ],
             ],
             'variables' => [
                 'label' => 'Variabili',
@@ -85,7 +84,6 @@ return [
                     'welcome' => ['label' => 'Benvenuto'],
                     'reminder' => ['label' => 'Promemoria'],
                     'notification' => ['label' => 'Notifica']
-                ],
                 ],
             ],
             'is_active' => [
@@ -129,9 +127,3 @@ return [
         ],
     ],
 ];
-                    'color' => 'secondary'
-                ]
-            ]
-        ]
-    ]
-]; 

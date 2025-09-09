@@ -141,7 +141,7 @@ class DatabasePopulator
         
         // Studios
         $this->createRecords('Studios', function() {
-            return \Modules\SaluteOra\Models\Studio::factory(25)->create();
+            return \Modules\TechPlanner\Models\Studio::factory(25)->create();
         });
         
         // Patients with unique email handling

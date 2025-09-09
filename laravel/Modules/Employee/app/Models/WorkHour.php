@@ -300,11 +300,6 @@ class WorkHour extends BaseModel
 
         foreach ($entries as $entry) {
             switch ($entry->type) {
-                case self::TYPE_CLOCK_IN:
-                    $clockInTime = $entry->timestamp;
-                    break;
-                    
-                case self::TYPE_BREAK_START:
                 case WorkHourTypeEnum::CLOCK_IN->value:
                     $clockInTime = $entry->timestamp;
                     break;
@@ -316,21 +311,10 @@ class WorkHour extends BaseModel
                     $clockInTime = null;
                     break;
                     
-                case self::TYPE_BREAK_END:
-                    $clockInTime = $entry->timestamp; // Resume work
-                    break;
-                    
-                case self::TYPE_CLOCK_OUT:
                 case WorkHourTypeEnum::BREAK_END->value:
                     $clockInTime = $entry->timestamp; // Resume work
                     break;
-
-                case WorkHourTypeEnum::CLOCK_OUT->value:
-                    if ($clockInTime) {
-                        $totalMinutes += $clockInTime->diffInMinutes($entry->timestamp);
-                        $clockInTime = null;
-                    }
-                    break;
+                    
             }
         }
 
