@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Services;
 
-use Modules\Notify\Services\NotificationManager;
-use Modules\Notify\Models\NotificationTemplate;
-use Modules\Notify\Actions\SendNotificationAction;
-use PHPUnit\Framework\TestCase;
 use Mockery;
+use Modules\Notify\Actions\SendNotificationAction;
+use Modules\Notify\Models\NotificationTemplate;
+use Modules\Notify\Services\NotificationManager;
+use PHPUnit\Framework\TestCase;
 
 class NotificationManagerTest extends TestCase
 {
@@ -17,7 +17,7 @@ class NotificationManagerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->notificationManager = new NotificationManager();
+        $this->notificationManager = new NotificationManager;
     }
 
     protected function tearDown(): void
@@ -80,7 +80,7 @@ class NotificationManagerTest extends TestCase
     public function it_can_get_template_by_code(): void
     {
         $code = 'test_template';
-        
+
         $template = Mockery::mock(NotificationTemplate::class);
         $template->shouldReceive('getAttribute')->with('code')->andReturn($code);
         $template->shouldReceive('getAttribute')->with('is_active')->andReturn(true);
@@ -94,7 +94,7 @@ class NotificationManagerTest extends TestCase
     public function it_can_get_templates_by_category(): void
     {
         $category = 'test_category';
-        
+
         $result = $this->notificationManager->getTemplatesByCategory($category);
 
         $this->assertIsObject($result); // Collection

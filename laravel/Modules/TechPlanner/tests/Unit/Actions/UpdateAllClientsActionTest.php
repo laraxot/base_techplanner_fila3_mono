@@ -28,6 +28,12 @@ class UpdateAllClientsActionTest extends TestCase
         
         $this->action = new UpdateAllClientsAction();
         
+
+        $this->action = new UpdateAllClientsAction;
+
+        
+        $this->action = new UpdateAllClientsAction();
+        
         // Disabilita le code per i test
         Queue::fake();
     }

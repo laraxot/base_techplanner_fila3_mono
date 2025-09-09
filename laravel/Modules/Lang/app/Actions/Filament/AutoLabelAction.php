@@ -19,6 +19,7 @@ use Spatie\QueueableAction\QueueableAction;
 use Filament\Tables\Actions\Action as TableAction;
 use Filament\Forms\Components\Section as FormsSection;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
+use Illuminate\Support\HtmlString;
 
 class AutoLabelAction
 {
@@ -157,12 +158,16 @@ class AutoLabelAction
         }
         if (is_string($label) && $label_key != $label) { //se esiste la traduzione, la aggiorno
             if (method_exists($component, $type)) {
-                $component->{$type}($label);
+                if(strip_tags($label) != $label && in_array($type,['helperText'])){
+                    $component->{$type}(new HtmlString($label));
+                }else{
+                    $component->{$type}($label);
+                }
             }
             
-            if (method_exists($component, 'tooltip')) {
-                $component->tooltip($label);
-            }
+            //if (method_exists($component, 'tooltip')) {
+            //    $component->tooltip($label);
+            //}
         }
         if (!is_string($label)) {
             $component->label('FIX:'.$label_key);

@@ -72,4 +72,4 @@ return [
         'profile' => 'Profilo Utente',
         'settings' => 'Impostazioni Utente',
     ],
-]; 
+];

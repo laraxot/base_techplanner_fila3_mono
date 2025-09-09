@@ -35,14 +35,16 @@ class LanguageSwitcher extends Component
      */
     public function render(): View
     {
-        // Verifica se il widget può essere visualizzato
-        if (!LanguageSwitcherWidget::canView()) {
-            return view('lang::components.empty');
+        if (! LanguageSwitcherWidget::canView()) {
+            /** @var view-string $view */
+            $view = 'lang::components.empty';
+            return view($view);
         }
 
-        // Ottiene i dati dal widget
-        $viewData = $this->widget->getViewData();
-
-        return view('lang::filament.widgets.language-switcher', $viewData);
+        // Ottiene i dati dal widget tramite metodo pubblico
+        $viewData = $this->widget->exposeViewData();
+        /** @var view-string $view */
+        $view = 'lang::filament.widgets.language-switcher';
+        return view($view, $viewData);
     }
 }

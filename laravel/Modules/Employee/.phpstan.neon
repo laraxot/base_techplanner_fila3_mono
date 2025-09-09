@@ -1,5 +1,6 @@
 parameters:
-    level: 8
+    
+    level: 9
     paths:
         - app
         - tests
@@ -11,6 +12,16 @@ parameters:
     ignoreErrors:
         # Ignora errori temporanei durante la migrazione
         - '#Call to an undefined method.*renameColumn#'
+        - '#Call to an undefined method.*dropIndex#'
+        # Ignora errori di covarianza nei tipi di ritorno delle relazioni
+        - '#Template type TDeclaringModel on class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo is not covariant#' 
+    checkMissingIterableValueType: false
+    
+    # Ignora errori specifici se necessario
+    ignoreErrors:
+        # Ignora errori temporanei durante la migrazione
+        - '#Call to an undefined method.*renameColumn#'
+        - '#Call to an undefined method.*dropIndex#' 
         - '#Call to an undefined method.*dropIndex#'
         # Ignora errori di covarianza nei tipi di ritorno delle relazioni
         - '#Template type TDeclaringModel on class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo is not covariant#' 

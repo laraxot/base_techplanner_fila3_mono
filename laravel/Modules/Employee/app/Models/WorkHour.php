@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Employee\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Employee\Models\Employee;
 
 /**
@@ -19,7 +19,7 @@ use Modules\Employee\Models\Employee;
  * @property float|null $location_lat
  * @property float|null $location_lng
  * @property string|null $location_name
- * @property array|null $device_info
+ * @property array<string, mixed>|null $device_info
  * @property string|null $photo_path
  * @property string|null $notes
  * @property string $status
@@ -29,29 +29,58 @@ use Modules\Employee\Models\Employee;
  * @property Carbon|null $updated_at
  * @property-read Employee $employee
  * @property-read \Modules\User\Models\User|null $approvedBy
+ * @property-read \Modules\TechPlanner\Models\Profile|null $creator
+ * @property-read string $formatted_date
+ * @property-read string $formatted_date_time
+ * @property-read string $formatted_time
+ * @property-read \Modules\TechPlanner\Models\Profile|null $updater
+ * @method static Builder<static>|WorkHour forDate(\Carbon\Carbon $date)
+ * @method static Builder<static>|WorkHour forEmployee(int $employeeId)
+ * @method static Builder<static>|WorkHour newModelQuery()
+ * @method static Builder<static>|WorkHour newQuery()
+ * @method static Builder<static>|WorkHour ofType(string $type)
+ * @method static Builder<static>|WorkHour query()
+ * @method static Builder<static>|WorkHour today()
+ * @method static Builder<static>|WorkHour whereApprovedAt($value)
+ * @method static Builder<static>|WorkHour whereApprovedBy($value)
+ * @method static Builder<static>|WorkHour whereCreatedAt($value)
+ * @method static Builder<static>|WorkHour whereDeviceInfo($value)
+ * @method static Builder<static>|WorkHour whereEmployeeId($value)
+ * @method static Builder<static>|WorkHour whereId($value)
+ * @method static Builder<static>|WorkHour whereLocationLat($value)
+ * @method static Builder<static>|WorkHour whereLocationLng($value)
+ * @method static Builder<static>|WorkHour whereLocationName($value)
+ * @method static Builder<static>|WorkHour whereNotes($value)
+ * @method static Builder<static>|WorkHour wherePhotoPath($value)
+ * @method static Builder<static>|WorkHour whereStatus($value)
+ * @method static Builder<static>|WorkHour whereTimestamp($value)
+ * @method static Builder<static>|WorkHour whereType($value)
+ * @method static Builder<static>|WorkHour whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class WorkHour extends BaseModel
 {
-    public const TYPE_CLOCK_IN = 'clock_in';
-    public const TYPE_CLOCK_OUT = 'clock_out';
-    public const TYPE_BREAK_START = 'break_start';
-    public const TYPE_BREAK_END = 'break_end';
+    // Constants replaced by enums - see WorkHourTypeEnum and WorkHourStatusEnum
+    // public const TYPE_CLOCK_IN = 'clock_in';
+    // public const TYPE_CLOCK_OUT = 'clock_out';
+    // public const TYPE_BREAK_START = 'break_start';
+    // public const TYPE_BREAK_END = 'break_end';
 
     public const TYPES = [
-        self::TYPE_CLOCK_IN,
-        self::TYPE_CLOCK_OUT,
-        self::TYPE_BREAK_START,
-        self::TYPE_BREAK_END,
+        'clock_in',
+        'clock_out',
+        'break_start',
+        'break_end',
     ];
 
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_APPROVED = 'approved';
-    public const STATUS_REJECTED = 'rejected';
+    // public const STATUS_PENDING = 'pending';
+    // public const STATUS_APPROVED = 'approved';
+    // public const STATUS_REJECTED = 'rejected';
 
     public const STATUSES = [
-        self::STATUS_PENDING,
-        self::STATUS_APPROVED,
-        self::STATUS_REJECTED,
+        'pending',
+        'approved',
+        'rejected',
     ];
 
     /**
@@ -59,7 +88,7 @@ class WorkHour extends BaseModel
      *
      * @var string
      */
-    protected $table = 'time_entries';
+    protected $table = 'work_hours';
 
     /**
      * The attributes that are mass assignable.
@@ -96,13 +125,15 @@ class WorkHour extends BaseModel
             'approved_at' => 'datetime',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
+            'type' => \Modules\Employee\Enums\WorkHourTypeEnum::class,
+            'status' => \Modules\Employee\Enums\WorkHourStatusEnum::class,
         ];
     }
 
     /**
      * Get the employee that owns the work hour record.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\Employee\Models\Employee, \Modules\Employee\Models\WorkHour>
+     * @return BelongsTo<Employee, $this>
      */
     public function employee(): BelongsTo
     {
@@ -112,7 +143,7 @@ class WorkHour extends BaseModel
     /**
      * Get the user who approved the time entry.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\User\Models\User, \Modules\Employee\Models\WorkHour>
+     * @return BelongsTo<\Modules\User\Models\User, $this>
      */
     public function approvedBy(): BelongsTo
     {

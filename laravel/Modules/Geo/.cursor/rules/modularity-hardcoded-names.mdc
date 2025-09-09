@@ -1,0 +1,272 @@
+# Regola Critica: Mai Hardcodare Nomi di Progetto nei Moduli Riutilizzabili
+
+## Principio Fondamentale
+**MAI** utilizzare stringhe hardcoded con nomi di progetto specifici (es. "saluteora", "salutemo") nei moduli che devono essere riutilizzabili in progetti diversi.
+
+## Motivazione Filosofica
+- **Modularità**: Ogni modulo deve essere indipendente e riutilizzabile
+- **Configurabilità**: I nomi dei progetti devono essere configurabili
+- **Separazione delle responsabilità**: I moduli non devono conoscere il progetto che li utilizza
+- **Scalabilità**: Permette il riutilizzo in progetti multipli senza modifiche
+
+## Regole Assolute
+
+### ❌ VIETATO - Mai fare questo
+```php
+// Test con nomi hardcoded
+'subject' => 'Benvenuto su SaluteOra',
+'content' => 'Grazie per esserti registrato su SaluteOra',
+'clinic_name' => 'Studio Dentistico SaluteOra',
+'webhook' => 'https://api.saluteora.com/webhooks',
+'author' => 'Team SaluteOra',
+'path' => '/var/www/html/saluteora/public_html/images/',
+'repository' => 'https://github.com/saluteora/themes',
+
+// Import hardcoded
+use Modules\SaluteOra\Models\User;
+use Modules\SaluteOra\States\User\UserState;
+
+// Path hardcoded
+public static string $projectBasePath = '/var/www/html/saluteora';
+public static string $laravelBasePath = '/var/www/html/saluteora/laravel';
+
+// Traduzioni hardcoded
+__('saluteora::widgets.title')
+__('saluteora::common.days.description.monday')
+```
+
+### ✅ CORRETTO - Sempre fare questo
+```php
+// Configurazione centralizzata
+'subject' => config('notify.test_data.default_subject'),
+'content' => config('notify.test_data.default_content'),
+'clinic_name' => config('notify.company.clinic_name'),
+
+// Interfacce generiche
+use Modules\User\Contracts\UserModelInterface;
+use Modules\User\Contracts\UserStateInterface;
+
+// Path configurabili
+public static function getProjectBasePath(): string
+{
+    return env('PROJECT_BASE_PATH', base_path());
+}
+
+// Traduzioni configurabili
+$namespace = config('xot.translations.namespace', 'xot');
+__("{$namespace}::common.days.description.monday")
+```
+
+## Moduli che DEVONO essere Generici
+
+### Moduli Core (CRITICI)
+- **Notify**: Sistema di notifiche per qualsiasi progetto
+- **User**: Gestione utenti per qualsiasi progetto  
+- **UI**: Componenti UI per qualsiasi progetto
+- **Xot**: Base framework per qualsiasi progetto
+- **Geo**: Gestione geografica per qualsiasi progetto
+- **Media**: Gestione media per qualsiasi progetto
+
+### Moduli Specifici del Progetto
+- **SaluteOra**: Solo per progetto SaluteOra
+- **SaluteMo**: Solo per progetto SaluteMo
+- **Patient**: Solo per progetti sanitari specifici
+
+## Pattern di Configurazione
+
+### 1. File di Configurazione
+```php
+// config/module-name.php
+return [
+    'company' => [
+        'name' => env('COMPANY_NAME', 'Default Company'),
+        'team' => env('COMPANY_TEAM', 'Default Team'),
+        'webhook_base' => env('WEBHOOK_BASE_URL', 'https://api.example.com'),
+    ],
+    'test_data' => [
+        'default_subject' => 'Benvenuto su {{company_name}}',
+        'default_content' => 'Grazie per esserti registrato al nostro servizio.',
+    ],
+];
+```
+
+### 2. Helper per Sostituzione Variabili
+```php
+// app/Helpers/ConfigHelper.php
+class ConfigHelper
+{
+    public static function replaceTemplateVariables(array $data): array
+    {
+        $companyConfig = Config::get('module-name.company', []);
+        
+        foreach ($data as $key => $value) {
+            if (is_string($value)) {
+                foreach ($companyConfig as $var => $replacement) {
+                    $value = str_replace("{{{$var}}}", $replacement, $value);
+                }
+                $data[$key] = $value;
+            }
+        }
+        
+        return $data;
+    }
+}
+```
+
+### 3. Service Provider di Configurazione
+```php
+// Providers/ModuleNameServiceProvider.php
+class ModuleNameServiceProvider extends XotBaseServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->bind('module-name.user.model', function ($app) {
+            $userClass = config('module-name.models.user', \App\Models\User::class);
+            return $userClass;
+        });
+    }
+}
+```
+
+## Checklist Pre-Commit
+
+Prima di ogni commit, verificare:
+
+- [ ] Nessuna stringa hardcoded con nomi di progetto specifici
+- [ ] Tutti i test utilizzano dati generici o configurabili
+- [ ] Factory e seeder sono generici e riutilizzabili
+- [ ] Configurazioni sono centralizzate e configurabili
+- [ ] Traduzioni non contengono nomi di progetto specifici
+- [ ] Path e URL sono configurabili o relativi
+- [ ] Import non referenziano moduli specifici del progetto
+- [ ] Enum utilizzano namespace configurabili per traduzioni
+
+## Test di Conformità
+
+Eseguire regolarmente:
+```bash
+# Cerca stringhe hardcoded nei moduli generici
+grep -r "saluteora\|salutemo" laravel/Modules/Notify/ --include="*.php"
+grep -r "saluteora\|salutemo" laravel/Modules/User/ --include="*.php"
+grep -r "saluteora\|salutemo" laravel/Modules/UI/ --include="*.php"
+grep -r "saluteora\|salutemo" laravel/Modules/Xot/ --include="*.php"
+
+# Cerca dipendenze hardcoded
+grep -r "Modules\\SaluteOra" laravel/Modules/UI/ --include="*.php"
+grep -r "Modules\\SaluteOra" laravel/Modules/Xot/ --include="*.php"
+
+# Cerca path hardcoded
+grep -r "/var/www/html/saluteora" laravel/Modules/Xot/ --include="*.php"
+```
+
+## Configurazione per Progetti
+
+### Variabili d'Ambiente Standard
+```env
+# Configurazione Company
+COMPANY_NAME=SaluteOra
+COMPANY_TEAM=Team SaluteOra
+WEBHOOK_BASE_URL=https://api.saluteora.com
+CLINIC_NAME=Studio Dentistico SaluteOra
+REPOSITORY_URL=https://github.com/saluteora/notify
+
+# Configurazione Path
+PROJECT_BASE_PATH=/var/www/html/saluteora
+LARAVEL_BASE_PATH=/var/www/html/saluteora/laravel
+MODULES_BASE_PATH=/var/www/html/saluteora/laravel/Modules
+
+# Configurazione Modelli
+UI_USER_MODEL=Modules\SaluteOra\Models\User
+UI_PATIENT_MODEL=Modules\SaluteOra\Models\Patient
+XOT_USER_MODEL=Modules\SaluteOra\Models\User
+XOT_APPOINTMENT_MODEL=Modules\SaluteOra\Models\Appointment
+
+# Configurazione Traduzioni
+UI_TRANSLATION_NAMESPACE=saluteora
+XOT_TRANSLATION_NAMESPACE=saluteora
+```
+
+## Filosofia e Principi
+
+### Approccio Modulare
+- **Indipendenza**: Ogni modulo è un'entità autonoma
+- **Configurabilità**: Tutto deve essere configurabile
+- **Riutilizzabilità**: Un modulo deve funzionare ovunque
+- **Separazione**: I moduli non conoscono i progetti
+- **Scalabilità**: Crescita senza limiti di progetto
+
+### Benefici della Correzione
+1. **Modularità Vera**: Moduli completamente indipendenti
+2. **Riutilizzabilità**: Funzionamento in qualsiasi progetto
+3. **Manutenibilità**: Configurazione centralizzata
+4. **Scalabilità**: Facile aggiunta di nuovi progetti
+5. **Qualità**: Rispetto dei principi architetturali
+
+## Documentazione Correlata
+
+- [Root Docs: Modularity Hardcoded Names](../../docs/modularity-hardcoded-names.md)
+- [Modulo Notify: Modularity Corrections](../../laravel/Modules/Notify/docs/modularity-hardcoded-names.md)
+- [Modulo UI: Modularity Optimizations](../../laravel/Modules/UI/docs/modularity-optimizations.md)
+- [Modulo Xot: Modularity Optimizations](../../laravel/Modules/Xot/docs/modularity-optimizations.md)
+
+## Errori Comuni da Evitare
+
+### 1. Test con Dati Hardcoded
+```php
+// ❌ ERRORE
+$notificationData = [
+    'subject' => 'Benvenuto su SaluteOra',
+    'content' => 'Grazie per esserti registrato su SaluteOra',
+];
+
+// ✅ CORRETTO
+$testData = ConfigHelper::getTestData();
+$notificationData = [
+    'subject' => $testData['default_subject'],
+    'content' => $testData['default_content'],
+];
+```
+
+### 2. Import Diretti su Moduli Specifici
+```php
+// ❌ ERRORE
+use Modules\SaluteOra\Models\User;
+
+// ✅ CORRETTO
+use Modules\User\Contracts\UserModelInterface;
+```
+
+### 3. Path Hardcoded
+```php
+// ❌ ERRORE
+public static string $basePath = '/var/www/html/saluteora';
+
+// ✅ CORRETTO
+public static function getBasePath(): string
+{
+    return env('PROJECT_BASE_PATH', base_path());
+}
+```
+
+### 4. Traduzioni Hardcoded
+```php
+// ❌ ERRORE
+__('saluteora::widgets.title')
+
+// ✅ CORRETTO
+$namespace = config('ui.translations.namespace', 'ui');
+__("{$namespace}::widgets.title")
+```
+
+---
+
+**Questa regola è CRITICA e va applicata SEMPRE. La violazione compromette l'architettura modulare del sistema e crea debito tecnico significativo.**
+
+**Ultimo aggiornamento**: 2025-01-06
+**Motivazione**: Identificazione di violazioni critiche nei moduli Notify, UI e Xot
+**Impatto**: Compromissione completa dell'architettura modulare
+**Priorità**: CRITICA - Correzione immediata richiesta
+description:
+globs:
+alwaysApply: true
+---

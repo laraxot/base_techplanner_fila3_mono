@@ -39,7 +39,6 @@ class LangServiceProvider extends XotBaseServiceProvider
     public function boot(): void
     {
         parent::boot();
-        
         // BladeService::registerComponents($this->module_dir.'/../View/Components', 'Modules\\Lang');
         // $this->registerTranslator();
         $this->translatableComponents();

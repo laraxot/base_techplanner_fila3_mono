@@ -25,32 +25,23 @@ class ClientResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
-            'business_closed' => TextInput::make('business_closed'),                // cessato
-            // 'name' => TextInput::make('name'),
-            'activity' => TextInput::make('activity'),              // attivita
-            'company_name' => TextInput::make('company_name')->required(),               // ditta
-            'tax_code' => TextInput::make('tax_code'),              // cf
+            'business_closed' => TextInput::make('business_closed'),
+            'activity' => TextInput::make('activity'),
+            'company_name' => TextInput::make('company_name')->required(),
+            'tax_code' => TextInput::make('tax_code'),
             'vat_number' => TextInput::make('vat_number')->nullable(),
             'fiscal_code' => TextInput::make('fiscal_code')->nullable(),
             'address' => TextInput::make('address')->nullable(),
-            'street_number' => TextInput::make('street_number'),         // numero_civico
+            'street_address' => TextInput::make('street_address')->nullable(),
+            'street_number' => TextInput::make('street_number'),
             'city' => TextInput::make('city')->nullable(),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
             'contacts' => ContactSection::make('contacts'),
-            /*
-            'phone' => TextInput::make('phone')->nullable(),
-            'mobile' => TextInput::make('mobile'),                // cellulare
-            'fax' => TextInput::make('fax'),                   // fax
-            'email' => TextInput::make('email')->nullable(),
-            */
-            // --------------------------------------
-            'competent_health_unit' => TextInput::make('competent_health_unit'), // az_ulss_competente
-            'company_office' => TextInput::make('company_office'),        // sede_ditta
-            'notes' => Textarea::make('notes'),                 // note
-            // 'longitude' => TextInput::make('longitude'),
-            // 'latitude' => TextInput::make('latitude'),
+            'competent_health_unit' => TextInput::make('competent_health_unit'),
+            'company_office' => TextInput::make('company_office'),
+            'notes' => Textarea::make('notes'),
         ];
     }
 

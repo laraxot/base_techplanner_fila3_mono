@@ -139,6 +139,8 @@ php artisan cache:clear
 
 # Test di rendering
 php artisan tinker
+>>> view('pub_theme::blocks.alerts.alert', ['variant' => 'info', 'dismissible' => true])->render()
+=======
 >>> view('sixteen::blocks.alerts.alert', ['variant' => 'info', 'dismissible' => true])->render()
 ```
 
@@ -184,6 +186,8 @@ Ho aggiornato la documentazione con esempi corretti:
 
 ```blade
 {{-- Esempio corretto per Alert --}}
+<x-pub_theme::blocks.alerts.alert variant="info" dismissible="true">
+=======
 <x-sixteen::blocks.alerts.alert variant="info" dismissible="true">
     Messaggio informativo
 </x-sixteen::blocks.alerts.alert>

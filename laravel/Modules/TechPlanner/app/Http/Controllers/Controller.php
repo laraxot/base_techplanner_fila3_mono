@@ -11,6 +11,8 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * Controller base per il modulo TechPlanner.
  * 
+ *
+ * 
  * Questo controller fornisce le funzionalità base comuni a tutti i controller
  * del modulo TechPlanner, incluse le autorizzazioni e la validazione.
  */

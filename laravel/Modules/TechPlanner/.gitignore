@@ -47,6 +47,11 @@ Homestead.json
 
 # Documentation
 /docs/
+
+# Documentation cache only
+# Documentation
+/docs/
+
 /docs/cache/
 
 # Ignored temporary files
@@ -56,3 +61,13 @@ Homestead.json
 *.log
 *.csv
 *.sql
+
+*.old
+*.old1
+
+# Standard ignores (auto)
+*.bak
+*.bakcup
+*.backup.*
+*.old
+*.old1

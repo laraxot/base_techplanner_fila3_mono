@@ -21,6 +21,11 @@ class PhoneCallResourceTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     protected User $admin;
+
+class PhoneCallResourceTest extends TestCase
+{
+
+    protected User $admin;
     protected Client $client;
 
     protected function setUp(): void

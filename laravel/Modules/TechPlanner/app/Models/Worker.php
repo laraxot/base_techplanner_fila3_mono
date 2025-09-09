@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Geo\Models\Place;
 // --- traits ---
 use Modules\Geo\Models\Traits\GeoTrait;
 use Modules\TechPlanner\Contracts\WorkerContract;
+use Modules\TechPlanner\Models\Device;
 use Modules\Xot\Services\PanelService;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
 
@@ -19,21 +21,131 @@ use Modules\Xot\Actions\Cast\SafeStringCastAction;
  * @property string $full_address
  * @property float|null $latitude
  * @property float|null $longitude
-*/
+ * @property int $id
+ * @property string|null $type
+ * @property int|null $client_id
+ * @property string|null $last_name
+ * @property string|null $first_name
+ * @property string|null $birth_place
+ * @property string|null $birth_day
+ * @property string|null $date_start
+ * @property string|null $date_end
+ * @property string|null $note
+ * @property string|null $premise
+ * @property string|null $premise_short
+ * @property string|null $locality
+ * @property string|null $locality_short
+ * @property string|null $postal_town
+ * @property string|null $postal_town_short
+ * @property string|null $administrative_area_level_3
+ * @property string|null $administrative_area_level_3_short
+ * @property string|null $administrative_area_level_2
+ * @property string|null $administrative_area_level_2_short
+ * @property string|null $administrative_area_level_1
+ * @property string|null $administrative_area_level_1_short
+ * @property string|null $country
+ * @property string|null $country_short
+ * @property string|null $street_number
+ * @property string|null $street_number_short
+ * @property string|null $route
+ * @property string|null $route_short
+ * @property string|null $postal_code
+ * @property string|null $postal_code_short
+ * @property string|null $point_of_interest
+ * @property string|null $point_of_interest_short
+ * @property string|null $political
+ * @property string|null $political_short
+ * @property string|null $phone
+ * @property string|null $website
+ * @property string|null $email
+ * @property string|null $formatted_address
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property string $full_name
+ * @property string|null $p_iva
+ * @property string|null $cod_fisc
+ * @property string|null $deleted_at
+ * @property string|null $deleted_by
+ * @property-read \Modules\TechPlanner\Models\Profile|null $creator
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\Device> $devices
+ * @property-read int|null $devices_count
+ * @property-read \Modules\TechPlanner\Models\Profile|null $updater
+ * @method static Builder<static>|Worker newModelQuery()
+ * @method static Builder<static>|Worker newQuery()
+ * @method static Builder<static>|Worker ofInPolygon(string $polygon_field, float $lat, float $lng)
+ * @method static Builder<static>|Worker ofJobRoleId(int $id)
+ * @method static Builder<static>|Worker query()
+ * @method static Builder<static>|Worker whereAddress($value)
+ * @method static Builder<static>|Worker whereAdministrativeAreaLevel1($value)
+ * @method static Builder<static>|Worker whereAdministrativeAreaLevel1Short($value)
+ * @method static Builder<static>|Worker whereAdministrativeAreaLevel2($value)
+ * @method static Builder<static>|Worker whereAdministrativeAreaLevel2Short($value)
+ * @method static Builder<static>|Worker whereAdministrativeAreaLevel3($value)
+ * @method static Builder<static>|Worker whereAdministrativeAreaLevel3Short($value)
+ * @method static Builder<static>|Worker whereBirthDay($value)
+ * @method static Builder<static>|Worker whereBirthPlace($value)
+ * @method static Builder<static>|Worker whereClientId($value)
+ * @method static Builder<static>|Worker whereCodFisc($value)
+ * @method static Builder<static>|Worker whereCountry($value)
+ * @method static Builder<static>|Worker whereCountryShort($value)
+ * @method static Builder<static>|Worker whereCreatedAt($value)
+ * @method static Builder<static>|Worker whereCreatedBy($value)
+ * @method static Builder<static>|Worker whereDateEnd($value)
+ * @method static Builder<static>|Worker whereDateStart($value)
+ * @method static Builder<static>|Worker whereDeletedAt($value)
+ * @method static Builder<static>|Worker whereDeletedBy($value)
+ * @method static Builder<static>|Worker whereEmail($value)
+ * @method static Builder<static>|Worker whereFirstName($value)
+ * @method static Builder<static>|Worker whereFormattedAddress($value)
+ * @method static Builder<static>|Worker whereFullAddress($value)
+ * @method static Builder<static>|Worker whereFullName($value)
+ * @method static Builder<static>|Worker whereId($value)
+ * @method static Builder<static>|Worker whereLastName($value)
+ * @method static Builder<static>|Worker whereLatitude($value)
+ * @method static Builder<static>|Worker whereLocality($value)
+ * @method static Builder<static>|Worker whereLocalityShort($value)
+ * @method static Builder<static>|Worker whereLongitude($value)
+ * @method static Builder<static>|Worker whereNote($value)
+ * @method static Builder<static>|Worker wherePIva($value)
+ * @method static Builder<static>|Worker wherePhone($value)
+ * @method static Builder<static>|Worker wherePointOfInterest($value)
+ * @method static Builder<static>|Worker wherePointOfInterestShort($value)
+ * @method static Builder<static>|Worker wherePolitical($value)
+ * @method static Builder<static>|Worker wherePoliticalShort($value)
+ * @method static Builder<static>|Worker wherePostalCode($value)
+ * @method static Builder<static>|Worker wherePostalCodeShort($value)
+ * @method static Builder<static>|Worker wherePostalTown($value)
+ * @method static Builder<static>|Worker wherePostalTownShort($value)
+ * @method static Builder<static>|Worker wherePremise($value)
+ * @method static Builder<static>|Worker wherePremiseShort($value)
+ * @method static Builder<static>|Worker whereRoute($value)
+ * @method static Builder<static>|Worker whereRouteShort($value)
+ * @method static Builder<static>|Worker whereStreetNumber($value)
+ * @method static Builder<static>|Worker whereStreetNumberShort($value)
+ * @method static Builder<static>|Worker whereType($value)
+ * @method static Builder<static>|Worker whereUpdatedAt($value)
+ * @method static Builder<static>|Worker whereUpdatedBy($value)
+ * @method static Builder<static>|Worker whereWebsite($value)
+ * @method static Builder<static>|Worker withDistance(float $lat, float $lng)
+ * @method static Builder<static>|Worker withDistanceCustomField(string $lat_field, string $lng_field, float $lat, float $lng)
+ * @mixin \Eloquent
+ */
 class Worker extends BaseModel implements WorkerContract
 {
     use GeoTrait;
     // protected $connection = 'customer'; // this will use the specified database conneciton
 
-    /**  @var list<string>     */
-    protected $fillable = ['id', 'type',
+    /** @var list<string> */
+    protected $fillable = [
+        'id', 'type',
         'first_name', 'last_name', 'full_name',
         'address', 'full_address',
         'note', 'birth_day', 'birth_place',
-        'cod_fisc', 'p_iva', 'address',
+        'cod_fisc', 'p_iva',
     ];
 
-    
     /**
      * Get the attributes that should be cast.
      *
@@ -46,38 +158,15 @@ class Worker extends BaseModel implements WorkerContract
         ];
     }
 
-    // protected $dateFormat = 'Y-m-d H:i';
-
-    /*
-    public function getFillable() {
-        $shorts = collect(Place::$address_components)->map(function ($item) {
-            return $item.'_short';
-        })->all();
-        $fillable = array_merge($this->fillable, Place::$address_components, $shorts, ['latitude', 'longitude']);
-
-        return $fillable;
-    }
-    */
     // ---------------- relationships ----------------
-    /*
-    public function neighbors(){
-        //hasMany()
-        $related=Customer::class;
-        $foreignKey='1';
-        $localKey='1';
-        return $this->hasMany($related, $foreignKey, $localKey);
-    }
-    */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany<\Modules\TechPlanner\Models\Device, \Modules\TechPlanner\Models\Worker>
      */
-    public function devices()
+    public function devices(): HasMany
     {
         return $this->hasMany(Device::class); // ,customer_id,id
     }
-
-    
 
     // ---------------- mutators --------------------------
 
@@ -98,33 +187,23 @@ class Worker extends BaseModel implements WorkerContract
      */
     public function getFullNameAttribute(mixed $value): string
     {
-        if ($value != '') {
+        if ($value !== null && $value !== '') {
             return $this->safeStringCast($value);
         }
         $type = $this->getAttribute('type');
         $lastName = $this->getAttribute('last_name');
         $firstName = $this->getAttribute('first_name');
-        
+
         // Safe string casting for all components
         $typeStr = $this->safeStringCast($type);
         $lastNameStr = $this->safeStringCast($lastName);
         $firstNameStr = $this->safeStringCast($firstName);
-        
-        $value = $typeStr.' '.$lastNameStr.' '.$firstNameStr;
-        $value = trim($value);
-        $this->full_name = $value;
-        $this->save();
 
-        return $value;
+        $computed = trim($typeStr.' '.$lastNameStr.' '.$firstNameStr);
+
+        return $computed;
     }
 
-    /*
-    public function getBirthDayAttribute($value)
-    {
-        if()
-        ddd($value);
-    }
-    */
     /**
      * Converte in modo sicuro un valore mixed in string usando l'action centralizzata.
      *
@@ -139,57 +218,17 @@ class Worker extends BaseModel implements WorkerContract
     // ------------------- scopes ------------------------
 
     /**
-     * @param  Builder  $query
-     * @return Builder
+     * @param  Builder<static>  $query
+     * @return Builder<static>
      */
-    public function scopeOfJobRoleId($query, int $id)
+    public function scopeOfJobRoleId(Builder $query, int $id): Builder
     {
         return $query->whereHas(
-            'jobRoles', function (Builder $query) use ($id) {
+            'jobRoles', function (Builder $query) use ($id): void {
                 $query->where('job_role_id', $id);
             }
         );
     }
-
-    /*
-    public function scopeNeighbors($query) {
-        return $query;
-    }
-
-
-    public function getAddress() {
-        if ('' == $this->country) {
-            $this->country = 'Italia';
-        }
-
-        return $this->route.', '.$this->street_number.', '.$this->locality.', '.$this->administrative_area_level_2.', '.$this->country;
-    }
-
-    public function getAddressAttribute($value) {
-        if ('' != $value) {
-            return json_decode($value);
-        }
-
-        if ('' == $this->country) {
-            $this->country = 'Italia';
-        }
-        $val1 = (object) [
-            'value' => $this->route.', '.$this->street_number.', '.$this->locality.', '.$this->administrative_area_level_2.', '.$this->country,
-        ];
-        $val1->latlng = (object) [
-            'lat' => $this->latitude,
-            'lng' => $this->longitude,
-        ];
-        foreach (Place::$address_components as $v) {
-            $val1->$v = $this->$v;
-            $val1->{$v.'_short'} = $this->{$v.'_short'};
-        }
-
-        return json_encode($val1, 1);
-        //return response()->json($val1);
-    }
-
-    //*/
 
     public function getCodFiscAttribute(?string $value): ?string
     {

@@ -15,10 +15,11 @@ use Filament\Forms\Components\Grid;
 use Illuminate\Support\Facades\Log;
 use function Safe\file_put_contents;
 use Filament\Forms\ComponentContainer;
+use Illuminate\Support\Facades\Config;
 use Filament\Forms\Components\Textarea;
 use Illuminate\Support\Facades\Storage;
-use Modules\Media\Datas\CloudFrontData;
 
+use Modules\Media\Datas\CloudFrontData;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\FileUpload;
 use Modules\Media\Filament\Clusters\Test;
@@ -117,12 +118,19 @@ class S3Test extends XotBasePage
      */
     protected function getFormSchema(): array
     {
+        $prefix=Config::string('media-library.prefix');
+        
+        $attachmentDir = 'form-attachments';
+        if($prefix!=''){
+            $attachmentDir =$prefix.'/'.$attachmentDir;
+        }
+        
         return [
             Grid::make(2)
                 ->schema([
                     FileUpload::make('attachment')
                         ->disk('s3')
-                        ->directory('form-attachments')
+                        ->directory($attachmentDir)
                         ->visibility('private')
                         ->columnSpan(1),
 

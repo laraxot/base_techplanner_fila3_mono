@@ -19,6 +19,8 @@ class MedicalDirectorResourceTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
+class MedicalDirectorResourceTest extends TestCase
+{
     protected User $admin;
 
     protected function setUp(): void
@@ -186,6 +188,14 @@ class MedicalDirectorResourceTest extends TestCase
     public function it_can_filter_medical_directors_by_specialization(): void
     {
         MedicalDirector::factory()->create([
+            'specializations' => json_encode(['cardiology', 'internal_medicine'])
+        ]);
+        MedicalDirector::factory()->create([
+            'specializations' => json_encode(['surgery', 'pediatrics'])
+            'specializations' => json_encode(['cardiology', 'internal_medicine']),
+        ]);
+        MedicalDirector::factory()->create([
+            'specializations' => json_encode(['surgery', 'pediatrics']),
             'specializations' => json_encode(['cardiology', 'internal_medicine'])
         ]);
         MedicalDirector::factory()->create([

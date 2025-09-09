@@ -1,0 +1,60 @@
+# DRY Model Traits Violation - Modulo Geo
+
+## Contesto
+Identificata violazione critica della regola DRY nei modelli del modulo Geo che estendono BaseModel.
+
+## Problema Identificato
+- **Modulo**: Geo
+- **Classi Base**: BaseModel (già fornisce HasFactory)
+- **Violazioni**: State, PlaceType duplicano HasFactory e newFactory()
+
+## Dettagli Violazione
+
+### State.php
+```php
+class State extends BaseModel
+{
+    use HasFactory; // ❌ DUPLICATO - BaseModel già fornisce HasFactory
+    
+    protected static function newFactory(): StateFactory // ❌ DUPLICATO
+    {
+        return StateFactory::new();
+    }
+}
+```
+
+### PlaceType.php
+```php
+class PlaceType extends BaseModel
+{
+    use HasFactory; // ❌ DUPLICATO - BaseModel già fornisce HasFactory
+    
+    protected static function newFactory(): PlaceTypeFactory // ❌ DUPLICATO
+    {
+        return PlaceTypeFactory::new();
+    }
+}
+```
+
+## Motivazione Regola
+- **BaseModel** già dichiara `use HasFactory;`
+- **Tutti i modelli** che estendono BaseModel ereditano automaticamente HasFactory
+- **Duplicazione** viola principio DRY e può causare warning/errori
+- **newFactory()** è già gestito dal trait HasFactory ereditato
+
+## Azioni Correttive
+1. Rimuovere `use HasFactory;` da tutti i modelli figli
+2. Rimuovere metodo `newFactory()` duplicato
+3. Aggiornare documentazione
+4. Implementare regole AI per prevenzione
+
+## Collegamenti
+- [DRY Model Traits Rule](../rules/dry-model-traits.mdc)
+- [Geo Module Documentation](../../laravel/Modules/Geo/docs/)
+
+---
+Ultimo aggiornamento: 2025-06-04
+description:
+globs:
+alwaysApply: true
+---

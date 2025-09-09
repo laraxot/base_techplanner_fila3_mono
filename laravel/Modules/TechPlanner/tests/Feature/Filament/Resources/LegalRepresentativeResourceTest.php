@@ -21,6 +21,11 @@ class LegalRepresentativeResourceTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     protected User $admin;
+
+class LegalRepresentativeResourceTest extends TestCase
+{
+
+    protected User $admin;
     protected LegalOffice $legalOffice;
 
     protected function setUp(): void
@@ -223,6 +228,14 @@ class LegalRepresentativeResourceTest extends TestCase
     public function it_can_filter_legal_representatives_by_specialization(): void
     {
         LegalRepresentative::factory()->create([
+            'specializations' => json_encode(['civil', 'commercial'])
+        ]);
+        LegalRepresentative::factory()->create([
+            'specializations' => json_encode(['criminal', 'family'])
+            'specializations' => json_encode(['civil', 'commercial']),
+        ]);
+        LegalRepresentative::factory()->create([
+            'specializations' => json_encode(['criminal', 'family']),
             'specializations' => json_encode(['civil', 'commercial'])
         ]);
         LegalRepresentative::factory()->create([

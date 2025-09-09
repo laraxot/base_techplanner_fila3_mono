@@ -1,9 +1,28 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+/* Bootstrap Italia Components CSS */
+@import './bootstrap-italia.css';
+
+/* Design Tokens Italia - Variabili ufficiali PA */
+@import '../../node_modules/design-tokens-italia/css/_variables.css';
+
+>>>>>>> 109edea (.)
+=======
+>>>>>>> 0321d33 (.)
 /* Importa Filament CSS da node_modules */
 /*
 @import 'node_modules/@filamentphp/forms/dist/index.css';
 @import 'node_modules/@filamentphp/notifications/dist/index.css';
 @import 'node_modules/@filamentphp/support/dist/index.css';
 */
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 109edea (.)
+=======
+>>>>>>> 0321d33 (.)
 /* Tailwind */
 @tailwind base;
 @tailwind components;
@@ -51,7 +70,15 @@
     }
     
     .login-card-beautiful:hover {
+<<<<<<< HEAD
+<<<<<<< HEAD
         @apply scale-105 shadow-3xl;
+=======
+        @apply scale-105;
+>>>>>>> 109edea (.)
+=======
+        @apply scale-105 shadow-3xl;
+>>>>>>> 0321d33 (.)
         box-shadow: 
             0 35px 60px -12px rgba(0, 0, 0, 0.35),
             0 0 0 1px rgba(255, 255, 255, 0.15);

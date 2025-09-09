@@ -28,6 +28,12 @@ class UpdateAllDevicesActionTest extends TestCase
         
         $this->action = new UpdateAllDevicesAction();
         
+
+        $this->action = new UpdateAllDevicesAction;
+
+        
+        $this->action = new UpdateAllDevicesAction();
+        
         // Disabilita le code per i test
         Queue::fake();
     }

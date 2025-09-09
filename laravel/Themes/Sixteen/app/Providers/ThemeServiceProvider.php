@@ -94,4 +94,4 @@ class ThemeServiceProvider extends XotBaseThemeServiceProvider
             }
         }
     }
-} 
+}

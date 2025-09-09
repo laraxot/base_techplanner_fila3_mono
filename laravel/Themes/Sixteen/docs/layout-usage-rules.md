@@ -26,7 +26,15 @@ Il tema Sixteen ha registrato questi shortcut per i layout:
 
 **NON creare mai** layout personalizzati come:
 - `<x-pub_theme::layouts.auth-agid>` ❌
+<<<<<<< HEAD
+<<<<<<< HEAD
 - `<x-sixteen::layouts.auth-agid>` ❌
+=======
+- `<x-pub_theme::layouts.auth-agid>` ❌
+>>>>>>> 109edea (.)
+=======
+- `<x-sixteen::layouts.auth-agid>` ❌
+>>>>>>> 0321d33 (.)
 - `<x-layouts.auth-agid>` ❌
 
 **Motivazione**: Il tema Sixteen è già completamente AGID-compliant. Creare layout aggiuntivi è ridondante e può causare errori.
@@ -123,8 +131,18 @@ name('login');
 <x-pub_theme::components.button>
 
 <!-- ❌ ERRATO - Namespace tema non registrato -->
+<<<<<<< HEAD
+<<<<<<< HEAD
 <x-sixteen::layouts.guest>
 <x-sixteen::ui.logo>
+=======
+<x-pub_theme::layouts.guest>
+<x-pub_theme::ui.logo>
+>>>>>>> 109edea (.)
+=======
+<x-sixteen::layouts.guest>
+<x-sixteen::ui.logo>
+>>>>>>> 0321d33 (.)
 ```
 
 ### Verifica Registrazione Namespace

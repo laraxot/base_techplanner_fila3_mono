@@ -28,6 +28,9 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 ```bash
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
+=======
+
+=======
 
 # Utilizzo le funzioni definite in custom.sh senza ridefinirle
 validate_input "$@"
@@ -38,6 +41,9 @@ process_files "$1"
 ```bash
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
+=======
+
+=======
 
 # GRAVE ERRORE: ridefinire funzioni già presenti in custom.sh
 function validate_input() {

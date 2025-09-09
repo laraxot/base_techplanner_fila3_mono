@@ -135,16 +135,12 @@ if ($user !== null) {
 Lo script può essere integrato in pipeline CI/CD per automatizzare l'analisi del codice:
 
 ```yaml
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
-<<<<<<< HEAD
+=======
+=======
+=======
 
 =======
->>>>>>> 3c18aa7e (.)
->>>>>>> 9c02579 (.)
-=======
->>>>>>> 574afe9e (.)
 # Esempio di configurazione GitHub Actions
 name: PHPStan Analysis
 on: [push, pull_request]

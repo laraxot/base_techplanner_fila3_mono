@@ -6,8 +6,9 @@ namespace Modules\Activity\Models\Policies;
 
 use Modules\Activity\Models\Snapshot;
 use Modules\Xot\Contracts\UserContract;
+use Modules\User\Models\Policies\UserBasePolicy;
 
-class SnapshotPolicy extends ActivityBasePolicy
+class SnapshotPolicy extends UserBasePolicy
 {
     /**
      * Determine whether the user can view any models.

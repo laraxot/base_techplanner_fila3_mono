@@ -6,6 +6,8 @@ namespace Modules\Employee\Filament\Resources\WorkHourResource\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Carbon\Carbon;
+use Modules\Employee\Enums\WorkHourStatusEnum;
+use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseStatsOverviewWidget;
 

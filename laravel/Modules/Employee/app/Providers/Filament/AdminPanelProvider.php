@@ -20,6 +20,17 @@ class AdminPanelProvider extends XotBasePanelProvider
         $panel->pages([
             \Modules\Employee\Filament\Pages\Dashboard::class,
         ]);
+        $panel
+            ->login()
+            ->pages([
+                \Modules\Employee\Filament\Pages\Dashboard::class,
+            ])
+            ->resources([
+                \Modules\Employee\Filament\Resources\WorkHourResource::class,
+            ]);
+        $panel->pages([
+            \Modules\Employee\Filament\Pages\Dashboard::class,
+        ]);
 
         // Menu items specifici
         $panel->userMenuItems([

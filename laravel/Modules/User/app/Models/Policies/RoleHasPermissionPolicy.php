@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\RoleHasPermission;
+use Modules\Xot\Contracts\UserContract;
 
 class RoleHasPermissionPolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class RoleHasPermissionPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, RoleHasPermission $roleHasPermission): bool
     {
-        return $user->hasPermissionTo('role-has-permission.view') || 
+        return $user->hasPermissionTo('role-has-permission.view') ||
                $user->hasRole('super-admin');
     }
 
@@ -39,7 +39,7 @@ class RoleHasPermissionPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, RoleHasPermission $roleHasPermission): bool
     {
-        return $user->hasPermissionTo('role-has-permission.update') || 
+        return $user->hasPermissionTo('role-has-permission.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -48,7 +48,7 @@ class RoleHasPermissionPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, RoleHasPermission $roleHasPermission): bool
     {
-        return $user->hasPermissionTo('role-has-permission.delete') || 
+        return $user->hasPermissionTo('role-has-permission.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -57,7 +57,7 @@ class RoleHasPermissionPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, RoleHasPermission $roleHasPermission): bool
     {
-        return $user->hasPermissionTo('role-has-permission.restore') || 
+        return $user->hasPermissionTo('role-has-permission.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -66,7 +66,7 @@ class RoleHasPermissionPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, RoleHasPermission $roleHasPermission): bool
     {
-        return $user->hasPermissionTo('role-has-permission.force-delete') || 
+        return $user->hasPermissionTo('role-has-permission.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

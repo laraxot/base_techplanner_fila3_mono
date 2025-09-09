@@ -30,11 +30,9 @@ return new class extends XotBaseMigration
                 
                 $table->foreignId('employee_id')
                     ->constrained('employees')
-                    ->onDelete('cascade')
-                    ->comment('Reference to employee');
+                    ->onDelete('cascade');
                     
-                $table->enum('type', ['clock_in', 'clock_out', 'break_start', 'break_end'])
-                    ->comment('Type of time entry');
+                $table->enum('type', ['clock_in', 'clock_out', 'break_start', 'break_end']);
                     
                 $table->dateTime('timestamp')
                     ->comment('Exact time of entry');
@@ -58,13 +56,11 @@ return new class extends XotBaseMigration
                     ->comment('Optional notes for entry');
                     
                 $table->enum('status', ['pending', 'approved', 'rejected'])
-                    ->default('pending')
-                    ->comment('Entry approval status');
+                    ->default('pending');
                     
                 $table->foreignId('approved_by')->nullable()
                     ->constrained('users')
-                    ->onDelete('set null')
-                    ->comment('User who approved entry');
+                    ->onDelete('set null');
                     
                 $table->dateTime('approved_at')->nullable()
                     ->comment('When entry was approved');

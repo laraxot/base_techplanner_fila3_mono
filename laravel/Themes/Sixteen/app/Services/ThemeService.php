@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Themes\Sixteen\Services;
 
+use Themes\Sixteen\Services\MenuBuilder;
+
 /**
  * Servizio per la gestione del tema Sixteen.
  * 
  * Questo servizio fornisce metodi per la gestione
  * delle configurazioni e funzionalità del tema.
+ * 
+ * Enhanced version integrating with the new Menu Builder System
  */
 class ThemeService
 {
@@ -22,16 +26,25 @@ class ThemeService
      */
     protected string $version = '1.0.0';
 
+    public function __construct(
+        protected MenuBuilder $menuBuilder
+    ) {
+    }
+
     /**
-     * Ottiene il nome del tema.
+     * Restituisce il nome del tema.
+     *
+     * @return string
      */
-    public function getName(): string
+    public function getThemeName(): string
     {
         return $this->themeName;
     }
 
     /**
-     * Ottiene la versione del tema.
+     * Restituisce la versione del tema.
+     *
+     * @return string
      */
     public function getVersion(): string
     {
@@ -39,35 +52,45 @@ class ThemeService
     }
 
     /**
-     * Ottiene le informazioni del tema.
+     * Restituisce la configurazione del tema.
+     *
+     * @return array<string, mixed>
      */
-    public function getInfo(): array
+    public function getConfig(): array
     {
         return [
             'name' => $this->themeName,
             'version' => $this->version,
-            'description' => 'Tema Sixteen per SaluteOra',
-            'author' => 'SaluteOra Team',
+            'author' => 'Laraxot Team',
+            'description' => 'Modern responsive theme for Laraxot applications',
+            'features' => [
+                'responsive_design',
+                'dark_mode_support',
+                'component_library',
+                'accessibility_compliant',
+            ],
         ];
     }
 
     /**
-     * Verifica se il tema è attivo.
+     * Costruisce il menu usando il MenuBuilder.
+     *
+     * @return array<string, mixed>
      */
-    public function isActive(): bool
+    public function buildMenu(): array
     {
-        return config('app.theme') === 'sixteen';
+        return $this->menuBuilder->build();
     }
 
     /**
-     * Ottiene le configurazioni del tema.
+     * Inizializza le risorse del tema.
+     *
+     * @return void
      */
-    public function getConfig(string $key = null, mixed $default = null): mixed
+    public function initialize(): void
     {
-        if ($key === null) {
-            return config('sixteen');
-        }
-
-        return config('sixteen.' . $key, $default);
+        // Caricamento delle risorse CSS e JS
+        // Configurazione dei componenti del tema
+        // Setup delle configurazioni specifiche
     }
-} 
+}

@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Employee\Models\WorkHour;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Enums\WorkHourStatusEnum;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Employee\Models\WorkHour>
@@ -15,29 +17,25 @@ use Modules\Employee\Models\Employee;
 class WorkHourFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
+     * @var class-string<\Modules\Employee\Models\WorkHour>
      */
     protected $model = WorkHour::class;
 
     /**
-     * Define the model's default state.
-     *
      * @return array<string, mixed>
      */
     public function definition(): array
     {
         $timestamp = $this->faker->dateTimeBetween('-30 days', 'now');
         $carbonTimestamp = Carbon::instance($timestamp)->setTime(
-            $this->faker->numberBetween(8, 18), // Hour between 8 AM and 6 PM
-            $this->faker->randomElement([0, 15, 30, 45]), // Minutes in 15-minute intervals
-            0 // Seconds
+            (int) $this->faker->numberBetween(8, 18),
+            (int) $this->faker->randomElement([0, 15, 30, 45]),
+            0
         );
         
         return [
             'employee_id' => Employee::factory(),
-            'type' => $this->faker->randomElement(WorkHour::TYPES),
+            'type' => $this->faker->randomElement(WorkHourTypeEnum::values()),
             'timestamp' => $carbonTimestamp,
             'location_lat' => $this->faker->optional(0.3)->latitude(),
             'location_lng' => $this->faker->optional(0.3)->longitude(),
@@ -49,138 +47,114 @@ class WorkHourFactory extends Factory
             ]),
             'photo_path' => $this->faker->optional(0.1)->imageUrl(),
             'notes' => $this->faker->optional(0.3)->sentence(),
-            'status' => $this->faker->randomElement(WorkHour::STATUSES),
+            'status' => $this->faker->randomElement(WorkHourStatusEnum::values()),
             'approved_by' => $this->faker->optional(0.4)->numberBetween(1, 10),
             'approved_at' => $this->faker->optional(0.4)->dateTimeBetween('-7 days', 'now'),
         ];
     }
 
     /**
-     * Create a realistic work day sequence for an employee.
-     *
      * @param int $employeeId
      * @param Carbon $date
-     * @return array<WorkHour>
+     * @return array<int, WorkHour>
      */
     public function workDaySequence(int $employeeId, Carbon $date): array
     {
         $entries = [];
         
-        // Clock in (8:00-9:30 AM)
         $clockInTime = $date->copy()->setTime(
-            $this->faker->numberBetween(8, 9),
-            $this->faker->randomElement([0, 15, 30, 45])
+            (int) $this->faker->numberBetween(8, 9),
+            (int) $this->faker->randomElement([0, 15, 30, 45]),
+            0
         );
         
         $entries[] = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $clockInTime,
-            'type' => WorkHour::TYPE_CLOCK_IN,
-            'status' => WorkHour::STATUS_APPROVED,
+            'type' => WorkHourTypeEnum::CLOCK_IN->value,
+            'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
 
-        // Break start (12:00-1:00 PM)
-        $breakStartTime = $clockInTime->copy()->addHours($this->faker->numberBetween(3, 5));
+        $breakStartTime = $clockInTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
         $entries[] = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $breakStartTime,
-            'type' => WorkHour::TYPE_BREAK_START,
-            'status' => WorkHour::STATUS_APPROVED,
+            'type' => WorkHourTypeEnum::BREAK_START->value,
+            'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
 
-        // Break end (30-60 minutes later)
-        $breakEndTime = $breakStartTime->copy()->addMinutes($this->faker->numberBetween(30, 60));
+        $breakEndTime = $breakStartTime->copy()->addMinutes((int) $this->faker->numberBetween(30, 60));
         $entries[] = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $breakEndTime,
-            'type' => WorkHour::TYPE_BREAK_END,
-            'status' => WorkHour::STATUS_APPROVED,
+            'type' => WorkHourTypeEnum::BREAK_END->value,
+            'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
 
-        // Clock out (5:00-7:00 PM)
-        $clockOutTime = $breakEndTime->copy()->addHours($this->faker->numberBetween(3, 5));
+        $clockOutTime = $breakEndTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
         $entries[] = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $clockOutTime,
-            'type' => WorkHour::TYPE_CLOCK_OUT,
-            'status' => WorkHour::STATUS_APPROVED,
+            'type' => WorkHourTypeEnum::CLOCK_OUT->value,
+            'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
 
+        /** @var array<int, WorkHour> $entries */
         return $entries;
     }
 
-    /**
-     * Create a clock in entry.
-     */
     public function clockIn(): static
     {
         return $this->state([
-            'type' => WorkHour::TYPE_CLOCK_IN,
-            'time' => $this->faker->dateTimeBetween('08:00', '09:30'),
+            'type' => 'clock_in',
+            'timestamp' => $this->faker->dateTimeBetween('08:00', '09:30'),
         ]);
     }
 
-    /**
-     * Create a clock out entry.
-     */
     public function clockOut(): static
     {
         return $this->state([
-            'type' => WorkHour::TYPE_CLOCK_OUT,
-            'time' => $this->faker->dateTimeBetween('17:00', '19:00'),
+            'type' => 'clock_out',
+            'timestamp' => $this->faker->dateTimeBetween('17:00', '19:00'),
         ]);
     }
 
-    /**
-     * Create a break start entry.
-     */
     public function breakStart(): static
     {
         return $this->state([
-            'type' => WorkHour::TYPE_BREAK_START,
-            'time' => $this->faker->dateTimeBetween('12:00', '14:00'),
+            'type' => 'break_start',
+            'timestamp' => $this->faker->dateTimeBetween('12:00', '14:00'),
         ]);
     }
 
-    /**
-     * Create a break end entry.
-     */
     public function breakEnd(): static
     {
         return $this->state([
-            'type' => WorkHour::TYPE_BREAK_END,
-            'time' => $this->faker->dateTimeBetween('12:30', '14:30'),
+            'type' => 'break_end',
+            'timestamp' => $this->faker->dateTimeBetween('13:00', '14:00'),
         ]);
     }
 
-    /**
-     * Create entries for today.
-     */
     public function today(): static
     {
         return $this->state([
             'date' => Carbon::today()->toDateString(),
-            'time' => Carbon::now(),
+            'timestamp' => Carbon::now(),
         ]);
     }
 
-    /**
-     * Create entries for a specific date.
-     */
     public function forDate(Carbon $date): static
     {
         return $this->state([
             'date' => $date->toDateString(),
-            'time' => $date->copy()->setTime(
-                $this->faker->numberBetween(8, 18),
-                $this->faker->randomElement([0, 15, 30, 45])
+            'timestamp' => $date->copy()->setTime(
+                (int) $this->faker->numberBetween(8, 18),
+                (int) $this->faker->randomElement([0, 15, 30, 45]),
+                0
             ),
         ]);
     }
 
-    /**
-     * Create entries with notes.
-     */
     public function withNotes(): static
     {
         return $this->state([
@@ -188,9 +162,6 @@ class WorkHourFactory extends Factory
         ]);
     }
 
-    /**
-     * Create entries with badge ID.
-     */
     public function withBadge(): static
     {
         return $this->state([

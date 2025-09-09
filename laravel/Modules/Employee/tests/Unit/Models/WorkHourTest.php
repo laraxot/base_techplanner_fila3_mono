@@ -13,6 +13,8 @@ use Carbon\Carbon;
 
 uses(TestCase::class, RefreshDatabase::class);
 
+uses(TestCase::class, RefreshDatabase::class);
+
 beforeEach(function () {
     $this->employee = Employee::factory()->create();
     $this->workHour = WorkHour::factory()->create([
@@ -29,6 +31,8 @@ test('work hour can be created', function () {
 test('work hour has fillable attributes', function () {
     $fillable = $this->workHour->getFillable();
     
+
+    
     expect($fillable)->toContain('employee_id');
     expect($fillable)->toContain('type');
     expect($fillable)->toContain('timestamp');
@@ -40,6 +44,8 @@ test('work hour has fillable attributes', function () {
 test('work hour has casts defined', function () {
     $casts = $this->workHour->getCasts();
     
+
+    
     expect($casts)->toHaveKey('created_at');
     expect($casts)->toHaveKey('updated_at');
     expect($casts)->toHaveKey('timestamp');
@@ -48,6 +54,8 @@ test('work hour has casts defined', function () {
 });
 
 test('work hour has proper table name', function () {
+    expect($this->workHour->getTable())->toBe('time_entries');
+    expect($this->workHour->getTable())->toBe('work_hours');
     expect($this->workHour->getTable())->toBe('time_entries');
 });
 
@@ -62,6 +70,8 @@ test('work hour can be filtered by type', function () {
         'timestamp' => now(),
     ]);
     
+
+    
     $clockOut = WorkHour::factory()->create([
         'employee_id' => $this->employee->id,
         'type' => WorkHour::TYPE_CLOCK_OUT,
@@ -74,6 +84,15 @@ test('work hour can be filtered by type', function () {
     expect($clockIns)->toHaveCount(1);
     expect($clockIns->first()->id)->toBe($clockIn->id);
     
+
+    
+    $clockIns = WorkHour::ofType(WorkHour::TYPE_CLOCK_IN)->get();
+    $clockOuts = WorkHour::ofType(WorkHour::TYPE_CLOCK_OUT)->get();
+    
+    expect($clockIns)->toHaveCount(1);
+    expect($clockIns->first()->id)->toBe($clockIn->id);
+
+    
     expect($clockOuts)->toHaveCount(1);
     expect($clockOuts->first()->id)->toBe($clockOut->id);
 });
@@ -82,15 +101,25 @@ test('work hour can be filtered by date', function () {
     $today = now();
     $yesterday = now()->subDay();
     
+
+    
     $todayWorkHour = WorkHour::factory()->create([
         'employee_id' => $this->employee->id,
         'timestamp' => $today,
     ]);
     
+
+    
     $yesterdayWorkHour = WorkHour::factory()->create([
         'employee_id' => $this->employee->id,
         'timestamp' => $yesterday,
     ]);
+    
+    $todayWorkHours = WorkHour::forDate($today)->get();
+    
+
+    $todayWorkHours = WorkHour::forDate($today)->get();
+
     
     $todayWorkHours = WorkHour::forDate($today)->get();
     
@@ -106,6 +135,14 @@ test('work hour can be filtered by employee', function () {
     
     $employee1WorkHours = WorkHour::forEmployee($this->employee->id)->get();
     
+
+    
+    $workHour1 = WorkHour::factory()->create(['employee_id' => $this->employee->id]);
+    $workHour2 = WorkHour::factory()->create(['employee_id' => $employee2->id]);
+    
+    $employee1WorkHours = WorkHour::forEmployee($this->employee->id)->get();
+
+    
     expect($employee1WorkHours)->toHaveCount(1);
     expect($employee1WorkHours->first()->id)->toBe($workHour1->id);
 });
@@ -120,6 +157,8 @@ test('work hour can get formatted time attributes', function () {
         'timestamp' => Carbon::create(2024, 1, 15, 9, 30, 0),
     ]);
     
+
+    
     expect($workHour->formatted_time)->toBe('09:30:00');
     expect($workHour->formatted_date)->toBe('15/01/2024');
     expect($workHour->formatted_date_time)->toBe('15/01/2024 09:30:00');
@@ -132,11 +171,19 @@ test('work hour can calculate worked hours', function () {
         'timestamp' => now()->subHours(8),
     ]);
     
+
+    
     $clockOut = WorkHour::factory()->create([
         'employee_id' => $this->employee->id,
         'type' => WorkHour::TYPE_CLOCK_OUT,
         'timestamp' => now(),
     ]);
+    
+    $workedHours = WorkHour::calculateWorkedHours($this->employee->id);
+    
+
+    $workedHours = WorkHour::calculateWorkedHours($this->employee->id);
+
     
     $workedHours = WorkHour::calculateWorkedHours($this->employee->id);
     
@@ -152,6 +199,12 @@ test('work hour can get current status', function () {
     
     $status = WorkHour::getCurrentStatus($this->employee->id);
     
+
+    $status = WorkHour::getCurrentStatus($this->employee->id);
+
+    
+    $status = WorkHour::getCurrentStatus($this->employee->id);
+    
     expect($status)->toBe('clocked_in');
 });
 
@@ -164,21 +217,37 @@ test('work hour validates next entry type', function () {
     
     $isValid = WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_OUT);
     
+
+    $isValid = WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_OUT);
+
+    
+    $isValid = WorkHour::isValidNextEntry($this->employee->id, WorkHour::TYPE_CLOCK_OUT);
+    
     expect($isValid)->toBeTrue();
 });
 
 test('work hour can get today entries', function () {
     $today = now();
     
+
+    
     $workHour1 = WorkHour::factory()->create([
         'employee_id' => $this->employee->id,
         'timestamp' => $today->copy()->setTime(9, 0),
     ]);
     
+
+    
     $workHour2 = WorkHour::factory()->create([
         'employee_id' => $this->employee->id,
         'timestamp' => $today->copy()->setTime(17, 0),
     ]);
+    
+    $todayEntries = WorkHour::getTodayEntries($this->employee->id, $today);
+    
+
+    $todayEntries = WorkHour::getTodayEntries($this->employee->id, $today);
+
     
     $todayEntries = WorkHour::getTodayEntries($this->employee->id, $today);
     

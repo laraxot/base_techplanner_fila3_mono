@@ -59,6 +59,9 @@ php artisan migrate
 
 ### 7. Installare i Moduli
 ```bash
+=======
+
+=======
 
 # Installare Laravel Modules
 composer require nwidart/laravel-modules
@@ -135,6 +138,9 @@ La documentazione completa è disponibile nella directory `docs/`:
 
 ### Comandi Utili
 ```bash
+=======
+
+=======
 
 # Creare un nuovo modulo
 php artisan module:make NomeModulo
@@ -167,11 +173,15 @@ Questo progetto è sotto licenza MIT. Vedere il file [LICENSE](LICENSE) per i de
 
  b0f37c83 (.)
 
+=======
+=======
 
  b7907077 (.)
 
 
  b1ca4c93 (Squashed 'bashscripts/' changes from c21599d..019cc70)
+=======
+=======
 
 # 🚀 BashScripts Power Tools
  80ec88ee9 (.
@@ -249,6 +259,9 @@ php artisan migrate
 
 ### 7. Install Modules
 ```bash
+=======
+
+=======
 
 # Install Laravel Modules
 composer require nwidart/laravel-modules
@@ -325,6 +338,9 @@ Complete documentation is available in the `docs/` directory:
 
 ### Useful Commands
 ```bash
+=======
+
+=======
 
 # Create a new module
 php artisan module:make ModuleName
@@ -459,12 +475,17 @@ Questo progetto è distribuito sotto la licenza MIT. Vedi il file `LICENSE` per 
 
 
  4bd5ca8f (.)
+=======
+=======
 
  b0f37c83 (.)
 
 
  b7907077 (.)
 
+=======
+
+=======
 
 # 📣 Enhance Your App with the Fila3 Notify Module! 🚀
 
@@ -554,6 +575,9 @@ Discover more of my work at marco76tv!
  b1ca4c93 (Squashed 'bashscripts/' changes from c21599d..019cc70)
  80ec88ee9 (.)
 
+=======
+
+=======
 
 # Bash Scripts
 
@@ -634,6 +658,9 @@ Script per i test:
 
 ### 1. Esecuzione degli Script
 ```bash
+=======
+
+=======
 
 # Rendere lo script eseguibile
 chmod +x script.sh

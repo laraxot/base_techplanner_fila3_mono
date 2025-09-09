@@ -165,7 +165,7 @@ where zone_polygon IS NOT NULL
         if (null === $address) {
             return null;
         }
-        if (isJson($address)) {
+        if (is_string($address) && isJson($address)) {
             $geo = GeoData::from(json_decode((string) $address, true, 512, JSON_THROW_ON_ERROR));
             $latlng = $geo->latlng;
             $lat = $latlng['lat'];

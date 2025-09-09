@@ -9,7 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class LegalOfficesRelationManager extends XotBaseRelationManager
 {
@@ -22,30 +22,30 @@ class LegalOfficesRelationManager extends XotBaseRelationManager
     public function getFormSchema(): array
     {
         return [
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('street_address')
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('street_number')
-                    ->maxLength(10),
-                Forms\Components\TextInput::make('city')
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('province')
-                    ->maxLength(2),
-                Forms\Components\TextInput::make('postal_code')
-                    ->maxLength(5),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(20),
-                Forms\Components\TextInput::make('fax')
-                    ->maxLength(20),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('notes')
-                    ->maxLength(65535),
-            ];
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(100),
+            Forms\Components\TextInput::make('street_address')
+                ->maxLength(100),
+            Forms\Components\TextInput::make('street_number')
+                ->maxLength(10),
+            Forms\Components\TextInput::make('city')
+                ->maxLength(100),
+            Forms\Components\TextInput::make('province')
+                ->maxLength(2),
+            Forms\Components\TextInput::make('postal_code')
+                ->maxLength(5),
+            Forms\Components\TextInput::make('phone')
+                ->tel()
+                ->maxLength(20),
+            Forms\Components\TextInput::make('fax')
+                ->maxLength(20),
+            Forms\Components\TextInput::make('email')
+                ->email()
+                ->maxLength(255),
+            Forms\Components\Textarea::make('notes')
+                ->maxLength(65535),
+        ];
     }
 
     public function table(Table $table): Table

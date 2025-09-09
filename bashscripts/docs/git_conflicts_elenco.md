@@ -1,3 +1,11 @@
+# Elenco File con Marcatori di Conflitto Git (">>>>>>>")
+
+Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git (">>>>>>>") che devono essere controllati e risolti.
+=======
+# Elenco File con Marcatori di Conflitto Git 
+
+Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
+=======
 # Elenco File con Marcatori di Conflitto Git 
 
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
@@ -5,6 +13,10 @@ Questo file contiene l'elenco di tutti i file che contengono marcatori di confli
 ## File con Marcatori di Conflitto
 
 ### ✅ File Documentazione (NON sono conflitti reali)
+I seguenti file contengono ">>>>>>>" come parte di documentazione o esempi, NON come conflitti reali:
+=======
+I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
+=======
 I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
 
 - `bashscripts/utils/resolve_conflicts.sh` - Documentazione script
@@ -47,6 +59,10 @@ I seguenti file potrebbero contenere conflitti reali che necessitano di attenzio
 
 ## Note
 
+- **Totale file con ">>>>>>>" markers: 21**
+=======
+- **Totale file con  markers: 21**
+=======
 - **Totale file con  markers: 21**
 - **File con conflitti reali potenziali: 0** ✅ TUTTI VERIFICATI
 - **File di documentazione/esempi: 21** ✅ TUTTI VERIFICATI
@@ -62,6 +78,9 @@ I seguenti file potrebbero contenere conflitti reali che necessitano di attenzio
 
 🎉 **TUTTI I FILE SONO STATI VERIFICATI E NESSUN CONFLITTO GIT REALE È STATO TROVATO**
 
+Tutti i 21 file che contengono la stringa ">>>>>>>" sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
+=======
+=======
 Tutti i 21 file che contengono la stringa  sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
 
 ---

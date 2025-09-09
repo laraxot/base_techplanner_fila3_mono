@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-use Modules\Xot\States\Transitions\XotBaseTransition;
-use Modules\Xot\Contracts\UserContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Xot\Contracts\UserContract;
+use Modules\Xot\States\Transitions\XotBaseTransition;
 
 uses(RefreshDatabase::class);
 
 describe('XotBaseTransition', function () {
     beforeEach(function () {
         // Create a concrete test transition class
-        $this->transition = new class extends XotBaseTransition {
+        $this->transition = new class extends XotBaseTransition
+        {
             public static string $name = 'test_transition';
-            
+
             public function getNotificationRecipients(): array
             {
                 return [
@@ -22,7 +23,7 @@ describe('XotBaseTransition', function () {
                     'null_user' => null,
                 ];
             }
-            
+
             public function sendRecipientNotification(?UserContract $recipient): void
             {
                 // Mock implementation
@@ -30,36 +31,38 @@ describe('XotBaseTransition', function () {
         };
 
         // Create a test record
-        $this->record = new class extends Model implements UserContract {
+        $this->record = new class extends Model implements UserContract
+        {
             protected $table = 'test_users';
+
             protected $fillable = ['name', 'email'];
-            
+
             // Implement UserContract methods as needed
             public function getAuthIdentifierName(): string
             {
                 return 'id';
             }
-            
+
             public function getAuthIdentifier(): mixed
             {
                 return $this->id;
             }
-            
+
             public function getAuthPassword(): string
             {
                 return '';
             }
-            
+
             public function getRememberToken(): ?string
             {
                 return null;
             }
-            
+
             public function setRememberToken($value): void
             {
                 // Mock implementation
             }
-            
+
             public function getRememberTokenName(): string
             {
                 return 'remember_token';
@@ -83,7 +86,7 @@ describe('XotBaseTransition', function () {
 
     it('can get record', function () {
         $record = $this->transition->getRecord();
-        
+
         expect($record)->toBe($this->record);
     });
 
@@ -102,7 +105,7 @@ describe('XotBaseTransition', function () {
 
     it('returns correct notification recipients structure', function () {
         $recipients = $this->transition->getNotificationRecipients();
-        
+
         expect($recipients)->toBeArray()
             ->and($recipients)->toHaveKey('test_user')
             ->and($recipients)->toHaveKey('null_user')
@@ -127,26 +130,48 @@ describe('XotBaseTransition', function () {
 
     it('processes recipients correctly in sendNotifications', function () {
         // Mock recipients with mixed types
-        $transition = new class extends XotBaseTransition {
+        $transition = new class extends XotBaseTransition
+        {
             public static string $name = 'test_mixed_transition';
-            
+
             public function getNotificationRecipients(): array
             {
                 return [
-                    'valid_user' => new class extends Model implements UserContract {
+                    'valid_user' => new class extends Model implements UserContract
+                    {
                         protected $table = 'test_users';
-                        
-                        public function getAuthIdentifierName(): string { return 'id'; }
-                        public function getAuthIdentifier(): mixed { return 1; }
-                        public function getAuthPassword(): string { return ''; }
-                        public function getRememberToken(): ?string { return null; }
-                        public function setRememberToken($value): void { }
-                        public function getRememberTokenName(): string { return 'remember_token'; }
+
+                        public function getAuthIdentifierName(): string
+                        {
+                            return 'id';
+                        }
+
+                        public function getAuthIdentifier(): mixed
+                        {
+                            return 1;
+                        }
+
+                        public function getAuthPassword(): string
+                        {
+                            return '';
+                        }
+
+                        public function getRememberToken(): ?string
+                        {
+                            return null;
+                        }
+
+                        public function setRememberToken($value): void {}
+
+                        public function getRememberTokenName(): string
+                        {
+                            return 'remember_token';
+                        }
                     },
                     'null_user' => null,
                 ];
             }
-            
+
             public function sendRecipientNotification(?UserContract $recipient): void
             {
                 // Mock implementation
@@ -159,7 +184,7 @@ describe('XotBaseTransition', function () {
 
     it('validates abstract class structure', function () {
         $reflection = new ReflectionClass(XotBaseTransition::class);
-        
+
         expect($reflection->isAbstract())->toBeTrue()
             ->and($reflection->hasMethod('sendNotifications'))->toBeTrue()
             ->and($reflection->hasMethod('getRecord'))->toBeTrue();
@@ -167,12 +192,12 @@ describe('XotBaseTransition', function () {
 
     it('has proper method signatures', function () {
         $reflection = new ReflectionClass(XotBaseTransition::class);
-        
+
         // Check sendNotifications method
         $sendMethod = $reflection->getMethod('sendNotifications');
         expect($sendMethod->isPublic())->toBeTrue()
             ->and($sendMethod->getReturnType()?->getName())->toBe('void');
-        
+
         // Check getRecord method
         $getRecordMethod = $reflection->getMethod('getRecord');
         expect($getRecordMethod->isPublic())->toBeTrue();
@@ -180,7 +205,7 @@ describe('XotBaseTransition', function () {
 
     it('handles type checking correctly', function () {
         $recipients = $this->transition->getNotificationRecipients();
-        
+
         foreach ($recipients as $recipient) {
             if ($recipient !== null) {
                 expect($recipient instanceof UserContract || $recipient instanceof Model)->toBeTrue();
@@ -191,7 +216,7 @@ describe('XotBaseTransition', function () {
     it('has proper documentation', function () {
         $reflection = new ReflectionClass(XotBaseTransition::class);
         $method = $reflection->getMethod('sendNotifications');
-        
+
         expect($method->isPublic())->toBeTrue();
     });
 

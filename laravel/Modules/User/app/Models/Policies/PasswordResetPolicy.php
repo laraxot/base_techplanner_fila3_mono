@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\PasswordReset;
+use Modules\Xot\Contracts\UserContract;
 
 class PasswordResetPolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class PasswordResetPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, PasswordReset $passwordReset): bool
     {
-        return $user->hasPermissionTo('password-reset.view') || 
+        return $user->hasPermissionTo('password-reset.view') ||
                $user->email === $passwordReset->email ||
                $user->hasRole('super-admin');
     }
@@ -40,7 +40,7 @@ class PasswordResetPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, PasswordReset $passwordReset): bool
     {
-        return $user->hasPermissionTo('password-reset.update') || 
+        return $user->hasPermissionTo('password-reset.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -49,7 +49,7 @@ class PasswordResetPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, PasswordReset $passwordReset): bool
     {
-        return $user->hasPermissionTo('password-reset.delete') || 
+        return $user->hasPermissionTo('password-reset.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -58,7 +58,7 @@ class PasswordResetPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, PasswordReset $passwordReset): bool
     {
-        return $user->hasPermissionTo('password-reset.restore') || 
+        return $user->hasPermissionTo('password-reset.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -67,7 +67,7 @@ class PasswordResetPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, PasswordReset $passwordReset): bool
     {
-        return $user->hasPermissionTo('password-reset.force-delete') || 
+        return $user->hasPermissionTo('password-reset.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

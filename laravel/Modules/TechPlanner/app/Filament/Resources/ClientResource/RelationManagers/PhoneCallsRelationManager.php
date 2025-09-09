@@ -9,7 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\TechPlanner\Filament\Resources\PhoneCallResource;
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class PhoneCallsRelationManager extends XotBaseRelationManager
 {

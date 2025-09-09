@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Filament\Resources\Pages;
 
 use Filament\Resources\Pages\ListRecords as FilamentListRecords;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -26,6 +27,11 @@ use Webmozart\Assert\Assert;
 abstract class XotBaseListRecords extends FilamentListRecords
 {
     use HasXotTable;
+
+    public static function route(string $path): PageRegistration
+    {
+        return parent::route($path);
+    }
 
     /*
      * Get the table columns.

@@ -6,6 +6,9 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
+        "build:analyze": "vite build --mode analyze",
+        "build:production": "vite build --mode production",
+=======
         "preview": "vite preview",
         "copy": "cp -r ./resources/dist/* ../../../public_html/themes/Sixteen/"
     },

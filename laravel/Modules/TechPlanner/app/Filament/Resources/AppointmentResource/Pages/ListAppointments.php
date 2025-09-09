@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 
 use Filament\Actions;
@@ -38,7 +40,7 @@ class ListAppointments extends XotBaseListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            'create' => Actions\CreateAction::make(),
         ];
     }
 }

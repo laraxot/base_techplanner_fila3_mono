@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Gdpr\Providers;
 
 use Illuminate\Routing\Router;
+use Modules\Gdpr\Datas\GdprData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Actions\Module\GetModulePathByGeneratorAction;
 
@@ -27,7 +28,10 @@ class GdprServiceProvider extends XotBaseServiceProvider
 
     public function registerMyMiddleware(Router $router): void
     {
-        $router->pushMiddlewareToGroup('web', \Statikbe\CookieConsent\CookieConsentMiddleware::class);
+        $gdpr=GdprData::make();
+        if($gdpr->cookie_banner_enabled){
+            $router->pushMiddlewareToGroup('web', \Statikbe\CookieConsent\CookieConsentMiddleware::class);
+        }
     }
 
     public function register(): void

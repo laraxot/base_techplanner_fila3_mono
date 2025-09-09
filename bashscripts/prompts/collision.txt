@@ -1,15 +1,43 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 42ab2308 (.)
 =======
 =======
 <<<<<<< HEAD
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 # Guida per la Risoluzione dei Conflitti Git - Laraxot
 
 ## Obiettivo
 Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale approfondita, aggiornamento della documentazione e implementazione di soluzioni coerenti con l'architettura Laraxot.
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+=======
+=======
+>>>>>>> 42ab2308 (.)
 =======
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
@@ -32,6 +60,15 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> 9c02579 (.)
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 
 ## Principi Fondamentali
 - **Analisi manuale obbligatoria**: Ogni conflitto deve essere analizzato e risolto manualmente
@@ -40,11 +77,33 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 - **Documentazione completa**: Aggiornare sempre la documentazione correlata
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+- **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+<<<<<<< HEAD
 - **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+- **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
+>>>>>>> e9356a3a (.)
+=======
+- **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 574afe9e (.)
+>>>>>>> 42ab2308 (.)
 
 ## Workflow Sistematico
 
@@ -53,15 +112,46 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 # Trova tutti i file con conflitti Git
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+<<<<<<< HEAD
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista dettagliata dei conflitti
 git diff --name-only --diff-filter=U
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> 42ab2308 (.)
 =======
 
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 ```
 
 **Criteri di priorità:**
@@ -89,13 +179,35 @@ Per ogni file conflittuale:
 - Impatto sulla funzionalità esistente
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 - Compatibilità con l'architettura Laraxot
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+<<<<<<< HEAD
+- Compatibilità con l'architettura Laraxot
+=======
+=======
+- Compatibilità con l'architettura Laraxot
+=======
+>>>>>>> 42ab2308 (.)
 - Compatibilità con l'architettura del progetto
 >>>>>>> 3c18aa7e (.)
 =======
 - Compatibilità con l'architettura del progetto
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+- Compatibilità con l'architettura Laraxot
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 - Effetti sui moduli dipendenti
 
 ### 3. Risoluzione del Conflitto
@@ -107,11 +219,33 @@ Per ogni file conflittuale:
 - Controllare documentazione PHPDoc
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+- Utilizzare `declare(strict_types=1);`
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+<<<<<<< HEAD
 - Utilizzare `declare(strict_types=1);`
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+- Utilizzare `declare(strict_types=1);`
+>>>>>>> e9356a3a (.)
+=======
+- Utilizzare `declare(strict_types=1);`
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 574afe9e (.)
+>>>>>>> 42ab2308 (.)
 
 **Per file Markdown (.md):**
 - Mantenere entrambe le versioni quando possibile
@@ -119,11 +253,33 @@ Per ogni file conflittuale:
 - Preservare i backlink esistenti
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+- Rispettare convenzioni naming (minuscolo)
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+<<<<<<< HEAD
 - Rispettare convenzioni naming (minuscolo)
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+- Rispettare convenzioni naming (minuscolo)
+>>>>>>> e9356a3a (.)
+=======
+- Rispettare convenzioni naming (minuscolo)
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 574afe9e (.)
+>>>>>>> 42ab2308 (.)
 
 **Per file di configurazione:**
 - Privilegiare le configurazioni più recenti
@@ -236,10 +392,32 @@ Al termine del processo, fornire:
 # Trova file con conflitti Git
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+<<<<<<< HEAD
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista file con conflitti per tipo
 git diff --name-only --diff-filter=U
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> 42ab2308 (.)
 =======
 
 
@@ -250,6 +428,15 @@ git diff --name-only --diff-filter=U
 
 # Lista file con conflitti per tipo
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 ```
 
 ### Verifica PHPStan
@@ -340,6 +527,19 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 - **PHPStan**: Mirare sempre al livello 10 per tutto il codice PHP
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+<<<<<<< HEAD
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
 - **Documentation Naming**: Tutti i file e cartelle in docs/ in minuscolo (eccetto README.md)
 
 ## Regole Critiche per Progetti Laraxot
@@ -366,6 +566,15 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 - **Sostenibilità**: Prevenire debito tecnico e mantenere longevità del codice
 - **Trasparenza**: Documentare ogni decisione tecnica importante
 - **Responsabilità**: Rispettare i confini e le responsabilità dei moduli
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> 42ab2308 (.)
 =======
 =======
 >>>>>>> 574afe9e (.)
@@ -377,3 +586,12 @@ Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’al
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)

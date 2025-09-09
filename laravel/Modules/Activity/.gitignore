@@ -52,6 +52,7 @@ Homestead.json
 *.old
 *.old1
 *.backup
+*.backup.*
 
 # Documentation and cache
 docs/phpstan/

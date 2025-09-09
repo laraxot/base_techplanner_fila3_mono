@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\UI\Tests\Unit\Enums;
 
-use Tests\TestCase;
-use Modules\UI\Enums\TableLayoutEnum;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
+use Modules\UI\Enums\TableLayoutEnum;
+use Tests\TestCase;
 
 class TableLayoutEnumTest extends TestCase
 {
@@ -176,4 +176,4 @@ class TableLayoutEnumTest extends TestCase
         $this->assertNotEmpty($listIcon);
         $this->assertNotEmpty($gridIcon);
     }
-} 
+}

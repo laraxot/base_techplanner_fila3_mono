@@ -88,8 +88,7 @@ class ListMedia extends XotBaseListRecords
                     static fn ($record) => response()->download($record->getPath(), $record->file_name)
                 ),
             'convert' => Action::make('convert')
-                
-                ->icon('convert01')
+                ->icon('media-convert')
                 ->color('gray')
                 ->url(
                     function ($record): string {

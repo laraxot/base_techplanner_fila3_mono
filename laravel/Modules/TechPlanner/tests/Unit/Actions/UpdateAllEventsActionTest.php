@@ -28,6 +28,12 @@ class UpdateAllEventsActionTest extends TestCase
         
         $this->action = new UpdateAllEventsAction();
         
+
+        $this->action = new UpdateAllEventsAction;
+
+        
+        $this->action = new UpdateAllEventsAction();
+        
         // Disabilita le code per i test
         Queue::fake();
     }

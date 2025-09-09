@@ -51,6 +51,9 @@ php artisan migrate
 
 ### 7. Installare i Moduli
 ```bash
+=======
+
+=======
 
 # Installare Laravel Modules
 composer require nwidart/laravel-modules
@@ -127,6 +130,9 @@ La documentazione completa è disponibile nella directory `docs/`:
 
 ### Comandi Utili
 ```bash
+=======
+
+=======
 
 # Creare un nuovo modulo
 php artisan module:make NomeModulo
@@ -175,6 +181,9 @@ Questo toolkit affronta queste sfide fornendo strumenti automatizzati che sempli
 
 ## Traduzioni
 - [English](../../README.md)
+=======
+
+=======
 
 # 🚀 Toolkit di Automazione Git
 
@@ -229,6 +238,9 @@ php artisan migrate
 
 ### 7. Installare i Moduli
 ```bash
+=======
+
+=======
 
 # Installare Laravel Modules
 composer require nwidart/laravel-modules
@@ -305,6 +317,9 @@ La documentazione completa è disponibile nella directory `docs/`:
 
 ### Comandi Utili
 ```bash
+=======
+
+=======
 
 # Creare un nuovo modulo
 php artisan module:make NomeModulo
@@ -354,3 +369,6 @@ Questo toolkit affronta queste sfide fornendo strumenti automatizzati che sempli
 ## Traduzioni
 - [English](../../README.md)
 
+- [Español](README.es.md) 
+=======
+=======

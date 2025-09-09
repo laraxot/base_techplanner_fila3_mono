@@ -23,6 +23,7 @@ cache/
 # Backup files
 *.old
 *.old1
+*.old2
 *.backup
 *.bak
 
@@ -31,3 +32,6 @@ docs/phpstan/
 
 # Other
 
+# Standard ignores (auto)
+*.bakcup
+*.backup.*

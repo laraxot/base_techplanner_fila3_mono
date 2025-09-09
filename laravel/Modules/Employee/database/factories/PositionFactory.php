@@ -15,9 +15,9 @@ class PositionFactory extends Factory
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var class-string<\Modules\Employee\Models\Position>
      */
-    protected $model = Position::class;
+    protected $model = \Modules\Employee\Models\Position::class;
 
     /**
      * Define the model's default state.
@@ -29,8 +29,9 @@ class PositionFactory extends Factory
         return [
             'title' => $this->faker->unique()->jobTitle(),
             'description' => $this->faker->optional()->sentence(),
-            'level' => $this->faker->randomElement(['entry', 'junior', 'senior', 'lead', 'manager', 'director', 'executive']),
-            'status' => $this->faker->randomElement(['attivo', 'inattivo']),
+            'department' => $this->faker->randomElement(['HR', 'IT', 'Sales', 'Marketing', 'Finance', 'Operations']),
+            'level' => $this->faker->numberBetween(1, 10),
+            'is_active' => $this->faker->boolean(80), // 80% chance of being active
         ];
     }
 
@@ -42,7 +43,7 @@ class PositionFactory extends Factory
     public function active(): static
     {
         return $this->state(fn (array $attributes) => [
-            'status' => 'attivo',
+            'is_active' => true,
         ]);
     }
 
@@ -54,7 +55,7 @@ class PositionFactory extends Factory
     public function inactive(): static
     {
         return $this->state(fn (array $attributes) => [
-            'status' => 'inattivo',
+            'is_active' => false,
         ]);
     }
 
@@ -74,10 +75,10 @@ class PositionFactory extends Factory
     /**
      * Set a specific level.
      *
-     * @param string $level
+     * @param int $level
      * @return static
      */
-    public function withLevel(string $level): static
+    public function withLevel(int $level): static
     {
         return $this->state(fn (array $attributes) => [
             'level' => $level,

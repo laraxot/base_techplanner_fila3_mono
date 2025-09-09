@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
- * @property-read \Modules\SaluteOra\Models\User|null $user
+ * @property-read \Modules\User\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin query()
@@ -55,10 +55,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int|null $current_team_id
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \Modules\SaluteOra\States\User\UserState|null $state
+ * @property string|null $state
  * @property array<array-key, mixed>|null $moderation_data
  * @property string|null $lang
- * @property \Modules\SaluteOra\Enums\UserTypeEnum|null $type
+ * @property string|null $type
  * @property bool $is_active
  * @property bool $is_otp
  * @property \Illuminate\Support\Carbon|null $password_expires_at
@@ -86,15 +86,15 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property-read int|null $owned_teams_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Permission> $permissions
  * @property-read int|null $permissions_count
- * @property-read \Modules\SaluteOra\Models\Profile|null $profile
+ * @property-read \Modules\Xot\Contracts\ProfileContract|null $profile
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Role> $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\SocialiteUser> $socialiteUsers
  * @property-read int|null $socialite_users_count
- * @property-read \Modules\SaluteOra\Models\AdminStudio|\Modules\SaluteOra\Models\AdminTeam|null $pivot
+ * @property-read mixed|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team> $teams
  * @property-read int|null $teams_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Studio> $tenants
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, mixed> $tenants
  * @property-read int|null $tenants_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
  * @property-read int|null $tokens_count
@@ -174,12 +174,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereNationality($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereYearsInItaly($value)
  * @property string|null $age_range
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Appointment> $appointments
- * @property-read int|null $appointments_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Report> $reports
- * @property-read int|null $reports_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Studio> $studios
- * @property-read int|null $studios_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereAgeRange($value)
  * @mixin IdeHelperAdmin
  * @mixin \Eloquent
@@ -187,7 +181,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class Admin extends User
 {
     use HasParent;
-
 
     /**
      * Gli attributi che sono mass assignable.
@@ -214,6 +207,4 @@ class Admin extends User
             //'availability' => 'array',
         ]);
     }
-
-    
 }

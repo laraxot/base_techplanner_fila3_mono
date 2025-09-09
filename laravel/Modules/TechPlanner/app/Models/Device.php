@@ -26,6 +26,52 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Carbon\Carbon|null $deleted_at
  * @property Client $client
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\TechPlanner\Models\DeviceVerification[] $verifications
+ * @property int|null $appointment_id
+ * @property string|null $name
+ * @property string|null $status
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property string|null $deleted_by
+ * @property string|null $type
+ * @property string|null $kv
+ * @property string|null $ma
+ * @property string|null $serial_number
+ * @property string|null $inventory_number
+ * @property string|null $purchase_date
+ * @property string|null $warranty_expiration
+ * @property-read \Modules\TechPlanner\Models\Profile|null $creator
+ * @property-read \Modules\TechPlanner\Models\DeviceVerification|null $latest_verification
+ * @property-read bool $needs_verification
+ * @property-read \Modules\TechPlanner\Models\Profile|null $updater
+ * @property-read int|null $verifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereAppointmentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereBrand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereClientId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereFirstVerificationDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereHeadsetSerial($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereInventoryNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereKv($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereMa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereModel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device wherePurchaseDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereSerialNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereTubeSerial($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Device whereWarrantyExpiration($value)
+ * @mixin \Eloquent
  */
 class Device extends BaseModel
 {

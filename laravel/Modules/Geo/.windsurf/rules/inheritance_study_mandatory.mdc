@@ -1,0 +1,52 @@
+# Regola Obbligatoria: Studio Classe Base Prima di Estendere
+
+## Ambito
+- Globale (tutti i moduli e classi)
+
+## Motivazione
+- Evitare duplicazioni trait e metodi
+- Rispettare principio DRY
+- Prevenire warning e conflitti
+- Mantenere catena ereditarietà pulita
+
+## Regola
+Prima di aggiungere qualsiasi trait o metodo a una classe che estende un'altra:
+1. LEGGERE completamente la classe base
+2. VERIFICARE tutti i trait già inclusi  
+3. CONTROLLARE tutti i metodi già implementati
+4. NON duplicare mai trait o metodi esistenti
+
+## Esempio pratico
+```php
+// ❌ ERRORE - Non studiare BaseModel
+class County extends BaseModel
+{
+    use HasFactory;  // BaseModel già lo ha!
+}
+
+// ✅ CORRETTO - Studiare BaseModel prima
+// BaseModel ha già HasFactory, quindi:
+class County extends BaseModel
+{
+    // NIENTE trait duplicati
+}
+```
+
+## Anti-pattern
+- Aggiungere trait senza verificare classe base
+- Implementare newFactory() quando BaseModel ha già HasFactory
+- Duplicare SoftDeletes, BelongsToTenant, etc.
+- Non leggere documentazione classe base
+
+## Controlli
+- Script per verificare duplicazioni trait
+- PHPStan rules per rilevare override
+- Code review obbligatoria per estensioni
+- Documentazione catena ereditarietà
+
+## Collegamenti
+- [inheritance_chain_critical_rules.md](mdc:../../docs/inheritance_chain_critical_rules.md)
+- [DRY principles](mdc:../../docs/dry_principles.md)
+
+## Ultimo aggiornamento
+2025-01-06

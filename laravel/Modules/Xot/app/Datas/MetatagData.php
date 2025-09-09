@@ -435,6 +435,16 @@ class MetatagData extends Data implements Wireable
         }
     }
 
+    public function getFaviconBySize(string $size, string $format): string
+    {
+        $xot=XotData::make();
+        //return app(AssetAction::class)->execute($this->favicon, $size, $format);
+        $file='favicon-'.$size.'.'.$format;
+
+        $res= $xot->getPubThemePublicAsset($file);
+        return $res;
+    }
+
     /**
      * @deprecated Use getThemeColors() instead as it better reflects the semantic purpose
      */
@@ -627,4 +637,81 @@ class MetatagData extends Data implements Wireable
         return file_get_contents($path);
 
     }
+
+    public function getDescription(int $limit=160): string
+    {
+        return TenantService::trans('metatag.description');
+    }
+
+    public function getKeywords(): string
+    {
+        return TenantService::trans('metatag.keywords');
+    }
+
+    public function getAuthor(): string
+    {
+        return TenantService::trans('metatag.author');
+    }
+
+    public function getSitename(): string
+    {
+        return TenantService::trans('metatag.sitename');
+    }
+    
+    public function getRobots(): string
+    {
+        return 'index, follow';
+    }
+
+    public function getType(): string
+    {
+        return 'website';
+    }
+
+
+
+    public function getCanonical(): string
+    {
+        return url()->current();
+    }
+    
+    
+    public function getImage(): string
+    {
+        return asset('images/logo.png');
+    }
+    
+    public function getLocale(): string
+    {
+        return app()->getLocale();
+    }
+
+    public function getCurrentUrl(): string
+    {
+        return url()->current();
+    }
+    
+    public function getSiteWebmanifest(): string
+    {
+        $xot=XotData::make();
+        
+        $file='site.webmanifest';
+
+        $res= $xot->getPubThemePublicAsset($file);
+        return $res;
+    }
+
+    public function getPubThemeAsset(string $file): string
+    {
+        $xot=XotData::make();
+        $res= $xot->getPubThemePublicAsset($file);
+        return $res;
+    }
+
+    public function getPubTheme(): string
+    {
+        $xot=XotData::make();
+        return $xot->pub_theme;
+    }
+    
 }

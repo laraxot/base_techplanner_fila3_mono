@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Models\Policies;
 
-use Modules\Activity\Models\StoredEvent;
 use Modules\Xot\Contracts\UserContract;
+use Modules\Activity\Models\StoredEvent;
+use Modules\User\Models\Policies\UserBasePolicy;
 
-class StoredEventPolicy extends ActivityBasePolicy
+class StoredEventPolicy extends UserBasePolicy
 {
     /**
      * Determine whether the user can view any models.

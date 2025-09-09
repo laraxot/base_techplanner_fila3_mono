@@ -40,7 +40,7 @@ class ViewDevice extends XotBaseViewRecord
                     Components\TextEntry::make('notes')
                         ->label('Notes')
                         ->markdown(),
-                ])
+                ]),
         ];
     }
 

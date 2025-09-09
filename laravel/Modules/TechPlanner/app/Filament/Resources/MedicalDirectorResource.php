@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
+use Filament\Forms;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\TechPlanner\Filament\Resources\MedicalDirectorResource\Pages;
 use Modules\TechPlanner\Models\MedicalDirector;
 use Modules\Xot\Filament\Resources\XotBaseResource;
-use Filament\Forms;
 
 class MedicalDirectorResource extends XotBaseResource
 {

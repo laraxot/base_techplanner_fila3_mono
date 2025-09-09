@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Modules\Notify\Models\NotificationTemplateVersion;
-use Modules\Notify\Models\NotificationTemplate;
-use PHPUnit\Framework\TestCase;
 use Mockery;
+use Modules\Notify\Models\NotificationTemplate;
+use Modules\Notify\Models\NotificationTemplateVersion;
+use PHPUnit\Framework\TestCase;
 
 class NotificationTemplateVersionTest extends TestCase
 {
@@ -20,8 +20,8 @@ class NotificationTemplateVersionTest extends TestCase
     /** @test */
     public function it_extends_base_model(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertInstanceOf(\Modules\Notify\Models\BaseModel::class, $version);
     }
 
@@ -30,7 +30,7 @@ class NotificationTemplateVersionTest extends TestCase
     {
         $reflection = new \ReflectionClass(NotificationTemplateVersion::class);
         $traits = $reflection->getTraitNames();
-        
+
         $this->assertContains('Modules\Xot\Traits\Updater', $traits);
     }
 
@@ -42,13 +42,13 @@ class NotificationTemplateVersionTest extends TestCase
             'variables', 'conditions', 'version', 'created_by', 'change_notes',
         ];
 
-        $this->assertEquals($expectedFillable, (new NotificationTemplateVersion())->getFillable());
+        $this->assertEquals($expectedFillable, (new NotificationTemplateVersion)->getFillable());
     }
 
     /** @test */
     public function it_has_correct_casts(): void
     {
-        $version = new NotificationTemplateVersion();
+        $version = new NotificationTemplateVersion;
         $casts = $version->getCasts();
 
         $this->assertIsArray($casts);
@@ -60,54 +60,54 @@ class NotificationTemplateVersionTest extends TestCase
     /** @test */
     public function it_has_template_relationship(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertTrue(method_exists($version, 'template'));
     }
 
     /** @test */
     public function it_has_restore_method(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertTrue(method_exists($version, 'restore'));
     }
 
     /** @test */
     public function restore_method_returns_notification_template(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertTrue(method_exists($version, 'restore'));
-        
+
         // Verifica che il metodo restituisca NotificationTemplate
         $reflection = new \ReflectionMethod($version, 'restore');
         $returnType = $reflection->getReturnType();
-        
+
         $this->assertEquals(NotificationTemplate::class, $returnType->getName());
     }
 
     /** @test */
     public function it_has_table_name(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertEquals('notification_template_versions', $version->getTable());
     }
 
     /** @test */
     public function it_has_primary_key(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertEquals('id', $version->getKeyName());
     }
 
     /** @test */
     public function it_uses_timestamps(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertTrue($version->usesTimestamps());
     }
 
@@ -116,7 +116,7 @@ class NotificationTemplateVersionTest extends TestCase
     {
         $reflection = new \ReflectionClass(NotificationTemplateVersion::class);
         $traits = $reflection->getTraitNames();
-        
+
         $this->assertContains('Illuminate\Database\Eloquent\Concerns\HasUuids', $traits);
     }
 
@@ -125,7 +125,7 @@ class NotificationTemplateVersionTest extends TestCase
     {
         $reflection = new \ReflectionClass(NotificationTemplateVersion::class);
         $traits = $reflection->getTraitNames();
-        
+
         $this->assertContains('Modules\Xot\Traits\HasFactory', $traits);
     }
 
@@ -134,15 +134,15 @@ class NotificationTemplateVersionTest extends TestCase
     {
         $reflection = new \ReflectionClass(NotificationTemplateVersion::class);
         $traits = $reflection->getTraitNames();
-        
+
         $this->assertContains('Spatie\MediaLibrary\HasMedia', $traits);
     }
 
     /** @test */
     public function it_has_creator_and_updater_relationships(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertTrue(method_exists($version, 'creator'));
         $this->assertTrue(method_exists($version, 'updater'));
     }
@@ -150,8 +150,8 @@ class NotificationTemplateVersionTest extends TestCase
     /** @test */
     public function it_has_media_relationship(): void
     {
-        $version = new NotificationTemplateVersion();
-        
+        $version = new NotificationTemplateVersion;
+
         $this->assertTrue(method_exists($version, 'media'));
     }
 }

@@ -33,23 +33,17 @@ class ViewDevice extends XotBaseViewRecord
                     Grid::make(2)
                         ->schema([
                             TextEntry::make('name')
-                                ->label('Nome')
-                                ->searchable(),
+                                ->label('Nome'),
                             TextEntry::make('serial_number')
-                                ->label('Numero Seriale')
-                                ->searchable(),
+                                ->label('Numero Seriale'),
                             TextEntry::make('model')
-                                ->label('Modello')
-                                ->searchable(),
+                                ->label('Modello'),
                             TextEntry::make('manufacturer')
-                                ->label('Produttore')
-                                ->searchable(),
+                                ->label('Produttore'),
                             TextEntry::make('type')
-                                ->label('Tipo')
-                                ->searchable(),
+                                ->label('Tipo'),
                             TextEntry::make('status')
-                                ->label('Stato')
-                                ->searchable(),
+                                ->label('Stato'),
                         ]),
                 ])
                 ->collapsible(),

@@ -1,3 +1,5 @@
+# Tema Sixteen - Bootstrap Italia per Laravel/Tailwind
+=======
 # Tema Sixteen - Documentazione Completa
 
 ## Panoramica
@@ -246,6 +248,8 @@ Section::make('Dati Personali')
 ## Personalizzazione
 
 ### Variabili CSS Custom
+### Tipografia PA Compliant
+=======
 ```css
 :root {
     --sixteen-primary: #0066cc;

@@ -6,6 +6,8 @@ namespace Modules\TechPlanner\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Geo\Models\Traits\GeographicalScopes;
+use function Safe\preg_replace;
+use function Safe\preg_match;
 
 /**
  * Class Client.
@@ -21,6 +23,79 @@ use Modules\Geo\Models\Traits\GeographicalScopes;
  * @property string|null $country
  * @property string|null $phone
  * @property string|null $email
+ * @property bool $business_closed
+ * @property string|null $competent_health_unit
+ * @property string|null $tax_code
+ * @property string|null $company_name
+ * @property string|null $company_office
+ * @property string|null $street_number
+ * @property string|null $fax
+ * @property string|null $mobile
+ * @property string|null $pec
+ * @property string|null $whatsapp
+ * @property string|null $notes
+ * @property string|null $activity
+ * @property float|null $latitude
+ * @property float|null $longitude
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property string|null $deleted_at
+ * @property string|null $deleted_by
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\Appointment> $appointments
+ * @property-read int|null $appointments_count
+ * @property-read \Modules\TechPlanner\Models\Profile|null $creator
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\Device> $devices
+ * @property-read int|null $devices_count
+ * @property-read string $contacts_html
+ * @property-read string $full_address
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\LegalOffice> $legalOffices
+ * @property-read int|null $legal_offices_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\LegalRepresentative> $legalRepresentatives
+ * @property-read int|null $legal_representatives_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\MedicalDirector> $medicalDirectors
+ * @property-read int|null $medical_directors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\PhoneCall> $phoneCalls
+ * @property-read int|null $phone_calls_count
+ * @property-read \Modules\TechPlanner\Models\Profile|null $updater
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client orderByDistance(float $latitude, float $longitude)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereActivity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereBusinessClosed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCompanyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCompanyOffice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCompetentHealthUnit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereFax($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereFiscalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client wherePec($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client wherePostalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereProvince($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereStreetNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereTaxCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereVatNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereWhatsapp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client withDistance(float $latitude, float $longitude)
+ * @mixin \Eloquent
  */
 class Client extends BaseModel
 {
@@ -37,25 +112,29 @@ class Client extends BaseModel
         'country',
         'phone',
         'email',
-        // ----------
-        'business_closed',                // cessato
-        'company_name',               // ditta
-        'competent_health_unit', // az_ulss_competente
-        'tax_code',              // cf
-        'vat_number',            // partita_iva
-        'address',               // indirizzo
-        'province',              // provincia
-        'postal_code',           // cap
-        'phone',                 // telefono
-        'fax',                   // fax
-        'mobile',                // cellulare
-        'email',                 // email
+        // Additional fields from business context
+        'business_closed',
+        'company_name',
+        'competent_health_unit',
+        'tax_code',
+        'fax',
+        'mobile',
         'pec',
         'whatsapp',
-        'notes',                 // note
-        'activity',              // attivita
+        'notes',
+        'activity',
         'longitude',
         'latitude',
+        // Geographical components
+        'route',
+        'street_number',
+        'administrative_area_level_1',
+        'administrative_area_level_2',
+        'administrative_area_level_3',
+        'locality',
+        'sublocality',
+        'sublocality_level_1',
+        'sublocality_level_2',
     ];
 
     public function getFullAddressAttribute(?string $value): string

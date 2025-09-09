@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Livewire;
 
 use Carbon\Carbon;
-use Livewire\Component;
-use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Models\Employee;
 use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Enums\WorkHourStatusEnum;
 
 class TimeClock extends Component
 {
@@ -19,22 +22,24 @@ class TimeClock extends Component
     public string $nextAction = '';
     public string $currentStatus = '';
     public ?WorkHour $lastEntry = null;
-    public $todayEntries = [];
+    /** @var array<int, array{time:string,type:string}> */
+    public array $todayEntries = [];
     public float $workedHours = 0.0;
     public string $notes = '';
 
+    /** @var array<string, string> */
     protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function mount(?int $employeeId = null): void
     {
-        $this->employee = $employeeId 
-            ? Employee::find($employeeId) 
-            : (Auth::user()->employee ?? null);
+        $employee = $employeeId ? Employee::find($employeeId) : (Auth::user()->employee ?? null);
+        $this->employee = $employee instanceof Employee ? $employee : null;
+
         $this->updateTimeAndStatus();
         $this->loadTodayData();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('employee::livewire.time-clock');
     }
@@ -46,67 +51,42 @@ class TimeClock extends Component
 
     public function clockAction(): void
     {
-        if (!$this->employee) {
+        if (! $this->employee) {
             $this->showNotification('Error', 'Employee not found', 'danger');
             return;
         }
 
         try {
-            // Validate working hours (6 AM to 10 PM)
             $now = Carbon::now();
             if ($now->hour < 6 || $now->hour > 22) {
-                $this->showNotification(
-                    'Outside Working Hours',
-                    'Time clock is only available between 6:00 AM and 10:00 PM',
-                    'warning'
-                );
+                $this->showNotification('Outside Working Hours', 'Time clock is only available between 6:00 AM and 10:00 PM', 'warning');
                 return;
             }
 
-            // Check if the next action is valid
-            if (!WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
-                $this->showNotification(
-                    'Invalid Action',
-                    'This action is not valid based on your current status',
-                    'danger'
-                );
+            if (! WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
+                $this->showNotification('Invalid Action', 'This action is not valid based on your current status', 'danger');
                 return;
             }
 
-            // Create the work hour entry
             WorkHour::create([
                 'employee_id' => $this->employee->id,
                 'badge_id' => $this->employee->employee_code,
                 'timestamp' => $now,
                 'type' => $this->nextAction,
-                'notes' => $this->notes ?: null,
+                'notes' => $this->notes !== '' ? $this->notes : null,
                 'status' => 'pending',
             ]);
 
-            // Clear notes after successful entry
             $this->notes = '';
 
-            // Show success notification
             $actionLabel = $this->getActionLabel($this->nextAction);
-            $this->showNotification(
-                'Success',
-                "Successfully recorded: {$actionLabel}",
-                'success'
-            );
+            $this->showNotification('Success', "Successfully recorded: {$actionLabel}", 'success');
 
-            // Refresh data
             $this->updateTimeAndStatus();
             $this->loadTodayData();
-
-            // Emit event to refresh other components
             $this->dispatch('workHourRecorded');
-
-        } catch (\Exception $e) {
-            $this->showNotification(
-                'Error',
-                'Failed to record time entry: ' . $e->getMessage(),
-                'danger'
-            );
+        } catch (\Throwable $e) {
+            $this->showNotification('Error', 'Failed to record time entry: '.$e->getMessage(), 'danger');
         }
     }
 
@@ -124,17 +104,29 @@ class TimeClock extends Component
 
         if ($this->employee) {
             $this->lastEntry = WorkHour::getLastEntryForEmployee($this->employee->id);
-            $this->nextAction = WorkHour::getNextAction($this->employee->id);
-            $this->currentStatus = WorkHour::getCurrentStatus($this->employee->id);
+            $this->nextAction = (string) WorkHour::getNextAction($this->employee->id);
+            $this->currentStatus = (string) WorkHour::getCurrentStatus($this->employee->id);
+            $this->workedHours = (float) WorkHour::calculateWorkedHours($this->employee->id);
         }
     }
 
     private function loadTodayData(): void
     {
-        if ($this->employee) {
-            $this->todayEntries = WorkHour::getTodayEntries($this->employee->id)->toArray();
-            $this->workedHours = WorkHour::calculateWorkedHours($this->employee->id);
+        if (! $this->employee) {
+            $this->todayEntries = [];
+            return;
         }
+
+        $entries = WorkHour::getTodayEntries($this->employee->id);
+        /** @var array<int, array{time:string,type:string}> */
+        $mappedEntries = $entries->map(function (WorkHour $entry): array {
+            return [
+                'time' => $entry->timestamp->format('H:i'),
+                'type' => (string) $entry->type,
+            ];
+        })->toArray();
+        /** @var array<int, array{time:string,type:string}> $mappedEntries */
+        $this->todayEntries = array_values($mappedEntries);
     }
 
     private function showNotification(string $title, string $body, string $type): void
@@ -149,10 +141,10 @@ class TimeClock extends Component
     public function getActionLabel(string $action): string
     {
         return match ($action) {
-            WorkHour::TYPE_CLOCK_IN => 'Clock In',
-            WorkHour::TYPE_CLOCK_OUT => 'Clock Out',
-            WorkHour::TYPE_BREAK_START => 'Start Break',
-            WorkHour::TYPE_BREAK_END => 'End Break',
+            WorkHourTypeEnum::CLOCK_IN->value => 'Clock In',
+            WorkHourTypeEnum::CLOCK_OUT->value => 'Clock Out',
+            WorkHourTypeEnum::BREAK_START->value => 'Start Break',
+            WorkHourTypeEnum::BREAK_END->value => 'End Break',
             default => $action,
         };
     }
@@ -182,10 +174,10 @@ class TimeClock extends Component
     public function getActionButtonColor(): string
     {
         return match ($this->nextAction) {
-            WorkHour::TYPE_CLOCK_IN => 'success',
-            WorkHour::TYPE_CLOCK_OUT => 'danger',
-            WorkHour::TYPE_BREAK_START => 'warning',
-            WorkHour::TYPE_BREAK_END => 'info',
+            WorkHourTypeEnum::CLOCK_IN->value => 'success',
+            WorkHourTypeEnum::CLOCK_OUT->value => 'danger',
+            WorkHourTypeEnum::BREAK_START->value => 'warning',
+            WorkHourTypeEnum::BREAK_END->value => 'info',
             default => 'primary',
         };
     }
@@ -193,10 +185,10 @@ class TimeClock extends Component
     public function getActionButtonIcon(): string
     {
         return match ($this->nextAction) {
-            WorkHour::TYPE_CLOCK_IN => 'heroicon-o-play',
-            WorkHour::TYPE_CLOCK_OUT => 'heroicon-o-stop',
-            WorkHour::TYPE_BREAK_START => 'heroicon-o-pause',
-            WorkHour::TYPE_BREAK_END => 'heroicon-o-play',
+            WorkHourTypeEnum::CLOCK_IN->value => 'heroicon-o-play',
+            WorkHourTypeEnum::CLOCK_OUT->value => 'heroicon-o-stop',
+            WorkHourTypeEnum::BREAK_START->value => 'heroicon-o-pause',
+            WorkHourTypeEnum::BREAK_END->value => 'heroicon-o-play',
             default => 'heroicon-o-clock',
         };
     }
@@ -209,10 +201,10 @@ class TimeClock extends Component
     public function formatEntryType(string $type): string
     {
         return match ($type) {
-            WorkHour::TYPE_CLOCK_IN => 'Clock In',
-            WorkHour::TYPE_CLOCK_OUT => 'Clock Out',
-            WorkHour::TYPE_BREAK_START => 'Break Start',
-            WorkHour::TYPE_BREAK_END => 'Break End',
+            WorkHourTypeEnum::CLOCK_IN->value => 'Clock In',
+            WorkHourTypeEnum::CLOCK_OUT->value => 'Clock Out',
+            WorkHourTypeEnum::BREAK_START->value => 'Break Start',
+            WorkHourTypeEnum::BREAK_END->value => 'Break End',
             default => $type,
         };
     }
@@ -220,10 +212,10 @@ class TimeClock extends Component
     public function getEntryTypeColor(string $type): string
     {
         return match ($type) {
-            WorkHour::TYPE_CLOCK_IN => 'success',
-            WorkHour::TYPE_CLOCK_OUT => 'danger',
-            WorkHour::TYPE_BREAK_START => 'warning',
-            WorkHour::TYPE_BREAK_END => 'info',
+            WorkHourTypeEnum::CLOCK_IN->value => 'success',
+            WorkHourTypeEnum::CLOCK_OUT->value => 'danger',
+            WorkHourTypeEnum::BREAK_START->value => 'warning',
+            WorkHourTypeEnum::BREAK_END->value => 'info',
             default => 'gray',
         };
     }

@@ -34,17 +34,46 @@ class EditWorkHour extends XotBaseEditRecord
         
         // Skip validation if no changes to critical fields
         if (
+            $currentRecord instanceof WorkHour &&
             $currentRecord->employee_id === $data['employee_id'] &&
             $currentRecord->type === $data['type'] &&
-            $currentRecord->timestamp->eq(Carbon::parse($data['timestamp']))
+            $currentRecord->timestamp->eq(Carbon::parse((string) ($data['timestamp'] ?? '')))
+        ) {
+            return;
+        }
+
+        // Ensure we have a WorkHour record
+        if (! ($currentRecord instanceof WorkHour)) {
+            throw new \InvalidArgumentException('Expected WorkHour record');
+        }
+
+        // Validate and cast form data
+        $timestampValue = $data['timestamp'] ?? null;
+        if (! is_string($timestampValue) && ! ($timestampValue instanceof \DateTimeInterface)) {
+            throw new \InvalidArgumentException('Invalid timestamp format');
+        }
+
+        $employeeIdValue = $data['employee_id'] ?? null;
+        if (! is_numeric($employeeIdValue)) {
+            throw new \InvalidArgumentException('Invalid employee ID');
+        }
+        $employeeId = (int) $employeeIdValue;
+
+        $newTimestamp = Carbon::parse(is_string($timestampValue) ? $timestampValue : $timestampValue->format('Y-m-d H:i:s'));
+
+        
+        // Skip validation if no changes to critical fields
+        if (
+            $currentRecord->employee_id === $data['employee_id'] &&
+            $currentRecord->type === $data['type'] &&
+            $currentRecord->timestamp->eq($newTimestamp)
         ) {
             return;
         }
 
         // Check for duplicate entries within the same minute (excluding current record)
-        $timestamp = Carbon::parse($data['timestamp']);
         $existingEntry = WorkHour::where('employee_id', $data['employee_id'])
-            ->where('timestamp', $timestamp)
+            ->where('timestamp', $newTimestamp)
             ->where('type', $data['type'])
             ->where('id', '!=', $currentRecord->id)
             ->first();
@@ -60,7 +89,7 @@ class EditWorkHour extends XotBaseEditRecord
         }
 
         // Validate working hours (6 AM to 10 PM)
-        if ($timestamp->hour < 6 || $timestamp->hour > 22) {
+        if ($newTimestamp->hour < 6 || $newTimestamp->hour > 22) {
             Notification::make()
                 ->title('Invalid Time')
                 ->body('Work hours must be between 6:00 AM and 10:00 PM.')

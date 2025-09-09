@@ -83,7 +83,7 @@ Questo documento riepiloga tutti i conflitti Git risolti e le regole implementat
 - **OBBLIGATORIO** controllare tutte le cartelle docs per file in minuscolo
 
 ### 3. Regole di Gestione Git
-- **MAI** lasciare marker `<<< HEAD` nei file
+- **MAI** lasciare marker git nei file
 - **OBBLIGATORIO** risolvere immediatamente tutti i conflitti
 - **OBBLIGATORIO** eliminare file binari con conflitti
 

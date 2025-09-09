@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
+use Illuminate\Database\Eloquent\Model;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 use Modules\TechPlanner\Models\Appointment;
 use Modules\Xot\Filament\Resources\XotBaseResource;
@@ -47,5 +48,20 @@ class AppointmentResource extends XotBaseResource
             'create' => Pages\CreateAppointment::route('/create'),
             'edit' => Pages\EditAppointment::route('/{record}/edit'),
         ];
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return true;
+    }
+
+    public static function canDetach(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return true;
     }
 }

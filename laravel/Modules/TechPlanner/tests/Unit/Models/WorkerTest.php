@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
@@ -19,14 +19,11 @@ use Tests\TestCase;
  */
 class WorkerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private Worker $worker;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
         $this->worker = Worker::factory()->create();
     }
 

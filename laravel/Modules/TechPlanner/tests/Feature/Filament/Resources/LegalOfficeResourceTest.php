@@ -19,6 +19,8 @@ class LegalOfficeResourceTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
+class LegalOfficeResourceTest extends TestCase
+{
     protected User $admin;
 
     protected function setUp(): void

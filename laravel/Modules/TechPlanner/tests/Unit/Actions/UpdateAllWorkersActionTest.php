@@ -28,6 +28,12 @@ class UpdateAllWorkersActionTest extends TestCase
         
         $this->action = new UpdateAllWorkersAction();
         
+
+        $this->action = new UpdateAllWorkersAction;
+
+        
+        $this->action = new UpdateAllWorkersAction();
+        
         // Disabilita le code per i test
         Queue::fake();
     }

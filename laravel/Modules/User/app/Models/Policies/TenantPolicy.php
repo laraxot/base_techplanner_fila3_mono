@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\Tenant;
+use Modules\Xot\Contracts\UserContract;
 
 class TenantPolicy extends UserBasePolicy
 {
@@ -22,7 +22,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, Tenant $tenant): bool
     {
-        return $user->hasPermissionTo('tenant.view') || 
+        return $user->hasPermissionTo('tenant.view') ||
                $user->tenants->contains($tenant->id) ||
                $user->hasRole('super-admin');
     }
@@ -40,7 +40,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, Tenant $tenant): bool
     {
-        return $user->hasPermissionTo('tenant.update') || 
+        return $user->hasPermissionTo('tenant.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -49,7 +49,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, Tenant $tenant): bool
     {
-        return $user->hasPermissionTo('tenant.delete') || 
+        return $user->hasPermissionTo('tenant.delete') ||
                $user->hasRole('super-admin');
     }
 
@@ -58,7 +58,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, Tenant $tenant): bool
     {
-        return $user->hasPermissionTo('tenant.restore') || 
+        return $user->hasPermissionTo('tenant.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -67,7 +67,7 @@ class TenantPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, Tenant $tenant): bool
     {
-        return $user->hasPermissionTo('tenant.force-delete') || 
+        return $user->hasPermissionTo('tenant.force-delete') ||
                $user->hasRole('super-admin');
     }
 }
