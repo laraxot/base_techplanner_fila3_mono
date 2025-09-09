@@ -344,4 +344,4 @@ class WorkHour extends BaseModel
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
-}
+        if (! $lastEntry) {
