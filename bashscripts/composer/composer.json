@@ -16,7 +16,17 @@
     },
     "require": {},
     "require-dev": {
+<<<<<<< HEAD
         "larastan/larastan": "^3.0"
+=======
+        "larastan/larastan": "*"
+=======
+        "larastan/larastan": "*"
+=======
+        "larastan/larastan": "^3.0"
+=======
+        "larastan/larastan": "*"
+>>>>>>> develop
     },
     "config": {
         "sort-packages": true,

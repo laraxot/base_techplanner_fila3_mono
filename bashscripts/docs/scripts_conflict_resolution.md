@@ -1,5 +1,10 @@
 # Risoluzione Conflitti negli Script Bash
 =======
+<<<<<<< HEAD
+=======
+# Script di Risoluzione dei Conflitti
+=======
+>>>>>>> develop
 # Script di Risoluzione dei Conflitti
 >>>>>>> f1e7ef1046 (.)
 
@@ -176,6 +181,7 @@ Verifica e corregge i problemi comuni di namespace nei file PHP, che sono spesso
 
 #### Descrizione
 Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 1. **Struttura principale**: Duplicazione dell'intero script, con marker di conflitto nidificati
@@ -183,6 +189,13 @@ Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
 >>>>>>> 04d882f8f6 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+1. **Struttura principale**: Duplicazione dell'intero script, con marker di conflitto nidificati
+2. **Messaggi di sistema**: Presenza di messaggi informativi sulla risoluzione del conflitto
+=======
+=======
+>>>>>>> develop
 
 ### sync_to_disk.sh
 
@@ -288,7 +301,12 @@ I seguenti file sono stati recentemente risolti:
 [Backlink: fix_all_git_conflicts.md](fix_all_git_conflicts.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -360,10 +378,16 @@ I seguenti file sono stati recentemente risolti:
 
 =======
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
+<<<<<<< HEAD
 >>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
 =======
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+=======
+>>>>>>> develop
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
 
 #### Utilizzo
@@ -509,6 +533,7 @@ Per pulire un repository con molti conflitti non risolti:
 - [Conflitti nei File di Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/config_file_conflicts.md)
 - [Convenzioni di Namespace](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/NAMESPACE-CONVENTIONS.md)
 - [Risoluzione Conflitti nei Moduli](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> 0c55086029 (.)
@@ -520,3 +545,11 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 >>>>>>> f1e7ef1046 (.)
 =======
 >>>>>>> f71d08e230 (.)
+=======
+=======
+=======
+Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](scripts-conflict-resolution.md) nella root del progetto. 
+=======
+=======
+=======
+>>>>>>> develop

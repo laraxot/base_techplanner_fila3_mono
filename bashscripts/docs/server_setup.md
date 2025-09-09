@@ -1,4 +1,10 @@
 =======
+<<<<<<< HEAD
+=======
+
+
+=======
+>>>>>>> develop
 
 
 >>>>>>> f71d08e230 (.)
@@ -25,6 +31,11 @@ Questo documento contiene la documentazione dettagliata dei comandi utilizzati p
 ### Verifica Requisiti
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Verifica versione PHP
@@ -89,6 +100,11 @@ sudo add-apt-repository ppa:ondrej/php
 ### Configurazione File .env
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Naviga nella directory del progetto
@@ -122,14 +138,22 @@ php artisan key:generate
   APP_NAME=<nome progetto>
  80ec88ee9 (.)
 =======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
+=======
+=======
+>>>>>>> develop
 =======
 
   APP_NAME=<nome progetto>
 
   APP_NAME=SaluteOra
  80ec88ee9 (.)
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop
   APP_ENV=local
   APP_DEBUG=true
   APP_URL=http://localhost
@@ -389,6 +413,11 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 ### Configurazione Tema Powerlevel10k
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Modifica il file ~/.zshrc
@@ -528,6 +557,11 @@ sudo apt-get install --install-recommends webmin usermin
 ### Aggiornamento Composer e Dipendenze
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Naviga nella directory del progetto
@@ -2095,12 +2129,20 @@ FLUSH PRIVILEGES;
 
 # Esci
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 mysql -u root -p
 CREATE DATABASE nome_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'nome_utente'@'localhost' IDENTIFIED BY 'password_sicura';
 GRANT ALL PRIVILEGES ON nome_database.* TO 'nome_utente'@'localhost';
 FLUSH PRIVILEGES;
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 ### Creazione Database SQLite
 ```bash
 
@@ -3491,7 +3533,11 @@ FLUSH PRIVILEGES;
 
 
 # Esci
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop
 EXIT;
 ```
 
@@ -3648,6 +3694,10 @@ php artisan migrate
 - Testare la connessione al database
 - Controllare la configurazione di PHP
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 - Sostituire `nome_database`, `nome_utente` e `password_sicura` con valori reali
 - Conservare le credenziali in modo sicuro
 
@@ -3659,6 +3709,10 @@ php artisan migrate
 - Monitorare costantemente le performance del server
 - Aggiornare regolarmente sistema e dipendenze
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 - Crea un nuovo database per il progetto Laravel
 - Configura un utente dedicato con i permessi necessari
 - Imposta il charset e la collation corretti
@@ -3862,7 +3916,11 @@ php artisan migrate
 - Verificare i permessi dei file
 - Testare la connessione al database
 - Controllare la configurazione di PHP
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop
 
 ## Conclusioni
 
@@ -3904,6 +3962,11 @@ sudo systemctl start redis-server
 ### Configurazione Redis
 ```ini
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # /etc/redis/redis.conf
@@ -3932,6 +3995,11 @@ maxmemory-policy allkeys-lru
 ### Configurazione Performance
 ```apache
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # /etc/apache2/mods-available/mpm_prefork.conf
@@ -3947,6 +4015,11 @@ maxmemory-policy allkeys-lru
 ### Gestione Moduli Apache
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Disabilita il modulo PHP 8.2
@@ -4183,6 +4256,22 @@ php artisan user:assign-module
 - Per rimuovere l'assegnazione di un modulo:
   ```
 
+<<<<<<< HEAD
+=======
+ 43df3e0 (.)
+aurmich/dev
+
+## Collegamenti tra versioni di server_setup.md
+* [server_setup.md](../../docs/server_setup.md)
+* [server_setup.md](server_setup.md)
+
+
+  ```
+=======
+=======
+ 43df3e0 (.)
+=======
+>>>>>>> develop
  43df3e0 (.)
 aurmich/dev
 

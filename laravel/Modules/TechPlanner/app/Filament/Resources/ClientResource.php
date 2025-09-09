@@ -30,27 +30,24 @@ class ClientResource extends XotBaseResource
             $client->update(['route'=>$client->address]);
         }
         return [
-            'business_closed' => TextInput::make('business_closed'),                // cessato
-            // 'name' => TextInput::make('name'),
-            'activity' => TextInput::make('activity'),              // attivita
-            'company_name' => TextInput::make('company_name')->required(),               // ditta
-            'tax_code' => TextInput::make('tax_code'),              // cf
+            'business_closed' => TextInput::make('business_closed'),
+            'activity' => TextInput::make('activity'),
+            'company_name' => TextInput::make('company_name')->required(),
+            'tax_code' => TextInput::make('tax_code'),
             'vat_number' => TextInput::make('vat_number')->nullable(),
             'fiscal_code' => TextInput::make('fiscal_code')->nullable(),
-            'street_address' => TextInput::make('address')->nullable(),
-            'street_number' => TextInput::make('street_number'),         // numero_civico
+            'address' => TextInput::make('address')->nullable(),
+            'street_address' => TextInput::make('street_address')->nullable(),
+            'street_number' => TextInput::make('street_number'),
             'city' => TextInput::make('city')->nullable(),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
             'country' => TextInput::make('country')->nullable(),
             //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
             'contacts' => ContactSection::make('contacts'),
-            // --------------------------------------
-            'competent_health_unit' => TextInput::make('competent_health_unit'), // az_ulss_competente
-            'company_office' => TextInput::make('company_office'),        // sede_ditta
-            'notes' => Textarea::make('notes'),                 // note
-            // 'longitude' => TextInput::make('longitude'),
-            // 'latitude' => TextInput::make('latitude'),
+            'competent_health_unit' => TextInput::make('competent_health_unit'),
+            'company_office' => TextInput::make('company_office'),
+            'notes' => Textarea::make('notes'),
         ];
     }
 

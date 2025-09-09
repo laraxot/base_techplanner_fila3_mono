@@ -14,6 +14,10 @@ use Modules\User\Models\User;
 
 class ClientResourceTest extends TestCase
 {
+    use RefreshDatabase, WithFaker;
+
+class ClientResourceTest extends TestCase
+{
     protected User $admin;
 
     protected function setUp(): void

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\User\Models\Policies;
 
-
+use Modules\User\Models\OauthAccessToken;
+use Modules\Xot\Contracts\UserContract;
 
 class OauthAccessTokenPolicy extends UserBasePolicy
 {
@@ -21,7 +22,7 @@ class OauthAccessTokenPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, OauthAccessToken $oauthAccessToken): bool
     {
-
+        return $user->hasPermissionTo('oauth-access-token.view') ||
                $user->id === $oauthAccessToken->user_id ||
                $user->hasRole('super-admin');
     }
@@ -39,7 +40,7 @@ class OauthAccessTokenPolicy extends UserBasePolicy
      */
     public function update(UserContract $user, OauthAccessToken $oauthAccessToken): bool
     {
-
+        return $user->hasPermissionTo('oauth-access-token.update') ||
                $user->hasRole('super-admin');
     }
 
@@ -48,7 +49,7 @@ class OauthAccessTokenPolicy extends UserBasePolicy
      */
     public function delete(UserContract $user, OauthAccessToken $oauthAccessToken): bool
     {
-
+        return $user->hasPermissionTo('oauth-access-token.delete') ||
                $user->id === $oauthAccessToken->user_id ||
                $user->hasRole('super-admin');
     }
@@ -58,7 +59,7 @@ class OauthAccessTokenPolicy extends UserBasePolicy
      */
     public function restore(UserContract $user, OauthAccessToken $oauthAccessToken): bool
     {
-
+        return $user->hasPermissionTo('oauth-access-token.restore') ||
                $user->hasRole('super-admin');
     }
 
@@ -67,7 +68,7 @@ class OauthAccessTokenPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, OauthAccessToken $oauthAccessToken): bool
     {
-
+        return $user->hasPermissionTo('oauth-access-token.force-delete') ||
                $user->hasRole('super-admin');
     }
 }

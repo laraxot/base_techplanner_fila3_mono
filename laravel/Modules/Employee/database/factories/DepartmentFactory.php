@@ -15,9 +15,9 @@ class DepartmentFactory extends Factory
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var class-string<\Modules\Employee\Models\Department>
      */
-    protected $model = Department::class;
+    protected $model = \Modules\Employee\Models\Department::class;
 
     /**
      * Define the model's default state.
@@ -29,7 +29,7 @@ class DepartmentFactory extends Factory
         return [
             'name' => $this->faker->unique()->word().' Department',
             'description' => $this->faker->optional()->sentence(),
-            'status' => $this->faker->randomElement(['attivo', 'inattivo']),
+            'is_active' => $this->faker->boolean(80), // 80% chance of being active
             'manager_id' => null, // Will be set when needed
         ];
     }
@@ -40,7 +40,7 @@ class DepartmentFactory extends Factory
     public function active(): static
     {
         return $this->state(fn (array $attributes) => [
-            'status' => 'attivo',
+            'is_active' => true,
         ]);
     }
 
@@ -50,7 +50,7 @@ class DepartmentFactory extends Factory
     public function inactive(): static
     {
         return $this->state(fn (array $attributes) => [
-            'status' => 'inattivo',
+            'is_active' => false,
         ]);
     }
 

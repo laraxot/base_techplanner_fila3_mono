@@ -57,6 +57,30 @@ log() {
         *) echo -e "[$timestamp] $message" | tee -a "$LOG_FILE" ;;
     esac
 }
+<<<<<<< HEAD
+=======
+
+# Versione semplice
+log() {
+    local message="$1"
+    echo "📆 $(date '+%Y-%m-%d %H:%M:%S') - $message" | tee -a "$LOG_FILE"
+}
+```
+
+**Soluzione ottimale**: Integrare entrambe le versioni mantenendo la compatibilità con il codice esistente.
+
+```bash
+# Funzione avanzata per loggare messaggi che supporta entrambi i formati
+log() {
+    # Supporta sia il formato avanzato con livelli che il formato semplice
+=======
+# Funzione di log avanzata: accetta sia log "message" che log "level" "message"
+log() {
+=======
+=======
+
+=======
+>>>>>>> develop
 
 # Versione semplice
 log() {
@@ -108,7 +132,11 @@ log() {
 # Funzione avanzata per loggare messaggi che supporta entrambi i formati
 log() {
     # Supporta sia il formato avanzato con livelli che il formato semplice
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+>>>>>>> develop
     if [ $# -eq 2 ]; then
         # Formato avanzato: log "level" "message"
         local level="$1"
@@ -135,7 +163,12 @@ log() {
 
 ```bash
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -163,15 +196,26 @@ BRANCH="$3"
 
 ```bash
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Versione che supporta 2 o 3 parametri
+<<<<<<< HEAD
 =======
 # Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
 >>>>>>> 04d882f8f6 (.)
 =======
 # Versione che supporta 2 o 3 parametri
 >>>>>>> f1e7ef1046 (.)
+=======
+# Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
+=======
+# Versione che supporta 2 o 3 parametri
+=======
+>>>>>>> develop
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     echo "Usage: $0 <path> <remote_repo> [branch]"
     exit 1

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\TechPlanner\Filament\Resources\LegalOfficeResource\Pages;
 
 use Filament\Actions;
@@ -13,7 +15,7 @@ class ListLegalOffices extends XotBaseListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            'create' => Actions\CreateAction::make(),
         ];
     }
 }

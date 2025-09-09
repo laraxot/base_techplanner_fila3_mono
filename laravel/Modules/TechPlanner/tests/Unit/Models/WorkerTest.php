@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
-use Modules\TechPlanner\Models\Appointment;
+
+use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\PhoneCall;
@@ -22,7 +23,6 @@ class WorkerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->worker = Worker::factory()->create();
     }
 

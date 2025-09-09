@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Employee\Models\BaseModel;
 
 /**
  * Class Position.
@@ -12,11 +13,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property string $title
  * @property string|null $description
- * @property string $level
- * @property string $status
+ * @property string|null $department
+ * @property int|null $level
+ * @property bool $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Employee\Models\Employee> $employees
+ * @property-read int|null $employees_count
  */
 class Position extends BaseModel
 {
@@ -28,8 +31,9 @@ class Position extends BaseModel
     protected $fillable = [
         'title',
         'description',
+        'department',
         'level',
-        'status',
+        'is_active',
     ];
 
     /**
@@ -40,54 +44,20 @@ class Position extends BaseModel
     protected function casts(): array
     {
         return [
+            'level' => 'integer',
+            'is_active' => 'boolean',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
     }
 
     /**
-     * Get the employees for this position.
+     * Get the employees for the position.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\Employee\Models\Employee>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function employees(): HasMany
     {
         return $this->hasMany(Employee::class);
-    }
-
-    /**
-     * Scope a query to only include active positions.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
-     * @return \Illuminate\Database\Eloquent\Builder<static>
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('status', 'attivo');
-    }
-
-    /**
-     * Check if the position is active.
-     */
-    public function isActive(): bool
-    {
-        return $this->status === 'attivo';
-    }
-
-    /**
-     * Get the position level as a human-readable string.
-     */
-    public function getLevelLabelAttribute(): string
-    {
-        return match ($this->level) {
-            'entry' => 'Entry Level',
-            'junior' => 'Junior',
-            'senior' => 'Senior',
-            'lead' => 'Lead',
-            'manager' => 'Manager',
-            'director' => 'Director',
-            'executive' => 'Executive',
-            default => ucfirst($this->level),
-        };
     }
 }

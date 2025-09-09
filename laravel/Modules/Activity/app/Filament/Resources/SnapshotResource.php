@@ -7,6 +7,7 @@ namespace Modules\Activity\Filament\Resources;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\TextInput;
 use Modules\Activity\Filament\Resources\SnapshotResource\Pages;
+use Filament\Resources\Pages\PageRegistration;
 use Modules\Activity\Models\Snapshot;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
@@ -38,6 +39,9 @@ class SnapshotResource extends XotBaseResource
         ];
     }
 
+    /**
+     * @return array<string, PageRegistration>
+     */
     public static function getPages(): array
     {
         return [

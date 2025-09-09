@@ -39,10 +39,32 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 - I namespace sono stati mantenuti corretti secondo la struttura del modulo
 - Sono stati rimossi solo i marcatori di conflitto, mantenendo il codice funzionale
 - I file di backup sono stati creati con il timestamp per sicurezza
+<<<<<<< HEAD
 
 ### Fase 1: Identificazione
 ```bash
 
+=======
+=======
+
+### Fase 1: Identificazione
+```bash
+=======
+### Fase 1: Identificazione
+```bash
+
+### Fase 1: Identificazione
+```bash
+
+### Fase 1: Identificazione
+```bash
+=======
+=======
+### Fase 1: Identificazione
+```bash
+=======
+=======
+>>>>>>> develop
 # Visualizzare tutti i file con conflitti
 git status
 
@@ -73,7 +95,17 @@ Per ogni file in conflitto:
 - `Modules\Predict\Providers` per i service provider
 - `Modules\Predict\Database\Factories` per le factory
 - `Modules\Predict\lang\it` per i file di traduzione
+<<<<<<< HEAD
 
+=======
+=======
+=======
+
+=======
+
+=======
+=======
+>>>>>>> develop
 ### Fase 3: Risoluzione
 Scegliere una delle seguenti strategie:
 
@@ -130,7 +162,18 @@ namespace Modules\NomeModulo\App\Filament;
 2. Eseguire `php artisan config:clear` per pulire la cache
 3. Verificare che tutte le risorse Filament siano registrate correttamente
 4. Testare il modulo in ambiente di sviluppo 
+<<<<<<< HEAD
 
+=======
+=======
+
+=======
+=======
+=======
+=======
+
+=======
+>>>>>>> develop
 ## Risoluzione di Casi Specifici
 
 ### Conflitti in File PHP

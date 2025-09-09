@@ -52,6 +52,11 @@ php artisan migrate
 ### 7. Installare i Moduli
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Installare Laravel Modules
@@ -130,6 +135,11 @@ La documentazione completa è disponibile nella directory `docs/`:
 ### Comandi Utili
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Creare un nuovo modulo
@@ -180,6 +190,11 @@ Questo toolkit affronta queste sfide fornendo strumenti automatizzati che sempli
 ## Traduzioni
 - [English](../../README.md)
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 🚀 Toolkit di Automazione Git
@@ -236,6 +251,11 @@ php artisan migrate
 ### 7. Installare i Moduli
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Installare Laravel Modules
@@ -314,6 +334,11 @@ La documentazione completa è disponibile nella directory `docs/`:
 ### Comandi Utili
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Creare un nuovo modulo
@@ -366,4 +391,8 @@ Questo toolkit affronta queste sfide fornendo strumenti automatizzati che sempli
 
 - [Español](README.es.md) 
 =======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop

@@ -42,8 +42,6 @@ parameters:
         # - ./Modules/Xot/app/Filament/Traits/HasXotTable.php
         - ./Modules/*/packages/*
         - ./Modules/*/tests/*
-        #- ./Modules/*/vendor/*
-        #- ./Modules/*/*.blade.php
 
     bootstrapFiles:
         # - ./phpstan_bootstrap.php

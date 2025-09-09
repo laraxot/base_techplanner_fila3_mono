@@ -14,6 +14,10 @@ use Modules\User\Models\User;
 
 class DeviceResourceTest extends TestCase
 {
+    use RefreshDatabase, WithFaker;
+
+class DeviceResourceTest extends TestCase
+{
     protected User $admin;
 
     protected function setUp(): void

@@ -65,4 +65,3 @@ class CachePolicy extends XotBasePolicy
         return $user->hasPermissionTo('cache.forceDelete');
     }
 }
-

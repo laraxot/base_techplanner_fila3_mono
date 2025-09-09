@@ -57,7 +57,12 @@ La soluzione ottimale è mantenere la versione che accetta 3 parametri, ma con g
 
 source ./bashscripts/lib/custom.sh
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -182,6 +187,11 @@ La soluzione ottimale è mantenere la versione che accetta 3 parametri, ma con g
 
 source ./bashscripts/lib/custom.sh
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Validate input
@@ -334,9 +344,14 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 ## Collegamenti tra versioni di git_subtree_conflicts.md
 * [risoluzione_conflitti_git.md](../../docs/risoluzione_conflitti_git.md)
 * [git_subtree_conflicts.md](git_subtree_conflicts.md)
+<<<<<<< HEAD
 >>>>>>> 04d882f8f6 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+>>>>>>> develop
 
 ## Problema
 
@@ -470,6 +485,13 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
 =======
 =======
+<<<<<<< HEAD
+=======
+5338a990 (.)
+=======
+5338a990 (.)
+=======
+>>>>>>> develop
 5338a990 (.)
 >>>>>>> 1831d11e78 (.)
 =======
@@ -739,14 +761,21 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
 =======
+<<<<<<< HEAD
 >>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
 =======
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop
 # Risoluzione dei Conflitti negli Script Git Subtree
 =======
 f000df5 (.)
 
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
+=======
+>>>>>>> develop
 
 ## Problema
 
@@ -879,10 +908,15 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
 =======
 
+<<<<<<< HEAD
 >>>>>>> 0c55086029 (.)
 =======
 >>>>>>> f000df5 (.)
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+>>>>>>> develop
 # Risoluzione dei Conflitti negli Script Git Subtree
 
 ## Problema
@@ -1015,6 +1049,7 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
 =======
+<<<<<<< HEAD
 >>>>>>> 4d4d6cb7 (.)
 =======
 =======
@@ -1035,3 +1070,18 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 >>>>>>> f1e7ef1046 (.)
 =======
 >>>>>>> f71d08e230 (.)
+=======
+=======
+=======
+- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
+=======
+3. **Segnalazioni agli sviluppatori**: Informare gli sviluppatori delle modifiche alla firma dei metodi
+=======
+- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md)
+- [Risoluzione Conflitti Git](../../docs/risoluzione_conflitti_git.md) 
+=======
+=======
+- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
+=======
+=======
+>>>>>>> develop

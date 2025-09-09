@@ -17,6 +17,10 @@ class LegalRepresentativeResourceTest extends TestCase
 {
     protected User $admin;
 
+class LegalRepresentativeResourceTest extends TestCase
+{
+
+    protected User $admin;
     protected LegalOffice $legalOffice;
 
     protected function setUp(): void
@@ -222,7 +226,15 @@ class LegalRepresentativeResourceTest extends TestCase
             'specializations' => json_encode(['civil', 'commercial']),
         ]);
         LegalRepresentative::factory()->create([
+            'specializations' => json_encode(['criminal', 'family'])
+            'specializations' => json_encode(['civil', 'commercial']),
+        ]);
+        LegalRepresentative::factory()->create([
             'specializations' => json_encode(['criminal', 'family']),
+            'specializations' => json_encode(['civil', 'commercial'])
+        ]);
+        LegalRepresentative::factory()->create([
+            'specializations' => json_encode(['criminal', 'family'])
         ]);
 
         Livewire::actingAs($this->admin)

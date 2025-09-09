@@ -51,6 +51,13 @@ login.blade.php (Layout AGID + Branding PA)
 - `x-pub_theme::layouts.guest` - Layout base per utenti non autenticati
 - `x-pub_theme::blocks.layout.container` - Container responsive
 - `x-pub_theme::blocks.layout.grid` - Sistema griglia
+<<<<<<< HEAD
+=======
+=======
+- `x-sixteen::layouts.guest` - Layout base per utenti non autenticati
+- `x-sixteen::blocks.layout.container` - Container responsive
+- `x-sixteen::blocks.layout.grid` - Sistema griglia
+>>>>>>> develop
 
 #### Form Components
 - `x-pub_theme::blocks.forms.input` - Input email e password
@@ -67,6 +74,15 @@ login.blade.php (Layout AGID + Branding PA)
 ```blade
 <x-pub_theme::layouts.guest>
     <x-pub_theme::blocks.layout.container>
+<<<<<<< HEAD
+=======
+        <!-- Header PA -->
+        <div class="text-center mb-8">
+            <x-pub_theme::ui.logo class="mx-auto h-16 w-auto" />
+=======
+<x-sixteen::layouts.guest>
+    <x-sixteen::blocks.layout.container>
+>>>>>>> develop
         <!-- Header PA -->
         <div class="text-center mb-8">
             <x-pub_theme::ui.logo class="mx-auto h-16 w-auto" />
@@ -80,6 +96,13 @@ login.blade.php (Layout AGID + Branding PA)
 
         <!-- Form Card -->
         <x-pub_theme::blocks.cards.card class="max-w-md mx-auto">
+<<<<<<< HEAD
+=======
+            @livewire(\Modules\User\Http\Livewire\Auth\Login::class)
+        </x-pub_theme::blocks.cards.card>
+=======
+        <x-sixteen::blocks.cards.card class="max-w-md mx-auto">
+>>>>>>> develop
             @livewire(\Modules\User\Http\Livewire\Auth\Login::class)
         </x-pub_theme::blocks.cards.card>
 
@@ -94,6 +117,12 @@ login.blade.php (Layout AGID + Branding PA)
         </div>
     </x-pub_theme::blocks.layout.container>
 </x-pub_theme::layouts.guest>
+<<<<<<< HEAD
+=======
+=======
+    </x-sixteen::blocks.layout.container>
+</x-sixteen::layouts.guest>
+>>>>>>> develop
 ```
 
 ## 🎨 Design System AGID
@@ -194,6 +223,11 @@ login.blade.php (Layout AGID + Branding PA)
 
 **Modifiche**:
 1. ✅ Sostituire layout con `x-pub_theme::layouts.guest`
+<<<<<<< HEAD
+=======
+=======
+1. ✅ Sostituire layout con `x-sixteen::layouts.guest`
+>>>>>>> develop
 2. ✅ Aggiungere header con branding PA
 3. ✅ Implementare struttura con componenti Sixteen
 4. ✅ Mantenere integrazione Livewire obbligatoria

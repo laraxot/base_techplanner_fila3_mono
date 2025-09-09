@@ -212,7 +212,13 @@ class AppointmentTest extends TestCase
         $appointmentId = $this->appointment->id;
 
         $this->appointment->delete();
+        
 
+        $this->appointment->delete();
+
+        
+        $this->appointment->delete();
+        
         $this->assertSoftDeleted('appointments', ['id' => $appointmentId]);
         $this->assertDatabaseMissing('appointments', ['id' => $appointmentId]);
     }
@@ -227,7 +233,16 @@ class AppointmentTest extends TestCase
 
         $restoredAppointment = Appointment::withTrashed()->find($appointmentId);
         $restoredAppointment->restore();
+        
 
+        
+        $this->appointment->delete();
+        $this->assertSoftDeleted('appointments', ['id' => $appointmentId]);
+        
+        $restoredAppointment = Appointment::withTrashed()->find($appointmentId);
+        $restoredAppointment->restore();
+
+        
         $this->assertDatabaseHas('appointments', ['id' => $appointmentId]);
         $this->assertNull($restoredAppointment->deleted_at);
     }

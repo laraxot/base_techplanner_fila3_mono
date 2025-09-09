@@ -72,6 +72,11 @@ Il tema Sixteen è progettato per garantire **accessibilità completa** seguendo
 <!-- Etichette ARIA per elementi interattivi -->
 <button aria-label="Chiudi finestra" aria-describedby="close-help">
     <x-pub_theme::icon.x />
+<<<<<<< HEAD
+=======
+=======
+    <x-sixteen::icon.x />
+>>>>>>> develop
 </button>
 ```
 

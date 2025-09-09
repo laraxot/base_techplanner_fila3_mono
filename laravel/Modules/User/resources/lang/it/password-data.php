@@ -9,6 +9,7 @@ return [
             'validation' => [
                 'required' => 'La password è obbligatoria',
                 'min' => 'La password deve essere di almeno 8 caratteri',
+                'max' => 'La password non può superare i 255 caratteri',
             ],
         ],
         'password_confirmation' => [
@@ -19,6 +20,7 @@ return [
                 'required' => 'La conferma della password è obbligatoria',
                 'min' => 'La password deve essere di almeno 8 caratteri',
                 'max' => 'La password non può superare i 255 caratteri',
+                'same' => 'Le password non coincidono',
             ],
         ],
     ],

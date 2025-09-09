@@ -8,7 +8,6 @@ namespace Modules\User\Tests\Unit\Widgets;
 
 use Modules\User\Models\Permission;
 use Modules\User\Models\Role;
-use Modules\User\Models\User;
 
 uses(Tests\TestCase::class);
 
@@ -68,12 +67,16 @@ test('permission can be updated', function (): void {
         'guard_name' => 'api',
     ]);
 
+    $this->permission->refresh();
+
     expect($this->permission->name)->toBe('updated-permission');
     expect($this->permission->guard_name)->toBe('api');
 });
 
 test('permission can be deleted', function (): void {
     $permissionId = $this->permission->id;
+
+    $this->permission->delete();
 
     expect(Permission::find($permissionId))->toBeNull();
 });
@@ -84,6 +87,8 @@ test('permission can be assigned to roles', function (): void {
         'guard_name' => 'web',
     ]);
 
+    $role->givePermissionTo($this->permission);
+
     expect($role->hasPermissionTo($this->permission))->toBeTrue();
     expect($this->permission->roles)->toHaveCount(1);
 });
@@ -91,6 +96,9 @@ test('permission can be assigned to roles', function (): void {
 test('permission can be assigned to multiple roles', function (): void {
     $role1 = Role::factory()->create(['name' => 'role-1']);
     $role2 = Role::factory()->create(['name' => 'role-2']);
+
+    $this->permission->assignRole($role1);
+    $this->permission->assignRole($role2);
 
     expect($this->permission->roles)->toHaveCount(2);
     expect($this->permission->hasRole($role1))->toBeTrue();
@@ -137,11 +145,18 @@ test('permission can be created with specific attributes', function (): void {
 test('permission can check if it has role', function (): void {
     $role = Role::factory()->create(['name' => 'test-role']);
 
+    expect($this->permission->hasRole($role))->toBeFalse();
+
+    $this->permission->assignRole($role);
+
     expect($this->permission->hasRole($role))->toBeTrue();
 });
 
 test('permission can check if it has any roles', function (): void {
     expect($this->permission->hasAnyRole([]))->toBeFalse();
+
+    $role = Role::factory()->create(['name' => 'test-role']);
+    $this->permission->assignRole($role);
 
     expect($this->permission->hasAnyRole([$role]))->toBeTrue();
 });
@@ -149,6 +164,8 @@ test('permission can check if it has any roles', function (): void {
 test('permission can check if it has all roles', function (): void {
     $role1 = Role::factory()->create(['name' => 'role-1']);
     $role2 = Role::factory()->create(['name' => 'role-2']);
+
+    $this->permission->syncRoles([$role1, $role2]);
 
     expect($this->permission->hasAllRoles([$role1, $role2]))->toBeTrue();
     expect($this->permission->hasAllRoles([$role1]))->toBeTrue();
@@ -158,6 +175,9 @@ test('permission can check if it has all roles', function (): void {
 test('permission can be revoked from role', function (): void {
     $role = Role::factory()->create(['name' => 'test-role']);
 
+    $this->permission->assignRole($role);
+    expect($this->permission->hasRole($role))->toBeTrue();
+
     $this->permission->removeRole($role);
     expect($this->permission->hasRole($role))->toBeFalse();
 });
@@ -166,6 +186,10 @@ test('permission can be synced with roles', function (): void {
     $role1 = Role::factory()->create(['name' => 'role-1']);
     $role2 = Role::factory()->create(['name' => 'role-2']);
     $role3 = Role::factory()->create(['name' => 'role-3']);
+
+    // Initially assign role1 and role2
+    $this->permission->syncRoles([$role1, $role2]);
+    expect($this->permission->roles)->toHaveCount(2);
 
     // Sync to only role2 and role3
     $this->permission->syncRoles([$role2, $role3]);

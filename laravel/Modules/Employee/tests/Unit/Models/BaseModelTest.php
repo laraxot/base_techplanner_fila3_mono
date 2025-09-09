@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Employee\Models\BaseModel;
 
 beforeEach(function () {
+    $this->baseModel = new class extends BaseModel {
+
+uses(TestCase::class, RefreshDatabase::class);
+
+beforeEach(function () {
     $this->baseModel = new class() extends BaseModel
     {
+    $this->baseModel = new class extends BaseModel {
         protected $table = 'test_employee_table';
     };
 });

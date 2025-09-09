@@ -1,6 +1,10 @@
 <?php
 
-
+use Illuminate\Support\Collection;
+use Modules\User\Contracts\TeamContract;
+use Modules\User\Models\Role;
+use Modules\User\Models\Team;
+use Modules\User\Models\User;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -175,6 +179,8 @@ test('it correctly manages team permissions', function () {
     // Test: Member with specific permission
     $this->user->teams()->attach($this->team->id, [
         'role' => 'editor',
+        'permissions' => json_encode(['edit-content' => true]),
+    ]);
 
     expect($this->user->hasTeamPermission($this->team, 'edit-content'))->toBeTrue()
         ->and($this->user->hasTeamPermission($this->team, 'delete-content'))->toBeFalse();
@@ -182,7 +188,7 @@ test('it correctly manages team permissions', function () {
 
 test('it handles edge cases', function () {
     // Test: User without ID
-
+    $newUser = new User;
     expect($newUser->belongsToTeams())->toBeFalse();
 
     // Test: Team without owner

@@ -1,0 +1,180 @@
+# Memoria: Violazioni di Modularità Identificate e Corrette
+
+## Contesto
+Durante l'audit del sistema SaluteOra, sono state identificate **violazioni critiche dei principi di modularità** che compromettono la riutilizzabilità dei moduli core in progetti diversi.
+
+## Violazioni Identificate
+
+### 1. Modulo Notify (CRITICO)
+**Problema**: 32+ occorrenze di stringhe hardcoded "saluteora" in test, factory, e componenti
+**Impatto**: Modulo non riutilizzabile in altri progetti
+**Stato**: Configurazione e helper creati, refactoring in corso
+
+**File contaminati**:
+- Test files: 7 file con 32+ occorrenze
+- Factory files: 1 file con 3 occorrenze  
+- Filament pages: 2 file con 3 occorrenze
+- Mail classes: 1 file con 1 occorrenza
+- Translation files: 2 file con 2 occorrenze
+
+### 2. Modulo UI (CRITICO)
+**Problema**: Dipendenze dirette su moduli SaluteOra e traduzioni hardcoded
+**Impatto**: Modulo non riutilizzabile in altri progetti
+**Stato**: Documentazione creata, ottimizzazioni pianificate
+
+**File contaminati**:
+- `SelectStateColumn.php`: Import hardcoded
+- `IconStateGroupColumn.php`: Import hardcoded
+- `IconStateColumn.php`: Import hardcoded
+- `SelectState.php`: Import hardcoded
+- `studio-selector.blade.php`: Traduzioni hardcoded
+
+### 3. Modulo Xot (CRITICO)
+**Problema**: Path hardcoded, dipendenze su moduli SaluteOra, traduzioni hardcoded
+**Impatto**: Framework base non riutilizzabile in altri progetti
+**Stato**: Documentazione creata, ottimizzazioni pianificate
+
+**File contaminati**:
+- `PathHelper.php`: Path hardcoded per SaluteOra
+- `TestCase.php`: Dipendenze hardcoded
+- `DayOfWeek.php`: Traduzioni hardcoded
+- `InformationSchemaTableFactory.php`: Dati hardcoded
+- Widget files: Import hardcoded
+
+## Soluzioni Implementate
+
+### 1. Configurazione Centralizzata
+- File `config/notify.php` creato per modulo Notify
+- Pattern di configurazione documentato per tutti i moduli
+- Variabili d'ambiente standardizzate
+
+### 2. Helper per Sostituzione Variabili
+- `ConfigHelper` class creata per modulo Notify
+- Pattern per sostituzione template variables
+- Metodi per dati di test configurabili
+
+### 3. Documentazione Completa
+- Root docs aggiornate con regole di modularità
+- Documentazione specifica per ogni modulo contaminato
+- Regole Cursor aggiornate e ampliate
+- Memorie Cursor create per prevenire errori futuri
+
+## Regole Critiche Implementate
+
+### Principio Fondamentale
+**MAI** utilizzare stringhe hardcoded con nomi di progetto specifici nei moduli riutilizzabili.
+
+### Moduli che DEVONO essere Generici
+- Notify, User, UI, Xot, Geo, Media
+
+### Moduli Specifici del Progetto
+- SaluteOra, SaluteMo, Patient
+
+### Pattern di Configurazione
+1. File di configurazione centralizzati
+2. Helper per sostituzione variabili
+3. Service Provider di configurazione
+4. Interfacce generiche invece di implementazioni specifiche
+
+## Stato di Correzione
+
+### Fase 1: Configurazione (COMPLETATA)
+- [x] File di configurazione per modulo Notify
+- [x] ConfigHelper class per sostituzione variabili
+- [x] Documentazione completa e aggiornata
+- [x] Regole Cursor aggiornate
+
+### Fase 2: Refactoring (IN CORSO)
+- [ ] Modulo Notify: Test files, factory, componenti
+- [ ] Modulo UI: Interfacce, configurazione, refactoring
+- [ ] Modulo Xot: Path helper, configurazione, refactoring
+
+### Fase 3: Validazione (PIANIFICATA)
+- [ ] Test di conformità per tutti i moduli
+- [ ] Verifica zero occorrenze hardcoded
+- [ ] Test di modularità e riutilizzabilità
+
+## Comandi di Verifica
+
+### Test di Conformità
+```bash
+# Verifica completa per tutti i moduli generici
+grep -r "saluteora\|salutemo" laravel/Modules/Notify/ --include="*.php"
+grep -r "saluteora\|salutemo" laravel/Modules/User/ --include="*.php"
+grep -r "saluteora\|salutemo" laravel/Modules/UI/ --include="*.php"
+grep -r "saluteora\|salutemo" laravel/Modules/Xot/ --include="*.php"
+
+# Verifica dipendenze hardcoded
+grep -r "Modules\\SaluteOra" laravel/Modules/UI/ --include="*.php"
+grep -r "Modules\\SaluteOra" laravel/Modules/Xot/ --include="*.php"
+
+# Verifica path hardcoded
+grep -r "/var/www/html/saluteora" laravel/Modules/Xot/ --include="*.php"
+```
+
+### Risultato Atteso
+Dopo la correzione completa, tutti i comandi devono restituire **0 occorrenze**.
+
+## Lezioni Apprese
+
+### 1. Importanza della Modularità
+- I moduli core devono essere completamente indipendenti
+- La configurabilità è fondamentale per la riutilizzabilità
+- Le dipendenze hardcoded creano lock-in al progetto
+
+### 2. Necessità di Controlli Automatici
+- Implementare controlli pre-commit per violazioni di modularità
+- Utilizzare PHPStan per rilevare dipendenze hardcoded
+- Eseguire audit regolari per mantenere la modularità
+
+### 3. Documentazione e Regole
+- Le regole devono essere chiare e sempre applicate
+- La documentazione deve essere aggiornata costantemente
+- Le memorie Cursor devono prevenire errori futuri
+
+## Prevenzione Errori Futuri
+
+### 1. Regole Cursor Aggiornate
+- Regole complete per prevenire violazioni di modularità
+- Esempi di pattern corretti e scorretti
+- Checklist pre-commit dettagliate
+
+### 2. Memorie Cursor
+- Documentazione delle violazioni identificate
+- Soluzioni implementate e pianificate
+- Comandi di verifica per test di conformità
+
+### 3. Documentazione Aggiornata
+- Root docs con regole di modularità
+- Documentazione specifica per ogni modulo
+- Collegamenti bidirezionali tra documentazione
+
+## Prossimi Passi
+
+### Immediati (1-2 settimane)
+1. Completare refactoring modulo Notify
+2. Implementare interfacce generiche per modulo UI
+3. Refactoring path helper per modulo Xot
+
+### Breve termine (1 mese)
+1. Completare refactoring di tutti i moduli core
+2. Implementare test di conformità automatizzati
+3. Validare modularità con progetti di test
+
+### Medio termine (3 mesi)
+1. Implementare controlli pre-commit automatici
+2. Creare template per nuovi moduli generici
+3. Documentare best practices per modularità
+
+---
+
+**Questa memoria è CRITICA per prevenire violazioni future di modularità. Consultare sempre prima di implementare nuovi moduli o modificare quelli esistenti.**
+
+**Ultimo aggiornamento**: 2025-01-06
+**Motivazione**: Identificazione di violazioni critiche nei moduli core
+**Impatto**: Compromissione completa dell'architettura modulare
+**Priorità**: CRITICA - Correzione immediata richiesta
+description:
+globs:
+alwaysApply: true
+---

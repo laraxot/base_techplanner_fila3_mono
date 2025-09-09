@@ -106,3 +106,30 @@ Soluzione: sudo chmod 777 -R .
 # Cambia versione PHP
 sudo update-alternatives --config php
 ```
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> 42ab2308 (.)
+
+## 🔄 Se menù o altri elementi frontend non si aggiornano
+```bash
+# Eseguire script "go" presente nel composer.json
+composer go
+```
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
+>>>>>>> develop

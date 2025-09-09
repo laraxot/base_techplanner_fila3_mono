@@ -2,11 +2,17 @@
 
 declare(strict_types=1);
 
+namespace Modules\Geo\Tests\Unit\Models;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Geo\Models\BaseModel;
+use Tests\TestCase;
+
+uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->baseModel = new class() extends BaseModel
+    $this->baseModel = new class extends BaseModel
     {
         protected $table = 'test_geo_table';
     };

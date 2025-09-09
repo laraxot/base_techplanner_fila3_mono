@@ -7,6 +7,7 @@ namespace Modules\UI\Tests\Feature\KalshiHeroComponentTest;
 namespace Modules\UI\Tests\Feature;
 
 use Illuminate\Support\Facades\View;
+use Tests\TestCase;
 
 uses(TestCase::class);
 
@@ -44,6 +45,7 @@ test('kalshi hero shows statistics when enabled', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired', [
         'show_stats' => true,
     ]);
+
     $html = $view->render();
     expect($html)->toContain('250+');
     expect($html)->toContain('Active Markets');
@@ -59,6 +61,7 @@ test('kalshi hero hides statistics when disabled', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired', [
         'show_stats' => false,
     ]);
+
     $html = $view->render();
     expect($html)->not()->toContain('Active Markets');
     expect($html)->not()->toContain('Total Predictions');
@@ -68,6 +71,7 @@ test('kalshi hero shows categories when enabled', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired', [
         'show_categories' => true,
     ]);
+
     $html = $view->render();
     expect($html)->toContain('Popular Categories');
     expect($html)->toContain('Politics');
@@ -82,6 +86,7 @@ test('kalshi hero hides categories when disabled', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired', [
         'show_categories' => false,
     ]);
+
     $html = $view->render();
     expect($html)->not()->toContain('Popular Categories');
 });
@@ -95,6 +100,7 @@ test('kalshi hero supports custom props', function () {
         'secondary_cta_text' => 'Learn More',
         'secondary_cta_link' => '/about',
     ]);
+
     $html = $view->render();
     expect($html)->toContain('Custom Market Title');
     expect($html)->toContain('Custom trading platform description');
@@ -106,6 +112,7 @@ test('kalshi hero supports custom props', function () {
 
 test('kalshi hero has proper css classes and styling', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired');
+
     $html = $view->render();
     expect($html)->toContain('bg-gradient-to-br from-slate-900');
     expect($html)->toContain('animate-gradient-x');
@@ -115,6 +122,7 @@ test('kalshi hero has proper css classes and styling', function () {
 
 test('kalshi hero includes required css animations', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired');
+
     $html = $view->render();
     expect($html)->toContain('@keyframes gradient-x');
     expect($html)->toContain('.animate-gradient-x');
@@ -123,6 +131,7 @@ test('kalshi hero includes required css animations', function () {
 
 test('kalshi hero has responsive design classes', function () {
     $view = View::make('pub_theme::components.blocks.hero.kalshi-inspired');
+
     $html = $view->render();
     expect($html)->toContain('md:text-7xl lg:text-8xl');
     expect($html)->toContain('grid-cols-2 md:grid-cols-4');

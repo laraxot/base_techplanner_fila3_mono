@@ -1,5 +1,10 @@
 <?php
 
+namespace Modules\TechPlanner\Tests\Feature\Actions;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+namespace Modules\TechPlanner\Tests\Feature\Actions;
+
 use Modules\Geo\Actions\UpdateCoordinatesAction;
 use Modules\TechPlanner\Actions\UpdateAllClientCoordinatesAction;
 use Modules\TechPlanner\Models\Client;

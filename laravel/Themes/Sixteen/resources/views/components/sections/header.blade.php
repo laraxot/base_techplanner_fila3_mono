@@ -3,6 +3,19 @@
         <div class="flex justify-between w-full max-w-screen-xl mx-auto">
             <div class="flex-1 py-1">
 
+=======
+                <a class="text-sm" href="#">{{-- regione --}}</a>
+            </div>
+            <div class="flex-none">
+                <ul class="px-1 menu menu-horizontal">
+                    {{--  
+                    <li>
+                        @livewire("Modules\UI\Filament\Widgets\DarkModeSwitcherWidget")
+                    </li>
+                    <li>
+                        @livewire("Modules\Lang\Filament\Widgets\LanguageSwitcherWidget")
+                    </li>
+                    --}}
                     @guest
                         <li class="ml-4">
                             <a class="flex items-center space-x-1" href="{{ route('login') }}">
@@ -86,6 +99,11 @@
                     <div class="text-start">
                         <div class="text-2xl font-bold">{{ $_theme->metatag('title') }}</div>
                         <div class="text-sm">{{ $_theme->metatag('subtitle') }}</div>
+                    <x-heroicon-o-shield-check class="stroke-1 size-16" />
+                    <div class="text-start">
+                        <div class="text-2xl font-bold">Il mio Comune</div>
+                        <div class="text-sm">Un comune da vivere</div>
+=======
                     </div>
                 </a>
             </div>
@@ -114,6 +132,9 @@
     <div class="hidden h-12 overflow-auto min-h-12 navbar md:flex">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto space-x-12">
             <div class="flex-1 ">
+=======
+=======
+                
                 @php
                 $nav1 = Arr::first($blocks,fn($item)=>$item->slug =='nav1');
                 @endphp
@@ -132,6 +153,10 @@
                     <li><a href="">Servizi</a></li>
                     <li><a href="">Vivere il Comune</a></li>
 
+                </ul>
+                --}}
+=======
+                    --}}
                 </ul>
                 --}}
             </div>

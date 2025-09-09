@@ -20,6 +20,12 @@ class AppointmentResourceTest extends TestCase
 
     protected Client $client;
 
+class AppointmentResourceTest extends TestCase
+{
+
+    protected User $admin;
+    protected Client $client;
+
     protected Worker $worker;
 
     protected function setUp(): void

@@ -145,7 +145,13 @@ class DeviceTest extends TestCase
         $deviceId = $this->device->id;
 
         $this->device->delete();
+        
 
+        $this->device->delete();
+
+        
+        $this->device->delete();
+        
         $this->assertSoftDeleted('devices', ['id' => $deviceId]);
         $this->assertDatabaseMissing('devices', ['id' => $deviceId]);
     }
@@ -160,7 +166,16 @@ class DeviceTest extends TestCase
 
         $restoredDevice = Device::withTrashed()->find($deviceId);
         $restoredDevice->restore();
+        
 
+        
+        $this->device->delete();
+        $this->assertSoftDeleted('devices', ['id' => $deviceId]);
+        
+        $restoredDevice = Device::withTrashed()->find($deviceId);
+        $restoredDevice->restore();
+
+        
         $this->assertDatabaseHas('devices', ['id' => $deviceId]);
         $this->assertNull($restoredDevice->deleted_at);
     }

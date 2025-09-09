@@ -17,23 +17,17 @@ class WorkHourSeeder extends Seeder
      */
     public function run(): void
     {
-        // Get all users or create some if none exist
-        /** @var \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $users */
         $users = User::all();
-
         if ($users->isEmpty()) {
             $users = User::factory(5)->create();
         }
 
-        // Create work hour entries for the last 30 days
         $startDate = Carbon::now()->subDays(30);
         $endDate = Carbon::now();
 
         foreach ($users as $user) {
             $currentDate = $startDate->copy();
-
             while ($currentDate->lte($endDate)) {
-                // Skip weekends (optional - remove if you want weekend entries)
                 if ($currentDate->isWeekend()) {
                     $currentDate->addDay();
 
@@ -49,31 +43,21 @@ class WorkHourSeeder extends Seeder
             }
         }
 
-        // Create some incomplete work days (for testing validation)
-        $this->createIncompleteWorkDays($users->take(2));
+        $this->createIncompleteWorkDays($users);
     }
 
-    /**
-     * Create a complete work day sequence for a user.
-     */
     private function createWorkDayEntries(int $employeeId, Carbon $date): void
     {
-        // Clock in (8:00-9:30 AM)
-        $clockInTime = $date->copy()->setTime(
-            rand(8, 9),
-            collect([0, 15, 30, 45])->random(),
-            0
-        );
-
+        $clockInTime = $date->copy()->setTime(rand(7, 9), rand(0, 59), 0);
         WorkHour::create([
             'employee_id' => $employeeId,
             'timestamp' => $clockInTime,
             'type' => 'clock_in',
-            'notes' => rand(1, 100) <= 20 ? 'Started work' : null,
+            'notes' => rand(1, 100) <= 10 ? 'Morning shift' : null,
             'status' => 'approved',
         ]);
 
-        // Break start (12:00-1:00 PM)
+        // Break start (3-5 hours later)
         $breakStartTime = $clockInTime->copy()->addHours(rand(3, 5))->addMinutes(rand(0, 30));
         WorkHour::create([
             'employee_id' => $employeeId,
@@ -93,7 +77,7 @@ class WorkHourSeeder extends Seeder
             'status' => 'approved',
         ]);
 
-        // Clock out (5:00-7:00 PM)
+        // Clock out (3-5 hours after break end)
         $clockOutTime = $breakEndTime->copy()->addHours(rand(3, 5))->addMinutes(rand(0, 30));
         WorkHour::create([
             'employee_id' => $employeeId,
@@ -106,8 +90,9 @@ class WorkHourSeeder extends Seeder
 
     /**
      * Create some incomplete work days for testing.
-     *
-     * @param  \Illuminate\Support\Collection<int, User>  $users
+     */
+    /**
+     * @param \Illuminate\Database\Eloquent\Collection<int, \Modules\Employee\Models\Employee> $users
      */
     private function createIncompleteWorkDays(Collection $users): void
     {
@@ -123,7 +108,7 @@ class WorkHourSeeder extends Seeder
                 'status' => 'pending',
             ]);
 
-            // User on break
+            // User on break yesterday
             $yesterday = Carbon::yesterday();
             WorkHour::create([
                 'employee_id' => $user->id,

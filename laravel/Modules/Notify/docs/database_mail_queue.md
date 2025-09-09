@@ -188,7 +188,6 @@ $users->each(function ($user) {
 ### 2. Gestione Worker
 
 ```bash
-
 # Avvia worker dedicato
 php artisan queue:work --queue=emails
 
@@ -291,11 +290,10 @@ $this->call('queue:prune-batches', [
 ### 1. Orizzontale
 
 ```bash
-
 # Supervisor config
-[program:<nome progetto>-worker]
+[program:saluteora-worker]
 process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/base_<nome progetto>/artisan queue:work redis --queue=emails
+command=php /var/www/html/_bases/base_saluteora/laravel/artisan queue:work redis --queue=emails
 autostart=true
 autorestart=true
 numprocs=4
@@ -377,7 +375,6 @@ if ($failedJobs > $threshold) {
 ### 1. Pulizia
 
 ```bash
-
 # Pulizia job vecchi
 php artisan queue:prune-failed --hours=168
 php artisan queue:prune-batches --hours=24
@@ -410,5 +407,11 @@ php artisan queue:restart
 - [Queue Configuration](../../../project_docs/queue-configuration.md)
 
 ## Vedi Anche
+<<<<<<< HEAD
 - [Laravel Queues](https://laravel.com/project_docs/queues)
 - [Horizon Documentation](https://laravel.com/project_docs/horizon)
+=======
+- [Laravel Queues](https://laravel.com/docs/queues)
+- [Horizon Documentation](https://laravel.com/docs/horizon)
+- [Redis Documentation](https://redis.io/documentation)
+>>>>>>> develop

@@ -25,7 +25,7 @@ namespace Modules\Xot\Tests\Pest;
 |--------------------------------------------------------------------------
 |
 | Qui puoi definire aspettative globali per il modulo Xot.
-
+| Quando definisci here expectation globali, saranno disponibili
 | in tutti i test del modulo.
 |
 */
@@ -46,4 +46,4 @@ namespace Modules\Xot\Tests\Pest;
 
 // function something() {
 //     // ...
-
+// }

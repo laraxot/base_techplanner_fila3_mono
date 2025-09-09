@@ -127,7 +127,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a italiano
         app()->setLocale('it');
 
-        $translation = (string) __('lang::common.welcome');
+        $translation = __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -138,7 +138,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a inglese
         app()->setLocale('en');
 
-        $translation = (string) __('lang::common.welcome');
+        $translation = __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -149,7 +149,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a tedesco
         app()->setLocale('de');
 
-        $translation = (string) __('lang::common.welcome');
+        $translation = __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -160,7 +160,7 @@ describe('LangServiceProvider Language Support', function () {
         // Cambia lingua a una non supportata
         app()->setLocale('fr');
 
-        $translation = (string) __('lang::common.welcome');
+        $translation = __('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });
@@ -392,11 +392,11 @@ describe('LangServiceProvider Maintenance', function () {
     it('maintains state consistency', function () {
         $this->provider->boot();
 
-        $translation1 = (string) __('lang::common.welcome');
+        $translation1 = __('lang::common.welcome');
 
         $this->provider->boot();
 
-        $translation2 = (string) __('lang::common.welcome');
+        $translation2 = __('lang::common.welcome');
 
         expect($translation1)->toBe($translation2);
     });

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Carbon;
+use Modules\User\Database\Factories\AuthenticationFactory;
 
 /**
  * Tracks user authentication attempts and sessions.
@@ -43,6 +45,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static Builder<static>|Authentication whereAuthenticatableId($value)
 
  * @mixin IdeHelperAuthentication
+ * @method static \Modules\User\Database\Factories\AuthenticationFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class Authentication extends Model
@@ -51,7 +54,6 @@ class Authentication extends Model
 
     /**
      * Create a new factory instance for the model.
-
      */
     protected static function newFactory(): AuthenticationFactory
     {

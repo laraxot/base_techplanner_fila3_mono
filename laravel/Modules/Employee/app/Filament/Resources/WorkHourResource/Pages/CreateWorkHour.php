@@ -10,7 +10,10 @@ use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
-use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Enums\WorkHourStatusEnum;
+use Filament\Notifications\Notification;
+use Carbon\Carbon;
 
 class CreateWorkHour extends XotBaseCreateRecord
 {
@@ -25,7 +28,7 @@ class CreateWorkHour extends XotBaseCreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         // Set default status if not provided
-        if (! isset($data['status'])) {
+        if (!isset($data['status'])) {
             $data['status'] = WorkHourStatusEnum::PENDING->value;
         }
 
@@ -37,34 +40,26 @@ class CreateWorkHour extends XotBaseCreateRecord
         $data = $this->form->getState();
 
         // Validate if this entry is allowed based on the last entry
-        $timestampValue = $data['timestamp'] ?? null;
-        if (! is_string($timestampValue) && ! ($timestampValue instanceof \DateTimeInterface)) {
-            throw new \InvalidArgumentException('Invalid timestamp format');
-        }
-
-        $employeeIdValue = $data['employee_id'] ?? null;
-        if (! is_numeric($employeeIdValue)) {
-            throw new \InvalidArgumentException('Invalid employee ID');
-        }
-        $employeeId = (int) $employeeIdValue;
-
-        $timestamp = Carbon::parse($timestampValue);
+        $timestamp = Carbon::parse((string) ($data['timestamp'] ?? ''));
+        $employeeId = (int) ($data['employee_id'] ?? 0);
         $lastEntry = WorkHour::getLastEntryForEmployee($employeeId, $timestamp);
         $expectedAction = WorkHour::getNextAction($employeeId, $timestamp);
-
-        if ($data['type'] !== $expectedAction->value) {
-            $lastEntryType = $lastEntry ? (string) match ($lastEntry->type) {
-                WorkHourTypeEnum::CLOCK_IN => 'Clock In',
-                WorkHourTypeEnum::CLOCK_OUT => 'Clock Out',
-                WorkHourTypeEnum::BREAK_START => 'Break Start',
-                WorkHourTypeEnum::BREAK_END => 'Break End',
+        
+        if ($data['type'] !== $expectedAction) {
+            $lastEntryType = $lastEntry ? match ($lastEntry->type) {
+                WorkHourTypeEnum::CLOCK_IN->value => 'Clock In',
+                WorkHourTypeEnum::CLOCK_OUT->value => 'Clock Out',
+                WorkHourTypeEnum::BREAK_START->value => 'Break Start',
+                WorkHourTypeEnum::BREAK_END->value => 'Break End',
+                default => $lastEntry->type,
             } : 'None';
-
-            $expectedActionLabel = (string) match ($expectedAction) {
-                WorkHourTypeEnum::CLOCK_IN => 'Clock In',
-                WorkHourTypeEnum::CLOCK_OUT => 'Clock Out',
-                WorkHourTypeEnum::BREAK_START => 'Break Start',
-                WorkHourTypeEnum::BREAK_END => 'Break End',
+            
+            $expectedActionLabel = match ($expectedAction) {
+                WorkHourTypeEnum::CLOCK_IN->value => 'Clock In',
+                WorkHourTypeEnum::CLOCK_OUT->value => 'Clock Out',
+                WorkHourTypeEnum::BREAK_START->value => 'Break Start',
+                WorkHourTypeEnum::BREAK_END->value => 'Break End',
+                default => $expectedAction,
             };
 
             Notification::make()

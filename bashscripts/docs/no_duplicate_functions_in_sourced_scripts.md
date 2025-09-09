@@ -29,6 +29,11 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Utilizzo le funzioni definite in custom.sh senza ridefinirle
@@ -41,6 +46,11 @@ process_files "$1"
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # GRAVE ERRORE: ridefinire funzioni già presenti in custom.sh

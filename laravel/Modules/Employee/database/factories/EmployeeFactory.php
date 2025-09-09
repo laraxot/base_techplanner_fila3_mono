@@ -27,7 +27,7 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => null, // Will be set when needed
+            'user_id' => null,
             'employee_code' => 'EMP'.$this->faker->unique()->numberBetween(1000, 9999),
             'personal_data' => [
                 'first_name' => $this->faker->name(),
@@ -43,7 +43,7 @@ class EmployeeFactory extends Factory
                 'address' => [
                     'street' => $this->faker->streetAddress(),
                     'city' => $this->faker->city(),
-                    'state' => 'IT',
+                    'state' => $this->faker->state(),
                     'postal_code' => $this->faker->postcode(),
                     'country' => $this->faker->country(),
                 ],
@@ -61,14 +61,14 @@ class EmployeeFactory extends Factory
             ],
             'photo_url' => $this->faker->optional()->imageUrl(),
             'status' => $this->faker->randomElement(['attivo', 'inattivo', 'sospeso', 'licenziato']),
-            'department_id' => null, // Will be set when needed
-            'manager_id' => null, // Will be set when needed
-            'position_id' => null, // Will be set when needed
+            'department_id' => null,
+            'manager_id' => null,
+            'position_id' => null,
             'salary_data' => [
                 'base_salary' => $this->faker->numberBetween(20000, 100000),
                 'currency' => 'EUR',
                 'payment_frequency' => $this->faker->randomElement(['monthly', 'bi-weekly', 'weekly']),
-                'benefits' => $this->faker->optional()->words(3),
+                'benefits' => $this->faker->optional()->words(3, false),
             ],
         ];
     }
@@ -105,21 +105,25 @@ class EmployeeFactory extends Factory
 
     /**
      * Set specific personal data.
+     *
+     * @param array<string, mixed> $personalData
      */
     public function withPersonalData(array $personalData): static
     {
         return $this->state(fn (array $attributes) => [
-            'personal_data' => array_merge($attributes['personal_data'], $personalData),
+            'personal_data' => array_merge($attributes['personal_data'] ?? [], $personalData),
         ]);
     }
 
     /**
      * Set specific contact data.
+     *
+     * @param array<string, mixed> $contactData
      */
     public function withContactData(array $contactData): static
     {
         return $this->state(fn (array $attributes) => [
-            'contact_data' => array_merge($attributes['contact_data'], $contactData),
+            'contact_data' => array_merge($attributes['contact_data'] ?? [], $contactData),
         ]);
     }
 

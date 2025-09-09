@@ -11,6 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+=======
 // use Modules\SaluteOra\Models\Appointment;
 
 class AppointmentNotificationMail extends Mailable implements ShouldQueue
@@ -28,6 +29,8 @@ class AppointmentNotificationMail extends Mailable implements ShouldQueue
      * Crea una nuova istanza del messaggio.
      *
      * @param  array<string, mixed>  $notificationData
+=======
+     * @param array<string, mixed> $notificationData
      */
     public function __construct(array $notificationData)
     {
@@ -43,21 +46,33 @@ class AppointmentNotificationMail extends Mailable implements ShouldQueue
         $type = $this->notificationData['type'];
 
         $subject = match ($type) {
+=======
+        
+        $subject = match($type) {
             'confirmed' => 'Conferma Appuntamento',
             'reminder' => 'Promemoria Appuntamento',
             'cancelled' => 'Cancellazione Appuntamento',
             'rescheduled' => 'Modifica Appuntamento',
             default => 'Notifica Appuntamento',
         };
-
-        if (is_object($appointment) && isset($appointment->id) && $appointment->id) {
-            $subject .= ' #'.$appointment->id;
+        if (is_object($appointment) && property_exists($appointment, 'id') && $appointment->id) {
+            $subject .= ' #' . $appointment->id;
         }
+        
+=======
 
+=======
+        
+        if (is_object($appointment) && isset($appointment->id) && $appointment->id) {
+            $subject .= ' #' . $appointment->id;
+        }
+        
         return new Envelope(
             subject: $subject,
             tags: ['appointment', $type],
             metadata: [
+                'appointment_id' => is_object($appointment) && property_exists($appointment, 'id') ? $appointment->id : null,
+=======
                 'appointment_id' => is_object($appointment) && isset($appointment->id) ? $appointment->id : null,
                 'type' => $type,
             ],
@@ -73,6 +88,10 @@ class AppointmentNotificationMail extends Mailable implements ShouldQueue
 
         // Determina il template da utilizzare in base al tipo di notifica
         $view = match ($type) {
+=======
+        
+        // Determina il template da utilizzare in base al tipo di notifica
+        $view = match($type) {
             'confirmed' => 'notify::emails.appointments.confirmed',
             'reminder' => 'notify::emails.appointments.reminder',
             'cancelled' => 'notify::emails.appointments.cancelled',
@@ -80,6 +99,8 @@ class AppointmentNotificationMail extends Mailable implements ShouldQueue
             default => 'notify::emails.appointments.generic',
         };
 
+=======
+        
         return new Content(
             view: $view,
             with: [

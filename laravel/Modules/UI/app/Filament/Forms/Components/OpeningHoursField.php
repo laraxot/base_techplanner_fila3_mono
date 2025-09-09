@@ -6,8 +6,9 @@ namespace Modules\UI\Filament\Forms\Components;
 
 use Carbon\Carbon;
 use Filament\Forms\Components\Field;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\Placeholder;
+use Modules\UI\Actions\Datetime\GetDaysMappingAction;
 
 
 /**
@@ -23,25 +24,11 @@ class OpeningHoursField extends Field
     protected function setUp(): void
     {
         parent::setUp();
-
-        $days = collect([
-            Carbon::MONDAY,
-            Carbon::TUESDAY,
-            Carbon::WEDNESDAY,
-            Carbon::THURSDAY,
-            Carbon::FRIDAY,
-            Carbon::SATURDAY,
-        ])->mapWithKeys(function ($day) {
-            /** @phpstan-ignore method.nonObject */
-            $dayKey = strtolower(Carbon::create()->startOfWeek()->addDays($day - 1)->format('l'));
-            /** @phpstan-ignore method.nonObject */
-            $dayLabel = ucfirst(Carbon::create()->startOfWeek()->addDays($day - 1)->isoFormat('dddd'));
-
-            return [$dayKey => $dayLabel];
-        });
+        $days = app(GetDaysMappingAction::class)->execute();
 
         $schema = [];
         $native=false;
+        $live=false;
 
         foreach ($days as $dayKey => $dayLabel) {
             $schema[] = Placeholder::make($dayKey.'_label')
@@ -52,37 +39,48 @@ class OpeningHoursField extends Field
 
             $schema[] = TimePicker::make("$dayKey.morning_from")
                             ->native($native)
-                            ->placeholder('08:00')
+                            //->placeholder('08:00')
                             //->placeholder('09:30')
+                            ->placeholder('--:--')
+                            ->format('H:i')
                             ->seconds(false)
                             ->minutesStep(15)
                             ->nullable()
-                            ->live()
+                            ->live($live)
                             ;
 
             $schema[] = TimePicker::make("$dayKey.morning_to")
                             ->native($native)
-                            ->placeholder('13:30')
+                            //->placeholder('13:30')
+                            ->placeholder('--:--')
+                            ->format('H:i')
                             ->seconds(false)
                             ->minutesStep(15)
                             ->nullable()
-                            ->live();
+                            ->live($live)
+                            ;
 
             $schema[] = TimePicker::make("$dayKey.afternoon_from")
                             ->native($native)
-                            ->placeholder('15:00')
+                            //->placeholder('15:00')
+                            ->placeholder('--:--')
+                            ->format('H:i')
                             ->seconds(false)
                             ->minutesStep(15)
                             ->nullable()
-                            ->live();
+                            ->live($live)
+                            ;
 
             $schema[] = TimePicker::make("$dayKey.afternoon_to")
                             ->native($native)
-                            ->placeholder('19:00')
+                            //->placeholder('19:00')
+                            ->placeholder('--:--')
+                            ->format('H:i')
                             ->seconds(false)
                             ->minutesStep(15)
                             ->nullable()
-                            ->live();
+                            ->live($live)
+                            ;
         }
 
         $this->schema($schema)->columns(5);

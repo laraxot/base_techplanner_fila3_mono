@@ -64,6 +64,10 @@ public static function table\(Table \$table\): Table\s*\{[\s\S]*?\n\s*\}
 
 > Ogni modifica va sempre verificata manualmente e testata con PHPStan livello 10. Segnalare eventuali casi limite in [git_conflicts_resolution.md](./git_conflicts_resolution.md).
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 
 
 public static function form\(Form \$form\): Form\s*\{\s*return \$form\s*->schema\(\[\s*([\s\S]*?)\s*\]\);\s*\}
@@ -75,7 +79,11 @@ public static function form\(Form \$form\): Form\s*\{\s*return \$form\s*->schema
 
 
 public static function getFormSchema(): array
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop
     {
         return [
             $1
@@ -138,6 +146,10 @@ public static function table\(Table \$table\): Table\s*\{[\s\S]*?\n\s*\}
 ---
 
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 
  cb513be (.)
  43df3e0 (.)
@@ -145,4 +157,8 @@ public static function table\(Table \$table\): Table\s*\{[\s\S]*?\n\s*\}
 
  cb513be (.)
  0440c57 (.)
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop

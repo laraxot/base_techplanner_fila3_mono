@@ -6,7 +6,6 @@ namespace Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers
 
 use Filament\Tables;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class AppointmentsRelationManager extends XotBaseRelationManager
@@ -30,15 +29,4 @@ class AppointmentsRelationManager extends XotBaseRelationManager
                 ->counts('machines'),
         ];
     }
-
-    /*
-    public function getTableActions(): array
-    {
-        return [
-            Tables\Actions\Action::make('viewMachines')
-                ->label('View Machines')
-                ->url(fn ($record) => route('filament.resources.appointments.show', $record)),
-        ];
-    }
-    */
 }

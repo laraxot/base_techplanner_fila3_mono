@@ -20,9 +20,15 @@ class UpdateAllDevicesActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+        $this->action = new UpdateAllDevicesAction();
+        
 
         $this->action = new UpdateAllDevicesAction;
 
+        
+        $this->action = new UpdateAllDevicesAction();
+        
         // Disabilita le code per i test
         Queue::fake();
     }

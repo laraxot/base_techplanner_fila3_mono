@@ -128,7 +128,9 @@ class MachineTest extends TestCase
             'power' => '50 kW',
             'speed' => '1000 RPM',
             'weight' => '2000 kg',
+            'dimensions' => '3m x 2m x 2.5m'
             'dimensions' => '3m x 2m x 2.5m',
+            'dimensions' => '3m x 2m x 2.5m'
         ];
         $this->machine->specifications = $specifications;
         $this->machine->save();
@@ -172,7 +174,9 @@ class MachineTest extends TestCase
             'daily' => ['Check oil level', 'Clean filters'],
             'weekly' => ['Lubricate moving parts', 'Check belts'],
             'monthly' => ['Full inspection', 'Calibration check'],
+            'yearly' => ['Major overhaul', 'Replace worn parts']
             'yearly' => ['Major overhaul', 'Replace worn parts'],
+            'yearly' => ['Major overhaul', 'Replace worn parts']
         ];
         $this->machine->maintenance_schedule = $maintenanceSchedule;
         $this->machine->save();

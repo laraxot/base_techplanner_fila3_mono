@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: Getting Started
 description: Getting started with Jigsaw's docs starter template is as easy as 1, 2, 3.
@@ -85,3 +86,4 @@ npm run dev
 * [getting-started.md](laravel/Modules/Tenant/project_docs/it/getting-started.md)
 * [getting-started.md](laravel/Modules/Cms/project_docs/getting-started.md)
 
+=======

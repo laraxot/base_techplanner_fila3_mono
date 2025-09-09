@@ -54,6 +54,16 @@ class LanguageSwitcherWidget extends XotBaseWidget
     }
 
     /**
+     * Metodo pubblico per esporre i dati della vista ad altri componenti.
+     *
+     * @return array<string, mixed>
+     */
+    public function exposeViewData(): array
+    {
+        return $this->getViewData();
+    }
+
+    /**
      * Ottiene le lingue disponibili nel sistema.
      *
      * @return Collection<int, array{code: string, name: string, native_name: string, flag: string}>
@@ -73,7 +83,7 @@ class LanguageSwitcherWidget extends XotBaseWidget
                             'code' => $language->code,
                             'name' => $language->name,
                             'native_name' => $language->native_name ?? $language->name,
-                            'flag' => $language->flag ?? null,
+                            'flag' => (string) ($language->flag ?? ''),
                         ];
                     });
                 }
@@ -89,8 +99,8 @@ class LanguageSwitcherWidget extends XotBaseWidget
 
     /**
      * Lingue di default se il modello Language non è disponibile.
-     *
-     * @return array<int, array{code: string, name: string, native_name: string, flag: string|null}>
+     * 
+     * @return array<int, array{code: string, name: string, native_name: string, flag: string}>
      */
     protected function getDefaultLanguages(): array
     {

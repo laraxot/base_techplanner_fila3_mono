@@ -56,6 +56,11 @@ fatal: you must provide the --prefix option
 **Soluzione**:
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Verifica variabili

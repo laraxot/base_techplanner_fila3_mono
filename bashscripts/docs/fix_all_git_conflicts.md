@@ -58,7 +58,12 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 =======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+
+>>>>>>> develop
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
@@ -70,6 +75,11 @@ Lo script può essere integrato con Git hooks per verificare automaticamente la 
 
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # .git/hooks/pre-commit
@@ -99,4 +109,8 @@ Dopo l'esecuzione dello script, è consigliabile verificare che tutti i conflitt
 - [Risoluzione Conflitti nei Moduli](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 =======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
+=======
+=======
+>>>>>>> develop

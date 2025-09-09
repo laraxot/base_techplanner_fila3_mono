@@ -48,5 +48,4 @@ return [
         'label' => 'Suspended',
         'color' => 'warning',
     ],
-
 ];

@@ -21,6 +21,17 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 
 ### 2. Push Script (`git_push_subtree.sh`)
 
+<<<<<<< HEAD
+=======
+
+=======
+```bash
+=======
+```bash
+=======
+=======
+```bash
+>>>>>>> develop
 
 =======
 ```bash
@@ -43,6 +54,13 @@ git add -A
 git commit -am "🔧 Aggiornamento subtree"
 git merge origin/"$BRANCH" --allow-unrelated-histories
 =======
+<<<<<<< HEAD
+=======
+git merge origin/"$BRANCH" --allow-unrelated-histories"
+=======
+git merge origin/"$BRANCH" --allow-unrelated-histories"
+=======
+>>>>>>> develop
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> 1831d11e78 (.)
 =======
@@ -54,7 +72,12 @@ git push -u origin "$BRANCH"
 ### 3. Pull Script (`git_pull_subtree.sh`)
 ```bash
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -70,6 +93,15 @@ git merge -s subtree FETCH_HEAD --allow-unrelated-histories
 
 aurmich/dev
 =======
+<<<<<<< HEAD
+=======
+```
+
+=======
+```
+
+=======
+>>>>>>> develop
 ```
 
 >>>>>>> 1831d11e78 (.)
@@ -92,9 +124,14 @@ Esegue una sequenza complessa di operazioni:
 
 ### 3. Pull Script (`git_pull_subtree.sh`)
 =======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+>>>>>>> develop
 Esegue una sequenza con fallback:
 ```bash
 1. git subtree pull -P $LOCAL_PATH $REMOTE_REPO $REMOTE_BRANCH --squash
@@ -107,9 +144,14 @@ Esegue una sequenza con fallback:
  43df3e0 (.)
 aurmich/dev
 =======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+>>>>>>> develop
 ```
 
 ## 🚨 Analisi Errori Comuni
@@ -124,7 +166,12 @@ fatal: you must provide the --prefix option
 **Soluzione**:
 ```bash
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -143,9 +190,14 @@ fi
 
 
 =======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+>>>>>>> develop
 **Causa**: Divergenze tra repository locale e remoto
 
 **Soluzione**:
@@ -159,12 +211,19 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 git fetch origin "$BRANCH"
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
+=======
+>>>>>>> develop
 =======
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+>>>>>>> develop
 
 # Riprova push
 if ! git push -u origin "$BRANCH"; then
@@ -283,6 +342,11 @@ fi
  43df3e0 (.)
 aurmich/dev
 =======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+=======
+>>>>>>> develop

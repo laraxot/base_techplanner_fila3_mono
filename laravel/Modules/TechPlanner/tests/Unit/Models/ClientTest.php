@@ -197,7 +197,13 @@ class ClientTest extends TestCase
         $clientId = $this->client->id;
 
         $this->client->delete();
+        
 
+        $this->client->delete();
+
+        
+        $this->client->delete();
+        
         $this->assertSoftDeleted('clients', ['id' => $clientId]);
         $this->assertDatabaseMissing('clients', ['id' => $clientId]);
     }
@@ -212,7 +218,16 @@ class ClientTest extends TestCase
 
         $restoredClient = Client::withTrashed()->find($clientId);
         $restoredClient->restore();
+        
 
+        
+        $this->client->delete();
+        $this->assertSoftDeleted('clients', ['id' => $clientId]);
+        
+        $restoredClient = Client::withTrashed()->find($clientId);
+        $restoredClient->restore();
+
+        
         $this->assertDatabaseHas('clients', ['id' => $clientId]);
         $this->assertNull($restoredClient->deleted_at);
     }

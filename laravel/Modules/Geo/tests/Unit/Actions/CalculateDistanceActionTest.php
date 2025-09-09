@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Modules\Geo\Tests\Unit\Actions;
+
 use Illuminate\Support\Collection;
 use Mockery;
 use Modules\Geo\Actions\CalculateDistanceAction;

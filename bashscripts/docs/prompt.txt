@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 - Usare metodi specifici: getListTableColumns(), getTableFilters(), getTableActions()
 =======
 - Usare metodi specifici: getTableColumns(), getTableFilters(), getTableActions()
@@ -44,6 +50,10 @@
 - Aggiornare e studiare continuamente la documentazione
 - Consultare la documentazione prima di ogni azione
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
+<<<<<<< HEAD
+=======
+>>>>>>> e9356a3a (.)
+>>>>>>> develop
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -132,6 +142,12 @@
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
 =======
 =======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f198176d (.)
+=======
+>>>>>>> develop
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 85c5198c (.)
@@ -232,6 +248,12 @@
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
+<<<<<<< HEAD
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
+>>>>>>> develop
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -404,6 +426,13 @@
 - Aggiornare e studiare continuamente la documentazione
 - Consultare la documentazione prima di ogni azione
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> develop
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
@@ -415,3 +444,9 @@
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
+<<<<<<< HEAD
+=======
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
+>>>>>>> develop

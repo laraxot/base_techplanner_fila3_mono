@@ -6,7 +6,5 @@ return [
     'submit' => [
 
         'label' => 'Abschließen',
-        'label' => 'Concludi',
-        'label' => 'Concludi',
     ],
 ];

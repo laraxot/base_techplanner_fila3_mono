@@ -4,11 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
+
+use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Models\Location;
-use Modules\TechPlanner\Models\Worker;
+use Tests\TestCase;
+use Modules\TechPlanner\Models\Client;
+use Modules\TechPlanner\Models\Device;
+
+
+
+
+
+
+
 
 /**
  * Test unitario per il modello Event.
@@ -182,7 +193,12 @@ class EventTest extends TestCase
 
         $restoredEvent = Event::withTrashed()->find($eventId);
         $restoredEvent->restore();
-
+        
+        $this->event->delete();
+        $this->assertSoftDeleted('events', ['id' => $eventId]);
+        
+        $restoredEvent = Event::withTrashed()->find($eventId);
+        $restoredEvent->restore();
         $this->assertDatabaseHas('events', ['id' => $eventId]);
         $this->assertNull($restoredEvent->deleted_at);
     }

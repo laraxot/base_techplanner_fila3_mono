@@ -57,18 +57,46 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
+<<<<<<< HEAD
 
+=======
+=======
+=======
+
+=======
+
+=======
+=======
+>>>>>>> develop
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
 È possibile modificare lo script per risolvere selettivamente solo determinati tipi di file:
 
+<<<<<<< HEAD
 
+=======
+=======
+=======
+
+=======
+>>>>>>> develop
 ### 2. Integrazione con Git Hooks
 Lo script può essere integrato con Git hooks per verificare automaticamente la presenza di conflitti prima del commit:
 
 ```bash
+<<<<<<< HEAD
 
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+
+=======
+>>>>>>> develop
 # .git/hooks/pre-commit
 #!/bin/bash
 ```

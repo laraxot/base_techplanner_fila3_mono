@@ -27,7 +27,12 @@ Quando in uno script .sh si incorporano altre librerie tramite `source ./bashscr
 
 aurmich/dev
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -62,7 +67,12 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -76,7 +86,12 @@ process_files "$1"
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
 =======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
+=======
+=======
+
+>>>>>>> develop
 =======
 
 >>>>>>> f71d08e230 (.)
@@ -103,6 +118,13 @@ function validate_input() {
 
  43df3e0 (.)
 =======
+<<<<<<< HEAD
+=======
+
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
 =======

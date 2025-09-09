@@ -6,7 +6,7 @@ namespace Modules\TechPlanner\Filament\RelationManagers;
 
 use Filament\Tables;
 use Filament\Tables\Table;
-use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class VerificheRelationManager extends XotBaseRelationManager
 {

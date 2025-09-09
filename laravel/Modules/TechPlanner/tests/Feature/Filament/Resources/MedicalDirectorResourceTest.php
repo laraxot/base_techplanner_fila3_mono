@@ -14,6 +14,10 @@ use Modules\User\Models\User;
 
 class MedicalDirectorResourceTest extends TestCase
 {
+    use RefreshDatabase, WithFaker;
+
+class MedicalDirectorResourceTest extends TestCase
+{
     protected User $admin;
 
     protected function setUp(): void
@@ -184,7 +188,15 @@ class MedicalDirectorResourceTest extends TestCase
             'specializations' => json_encode(['cardiology', 'internal_medicine']),
         ]);
         MedicalDirector::factory()->create([
+            'specializations' => json_encode(['surgery', 'pediatrics'])
+            'specializations' => json_encode(['cardiology', 'internal_medicine']),
+        ]);
+        MedicalDirector::factory()->create([
             'specializations' => json_encode(['surgery', 'pediatrics']),
+            'specializations' => json_encode(['cardiology', 'internal_medicine'])
+        ]);
+        MedicalDirector::factory()->create([
+            'specializations' => json_encode(['surgery', 'pediatrics'])
         ]);
 
         Livewire::actingAs($this->admin)

@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\UI\Tests\Feature\UIBusinessLogicTest;
-
-namespace Modules\UI\Tests\Feature;
-
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Modules\UI\Models\Asset;
@@ -136,6 +132,7 @@ describe('UI Business Logic Integration', function () {
             $major = (int) explode('.', $component->version)[0];
             $minor = (int) explode('.', $component->version)[1];
             $patch = (int) explode('.', $component->version)[2];
+
             expect($major)->toBeGreaterThanOrEqual(1);
             expect($minor)->toBeGreaterThanOrEqual(1);
             expect($patch)->toBeGreaterThanOrEqual(0);
@@ -152,6 +149,7 @@ describe('UI Business Logic Integration', function () {
             expect($component->dependencies)->toBeArray();
             expect($component->dependencies)->toContain('jquery');
             expect($component->dependencies)->toContain('bootstrap');
+
             // Verifica che le dipendenze siano stringhe valide
             foreach ($component->dependencies as $dependency) {
                 expect(is_string($dependency))->toBeTrue();
@@ -251,6 +249,7 @@ describe('UI Business Logic Integration', function () {
             expect($component->is_active)->toBeTrue();
             expect($component->template)->not->toBeEmpty();
             expect($component->template)->toContain('{{ $content }}');
+
             // Verifica che il template sia HTML valido
             expect($component->template)->toContain('<div');
             expect($component->template)->toContain('</div>');
@@ -313,6 +312,7 @@ describe('UI Business Logic Integration', function () {
             expect($theme->needs_compilation)->toBeTrue();
             expect($theme->source_path)->not->toBeEmpty();
             expect($theme->compiled_path)->not->toBeEmpty();
+
             // Verifica che i percorsi siano diversi
             expect($theme->source_path)->not->toBe($theme->compiled_path);
         });
@@ -333,6 +333,7 @@ describe('UI Business Logic Integration', function () {
             foreach ($theme->assets as $asset) {
                 expect($asset->type)->toBe('css');
             }
+
             // Verifica che gli asset appartengano al tema corretto
             foreach ($theme->assets as $asset) {
                 expect($asset->theme_id)->toBe($theme->id);
@@ -364,6 +365,7 @@ describe('UI Business Logic Integration', function () {
                 $parentTheme->config ?? [],
                 $childTheme->config ?? []
             );
+
             expect($mergedConfig['colors']['primary'])->toBe('#007bff');
             expect($mergedConfig['colors']['secondary'])->toBe('#6c757d');
             expect($mergedConfig['fonts']['main'])->toBe('Arial');
@@ -404,6 +406,7 @@ describe('UI Business Logic Integration', function () {
             expect($component->data_schema['title'])->toBe('string');
             expect($component->data_schema['content'])->toBe('text');
             expect($component->data_schema['items'])->toBe('array');
+
             // Verifica che i tipi di dati siano validi
             $validTypes = ['string', 'text', 'array', 'object', 'number', 'boolean'];
             foreach ($component->data_schema as $field => $type) {
@@ -427,11 +430,13 @@ describe('UI Business Logic Integration', function () {
             expect($component->responsive_breakpoints['mobile'])->toContain('max-width');
             expect($component->responsive_breakpoints['tablet'])->toContain('min-width');
             expect($component->responsive_breakpoints['desktop'])->toContain('min-width');
+
             // Verifica che i breakpoint siano ordinati correttamente
             $mobileMax = (int) preg_replace('/[^0-9]/', '', $component->responsive_breakpoints['mobile']);
             $tabletMin = (int) preg_replace('/[^0-9]/', '', $component->responsive_breakpoints['tablet']);
             $tabletMax = (int) preg_replace('/[^0-9]/', '', $component->responsive_breakpoints['tablet']);
             $desktopMin = (int) preg_replace('/[^0-9]/', '', $component->responsive_breakpoints['desktop']);
+
             expect($mobileMax)->toBeLessThan($tabletMin);
             expect($tabletMax)->toBeLessThan($desktopMin);
         });
@@ -465,8 +470,8 @@ describe('UI Business Logic Integration', function () {
             $bundledCssCount = 1; // Un file CSS bundle
             $bundledJsCount = 1;  // Un file JS bundle
 
-            expect($bundledCssCount)->toBeLessThan($cssAssets->count()/** @phpstan-ignore method.nonObject */);
-            expect($bundledJsCount)->toBeLessThan($jsAssets->count()/** @phpstan-ignore method.nonObject */);
+            expect($bundledCssCount)->toBeLessThan($cssAssets->count());
+            expect($bundledJsCount)->toBeLessThan($jsAssets->count());
         });
 
         it('enforces lazy loading rules', function () {
@@ -481,6 +486,7 @@ describe('UI Business Logic Integration', function () {
             expect($component->supports_lazy_loading)->toBeTrue();
             expect($component->lazy_loading_threshold)->toBeGreaterThan(0);
             expect($component->lazy_loading_threshold)->toBeLessThan(1);
+
             // Verifica che la threshold sia ragionevole
             expect($component->lazy_loading_threshold)->toBe(0.5);
         });

@@ -6,7 +6,16 @@ namespace Modules\User\Tests\Unit\Models\BaseUserTest;
 
 namespace Modules\User\Tests\Unit\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\User\Models\BaseUser;
+use Modules\User\Tests\TestCase;
 
+uses(TestCase::class, RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->baseUser = new class extends BaseUser
+    {
         protected $table = 'test_users';
     };
 });

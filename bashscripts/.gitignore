@@ -56,7 +56,24 @@ dist/
 out/
 coverage/
 docs/cache/
+<<<<<<< HEAD
 docs/
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+docs/
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+=======
+docs/
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
+>>>>>>> develop
 cache/
 tmp/
 tmp*/

@@ -92,13 +92,3 @@ function createProfile(array $attributes = []): \Modules\User\Models\Profile
 {
     return \Modules\User\Models\Profile::factory()->create($attributes);
 }
-
-function createTenant(array $attributes = []): \Modules\User\Models\Tenant
-{
-    return \Modules\User\Models\Tenant::factory()->create($attributes);
-}
-
-function createAuthenticationLog(array $attributes = []): \Modules\User\Models\AuthenticationLog
-{
-    return \Modules\User\Models\AuthenticationLog::factory()->create($attributes);
-}

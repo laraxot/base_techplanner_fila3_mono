@@ -65,4 +65,3 @@ class ExtraPolicy extends XotBasePolicy
         return $user->hasPermissionTo('extra.forceDelete');
     }
 }
-

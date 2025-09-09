@@ -8,6 +8,7 @@ use Filament\Actions;
 use Illuminate\Support\Arr;
 use Livewire\Attributes\On;
 use Webmozart\Assert\Assert;
+use function Safe\preg_replace;
 use Illuminate\Support\HtmlString;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Cookie;
@@ -207,7 +208,8 @@ class ListClients extends XotBaseListRecords
 
     public function getHeaderActions(): array
     {
-        return [
+        /** @var array<string, \Filament\Actions\Action> $actions */
+        $actions = [
             ...parent::getHeaderActions(),
             Actions\ImportAction::make('importClient')
                 ->importer(ClientImporter::class),
@@ -221,6 +223,8 @@ class ListClients extends XotBaseListRecords
                 ->modalDescription('This will update coordinates for all clients based on their addresses. Continue?')
                 ->modalSubmitActionLabel('Yes, Update All'),
         ];
+
+        return $actions;
     }
 
     public function getTableBulkActions(): array

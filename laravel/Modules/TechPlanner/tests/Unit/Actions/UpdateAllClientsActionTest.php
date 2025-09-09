@@ -20,9 +20,15 @@ class UpdateAllClientsActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+        $this->action = new UpdateAllClientsAction();
+        
 
         $this->action = new UpdateAllClientsAction;
 
+        
+        $this->action = new UpdateAllClientsAction();
+        
         // Disabilita le code per i test
         Queue::fake();
     }

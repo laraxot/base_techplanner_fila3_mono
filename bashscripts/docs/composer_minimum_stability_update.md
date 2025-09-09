@@ -131,6 +131,7 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 ```bash
 =======
 =======
+<<<<<<< HEAD
 
 =======
 >>>>>>> 85c5198c (.)
@@ -156,6 +157,19 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 =======
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
+=======
+=======
+=======
+
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> develop
 # Verifica configurazione
 composer config --list | grep minimum-stability
 
@@ -213,6 +227,7 @@ composer check-platform-reqs
 ```bash
 =======
 =======
+<<<<<<< HEAD
 
 =======
 >>>>>>> 85c5198c (.)
@@ -238,6 +253,19 @@ composer check-platform-reqs
 =======
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
+=======
+=======
+=======
+
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> develop
 # Abilita debug composer
 composer update -vvv
 
@@ -265,6 +293,7 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 =======
 *Totale file verificati: 22* 
 =======
+<<<<<<< HEAD
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
@@ -285,3 +314,22 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 *Totale file verificati: 22* 
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
+=======
+*Totale file verificati: 22* 
+=======
+*Totale file verificati: 22* 
+=======
+=======
+*Totale file verificati: 22* 
+=======
+=======
+*Totale file verificati: 22* 
+=======
+=======
+*Totale file verificati: 22* 
+=======
+*Totale file verificati: 22* 
+=======
+=======
+*Totale file verificati: 22* 
+>>>>>>> develop

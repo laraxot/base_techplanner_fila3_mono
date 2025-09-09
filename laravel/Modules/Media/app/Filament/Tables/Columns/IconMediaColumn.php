@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\SelectColumn;
+=======
 use Modules\Media\Actions\CloudFront\GetCloudFrontSignedUrlAction;
 
 class IconMediaColumn extends IconColumn
@@ -47,11 +48,16 @@ class IconMediaColumn extends IconColumn
                 
                 ->action(function ($record,\Illuminate\Http\Request $request) use ($attachment) {
                     
+
+                ->action(function ($record,\Illuminate\Http\Request $request) use ($attachment) {
+=======
                     // @phpstan-ignore method.nonObject
                     $media = $record->getFirstMedia($attachment);
                     if (!$media) {
                         return;
                     }
+
+=======
                     //dddx($media->getPath());
                     return $media->toInlineResponse($request);
                     //return $media->toResponse($request);
@@ -76,6 +82,19 @@ class IconMediaColumn extends IconColumn
                     //
                 })
                   
+                    /*
+                    $headers=[
+                        'Content-Type' => $media->mime_type,
+                        'Content-Disposition' => 'inline; filename="' . basename($media->getPathRelativeToRoot()) . '"'
+                    ];
+                    $path = Storage::disk($media->disk)->path($media->getPathRelativeToRoot());
+                    return response()->file($path, $headers);
+                    */
+                    /*
+                    return Storage::disk($media->disk)->response($media->getPathRelativeToRoot(), null, $headers);
+                    */
+                })
+=======
                 ;
 
 

@@ -8,6 +8,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -136,6 +141,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -264,6 +274,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -394,6 +409,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -403,6 +423,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
  43df3e0 (.)
 
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
 ## 🎯 Funzionalità Future
@@ -530,6 +555,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 aurmich/dev
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -658,6 +688,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -786,6 +821,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📊 Fase 6: Monitoraggio
@@ -1075,6 +1115,11 @@ aurmich/dev
 - Aggiornamenti 
  43df3e0 (.)
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
 aurmich/dev

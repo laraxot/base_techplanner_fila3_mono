@@ -107,11 +107,11 @@ enum ConsentType: string implements HasLabel, HasIcon, HasColor
         );
     }
 
-    /**
+    /*
      * Get consent types grouped by category.
      * 
      * @return array<string, array<string, string>>
-     */
+     
     public static function groupedByCategory(): array
     {
         return [
@@ -141,6 +141,6 @@ enum ConsentType: string implements HasLabel, HasIcon, HasColor
             ],
         ];
     }
-
+    */
     
 }

@@ -40,7 +40,6 @@ return [
         'reset' => 'Reset',
         'select' => 'Select',
         'choose' => 'Choose...',
-
         'required' => 'Campo obbligatorio',
         'email' => 'Inserisci un indirizzo email valido',
         'min' => 'Il campo deve contenere almeno :min caratteri',

@@ -17,17 +17,24 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <x-button 
+=======
+                        <x-bootstrap-italia.button 
                             variant="outline-primary" 
                             href="/servizi" 
                             class="bg-white text-primary-600 hover:bg-primary-50">
                             Esplora i servizi
                         </x-button>
                         <x-button 
+=======
+                        </x-bootstrap-italia.button>
+                        <x-bootstrap-italia.button 
                             variant="secondary" 
                             href="/contatti"
                             class="bg-primary-700 hover:bg-primary-800 border-primary-700">
                             Contatta l'ufficio
                         </x-button>
+=======
+                        </x-bootstrap-italia.button>
                     </div>
                 </div>
                 <div class="hidden lg:block">
@@ -111,6 +118,10 @@
                 <x-button variant="outline-primary" href="/servizi">
                     Tutti i servizi
                 </x-button>
+=======
+                <x-bootstrap-italia.button variant="outline-primary" href="/servizi">
+                    Tutti i servizi
+                </x-button>
             </div>
         </div>
     </section>
@@ -128,6 +139,10 @@
                     </p>
                 </div>
                 <x-button variant="outline-primary" href="/notizie">
+                    Tutte le notizie
+                </x-button>
+=======
+                <x-bootstrap-italia.button variant="outline-primary" href="/notizie">
                     Tutte le notizie
                 </x-button>
             </div>
@@ -190,17 +205,24 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <x-button 
+=======
+                    <x-bootstrap-italia.button 
                         variant="outline-primary" 
                         href="/contatti"
                         class="bg-white text-primary-600 hover:bg-primary-50">
                         Contatta gli uffici
                     </x-button>
                     <x-button 
+=======
+                    </x-bootstrap-italia.button>
+                    <x-bootstrap-italia.button 
                         variant="secondary" 
                         href="tel:+390612345678"
                         class="bg-primary-700 hover:bg-primary-800 border-primary-700">
                         Chiama: 06 1234567
                     </x-button>
+=======
+                    </x-bootstrap-italia.button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,17 @@
+parameters:
+    level: 9
+    paths:
+        - ./Modules/Employee/
+    excludePaths:
+        - ./*/vendor/*
+        - ./*/build/*
+        - ./*/docs/*
+        - ./*/Tests/*
+        - ./*/phpinsights.php
+        - ./*/rector.php
+        - ./*/*.blade.php
+        - ./Modules/*/packages/*
+        - ./Modules/*/tests/*
+    tmpDir: /tmp/phpstan
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false

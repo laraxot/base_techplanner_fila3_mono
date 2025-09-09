@@ -11,6 +11,8 @@ use Modules\User\Models\User;
 /**
  * Authentication Factory
  *
+ * Factory for creating Authentication model instances for testing and seeding.
+ *
  * @extends Factory<Authentication>
  */
 class AuthenticationFactory extends Factory
@@ -36,9 +38,12 @@ class AuthenticationFactory extends Factory
             'type' => $this->faker->randomElement(['login', 'logout', 'password_reset', 'email_verification']),
             'ip_address' => $this->faker->ipv4(),
             'user_agent' => $this->faker->userAgent(),
+            'location' => $this->faker->optional(0.7)->city().', '.$this->faker->optional(0.7)->country(),
             'login_successful' => $loginSuccessful,
             'login_at' => $loginAt,
-            'logout_at' => $loginSuccessful ? $this->faker->dateTimeBetween($loginAt, 'now') : null,
+            'logout_at' => $loginSuccessful && $this->faker->boolean(60)
+                ? $this->faker->dateTimeBetween($loginAt, 'now')
+                : null,
             'authenticatable_type' => User::class,
             'authenticatable_id' => User::factory(),
         ];

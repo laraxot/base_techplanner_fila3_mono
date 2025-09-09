@@ -16,11 +16,14 @@ class ListDevices extends XotBaseListRecords
 
     public function getHeaderActions(): array
     {
-        return [
+        /** @var array<string, \Filament\Actions\Action> $actions */
+        $actions = [
             ...parent::getHeaderActions(),
             Actions\ImportAction::make('importDevice')
                 ->importer(DeviceImporter::class),
         ];
+
+        return $actions;
     }
 
     public function getTableColumns(): array

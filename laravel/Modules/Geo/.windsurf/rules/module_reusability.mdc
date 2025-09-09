@@ -1,0 +1,53 @@
+# Regola Critica: Moduli Riutilizzabili Project-Agnostic
+
+## Ambito
+- Globale (tutti i moduli riutilizzabili)
+
+## Motivazione
+- Garantire riusabilità e portabilità dei moduli tra progetti diversi
+- Evitare lock-in e dipendenze hardcoded
+- Facilitare manutenzione e deployment multi-progetto
+
+## Regola
+I moduli riutilizzabili (Notify, User, Xot, UI, Cms, Blog, Geo) NON devono MAI contenere:
+- Nomi di progetti hardcoded (saluteora, salutemo, dentalpro)
+- Import diretti da moduli project-specific
+- Configurazioni database hardcoded
+- Email/domini hardcoded specifici del progetto
+
+## Esempio pratico
+```php
+// ❌ ERRATO
+'content' => 'Benvenuto su SaluteOra!',
+use Modules\SaluteOra\Models\User;
+
+// ✅ CORRETTO  
+'content' => 'Benvenuto su ' . config('app.name') . '!',
+$userClass = XotData::make()->getUserClass();
+```
+
+## Pattern obbligatori
+- XotData::make()->getUserClass() per classe User dinamica
+- config('app.name') per nome applicazione
+- config('app.domain') per domini email
+- config('database.default') per configurazioni database
+
+## Anti-pattern
+- Hardcoding di "saluteora", "salutemo", "dentalpro"
+- Import diretti tipo use Modules\SaluteOra\Models\User
+- Email hardcoded tipo admin@saluteora.com
+- Database hardcoded tipo saluteora_test
+
+## Controlli
+- Script automatici per rilevare hardcoding
+- PHPStan rules custom
+- CI/CD enforcement
+- Review obbligatoria per moduli riutilizzabili
+
+## Collegamenti
+- [module_reusability_guidelines.md](mdc:../../docs/module_reusability_guidelines.md)
+- [Modules/Notify/docs/reusability_guidelines.md](mdc:../../laravel/Modules/Notify/docs/reusability_guidelines.md)
+- [Modules/Xot/docs/xotdata_usage.md](mdc:../../laravel/Modules/Xot/docs/xotdata_usage.md)
+
+## Ultimo aggiornamento
+2025-01-06

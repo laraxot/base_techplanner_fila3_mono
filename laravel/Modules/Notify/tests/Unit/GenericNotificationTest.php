@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Modules\Notify\Tests\Unit;
-
 use Illuminate\Database\Eloquent\Model;
 use Modules\Notify\Notifications\GenericNotification;
 

@@ -724,6 +724,11 @@ ssh-add ~/.ssh/id_ed25519
 ### Comandi Utili da Ricordare:
 ```bash
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # Riavviare tutti i servizi

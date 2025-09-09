@@ -52,10 +52,13 @@ class ListMedicalDirectors extends XotBaseListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
+        /** @var array<string, \Filament\Actions\Action> $actions */
+        $actions = [
             ...parent::getHeaderActions(),
             Actions\ImportAction::make('importMedicalDirector')
                 ->importer(MedicalDirectorImporter::class),
         ];
+
+        return $actions;
     }
 }

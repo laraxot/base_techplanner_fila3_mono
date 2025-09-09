@@ -10,7 +10,11 @@ aurmich/dev
 
 aurmich/dev
 =======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
+=======
+=======
+>>>>>>> develop
 # 📱 Fase 9: UI/UX
 
 ## 📋 Panoramica
@@ -141,6 +145,11 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 aurmich/dev
 - Monitoraggio utilizzo
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📱 Fase 9: UI/UX
@@ -272,6 +281,11 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 # 📱 Fase 9: UI/UX
@@ -655,6 +669,11 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco HEAD (253 linee vs 1)[0m
  43df3e0 (.)
 =======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
 aurmich/dev

@@ -39,10 +39,32 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 - I namespace sono stati mantenuti corretti secondo la struttura del modulo
 - Sono stati rimossi solo i marcatori di conflitto, mantenendo il codice funzionale
 - I file di backup sono stati creati con il timestamp per sicurezza
+<<<<<<< HEAD
 
 ### Fase 1: Identificazione
 ```bash
 
+=======
+=======
+
+### Fase 1: Identificazione
+```bash
+=======
+### Fase 1: Identificazione
+```bash
+
+### Fase 1: Identificazione
+```bash
+
+### Fase 1: Identificazione
+```bash
+=======
+=======
+### Fase 1: Identificazione
+```bash
+=======
+=======
+>>>>>>> develop
 # Visualizzare tutti i file con conflitti
 git status
 
@@ -73,7 +95,17 @@ Per ogni file in conflitto:
 - `Modules\Predict\Providers` per i service provider
 - `Modules\Predict\Database\Factories` per le factory
 - `Modules\Predict\lang\it` per i file di traduzione
+<<<<<<< HEAD
 
+=======
+=======
+=======
+
+=======
+
+=======
+=======
+>>>>>>> develop
 ### Fase 3: Risoluzione
 Scegliere una delle seguenti strategie:
 
@@ -129,25 +161,68 @@ namespace Modules\NomeModulo\App\Filament;
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
 2. Eseguire `php artisan config:clear` per pulire la cache
 3. Verificare che tutte le risorse Filament siano registrate correttamente
+<<<<<<< HEAD
 4. Testare il modulo in ambiente di sviluppo 
+=======
+4. Testare il modulo in ambiente di sviluppo
+=======
+=======
+4. Testare il modulo in ambiente di sviluppo
+=======
+=======
+4. Testare il modulo in ambiente di sviluppo
+=======
+4. Testare il modulo in ambiente di sviluppo 
+=======
+>>>>>>> develop
 
 ## Risoluzione di Casi Specifici
 
 ### Conflitti in File PHP
+<<<<<<< HEAD
 
+=======
+=======
+=======
+=======
+=======
+=======
+
+=======
+>>>>>>> develop
 1. Verificare la compatibilità con PHPStan
 2. Mantenere le annotazioni PHPDoc complete
 3. Seguire le convenzioni di namespace
 4. Assicurarsi che tutte le dipendenze siano correttamente importate
 
 ### Conflitti in File di Documentazione
+<<<<<<< HEAD
 
+=======
+=======
+=======
+=======
+=======
+=======
+
+=======
+>>>>>>> develop
 1. In genere, mantenere entrambe le versioni
 2. Organizzare il contenuto in modo logico
 3. Aggiornare tutti i collegamenti
 
 ### Conflitti in File di Configurazione
+<<<<<<< HEAD
 
+=======
+=======
+=======
+=======
+=======
+=======
+
+=======
+>>>>>>> develop
 1. Confrontare attentamente le configurazioni
 2. Verificare l'impatto delle modifiche
 3. Documentare le decisioni prese
@@ -165,3 +240,13 @@ Il progetto include alcuni script per facilitare la gestione dei conflitti:
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti nei File di Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/config_file_conflicts.md)
 - [Convenzioni Namespace](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/NAMESPACE-CONVENTIONS.md)
+<<<<<<< HEAD
+=======
+=======
+
+=======
+=======
+=======
+
+=======
+>>>>>>> develop

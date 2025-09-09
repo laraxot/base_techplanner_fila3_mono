@@ -1,4 +1,9 @@
 # Tema Sixteen - Bootstrap Italia per Laravel/Tailwind
+<<<<<<< HEAD
+=======
+=======
+# Tema Sixteen - Documentazione Completa
+>>>>>>> develop
 
 ## 🎯 Panoramica del Progetto
 
@@ -130,7 +135,86 @@ colors: {
 }
 ```
 
+<<<<<<< HEAD
 ### Tipografia PA Compliant
+=======
+### Custom Components
+```php
+use Filament\Forms\Components\Section;
+
+Section::make('Dati Personali')
+    ->schema([
+        // Form fields
+    ])
+    ->columns(2)
+    ->collapsible();
+```
+
+## Accessibilità
+
+### WCAG 2.1 AA Compliance
+- Contrasto colori ≥ 4.5:1 per testo normale
+- Contrasto colori ≥ 3:1 per testo grande
+- Focus visibile su tutti gli elementi interattivi
+- Navigazione da tastiera completa
+- Testo alternativo per immagini
+- Struttura semantica corretta
+
+### Screen Reader Support
+```blade
+<!-- Esempio di label accessibile -->
+<label for="email" class="sr-only">
+    Indirizzo Email
+</label>
+<input 
+    id="email"
+    type="email"
+    aria-describedby="email-help"
+    aria-required="true"
+/>
+<div id="email-help" class="text-sm text-gray-600">
+    Inserisci un indirizzo email valido
+</div>
+```
+
+## Best Practices
+
+### 1. Naming Convention
+- Utilizzare nomi descrittivi per le classi
+- Seguire la convenzione BEM per CSS custom
+- Mantenere coerenza nei nomi dei componenti
+
+### 2. Performance
+- Utilizzare Tailwind JIT per build ottimizzate
+- Minimizzare CSS custom
+- Lazy loading per componenti pesanti
+
+### 3. Responsive Design
+```blade
+<!-- Mobile-first approach -->
+<div class="w-full md:w-1/2 lg:w-1/3">
+    <!-- Content -->
+</div>
+
+<!-- Touch-friendly buttons -->
+<button class="min-h-[44px] px-4 py-2">
+    <!-- Button content -->
+</button>
+```
+
+### 4. Internationalization
+```blade
+<!-- Utilizzare sempre le traduzioni -->
+<h1>{{ __('sixteen::pages.home.title') }}</h1>
+<p>{{ __('sixteen::pages.home.description') }}</p>
+```
+
+## Personalizzazione
+
+### Variabili CSS Custom
+### Tipografia PA Compliant
+=======
+>>>>>>> develop
 ```css
 /* Font system conformi alle linee guida */
 font-family: {
@@ -319,6 +403,7 @@ npm run lighthouse
 
 ---
 
+<<<<<<< HEAD
 ## 🏅 Status Badge
 
 ![AGID Compliance](https://img.shields.io/badge/AGID-48%25%20Compliant-yellow)
@@ -330,3 +415,8 @@ npm run lighthouse
 **Ultimo aggiornamento**: Settembre 1, 2025  
 **Mantenuto da**: Team Bootstrap Italia Migration  
 **Licenza**: MIT
+=======
+**Versione**: 1.0.0  
+**Ultimo aggiornamento**: Gennaio 2025  
+**Compatibilità**: Laravel 10+, Filament 3.x, Tailwind CSS 3.x 
+>>>>>>> develop

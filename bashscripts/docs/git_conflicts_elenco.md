@@ -2,6 +2,13 @@
 
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git (">>>>>>>") che devono essere controllati e risolti.
 =======
+<<<<<<< HEAD
+=======
+# Elenco File con Marcatori di Conflitto Git 
+
+Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
+=======
+>>>>>>> develop
 # Elenco File con Marcatori di Conflitto Git 
 
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git  che devono essere controllati e risolti.
@@ -12,6 +19,11 @@ Questo file contiene l'elenco di tutti i file che contengono marcatori di confli
 ### ✅ File Documentazione (NON sono conflitti reali)
 I seguenti file contengono ">>>>>>>" come parte di documentazione o esempi, NON come conflitti reali:
 =======
+<<<<<<< HEAD
+=======
+I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
+=======
+>>>>>>> develop
 I seguenti file contengono  come parte di documentazione o esempi, NON come conflitti reali:
 >>>>>>> 04d882f8f6 (.)
 
@@ -57,6 +69,11 @@ I seguenti file potrebbero contenere conflitti reali che necessitano di attenzio
 
 - **Totale file con ">>>>>>>" markers: 21**
 =======
+<<<<<<< HEAD
+=======
+- **Totale file con  markers: 21**
+=======
+>>>>>>> develop
 - **Totale file con  markers: 21**
 >>>>>>> 04d882f8f6 (.)
 - **File con conflitti reali potenziali: 0** ✅ TUTTI VERIFICATI
@@ -75,6 +92,10 @@ I seguenti file potrebbero contenere conflitti reali che necessitano di attenzio
 
 Tutti i 21 file che contengono la stringa ">>>>>>>" sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
 Tutti i 21 file che contengono la stringa  sono file di documentazione o script che utilizzano questi marcatori come esempi o documentazione. Nessun file contiene conflitti Git non risolti.
 >>>>>>> 04d882f8f6 (.)
 
