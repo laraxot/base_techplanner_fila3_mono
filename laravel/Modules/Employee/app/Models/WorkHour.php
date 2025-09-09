@@ -295,13 +295,6 @@ class WorkHour extends BaseModel
     public static function calculateWorkedHours(int $employeeId, ?Carbon $date = null): float
     {
         $entries = static::getTodayEntries($employeeId, $date);
-            public static function calculateWorkedHours(int $employeeId, ?Carbon $date = null): float
-    {
-        $entries = static::getTodayEntries($employeeId, $date);
-        if ($entries->isEmpty()) {
-            return 0.0;
-        }
-
         $totalMinutes = 0;
         $clockInTime = null;
 
@@ -351,19 +344,4 @@ class WorkHour extends BaseModel
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
-        if (!$lastEntry) {        if (! $lastEntry) {
-            return 'not_clocked_in';
-        }
-
-        return match ($lastEntry->type) {
-            self::TYPE_CLOCK_IN => 'clocked_in',
-            self::TYPE_BREAK_START => 'on_break',
-            self::TYPE_BREAK_END => 'clocked_in',
-            self::TYPE_CLOCK_OUT => 'clocked_out',            WorkHourTypeEnum::CLOCK_IN->value => 'clocked_in',
-            WorkHourTypeEnum::BREAK_START->value => 'on_break',
-            WorkHourTypeEnum::BREAK_END->value => 'clocked_in',
-            WorkHourTypeEnum::CLOCK_OUT->value => 'clocked_out',
-            default => 'not_clocked_in',
-        };
-    }
 }
