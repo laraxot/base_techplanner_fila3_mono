@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Employee\Models;
 
 use Modules\Gdpr\Models\Traits\HasGdpr;
-use Modules\SaluteOra\Enums\UserTypeEnum;
 use Modules\User\Models\BaseUser;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;

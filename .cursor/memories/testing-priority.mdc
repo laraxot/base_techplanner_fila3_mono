@@ -4,7 +4,7 @@
 **PRIMA** far funzionare TUTTI i test esistenti, **POI** creare nuovi test.
 
 ## Stato Attuale
-- Progetto: base_saluteora
+- Progetto: base_techplanner_fila3_mono
 - Root Laravel: /var/www/html/_bases/base_techplanner_fila3_mono/laravel/
 - Framework di test: Pest (con supporto PHPUnit legacy)
 - Configurazione: phpunit.xml con testsuite per Unit, Feature, Browser
