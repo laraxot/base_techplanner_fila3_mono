@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Pages\Tenancy;
 
 use Filament\Forms\Components\TextInput;
+<<<<<<< HEAD
 use Filament\Forms\Form;
+=======
+>>>>>>> 9831a351 (.)
 use Filament\Pages\Tenancy\EditTenantProfile;
 
 class EditTeamProfile extends EditTenantProfile
@@ -16,6 +19,7 @@ class EditTeamProfile extends EditTenantProfile
     }
 
     public function getFormSchema(): array
+<<<<<<< HEAD
 {
     
         
@@ -26,4 +30,15 @@ class EditTeamProfile extends EditTenantProfile
                 
       ];
 }
+=======
+    {
+
+        return [
+
+            TextInput::make('name'),
+            // ...
+
+        ];
+    }
+>>>>>>> 9831a351 (.)
 }

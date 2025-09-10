@@ -15,6 +15,10 @@ use Modules\Xot\Contracts\UserContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Tenant newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tenant newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tenant query()
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @property EloquentCollection<int, Model&UserContract> $members
  * @property int|null $members_count
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
@@ -24,6 +28,10 @@ use Modules\Xot\Contracts\UserContract;
  * @property TenantUser $pivot
  * @property EloquentCollection<int, User> $users
  * @property int|null $users_count
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @mixin IdeHelperTenant
  * @mixin \Eloquent
  */

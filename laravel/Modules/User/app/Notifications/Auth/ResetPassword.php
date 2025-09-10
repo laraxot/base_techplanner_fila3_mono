@@ -22,7 +22,11 @@ class ResetPassword extends BaseNotification
     /**
      * Get the reset password notification mail message for the given URL.
      *
+<<<<<<< HEAD
      * @param  string $url
+=======
+     * @param  string  $url
+>>>>>>> 9831a351 (.)
      * @return MailMessage
      */
     protected function buildMailMessage($url)

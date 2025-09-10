@@ -24,7 +24,10 @@ class EditWorkHour extends XotBaseEditRecord
 
     protected function getRedirectUrl(): string
     {
+<<<<<<< HEAD
         /** @var string */
+=======
+>>>>>>> cda86dd (.)
         return $this->getResource()::getUrl('index');
     }
 
@@ -33,6 +36,7 @@ class EditWorkHour extends XotBaseEditRecord
         $data = $this->form->getState();
         $currentRecord = $this->record;
 
+<<<<<<< HEAD
         // Ensure we have a WorkHour record
         if (! ($currentRecord instanceof WorkHour)) {
             throw new \InvalidArgumentException('Expected WorkHour record');
@@ -52,18 +56,30 @@ class EditWorkHour extends XotBaseEditRecord
 
         $newTimestamp = Carbon::parse(is_string($timestampValue) ? $timestampValue : $timestampValue->format('Y-m-d H:i:s'));
 
+=======
+>>>>>>> cda86dd (.)
         // Skip validation if no changes to critical fields
         if (
             $currentRecord->employee_id === $data['employee_id'] &&
             $currentRecord->type === $data['type'] &&
+<<<<<<< HEAD
             $currentRecord->timestamp->eq($newTimestamp)
+=======
+            $currentRecord->timestamp->eq(Carbon::parse($data['timestamp']))
+>>>>>>> cda86dd (.)
         ) {
             return;
         }
 
         // Check for duplicate entries within the same minute (excluding current record)
+<<<<<<< HEAD
         $existingEntry = WorkHour::where('employee_id', $data['employee_id'])
             ->where('timestamp', $newTimestamp)
+=======
+        $timestamp = Carbon::parse($data['timestamp']);
+        $existingEntry = WorkHour::where('employee_id', $data['employee_id'])
+            ->where('timestamp', $timestamp)
+>>>>>>> cda86dd (.)
             ->where('type', $data['type'])
             ->where('id', '!=', $currentRecord->id)
             ->first();
@@ -79,7 +95,11 @@ class EditWorkHour extends XotBaseEditRecord
         }
 
         // Validate working hours (6 AM to 10 PM)
+<<<<<<< HEAD
         if ($newTimestamp->hour < 6 || $newTimestamp->hour > 22) {
+=======
+        if ($timestamp->hour < 6 || $timestamp->hour > 22) {
+>>>>>>> cda86dd (.)
             Notification::make()
                 ->title('Invalid Time')
                 ->body('Work hours must be between 6:00 AM and 10:00 PM.')

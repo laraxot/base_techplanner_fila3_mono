@@ -26,6 +26,7 @@ Quando in uno script .sh si incorporano altre librerie tramite `source ./bashscr
 > Questa regola è stata aggiornata a seguito di un errore grave di duplicazione in uno script .sh. Va rispettata e diffusa in tutto il progetto.
 
 aurmich/dev
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -53,6 +54,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Principio DRY negli Script Bash: NO alla duplicazione di funzioni
 
 ## PERCHÉ È FONDAMENTALE
@@ -83,6 +87,7 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 ```bash
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -110,6 +115,9 @@ source ./bashscripts/lib/custom.sh
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Utilizzo le funzioni definite in custom.sh senza ridefinirle
 validate_input "$@"
 process_files "$1"
@@ -119,6 +127,7 @@ process_files "$1"
 ```bash
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -146,6 +155,9 @@ source ./bashscripts/lib/custom.sh
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # GRAVE ERRORE: ridefinire funzioni già presenti in custom.sh
 function validate_input() {
   # Implementazione duplicata che potrebbe divergere dall'originale
@@ -168,6 +180,7 @@ function validate_input() {
 > **NOTA IMPORTANTE**: Questa regola è stata aggiornata a seguito di errori gravi di duplicazione riscontrati in diversi script .sh. Il suo rispetto è considerato **CRITICO** per la manutenibilità del progetto.
 
  43df3e0 (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -202,4 +215,7 @@ function validate_input() {
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 aurmich/dev

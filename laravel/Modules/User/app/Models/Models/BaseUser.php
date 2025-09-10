@@ -21,7 +21,11 @@ abstract class BaseUser extends Authenticatable
     {
         /** @var class-string<\Illuminate\Notifications\DatabaseNotification> $notificationClass */
         $notificationClass = config('notifications.notification_model', \Illuminate\Notifications\DatabaseNotification::class);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 9831a351 (.)
         return $this->morphMany($notificationClass, 'notifiable');
     }
 }

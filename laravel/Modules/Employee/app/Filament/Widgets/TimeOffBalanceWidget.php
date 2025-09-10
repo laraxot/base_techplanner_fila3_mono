@@ -16,7 +16,11 @@ class TimeOffBalanceWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.time-off-balance-widget';
 
+<<<<<<< HEAD
     protected int|string|array $columnSpan = 1;
+=======
+    protected int|string|array $columnSpan = 'full';
+>>>>>>> cda86dd (.)
 
     protected static ?int $sort = 3;
 

@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\FeatureResource\Pages;
 
+<<<<<<< HEAD
 use Filament\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+=======
+>>>>>>> 9831a351 (.)
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Modules\User\Filament\Resources\FeatureResource;
@@ -36,6 +39,9 @@ class ListFeatures extends XotBaseListRecords
                 ->sortable(),
         ];
     }
+<<<<<<< HEAD
 
    
+=======
+>>>>>>> 9831a351 (.)
 }

@@ -40,6 +40,7 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 - Sono stati rimossi solo i marcatori di conflitto, mantenendo il codice funzionale
 - I file di backup sono stati creati con il timestamp per sicurezza
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -80,10 +81,13 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 <<<<<<< HEAD
 =======
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ### Fase 1: Identificazione
 ```bash
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> f52d0712 (.)
@@ -115,6 +119,8 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Visualizzare tutti i file con conflitti
 git status
 
@@ -145,6 +151,7 @@ Per ogni file in conflitto:
 - `Modules\Predict\Providers` per i service provider
 - `Modules\Predict\Database\Factories` per le factory
 - `Modules\Predict\lang\it` per i file di traduzione
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -181,6 +188,9 @@ Per ogni file in conflitto:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 ### Fase 3: Risoluzione
 Scegliere una delle seguenti strategie:
 
@@ -238,6 +248,7 @@ namespace Modules\NomeModulo\App\Filament;
 3. Verificare che tutte le risorse Filament siano registrate correttamente
 4. Testare il modulo in ambiente di sviluppo 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -284,6 +295,9 @@ namespace Modules\NomeModulo\App\Filament;
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 ## Risoluzione di Casi Specifici
 
 ### Conflitti in File PHP

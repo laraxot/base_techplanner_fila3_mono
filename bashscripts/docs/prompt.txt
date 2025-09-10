@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -17,6 +18,52 @@
 =======
 - Usare metodi specifici: getTableColumns(), getTableFilters(), getTableActions()
 >>>>>>> 1831d11e78 (.)
+=======
+# GUIDA ESSENZIALE LARAXOT
+
+## DOCUMENTAZIONE
+- Consulta SEMPRE le cartelle docs prima di ogni azione
+- Mai includere percorsi assoluti specifici (es. base_*_fila3)
+- Aggiorna e studia la cartella "docs" più vicina prima di implementare soluzioni
+- La documentazione non deve essere una replica del codice
+
+## VALIDAZIONE E CORREZIONE
+- Eseguire PHPStan livello 9/10 prima di iniziare qualsiasi lavoro
+- Processo: 1) Aggiornare docs 2) Studiare 3) Correggere
+- Quando correggi un errore, aggiorna la documentazione più vicina
+- Analizza ogni modulo separatamente con PHPStan
+- PHPStan è installato nella cartella laravel: `./vendor/bin/phpstan`
+- Strategia per errori numerosi: scendi di livello fino a <100 errori, poi sali gradualmente
+- Cerca e sistema i file con conflitti git
+
+## NAMESPACE E STRUTTURA
+- Modello: `Modules\*\Models` (non `Modules\*\app\Models`)
+- Filament: `Modules\*\Filament` (non `Modules\*\app\Filament`)
+- Percorso corretto: `Modules\Xot\Filament\Resources\Pages\XotBaseListRecords`
+- Ogni modulo ha il suo composer.json - analizzalo per path e namespace corretti
+- Esempio: User path: `/var/www/html/exa/base_orisbroker_fila3/laravel/Modules/User/app/Models/User.php`
+  namespace: `Modules\User\Models`
+
+## TRADUZIONI
+- Formato corretto: `'field' => ['label' => 'Etichetta', 'tooltip' => 'Descrizione']`
+- MAI usare ->label() (gestito da LangServiceProvider)
+
+## ESTENSIONE CLASSI
+- MAI estendere classi Filament direttamente
+- SEMPRE estendere classi XotBase dal modulo Xot
+- Non estendiamo mai Migration ma XotBaseMigration
+- Estendere classi base Xot (XotBaseServiceProvider) per i Service Provider
+- Chiamare sempre parent::boot() nei Service Provider
+
+## FILAMENT RESOURCES
+- Estendere XotBaseResource, non Resource
+- Usare getFormSchema(), non form()
+- Non definire $navigationIcon, $modelLabel (gestiti da traduzioni)
+- Non definire table() (gestito dalla pagina index)
+
+## PAGINE DI LISTA
+- Usare metodi specifici: getTableColumns(), getTableFilters(), getTableActions()
+>>>>>>> ea169dcc (.)
 - Usare array associativi con chiavi string per componenti
 
 ## MIGRAZIONI
@@ -60,6 +107,7 @@
 - Consultare la documentazione prima di ogni azione
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e9356a3a (.)
 =======
 <<<<<<< HEAD
@@ -71,6 +119,8 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -159,6 +209,7 @@
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
 =======
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> f198176d (.)
@@ -179,6 +230,9 @@
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> d20d0523 (.)
+=======
+>>>>>>> 85c5198c (.)
+>>>>>>> ea169dcc (.)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -265,6 +319,7 @@
 - Aggiornare e studiare continuamente la documentazione
 - Consultare la documentazione prima di ogni azione
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -290,6 +345,14 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+<<<<<<< HEAD
+>>>>>>> 337c5266 (.)
+=======
+=======
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -462,6 +525,7 @@
 - Aggiornare e studiare continuamente la documentazione
 - Consultare la documentazione prima di ogni azione
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -506,3 +570,9 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)

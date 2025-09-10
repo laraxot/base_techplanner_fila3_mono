@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Pages;
 
+<<<<<<< HEAD
 use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Widgets\Widget;
@@ -23,6 +24,17 @@ class Dashboard extends XotBaseDashboard
 {
     
 
+=======
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Get;
+use Filament\Widgets\Widget;
+use Filament\Widgets\WidgetConfiguration;
+use Modules\User\Filament\Widgets;
+use Modules\Xot\Filament\Pages\XotBaseDashboard;
+
+class Dashboard extends XotBaseDashboard
+{
+>>>>>>> 9831a351 (.)
     protected static ?string $navigationIcon = 'heroicon-o-home';
     // protected static string $routePath = 'finance';
     // protected static ?string $title = 'Finance dashboard';
@@ -42,6 +54,7 @@ class Dashboard extends XotBaseDashboard
         ];
     }
 
+<<<<<<< HEAD
     public function getFiltersFormSchema():array{
         return [
             DatePicker::make('startDate')
@@ -57,4 +70,20 @@ class Dashboard extends XotBaseDashboard
     }
 
     
+=======
+    public function getFiltersFormSchema(): array
+    {
+        return [
+            DatePicker::make('startDate')
+                ->native(false)
+            // ->maxDate(fn (Get $get) => $get('endDate') ?: now()),
+            ,
+            DatePicker::make('endDate')
+                ->native(false)
+            // ->minDate(fn (Get $get) => $get('startDate') ?: now())
+            // ->maxDate(now()),
+            ,
+        ];
+    }
+>>>>>>> 9831a351 (.)
 }

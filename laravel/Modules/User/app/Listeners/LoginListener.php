@@ -7,8 +7,13 @@ namespace Modules\User\Listeners;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Modules\User\Actions\GetCurrentDeviceAction;
+<<<<<<< HEAD
 use Modules\User\Models\DeviceUser;
 use Modules\User\Contracts\HasAuthentications;
+=======
+use Modules\User\Contracts\HasAuthentications;
+use Modules\User\Models\DeviceUser;
+>>>>>>> 9831a351 (.)
 
 class LoginListener
 {
@@ -41,7 +46,11 @@ class LoginListener
         if ($user && $user instanceof HasAuthentications) {
             $ip = $this->request->ip();
             $userAgent = $this->request->userAgent();
+<<<<<<< HEAD
             //$location = optional(geoip()->getLocation($ip))->toArray();
+=======
+            // $location = optional(geoip()->getLocation($ip))->toArray();
+>>>>>>> 9831a351 (.)
             $location = [];
 
             $log = $user->authentications()->create([

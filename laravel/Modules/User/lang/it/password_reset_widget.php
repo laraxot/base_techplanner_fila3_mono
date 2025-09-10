@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 declare(strict_types=1);
 
 return array (
@@ -13,3 +14,18 @@ return array (
     ),
   ),
 );
+=======
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'email' => [
+            'label' => 'email',
+            'placeholder' => 'email',
+            'helper_text' => '',
+            'description' => 'email',
+        ],
+    ],
+];
+>>>>>>> 9831a351 (.)

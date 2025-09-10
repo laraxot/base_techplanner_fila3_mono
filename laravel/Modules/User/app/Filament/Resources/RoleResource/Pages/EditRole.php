@@ -14,6 +14,7 @@ use Modules\User\Models\Role;
 use Modules\User\Support\Utils;
 use Webmozart\Assert\Assert;
 
+<<<<<<< HEAD
 
 
 
@@ -23,6 +24,8 @@ use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 
 
+=======
+>>>>>>> 9831a351 (.)
 class EditRole extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {
     // //

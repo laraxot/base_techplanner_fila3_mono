@@ -11,17 +11,33 @@ use Laravel\Passport\RefreshToken as PassportRefreshToken;
  * Modules\User\Models\OauthRefreshToken.
  *
  * @property OauthAccessToken|null $accessToken
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken query()
+=======
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken query()
+ *
+>>>>>>> 9831a351 (.)
  * @property string $id
  * @property string $access_token_id
  * @property bool $revoked
  * @property Carbon|null $expires_at
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken whereAccessTokenId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken whereExpiresAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthRefreshToken whereRevoked($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @mixin IdeHelperOauthRefreshToken
  * @mixin \Eloquent
  */

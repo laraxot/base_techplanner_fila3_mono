@@ -11,16 +11,26 @@ use Modules\User\Models\User;
 
 /**
  * TeamUser Factory
+<<<<<<< HEAD
  * 
  * Factory for creating TeamUser model instances for testing and seeding.
  * 
+=======
+ *
+ * Factory for creating TeamUser model instances for testing and seeding.
+ *
+>>>>>>> 9831a351 (.)
  * @extends Factory<TeamUser>
  */
 class TeamUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 9831a351 (.)
      * @var class-string<TeamUser>
      */
     protected $model = TeamUser::class;
@@ -41,9 +51,12 @@ class TeamUserFactory extends Factory
 
     /**
      * Create team-user relationship for a specific team.
+<<<<<<< HEAD
      *
      * @param Team $team
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function forTeam(Team $team): static
     {
@@ -54,9 +67,12 @@ class TeamUserFactory extends Factory
 
     /**
      * Create team-user relationship for a specific user.
+<<<<<<< HEAD
      *
      * @param User $user
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function forUser(User $user): static
     {
@@ -67,8 +83,11 @@ class TeamUserFactory extends Factory
 
     /**
      * Set the role to owner.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function owner(): static
     {
@@ -79,8 +98,11 @@ class TeamUserFactory extends Factory
 
     /**
      * Set the role to admin.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function admin(): static
     {
@@ -91,8 +113,11 @@ class TeamUserFactory extends Factory
 
     /**
      * Set the role to member.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function member(): static
     {
@@ -100,4 +125,8 @@ class TeamUserFactory extends Factory
             'role' => 'member',
         ]);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9831a351 (.)

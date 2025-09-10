@@ -12,6 +12,10 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+<<<<<<< HEAD
+=======
+use Modules\Employee\Models\Employee;
+>>>>>>> cda86dd (.)
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
@@ -26,7 +30,14 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
     protected static ?string $maxHeight = '500px';
 
+<<<<<<< HEAD
     protected int|string|array $columnSpan = 1;
+=======
+    protected int|string|array $columnSpan = [
+        'md' => 3,
+        'xl' => 2,
+    ];
+>>>>>>> cda86dd (.)
 
     public ?string $selectedDepartment = 'SVILUPPO';
 
@@ -45,11 +56,15 @@ class AttendanceOverviewWidget extends XotBaseWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
+<<<<<<< HEAD
                         ->afterStateUpdated(function ($state): void {
                             if (is_string($state) || $state === null) {
                                 $this->selectedDepartment = $state;
                             }
                         }),
+=======
+                        ->afterStateUpdated(fn ($state) => $this->selectedDepartment = $state),
+>>>>>>> cda86dd (.)
 
                     Tabs::make('attendance_type')
                         ->tabs([
@@ -58,6 +73,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                 ->badge($this->getAbsencesCount())
                                 ->schema([
                                     Placeholder::make('absences_list')
+<<<<<<< HEAD
                                         ->content(function (): \Illuminate\Contracts\View\View {
                                             // @phpstan-ignore-next-line argument.type
                                             return view('employee::widgets.attendance-overview.attendance-list', [
@@ -65,6 +81,12 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                                 'type' => 'absences',
                                             ]);
                                         }),
+=======
+                                        ->content(fn () => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getAbsences(),
+                                            'type' => 'absences',
+                                        ])),
+>>>>>>> cda86dd (.)
                                 ]),
 
                             Tab::make('smart_working')
@@ -72,6 +94,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                 ->badge($this->getSmartWorkingCount())
                                 ->schema([
                                     Placeholder::make('smart_working_list')
+<<<<<<< HEAD
                                         ->content(function (): \Illuminate\Contracts\View\View {
                                             // @phpstan-ignore-next-line argument.type
                                             return view('employee::widgets.attendance-overview.attendance-list', [
@@ -79,6 +102,12 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                                 'type' => 'smart_working',
                                             ]);
                                         }),
+=======
+                                        ->content(fn () => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getSmartWorking(),
+                                            'type' => 'smart_working',
+                                        ])),
+>>>>>>> cda86dd (.)
                                 ]),
 
                             Tab::make('transfers')
@@ -86,6 +115,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                 ->badge($this->getTransfersCount())
                                 ->schema([
                                     Placeholder::make('transfers_list')
+<<<<<<< HEAD
                                         ->content(function (): \Illuminate\Contracts\View\View {
                                             // @phpstan-ignore-next-line argument.type
                                             return view('employee::widgets.attendance-overview.attendance-list', [
@@ -93,6 +123,12 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                                 'type' => 'transfers',
                                             ]);
                                         }),
+=======
+                                        ->content(fn () => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getTransfers(),
+                                            'type' => 'transfers',
+                                        ])),
+>>>>>>> cda86dd (.)
                                 ]),
                         ])
                         ->activeTab(1),
@@ -113,8 +149,11 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
     /**
      * Get department options for select.
+<<<<<<< HEAD
      *
      * @return array<string, string>
+=======
+>>>>>>> cda86dd (.)
      */
     protected function getDepartmentOptions(): array
     {
@@ -147,14 +186,18 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
     /**
      * Get absences for next 7 days from real data.
+<<<<<<< HEAD
      *
      * @return array<int, array<string, mixed>>
+=======
+>>>>>>> cda86dd (.)
      */
     protected function getAbsences(): array
     {
         $startDate = Carbon::today();
         $endDate = Carbon::today()->addDays(7);
 
+<<<<<<< HEAD
         // Since we don't have 'absence' type in WorkHour schema,
         // we'll look for employees who haven't clocked in recently
         // This is a mock implementation for widget display
@@ -162,6 +205,41 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
         // Return mock data if no real absences found
         if (count($result) === 0) {
+=======
+        // Query real absences from database
+        $absences = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
+            $query->where('type', 'absence')
+                ->whereBetween('timestamp', [$startDate, $endDate]);
+        })
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->where('type', 'absence')
+                    ->whereBetween('timestamp', [$startDate, $endDate])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
+
+        $result = [];
+        foreach ($absences as $employee) {
+            foreach ($employee->workHours as $absence) {
+                $fullName = $employee->full_name ?? 'N/A';
+                $result[] = [
+                    'employee' => [
+                        'name' => $fullName,
+                        'avatar' => null,
+                        'initials' => $this->getInitials($fullName),
+                    ],
+                    'type' => 'Assenza',
+                    'period' => $absence->notes ?? 'giornata completa',
+                    'date' => $absence->timestamp->format('Y-m-d'),
+                    'color' => 'red',
+                ];
+            }
+        }
+
+        // Return mock data if no real absences found
+        if (empty($result)) {
+>>>>>>> cda86dd (.)
             $users = \Modules\User\Models\User::whereNotNull('first_name')
                 ->whereNotNull('last_name')
                 ->limit(2)
@@ -188,6 +266,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
     /**
      * Get smart working entries for next 7 days from real data.
+<<<<<<< HEAD
      *
      * @return array<int, array<string, mixed>>
      */
@@ -198,6 +277,47 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
         // Return mock data if no real smart working found
         if (count($result) === 0) {
+=======
+     */
+    protected function getSmartWorking(): array
+    {
+        $startDate = Carbon::today();
+        $endDate = Carbon::today()->addDays(7);
+
+        // Query real smart working entries from database
+        $smartWorkingEntries = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
+            $query->where('type', 'smart_working')
+                ->whereBetween('timestamp', [$startDate, $endDate]);
+        })
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->where('type', 'smart_working')
+                    ->whereBetween('timestamp', [$startDate, $endDate])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
+
+        $result = [];
+        foreach ($smartWorkingEntries as $employee) {
+            foreach ($employee->workHours as $smartWork) {
+                $fullName = $employee->full_name ?? 'N/A';
+                $result[] = [
+                    'employee' => [
+                        'name' => $fullName,
+                        'avatar' => null,
+                        'initials' => $this->getInitials($fullName),
+                    ],
+                    'type' => 'Smart Working',
+                    'period' => $smartWork->notes ?? 'giornata completa',
+                    'date' => $smartWork->timestamp->format('Y-m-d'),
+                    'color' => 'blue',
+                ];
+            }
+        }
+
+        // Return mock data if no real smart working found
+        if (empty($result)) {
+>>>>>>> cda86dd (.)
             $user = \Modules\User\Models\User::whereNotNull('first_name')
                 ->whereNotNull('last_name')
                 ->first();
@@ -223,6 +343,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
     /**
      * Get transfers for next 7 days from real data.
+<<<<<<< HEAD
      *
      * @return array<int, array<string, mixed>>
      */
@@ -233,6 +354,47 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
         // Return mock data if no real transfers found
         if (count($result) === 0) {
+=======
+     */
+    protected function getTransfers(): array
+    {
+        $startDate = Carbon::today();
+        $endDate = Carbon::today()->addDays(7);
+
+        // Query real transfer entries from database
+        $transfers = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
+            $query->where('type', 'transfer')
+                ->whereBetween('timestamp', [$startDate, $endDate]);
+        })
+            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
+                $query->where('type', 'transfer')
+                    ->whereBetween('timestamp', [$startDate, $endDate])
+                    ->orderBy('timestamp');
+            }])
+            ->limit(10)
+            ->get();
+
+        $result = [];
+        foreach ($transfers as $employee) {
+            foreach ($employee->workHours as $transfer) {
+                $fullName = $employee->full_name ?? 'N/A';
+                $result[] = [
+                    'employee' => [
+                        'name' => $fullName,
+                        'avatar' => null,
+                        'initials' => $this->getInitials($fullName),
+                    ],
+                    'type' => 'Trasferimento',
+                    'period' => $transfer->location_name ?? 'sede da definire',
+                    'date' => $transfer->timestamp->format('Y-m-d'),
+                    'color' => 'yellow',
+                ];
+            }
+        }
+
+        // Return mock data if no real transfers found
+        if (empty($result)) {
+>>>>>>> cda86dd (.)
             $user = \Modules\User\Models\User::whereNotNull('first_name')
                 ->whereNotNull('last_name')
                 ->first();

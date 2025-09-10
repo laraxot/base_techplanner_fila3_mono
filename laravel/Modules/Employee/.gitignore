@@ -23,7 +23,10 @@ cache/
 # Backup files
 *.old
 *.old1
+<<<<<<< HEAD
 *.old2
+=======
+>>>>>>> cda86dd (.)
 *.backup
 *.bak
 
@@ -32,6 +35,9 @@ docs/phpstan/
 
 # Other
 
+<<<<<<< HEAD
 # Standard ignores (auto)
 *.bakcup
 *.backup.*
+=======
+>>>>>>> cda86dd (.)

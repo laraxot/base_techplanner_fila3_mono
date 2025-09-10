@@ -58,6 +58,7 @@ coverage/
 docs/cache/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 docs/
 =======
@@ -84,6 +85,9 @@ docs/
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+docs/
+>>>>>>> ea169dcc (.)
 cache/
 tmp/
 tmp*/

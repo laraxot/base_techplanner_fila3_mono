@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\User\Contracts;
 
+<<<<<<< HEAD
 use Modules\User\Models\Team;
 use Modules\User\Contracts\TeamContract;
 use Modules\User\Models\Role;
+=======
+use Modules\User\Models\Role;
+use Modules\User\Models\Team;
+>>>>>>> 9831a351 (.)
 use Modules\Xot\Contracts\UserContract;
 
 /**

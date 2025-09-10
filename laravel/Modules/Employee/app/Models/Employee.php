@@ -6,7 +6,10 @@ namespace Modules\Employee\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+<<<<<<< HEAD
 use Parental\HasParent;
+=======
+>>>>>>> cda86dd (.)
 
 /**
  * Class Employee.
@@ -14,15 +17,23 @@ use Parental\HasParent;
  * @property int $id
  * @property int|null $user_id
  * @property string $employee_code
+<<<<<<< HEAD
  * @property array<string, mixed> $personal_data
  * @property array<string, mixed> $contact_data
  * @property array<string, mixed> $work_data
  * @property array<string, mixed> $documents
+=======
+ * @property array $personal_data
+ * @property array $contact_data
+ * @property array $work_data
+ * @property array $documents
+>>>>>>> cda86dd (.)
  * @property string|null $photo_url
  * @property string $status
  * @property int|null $department_id
  * @property int|null $manager_id
  * @property int|null $position_id
+<<<<<<< HEAD
  * @property array<string, mixed> $salary_data
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -129,6 +140,24 @@ class Employee extends User
     use HasParent;
 
     protected $table = 'users';
+=======
+ * @property array $salary_data
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Modules\User\Models\User|null $user
+ * @property-read \Modules\Employee\Models\Department|null $department
+ * @property-read \Modules\Employee\Models\Employee|null $manager
+ * @property-read \Illuminate\Database\Eloquent\Collection<\Modules\Employee\Models\Employee> $subordinates
+ * @property-read \Modules\Employee\Models\Position|null $position
+ * @property-read \Illuminate\Database\Eloquent\Collection<\Modules\Employee\Models\WorkHour> $workHours
+ * @property-read \Illuminate\Database\Eloquent\Collection<\Modules\Employee\Models\Leave> $leaves
+ * @property-read \Illuminate\Database\Eloquent\Collection<\Modules\Employee\Models\Document> $documents
+ */
+class Employee extends User
+{
+    protected $table = 'users';
+
+>>>>>>> cda86dd (.)
     /**
      * The attributes that are mass assignable.
      *
@@ -170,7 +199,11 @@ class Employee extends User
     /**
      * Get the work hours for this employee.
      *
+<<<<<<< HEAD
      * @return HasMany<WorkHour, $this>
+=======
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\Employee\Models\WorkHour>
+>>>>>>> cda86dd (.)
      */
     public function workHours(): HasMany
     {
@@ -178,9 +211,25 @@ class Employee extends User
     }
 
     /**
+<<<<<<< HEAD
      * Get the manager of this employee.
      *
      * @return BelongsTo<Employee, $this>
+=======
+     * Get the department this employee belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\Employee\Models\Department, \Modules\Employee\Models\Employee>
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    /**
+     * Get the manager of this employee.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Modules\Employee\Models\Employee, \Modules\Employee\Models\Employee>
+>>>>>>> cda86dd (.)
      */
     public function manager(): BelongsTo
     {
@@ -190,7 +239,11 @@ class Employee extends User
     /**
      * Get the subordinates of this employee.
      *
+<<<<<<< HEAD
      * @return HasMany<Employee, $this>
+=======
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Modules\Employee\Models\Employee>
+>>>>>>> cda86dd (.)
      */
     public function subordinates(): HasMany
     {

@@ -129,6 +129,7 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 
 ### Comandi di Verifica
 ```bash
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -212,6 +213,38 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 # Verifica configurazione
 composer config --list | grep minimum-stability
 
@@ -267,6 +300,7 @@ composer check-platform-reqs
 
 ### Log di Debug
 ```bash
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -350,6 +384,38 @@ composer check-platform-reqs
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 # Abilita debug composer
 composer update -vvv
 
@@ -373,6 +439,7 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 *Aggiornamento completato il: $(date)*
 *File modificati: 4*
 *File già configurati: 18*
+<<<<<<< HEAD
 *Totale file verificati: 22* 
 =======
 *Totale file verificati: 22* 
@@ -380,12 +447,29 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+*Totale file verificati: 22* 
+>>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> ea169dcc (.)
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 *Totale file verificati: 22* 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 =======
 *Totale file verificati: 22* 
@@ -427,3 +511,5 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

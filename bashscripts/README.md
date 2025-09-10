@@ -1,6 +1,7 @@
 
 # BashScripts - Organizzazione Script
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # 🚀 Toolkit di Automazione Git per Laraxot PTVX
 
@@ -188,6 +189,8 @@ Tutti gli script sono organizzati in sottocartelle per categoria:
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 
 ## Regola Fondamentale
 
@@ -252,11 +255,15 @@ Tutti gli script sono organizzati in sottocartelle per categoria:
 cd /var/www/html/_bases/base_saluteora
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 # Script per 20 studi con dottori (RACCOMANDATO per iniziare)
 php bashscripts/database/seeding/saluteora-20-studios-66010.php
 
 # Script per 1000 record per modello
 php bashscripts/database/seeding/saluteora-1000-records.php
+<<<<<<< HEAD
 =======
 # Rendi gli script eseguibili
 <<<<<<< HEAD
@@ -265,12 +272,17 @@ chmod +x *.sh
 >>>>>>> 574afe9e (.)
 chmod +x scripts/**/*.sh
 >>>>>>> 7de7063d (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 ### Esecuzione via Tinker
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 # Dalla directory Laravel
 cd laravel
 
@@ -279,6 +291,7 @@ php artisan tinker
 
 # Incolla il contenuto dello script desiderato
 # Lo script si eseguirà automaticamente
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -286,6 +299,8 @@ php artisan tinker
 >>>>>>> 574afe9e (.)
 ./scripts/git/git_sync_subtree.sh <path> <remote_repo>
 >>>>>>> 7de7063d (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 ## Caratteristiche degli Script
@@ -326,12 +341,16 @@ php artisan tinker
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 🚀 Inizializzazione seeding massivo SaluteOra - 1000 record per modello...
 📊 RISULTATO FINALE:
   - Studi creati: 1000
   - Dottori totali: 1000
   - Pazienti totali: 1000
   - Appuntamenti totali: 500
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -517,6 +536,8 @@ REMOTE_BRANCH=develop ./scripts/phpstan/check_before_phpstan.sh
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 7de7063d (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 ## Documentazione Correlata
@@ -554,11 +575,15 @@ REMOTE_BRANCH=develop ./scripts/phpstan/check_before_phpstan.sh
 4. **Memoria insufficiente**: Utilizzare script in batch più piccoli
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 ### Soluzioni
 1. **Eseguire migrazioni**: `php artisan migrate`
 2. **Verificare autoload**: `composer dump-autoload`
 3. **Controllare namespace**: Verificare struttura moduli
 4. **Testare connessione**: Verificare configurazione database
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -725,6 +750,8 @@ Questo progetto è rilasciato sotto licenza MIT. Vedi il file [LICENSE](LICENSE)
 >>>>>>> 574afe9e (.)
    **Soluzione**: Verifica che il path del subtree sia corretto
 >>>>>>> 7de7063d (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Note Importanti
 
@@ -738,6 +765,7 @@ Questo progetto è rilasciato sotto licenza MIT. Vedi il file [LICENSE](LICENSE)
 **Ultimo aggiornamento**: Gennaio 2025
 **Versione**: 2.0
 **Compatibilità**: Laravel 10+, Moduli SaluteOra/SaluteMo
+<<<<<<< HEAD
 =======
    **Soluzione**: Verifica che il path del subtree sia corretto
 >>>>>>> develop
@@ -1638,3 +1666,5 @@ This toolkit addresses these challenges by providing automated tools that simpli
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

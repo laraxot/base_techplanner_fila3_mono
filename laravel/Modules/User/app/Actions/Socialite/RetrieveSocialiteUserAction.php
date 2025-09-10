@@ -27,7 +27,11 @@ class RetrieveSocialiteUserAction
         }
 
         $providerId = $user->getId();
+<<<<<<< HEAD
         if (!is_string($providerId) && !is_int($providerId)) {
+=======
+        if (! is_string($providerId) && ! is_int($providerId)) {
+>>>>>>> 9831a351 (.)
             throw new \RuntimeException('L\'ID del provider deve essere una stringa o un intero');
         }
 
@@ -43,11 +47,19 @@ class RetrieveSocialiteUserAction
 
         // Accesso sicuro alla proprietà token in modo type-safe
         $token = '';
+<<<<<<< HEAD
         
         // Utilizzo ReflectionClass per accedere in modo sicuro alle proprietà/metodi
         try {
             $reflection = new \ReflectionClass($user);
             
+=======
+
+        // Utilizzo ReflectionClass per accedere in modo sicuro alle proprietà/metodi
+        try {
+            $reflection = new \ReflectionClass($user);
+
+>>>>>>> 9831a351 (.)
             // Prova prima i metodi standard
             if ($reflection->hasMethod('getToken')) {
                 $method = $reflection->getMethod('getToken');
@@ -63,7 +75,11 @@ class RetrieveSocialiteUserAction
                 if (is_string($tokenValue)) {
                     $token = $tokenValue;
                 }
+<<<<<<< HEAD
             } 
+=======
+            }
+>>>>>>> 9831a351 (.)
             // Prova poi ad accedere alla proprietà
             elseif ($reflection->hasProperty('token')) {
                 $property = $reflection->getProperty('token');
@@ -83,7 +99,11 @@ class RetrieveSocialiteUserAction
 
         if (empty($token)) {
             // Se non riusciamo a ottenere un token valido, utilizziamo un valore predefinito
+<<<<<<< HEAD
             $token = 'no_token_' . time();
+=======
+            $token = 'no_token_'.time();
+>>>>>>> 9831a351 (.)
         }
 
         $res->update([

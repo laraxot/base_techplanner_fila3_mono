@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -55,6 +56,8 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Guida Completa per Bug Fixing - Laraxot SaluteOra
 
 ## Principi Fondamentali
@@ -184,6 +187,7 @@ Un errore `ParseError: syntax error, unexpected token "protected", expecting end
 3. **Eliminare se inutile**: Se il metodo non serve più, eliminarlo
 
 ### Esempio Corretto
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -424,6 +428,8 @@ Un errore di tipo `ParseError: syntax error, unexpected token "protected", expec
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ```php
 class Example {
     public function foo() {}
@@ -431,6 +437,7 @@ class Example {
 } // <--- questa DEVE essere l'ultima parentesi graffa
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -478,6 +485,8 @@ class Example {
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ## Processo di Revisione
 
 ### Auto-Revisione
@@ -527,6 +536,7 @@ class Example {
 *Ultimo aggiornamento: 2025-08-04*
 *Versione: 2.0*
 *Compatibilità: Laraxot SaluteOra, PHP 8.2+, Laravel 12+, Filament 3.4+*
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -668,3 +678,5 @@ class Example {
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

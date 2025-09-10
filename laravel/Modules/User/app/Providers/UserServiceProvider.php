@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Providers;
 
+<<<<<<< HEAD
 use Webmozart\Assert\Assert;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Log;
@@ -30,11 +31,33 @@ use Modules\Xot\Providers\XotBaseServiceProvider;
 use Illuminate\Notifications\Messages\MailMessage;
 use Modules\User\Models\OauthPersonalAccessClient;
 use SocialiteProviders\Manager\ServiceProvider as SocialiteServiceProvider;
+=======
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rules\Password;
+use Laravel\Passport\Passport;
+use Modules\Notify\Emails\SpatieEmail;
+use Modules\User\Datas\PasswordData;
+use Modules\Xot\Contracts\UserContract;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use SocialiteProviders\Manager\ServiceProvider as SocialiteServiceProvider;
+use Webmozart\Assert\Assert;
+>>>>>>> 9831a351 (.)
 
 class UserServiceProvider extends XotBaseServiceProvider
 {
     public string $name = 'User';
+<<<<<<< HEAD
     protected string $module_dir = __DIR__;
+=======
+
+    protected string $module_dir = __DIR__;
+
+>>>>>>> 9831a351 (.)
     protected string $module_ns = __NAMESPACE__;
 
     public function boot(): void
@@ -91,7 +114,11 @@ class UserServiceProvider extends XotBaseServiceProvider
                 'token' => $token,
                 'reset_password_url' => url(route('password.reset', ['token' => $token], false)),
             ]);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 9831a351 (.)
             // ✅ FIX CRITICO: Imposta il destinatario dell'email con metodo Laravel standard
             if (method_exists($notifiable, 'getEmailForPasswordReset')) {
                 $email->to($notifiable->getEmailForPasswordReset());
@@ -101,6 +128,7 @@ class UserServiceProvider extends XotBaseServiceProvider
                 // Fallback per debug
                 \Illuminate\Support\Facades\Log::error('SpatieEmail: Destinatario email non trovato', [
                     'notifiable_class' => get_class($notifiable),
+<<<<<<< HEAD
                     'notifiable_id' => $notifiable->id ?? 'unknown'
                 ]);
             }
@@ -109,6 +137,15 @@ class UserServiceProvider extends XotBaseServiceProvider
         });
 
         
+=======
+                    'notifiable_id' => $notifiable->id ?? 'unknown',
+                ]);
+            }
+
+            return $email;
+        });
+
+>>>>>>> 9831a351 (.)
         /*
         $salutation = __('user::verify_email.salutation', ['app_name' => $app_name]);
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) use ($salutation): MailMessage {
@@ -133,6 +170,10 @@ class UserServiceProvider extends XotBaseServiceProvider
             } elseif (isset($notifiable->email)) {
                 $email->to($notifiable->email);
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
             return $email;
         });
     }
@@ -149,6 +190,10 @@ class UserServiceProvider extends XotBaseServiceProvider
     {
         Password::defaults(function (): Password {
             $pwd = PasswordData::make();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
             return $pwd->getPasswordRule();
         });
     }

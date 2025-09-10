@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -23,6 +24,10 @@
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+
+>>>>>>> ea169dcc (.)
 # Setup del Progetto Laravel
 
 Questo documento contiene la documentazione dettagliata dei comandi utilizzati per il setup di un progetto Laravel, insieme a spiegazioni, consigli e note per migliorare il processo.
@@ -45,6 +50,7 @@ Questo documento contiene la documentazione dettagliata dei comandi utilizzati p
 
 ### Verifica Requisiti
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -69,6 +75,9 @@ Questo documento contiene la documentazione dettagliata dei comandi utilizzati p
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Verifica versione PHP
 php -v
 
@@ -130,6 +139,7 @@ sudo add-apt-repository ppa:ondrej/php
 
 ### Configurazione File .env
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -154,6 +164,9 @@ sudo add-apt-repository ppa:ondrej/php
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Naviga nella directory del progetto
 cd laravel
 
@@ -182,6 +195,7 @@ php artisan key:generate
 - Se necessario, configurare manualmente altre variabili d'ambiente:
   ```ini
   APP_NAME=<nome progetto>
+<<<<<<< HEAD
   APP_NAME=<nome progetto>
  80ec88ee9 (.)
 =======
@@ -200,11 +214,14 @@ php artisan key:generate
 >>>>>>> 71ff9e32 (.)
 =======
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
   APP_NAME=<nome progetto>
 
   APP_NAME=SaluteOra
  80ec88ee9 (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -218,6 +235,8 @@ php artisan key:generate
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
   APP_ENV=local
   APP_DEBUG=true
   APP_URL=http://localhost
@@ -476,6 +495,7 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 
 ### Configurazione Tema Powerlevel10k
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -500,6 +520,9 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Modifica il file ~/.zshrc
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
@@ -636,6 +659,7 @@ sudo apt-get install --install-recommends webmin usermin
 
 ### Aggiornamento Composer e Dipendenze
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -660,6 +684,9 @@ sudo apt-get install --install-recommends webmin usermin
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Naviga nella directory del progetto
 cd laravel
 
@@ -959,6 +986,7 @@ sudo pecl install redis
 
 ### Creazione Database MySQL
 ```bash
+<<<<<<< HEAD
 # Crea il file database.sqlite nella directory database
 touch laravel/database/database.sqlite
 ```
@@ -2237,11 +2265,14 @@ FLUSH PRIVILEGES;
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 mysql -u root -p
 CREATE DATABASE nome_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'nome_utente'@'localhost' IDENTIFIED BY 'password_sicura';
 GRANT ALL PRIVILEGES ON nome_database.* TO 'nome_utente'@'localhost';
 FLUSH PRIVILEGES;
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -2255,6 +2286,8 @@ FLUSH PRIVILEGES;
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ### Creazione Database SQLite
 ```bash
 
@@ -3646,6 +3679,7 @@ FLUSH PRIVILEGES;
 
 # Esci
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -3658,6 +3692,8 @@ FLUSH PRIVILEGES;
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 EXIT;
 ```
 
@@ -3666,6 +3702,7 @@ EXIT;
 - Utilizza la codifica utf8mb4 per il massimo supporto Unicode
 
 **Note:**
+<<<<<<< HEAD
 ### Creazione Database SQLite
 ```bash
 # Crea il file database.sqlite nella directory database
@@ -3826,6 +3863,8 @@ php artisan migrate
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 - Sostituire `nome_database`, `nome_utente` e `password_sicura` con valori reali
 - Conservare le credenziali in modo sicuro
 
@@ -3836,6 +3875,7 @@ php artisan migrate
 - Documentare ogni personalizzazione
 - Monitorare costantemente le performance del server
 - Aggiornare regolarmente sistema e dipendenze
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -3849,6 +3889,8 @@ php artisan migrate
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 - Crea un nuovo database per il progetto Laravel
 - Configura un utente dedicato con i permessi necessari
 - Imposta il charset e la collation corretti
@@ -4053,6 +4095,7 @@ php artisan migrate
 - Testare la connessione al database
 - Controllare la configurazione di PHP
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -4065,6 +4108,8 @@ php artisan migrate
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Conclusioni
 
@@ -4105,6 +4150,7 @@ sudo systemctl start redis-server
 
 ### Configurazione Redis
 ```ini
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -4129,6 +4175,9 @@ sudo systemctl start redis-server
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # /etc/redis/redis.conf
 maxmemory 256mb
 maxmemory-policy allkeys-lru
@@ -4154,6 +4203,7 @@ maxmemory-policy allkeys-lru
 
 ### Configurazione Performance
 ```apache
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -4178,6 +4228,9 @@ maxmemory-policy allkeys-lru
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # /etc/apache2/mods-available/mpm_prefork.conf
 <IfModule mpm_prefork_module>
     StartServers 5
@@ -4190,6 +4243,7 @@ maxmemory-policy allkeys-lru
 
 ### Gestione Moduli Apache
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -4214,6 +4268,9 @@ maxmemory-policy allkeys-lru
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Disabilita il modulo PHP 8.2
 sudo a2dismod php8.2
 
@@ -4447,6 +4504,7 @@ php artisan user:assign-module
   ```
 - Per rimuovere l'assegnazione di un modulo:
   ```
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -4498,3 +4556,6 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+ 43df3e0 (.)
+>>>>>>> ea169dcc (.)

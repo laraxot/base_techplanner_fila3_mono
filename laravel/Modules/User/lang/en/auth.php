@@ -32,7 +32,11 @@ return [
         'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
         'unauthorized' => 'You are not authorized to access this resource.',
     ],
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 9831a351 (.)
     // Password Reset Widget - specific translations
     'password_reset' => [
         'email_placeholder' => 'Enter your email address',

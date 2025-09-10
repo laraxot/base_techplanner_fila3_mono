@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Risoluzione Conflitti Git - Modulo Predict
 =======
 <<<<<<< HEAD
@@ -12,6 +13,8 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Risoluzione Conflitti Git
 
 ## Panoramica
@@ -43,6 +46,7 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 
 ## Processo di Risoluzione
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -51,9 +55,15 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 =======
 >>>>>>> 9de04485 (.)
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 =======
 >>>>>>> 85c5198c (.)
 =======
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> f198176d (.)
@@ -94,6 +104,11 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 >>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 9de04485 (.)
+## Note Importanti
+- Tutti i file sono stati mantenuti nella versione<!-- REVISIONE MANUALE: File aggiornato per chiarezza e tracciabilità. Vedi anche [README globale](/docs/README.md) e gli altri file di risoluzione conflitti. -->
+>>>>>>> ea169dcc (.)
 
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
@@ -102,14 +117,23 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 - I namespace sono stati mantenuti corretti secondo la struttura del modulo
 - Sono stati rimossi solo i marcatori di conflitto, mantenendo il codice funzionale
 - I file di backup sono stati creati con il timestamp per sicurezza
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> ea169dcc (.)
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -134,6 +158,8 @@ Particolarmente comuni nel progetto, riguardano l'implementazione corretta dei n
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ### Fase 1: Identificazione
 ```bash
 # Visualizzare tutti i file con conflitti
@@ -154,6 +180,7 @@ git status
 git status
 
 # Trovare i marker di conflitto
+<<<<<<< HEAD
 =======
 ## Struttura del Modulo
 Il modulo Predict mantiene la seguente struttura di namespace:
@@ -181,6 +208,8 @@ Il modulo Predict mantiene la seguente struttura di namespace:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Verifica Post-Risoluzione
 Si consiglia di:
@@ -191,6 +220,7 @@ Si consiglia di:
 5. Testare le traduzioni
 6. Verificare il funzionamento delle factory nei test
 7. Testare il modulo in ambiente di sviluppo
+<<<<<<< HEAD
 
 ## Backup
 Tutti i file modificati hanno un backup con timestamp nel formato:
@@ -208,6 +238,8 @@ Tutti i file modificati hanno un backup con timestamp nel formato:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 ### Fase 2: Analisi
@@ -215,6 +247,7 @@ Per ogni file in conflitto:
 1. Comprendere il contesto delle modifiche
 2. Determinare quali modifiche devono essere mantenute
 3. Considerare le dipendenze e gli impatti delle modifiche
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -228,6 +261,8 @@ Per ogni file in conflitto:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Prossimi Passi
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
@@ -237,6 +272,7 @@ Per ogni file in conflitto:
 - `Modules\Predict\Providers` per i service provider
 - `Modules\Predict\Database\Factories` per le factory
 - `Modules\Predict\lang\it` per i file di traduzione
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -296,6 +332,25 @@ Per ogni file in conflitto:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+
+=======
+>>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 ### Fase 3: Risoluzione
 Scegliere una delle seguenti strategie:
 
@@ -303,6 +358,7 @@ Scegliere una delle seguenti strategie:
 2. **Mantenere la versione incoming**: Se la versione del branch è corretta
 3. **Fusione manuale**: Integrare le modifiche di entrambe le versioni
 4. **Approccio per i file .md**: Per i file di documentazione, mantenere entrambe le versioni
+<<<<<<< HEAD
 ## Verifica Post-Risoluzione
 Si consiglia di:
 1. Eseguire i test del modulo
@@ -328,6 +384,8 @@ Tutti i file modificati hanno un backup con timestamp nel formato:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 Per i file di codice PHP, verificare sempre la compatibilità con PHPStan livello 9 dopo la risoluzione.
 
@@ -372,6 +430,7 @@ namespace Modules\NomeModulo\App\Filament;
 5. **Documentare**: Mantenere aggiornata la documentazione
 6. **Seguire le Convenzioni**: Rispettare sempre le convenzioni di namespace e tipizzazione
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -384,11 +443,14 @@ namespace Modules\NomeModulo\App\Filament;
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Prossimi Passi
 1. Eseguire `composer dump-autoload` per aggiornare l'autoloader
 2. Eseguire `php artisan config:clear` per pulire la cache
 3. Verificare che tutte le risorse Filament siano registrate correttamente
+<<<<<<< HEAD
 =======
 4. Testare il modulo in ambiente di sviluppo 
 <<<<<<< HEAD
@@ -406,6 +468,8 @@ namespace Modules\NomeModulo\App\Filament;
 >>>>>>> 71ff9e32 (.)
 =======
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 4. Testare il modulo in ambiente di sviluppo 
 
 ## Risoluzione di Casi Specifici
@@ -443,6 +507,7 @@ Il progetto include alcuni script per facilitare la gestione dei conflitti:
 - [Conflitti nei File di Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/config_file_conflicts.md)
 - [Convenzioni Namespace](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/NAMESPACE-CONVENTIONS.md)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
@@ -467,3 +532,5 @@ Il progetto include alcuni script per facilitare la gestione dei conflitti:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

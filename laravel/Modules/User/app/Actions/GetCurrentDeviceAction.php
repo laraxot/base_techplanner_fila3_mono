@@ -22,7 +22,11 @@ class GetCurrentDeviceAction
      */
     public function execute(?string $mobile_id = null): Device
     {
+<<<<<<< HEAD
         $agent = new Agent();
+=======
+        $agent = new Agent;
+>>>>>>> 9831a351 (.)
 
         $device = $agent->device();
         $platform = $agent->platform();

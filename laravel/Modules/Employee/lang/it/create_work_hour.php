@@ -1,7 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
+=======
+>>>>>>> cda86dd (.)
 return [
     'actions' => [
         'create' => [

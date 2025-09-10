@@ -46,16 +46,28 @@ final class UserNameFieldsResolver
     }
 
     /**
+<<<<<<< HEAD
      * @param  string $searchMethod  use self constants (NAME_SEARCH, SURNAME_SEARCH)
      */
     private function resolveNameFields(User $idpUser, string $searchMethod): string
     {
         if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+=======
+     * @param  string  $searchMethod  use self constants (NAME_SEARCH, SURNAME_SEARCH)
+     */
+    private function resolveNameFields(User $idpUser, string $searchMethod): string
+    {
+        if (! in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+>>>>>>> 9831a351 (.)
             throw new \InvalidArgumentException('Metodo di ricerca non valido');
         }
 
         $name = $idpUser->getName();
+<<<<<<< HEAD
         if (!is_string($name) || empty($name)) {
+=======
+        if (! is_string($name) || empty($name)) {
+>>>>>>> 9831a351 (.)
             return '';
         }
 
@@ -90,7 +102,11 @@ final class UserNameFieldsResolver
 
         // Tenta di ottenere un nome dai dati raw
         $nameField = '';
+<<<<<<< HEAD
         if (isset($raw['name']) && is_string($raw['name']) && !empty($raw['name'])) {
+=======
+        if (isset($raw['name']) && is_string($raw['name']) && ! empty($raw['name'])) {
+>>>>>>> 9831a351 (.)
             $nameField = $raw['name'];
         }
 
@@ -99,11 +115,19 @@ final class UserNameFieldsResolver
         }
 
         $nameSection = $this->resolveNameFieldByNameAttributeAnalysis($nameField, $searchMethod);
+<<<<<<< HEAD
         if (!$nameSection->isNotEmpty()) {
             // If both sections were empty, try the "hardest way"
             // by analyzing email address
             $email = $idpUser->getEmail();
             if (!is_string($email) || empty($email)) {
+=======
+        if (! $nameSection->isNotEmpty()) {
+            // If both sections were empty, try the "hardest way"
+            // by analyzing email address
+            $email = $idpUser->getEmail();
+            if (! is_string($email) || empty($email)) {
+>>>>>>> 9831a351 (.)
                 return '';
             }
 
@@ -120,7 +144,11 @@ final class UserNameFieldsResolver
             // If both sections were empty, try the "hardest way"
             // by analyzing email address
             $email = $idpUser->getEmail();
+<<<<<<< HEAD
             if (!is_string($email) || empty($email)) {
+=======
+            if (! is_string($email) || empty($email)) {
+>>>>>>> 9831a351 (.)
                 return '';
             }
 
@@ -142,7 +170,11 @@ final class UserNameFieldsResolver
             return Str::of('');
         }
 
+<<<<<<< HEAD
         if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+=======
+        if (! in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+>>>>>>> 9831a351 (.)
             throw new \InvalidArgumentException('Metodo di ricerca non valido');
         }
 

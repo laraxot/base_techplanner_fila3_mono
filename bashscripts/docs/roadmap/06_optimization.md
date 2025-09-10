@@ -7,6 +7,7 @@
  43df3e0 (.)
 
 aurmich/dev
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -33,11 +34,16 @@ aurmich/dev
 
 =======
 =======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
+<<<<<<< HEAD
 >>>>>>> 9de04485 (.)
 =======
 >>>>>>> 59901687 (.)
@@ -81,6 +87,19 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> 337c5266 (.)
+=======
+
+=======
+>>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+>>>>>>> 85c5198c (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 # ⚡ Fase 6: Ottimizzazione
 
 ## 📋 Panoramica
@@ -183,6 +202,7 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 - [Roadmap Principale](../roadmap.md)
 - [Documentazione Script](../project.md)
 - [Fase 5: Monitoraggio](../roadmap/05_monitoring.md)
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -191,9 +211,15 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 <<<<<<< HEAD
 >>>>>>> 9de04485 (.)
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 =======
 >>>>>>> 85c5198c (.)
 =======
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> f198176d (.)
@@ -217,6 +243,9 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 - [Fase 7: Documentazione](../roadmap/07_documentation.md)
 
 ## 📅 Timeline
@@ -240,15 +269,24 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 - Monitoraggio
 - Fine-tuning
 - Manutenzione
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> ea169dcc (.)
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -274,6 +312,8 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
@@ -367,6 +407,7 @@ aurmich/dev
 * [06_optimization.md](docs/roadmap/06_optimization.md)
 
 
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -374,9 +415,15 @@ aurmich/dev
 <<<<<<< HEAD
 >>>>>>> 9de04485 (.)
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 =======
 >>>>>>> 85c5198c (.)
 =======
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> f198176d (.)
@@ -399,6 +446,9 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 
@@ -445,14 +495,23 @@ aurmich/dev
 * [06_optimization.md](docs/roadmap/06_optimization.md)
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+=======
+>>>>>>> ea169dcc (.)
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -477,3 +536,5 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

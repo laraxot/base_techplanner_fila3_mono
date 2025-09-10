@@ -24,6 +24,10 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 class PasswordResetWidget extends XotBaseWidget
 {
     public ?array $data = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
     public bool $emailSent = false;
 
     /**
@@ -74,7 +78,11 @@ class PasswordResetWidget extends XotBaseWidget
             'email' => $data['email'],
         ]);
 
+<<<<<<< HEAD
         if (Password::RESET_LINK_SENT === $response) {
+=======
+        if ($response === Password::RESET_LINK_SENT) {
+>>>>>>> 9831a351 (.)
             $this->emailSent = true;
 
             Notification::make()

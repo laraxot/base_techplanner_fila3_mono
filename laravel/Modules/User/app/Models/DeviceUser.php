@@ -16,9 +16,17 @@ use Modules\Xot\Datas\XotData;
  * Modules\User\Models\DeviceUser.
  *
  * @property Device|null $device
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser query()
+=======
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser query()
+ *
+>>>>>>> 9831a351 (.)
  * @property string $id
  * @property string $device_id
  * @property string $user_id
@@ -30,6 +38,10 @@ use Modules\Xot\Datas\XotData;
  * @property Carbon|null $updated_at
  * @property string|null $updated_by
  * @property string|null $created_by
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser whereDeviceId($value)
@@ -41,16 +53,28 @@ use Modules\Xot\Datas\XotData;
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceUser whereUserId($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @property ProfileContract|null $profile
  * @property UserContract|null $user
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @mixin IdeHelperDeviceUser
  * @mixin \Eloquent
  */
 class DeviceUser extends BasePivot
 {
     use HasFactory;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
     /** @var list<string> */
     protected $fillable = [
         'id',

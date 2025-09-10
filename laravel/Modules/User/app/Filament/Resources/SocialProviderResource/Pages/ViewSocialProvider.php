@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\SocialProviderResource\Pages;
 
+<<<<<<< HEAD
 use Filament\Actions;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\Section;
 use Modules\User\Filament\Resources\SocialProviderResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
+=======
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Modules\User\Filament\Resources\SocialProviderResource;
+
+>>>>>>> 9831a351 (.)
 use function Safe\json_encode;
 
 class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
@@ -30,6 +37,10 @@ class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseVi
                             if (is_array($state)) {
                                 return json_encode($state);
                             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
                             return is_string($state) ? $state : (string) $state;
                         }),
                     TextEntry::make('parameters')
@@ -37,6 +48,10 @@ class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseVi
                             if (is_array($state)) {
                                 return json_encode($state);
                             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
                             return is_string($state) ? $state : (string) $state;
                         }),
                     TextEntry::make('stateless')
@@ -52,9 +67,15 @@ class ViewSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseVi
                         ->html(),
                     TextEntry::make('created_at'),
                     TextEntry::make('updated_at'),
+<<<<<<< HEAD
                 ])
         ];
     }
 
     
+=======
+                ]),
+        ];
+    }
+>>>>>>> 9831a351 (.)
 }

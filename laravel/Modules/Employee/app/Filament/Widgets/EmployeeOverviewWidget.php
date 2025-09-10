@@ -25,7 +25,10 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
      * Ordine di visualizzazione del widget.
      */
     protected static ?int $sort = 1;
+<<<<<<< HEAD
     protected int|string|array $columnSpan = 1;
+=======
+>>>>>>> cda86dd (.)
 
     /**
      * Restituisce le statistiche da visualizzare nel widget.
@@ -35,7 +38,11 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
     protected function getStats(): array
     {
         // Cache delle statistiche per 5 minuti per migliorare performance
+<<<<<<< HEAD
         return cache()->remember('employee.overview.stats', 300, function (): array {
+=======
+        return cache()->remember('employee.overview.stats', 300, function () {
+>>>>>>> cda86dd (.)
             $today = Carbon::today();
             $thisMonth = Carbon::now()->startOfMonth();
 
@@ -43,30 +50,50 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
             $totalEmployees = Employee::count();
 
             // Dipendenti attivi oggi (hanno fatto almeno una timbratura)
+<<<<<<< HEAD
             // Nota: Utilizziamo la tabella work_hours per le timbrature
+=======
+            // Nota: Utilizziamo la tabella time_entries per le timbrature
+>>>>>>> cda86dd (.)
             $activeToday = WorkHour::whereDate('timestamp', $today)
                 ->distinct('employee_id')
                 ->count('employee_id');
 
+<<<<<<< HEAD
             // Dipendenti in ferie (mockup - no status field in current schema)
             $onLeave = 0;
+=======
+            // Dipendenti in ferie (status on_leave)
+            $onLeave = Employee::where('status', 'on_leave')->count();
+>>>>>>> cda86dd (.)
 
             // Nuovi dipendenti questo mese
             $newThisMonth = Employee::where('created_at', '>=', $thisMonth)->count();
 
             return [
+<<<<<<< HEAD
                 Stat::make(__('employee::widgets.overview.total_employees'), $totalEmployees)
                     ->description(__('employee::widgets.overview.total_employees_desc'))
+=======
+                Stat::make('Total Employees', $totalEmployees)
+                    ->description('All registered employees')
+>>>>>>> cda86dd (.)
                     ->descriptionIcon('heroicon-m-users')
                     ->color('primary')
                     ->chart($this->getEmployeeTrendChart()),
 
+<<<<<<< HEAD
                 Stat::make(__('employee::widgets.overview.active_today'), $activeToday)
                     ->description(__('employee::widgets.overview.active_today_desc'))
+=======
+                Stat::make('Active Today', $activeToday)
+                    ->description('Employees with activity today')
+>>>>>>> cda86dd (.)
                     ->descriptionIcon('heroicon-m-clock')
                     ->color($activeToday > 0 ? 'success' : 'gray')
                     ->chart($this->getDailyActivityChart()),
 
+<<<<<<< HEAD
                 Stat::make(__('employee::widgets.overview.on_leave'), $onLeave)
                     ->description(__('employee::widgets.overview.on_leave_desc'))
                     ->descriptionIcon('heroicon-m-calendar')
@@ -74,6 +101,15 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
 
                 Stat::make(__('employee::widgets.overview.new_this_month'), $newThisMonth)
                     ->description(__('employee::widgets.overview.new_this_month_desc'))
+=======
+                Stat::make('On Leave', $onLeave)
+                    ->description('Employees currently on leave')
+                    ->descriptionIcon('heroicon-m-calendar')
+                    ->color($onLeave > 0 ? 'warning' : 'success'),
+
+                Stat::make('New This Month', $newThisMonth)
+                    ->description('New hires this month')
+>>>>>>> cda86dd (.)
                     ->descriptionIcon('heroicon-m-user-plus')
                     ->color($newThisMonth > 0 ? 'info' : 'gray')
                     ->chart($this->getMonthlyHiresChart()),

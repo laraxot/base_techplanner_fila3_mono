@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
 declare(strict_types=1);
 
 namespace Modules\User\Database\Factories;
@@ -20,4 +24,7 @@ class ProfileFactory extends Factory
         return [];
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9831a351 (.)

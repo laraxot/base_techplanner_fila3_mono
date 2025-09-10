@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Resources\TenantResource\RelationManagers;
 
 use Filament\Forms;
+<<<<<<< HEAD
 use Filament\Forms\Form;
+=======
+>>>>>>> 9831a351 (.)
 use Filament\Tables\Columns\TextColumn;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 use Modules\Xot\Filament\Traits\HasXotTable;

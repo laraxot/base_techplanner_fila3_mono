@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # User Module Documentation
 
 **Ultima modifica**: 2025-01-15  
@@ -15,6 +16,8 @@ Il modulo User gestisce l'autenticazione, l'autorizzazione e la gestione degli u
 - **[Module Namespace Rules](../Xot/docs/module-namespace-rules.md)** - Regole namespace e migrazioni
 - **[Best Practices](../Xot/docs/best-practices.md)** - Best practices generali
 - **[Useful Links](../Xot/docs/useful-links.md)** - Link utili per lo sviluppo
+=======
+>>>>>>> 9831a351 (.)
 # Modulo User
 
 ## Introduzione
@@ -132,12 +135,15 @@ User/
 - [Linee guida Actions](./actions.mdc)
 - [Linee guida Activitylog](./activitylog.mdc)
 
+<<<<<<< HEAD
 ## 🏗️ Architettura Framework
 
 ### Regole Base XotBase
 - **Policies**: Estendono sempre `UserBasePolicy` (MAI direttamente Filament)
 - **Resources**: Estendono sempre `XotBaseResource`
 - **Models**: Estendono sempre `BaseModel` con tipizzazione rigorosa
+=======
+>>>>>>> 9831a351 (.)
 ## Vedi Anche
 - [Documentazione Principale](../../docs/INDEX.md)
 - [Architettura Moduli](../../docs/architecture/modules-structure.md)
@@ -962,6 +968,15 @@ Schema::table('teams', function (Blueprint $table) {
 - [ ] La documentazione tecnica è aggiornata
 - [ ] I comandi artisan sono lanciati dal path corretto o con namespace modulo
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 8055579 (.)
+
 ## Aggiornamenti Recenti
 
 ### 27 Gennaio 2025
@@ -973,6 +988,29 @@ Schema::table('teams', function (Blueprint $table) {
   - **Motivazione**: Separazione responsabilità, principio modulare, manutenibilità
   - **Regola**: docs_project solo per documentazione generale del progetto, file specifici di moduli nelle rispettive cartelle docs
 
+## Collegamenti
+
+<<<<<<< HEAD
+=======
+>>>>>>> 8a21b63 (.)
+=======
+>>>>>>> a0c18bc (.)
+>>>>>>> 8055579 (.)
+=======
+>>>>>>> d51888e (.)
+>>>>>>> 9831a351 (.)
+## Aggiornamenti Recenti
+
+### 27 Gennaio 2025
+- ✅ **Riorganizzazione Documentazione**: Spostati file specifici da docs_project alle cartelle docs dei moduli
+  - **File spostati in User/docs/**: 
+    - `doctor-registration-widget.md` - Widget registrazione dottori
+    - `doctor-registration.md` - Sistema registrazione dottori
+    - `email-doctor-registration.md` - Email registrazione dottori
+  - **Motivazione**: Separazione responsabilità, principio modulare, manutenibilità
+  - **Regola**: docs_project solo per documentazione generale del progetto, file specifici di moduli nelle rispettive cartelle docs
+
+<<<<<<< HEAD
 ## 🔗 Collegamenti Moduli
 - [Xot Core Framework](../Xot/docs/README.md)
 - [Lang Translations](../Lang/docs/README.md)
@@ -980,5 +1018,7 @@ Schema::table('teams', function (Blueprint $table) {
 
 ---
 *User Module Documentation - Framework Laraxot*
+=======
+>>>>>>> 9831a351 (.)
 ## Collegamenti
 

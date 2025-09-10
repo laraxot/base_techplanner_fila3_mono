@@ -1,5 +1,6 @@
 # Git Conflict Cleanup Checklist
 
+<<<<<<< HEAD
 Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git (">>>>>>>") che devono essere risolti.
 =======
 <<<<<<< HEAD
@@ -25,6 +26,9 @@ Questo file contiene l'elenco di tutti i file che contengono marcatori di confli
 >>>>>>> 04d882f8f6 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+Questo file contiene l'elenco di tutti i file che contengono marcatori di conflitto Git che devono essere risolti.
+>>>>>>> ea169dcc (.)
 
 **Data creazione**: 2025-07-30  
 **Stato**: In corso

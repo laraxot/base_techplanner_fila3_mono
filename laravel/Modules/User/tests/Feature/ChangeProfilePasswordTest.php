@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Hash;
+>>>>>>> 9831a351 (.)
 use Modules\User\Models\User;
 use Modules\Xot\Contracts\ProfileContract;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Hash;
 use function Pest\Laravel\{actingAs, post};
+=======
+
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\post;
+>>>>>>> 9831a351 (.)
 
 uses(Tests\TestCase::class);
 
@@ -75,4 +85,8 @@ test('cannot change password with wrong current password', function (): void {
 
     // Verifica che la password non sia stata cambiata
     expect(Hash::check('old_password', $user->fresh()->password))->toBeTrue();
+<<<<<<< HEAD
 }); 
+=======
+});
+>>>>>>> 9831a351 (.)

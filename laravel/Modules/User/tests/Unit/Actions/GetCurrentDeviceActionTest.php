@@ -4,17 +4,26 @@ declare(strict_types=1);
 
 namespace Modules\User\Tests\Unit\Actions;
 
+<<<<<<< HEAD
 use Illuminate\Foundation\Testing\RefreshDatabase;
+=======
+>>>>>>> 9831a351 (.)
 use Jenssegers\Agent\Agent;
 use Mockery;
 use Modules\User\Actions\GetCurrentDeviceAction;
 use Modules\User\Models\Device;
+<<<<<<< HEAD
 use Tests\TestCase;
 
 class GetCurrentDeviceActionTest extends TestCase
 {
     use RefreshDatabase;
 
+=======
+
+class GetCurrentDeviceActionTest extends TestCase
+{
+>>>>>>> 9831a351 (.)
     private GetCurrentDeviceAction $action;
 
     private Agent $mockAgent;

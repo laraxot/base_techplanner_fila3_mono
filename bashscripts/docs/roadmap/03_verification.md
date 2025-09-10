@@ -4,6 +4,7 @@
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -28,6 +29,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -124,6 +128,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 ### Altri
 - Logging strutturato
 - Monitoraggio performance
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -148,6 +153,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -251,6 +259,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 
+<<<<<<< HEAD
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 =======
 <<<<<<< HEAD
@@ -266,6 +275,8 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -362,6 +373,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 ### Altri
 - Logging strutturato
 - Monitoraggio performance
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -386,6 +398,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -484,6 +499,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 - Monitoraggio performance
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -508,6 +524,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -807,6 +826,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 
 
 aurmich/dev
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -831,6 +851,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -1029,6 +1052,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco HEAD (197 linee vs 1)[0m
  43df3e0 (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -1053,6 +1077,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 03_verification.md

@@ -129,6 +129,7 @@ Script per il push dei subtree. Funzionalità:
 3. Problemi di permessi: controllare fileMode e symlinks
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -248,3 +249,5 @@ Script per il push dei subtree. Funzionalità:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

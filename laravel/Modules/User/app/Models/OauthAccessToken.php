@@ -22,6 +22,10 @@ use Laravel\Passport\Token as PassportToken;
  * @property \Illuminate\Support\Carbon|null $expires_at
  * @property OauthClient|null $client
  * @property \Modules\Xot\Contracts\UserContract|null $user
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthAccessToken newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OauthAccessToken newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OauthAccessToken query()
@@ -34,21 +38,37 @@ use Laravel\Passport\Token as PassportToken;
  * @method static \Illuminate\Database\Eloquent\Builder|OauthAccessToken whereScopes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthAccessToken whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthAccessToken whereUserId($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @property OauthRefreshToken|null $refreshToken
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property string|null $deleted_at
  * @property string|null $deleted_by
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OauthAccessToken whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OauthAccessToken whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OauthAccessToken whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|OauthAccessToken whereUpdatedBy($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @mixin IdeHelperOauthAccessToken
  * @mixin \Eloquent
  */
 class OauthAccessToken extends PassportToken
 {
     use HasFactory;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9831a351 (.)
     /** @var string */
     protected $connection = 'user';
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -27,6 +28,8 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # 🚀 Fase 1: Core Git Operations
 
 ## 📋 Panoramica
@@ -42,6 +45,7 @@ Questa fase si concentra sulle operazioni fondamentali di Git necessarie per la 
 - Gestione dei submodule
 - Logging dettagliato
 - Gestione errori
+<<<<<<< HEAD
 
 
 
@@ -79,6 +83,10 @@ aurmich/dev
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> 71ff9e32 (.)
+=======
+- Backup automatico pre-operazioni
+
+>>>>>>> ea169dcc (.)
 ### 2. Gestione dei Submodule
 **Script**: `sync_submodules.sh`
 **Stato**: ✅ Completato
@@ -86,6 +94,7 @@ aurmich/dev
 - Aggiornamento automatico dei submodule
 - Gestione dei conflitti
 - Backup prima delle operazioni
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -507,6 +516,8 @@ Questa fase si concentra sulle operazioni fondamentali di Git necessarie per la 
 - Gestione dei conflitti
 - Backup prima delle operazioni
 <<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 - Verifica integrità post-operazioni
 
 ### 3. Backup Automatico
@@ -578,6 +589,7 @@ Questa fase si concentra sulle operazioni fondamentali di Git necessarie per la 
 - Tempo medio di sincronizzazione: < 5 minuti
 - Tasso di successo operazioni: 99.9%
 - Tempo di risoluzione conflitti: < 10 minuti
+<<<<<<< HEAD
 
 =======
 
@@ -7538,6 +7550,8 @@ Questa fase si concentra sulle operazioni fondamentali di Git necessarie per la 
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 - Tempo di backup: < 2 minuti
 - Tempo di rollback: < 5 minuti
 
@@ -7578,6 +7592,7 @@ Per ulteriori dettagli, consultare la documentazione degli script specifici e le
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -7590,3 +7605,5 @@ Per ulteriori dettagli, consultare la documentazione degli script specifici e le
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

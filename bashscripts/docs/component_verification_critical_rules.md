@@ -78,6 +78,7 @@
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -101,16 +102,24 @@
 =======
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 >>>>>>> develop
 =======
 =======
+>>>>>>> ea169dcc (.)
+=======
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ec52a6b4 (.)
 =======
@@ -118,9 +127,15 @@
 =======
 >>>>>>> 42ab2308 (.)
 =======
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -151,6 +166,9 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 85c5198c (.)
+>>>>>>> ea169dcc (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
@@ -158,6 +176,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -179,10 +198,15 @@
 >>>>>>> ec52a6b4 (.)
 
 =======
+
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
+=======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -215,6 +239,8 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php"
 
@@ -231,6 +257,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -254,16 +281,24 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 >>>>>>> develop
 =======
 =======
+>>>>>>> ea169dcc (.)
+=======
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ec52a6b4 (.)
 =======
@@ -271,9 +306,15 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> 42ab2308 (.)
 =======
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -304,6 +345,9 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 85c5198c (.)
+>>>>>>> ea169dcc (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
@@ -311,6 +355,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -332,10 +377,15 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> ec52a6b4 (.)
 
 =======
+
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
+=======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -368,6 +418,8 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -452,16 +504,20 @@ name('login');
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -508,6 +564,9 @@ name('login');
 <<<<<<< HEAD
 =======
 >>>>>>> 42ab2308 (.)
+=======
+>>>>>>> 85c5198c (.)
+>>>>>>> ea169dcc (.)
 
 # ERRATO: Non testare
 
@@ -517,6 +576,7 @@ name('login');
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
@@ -543,6 +603,15 @@ name('login');
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+
+# ERRATO: Non testare
+
+=======
+>>>>>>> 85c5198c (.)
+>>>>>>> ea169dcc (.)
 # ERRATO: Non testare
 >>>>>>> 3c18aa7e (.)
 =======
@@ -551,6 +620,7 @@ name('login');
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -574,10 +644,17 @@ name('login');
 # ERRATO: Non testare
 
 =======
+
+# ERRATO: Non testare
+
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
+=======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -611,6 +688,8 @@ name('login');
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Usare componente senza test
 
 # CORRETTO: Testare sempre
@@ -618,6 +697,7 @@ php artisan view:clear
 php artisan config:clear
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -641,16 +721,24 @@ php artisan config:clear
 =======
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 >>>>>>> develop
 =======
 =======
+>>>>>>> ea169dcc (.)
+=======
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ec52a6b4 (.)
 =======
@@ -658,9 +746,15 @@ php artisan config:clear
 =======
 >>>>>>> 42ab2308 (.)
 =======
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -691,6 +785,9 @@ php artisan config:clear
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> 85c5198c (.)
+>>>>>>> ea169dcc (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
@@ -698,6 +795,7 @@ php artisan config:clear
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -719,10 +817,15 @@ php artisan config:clear
 >>>>>>> ec52a6b4 (.)
 
 =======
+
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
+=======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -755,6 +858,8 @@ php artisan config:clear
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Testare componente
 ```
 
@@ -792,6 +897,7 @@ L'errore è stato causato da:
 *Stato: Regole critiche definite*
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -849,6 +955,16 @@ L'errore è stato causato da:
 =======
 >>>>>>> 42ab2308 (.)
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+<<<<<<< HEAD
+>>>>>>> ea169dcc (.)
+=======
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
 =======
@@ -858,16 +974,21 @@ L'errore è stato causato da:
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
 =======
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
+=======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -909,3 +1030,5 @@ L'errore è stato causato da:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

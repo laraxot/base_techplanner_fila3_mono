@@ -13,6 +13,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -37,6 +38,9 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -157,6 +161,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 ### Q4 2024
 - Deployment produzione
 - Monitoraggio
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -181,6 +186,9 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -301,6 +309,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 ### Q4 2024
 - Deployment produzione
 - Monitoraggio
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -325,6 +334,9 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -451,6 +463,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 aurmich/dev
 
+<<<<<<< HEAD
 aurmich/dev
 =======
 <<<<<<< HEAD
@@ -466,6 +479,8 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -586,6 +601,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 ### Q4 2024
 - Deployment produzione
 - Monitoraggio
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -610,6 +626,9 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -738,6 +757,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 aurmich/dev
 
+<<<<<<< HEAD
 aurmich/dev
 =======
 <<<<<<< HEAD
@@ -753,6 +773,8 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -1290,6 +1312,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco HEAD (4 linee vs 1)[0m
 - Ottimizzazione finale 
  43df3e0 (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -1314,6 +1337,9 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 04_advanced_automation.md

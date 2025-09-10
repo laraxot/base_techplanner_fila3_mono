@@ -1,6 +1,9 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
+=======
+>>>>>>> cda86dd (.)
 return [
     'navigation' => [
         'label' => 'Ore di Lavoro',
@@ -124,7 +127,10 @@ return [
         ],
         'toggleColumns' => [
             'label' => 'toggleColumns',
+<<<<<<< HEAD
             'help' => 'Toggle colonne tabella',
+=======
+>>>>>>> cda86dd (.)
         ],
     ],
     'actions' => [

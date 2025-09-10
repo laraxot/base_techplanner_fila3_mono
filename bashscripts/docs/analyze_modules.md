@@ -4,6 +4,7 @@
 Lo script `analyze_modules.sh` esegue l'analisi PHPStan su tutti i moduli Laravel presenti nella cartella `laravel/Modules/`. Per ogni modulo, esegue l'analisi a tutti i livelli di PHPStan (da 1 a max) e salva i risultati in formato JSON nella cartella `docs/phpstan` di ogni modulo.
 
 ## Posizione
+<<<<<<< HEAD
 `/var/www/html/ptvx/bashscripts/analyze_modules.sh`
 
 ## Utilizzo
@@ -22,11 +23,14 @@ cd /var/www/html/ptvx
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 `/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/analyze_modules.sh`
 
 ## Utilizzo
 ```bash
 cd /var/www/html/_bases/base_ptvx_fila3_mono
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -74,6 +78,8 @@ cd /var/www/html/_bases/base_ptvx_fila3_mono
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ./bashscripts/analyze_modules.sh
 ```
 
@@ -105,6 +111,7 @@ Modules/<NomeModulo>/docs/phpstan/
 - Configurazione PHPStan in `laravel/phpstan.neon`
 
 ## Variabili di Ambiente
+<<<<<<< HEAD
 - `BASE_DIR`: Directory base del progetto (`/var/www/html/ptvx/laravel`)
 =======
 <<<<<<< HEAD
@@ -145,6 +152,9 @@ Modules/<NomeModulo>/docs/phpstan/
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+- `BASE_DIR`: Directory base del progetto (`/var/www/html/_bases/base_ptvx_fila3_mono/laravel`)
+>>>>>>> ea169dcc (.)
 - `MODULES_DIR`: Directory dei moduli (`$BASE_DIR/Modules`)
 - `LEVELS`: Array dei livelli PHPStan da analizzare
 
@@ -184,6 +194,7 @@ Modules/<NomeModulo>/docs/phpstan/
    - Permessi insufficienti
    - PHPStan non installato
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -206,10 +217,21 @@ Modules/<NomeModulo>/docs/phpstan/
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 85c5198c (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
 >>>>>>> 7de7063d (.)
 =======
 >>>>>>> 71ff9e32 (.)
@@ -229,6 +251,8 @@ Modules/<NomeModulo>/docs/phpstan/
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Gestione dei Conflitti
 In caso di conflitti durante l'analisi dei moduli:
@@ -236,6 +260,7 @@ In caso di conflitti durante l'analisi dei moduli:
 2. Eseguire `git status` per identificare i file in conflitto
 3. Risolvere i conflitti manualmente seguendo le linee guida in [CONFLICT_RESOLUTION.md](../../docs/development/CONFLICT_RESOLUTION.md)
 4. Dopo la risoluzione, rieseguire l'analisi PHPStan
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -250,10 +275,13 @@ In caso di conflitti durante l'analisi dei moduli:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Collegamenti
 - [Documentazione PHPStan](../../docs/phpstan/PHPSTAN_WORKFLOW.md)
 - [Linee Guida Moduli](../../docs/MODULES.md)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -262,10 +290,18 @@ In caso di conflitti durante l'analisi dei moduli:
 <<<<<<< HEAD
 - [Risoluzione Conflitti](../../docs/development/CONFLICT_RESOLUTION.md)
 =======
+- [Risoluzione Conflitti](../../docs/development/CONFLICT_RESOLUTION.md)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
+=======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -315,11 +351,14 @@ In caso di conflitti durante l'analisi dei moduli:
 >>>>>>> d20d0523 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
    - Configurazione PHPStan errata
 
 ## Pattern di Risoluzione Errori
 Durante l'analisi PHPStan potrebbero emergere errori ricorrenti. Ecco le soluzioni più comuni:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 
@@ -347,11 +386,27 @@ Durante l'analisi PHPStan potrebbero emergere errori ricorrenti. Ecco le soluzio
 
 
 =======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 9c02579 (.)
+=======
+>>>>>>> 574afe9e (.)
+
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 9de04485 (.)
+>>>>>>> ea169dcc (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
 
 >>>>>>> 85c5198c (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 85c5198c (.)
 =======
@@ -391,6 +446,8 @@ Durante l'analisi PHPStan potrebbero emergere errori ricorrenti. Ecco le soluzio
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ## Gestione dei Conflitti
 In caso di conflitti durante l'analisi dei moduli:
 1. Verificare che non ci siano modifiche non committate
@@ -398,14 +455,22 @@ In caso di conflitti durante l'analisi dei moduli:
 3. Risolvere i conflitti manualmente seguendo le linee guida in [CONFLICT_RESOLUTION.md](../../docs/development/CONFLICT_RESOLUTION.md)
 4. Dopo la risoluzione, rieseguire l'analisi PHPStan
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 337c5266 (.)
+>>>>>>> ea169dcc (.)
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
+<<<<<<< HEAD
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -432,6 +497,8 @@ In caso di conflitti durante l'analisi dei moduli:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ## Collegamenti
 - [Documentazione PHPStan](../../docs/phpstan/PHPSTAN_WORKFLOW.md)
 - [Linee Guida Moduli](../../docs/MODULES.md)
@@ -480,6 +547,7 @@ if ($user !== null) {
 Lo script può essere integrato in pipeline CI/CD per automatizzare l'analisi del codice:
 
 ```yaml
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -507,6 +575,9 @@ Lo script può essere integrato in pipeline CI/CD per automatizzare l'analisi de
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Esempio di configurazione GitHub Actions
 name: PHPStan Analysis
 on: [push, pull_request]
@@ -530,6 +601,7 @@ jobs:
 - [Struttura dei Moduli](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/MODULE-STRUCTURE.md)
 - [Best Practices PHPStan](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/PHPSTAN-LEVEL9-GUIDE.md)
 - [Script di Automazione](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/scripts.md)
+<<<<<<< HEAD
 - [Risoluzione Conflitti](../../docs/development/CONFLICT_RESOLUTION.md)
 =======
 <<<<<<< HEAD
@@ -555,3 +627,5 @@ jobs:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

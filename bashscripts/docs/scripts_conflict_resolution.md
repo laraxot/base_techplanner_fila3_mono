@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Risoluzione Conflitti negli Script Bash
 =======
 <<<<<<< HEAD
@@ -23,6 +24,9 @@
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+# Script di Risoluzione dei Conflitti
+>>>>>>> ea169dcc (.)
 
 ## Panoramica
 
@@ -108,6 +112,7 @@ Verifica e corregge i problemi comuni di namespace nei file PHP, che sono spesso
 
 #### Descrizione
 Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
+<<<<<<< HEAD
 # Risoluzione Conflitti negli Script Bash
 =======
 # Script di Risoluzione dei Conflitti
@@ -222,6 +227,8 @@ Analizza i conflitti e fornisce statistiche e suggerimenti per la risoluzione.
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ### sync_to_disk.sh
 
@@ -326,6 +333,7 @@ I seguenti file sono stati recentemente risolti:
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: fix_all_git_conflicts.md](fix_all_git_conflicts.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -353,6 +361,9 @@ I seguenti file sono stati recentemente risolti:
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 ### fix_structure.sh
 
 Mantenere la versione più avanzata con funzioni di logging colorate, migliorando:
@@ -419,6 +430,7 @@ I seguenti file sono stati recentemente risolti:
 - `sync_to_disk.sh`: Mantenuta versione avanzata con migliore feedback e gestione esclusioni
 - `fix_merge_conflicts.sh`: Corretta la logica di individuazione e rimozione dei marker di conflitto per garantire la pulizia completa di tutti i tre tipi di marker 
 
+<<<<<<< HEAD
 =======
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
 <<<<<<< HEAD
@@ -441,6 +453,8 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
 
 #### Utilizzo
@@ -587,6 +601,7 @@ Per pulire un repository con molti conflitti non risolti:
 - [Convenzioni di Namespace](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/NAMESPACE-CONVENTIONS.md)
 - [Risoluzione Conflitti nei Moduli](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
@@ -616,3 +631,5 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

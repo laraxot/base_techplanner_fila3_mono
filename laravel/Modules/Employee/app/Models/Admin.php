@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Models;
 
+<<<<<<< HEAD
 use Parental\HasParent;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,14 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 /**
  * Class Admin
  * 
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Parental\HasParent;
+
+/**
+ * Class Admin
+ *
+>>>>>>> cda86dd (.)
  * NOTA: Il trait HasFactory è stato rimosso perché già incluso nella catena di ereditarietà (BaseUser -> User -> Admin).
  * Dichiararlo qui è ridondante e può causare warning o confusione.
  * Vedi docs/DRY-model-traits.md
@@ -20,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $id
  * @property string $user_id
  * @property string|null $date_of_birth
+<<<<<<< HEAD
  * Employee Module Admin Model
  *
  * Admin user type using Single Table Inheritance with Parental package.
@@ -33,6 +43,8 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string|null $first_name
  * @property string|null $last_name
  * @property \Carbon\Carbon|null $date_of_birth
+=======
+>>>>>>> cda86dd (.)
  * @property string|null $gender
  * @property string|null $address
  * @property string|null $phone
@@ -40,7 +52,12 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
+<<<<<<< HEAD
  * @property-read \Modules\User\Models\User|null $user
+=======
+ * @property-read \Modules\SaluteOra\Models\User|null $user
+ *
+>>>>>>> cda86dd (.)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin query()
@@ -54,6 +71,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Admin whereUserId($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cda86dd (.)
  * @property string|null $name
  * @property string|null $first_name
  * @property string|null $last_name
@@ -68,10 +89,17 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int|null $current_team_id
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $deleted_at
+<<<<<<< HEAD
  * @property string|null $state
  * @property array<array-key, mixed>|null $moderation_data
  * @property string|null $lang
  * @property string|null $type
+=======
+ * @property \Modules\SaluteOra\States\User\UserState|null $state
+ * @property array<array-key, mixed>|null $moderation_data
+ * @property string|null $lang
+ * @property \Modules\SaluteOra\Enums\UserTypeEnum|null $type
+>>>>>>> cda86dd (.)
  * @property bool $is_active
  * @property bool $is_otp
  * @property \Illuminate\Support\Carbon|null $password_expires_at
@@ -89,7 +117,11 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Gdpr\Models\Consent> $consents
  * @property-read int|null $consents_count
  * @property-read \Modules\User\Models\Team|null $currentTeam
+<<<<<<< HEAD
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model> $all_team_users
+=======
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $all_team_users
+>>>>>>> cda86dd (.)
  * @property-read \Modules\User\Models\AuthenticationLog|null $latestAuthentication
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property-read int|null $media_count
@@ -99,18 +131,34 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property-read int|null $owned_teams_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Permission> $permissions
  * @property-read int|null $permissions_count
+<<<<<<< HEAD
  * @property-read \Modules\Xot\Contracts\ProfileContract|null $profile
+=======
+ * @property-read \Modules\SaluteOra\Models\Profile|null $profile
+>>>>>>> cda86dd (.)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Role> $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\SocialiteUser> $socialiteUsers
  * @property-read int|null $socialite_users_count
+<<<<<<< HEAD
  * @property-read mixed|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team> $teams
  * @property-read int|null $teams_count
+=======
+ * @property-read \Modules\SaluteOra\Models\AdminStudio|\Modules\SaluteOra\Models\AdminTeam|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team> $teams
+ * @property-read int|null $teams_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Studio> $tenants
+ * @property-read int|null $tenants_count
+>>>>>>> cda86dd (.)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
  * @property-read int|null $tokens_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Gdpr\Models\Treatment> $treatments
  * @property-read int|null $treatments_count
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cda86dd (.)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin admins()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin doctors()
  * @method static \Modules\User\Database\Factories\UserFactory factory($count = null, $state = [])
@@ -146,6 +194,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin withoutRole($roles, $guard = null)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cda86dd (.)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Device> $devices
  * @property-read int|null $devices_count
  * @property string|null $dental_problems
@@ -157,6 +209,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string|null $certificates
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Membership> $teamUsers
  * @property-read int|null $team_users_count
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cda86dd (.)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereCertificates($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereDentalProblems($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereHealthCard($value)
@@ -164,6 +220,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereIseeCertificate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereLastDentalVisit($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin wherePregnancyCertificate($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cda86dd (.)
  * @property string|null $country_code
  * @property string|null $children_count
  * @property string|null $family_members
@@ -174,6 +234,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string|null $doctor_certificate
  * @property array<array-key, mixed>|null $certification
  * @property string|null $last_dental_visit_period
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cda86dd (.)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereCertification($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereChildrenCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereCountryCode($value)
@@ -184,8 +248,22 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereLastDentalVisitPeriod($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereNationality($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereYearsInItaly($value)
+<<<<<<< HEAD
  * @property string|null $age_range
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereAgeRange($value)
+=======
+ *
+ * @property string|null $age_range
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Appointment> $appointments
+ * @property-read int|null $appointments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Report> $reports
+ * @property-read int|null $reports_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\SaluteOra\Models\Studio> $studios
+ * @property-read int|null $studios_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Admin whereAgeRange($value)
+ *
+>>>>>>> cda86dd (.)
  * @mixin IdeHelperAdmin
  * @mixin \Eloquent
  */
@@ -214,8 +292,13 @@ class Admin extends User
     protected function casts(): array
     {
         return array_merge(parent::casts(), [
+<<<<<<< HEAD
             //'certifications' => 'array',
             //'availability' => 'array',
+=======
+            // 'certifications' => 'array',
+            // 'availability' => 'array',
+>>>>>>> cda86dd (.)
         ]);
     }
 }

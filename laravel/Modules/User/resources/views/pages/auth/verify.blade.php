@@ -77,4 +77,8 @@ new class extends Component
         </div>
     </div>
 
+<<<<<<< HEAD
 </x-layouts.main>
+=======
+</x-layouts.main>
+>>>>>>> 9831a351 (.)

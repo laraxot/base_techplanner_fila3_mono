@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -45,10 +46,13 @@
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # Guida per la Risoluzione dei Conflitti Git - Laraxot
 
 ## Obiettivo
 Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale approfondita, aggiornamento della documentazione e implementazione di soluzioni coerenti con l'architettura Laraxot.
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -120,6 +124,8 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ## Principi Fondamentali
 - **Analisi manuale obbligatoria**: Ogni conflitto deve essere analizzato e risolto manualmente
@@ -128,6 +134,7 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 - **Documentazione completa**: Aggiornare sempre la documentazione correlata
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
 =======
@@ -184,6 +191,9 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+- **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
+>>>>>>> ea169dcc (.)
 
 ## Workflow Sistematico
 
@@ -192,6 +202,7 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 # Trova tutti i file con conflitti Git
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -224,10 +235,13 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista dettagliata dei conflitti
 git diff --name-only --diff-filter=U
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -278,6 +292,8 @@ git diff --name-only --diff-filter=U
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 **Criteri di priorità:**
@@ -306,6 +322,7 @@ Per ogni file conflittuale:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - Compatibilità con l'architettura Laraxot
 =======
@@ -369,6 +386,9 @@ Per ogni file conflittuale:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+- Compatibilità con l'architettura Laraxot
+>>>>>>> ea169dcc (.)
 - Effetti sui moduli dipendenti
 
 ### 3. Risoluzione del Conflitto
@@ -380,6 +400,7 @@ Per ogni file conflittuale:
 - Controllare documentazione PHPDoc
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - Utilizzare `declare(strict_types=1);`
 =======
@@ -436,6 +457,9 @@ Per ogni file conflittuale:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+- Utilizzare `declare(strict_types=1);`
+>>>>>>> ea169dcc (.)
 
 **Per file Markdown (.md):**
 - Mantenere entrambe le versioni quando possibile
@@ -443,6 +467,7 @@ Per ogni file conflittuale:
 - Preservare i backlink esistenti
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - Rispettare convenzioni naming (minuscolo)
 =======
@@ -499,6 +524,9 @@ Per ogni file conflittuale:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+- Rispettare convenzioni naming (minuscolo)
+>>>>>>> ea169dcc (.)
 
 **Per file di configurazione:**
 - Privilegiare le configurazioni più recenti
@@ -611,6 +639,7 @@ Al termine del processo, fornire:
 # Trova file con conflitti Git
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -643,10 +672,13 @@ Al termine del processo, fornire:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista file con conflitti per tipo
 git diff --name-only --diff-filter=U
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -702,6 +734,8 @@ git diff --name-only --diff-filter=U
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 ### Verifica PHPStan
@@ -792,6 +826,7 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 - **PHPStan**: Mirare sempre al livello 10 per tutto il codice PHP
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -824,6 +859,8 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 - **Documentation Naming**: Tutti i file e cartelle in docs/ in minuscolo (eccetto README.md)
 
 ## Regole Critiche per Progetti Laraxot
@@ -850,6 +887,7 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 - **Sostenibilità**: Prevenire debito tecnico e mantenere longevità del codice
 - **Trasparenza**: Documentare ogni decisione tecnica importante
 - **Responsabilità**: Rispettare i confini e le responsabilità dei moduli
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -906,3 +944,5 @@ Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’al
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

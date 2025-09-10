@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\TeamResource\RelationManagers;
 
+<<<<<<< HEAD
 use Filament\Forms\Form;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\User\Filament\Resources\UserResource;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 use Filament\Tables;
+=======
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+>>>>>>> 9831a351 (.)
 
 class UsersRelationManager extends XotBaseRelationManager
 {

@@ -19,9 +19,12 @@ class FailedLoginListener
 {
     protected Request $request;
 
+<<<<<<< HEAD
     /**
      * @param Request $request
      */
+=======
+>>>>>>> 9831a351 (.)
     public function __construct(Request $request)
     {
         $this->request = $request;

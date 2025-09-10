@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Http\Volt;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+=======
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 9831a351 (.)
 use Volt\Routing\Attribute\Post;
 
 /*

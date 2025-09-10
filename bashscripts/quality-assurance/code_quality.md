@@ -1,6 +1,7 @@
 # Script di Verifica della Qualità del Codice
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Questa documentazione descrive gli script utilizzati per verificare e migliorare la qualità del codice nel progetto.
 =======
 Questa documentazione descrive gli script e le procedure utilizzate per verificare e migliorare la qualità del codice nel progetto Laravel.
@@ -526,6 +527,9 @@ git checkout HEAD -- storage/quality-reports/
 >>>>>>> f52d0712 (.)
 Questa documentazione descrive gli script e le procedure utilizzate per verificare e migliorare la qualità del codice nel progetto Laravel.
 >>>>>>> develop
+=======
+Questa documentazione descrive gli script utilizzati per verificare e migliorare la qualità del codice nel progetto.
+>>>>>>> ea169dcc (.)
 
 ## check_form_schema.php
 
@@ -549,6 +553,7 @@ bashscripts/check_form_schema.php
 php bashscripts/check_form_schema.php
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -619,6 +624,14 @@ XotBaseResource Classes Form Schema Check
 =======
 >>>>>>> f52d0712 (.)
 =======
+=======
+### Output
+Esempio di output:
+```
+XotBaseResource Classes Form Schema Check
+====
+
+>>>>>>> ea169dcc (.)
 ❌ 3 classi senza getFormSchema:
 - UserResource in Modules/User/Http/Resources/UserResource.php
 - ProfileResource in Modules/Profile/Http/Resources/ProfileResource.php
@@ -633,7 +646,10 @@ XotBaseResource Classes Form Schema Check
 - Utilizzare strumenti come PHPStan e PHP-CS-Fixer per garantire la qualità del codice
 
 ## Altri Script di Verifica della Qualità
+<<<<<<< HEAD
 >>>>>>> 71ff9e32 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 ### check_before_phpstan.sh
 Esegue controlli preliminari prima dell'analisi con PHPStan.
@@ -642,6 +658,9 @@ Esegue controlli preliminari prima dell'analisi con PHPStan.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 Genera la documentazione dei risultati di PHPStan.
 
 ## Raccomandazioni Generali
@@ -653,6 +672,7 @@ Genera la documentazione dei risultati di PHPStan.
 
 ### Descrizione
 Script PHP che verifica se le classi che estendono `XotBaseResource` implementano correttamente il metodo `getFormSchema()`, essenziale per il corretto funzionamento del sistema di form.
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> f52d0712 (.)
@@ -669,6 +689,8 @@ Genera la documentazione dei risultati di PHPStan.
 
 ### Descrizione
 Script PHP che verifica se le classi che estendono `XotBaseResource` implementano correttamente il metodo `getFormSchema()`, essenziale per il corretto funzionamento del sistema di form.
+=======
+>>>>>>> ea169dcc (.)
 
 ### Posizione
 ```
@@ -772,6 +794,7 @@ XotBaseResource Classes Form Schema Check
 
 ## Altri Script di Verifica della Qualità
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ec52a6b4 (.)
 ### KISS (Keep It Simple, Stupid)
@@ -1256,6 +1279,10 @@ git checkout HEAD -- storage/quality-reports/
 ### check_before_phpstan.sh
 Esegue controlli preliminari prima dell'analisi con PHPStan.
 >>>>>>> 71ff9e32 (.)
+=======
+### check_before_phpstan.sh
+Esegue controlli preliminari prima dell'analisi con PHPStan.
+>>>>>>> ea169dcc (.)
 
 # Script di Verifica della Qualità del Codice
 
@@ -1374,10 +1401,14 @@ Esegue controlli preliminari prima dell'analisi con PHPStan.
 ### phpstan_docs_generator.sh 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea169dcc (.)
 ## Risorse Utili
 - [PHPStan](https://phpstan.org/)
 - [Spatie Laravel Data](https://spatie.be/docs/laravel-data/v4/introduction)
 - [CI/CD Best Practices](https://docs.github.com/en/actions/guides/building-and-testing-php) 
+<<<<<<< HEAD
 =======
 ---
 
@@ -1416,3 +1447,5 @@ Esegue controlli preliminari prima dell'analisi con PHPStan.
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

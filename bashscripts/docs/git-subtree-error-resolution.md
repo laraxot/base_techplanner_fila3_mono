@@ -22,6 +22,7 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 ### 2. Push Script (`git_push_subtree.sh`)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 ```bash
@@ -63,6 +64,10 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+```bash
+
+>>>>>>> ea169dcc (.)
 # 1. Inizializzazione
 git init
 git checkout -b "$BRANCH"
@@ -74,6 +79,7 @@ git fetch --all
 # 3. Commit e push
 git add -A
 git commit -am "🔧 Aggiornamento subtree"
+<<<<<<< HEAD
 git merge origin/"$BRANCH" --allow-unrelated-histories
 =======
 <<<<<<< HEAD
@@ -109,11 +115,15 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+git merge origin/"$BRANCH" --allow-unrelated-histories"
+>>>>>>> ea169dcc (.)
 git push -u origin "$BRANCH"
 ```
 
 ### 3. Pull Script (`git_pull_subtree.sh`)
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -141,6 +151,9 @@ git push -u origin "$BRANCH"
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 1. Pull standard
 git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH" --squash
 
@@ -150,6 +163,7 @@ git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH"
 # 3. Fallback 2
 git fetch "$REMOTE_REPO" "$BRANCH" --depth=1
 git merge -s subtree FETCH_HEAD --allow-unrelated-histories
+<<<<<<< HEAD
 
 aurmich/dev
 =======
@@ -193,6 +207,10 @@ aurmich/dev
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+```
+
+>>>>>>> ea169dcc (.)
 Esegue una sequenza complessa di operazioni:
 ```bash
 1. git add -A && git commit -am "."
@@ -206,6 +224,7 @@ Esegue una sequenza complessa di operazioni:
 9. git rebase --rebase-merges --strategy subtree $REMOTE_BRANCH
 ```
 
+<<<<<<< HEAD
 ### 3. Pull Script (`git_pull_subtree.sh`)
 =======
 <<<<<<< HEAD
@@ -225,6 +244,8 @@ Esegue una sequenza complessa di operazioni:
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 Esegue una sequenza con fallback:
 ```bash
 1. git subtree pull -P $LOCAL_PATH $REMOTE_REPO $REMOTE_BRANCH --squash
@@ -233,6 +254,7 @@ Esegue una sequenza con fallback:
    - git fetch $REMOTE_REPO $REMOTE_BRANCH --depth=1
    - git merge -s subtree FETCH_HEAD --allow-unrelated-histories
 4. git rebase --rebase-merges --strategy subtree $REMOTE_BRANCH
+<<<<<<< HEAD
 
  43df3e0 (.)
 aurmich/dev
@@ -254,6 +276,8 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 ```
 
 ## 🚨 Analisi Errori Comuni
@@ -267,6 +291,7 @@ fatal: you must provide the --prefix option
 
 **Soluzione**:
 ```bash
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -294,6 +319,9 @@ fatal: you must provide the --prefix option
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # Verifica variabili
 if [ -z "$LOCAL_PATH" ] || [ -z "$REMOTE_REPO" ]; then
     echo "❌ Error: Missing required variables"
@@ -306,6 +334,7 @@ fi
 ! [rejected] dev -> dev (non-fast-forward)
 ```
 
+<<<<<<< HEAD
 
 
 =======
@@ -326,6 +355,8 @@ fi
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 **Causa**: Divergenze tra repository locale e remoto
 
 **Soluzione**:
@@ -334,6 +365,7 @@ fi
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
 =======
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
@@ -367,6 +399,8 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 
 # Riprova push
 if ! git push -u origin "$BRANCH"; then
@@ -434,6 +468,7 @@ fi
 <div align="center">
   <sub>Built with ❤️ by the development team</sub>
 </div>
+<<<<<<< HEAD
 
 aurmich/dev
 **Causa**: Questo errore si verifica nella sequenza di push quando ci sono divergenze tra il repository locale e remoto.
@@ -502,3 +537,5 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)

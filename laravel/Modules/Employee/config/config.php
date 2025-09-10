@@ -15,9 +15,13 @@ return [
     'description' => 'Modulo per la gestione completa delle risorse umane e dipendenti',
     'version' => '1.0.0',
     'icon' => 'employee-icon2',
+<<<<<<< HEAD
     
 
     
+=======
+
+>>>>>>> cda86dd (.)
     /*
     |--------------------------------------------------------------------------
     | Navigation Configuration
@@ -96,9 +100,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+<<<<<<< HEAD
     | Timeclock Configuration  
     | Timeclock Configuration
     | Timeclock Configuration  
+=======
+    | Timeclock Configuration
+>>>>>>> cda86dd (.)
     |--------------------------------------------------------------------------
     |
     | Settings for the timeclock functionality and validation.
@@ -213,9 +221,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+<<<<<<< HEAD
     | API Configuration  
     | API Configuration
     | API Configuration  
+=======
+    | API Configuration
+>>>>>>> cda86dd (.)
     |--------------------------------------------------------------------------
     |
     | Settings for API access and rate limiting.

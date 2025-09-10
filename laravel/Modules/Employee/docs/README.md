@@ -1,5 +1,6 @@
 # Employee Module - Laraxot
 
+<<<<<<< HEAD
 ## 📋 Module Overview
 
 Complete Employee module implementation designed to replicate and enhance the functionality of [dipendentincloud.it](https://www.dipendentincloud.it/), creating a comprehensive HR system based on Laraxot/PTVX architecture. The module provides complete employee lifecycle management with advanced time tracking, organizational management, and strict Laraxot conventions compliance.
@@ -41,6 +42,22 @@ The documentation is organized into logical categories for better navigation and
 - **[business_logic_new/time_tracking.md](business_logic_new/time_tracking.md)** - Time tracking Actions implementation
 - **[business_logic_new/employee_management.md](business_logic_new/employee_management.md)** - Employee management Actions
 - **[laraxot_actions_pattern.md](laraxot_actions_pattern.md)** - 🚨 CRITICAL: Actions pattern rules
+=======
+## Overview
+
+Complete Employee module implementation for comprehensive employee management functionality. The module provides employee data management, time tracking, department organization, and follows strict Laraxot conventions.
+
+## Documentation Structure
+
+The documentation is organized into logical categories for better navigation and maintenance:
+
+### 📚 Core Documentation
+- **[README.md](README.md)** - This overview document
+- **[configuration.md](configuration.md)** - Module configuration guide
+- **[naming-standards.md](naming-standards.md)** - Naming conventions and standards
+- **[module_structure.md](module_structure.md)** - Module organization guide
+- **[xotbase_extension_rules.md](xotbase_extension_rules.md)** - Critical Laraxot compliance rules
+>>>>>>> cda86dd (.)
 
 ### 🏗️ Architecture Documentation
 - **[architecture/](architecture/README.md)** - System architecture and design
@@ -65,9 +82,14 @@ The documentation is organized into logical categories for better navigation and
 
 ### 🔍 Analysis & Research
 - **[analysis/](analysis/README.md)** - Research and analysis documentation
+<<<<<<< HEAD
   - Reference system analysis (dipendentincloud.it)
   - Language and naming best practices
   - Functional strategy and comparison
+=======
+  - Reference system analysis
+  - Language and naming best practices
+>>>>>>> cda86dd (.)
 
 ### 🔧 Maintenance & Fixes
 - **[maintenance/](maintenance/README.md)** - Maintenance and troubleshooting
@@ -88,6 +110,7 @@ The documentation is organized into logical categories for better navigation and
   - **[mobile/](development/mobile/README.md)** - PWA and mobile development
   - **[integrations/](development/integrations/README.md)** - External system integrations
 
+<<<<<<< HEAD
 ### 🎨 Widget Documentation
 - **[widgets/](widgets/README.md)** - Filament widgets documentation and guides
   - **[timeclock-widget-ui-ux-improvements.md](widgets/timeclock-widget-ui-ux-improvements.md)** - ✨ Enhanced TimeClockWidget with Filament badges and buttons
@@ -137,6 +160,8 @@ The dashboard features 6 primary widgets providing comprehensive HR functionalit
 - **Real-time Updates**: Livewire polling for dynamic content
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 
+=======
+>>>>>>> cda86dd (.)
 ## Critical Laraxot Philosophy Compliance
 
 ### XotBase Extension Rules (ABSOLUTE PRIORITY)
@@ -187,6 +212,7 @@ class EmployeePage extends Modules\Xot\Filament\Pages\XotBasePage
 - PHP comments for explanations
 - As absolute last resort when no English alternative exists
 
+<<<<<<< HEAD
 ### Actions Pattern Implementation
 **ALL BUSINESS LOGIC MUST USE ACTIONS PATTERN**
 
@@ -201,6 +227,8 @@ class ClockInAction extends BaseAction
 }
 ```
 
+=======
+>>>>>>> cda86dd (.)
 ## Module Structure
 
 ```
@@ -322,6 +350,7 @@ The Employee module uses a custom SVG icon system:
 
 ### Widgets
 
+<<<<<<< HEAD
 #### Primary Widget (Enhanced - 2025)
 - **TimeClockWidget** ✨ UNIFIED - Single consolidated time tracking widget with enhanced UI/UX
   - **NEW**: Enhanced badge-based time entries display
@@ -333,6 +362,15 @@ The Employee module uses a custom SVG icon system:
   - Complete time tracking functionality with improved accessibility
   - Consolidates all time tracking features into one widget
   - **Documentation**: [timeclock-widget-ui-ux-improvements.md](widgets/timeclock-widget-ui-ux-improvements.md)
+=======
+#### Primary Widget (Active)
+- **TimeClockWidget** ✨ UNIFIED - Single consolidated time tracking widget
+  - Layout: [TIME+DATE] [TIME ENTRIES] [FILAMENT BUTTON]
+  - Native Filament components (`x-filament::button`)
+  - Real-time updates with polling
+  - Complete time tracking functionality
+  - Consolidates all time tracking features into one widget
+>>>>>>> cda86dd (.)
 
 #### CRITICAL NAMING RULES
 **NEVER use Italian words in class names** - Fundamental Laraxot philosophy rule:
@@ -424,12 +462,20 @@ php artisan test tests/Feature/Employee/EmployeeTest.php
 php artisan test --coverage --testsuite=Employee
 ```
 
+<<<<<<< HEAD
 ## 📚 Documentation
+=======
+## Documentation
+>>>>>>> cda86dd (.)
 
 ### Module Documentation
 - [Model Architecture](model_architecture.md) - Database and model structure
 - [WorkHour Implementation](workhour_implementation.md) - Time tracking system
+<<<<<<< HEAD
 - [Filament Widgets](filament_widgets.md) - Dashboard widgets and statistics
+=======
+- [Filament Widgets](filament_widgets.md) - Dashboard widgets e statistiche
+>>>>>>> cda86dd (.)
 - [Technical Implementation](technical_implementation.md) - Technical details
 - [Language Best Practices](language_best_practices.md) - Translation standards
 - [SVG Icon Standards](svg_icon_standards.md) - Icon system and standards
@@ -444,6 +490,7 @@ php artisan test --coverage --testsuite=Employee
 - [Translation Standards](../../laravel/Modules/Lang/docs/translation_file_syntax.md) - Language file syntax
 - [Best Practices](../../laravel/Modules/Lang/docs/) - Language development guidelines
 
+<<<<<<< HEAD
 ## 🚀 Installation and Setup
 
 ### Quick Installation
@@ -467,6 +514,11 @@ php artisan serve
 ### Detailed Setup
 
 #### 1. Module Registration
+=======
+## Installation and Setup
+
+### 1. Module Registration
+>>>>>>> cda86dd (.)
 ```bash
 # Register the module in composer.json
 composer require modules/employee
@@ -478,7 +530,11 @@ php artisan vendor:publish --tag=employee-config
 php artisan migrate
 ```
 
+<<<<<<< HEAD
 #### 2. Language Setup
+=======
+### 2. Language Setup
+>>>>>>> cda86dd (.)
 ```bash
 # Publish language files
 php artisan vendor:publish --tag=employee-lang
@@ -487,7 +543,11 @@ php artisan vendor:publish --tag=employee-lang
 php artisan lang:clear
 ```
 
+<<<<<<< HEAD
 #### 3. Filament Setup
+=======
+### 3. Filament Setup
+>>>>>>> cda86dd (.)
 ```bash
 # Register Filament resources
 php artisan employee:install
@@ -496,7 +556,11 @@ php artisan employee:install
 php artisan filament:clear-cache
 ```
 
+<<<<<<< HEAD
 #### 4. Icon System Setup
+=======
+### 4. Icon System Setup
+>>>>>>> cda86dd (.)
 ```bash
 # Icons are automatically registered by XotBaseServiceProvider
 # No additional setup required
@@ -562,7 +626,11 @@ php artisan route:list | grep icon
 - [ ] Updates documentation
 - [ ] Follows naming conventions
 
+<<<<<<< HEAD
 ## 📞 Support and Resources
+=======
+## Support and Resources
+>>>>>>> cda86dd (.)
 
 ### Internal Resources
 - [Employee Module Docs](./) - Complete module documentation
@@ -576,6 +644,7 @@ php artisan route:list | grep icon
 - [Laraxot Documentation](https://laraxot.com)
 - [Heroicons](https://heroicons.com/) - Icon reference
 
+<<<<<<< HEAD
 ### Community Support
 - **Issues**: Report bugs and request features via GitHub issues
 - **Discussions**: Join community discussions and ask questions
@@ -751,3 +820,8 @@ Employee/
 - **MySQL 8**: Primary database
 - **Redis**: Cache and sessions
 - **Elasticsearch**: Advanced search
+=======
+---
+
+**IMPORTANT**: Always follow Laraxot conventions and extend XotBase classes. Never extend Filament classes directly. Maintain high-quality translations, comprehensive documentation, and consistent SVG icon standards.
+>>>>>>> cda86dd (.)

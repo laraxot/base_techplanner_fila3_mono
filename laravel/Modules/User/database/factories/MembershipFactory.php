@@ -11,16 +11,26 @@ use Modules\User\Models\User;
 
 /**
  * Membership Factory
+<<<<<<< HEAD
  * 
  * Factory for creating Membership model instances for testing and seeding.
  * 
+=======
+ *
+ * Factory for creating Membership model instances for testing and seeding.
+ *
+>>>>>>> 9831a351 (.)
  * @extends Factory<Membership>
  */
 class MembershipFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> 9831a351 (.)
      * @var class-string<Membership>
      */
     protected $model = Membership::class;
@@ -42,9 +52,12 @@ class MembershipFactory extends Factory
 
     /**
      * Create membership for a specific team.
+<<<<<<< HEAD
      *
      * @param Team $team
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function forTeam(Team $team): static
     {
@@ -55,9 +68,12 @@ class MembershipFactory extends Factory
 
     /**
      * Create membership for a specific user.
+<<<<<<< HEAD
      *
      * @param User $user
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function forUser(User $user): static
     {
@@ -68,8 +84,11 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to admin.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function admin(): static
     {
@@ -80,8 +99,11 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to editor.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function editor(): static
     {
@@ -92,8 +114,11 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to member.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function member(): static
     {
@@ -104,8 +129,11 @@ class MembershipFactory extends Factory
 
     /**
      * Set the role to viewer.
+<<<<<<< HEAD
      *
      * @return static
+=======
+>>>>>>> 9831a351 (.)
      */
     public function viewer(): static
     {
@@ -113,4 +141,8 @@ class MembershipFactory extends Factory
             'role' => 'viewer',
         ]);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9831a351 (.)

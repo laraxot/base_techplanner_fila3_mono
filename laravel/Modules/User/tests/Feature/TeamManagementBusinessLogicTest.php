@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Tests\Feature;
 
+<<<<<<< HEAD
 use Modules\User\Models\Team;
 use Modules\User\Models\User;
 use Modules\User\Models\TeamUser;
@@ -16,6 +17,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TeamManagementBusinessLogicTest extends TestCase
 {
     use RefreshDatabase;
+=======
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Modules\User\Models\Team;
+use Modules\User\Models\User;
+use Tests\TestCase;
+
+class TeamManagementBusinessLogicTest extends TestCase
+{
+
+>>>>>>> 9831a351 (.)
 
     /** @test */
     public function it_can_create_team(): void
@@ -40,9 +51,15 @@ class TeamManagementBusinessLogicTest extends TestCase
             'personal_team' => false,
         ]);
 
+<<<<<<< HEAD
         $this->assertEquals('Studio Dentistico Milano', $team->name);
         $this->assertEquals('studio-milano', $team->slug);
         $this->assertFalse($team->personal_team);
+=======
+        expect('Studio Dentistico Milano', $team->name);
+        expect('studio-milano', $team->slug);
+        expect($team->personal_team);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -65,8 +82,13 @@ class TeamManagementBusinessLogicTest extends TestCase
             'role' => 'member',
         ]);
 
+<<<<<<< HEAD
         $this->assertTrue($team->hasUser($user));
         $this->assertTrue($user->belongsToTeam($team));
+=======
+        expect($team->hasUser($user));
+        expect($user->belongsToTeam($team));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -86,8 +108,13 @@ class TeamManagementBusinessLogicTest extends TestCase
             'user_id' => $user->id,
         ]);
 
+<<<<<<< HEAD
         $this->assertFalse($team->hasUser($user));
         $this->assertFalse($user->belongsToTeam($team));
+=======
+        expect($team->hasUser($user));
+        expect($user->belongsToTeam($team));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -108,7 +135,11 @@ class TeamManagementBusinessLogicTest extends TestCase
             'role' => 'admin',
         ]);
 
+<<<<<<< HEAD
         $this->assertEquals('admin', $team->users()->find($user->id)->pivot->role);
+=======
+        expect('admin', $team->users()->find($user->id)->pivot->role);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -132,7 +163,11 @@ class TeamManagementBusinessLogicTest extends TestCase
         $this->assertContains('read', $userPermissions);
         $this->assertContains('write', $userPermissions);
         $this->assertContains('delete', $userPermissions);
+<<<<<<< HEAD
         $this->assertCount(3, $userPermissions);
+=======
+        expect(3, $userPermissions);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -149,9 +184,15 @@ class TeamManagementBusinessLogicTest extends TestCase
         ]);
 
         // Act & Assert
+<<<<<<< HEAD
         $this->assertTrue($team->userHasPermission($user, 'read'));
         $this->assertTrue($team->userHasPermission($user, 'write'));
         $this->assertFalse($team->userHasPermission($user, 'delete'));
+=======
+        expect($team->userHasPermission($user, 'read'));
+        expect($team->userHasPermission($user, 'write'));
+        expect($team->userHasPermission($user, 'delete'));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -184,9 +225,15 @@ class TeamManagementBusinessLogicTest extends TestCase
             'role' => 'member',
         ]);
 
+<<<<<<< HEAD
         $this->assertEquals($team->id, $invitation->team_id);
         $this->assertEquals($inviter->id, $invitation->user_id);
         $this->assertEquals('invited@example.com', $invitation->email);
+=======
+        expect($team->id, $invitation->team_id);
+        expect($inviter->id, $invitation->user_id);
+        expect('invited@example.com', $invitation->email);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -209,7 +256,11 @@ class TeamManagementBusinessLogicTest extends TestCase
         $invitation->accept($invitedUser);
 
         // Assert
+<<<<<<< HEAD
         $this->assertTrue($team->hasUser($invitedUser));
+=======
+        expect($team->hasUser($invitedUser));
+>>>>>>> 9831a351 (.)
         $this->assertDatabaseHas('team_user', [
             'team_id' => $team->id,
             'user_id' => $invitedUser->id,
@@ -273,9 +324,15 @@ class TeamManagementBusinessLogicTest extends TestCase
             'role' => 'member',
         ]);
 
+<<<<<<< HEAD
         $this->assertEquals($team->id, $membership->team_id);
         $this->assertEquals($user->id, $membership->user_id);
         $this->assertEquals('member', $membership->role);
+=======
+        expect($team->id, $membership->team_id);
+        expect($user->id, $membership->user_id);
+        expect('member', $membership->role);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -303,7 +360,11 @@ class TeamManagementBusinessLogicTest extends TestCase
             'role' => 'admin',
         ]);
 
+<<<<<<< HEAD
         $this->assertEquals('admin', $membership->fresh()->role);
+=======
+        expect('admin', $membership->fresh()->role);
+>>>>>>> 9831a351 (.)
         $this->assertContains('delete', $membership->fresh()->permissions);
     }
 
@@ -327,7 +388,11 @@ class TeamManagementBusinessLogicTest extends TestCase
             'id' => $membership->id,
         ]);
 
+<<<<<<< HEAD
         $this->assertFalse($team->hasUser($user));
+=======
+        expect($team->hasUser($user));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -352,8 +417,13 @@ class TeamManagementBusinessLogicTest extends TestCase
             'description' => 'Manage patients in the team',
         ]);
 
+<<<<<<< HEAD
         $this->assertEquals($team->id, $permission->team_id);
         $this->assertEquals('patients.manage', $permission->name);
+=======
+        expect($team->id, $permission->team_id);
+        expect('patients.manage', $permission->name);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -388,9 +458,15 @@ class TeamManagementBusinessLogicTest extends TestCase
         $team->users()->attach($user->id, ['role' => 'admin']);
 
         // Act & Assert
+<<<<<<< HEAD
         $this->assertTrue($team->userHasRole($user, 'admin'));
         $this->assertFalse($team->userHasRole($user, 'member'));
         $this->assertEquals('admin', $team->getUserRole($user));
+=======
+        expect($team->userHasRole($user, 'admin'));
+        expect($team->userHasRole($user, 'member'));
+        expect('admin', $team->getUserRole($user));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -410,10 +486,17 @@ class TeamManagementBusinessLogicTest extends TestCase
         $members = $team->users;
 
         // Assert
+<<<<<<< HEAD
         $this->assertCount(3, $members);
         $this->assertTrue($members->contains($user1));
         $this->assertTrue($members->contains($user2));
         $this->assertTrue($members->contains($user3));
+=======
+        expect(3, $members);
+        expect($members->contains($user1));
+        expect($members->contains($user2));
+        expect($members->contains($user3));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -433,10 +516,17 @@ class TeamManagementBusinessLogicTest extends TestCase
         $admins = $team->users()->wherePivot('role', 'admin')->get();
 
         // Assert
+<<<<<<< HEAD
         $this->assertCount(2, $admins);
         $this->assertTrue($admins->contains($admin1));
         $this->assertTrue($admins->contains($admin2));
         $this->assertFalse($admins->contains($member));
+=======
+        expect(2, $admins);
+        expect($admins->contains($admin1));
+        expect($admins->contains($admin2));
+        expect($admins->contains($member));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -457,11 +547,19 @@ class TeamManagementBusinessLogicTest extends TestCase
         $nurses = $team->users()->wherePivot('role', 'nurse')->get();
 
         // Assert
+<<<<<<< HEAD
         $this->assertCount(2, $doctors);
         $this->assertCount(1, $nurses);
         $this->assertTrue($doctors->contains($doctor1));
         $this->assertTrue($doctors->contains($doctor2));
         $this->assertTrue($nurses->contains($nurse));
+=======
+        expect(2, $doctors);
+        expect(1, $nurses);
+        expect($doctors->contains($doctor1));
+        expect($doctors->contains($doctor2));
+        expect($nurses->contains($nurse));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -472,8 +570,13 @@ class TeamManagementBusinessLogicTest extends TestCase
         $regularTeam = Team::factory()->create(['personal_team' => false]);
 
         // Act & Assert
+<<<<<<< HEAD
         $this->assertTrue($personalTeam->personal_team);
         $this->assertFalse($regularTeam->personal_team);
+=======
+        expect($personalTeam->personal_team);
+        expect($regularTeam->personal_team);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -490,9 +593,15 @@ class TeamManagementBusinessLogicTest extends TestCase
         ]);
 
         // Act & Assert
+<<<<<<< HEAD
         $this->assertTrue($team->hasUserWithPermission($user, 'read'));
         $this->assertTrue($team->hasUserWithPermission($user, 'write'));
         $this->assertFalse($team->hasUserWithPermission($user, 'delete'));
+=======
+        expect($team->hasUserWithPermission($user, 'read'));
+        expect($team->hasUserWithPermission($user, 'write'));
+        expect($team->hasUserWithPermission($user, 'delete'));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -520,9 +629,15 @@ class TeamManagementBusinessLogicTest extends TestCase
         $invitations = $team->invitations;
 
         // Assert
+<<<<<<< HEAD
         $this->assertCount(2, $invitations);
         $this->assertTrue($invitations->contains($invitation1));
         $this->assertTrue($invitations->contains($invitation2));
+=======
+        expect(2, $invitations);
+        expect($invitations->contains($invitation1));
+        expect($invitations->contains($invitation2));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -552,9 +667,15 @@ class TeamManagementBusinessLogicTest extends TestCase
         $pendingInvitations = $team->invitations()->whereNull('accepted_at')->get();
 
         // Assert
+<<<<<<< HEAD
         $this->assertCount(1, $pendingInvitations);
         $this->assertTrue($pendingInvitations->contains($pendingInvitation));
         $this->assertFalse($pendingInvitations->contains($acceptedInvitation));
+=======
+        expect(1, $pendingInvitations);
+        expect($pendingInvitations->contains($pendingInvitation));
+        expect($pendingInvitations->contains($acceptedInvitation));
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -576,9 +697,15 @@ class TeamManagementBusinessLogicTest extends TestCase
         $memberCount = $team->users()->wherePivot('role', 'member')->count();
 
         // Assert
+<<<<<<< HEAD
         $this->assertEquals(3, $totalMembers);
         $this->assertEquals(1, $adminCount);
         $this->assertEquals(2, $memberCount);
+=======
+        expect(3, $totalMembers);
+        expect(1, $adminCount);
+        expect(2, $memberCount);
+>>>>>>> 9831a351 (.)
     }
 
     /** @test */
@@ -645,4 +772,7 @@ class TeamManagementBusinessLogicTest extends TestCase
         ]);
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9831a351 (.)

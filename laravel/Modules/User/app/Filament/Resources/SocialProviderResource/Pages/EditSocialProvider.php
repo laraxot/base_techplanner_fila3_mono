@@ -7,6 +7,7 @@ namespace Modules\User\Filament\Resources\SocialProviderResource\Pages;
 use Filament\Actions;
 use Modules\User\Filament\Resources\SocialProviderResource;
 
+<<<<<<< HEAD
 
 
 
@@ -16,6 +17,8 @@ use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 
 
+=======
+>>>>>>> 9831a351 (.)
 class EditSocialProvider extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {
     protected static string $resource = SocialProviderResource::class;

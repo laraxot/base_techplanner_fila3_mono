@@ -8,6 +8,7 @@
 
 aurmich/dev
 
+<<<<<<< HEAD
 aurmich/dev
 =======
 <<<<<<< HEAD
@@ -23,6 +24,8 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> ea169dcc (.)
 # 🤖 Fase 7: AI Integration
 
 ## 📋 Panoramica
@@ -153,6 +156,7 @@ Questa fase si concentra sull'integrazione di tecnologie di Intelligenza Artific
 
 aurmich/dev
 - Monitoraggio continuo
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -177,6 +181,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🤖 Fase 7: AI Integration
 
 ## 📋 Panoramica
@@ -306,6 +313,7 @@ Questa fase si concentra sull'integrazione di tecnologie di Intelligenza Artific
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -330,6 +338,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🤖 Fase 7: AI Integration
 
 ## 📋 Panoramica
@@ -713,6 +724,7 @@ Questa fase si concentra sull'integrazione di tecnologie di Intelligenza Artific
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco HEAD (255 linee vs 1)[0m
  43df3e0 (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -737,6 +749,9 @@ Questa fase si concentra sull'integrazione di tecnologie di Intelligenza Artific
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 07_ai_integration.md

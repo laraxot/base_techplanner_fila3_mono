@@ -21,6 +21,10 @@ use Modules\Xot\Datas\XotData;
  * @property Carbon|null $updated_at
  * @property Team|null $team
  * @property TeamContract|null $team
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @method static TeamInvitationFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation newQuery()
@@ -31,18 +35,33 @@ use Modules\Xot\Datas\XotData;
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereUpdatedAt($value)
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @property string $uuid
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property Carbon|null $deleted_at
  * @property string|null $deleted_by
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereUuid($value)
+<<<<<<< HEAD
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+=======
+ *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
+>>>>>>> 9831a351 (.)
  * @mixin IdeHelperTeamInvitation
  * @mixin \Eloquent
  */

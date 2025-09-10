@@ -24,7 +24,14 @@ class TeamPresenceWidget extends XotBaseWidget
 
     protected static ?string $maxHeight = '400px';
 
+<<<<<<< HEAD
     protected int|string|array $columnSpan = 1;
+=======
+    protected int|string|array $columnSpan = [
+        'md' => 2,
+        'xl' => 1,
+    ];
+>>>>>>> cda86dd (.)
 
     public ?string $selectedDepartment = 'SVILUPPO';
 
@@ -45,6 +52,7 @@ class TeamPresenceWidget extends XotBaseWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
+<<<<<<< HEAD
                         ->afterStateUpdated(fn (mixed $state) => $this->selectedDepartment = is_string($state) ? $state : null),
 
                     Placeholder::make('presence_stats')
@@ -66,6 +74,23 @@ class TeamPresenceWidget extends XotBaseWidget
                                 'absent' => is_array($presenceData['absent']) ? $presenceData['absent'] : [],
                             ]);
                         }),
+=======
+                        ->afterStateUpdated(fn ($state) => $this->selectedDepartment = $state),
+
+                    Placeholder::make('presence_stats')
+                        ->content(fn () => view('employee::widgets.team-presence.stats-display', [
+                            'present' => $presenceData['present'],
+                            'absent' => $presenceData['absent'],
+                            'presentCount' => count($presenceData['present']),
+                            'absentCount' => count($presenceData['absent']),
+                        ])),
+
+                    Placeholder::make('presence_list')
+                        ->content(fn () => view('employee::widgets.team-presence.presence-list', [
+                            'present' => $presenceData['present'],
+                            'absent' => $presenceData['absent'],
+                        ])),
+>>>>>>> cda86dd (.)
 
                     Actions::make([
                         Action::make('view_detail')
@@ -83,8 +108,11 @@ class TeamPresenceWidget extends XotBaseWidget
 
     /**
      * Get department options for select.
+<<<<<<< HEAD
      *
      * @return array<string, string>
+=======
+>>>>>>> cda86dd (.)
      */
     protected function getDepartmentOptions(): array
     {
@@ -99,14 +127,18 @@ class TeamPresenceWidget extends XotBaseWidget
 
     /**
      * Get presence data for selected department.
+<<<<<<< HEAD
      *
      * @return array<string, array<int, array<string, mixed>>>
+=======
+>>>>>>> cda86dd (.)
      */
     protected function getPresenceData(): array
     {
         $today = now()->startOfDay();
         $departmentFilter = $this->selectedDepartment;
 
+<<<<<<< HEAD
         // Simplified mock presence data since Employee->workHours relation and status field don't exist
         // This provides widget functionality while being PHPStan compliant
 
@@ -136,6 +168,64 @@ class TeamPresenceWidget extends XotBaseWidget
             }
         }
 
+=======
+        // Build base query for employees
+        $baseQuery = \Modules\Employee\Models\Employee::where('status', '!=', 'terminated');
+
+        if ($departmentFilter) {
+            $baseQuery->whereJsonContains('work_data->department', $departmentFilter);
+        }
+
+        // Get present employees (who clocked in today and haven't clocked out)
+        $present = $baseQuery->clone()
+            ->whereHas('workHours', function ($query) use ($today) {
+                $query->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
+                    ->whereDate('timestamp', $today)
+                    ->whereNotExists(function ($subQuery) use ($today) {
+                        $subQuery->from('time_entries as te2')
+                            ->whereColumn('te2.employee_id', 'time_entries.employee_id')
+                            ->where('te2.type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_OUT)
+                            ->whereDate('te2.timestamp', $today)
+                            ->where('te2.timestamp', '>', \DB::raw('time_entries.timestamp'));
+                    });
+            })
+            ->with(['workHours' => function ($query) use ($today) {
+                $query->whereDate('timestamp', $today)
+                    ->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
+                    ->latest('timestamp');
+            }])
+            ->get()
+            ->map(function ($employee) {
+                $lastEntry = $employee->workHours->first();
+
+                return [
+                    'name' => $employee->full_name ?? 'N/A',
+                    'avatar' => null, // Could be implemented later with photo_url
+                    'initials' => $this->generateInitials($employee->full_name ?? ''),
+                    'clock_in' => $lastEntry ? $lastEntry->timestamp->format('H:i') : 'N/A',
+                    'status' => $this->determineWorkingStatus($employee),
+                ];
+            })->toArray();
+
+        // Get absent employees (no clock-in today)
+        $absent = $baseQuery->clone()
+            ->whereDoesntHave('workHours', function ($query) use ($today) {
+                $query->where('type', \Modules\Employee\Models\WorkHour::TYPE_CLOCK_IN)
+                    ->whereDate('timestamp', $today);
+            })
+            ->limit(10) // Limit for performance
+            ->get()
+            ->map(function ($employee) {
+                return [
+                    'name' => $employee->full_name ?? 'N/A',
+                    'avatar' => null,
+                    'initials' => $this->generateInitials($employee->full_name ?? ''),
+                    'reason' => $this->getAbsenceReason($employee),
+                    'status' => $this->determineAbsenceStatus($employee),
+                ];
+            })->toArray();
+
+>>>>>>> cda86dd (.)
         return [
             'present' => $present,
             'absent' => $absent,
@@ -143,7 +233,11 @@ class TeamPresenceWidget extends XotBaseWidget
     }
 
     /**
+<<<<<<< HEAD
      * Generate initials from full name.
+=======
+     * Generate initials from full name
+>>>>>>> cda86dd (.)
      */
     protected function generateInitials(string $fullName): string
     {
@@ -159,4 +253,48 @@ class TeamPresenceWidget extends XotBaseWidget
 
         return $initials;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Determine working status for present employee
+     */
+    protected function determineWorkingStatus(\Modules\Employee\Models\Employee $employee): string
+    {
+        $today = now()->startOfDay();
+        $currentStatus = \Modules\Employee\Models\WorkHour::getCurrentStatus($employee->id, $today);
+
+        return match ($currentStatus) {
+            'clocked_in' => 'working',
+            'on_break' => 'break',
+            default => 'working',
+        };
+    }
+
+    /**
+     * Get absence reason for employee
+     */
+    protected function getAbsenceReason(\Modules\Employee\Models\Employee $employee): string
+    {
+        return match ($employee->status) {
+            'on_leave' => 'Ferie',
+            'sick_leave' => 'Malattia',
+            'inactive' => 'Permesso',
+            default => 'Assente',
+        };
+    }
+
+    /**
+     * Determine absence status for absent employee
+     */
+    protected function determineAbsenceStatus(\Modules\Employee\Models\Employee $employee): string
+    {
+        return match ($employee->status) {
+            'on_leave' => 'vacation',
+            'sick_leave' => 'sick',
+            'inactive' => 'permit',
+            default => 'unknown',
+        };
+    }
+>>>>>>> cda86dd (.)
 }

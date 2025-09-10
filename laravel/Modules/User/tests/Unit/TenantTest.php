@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
+=======
+namespace Modules\User\Tests\Unit;
+
+>>>>>>> 9831a351 (.)
 use Modules\User\Models\Tenant;
 
 uses(Tests\TestCase::class);

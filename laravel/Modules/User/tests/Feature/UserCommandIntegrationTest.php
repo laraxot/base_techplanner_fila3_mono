@@ -2,15 +2,24 @@
 
 declare(strict_types=1);
 
+<<<<<<< HEAD
 use Illuminate\Console\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+=======
+namespace Modules\User\Tests\Feature;
+
+use Illuminate\Console\Application;
+>>>>>>> 9831a351 (.)
 use Illuminate\Support\Facades\Artisan;
 use Modules\User\Console\Commands\ChangeTypeCommand;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
 
+<<<<<<< HEAD
 uses(RefreshDatabase::class);
 
+=======
+>>>>>>> 9831a351 (.)
 describe('User Command Integration', function () {
     beforeEach(function () {
         $this->command = new ChangeTypeCommand;

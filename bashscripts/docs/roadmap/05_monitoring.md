@@ -54,6 +54,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema, fornen
 
 
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -78,6 +79,9 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema, fornen
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -87,6 +91,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 - [Roadmap Principale](../roadmap.md)
 - [Documentazione Script](../project.md)
 - [Fase 4: Deployment](../roadmap/04_deployment.md)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -111,6 +116,9 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -124,6 +132,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -148,6 +157,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -157,6 +169,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 - [Roadmap Principale](../roadmap.md)
 - [Documentazione Script](../project.md)
 - [Fase 4: Deployment](../roadmap/04_deployment.md)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -181,6 +194,9 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -192,6 +208,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 - [Fase 4: Deployment](../roadmap/04_deployment.md)
 
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -216,6 +233,9 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -268,6 +288,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
  43df3e0 (.)
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -292,6 +313,9 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 ## 🔄 Collegamenti
 - [Roadmap Principale](../roadmap.md)
 - [Documentazione Script](../project.md)
@@ -302,6 +326,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 
 [0;34mℹ️ [2025-04-22 11:23:11] Scelto blocco HEAD (23 linee vs 1)[0m
  43df3e0 (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -326,6 +351,9 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 05_monitoring.md

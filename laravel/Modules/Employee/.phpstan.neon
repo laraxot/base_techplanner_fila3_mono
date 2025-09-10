@@ -1,11 +1,16 @@
 parameters:
+<<<<<<< HEAD
     
     level: 9
+=======
+    level: 8
+>>>>>>> cda86dd (.)
     paths:
         - app
         - tests
     excludePaths:
         - database/migrations
+<<<<<<< HEAD
     
     # Ignora solo errori di migrazione
     ignoreErrors:
@@ -21,13 +26,21 @@ parameters:
         - '#Call to an undefined method.*dropIndex#'
         # Ignora errori di covarianza nei tipi di ritorno delle relazioni
         - '#Template type TDeclaringModel on class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo is not covariant#' 
+=======
+>>>>>>> cda86dd (.)
     checkMissingIterableValueType: false
     
     # Ignora errori specifici se necessario
     ignoreErrors:
         # Ignora errori temporanei durante la migrazione
         - '#Call to an undefined method.*renameColumn#'
+<<<<<<< HEAD
         - '#Call to an undefined method.*dropIndex#' 
         - '#Call to an undefined method.*dropIndex#'
         # Ignora errori di covarianza nei tipi di ritorno delle relazioni
         - '#Template type TDeclaringModel on class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo is not covariant#' 
+=======
+        - '#Call to an undefined method.*dropIndex#'
+        # Ignora errori di covarianza nei tipi di ritorno delle relazioni
+        - '#Template type TDeclaringModel on class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo is not covariant#' 
+>>>>>>> cda86dd (.)

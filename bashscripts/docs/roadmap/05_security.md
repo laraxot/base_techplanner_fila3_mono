@@ -7,6 +7,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -31,6 +32,9 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -156,6 +160,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 ### Q4 2025
 - Deployment produzione
 - Monitoraggio continuo
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -180,6 +185,9 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -305,6 +313,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 ### Q4 2025
 - Deployment produzione
 - Monitoraggio continuo
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -329,6 +338,9 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -456,6 +468,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 - Monitoraggio continuo
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -480,12 +493,16 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
 Questa fase si concentra sul miglioramento della sicurezza del sistema attraverso l'implementazione di funzionalità avanzate di protezione e monitoraggio.
  43df3e0 (.)
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -510,6 +527,9 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 ## 🎯 Funzionalità Future
 
 ### 1. Verifica Dipendenze
@@ -633,6 +653,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 
 
 aurmich/dev
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -657,6 +678,9 @@ aurmich/dev
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -782,6 +806,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 ### Q4 2025
 - Deployment produzione
 - Monitoraggio continuo
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -806,6 +831,9 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -931,6 +959,7 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 ### Q4 2025
 - Deployment produzione
 - Monitoraggio continuo
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -955,6 +984,9 @@ Questa fase si concentra sul miglioramento della sicurezza del sistema attravers
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 # 🛡️ Fase 5: Sicurezza
 
 ## 📋 Panoramica
@@ -1241,6 +1273,7 @@ aurmich/dev
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco HEAD (4 linee vs 1)[0m
 - Aggiornamenti 
  43df3e0 (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -1265,6 +1298,9 @@ aurmich/dev
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+
+>>>>>>> ea169dcc (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 05_security.md

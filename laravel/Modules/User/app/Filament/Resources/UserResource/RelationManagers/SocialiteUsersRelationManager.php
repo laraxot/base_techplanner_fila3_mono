@@ -15,6 +15,7 @@ use Modules\User\Models\SocialiteUser;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 use Modules\Xot\Filament\Traits\HasXotTable;
 
+<<<<<<< HEAD
 
 
 
@@ -23,6 +24,8 @@ use Modules\Xot\Filament\Traits\HasXotTable;
 
 
 
+=======
+>>>>>>> 9831a351 (.)
 /**
  * Class Modules\User\Filament\Resources\UserResource\RelationManagers\SocialiteUsersRelationManager.
  */
@@ -36,7 +39,10 @@ class SocialiteUsersRelationManager extends XotBaseRelationManager
      * Configure the form schema for managing Socialite User data.
      */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9831a351 (.)
     /**
      * Define form fields in a dedicated method for reusability.
      *

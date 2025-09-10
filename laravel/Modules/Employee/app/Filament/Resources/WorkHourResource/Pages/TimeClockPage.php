@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Pages;
 
 use Filament\Actions;
+<<<<<<< HEAD
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
@@ -25,10 +26,16 @@ use Modules\Xot\Filament\Resources\Pages\XotBasePage;
  * Main page for employee time tracking and work hours management.
  * Displays the time clock widget and work hours list with filtering options.
  */
+=======
+use Modules\Employee\Filament\Resources\WorkHourResource;
+use Modules\Xot\Filament\Resources\Pages\XotBasePage;
+
+>>>>>>> cda86dd (.)
 class TimeClockPage extends XotBasePage
 {
     protected static string $resource = WorkHourResource::class;
 
+<<<<<<< HEAD
     protected static string $view = 'employee::filament.pages.work-hours';
 
     public ?array $filters = [
@@ -186,10 +193,18 @@ class TimeClockPage extends XotBasePage
             ->success()
             ->send();
     }
+=======
+    protected static string $view = 'employee::filament.pages.timeclock';
+
+    protected static ?string $title = 'Time Clock';
+
+    protected static ?string $navigationLabel = 'Time Clock';
+>>>>>>> cda86dd (.)
 
     protected function getHeaderActions(): array
     {
         return [
+<<<<<<< HEAD
             Actions\Action::make('export')
                 ->label('Export')
                 ->icon('heroicon-o-arrow-down-tray')
@@ -200,12 +215,20 @@ class TimeClockPage extends XotBasePage
                 ->icon('heroicon-o-home')
                 ->color('gray')
                 ->url(route('filament.admin.pages.dashboard')),
+=======
+            Actions\Action::make('back_to_list')
+                ->label('Back to Work Hours')
+                ->icon('heroicon-o-arrow-left')
+                ->color('gray')
+                ->url(fn (): string => static::$resource::getUrl('index')),
+>>>>>>> cda86dd (.)
         ];
     }
 
     public function getViewData(): array
     {
         return [
+<<<<<<< HEAD
             'currentTime' => now()->format('H:i:s'),
             'currentDate' => now()->translatedFormat('l, d F Y'),
             'workHoursToday' => $this->getWorkHoursToday(),
@@ -281,4 +304,10 @@ class TimeClockPage extends XotBasePage
             default => 'unknown',
         };
     }
+=======
+            'title' => 'Employee Time Clock',
+            'subtitle' => 'Track your work hours with a simple click',
+        ];
+    }
+>>>>>>> cda86dd (.)
 }
