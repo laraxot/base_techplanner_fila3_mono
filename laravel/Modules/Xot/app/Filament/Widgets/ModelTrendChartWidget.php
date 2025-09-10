@@ -7,7 +7,7 @@ namespace Modules\Xot\Filament\Widgets;
 use Modules\Xot\Filament\Widgets\XotBaseChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
-use Modules\SaluteOra\Models\Appointment;
+use Modules\TechPlanner\Models\Appointment;
 
 class ModelTrendChartWidget extends XotBaseChartWidget
 {

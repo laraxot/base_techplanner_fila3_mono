@@ -43,7 +43,7 @@ class EmployeeFactory extends Factory
                 'address' => [
                     'street' => $this->faker->streetAddress(),
                     'city' => $this->faker->city(),
-                    'state' => $this->faker->state(),
+                    'state' => $this->faker->state,
                     'postal_code' => $this->faker->postcode(),
                     'country' => $this->faker->country(),
                 ],

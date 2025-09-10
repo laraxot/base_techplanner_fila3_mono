@@ -7,7 +7,7 @@ namespace Modules\Media\Filament\Tables\Columns;
 use Exception;
 use Illuminate\Support\Arr;
 use Spatie\ModelStates\State;
-use Modules\SaluteOra\Models\User;
+use Modules\User\Models\User;
 use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;

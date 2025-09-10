@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 
 use Illuminate\Support\Facades\Cache;
 use Modules\Xot\Contracts\StateContract;
-use Modules\SaluteOra\Models\Appointment;
+use Modules\TechPlanner\Models\Appointment;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**

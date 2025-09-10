@@ -27,7 +27,7 @@ class BuildTimelineVisualizationAction
      *   timeSlots: array<string, string>,
      *   sessionBlocks: array<string, array<int, array{
      *     start: string,
-     *     end: string,
+     *     end: string|null,
      *     duration: float,
      *     color: string,
      *     status: string,
@@ -344,7 +344,7 @@ class BuildTimelineVisualizationAction
             }
 
             // Orari anomali (prima delle 06:00 o dopo le 22:00)
-            if (isset($block['startTime'])) {
+            if (isset($block['startTime']) && $block['startTime'] instanceof \Carbon\Carbon) {
                 $hour = $block['startTime']->hour;
                 if ($hour < 6 || $hour > 22) {
                     return true;
