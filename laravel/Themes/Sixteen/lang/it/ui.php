@@ -42,10 +42,8 @@ return [
     'Successo' => 'Successo',
     'Avviso' => 'Avviso',
     'Informazione' => 'Informazione',
-=======
-
->>>>>>> 109edea (.)
-=======
+    
+    // Dark mode and UI controls
     'dark_mode_toggle' => 'Cambia modalità scura',
     'light_mode' => 'Modalità chiara',
     'dark_mode' => 'Modalità scura',
@@ -54,5 +52,4 @@ return [
     'menu' => 'Menu',
     'close' => 'Chiudi',
     'open' => 'Apri',
->>>>>>> 0321d33 (.)
 ];

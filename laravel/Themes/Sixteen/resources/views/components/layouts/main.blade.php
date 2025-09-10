@@ -33,8 +33,6 @@
         @livewire('notifications')
 		@filamentScripts
         @vite(['resources/js/app.js'], 'themes/Sixteen')
-
-=======
         
         {{-- Dark Mode Toggle Script --}}
         <script>

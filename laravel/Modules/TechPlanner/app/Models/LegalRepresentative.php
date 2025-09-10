@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Class LegalRepresentative.
  *
@@ -20,6 +22,7 @@ namespace Modules\TechPlanner\Models;
  * @property string|null $created_by
  * @property string|null $deleted_at
  * @property string|null $deleted_by
+ * @property-read \Modules\TechPlanner\Models\Client $client
  * @property-read \Modules\TechPlanner\Models\Profile|null $creator
  * @property-read \Modules\TechPlanner\Models\Profile|null $updater
  * @method static \Illuminate\Database\Eloquent\Builder<static>|LegalRepresentative newModelQuery()
@@ -47,4 +50,12 @@ class LegalRepresentative extends BaseModel
         'phone',
         'email',
     ];
+
+    /**
+     * Get the client that owns the legal representative.
+     */
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(\Modules\TechPlanner\Models\Client::class);
+    }
 }

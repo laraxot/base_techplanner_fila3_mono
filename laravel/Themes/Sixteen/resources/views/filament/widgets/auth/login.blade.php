@@ -10,8 +10,6 @@
         </h2>
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
             {{ __('auth.login.subtitle') }}
-
-=======
         </p>
     </div>
 
@@ -26,8 +24,6 @@
                     href="{{ url('/' . app()->getLocale() . '/auth/password/email') }}" 
                     class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
                 >
-
-=======
                     {{ __('auth.login.forgot_password') }}
                 </a>
             </div>
@@ -51,8 +47,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 
-
-=======
                 <span wire:loading.remove>{{ __('auth.login.submit') }}</span>
                 <span wire:loading>{{ __('auth.login.submitting') }}</span>
             </button>
@@ -62,15 +56,11 @@
     {{-- Registration Link --}}
     <div class="mt-6 text-center">
         <div class="text-sm leading-5 text-gray-600 dark:text-gray-400 space-x-0.5">
-
-=======
             <span>{{ __('auth.login.or') }}</span>
             <a 
                 href="{{ url('/' . app()->getLocale() . '/auth/register') }}" 
                 class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
             >
-
-=======
                 {{ __('auth.login.create_account') }}
             </a>
         </div>

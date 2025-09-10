@@ -14,6 +14,7 @@ use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
 use Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
 use Modules\TechPlanner\Models\Client;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Filament\Forms\Components\Toggle;
 
 /**
  * @property ClientResource $resource
@@ -30,8 +31,12 @@ class ClientResource extends XotBaseResource
         foreach($fixes as $client){
             $client->update(['route'=>$client->address]);
         }
+        $fixes=Client::whereNull('city')->whereNotNull('company_office')->get();//company_office
+        foreach($fixes as $client){
+            $client->update(['city'=>$client->company_office]);
+        }
         return [
-            'business_closed' => TextInput::make('business_closed'),
+            'business_closed' => Toggle::make('business_closed'),
             'activity' => TextInput::make('activity'),
             'company_name' => TextInput::make('company_name')->required(),
             'tax_code' => TextInput::make('tax_code'),

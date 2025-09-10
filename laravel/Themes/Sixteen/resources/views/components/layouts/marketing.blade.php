@@ -1,11 +1,5 @@
 <x-layouts.main>
-    {{--  
-    <x-ui.marketing.header />
-    --}}
-    {{ $_theme->headernav() }}
-
+   <x-section slug="header"/>
     {{ $slot }}
-
-    {{ $_theme->footer() }}
-
+    <x-section slug="footer"/>
 </x-layouts.main>

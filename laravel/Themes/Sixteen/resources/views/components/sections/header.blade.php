@@ -2,8 +2,6 @@
     <div class="h-12 bg-emerald-900 min-h-12 navbar">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto">
             <div class="flex-1 py-1">
-
-=======
                 <a class="text-sm" href="#">{{-- regione --}}</a>
             </div>
             <div class="flex-none">
@@ -99,11 +97,6 @@
                     <div class="text-start">
                         <div class="text-2xl font-bold">{{ $_theme->metatag('title') }}</div>
                         <div class="text-sm">{{ $_theme->metatag('subtitle') }}</div>
-                    <x-heroicon-o-shield-check class="stroke-1 size-16" />
-                    <div class="text-start">
-                        <div class="text-2xl font-bold">Il mio Comune</div>
-                        <div class="text-sm">Un comune da vivere</div>
-=======
                     </div>
                 </a>
             </div>
@@ -132,26 +125,21 @@
     <div class="hidden h-12 overflow-auto min-h-12 navbar md:flex">
         <div class="flex justify-between w-full max-w-screen-xl mx-auto space-x-12">
             <div class="flex-1 ">
-=======
-=======
-                
                 @php
                 $nav1 = Arr::first($blocks,fn($item)=>$item->slug =='nav1');
                 @endphp
                 <ul class="items-center px-1 menu menu-horizontal flex-nowrap">
-                    @foreach($nav1->data['items'] as $item)
-                    <li><a href="">{{ $item['label'] }}</a></li>
-                    @endforeach
-                    {{--  
-                    <li><a href="">Amministrazione</a></li>
-                    <li><a href="">Novità</a></li>
-                    <li><a href="">Servizi</a></li>
-                    <li><a href="">Vivere il Comune</a></li>
-
-                </ul>
-                --}}
-=======
-                    --}}
+                    @if($nav1 && isset($nav1->data['items']) && is_array($nav1->data['items']))
+                        @foreach($nav1->data['items'] as $item)
+                        <li><a href="">{{ $item['label'] ?? '' }}</a></li>
+                        @endforeach
+                    @else
+                        {{-- Menu di default quando non ci sono blocchi di navigazione --}}
+                        <li><a href="">Amministrazione</a></li>
+                        <li><a href="">Novità</a></li>
+                        <li><a href="">Servizi</a></li>
+                        <li><a href="">Vivere il Comune</a></li>
+                    @endif
                 </ul>
             </div>
             <div class="flex-none">

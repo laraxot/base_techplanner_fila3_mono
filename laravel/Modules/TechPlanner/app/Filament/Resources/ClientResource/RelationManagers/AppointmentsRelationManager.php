@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
 
-use Filament\Tables;
+use Filament\Tables\Columns;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
@@ -22,11 +22,24 @@ class AppointmentsRelationManager extends XotBaseRelationManager
     public function getTableColumns(): array
     {
         return [
-            'date' => Tables\Columns\TextColumn::make('date')->label('Date')->sortable(),
-            'notes' => Tables\Columns\TextColumn::make('notes')->limit(50),
-            'machines_count' => Tables\Columns\TextColumn::make('machines_count')
+            'date' => Columns\TextColumn::make('date')->label('Date')->sortable(),
+            'notes' => Columns\TextColumn::make('notes')->limit(50),
+            /*
+            'machines_count' => Columns\TextColumn::make('machines_count')
                 ->label('Machines Checked')
                 ->counts('machines'),
+            */
         ];
+    }
+
+
+    public function canAttach(): bool
+    {
+        return false;
+    }
+
+    public function canCreate(): bool
+    {
+        return true;
     }
 }

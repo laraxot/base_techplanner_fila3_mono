@@ -36,10 +36,12 @@ return array (
         'completed' => 'Completato',
         'cancelled' => 'Annullato',
       ),
+      'helper_text' => 'status',
     ),
     'notes' => 
     array (
       'label' => 'Note',
+      'helper_text' => 'notes',
     ),
     'toggleColumns' => 
     array (
@@ -72,6 +74,18 @@ return array (
     'applyFilters' => 
     array (
       'label' => 'applyFilters',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
+    'detach' => 
+    array (
+      'label' => 'detach',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
     ),
   ),
   'actions' => 

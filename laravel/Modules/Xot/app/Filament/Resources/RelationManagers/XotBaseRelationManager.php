@@ -87,9 +87,23 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     public function getTableHeaderActions(): array
     {
-        return [
-            Tables\Actions\AttachAction::make(),
-        ];
+        $actions = [];
+        $resource=static::class;
+        if (method_exists($resource, 'canAttach')) {
+            $actions['attach'] = Tables\Actions\AttachAction::make()
+                ->icon('heroicon-o-link')
+                ->iconButton()
+                ->tooltip(__('user::actions.attach.label'))
+                ->visible(fn (?Model $record): bool => $resource::canAttach());
+        }
+        if (method_exists($resource, 'canCreate')) {
+            $actions['create'] = Tables\Actions\CreateAction::make()
+                ->icon('heroicon-o-plus')
+                ->iconButton()
+                ->tooltip(__('user::actions.create.label'))
+                ->visible(fn (?Model $record): bool => $resource::canCreate());
+        }
+        return $actions;
     }
 
     public function getTableFilters(): array
@@ -99,15 +113,15 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     public function getResource(): string
     {
-        $resource = static::$resourceClass;
+        $resource = static::$resource;
         Assert::classExists($resource);
         Assert::isAOf($resource, XotBaseResource::class);
 
         return $resource;
     }
 
-    public function getRelationship(): \Illuminate\Database\Eloquent\Relations\Relation|\Illuminate\Database\Eloquent\Builder
-    {
-        return parent::getRelationship();
-    }
+    //public function getRelationship(): \Illuminate\Database\Eloquent\Relations\Relation|\Illuminate\Database\Eloquent\Builder
+    //{
+    //    return parent::getRelationship();
+    //}
 }

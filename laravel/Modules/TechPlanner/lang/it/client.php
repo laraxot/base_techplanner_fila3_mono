@@ -273,6 +273,13 @@ return array (
     array (
       'label' => 'layout',
     ),
+    'street_address' => 
+    array (
+      'description' => 'street_address',
+      'helper_text' => 'street_address',
+      'placeholder' => 'street_address',
+      'label' => 'street_address',
+    ),
   ),
   'import' => 
   array (

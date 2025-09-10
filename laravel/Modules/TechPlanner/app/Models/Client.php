@@ -54,6 +54,8 @@ use function Safe\preg_match;
  * @property-read int|null $devices_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\TechPlanner\Models\LegalOffice[] $legalOffices
  * @property-read int|null $legal_offices_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\TechPlanner\Models\LegalRepresentative[] $legalRepresentatives
+ * @property-read int|null $legal_representatives_count
  * @property-read \Modules\TechPlanner\Models\Profile|null $creator
  * @property-read \Modules\TechPlanner\Models\Profile|null $updater
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newModelQuery()
@@ -139,8 +141,9 @@ class Client extends BaseModel
             return $value;
         }
         $address = sprintf(
-            '%s, %s, %s (%s)',
-            $this->address,
+            '%s, %s - %s, %s (%s)',
+            $this->route,
+            $this->street_number,
             $this->postal_code,
             $this->city,
             $this->province
@@ -154,7 +157,7 @@ class Client extends BaseModel
      */
     public function devices(): HasMany
     {
-        return $this->hasMany(\Modules\TechPlanner\Models\Device::class);
+        return $this->hasMany(Device::class);
     }
 
     /**
@@ -162,7 +165,7 @@ class Client extends BaseModel
      */
     public function appointments(): HasMany
     {
-        return $this->hasMany(\Modules\TechPlanner\Models\Appointment::class);
+        return $this->hasMany(Appointment::class);
     }
 
     /**
@@ -170,7 +173,28 @@ class Client extends BaseModel
      */
     public function legalOffices(): HasMany
     {
-        return $this->hasMany(\Modules\TechPlanner\Models\LegalOffice::class);
+        return $this->hasMany(LegalOffice::class);
+    }
+
+    /**
+     * Get the legal representatives for the client.
+     */
+    public function legalRepresentatives(): HasMany
+    {
+        return $this->hasMany(LegalRepresentative::class);
+    }
+
+    /**
+     * Get the medical directors for the client.
+     */
+    public function medicalDirectors(): HasMany
+    {
+        return $this->hasMany(MedicalDirector::class);
+    }
+
+    public function phoneCalls(): HasMany
+    {
+        return $this->hasMany(PhoneCall::class);
     }
 
     /**
