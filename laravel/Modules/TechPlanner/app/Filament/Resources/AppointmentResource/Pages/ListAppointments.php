@@ -7,7 +7,6 @@ namespace Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 use Filament\Actions;
 use Filament\Tables;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
-
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
 
 /**
@@ -41,10 +40,5 @@ class ListAppointments extends XotBaseListRecords
         ];
     }
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            'create' => Actions\CreateAction::make(),
-        ];
-    }
+  
 }

@@ -1,6 +1,6 @@
 # Gestione Traduzioni Contenuti JSON
 
-Questo documento descrive come gestire le traduzioni per i contenuti JSON nel progetto SaluteOra, con particolare attenzione ai file di contenuto delle pagine.
+Questo documento descrive come gestire le traduzioni per i contenuti JSON nel progetto , con particolare attenzione ai file di contenuto delle pagine.
 
 ## Struttura dei Contenuti Traducibili
 
@@ -8,7 +8,7 @@ Questo documento descrive come gestire le traduzioni per i contenuti JSON nel pr
 
 I contenuti delle pagine sono memorizzati in file JSON nella directory:
 ```
-config/local/saluteora/database/content/pages/
+config/local/<nome progetto>/database/content/pages/
 ```
 
 ### Struttura Standard
@@ -77,8 +77,8 @@ Ogni file JSON può contenere sezioni traducibili seguendo questo pattern:
 ```json
 {
     "title": {
-        "it": "Area Dottore - SaluteOra",
-        "en": "Doctor Area - SaluteOra"
+        "it": "Area Dottore - ",
+        "en": "Doctor Area - "
     },
     "content_blocks": {
         "it": [
@@ -92,7 +92,7 @@ Ogni file JSON può contenere sezioni traducibili seguendo questo pattern:
                     "cta-buttons": [],
                     "cta_text": "Continua la registrazione",
                     "cta_link": "/doctor/patients",
-                    "widget": "Modules\\SaluteOra\\Filament\\Widgets\\DoctorCalendarWidget"
+                    "widget": "Modules\\<nome modulo>\\Filament\\Widgets\\DoctorCalendarWidget"
                 }
             }
         ],
@@ -107,7 +107,7 @@ Ogni file JSON può contenere sezioni traducibili seguendo questo pattern:
                     "cta-buttons": [],
                     "cta_text": "Continue registration",
                     "cta_link": "/doctor/patients",
-                    "widget": "Modules\\SaluteOra\\Filament\\Widgets\\DoctorCalendarWidget"
+                    "widget": "Modules\\<nome modulo>\\Filament\\Widgets\\DoctorCalendarWidget"
                 }
             }
         ]
@@ -147,7 +147,7 @@ Ogni file JSON può contenere sezioni traducibili seguendo questo pattern:
 
 Identificare i file JSON che necessitano di traduzione:
 ```bash
-find config/local/saluteora/database/content/pages/ -name "*.json"
+find config/local/<nome progetto>/database/content/pages/ -name "*.json"
 ```
 
 ### 2. Analisi
@@ -192,7 +192,7 @@ jq '.title | keys' file.json
 
 # Controlla che tutti i file JSON abbiano le traduzioni complete
 
-for file in config/local/saluteora/database/content/pages/*.json; do
+for file in config/local/<nome progetto>/database/content/pages/*.json; do
     echo "Checking $file..."
     
     # Verifica presenza sezioni it e en

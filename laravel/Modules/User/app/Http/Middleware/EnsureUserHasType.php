@@ -25,12 +25,16 @@ class EnsureUserHasType
     public function handle(Request $request, Closure $next, string $type): Response
     {
         
-        $user = $request->user();
-        if ($user === null || (isset($user->type->value) && $user->type->value !== $type)) {
+        $userType = $request->user()?->type;
+        if ($userType instanceof \Modules\User\Enums\UserType && $userType->value == $type) {
             // Redirect...
-            return redirect()->route('home');
+            return $next($request);
         }
 
-        return $next($request);
+        if(is_string($userType) && $userType == $type){
+            return $next($request);
+        }
+        
+        return redirect()->route('home');
     }
 }

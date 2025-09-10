@@ -45,9 +45,6 @@ new class extends Component
                 </div>
             </div>
         
-=======
-    <div>
-        <x-page side="content" slug="home" />
     </div>
     @endvolt
 </x-layouts.app>

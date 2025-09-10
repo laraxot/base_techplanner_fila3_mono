@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Forms\Form;use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\TechPlanner\Filament\Resources\LegalOfficeResource;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;

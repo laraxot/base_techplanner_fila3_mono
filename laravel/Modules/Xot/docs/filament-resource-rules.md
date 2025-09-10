@@ -1,3 +1,12 @@
+# Regole per le Risorse Filament in 
+
+## Panoramica
+
+Questo documento definisce le regole fondamentali per l'implementazione delle risorse Filament nel progetto . Seguire queste linee guida è essenziale per garantire coerenza, manutenibilità e prestazioni ottimali dell'applicazione.
+
+## Estensione di XotBaseResource
+
+Tutte le risorse Filament in  **DEVONO** estendere `Modules\Xot\Filament\Resources\XotBaseResource` invece di `Filament\Resources\Resource`. Questa classe base personalizzata fornisce funzionalità specifiche per il progetto e garantisce coerenza in tutta l'applicazione.
 # Regole per le Risorse Filament in SaluteOra
 
 ## Panoramica

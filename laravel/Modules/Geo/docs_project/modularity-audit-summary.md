@@ -42,7 +42,7 @@ Questo errore viola i principi fondamentali dell'architettura modulare Laraxot e
 1. **Nomi di progetto hardcoded**: "SaluteOra", "saluteora"
 2. **Email hardcoded**: "admin@saluteora.com", "developer@saluteora.com"
 3. **URL hardcoded**: "https://api.saluteora.com/webhooks"
-4. **Path hardcoded**: "/var/www/html/_bases/base_techplanner_fila3_mono/public_html/images/"
+4. **Path hardcoded**: "/var/www/html/saluteora/public_html/images/"
 5. **Nomi team hardcoded**: "Team SaluteOra"
 6. **Repository hardcoded**: "https://github.com/saluteora/themes"
 7. **Import hardcoded**: `use Modules\SaluteOra\Models\User`
@@ -158,8 +158,8 @@ REPOSITORY_URL=https://github.com/saluteora/notify
 
 # Configurazione Path
 PROJECT_BASE_PATH=/var/www/html/saluteora
-LARAVEL_BASE_PATH=/var/www/html/_bases/base_techplanner_fila3_mono/laravel
-MODULES_BASE_PATH=/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules
+LARAVEL_BASE_PATH=/var/www/html/saluteora/laravel
+MODULES_BASE_PATH=/var/www/html/saluteora/laravel/Modules
 
 # Configurazione Modelli
 UI_USER_MODEL=Modules\SaluteOra\Models\User

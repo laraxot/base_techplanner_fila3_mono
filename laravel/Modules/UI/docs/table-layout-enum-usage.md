@@ -1,5 +1,13 @@
 # TableLayoutEnum Usage Guide
 
+## Nuovo Approccio (Corretto)
+
+Dopo la correzione del problema di visibilità, il metodo `getTableColumns()` ora richiede parametri espliciti invece di usare debug_backtrace.
+
+### Esempio di uso nelle classi ListRecords:
+
+```php
+use Modules\UI\Enums\TableLayoutEnum;
 ## Overview
 
 The `TableLayoutEnum` provides standardized layout options for Filament tables and data grids, allowing users to toggle between list and grid views with appropriate styling and column configurations.
@@ -80,6 +88,11 @@ class ListUsers extends ListRecords
     {
         return $table
             ->columns($this->getColumnsForLayout())
+            ->contentGrid($this->layout->getTableContentGrid());
+    }
+    
+    /**
+     * Restituisce le colonne appropriate per il layout corrente
             ->contentGrid($this->layout->getTableContentGrid())
             ->extraAttributes([
                 'class' => $this->layout->getContainerClasses(),
@@ -92,6 +105,17 @@ class ListUsers extends ListRecords
     protected function getColumnsForLayout(): array
     {
         $listColumns = [
+            Tables\Columns\TextColumn::make('name'),
+            Tables\Columns\TextColumn::make('email'),
+            Tables\Columns\TextColumn::make('created_at'),
+        ];
+        
+        $gridColumns = [
+            Tables\Columns\Layout\Stack::make([
+                Tables\Columns\TextColumn::make('name')
+                    ->weight(FontWeight::Bold),
+                Tables\Columns\TextColumn::make('email'),
+            ]),
             Tables\Columns\TextColumn::make('name')
                 ->searchable()
                 ->sortable(),
@@ -119,12 +143,16 @@ class ListUsers extends ListRecords
     }
     
     /**
+     * Toggle del layout tramite action
      * Layout toggle action.
      */
     protected function getHeaderActions(): array
     {
         return [
             Action::make('toggleLayout')
+                ->icon($this->layout->getIcon())
+                ->action(function () {
+                    $this->layout = $this->layout->toggle();
                 ->action(function () {
                     $this->layout = $this->layout->toggle();
                     $this->resetTable();
@@ -134,6 +162,18 @@ class ListUsers extends ListRecords
 }
 ```
 
+### Vantaggi del nuovo approccio:
+
+1. **Type Safety**: Non usa più reflection o debug_backtrace
+2. **Chiarezza**: Esplicito su quali colonne usare per ogni layout
+3. **Testabilità**: Più facile da testare senza dipendenze nascoste
+4. **Performance**: Nessun overhead di debug_backtrace
+
+### Breaking Change:
+
+Il metodo `getTableColumns()` ora richiede due parametri:
+- `$listColumns`: Array delle colonne per layout lista
+- `$gridColumns`: Array delle colonne per layout griglia 
 ### Advantages of the New Approach
 
 1. **Type Safety**: No longer uses reflection or debug_backtrace

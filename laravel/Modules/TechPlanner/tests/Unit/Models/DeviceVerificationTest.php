@@ -6,7 +6,7 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\DeviceVerification;
-use Tests\TestCase;use Modules\TechPlanner\Models\DeviceVerification;
+use Tests\TestCase;
 
 /**
  * Test unitario per il modello DeviceVerification.
@@ -16,6 +16,7 @@ use Tests\TestCase;use Modules\TechPlanner\Models\DeviceVerification;
 class DeviceVerificationTest extends TestCase
 {
     use RefreshDatabase;
+
     private DeviceVerification $deviceVerification;
 
     protected function setUp(): void

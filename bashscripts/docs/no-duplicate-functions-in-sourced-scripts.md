@@ -28,6 +28,12 @@ Quando in uno script .sh si incorporano altre librerie tramite `source ./bashscr
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 <<<<<<< HEAD
@@ -46,6 +52,7 @@ aurmich/dev
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Principio DRY negli Script Bash: NO alla duplicazione di funzioni
 
 ## PERCHÉ È FONDAMENTALE
@@ -78,6 +85,12 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 source ./bashscripts/lib/custom.sh
 =======
 <<<<<<< HEAD
+=======
+
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 <<<<<<< HEAD
@@ -96,6 +109,7 @@ source ./bashscripts/lib/custom.sh
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Utilizzo le funzioni definite in custom.sh senza ridefinirle
 validate_input "$@"
 process_files "$1"
@@ -107,6 +121,12 @@ process_files "$1"
 source ./bashscripts/lib/custom.sh
 =======
 <<<<<<< HEAD
+=======
+
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 <<<<<<< HEAD
@@ -125,6 +145,7 @@ source ./bashscripts/lib/custom.sh
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # GRAVE ERRORE: ridefinire funzioni già presenti in custom.sh
 function validate_input() {
   # Implementazione duplicata che potrebbe divergere dall'originale
@@ -150,6 +171,9 @@ function validate_input() {
 =======
 <<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -159,10 +183,13 @@ function validate_input() {
 =======
 <<<<<<< HEAD
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 
 =======
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
@@ -174,4 +201,5 @@ function validate_input() {
 
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 aurmich/dev

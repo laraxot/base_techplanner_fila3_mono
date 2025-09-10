@@ -48,7 +48,7 @@ class GetCurrentEmployeeDataAction
         // Base user data
         $data = [
             'id' => $user->id,
-            'name' => $user->name,
+            'name' => $user->name ?? 'Unknown',
             'email' => $user->email,
             'status' => 'active',
         ];
@@ -58,24 +58,47 @@ class GetCurrentEmployeeDataAction
         $employee = Employee::find($userId);
 
         if ($employee) {
-            $data['employeeNumber'] = $employee->employee_number ?? '';
-            $data['status'] = $employee->status->value ?? 'active';
-            $data['hireDate'] = $employee->hire_date?->format('d/m/Y') ?? '';
-
-            // Department info - check if department relation exists
-            if (method_exists($employee, 'department') && $employee->department) {
-                $data['department'] = [
-                    'id' => $employee->department->id,
-                    'name' => $employee->department->name,
-                ];
+            // Employee number from work_data array
+            if (isset($employee->work_data['employee_number']) && is_string($employee->work_data['employee_number'])) {
+                $data['employeeNumber'] = $employee->work_data['employee_number'];
             }
 
-            // Position info - check if position relation exists
-            if (method_exists($employee, 'position') && $employee->position) {
-                $data['position'] = [
-                    'id' => $employee->position->id,
-                    'name' => $employee->position->name,
-                ];
+            // Status - check if it's an enum or string
+            if (isset($employee->status)) {
+                if (is_object($employee->status) && method_exists($employee->status, 'value')) {
+                    $data['status'] = $employee->status->value;
+                } elseif (is_string($employee->status)) {
+                    $data['status'] = $employee->status;
+                } else {
+                    $data['status'] = 'active';
+                }
+            }
+
+            // Hire date from work_data array
+            if (isset($employee->work_data['hire_date']) && is_string($employee->work_data['hire_date'])) {
+                $data['hireDate'] = $employee->work_data['hire_date'];
+            }
+
+            // Department info from work_data
+            if (isset($employee->work_data['department']) && is_array($employee->work_data['department'])) {
+                $dept = $employee->work_data['department'];
+                if (isset($dept['id'], $dept['name']) && is_int($dept['id']) && is_string($dept['name'])) {
+                    $data['department'] = [
+                        'id' => $dept['id'],
+                        'name' => $dept['name'],
+                    ];
+                }
+            }
+
+            // Position info from work_data
+            if (isset($employee->work_data['position']) && is_array($employee->work_data['position'])) {
+                $pos = $employee->work_data['position'];
+                if (isset($pos['id'], $pos['name']) && is_int($pos['id']) && is_string($pos['name'])) {
+                    $data['position'] = [
+                        'id' => $pos['id'],
+                        'name' => $pos['name'],
+                    ];
+                }
             }
         }
 

@@ -61,3 +61,4 @@ class Position extends BaseModel
         return $this->hasMany(Employee::class);
     }
 }
+

@@ -11,6 +11,9 @@ aurmich/dev
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
 =======
@@ -19,6 +22,7 @@ aurmich/dev
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🤖 Fase 7: AI Integration
 
 ## 📋 Panoramica
@@ -152,6 +156,11 @@ aurmich/dev
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -167,6 +176,7 @@ aurmich/dev
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🤖 Fase 7: AI Integration
 
 ## 📋 Panoramica
@@ -299,6 +309,11 @@ aurmich/dev
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -314,6 +329,7 @@ aurmich/dev
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🤖 Fase 7: AI Integration
 
 ## 📋 Panoramica
@@ -700,6 +716,11 @@ Questa fase si concentra sull'integrazione di tecnologie di Intelligenza Artific
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -715,6 +736,7 @@ Questa fase si concentra sull'integrazione di tecnologie di Intelligenza Artific
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 07_ai_integration.md

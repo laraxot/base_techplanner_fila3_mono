@@ -114,8 +114,10 @@ class WorkHoursBoardWidget extends XotBaseWidget
     {
         $days = [];
 
+        /** @var Carbon $current */
         $current = $this->weekStart->copy();
         while ($current->lte($this->weekEnd)) {
+            assert($current instanceof \Carbon\Carbon);
             $dateKey = $current->toDateString();
 
             // Safe access to timeline data
@@ -135,10 +137,15 @@ class WorkHoursBoardWidget extends XotBaseWidget
                 $totalHours = array_sum($durations);
             }
 
+            /** @var \Carbon\Carbon $currentCarbon */
+            $currentCarbon = $current;
             $days[$dateKey] = [
-                'date' => $current->format('d'),
-                'dayName' => $current->locale('it')->format('D'),
-                'fullDate' => $current->locale('it')->isoFormat('dddd D MMMM'),
+                //@phpstan-ignore-next-line
+                'date' => Carbon::parse($currentCarbon)->format('d'),
+                //@phpstan-ignore-next-line
+                'dayName' => Carbon::parse($currentCarbon)->locale('it')->translatedFormat('D'),
+                //@phpstan-ignore-next-line
+                'fullDate' => Carbon::parse($currentCarbon)->locale('it')->translatedFormat('dddd D MMMM'),
                 'totalHours' => $totalHours,
                 'status' => $dayStatus['status'] ?? 'no_work',
                 'indicator' => $dayStatus['indicator'] ?? '',

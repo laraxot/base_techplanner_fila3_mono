@@ -182,8 +182,8 @@ name('login');
 - [Pulizia Naming AGID](./agid-naming-cleanup-complete.md)
 - [Sistema Blocchi](./blocks-system.md)
 - [Componenti Tema](./components.md)
+- [Documentazione Root](../../../docs/agid-compliance.md)
 - [Documentazione Root](../../../../project_docs/agid-compliance.md)
-=======
 - [Documentazione Root](../../../docs/agid-compliance.md)
 
 ---

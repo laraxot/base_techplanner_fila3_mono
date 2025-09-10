@@ -42,10 +42,13 @@ class LanguageSwitcher extends Component
             return view($view);
         }
 
-        // Ottiene i dati dal widget tramite metodo pubblico
-        $viewData = $this->widget->exposeViewData();
-        /** @var view-string $view */
-        $view = 'lang::filament.widgets.language-switcher';
-        return view($view, $viewData);
+        // Ottiene i dati pubblici dal widget
+        $viewData = [
+            'current_locale' => app()->getLocale(),
+            'available_locales' => $this->widget->getAvailableLocales(),
+            'widget_id' => 'language-switcher-'.uniqid(),
+        ];
+
+        return \view('lang::components.language-switcher', $viewData);
     }
 }

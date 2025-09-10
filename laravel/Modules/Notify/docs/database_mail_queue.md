@@ -291,8 +291,12 @@ $this->call('queue:prune-batches', [
 
 ```bash
 # Supervisor config
+[program:<nome progetto>-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/html/_bases/base_<nome progetto>/laravel/artisan queue:work redis --queue=emails
 [program:saluteora-worker]
 process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/html/_bases/base_saluteora/laravel/artisan queue:work redis --queue=emails
 command=php /var/www/html/_bases/base_techplanner_fila3_mono/laravel/artisan queue:work redis --queue=emails
 autostart=true
 autorestart=true

@@ -188,20 +188,19 @@ Ho aggiornato la documentazione con esempi corretti:
 {{-- Esempio corretto per Alert --}}
 <x-pub_theme::blocks.alerts.alert variant="info" dismissible="true">
 =======
-=======
 <x-sixteen::blocks.alerts.alert variant="info" dismissible="true">
     Messaggio informativo
-</x-pub_theme::blocks.alerts.alert>
+</x-sixteen::blocks.alerts.alert>
 
 {{-- Esempio corretto per Toast --}}
-<x-pub_theme::blocks.alerts.toast variant="success" position="top-right">
+<x-sixteen::blocks.alerts.toast variant="success" position="top-right">
     Operazione completata con successo
-</x-pub_theme::blocks.alerts.toast>
+</x-sixteen::blocks.alerts.toast>
 
 {{-- Esempio corretto per Badge --}}
-<x-pub_theme::blocks.utilities.badge variant="primary" dismissible="true">
+<x-sixteen::blocks.utilities.badge variant="primary" dismissible="true">
     Badge con pulsante di chiusura
-</x-pub_theme::blocks.utilities.badge>
+</x-sixteen::blocks.utilities.badge>
 ```
 
 ## 🚨 Errori Comuni da Evitare

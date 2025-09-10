@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -11,6 +13,7 @@
 >>>>>>> 574afe9e (.)
 >>>>>>> 7de7063d (.)
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -35,15 +38,20 @@
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Guida per la Risoluzione dei Conflitti Git - Laraxot
 
 ## Obiettivo
 Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale approfondita, aggiornamento della documentazione e implementazione di soluzioni coerenti con l'architettura Laraxot.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -51,6 +59,7 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 <<<<<<< HEAD
 =======
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -62,7 +71,10 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
@@ -86,9 +98,12 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -98,10 +113,13 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 ## Principi Fondamentali
 - **Analisi manuale obbligatoria**: Ogni conflitto deve essere analizzato e risolto manualmente
@@ -109,6 +127,8 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 - **Qualità PHPStan**: Tutti i file PHP devono essere compatibili con PHPStan livello 10
 - **Documentazione completa**: Aggiornare sempre la documentazione correlata
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 - **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
 =======
 <<<<<<< HEAD
@@ -117,6 +137,7 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 <<<<<<< HEAD
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -125,7 +146,10 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 - **Convenzioni naming**: Tutti i file e cartelle in docs/ devono essere in minuscolo (eccetto README.md)
 =======
@@ -133,9 +157,12 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> f198176d (.)
@@ -150,10 +177,13 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 >>>>>>> 574afe9e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 ## Workflow Sistematico
 
@@ -161,6 +191,8 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 ```bash
 # Trova tutti i file con conflitti Git
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -169,6 +201,7 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 <<<<<<< HEAD
 >>>>>>> 7de7063d (.)
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -184,21 +217,27 @@ Risolvere tutti i conflitti Git presenti nel progetto mediante analisi manuale a
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista dettagliata dei conflitti
 git diff --name-only --diff-filter=U
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -208,15 +247,21 @@ git diff --name-only --diff-filter=U
 =======
 >>>>>>> 42ab2308 (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -226,10 +271,13 @@ git diff --name-only --diff-filter=U
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ```
 
 **Criteri di priorità:**
@@ -256,11 +304,17 @@ Per ogni file conflittuale:
 **c) Valutazione dell'impatto:**
 - Impatto sulla funzionalità esistente
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+- Compatibilità con l'architettura Laraxot
+=======
+>>>>>>> ec52a6b4 (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
 - Compatibilità con l'architettura Laraxot
 =======
 <<<<<<< HEAD
-<<<<<<< HEAD
-- Compatibilità con l'architettura Laraxot
 =======
 =======
 <<<<<<< HEAD
@@ -271,6 +325,7 @@ Per ogni file conflittuale:
 =======
 <<<<<<< HEAD
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
@@ -281,16 +336,22 @@ Per ogni file conflittuale:
 - Compatibilità con l'architettura Laraxot
 =======
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 - Compatibilità con l'architettura del progetto
 >>>>>>> 3c18aa7e (.)
 =======
 - Compatibilità con l'architettura del progetto
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -301,10 +362,13 @@ Per ogni file conflittuale:
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 - Effetti sui moduli dipendenti
 
 ### 3. Risoluzione del Conflitto
@@ -315,6 +379,8 @@ Per ogni file conflittuale:
 - Verificare type hints e return types
 - Controllare documentazione PHPDoc
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 - Utilizzare `declare(strict_types=1);`
 =======
 <<<<<<< HEAD
@@ -323,6 +389,7 @@ Per ogni file conflittuale:
 =======
 <<<<<<< HEAD
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -331,7 +398,10 @@ Per ogni file conflittuale:
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 - Utilizzare `declare(strict_types=1);`
 =======
@@ -339,9 +409,12 @@ Per ogni file conflittuale:
 =======
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> f198176d (.)
@@ -356,16 +429,21 @@ Per ogni file conflittuale:
 >>>>>>> 574afe9e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 **Per file Markdown (.md):**
 - Mantenere entrambe le versioni quando possibile
 - Unire i contenuti in modo logico
 - Preservare i backlink esistenti
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 - Rispettare convenzioni naming (minuscolo)
 =======
 <<<<<<< HEAD
@@ -374,6 +452,7 @@ Per ogni file conflittuale:
 =======
 <<<<<<< HEAD
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -382,7 +461,10 @@ Per ogni file conflittuale:
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 - Rispettare convenzioni naming (minuscolo)
 =======
@@ -390,9 +472,12 @@ Per ogni file conflittuale:
 =======
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> f198176d (.)
@@ -407,10 +492,13 @@ Per ogni file conflittuale:
 >>>>>>> 574afe9e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 **Per file di configurazione:**
 - Privilegiare le configurazioni più recenti
@@ -522,6 +610,8 @@ Al termine del processo, fornire:
 ```bash
 # Trova file con conflitti Git
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -530,6 +620,7 @@ Al termine del processo, fornire:
 <<<<<<< HEAD
 >>>>>>> 7de7063d (.)
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -545,21 +636,27 @@ Al termine del processo, fornire:
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 git status --porcelain | grep "^UU\|^AA\|^DD"
 
 # Lista file con conflitti per tipo
 git diff --name-only --diff-filter=U
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -569,7 +666,10 @@ git diff --name-only --diff-filter=U
 =======
 >>>>>>> 42ab2308 (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 
 
 # Lista file con conflitti per tipo
@@ -580,9 +680,12 @@ git diff --name-only --diff-filter=U
 # Lista file con conflitti per tipo
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -592,10 +695,13 @@ git diff --name-only --diff-filter=U
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ```
 
 ### Verifica PHPStan
@@ -685,6 +791,8 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 - **Translation System**: Usare chiavi strutturate, evitare label() espliciti
 - **PHPStan**: Mirare sempre al livello 10 per tutto il codice PHP
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -693,6 +801,7 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 <<<<<<< HEAD
 >>>>>>> 7de7063d (.)
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -708,10 +817,13 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 - **Documentation Naming**: Tutti i file e cartelle in docs/ in minuscolo (eccetto README.md)
 
 ## Regole Critiche per Progetti Laraxot
@@ -739,12 +851,15 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 - **Trasparenza**: Documentare ogni decisione tecnica importante
 - **Responsabilità**: Rispettare i confini e le responsabilità dei moduli
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -754,7 +869,10 @@ class PredictResource extends XotBaseResource // Sempre estendere XotBase
 =======
 >>>>>>> 42ab2308 (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> 574afe9e (.)
 
@@ -766,9 +884,12 @@ Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’al
 =======
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -778,7 +899,10 @@ Procedi a risolvere tutti i conflitti git nei file PHP rilevati, uno dopo l’al
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

@@ -1,3 +1,20 @@
+# User Module Documentation
+
+**Ultima modifica**: 2025-01-15  
+**Status**: ✅ Syntax Errors Fixed, ✅ PHPStan Analysis completata, ✅ Documentazione consolidata
+
+## 🎯 Panoramica
+
+Il modulo User gestisce l'autenticazione, l'autorizzazione e la gestione degli utenti nel framework Laraxot.
+
+## 📚 Collegamenti alla Documentazione Core
+
+- **[Xot Module Documentation](../Xot/docs/README.md)** - Framework core e convenzioni
+- **[Laraxot Conventions](../Xot/docs/laraxot-conventions.md)** - Regole di sviluppo e tipizzazione
+- **[Laraxot Framework](../Xot/docs/laraxot-framework.md)** - Architettura e pattern
+- **[Module Namespace Rules](../Xot/docs/module-namespace-rules.md)** - Regole namespace e migrazioni
+- **[Best Practices](../Xot/docs/best-practices.md)** - Best practices generali
+- **[Useful Links](../Xot/docs/useful-links.md)** - Link utili per lo sviluppo
 # Modulo User
 
 ## Introduzione
@@ -115,6 +132,12 @@ User/
 - [Linee guida Actions](./actions.mdc)
 - [Linee guida Activitylog](./activitylog.mdc)
 
+## 🏗️ Architettura Framework
+
+### Regole Base XotBase
+- **Policies**: Estendono sempre `UserBasePolicy` (MAI direttamente Filament)
+- **Resources**: Estendono sempre `XotBaseResource`
+- **Models**: Estendono sempre `BaseModel` con tipizzazione rigorosa
 ## Vedi Anche
 - [Documentazione Principale](../../docs/INDEX.md)
 - [Architettura Moduli](../../docs/architecture/modules-structure.md)
@@ -950,5 +973,12 @@ Schema::table('teams', function (Blueprint $table) {
   - **Motivazione**: Separazione responsabilità, principio modulare, manutenibilità
   - **Regola**: docs_project solo per documentazione generale del progetto, file specifici di moduli nelle rispettive cartelle docs
 
+## 🔗 Collegamenti Moduli
+- [Xot Core Framework](../Xot/docs/README.md)
+- [Lang Translations](../Lang/docs/README.md)
+- [Notify System](../Notify/docs/README.md)
+
+---
+*User Module Documentation - Framework Laraxot*
 ## Collegamenti
 

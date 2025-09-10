@@ -22,6 +22,11 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 ### 2. Push Script (`git_push_subtree.sh`)
 
 <<<<<<< HEAD
+
+=======
+```bash
+=======
+<<<<<<< HEAD
 =======
 
 =======
@@ -34,11 +39,15 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 =======
 >>>>>>> f71d08e230 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 =======
 ```bash
 =======
 =======
 ```bash
+<<<<<<< HEAD
+
+=======
 >>>>>>> develop
 
 <<<<<<< HEAD
@@ -53,6 +62,7 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 1. Inizializzazione
 git init
 git checkout -b "$BRANCH"
@@ -68,6 +78,9 @@ git merge origin/"$BRANCH" --allow-unrelated-histories
 =======
 <<<<<<< HEAD
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+=======
+<<<<<<< HEAD
+git merge origin/"$BRANCH" --allow-unrelated-histories"
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -77,10 +90,13 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 =======
 <<<<<<< HEAD
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
@@ -92,6 +108,7 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 git push -u origin "$BRANCH"
 ```
 
@@ -99,6 +116,12 @@ git push -u origin "$BRANCH"
 ```bash
 =======
 <<<<<<< HEAD
+=======
+
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 <<<<<<< HEAD
@@ -117,6 +140,7 @@ git push -u origin "$BRANCH"
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 1. Pull standard
 git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH" --squash
 
@@ -132,6 +156,10 @@ aurmich/dev
 <<<<<<< HEAD
 ```
 
+=======
+<<<<<<< HEAD
+```
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -142,12 +170,15 @@ aurmich/dev
 =======
 <<<<<<< HEAD
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 ```
 
 =======
 ```
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
@@ -161,6 +192,7 @@ aurmich/dev
 
 >>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 Esegue una sequenza complessa di operazioni:
 ```bash
 1. git add -A && git commit -am "."
@@ -177,6 +209,10 @@ Esegue una sequenza complessa di operazioni:
 ### 3. Pull Script (`git_pull_subtree.sh`)
 =======
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
@@ -188,6 +224,7 @@ Esegue una sequenza complessa di operazioni:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 Esegue una sequenza con fallback:
 ```bash
 1. git subtree pull -P $LOCAL_PATH $REMOTE_REPO $REMOTE_BRANCH --squash
@@ -201,6 +238,10 @@ Esegue una sequenza con fallback:
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
@@ -212,6 +253,7 @@ aurmich/dev
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ```
 
 ## 🚨 Analisi Errori Comuni
@@ -227,6 +269,12 @@ fatal: you must provide the --prefix option
 ```bash
 =======
 <<<<<<< HEAD
+=======
+
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 <<<<<<< HEAD
@@ -245,6 +293,7 @@ fatal: you must provide the --prefix option
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Verifica variabili
 if [ -z "$LOCAL_PATH" ] || [ -z "$REMOTE_REPO" ]; then
     echo "❌ Error: Missing required variables"
@@ -261,6 +310,10 @@ fi
 
 =======
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
@@ -272,6 +325,7 @@ fi
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 **Causa**: Divergenze tra repository locale e remoto
 
 **Soluzione**:
@@ -286,6 +340,8 @@ git fetch origin "$BRANCH"
 =======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 <<<<<<< HEAD
@@ -293,10 +349,14 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
 git merge origin/"$BRANCH" --allow-unrelated-histories"
+<<<<<<< HEAD
+=======
+=======
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
@@ -306,6 +366,7 @@ git merge origin/"$BRANCH" --allow-unrelated-histories"
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 # Riprova push
 if ! git push -u origin "$BRANCH"; then
@@ -425,6 +486,10 @@ fi
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
@@ -436,3 +501,4 @@ aurmich/dev
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

@@ -401,7 +401,8 @@ class ListClients extends XotBaseListRecords
      *
      * @param \Modules\TechPlanner\Models\Client $record
      * @return string
-     */    private function formatContacts(Client $record): string
+     */
+    private function formatContacts(Client $record): string
     {
         $contacts = [];
         

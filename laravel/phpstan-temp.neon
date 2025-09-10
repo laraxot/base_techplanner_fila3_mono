@@ -15,3 +15,4 @@ parameters:
     tmpDir: /tmp/phpstan
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
+

@@ -10,6 +10,7 @@
 // Struttura CORRETTA in config/sms.php
 return [
     // Configurazioni di base (applicate a tutti i provider)
+    'from' => env('SMS_FROM', '<nome progetto>'),
     'from' => env('SMS_FROM', 'SaluteOra'),
     'retry' => [
         'attempts' => env('SMS_RETRY_ATTEMPTS', 3),
@@ -25,6 +26,7 @@ return [
     'drivers' => [
         'netfun' => [
             'api_key' => env('NETFUN_API_KEY'),
+            'sender' => env('NETFUN_SENDER', '<nome progetto>'),
             'sender' => env('NETFUN_SENDER', 'SaluteOra'),
             'api_url' => env('NETFUN_API_URL', 'https://v2.smsviainternet.it/api/rest/v1/sms-batch.json'),
         ],
@@ -97,12 +99,14 @@ Quando configuri il file `.env`, utilizza questi nomi di variabili:
 ```
 
 # Configurazione generale SMS
+SMS_FROM=<nome progetto>
 SMS_FROM=SaluteOra
 SMS_RETRY_ATTEMPTS=3
 SMS_RETRY_DELAY=60
 
 # Netfun
 NETFUN_API_KEY=your_api_key_here
+NETFUN_SENDER=<nome progetto>
 NETFUN_SENDER=SaluteOra
 NETFUN_API_URL=https://v2.smsviainternet.it/api/rest/v1/sms-batch.json
 

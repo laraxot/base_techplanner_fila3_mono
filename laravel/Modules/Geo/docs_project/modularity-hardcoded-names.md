@@ -20,7 +20,7 @@ Durante l'audit del modulo `Notify`, è stato identificato un **errore critico d
 'clinic_name' => 'Studio Dentistico SaluteOra',
 'webhook' => 'https://api.saluteora.com/webhooks',
 'author' => 'Team SaluteOra',
-'path' => '/var/www/html/_bases/base_techplanner_fila3_mono/public_html/images/',
+'path' => '/var/www/html/saluteora/public_html/images/',
 ```
 
 ## Soluzioni Implementate

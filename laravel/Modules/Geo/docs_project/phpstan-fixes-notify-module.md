@@ -8,7 +8,7 @@ This document details the PHPStan errors fixed in the Notify module to ensure co
 
 ### ConfigHelper.php - Type Safety Issues
 
-**Location**: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules/Notify/app/Helpers/ConfigHelper.php`
+**Location**: `/var/www/html/_bases/base_saluteora/laravel/Modules/Notify/app/Helpers/ConfigHelper.php`
 
 **Issues Resolved**:
 1. **array_merge parameter type issues** (Lines 27, 29)
@@ -70,7 +70,7 @@ This document details the PHPStan errors fixed in the Notify module to ensure co
 
 ### NotifyThemeableFactory.php - Method Not Found Issue
 
-**Location**: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules/Notify/database/factories/NotifyThemeableFactory.php`
+**Location**: `/var/www/html/_bases/base_saluteora/laravel/Modules/Notify/database/factories/NotifyThemeableFactory.php`
 
 **Issue Resolved**:
 - **Undefined method**: `XotData::getProjectNamespace()` (Line 53)

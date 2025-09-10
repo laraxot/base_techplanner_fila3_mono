@@ -74,6 +74,12 @@ class TimeClockWidget extends XotBaseWidget
      */
     public array $todayEntries = [];
 
+    /**
+     * Current session blocks.
+     *
+     * @var array<int, array{start: string, end: string|null, duration: float, status: string}>
+     */
+    public array $sessions = [];
 
     /**
      * Current session state.
@@ -140,10 +146,13 @@ class TimeClockWidget extends XotBaseWidget
 
         /** @var array<int, array{time: string, type: string, status: string}> $todayEntries */
         $todayEntries = $entries->map(function (WorkHour $entry): array {
+            $type = $entry->type;
+            $status = $entry->status;
+            
             return [
                 'time' => $entry->timestamp->format('H:i'),
-                'type' => $entry->type->value,
-                'status' => $entry->status->value,
+                'type' => is_object($type) && method_exists($type, 'value') ? $type->value : (is_string($type) ? $type : ''),
+                'status' => is_object($status) && method_exists($status, 'value') ? $status->value : (is_string($status) ? $status : ''),
             ];
         })->values()->all();
         $this->todayEntries = $todayEntries;

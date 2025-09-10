@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\DB;
  * @method static \Illuminate\Database\Eloquent\Builder|Result whereUpdatedBy($value)
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @mixin IdeHelperResult
- * @property-read \Modules\SaluteOra\Models\Profile|null $updater
+ * @property-read \Modules\Xot\Contracts\ProfileContract|null $updater
  * @method static \Modules\Job\Database\Factories\ResultFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */

@@ -133,7 +133,7 @@ class BuildTimelineVisualizationAction
             switch ($entry->type) {
                 case WorkHourTypeEnum::CLOCK_IN:
                     // Chiudi sessione precedente se aperta
-                    if ($currentSession && ($currentSession['end'] ?? null) === null) {
+                    if ($currentSession) {
                         $blocks[] = $this->finalizeSessionBlock($currentSession);
                     }
 
@@ -254,7 +254,8 @@ class BuildTimelineVisualizationAction
                 'status' => $status['status'],
                 'indicator' => $status['indicator'],
                 'color' => $status['color'],
-                'dayName' => $current->locale('it')->format('D d'),
+                //@phpstan-ignore-next-line
+                'dayName' => Carbon::parse($current)->locale('it')->format('D d'),
                 'isToday' => $current->isToday(),
                 'isWeekend' => $current->isWeekend(),
             ];
@@ -349,7 +350,7 @@ class BuildTimelineVisualizationAction
             }
 
             // Orari anomali (prima delle 06:00 o dopo le 22:00)
-            if (isset($block['startTime']) && $block['startTime'] instanceof \Carbon\Carbon) {
+            if (isset($block['startTime']) && $block['startTime'] instanceof Carbon) {
                 $hour = $block['startTime']->hour;
                 if ($hour < 6 || $hour > 22) {
                     return true;

@@ -6,7 +6,7 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\Participant;
-use Tests\TestCase;use Modules\TechPlanner\Models\Participant;
+use Tests\TestCase;
 
 /**
  * Test unitario per il modello Participant.
@@ -16,6 +16,7 @@ use Tests\TestCase;use Modules\TechPlanner\Models\Participant;
 class ParticipantTest extends TestCase
 {
     use RefreshDatabase;
+
     private Participant $participant;
 
     protected function setUp(): void

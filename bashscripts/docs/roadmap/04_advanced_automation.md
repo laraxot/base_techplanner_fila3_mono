@@ -16,6 +16,11 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -31,6 +36,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -154,6 +160,11 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -169,6 +180,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -292,6 +304,11 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -307,6 +324,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -436,6 +454,9 @@ aurmich/dev
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
 =======
@@ -444,6 +465,7 @@ aurmich/dev
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -567,6 +589,11 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -582,6 +609,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -713,6 +741,9 @@ aurmich/dev
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
 =======
@@ -721,6 +752,7 @@ aurmich/dev
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🔄 Fase 4: Automazione Avanzata
 
 ## 📋 Panoramica
@@ -1261,6 +1293,11 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -1276,6 +1313,7 @@ Questa fase si concentra sull'implementazione di funzionalità di automazione av
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 04_advanced_automation.md

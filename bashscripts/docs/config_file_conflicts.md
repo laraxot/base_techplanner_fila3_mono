@@ -1,5 +1,8 @@
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 =======
@@ -8,6 +11,7 @@
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Gestione dei Conflitti nei File di Configurazione
 
 ## Panoramica
@@ -43,10 +47,14 @@ File come:
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 - `.env`
 - `.env.example`
@@ -321,6 +329,10 @@ git commit -m "Risolto conflitto in file di configurazione"
 ## Collegamenti Bidirezionali
 =======
 <<<<<<< HEAD
+
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 
 =======
@@ -331,6 +343,7 @@ git commit -m "Risolto conflitto in file di configurazione"
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 Il file presenta conflitti riguardanti le funzionalità PostCSS da abilitare:
 
 1. **Versione 1**: Configurazione base con solo tailwindcss e autoprefixer
@@ -406,16 +419,22 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 >>>>>>> 04d882f8f6 (.)
 =======
 >>>>>>> f1e7ef1046 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
+=======
+<<<<<<< HEAD
 =======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -516,6 +535,10 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione Rector](https://getrector.org/documentation)
 =======
 =======
+=======
+=======
+=======
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -640,6 +663,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -739,6 +763,9 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+=======
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 >>>>>>> 3c18aa7e (.)
@@ -750,6 +777,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1147,6 +1175,8 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
@@ -1161,7 +1191,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
-=======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
@@ -1169,10 +1199,14 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1471,6 +1505,9 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+<<<<<<< HEAD
+=======
+=======
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -1480,12 +1517,15 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 - [Risoluzione Conflitti Git](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/git_conflicts_resolution.md)
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti Merge Risolti Xot](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
 - [Gestione della Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/config.md)
 =======
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
@@ -1494,6 +1534,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 # Risoluzione dei Conflitti nei File di Configurazione
 
@@ -1594,6 +1635,10 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+<<<<<<< HEAD
+=======
+=======
+=======
 <<<<<<< HEAD
 >>>>>>> f000df5 (.)
 =======
@@ -1609,6 +1654,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1714,6 +1760,8 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 0c55086029 (.)
 =======
 =======
@@ -1722,19 +1770,25 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> f1e7ef1046 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md) 
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 - [Risoluzione Conflitti Git](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/git_conflicts_resolution.md)
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti Merge Risolti Xot](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
 - [Gestione della Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/config.md)
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -1749,6 +1803,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> f71d08e230 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 - [Documentazione sulla Risoluzione dei Conflitti Bash](conflict-resolution-bash.md)
@@ -1757,7 +1812,10 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

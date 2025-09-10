@@ -291,3 +291,6 @@ class TemplatePreview extends Component
 - [Mailgun API](https://documentation.mailgun.com/en/latest/api_reference.html)
 - [Filament Documentation](https://filamentphp.com/docs)
 - [Laravel Mail Documentation](https://laravel.com/docs/mail)- [Laravel Mail Documentation](https://laravel.com/project_docs/mail)
+- [Laravel Mail Documentation](https://laravel.com/docs/mail)
+- [Laravel Mail Documentation](https://laravel.com/project_docs/mail)
+- [Laravel Mail Documentation](https://laravel.com/docs/mail)- [Laravel Mail Documentation](https://laravel.com/project_docs/mail)

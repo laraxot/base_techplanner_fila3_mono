@@ -267,6 +267,8 @@ return new class extends XotBaseMigration {
 ```
 
 **Collegamenti:**
+- [Regola Performance](../../Performance/project_docs/database_migrations.md)
+- [Regole globali root](../../../project_docs/database_migrations.md)
 - [Regola Performance](../../Performance/docs/database_migrations.md)
 - [Regole globali root](../../../docs/database_migrations.md)
 

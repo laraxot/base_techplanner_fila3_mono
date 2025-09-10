@@ -37,7 +37,8 @@ class DepartmentFactory extends Factory
     /**
      * Indicate that the department is active.
      *
-     * @return static     */
+     * @return static
+     */
     public function active(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -48,7 +49,8 @@ class DepartmentFactory extends Factory
     /**
      * Indicate that the department is inactive.
      *
-     * @return static     */
+     * @return static
+     */
     public function inactive(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -60,7 +62,8 @@ class DepartmentFactory extends Factory
      * Set a specific department name.
      *
      * @param string $name
-     * @return static     */
+     * @return static
+     */
     public function withName(string $name): static
     {
         return $this->state(fn (array $attributes) => [
@@ -72,7 +75,8 @@ class DepartmentFactory extends Factory
      * Set a specific description.
      *
      * @param string $description
-     * @return static     */
+     * @return static
+     */
     public function withDescription(string $description): static
     {
         return $this->state(fn (array $attributes) => [

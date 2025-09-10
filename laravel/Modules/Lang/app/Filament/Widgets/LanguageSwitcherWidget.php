@@ -53,7 +53,7 @@ class LanguageSwitcherWidget extends XotBaseWidget
         return [
             'current_locale' => app()->getLocale(),
             'available_locales' => $this->getAvailableLocales(),
-            'widget_id' => 'language-switcher-' . uniqid(),            'widget_id' => 'language-switcher-'.uniqid(),
+            'widget_id' => 'language-switcher-'.uniqid(),
         ];
     }
 
@@ -70,9 +70,9 @@ class LanguageSwitcherWidget extends XotBaseWidget
     /**
      * Ottiene le lingue disponibili nel sistema.
      *
-     * @return Collection<int, array{code: string, name: string, native_name: string, flag: string}>
+     * @return Collection<int, array{code: string, name: string, native_name: string, flag: string|null}>
      */
-    protected function getAvailableLocales(): Collection
+    public function getAvailableLocales(): Collection
     {
         // Verifica se il modello Language esiste e ha dati
         if (class_exists(Language::class)) {
@@ -104,7 +104,7 @@ class LanguageSwitcherWidget extends XotBaseWidget
     /**
      * Lingue di default se il modello Language non è disponibile.
      * 
-     * @return array<int, array{code: string, name: string, native_name: string, flag: string}>
+     * @return array<int, array{code: string, name: string, native_name: string, flag: string|null}>
      */
     protected function getDefaultLanguages(): array
     {

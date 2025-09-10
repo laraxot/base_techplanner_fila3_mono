@@ -43,7 +43,6 @@ return [
         'label' => 'Integration storniert',
         'color' => 'danger',
     ],
-
     'suspended' => [
         'label' => 'Suspendiert',
         'color' => 'warning',

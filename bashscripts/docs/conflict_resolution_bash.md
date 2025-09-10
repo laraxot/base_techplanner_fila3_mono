@@ -59,6 +59,9 @@ log() {
 }
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> ec52a6b4 (.)
 
 # Versione semplice
 log() {
@@ -77,14 +80,20 @@ log() {
 # Funzione di log avanzata: accetta sia log "message" che log "level" "message"
 log() {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 04d882f8f6 (.)
 =======
 =======
 
 >>>>>>> f71d08e230 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
+
+=======
+<<<<<<< HEAD
 
 =======
 >>>>>>> develop
@@ -114,6 +123,7 @@ log() {
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Versione avanzata con livelli di log
 log() {
     local level="$1"
@@ -144,6 +154,9 @@ log() {
 log() {
     # Supporta sia il formato avanzato con livelli che il formato semplice
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 =======
@@ -152,6 +165,7 @@ log() {
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
     if [ $# -eq 2 ]; then
         # Formato avanzato: log "level" "message"
         local level="$1"
@@ -179,6 +193,12 @@ log() {
 ```bash
 =======
 <<<<<<< HEAD
+=======
+
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f1e7ef1046 (.)
 =======
 <<<<<<< HEAD
@@ -197,6 +217,7 @@ log() {
 =======
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Versione che richiede 2 parametri
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <path> <remote_repo>"
@@ -222,6 +243,11 @@ BRANCH="$3"
 ```bash
 =======
 <<<<<<< HEAD
+=======
+
+# Versione che supporta 2 o 3 parametri
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 >>>>>>> f71d08e230 (.)
@@ -249,15 +275,19 @@ BRANCH="$3"
 # Versione che supporta 2 o 3 parametri
 >>>>>>> f1e7ef1046 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 # Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
 =======
 # Versione che supporta 2 o 3 parametri
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     echo "Usage: $0 <path> <remote_repo> [branch]"
     exit 1

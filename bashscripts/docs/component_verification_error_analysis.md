@@ -120,6 +120,8 @@ name('login');
 ### 1. Verifica Componenti Esistenti
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 =======
@@ -133,6 +135,7 @@ name('login');
 =======
 >>>>>>> 71ff9e32 (.)
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -147,7 +150,10 @@ name('login');
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 
 =======
@@ -156,7 +162,10 @@ name('login');
 
 =======
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+=======
 >>>>>>> develop
+>>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> 9de04485 (.)
 =======
@@ -172,6 +181,9 @@ name('login');
 >>>>>>> f71d08e230 (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> ec52a6b4 (.)
 >>>>>>> e9356a3a (.)
 =======
 
@@ -179,10 +191,13 @@ name('login');
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php" | head -20
 
@@ -198,6 +213,8 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 ### 3. Test in Sviluppo
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 =======
@@ -211,6 +228,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> 71ff9e32 (.)
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -225,7 +243,10 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 
 =======
@@ -234,7 +255,10 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 
 =======
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+=======
 >>>>>>> develop
+>>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> 9de04485 (.)
 =======
@@ -250,6 +274,9 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> f71d08e230 (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> ec52a6b4 (.)
 >>>>>>> e9356a3a (.)
 =======
 
@@ -257,10 +284,13 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -320,6 +350,8 @@ L'errore è stato causato da:
 *Stato: Errore critico identificato*
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 *Priorità: CRITICA* 
 =======
@@ -334,6 +366,7 @@ L'errore è stato causato da:
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -347,7 +380,10 @@ L'errore è stato causato da:
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 *Priorità: CRITICA* 
 =======
 *Priorità: CRITICA* 
@@ -357,7 +393,10 @@ L'errore è stato causato da:
 =======
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+=======
 >>>>>>> develop
+>>>>>>> ec52a6b4 (.)
 >>>>>>> 9de04485 (.)
 =======
 =======
@@ -375,6 +414,9 @@ L'errore è stato causato da:
 >>>>>>> f71d08e230 (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> ec52a6b4 (.)
 >>>>>>> e9356a3a (.)
 =======
 =======
@@ -382,7 +424,10 @@ L'errore è stato causato da:
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

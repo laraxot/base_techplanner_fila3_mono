@@ -22,12 +22,9 @@ class UpdateCountAction
      *
      * @param class-string<Model> $modelClass The fully qualified model class name
      *
-     * @throws \InvalidArgumentException If model class is invalid or not found
-     *
-     
      */
-    public function execute(string $modelClass,int $total): void
+    public function execute(string $modelClass, int $total): void
     {
-        InformationSchemaTable::updateModelCount($modelClass,$total);
+        InformationSchemaTable::updateModelCount($modelClass, $total); // Method not implemented
     }
 }

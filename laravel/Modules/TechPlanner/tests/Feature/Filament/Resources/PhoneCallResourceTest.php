@@ -5,11 +5,23 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Livewire\Livewire;
 use Illuminate\Foundation\Testing\WithFaker;use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\PhoneCallResource;
 use Modules\TechPlanner\Filament\Resources\PhoneCallResource\Pages\CreatePhoneCall;
 use Modules\TechPlanner\Filament\Resources\PhoneCallResource\Pages\EditPhoneCall;
 use Modules\TechPlanner\Filament\Resources\PhoneCallResource\Pages\ListPhoneCalls;
+use Modules\TechPlanner\Models\PhoneCall;
+use Modules\TechPlanner\Models\Client;
+use Modules\User\Models\User;
+use Tests\TestCase;
+
+class PhoneCallResourceTest extends TestCase
+{
+    use RefreshDatabase, WithFaker;
+
+use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\PhoneCall;use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\PhoneCall;
 use Modules\User\Models\User;
@@ -28,6 +40,7 @@ class PhoneCallResourceTest extends TestCase
     {
         parent::setUp();
         
+
         $this->admin = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',

@@ -1,19 +1,15 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 // import preset from './../../vendor/filament/support/tailwind.config.preset';
-=======
->>>>>>> 0321d33 (.)
->>>>>>> 388f236 (.)
+import preset from "./vendor/filament/support/tailwind.config.preset";
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import colors from 'tailwindcss/colors';
 
-=======
+
 
 module.exports = {
-    // presets: [preset],
->>>>>>> 0321d33 (.)
->>>>>>> 388f236 (.)
+     presets: [preset],
     darkMode: 'class',
     theme: {
         extend: {
@@ -70,10 +66,6 @@ module.exports = {
                     800: '#B37F00',
                     900: '#996D00',
                 },
-=======
-                // Manteniamo compatibilità con i colori esistenti
->>>>>>> 0321d33 (.)
->>>>>>> 388f236 (.)
                 primary: {
                     50: '#eff6ff',
                     100: '#dbeafe',
@@ -150,9 +142,6 @@ module.exports = {
         "../../app/Filament/**/*.php",
         "../../resources/views/**/*.blade.php",
         "../../vendor/filament/**/*.blade.php",
-=======
->>>>>>> 0321d33 (.)
->>>>>>> 388f236 (.)
         "../../Modules/**/Filament/**/*.php",
         "../../Modules/**/resources/views/**/*.blade.php",
         "../../storage/framework/views/*.php",
@@ -161,10 +150,13 @@ module.exports = {
         "./resources/views/**/*.blade.php",  //----------- e' un tema !!!!
         "../../Themes/**/resources/views/**/*.blade.php",  //----------- e' un tema !!!!
         "../../../public_html/vendor/**/*.blade.php",
+        "../../Themes/**/resources/views/**/*.blade.php",
+        "./node_modules/flowbite/**/*.js",
+        "./resources/views/**/*.blade.php",  //----------- e' un tema !!!!
+        "../../Themes/**/resources/views/**/*.blade.php",  //----------- e' un tema !!!!
+        "../../../public_html/vendor/**/*.blade.php",
     ],
-=======
->>>>>>> 0321d33 (.)
->>>>>>> 388f236 (.)
+    // Filament preset palette (for compatibility with plugins expecting these keys)
     colors: {
         custom: {
             50: 'rgba(var(--c-50), <alpha-value>)',
@@ -261,14 +253,10 @@ module.exports = {
     plugins: [
         forms,
         typography,
-=======
-        daisyui
->>>>>>> 0321d33 (.)
->>>>>>> 388f236 (.)
+        daisyui,
+        require("flowbite/plugin"),
     ],
     daisyui: {
         themes: ['light', 'dark'],
     },
 }
-=======
->>>>>>> 477a6d1 (.)

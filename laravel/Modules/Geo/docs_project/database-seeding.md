@@ -79,7 +79,7 @@ Script specifico per creare esattamente **20 studi medici** tutti con `postal_co
 
 ```bash
 # Dalla root del progetto
-cd /var/www/html/_bases/base_techplanner_fila3_mono
+cd /var/www/html/_bases/base_saluteora
 
 # Script per 20 studi con dottori (RACCOMANDATO)
 php bashscripts/database/seeding/saluteora-20-studios-66010.php

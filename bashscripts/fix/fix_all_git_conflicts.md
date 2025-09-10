@@ -58,6 +58,8 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -75,6 +77,7 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 
@@ -83,31 +86,42 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
 È possibile modificare lo script per risolvere selettivamente solo determinati tipi di file:
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 =======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ### 2. Integrazione con Git Hooks
 Lo script può essere integrato con Git hooks per verificare automaticamente la presenza di conflitti prima del commit:
 
 ```bash
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -135,6 +149,7 @@ Lo script può essere integrato con Git hooks per verificare automaticamente la 
 
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
@@ -144,10 +159,13 @@ Lo script può essere integrato con Git hooks per verificare automaticamente la 
 
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # .git/hooks/pre-commit
 #!/bin/bash
 ```

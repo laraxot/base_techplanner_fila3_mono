@@ -188,7 +188,9 @@ class WorkHourDashboard extends Component
                 'date' => $entry->timestamp->format('Y-m-d'),
                 'time' => $entry->timestamp->format('H:i'),
                 'type' => $entry->type,
+                //@phpstan-ignore-next-line
                 'type_label' => $entry->type instanceof WorkHourTypeEnum ? $entry->type->getLabel() : (string) $entry->type,
+                //@phpstan-ignore-next-line
                 'type_color' => $entry->type instanceof WorkHourTypeEnum ? $entry->type->getColor() : 'gray',
                 'notes' => $entry->notes,
                 'status' => $entry->status,

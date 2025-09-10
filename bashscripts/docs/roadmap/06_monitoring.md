@@ -10,6 +10,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -25,6 +30,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -153,6 +159,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -168,6 +179,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -296,6 +308,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -311,6 +328,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -441,6 +459,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -456,6 +479,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -465,6 +489,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -480,6 +509,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ## 🎯 Funzionalità Future
 
 ### 1. Dashboard Operazioni
@@ -607,6 +637,11 @@ aurmich/dev
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -622,6 +657,7 @@ aurmich/dev
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -750,6 +786,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -765,6 +806,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -893,6 +935,11 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -908,6 +955,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -1197,6 +1245,11 @@ aurmich/dev
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -1212,6 +1265,7 @@ aurmich/dev
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 06_monitoring.md

@@ -25,7 +25,7 @@ trait GeographicalScopes
         return $query->orderBy($this->getDistanceExpression($latitude, $longitude));
     }
 
-    public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): Expression
+    public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): Expression|\Illuminate\Contracts\Database\Query\Expression
     {
         $sql = "
             (6371 * acos(
@@ -40,7 +40,7 @@ trait GeographicalScopes
             $sql .= " AS $alias";
         }
 
-        return \DB::raw($sql);
+        return new \Illuminate\Database\Query\Expression($sql);
         // AS distance
     }
 }

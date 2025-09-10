@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;use Modules\Geo\Models\Traits\HasAddress;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Geo\Models\Traits\HasAddress;
 use Modules\Geo\Models\Traits\GeographicalScopes;
 use function Safe\preg_replace;
 use function Safe\preg_match;
@@ -13,9 +14,9 @@ use function Safe\preg_match;
  * Class Client.
  *
  * @property int         $id
- * @property string      $name * @property int $id
- * @property string $name
+ * @property string      $name
  * @property string|null $vat_number
+ * @property string|null $client_office
  * @property string|null $fiscal_code
  * @property string|null $address
  * @property string|null $city
@@ -24,63 +25,55 @@ use function Safe\preg_match;
  * @property string|null $country
  * @property string|null $phone
  * @property string|null $email
- * @property bool $business_closed
+ * @property bool        $business_closed
+ * @property string|null $company_name
  * @property string|null $competent_health_unit
  * @property string|null $tax_code
- * @property string|null $company_name
- * @property string|null $company_office
- * @property string|null $street_number
  * @property string|null $fax
  * @property string|null $mobile
  * @property string|null $pec
  * @property string|null $whatsapp
+ * @property float|null  $latitude
+ * @property float|null  $longitude
+ * @property int|null    $assigned_worker_id
  * @property string|null $notes
- * @property string|null $activity
- * @property float|null $latitude
- * @property float|null $longitude
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $updated_by
- * @property string|null $created_by
- * @property string|null $deleted_at
- * @property string|null $deleted_by
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\Appointment> $appointments
- * @property-read int|null $appointments_count
- * @property-read \Modules\TechPlanner\Models\Profile|null $creator
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\Device> $devices
- * @property-read int|null $devices_count
- * @property-read string $contacts_html
+ * @property string|null $administrative_reference
+ * @property string|null $route
+ * @property string|null $street_number
+ * @property string|null $locality
+ * @property string|null $sublocality
+ * @property string|null $sublocality_level_1
+ * @property string|null $sublocality_level_2
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  * @property-read string $full_address
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\LegalOffice> $legalOffices
+ * @property-read string $contacts_html
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\TechPlanner\Models\Appointment[] $appointments
+ * @property-read int|null $appointments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\TechPlanner\Models\Device[] $devices
+ * @property-read int|null $devices_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\TechPlanner\Models\LegalOffice[] $legalOffices
  * @property-read int|null $legal_offices_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\LegalRepresentative> $legalRepresentatives
- * @property-read int|null $legal_representatives_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\MedicalDirector> $medicalDirectors
- * @property-read int|null $medical_directors_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\TechPlanner\Models\PhoneCall> $phoneCalls
- * @property-read int|null $phone_calls_count
+ * @property-read \Modules\TechPlanner\Models\Profile|null $creator
  * @property-read \Modules\TechPlanner\Models\Profile|null $updater
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Client orderByDistance(float $latitude, float $longitude)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereActivity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereAdministrativeReference($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereAssignedWorkerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereBusinessClosed($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCompanyName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCompanyOffice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCompetentHealthUnit($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereFax($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereFiscalCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereLocality($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereMobile($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereName($value)
@@ -89,7 +82,11 @@ use function Safe\preg_match;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client wherePostalCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereProvince($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereRoute($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereStreetNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereSublocality($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereSublocalityLevel1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereSublocalityLevel2($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereTaxCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Client whereUpdatedBy($value)
@@ -100,7 +97,8 @@ use function Safe\preg_match;
  */
 class Client extends BaseModel
 {
-    use GeographicalScopes;    //use HasAddress;
+    use GeographicalScopes;
+    //use HasAddress;
 
     protected $fillable = [
         'name',
@@ -122,16 +120,13 @@ class Client extends BaseModel
         'mobile',
         'pec',
         'whatsapp',
-        'notes',
-        'activity',
-        'longitude',
         'latitude',
-        // Geographical components
+        'longitude',
+        'assigned_worker_id',
+        'notes',
+        'administrative_reference',
         'route',
         'street_number',
-        'administrative_area_level_1',
-        'administrative_area_level_2',
-        'administrative_area_level_3',
         'locality',
         'sublocality',
         'sublocality_level_1',
@@ -151,55 +146,39 @@ class Client extends BaseModel
             $this->province
         );
 
-        return $address;
+        return trim(preg_replace('/[,\s]+/', ' ', $address));
     }
 
     /**
-     * Relazione con le chiamate telefoniche.
-     */
-    public function phoneCalls(): HasMany
-    {
-        return $this->hasMany(PhoneCall::class);
-    }
-
-    public function appointments(): HasMany
-    {
-        return $this->hasMany(Appointment::class);
-    }
-
-    /**
-     * Relazione con le chiamate telefoniche.
+     * Get the devices for the client.
      */
     public function devices(): HasMany
     {
-        return $this->hasMany(Device::class);
-    }
-
-    public function legalRepresentatives(): HasMany
-    {
-        return $this->hasMany(LegalRepresentative::class);
-    }
-
-    public function legalOffices(): HasMany
-    {
-        return $this->hasMany(LegalOffice::class);
-    }
-
-    public function medicalDirectors(): HasMany
-    {
-        return $this->hasMany(MedicalDirector::class);
+        return $this->hasMany(\Modules\TechPlanner\Models\Device::class);
     }
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Get the appointments for the client.
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(\Modules\TechPlanner\Models\Appointment::class);
+    }
+
+    /**
+     * Get the legal offices for the client.
+     */
+    public function legalOffices(): HasMany
+    {
+        return $this->hasMany(\Modules\TechPlanner\Models\LegalOffice::class);
+    }
+
+    /**
+     * The attributes that should be cast.
      */
     protected function casts(): array
     {
         return [
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
             'business_closed' => 'boolean',
             'longitude' => 'float',
             'latitude' => 'float',
@@ -209,66 +188,67 @@ class Client extends BaseModel
     /**
      * Genera HTML per i contatti con icone e link.
      *
-     * @return string     */
+     * @return string
+     */
     public function getContactsHtmlAttribute(): string
     {
         $contacts = [];
         
         if ($this->phone) {
             $contacts[] = $this->formatContactLink(
-                'phone',
-                $this->phone,
+                'phone', 
+                $this->phone, 
                 'heroicon-o-phone',
                 'text-blue-600 hover:text-blue-800',
-                'Chiama: '.$this->phone
+                'Chiama: ' . $this->phone
             );
         }
-
+        
         if ($this->mobile) {
             $contacts[] = $this->formatContactLink(
                 'mobile',
                 $this->mobile,
                 'heroicon-o-device-phone-mobile',
                 'text-blue-500 hover:text-blue-700',
-                'Chiama cellulare: '.$this->mobile
+                'Chiama cellulare: ' . $this->mobile
             );
         }
-
+        
         if ($this->email) {
             $contacts[] = $this->formatContactLink(
                 'email',
                 $this->email,
                 'heroicon-o-envelope',
                 'text-green-600 hover:text-green-800',
-                'Email: '.$this->email
+                'Email: ' . $this->email
             );
         }
-
+        
         if ($this->pec) {
             $contacts[] = $this->formatContactLink(
                 'pec',
                 $this->pec,
                 'heroicon-o-shield-check',
                 'text-purple-600 hover:text-purple-800',
-                'PEC: '.$this->pec
+                'PEC: ' . $this->pec
             );
         }
-
+        
         if ($this->whatsapp) {
             $contacts[] = $this->formatContactLink(
                 'whatsapp',
                 $this->whatsapp,
                 'heroicon-o-chat-bubble-left-right',
                 'text-green-500 hover:text-green-700',
-                'WhatsApp: '.$this->whatsapp
+                'WhatsApp: ' . $this->whatsapp
             );
         }
-
+        
         if (empty($contacts)) {
             return '<span class="text-gray-400 text-sm italic">Nessun contatto</span>';
         }
-
-        return '<div class="flex flex-wrap gap-2">'.implode('', $contacts).'</div>';
+        
+        return '<div class="flex flex-wrap gap-2">' . implode('', $contacts) . '</div>';
     }
 
     /**
@@ -279,7 +259,8 @@ class Client extends BaseModel
      * @param string $icon
      * @param string $classes
      * @param string $title
-     * @return string     */
+     * @return string
+     */
     private function formatContactLink(string $type, string $value, string $icon, string $classes, string $title): string
     {
         $href = $this->getContactHref($type, $value);
@@ -306,10 +287,10 @@ class Client extends BaseModel
      */
     private function getContactHref(string $type, string $value): string
     {
-        return match ($type) {
-            'phone', 'mobile' => 'tel:'.preg_replace('/[^+\d]/', '', $value),
-            'email', 'pec' => 'mailto:'.$value,
-            'whatsapp' => 'https://wa.me/'.preg_replace('/[^+\d]/', '', $value),
+        return match($type) {
+            'phone', 'mobile' => 'tel:' . preg_replace('/[^+\d]/', '', $value),
+            'email', 'pec' => 'mailto:' . $value,
+            'whatsapp' => 'https://wa.me/' . preg_replace('/[^+\d]/', '', $value),
             default => '#'
         };
     }
@@ -323,9 +304,9 @@ class Client extends BaseModel
      */
     private function getContactDisplayValue(string $type, string $value): string
     {
-        return match ($type) {
+        return match($type) {
             'phone', 'mobile' => $this->formatPhoneNumber($value),
-            'email', 'pec' => strlen($value) > 20 ? substr($value, 0, 17).'...' : $value,
+            'email', 'pec' => strlen($value) > 20 ? substr($value, 0, 17) . '...' : $value,
             'whatsapp' => 'WhatsApp',
             default => $value
         };
@@ -335,7 +316,8 @@ class Client extends BaseModel
      * Formatta un numero di telefono per la visualizzazione.
      *
      * @param string $phone
-     * @return string     */
+     * @return string
+     */
     private function formatPhoneNumber(string $phone): string
     {
         // Rimuove tutti i caratteri non numerici eccetto il +
@@ -344,10 +326,9 @@ class Client extends BaseModel
         // Formattazione italiana standard
         if (preg_match('/^\+39(\d{10})$/', $clean, $matches)) {
             $number = $matches[1];
-
-            return '+39 '.substr($number, 0, 3).' '.substr($number, 3, 3).' '.substr($number, 6);
+            return '+39 ' . substr($number, 0, 3) . ' ' . substr($number, 3, 3) . ' ' . substr($number, 6);
         }
-
+        
         return $phone;
     }
 
@@ -355,7 +336,8 @@ class Client extends BaseModel
      * Genera SVG per icona Heroicon.
      *
      * @param string $iconName
-     * @return string     */
+     * @return string
+     */
     private function getHeroIcon(string $iconName): string
     {
         $icons = [

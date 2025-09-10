@@ -60,7 +60,7 @@ use Parental\HasParent;
  * @property-read \Modules\User\Models\TenantUser|\Modules\User\Models\Membership|\Modules\User\Models\DeviceUser|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Device> $devices
  * @property-read int|null $devices_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Xot\Contracts\UserContract> $all_team_users
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $all_team_users
  * @property-read string|null $full_name
  * @property-read string $status_label
  * @property-read \Modules\User\Models\AuthenticationLog|null $latestAuthentication
@@ -82,7 +82,7 @@ use Parental\HasParent;
  * @property-read int|null $team_users_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team> $teams
  * @property-read int|null $teams_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Tenant> $tenants
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Tenant\Models\Domain> $tenants
  * @property-read int|null $tenants_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
  * @property-read int|null $tokens_count

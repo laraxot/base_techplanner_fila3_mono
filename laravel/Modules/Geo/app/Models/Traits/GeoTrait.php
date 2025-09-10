@@ -165,7 +165,7 @@ where zone_polygon IS NOT NULL
         if (null === $address) {
             return null;
         }
-        if (isJson($address)) {
+        if (is_string($address) && isJson((string) $address)) {
             $geo = GeoData::from(json_decode((string) $address, true, 512, JSON_THROW_ON_ERROR));
             $latlng = $geo->latlng;
             $lat = $latlng['lat'];
@@ -201,13 +201,13 @@ where zone_polygon IS NOT NULL
     }
 
     /**
-     * Undocumented function.
+     * Set address attribute with proper type handling.
      */
-    public function setAddressAttribute($value): void
+    public function setAddressAttribute(mixed $value): void
     {
         // *
 
-        if (is_string($value) && isJson($value)) {
+        if (is_string($value) && isJson((string) $value)) {
             /*
              * @var array<string, mixed>
              */
@@ -215,7 +215,7 @@ where zone_polygon IS NOT NULL
             // $json['latitude'] = $json['latlng']['lat'];
             // $json['longitude'] = $json['latlng']['lng'];
 
-            $geo = GeoData::from(json_decode($value, true, 512, JSON_THROW_ON_ERROR));
+            $geo = GeoData::from(json_decode((string) $value, true, 512, JSON_THROW_ON_ERROR));
             $latlng = $geo->latlng;
             $lat = $latlng['lat'];
             $lng = $latlng['lng'];
@@ -293,7 +293,7 @@ where zone_polygon IS NOT NULL
         if (null === $this->address) {
             return null;
         }
-        if (isJson($this->address)) {
+        if (is_string($this->address) && isJson($this->address)) {
             /*
             $addr = json_decode($this->address);
             if (\is_object($addr)) {
@@ -302,7 +302,7 @@ where zone_polygon IS NOT NULL
 
             extract($addr);
             */
-            $geo = GeoData::from(json_decode($this->address, true, 512, JSON_THROW_ON_ERROR));
+            $geo = GeoData::from(json_decode((string) $this->address, true, 512, JSON_THROW_ON_ERROR));
 
             $value = str_ireplace(', Italia', '', $geo->value);
             // Call to function is_array() with string will always evaluate to false.

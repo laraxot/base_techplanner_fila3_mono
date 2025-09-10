@@ -13,9 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\ModelStates\HasStatesContract;
 
-/**
- * Employee Module User Model
- *
+
 
 /**
  * Employee Module User Model

@@ -23,6 +23,8 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 
 ```bash
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -40,6 +42,7 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 
@@ -48,10 +51,13 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 1. Inizializzazione
 git init
 git checkout -b "$BRANCH"
@@ -70,6 +76,8 @@ git push -u origin "$BRANCH"
 ### 3. Pull Script (`git_pull_subtree.sh`)
 ```bash
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -87,6 +95,7 @@ git push -u origin "$BRANCH"
 
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 
@@ -95,10 +104,13 @@ git push -u origin "$BRANCH"
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 1. Pull standard
 git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH" --squash
 
@@ -145,6 +157,8 @@ fatal: you must provide the --prefix option
 **Soluzione**:
 ```bash
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -162,6 +176,7 @@ fatal: you must provide the --prefix option
 
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 
@@ -170,10 +185,13 @@ fatal: you must provide the --prefix option
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Verifica variabili
 if [ -z "$LOCAL_PATH" ] || [ -z "$REMOTE_REPO" ]; then
     echo "❌ Error: Missing required variables"
@@ -191,6 +209,8 @@ fi
 **Soluzione**:
 ```bash
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -208,6 +228,7 @@ fi
 
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 
@@ -216,10 +237,13 @@ fi
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
 git merge origin/"$BRANCH" --allow-unrelated-histories"

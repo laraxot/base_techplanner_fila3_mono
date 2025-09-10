@@ -54,6 +54,11 @@ php artisan migrate
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -69,6 +74,7 @@ php artisan migrate
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Instalar Laravel Modules
 composer require nwidart/laravel-modules
 
@@ -147,6 +153,11 @@ La documentación completa está disponible en el directorio `docs/`:
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -162,6 +173,7 @@ La documentación completa está disponible en el directorio `docs/`:
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Crear un nuevo módulo
 php artisan module:make NombreModulo
 
@@ -212,6 +224,11 @@ Este kit de herramientas aborda estos desafíos proporcionando herramientas auto
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -227,6 +244,7 @@ Este kit de herramientas aborda estos desafíos proporcionando herramientas auto
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 🚀 Kit de Herramientas de Automatización Git
 
 [![PHPStan](https://img.shields.io/badge/PHPStan-Level%209-brightgreen.svg?style=for-the-badge&logo=php&logoColor=white)](phpstan/ANALISI_MODULI_PHPSTAN.md)
@@ -283,6 +301,11 @@ php artisan migrate
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -298,6 +321,7 @@ php artisan migrate
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Instalar Laravel Modules
 composer require nwidart/laravel-modules
 
@@ -376,6 +400,11 @@ La documentación completa está disponible en el directorio `docs/`:
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -391,6 +420,7 @@ La documentación completa está disponible en el directorio `docs/`:
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Crear un nuevo módulo
 php artisan module:make NombreModulo
 
@@ -442,6 +472,9 @@ Este kit de herramientas aborda estos desafíos proporcionando herramientas auto
 - [Italiano](README.it.md) 
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
 =======
@@ -450,3 +483,4 @@ Este kit de herramientas aborda estos desafíos proporcionando herramientas auto
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

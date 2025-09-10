@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Modules\Employee\Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Seeder;use Illuminate\Support\Collection;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Modules\Employee\Models\WorkHour;
 use Modules\User\Models\User;
 
@@ -16,8 +17,10 @@ class WorkHourSeeder extends Seeder
      */
     public function run(): void
     {
+        /** @var \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $users */
         $users = User::all();
         if ($users->isEmpty()) {
+            /** @var \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $users */
             $users = User::factory(5)->create();
         }
 
@@ -25,6 +28,10 @@ class WorkHourSeeder extends Seeder
         $endDate = Carbon::now();
 
         foreach ($users as $user) {
+            if (!$user instanceof \Modules\User\Models\User) {
+                continue;
+            }
+            
             $currentDate = $startDate->copy();
             while ($currentDate->lte($endDate)) {
                 if ($currentDate->isWeekend()) {
@@ -35,7 +42,10 @@ class WorkHourSeeder extends Seeder
 
                 // 80% chance of having work entries for each day
                 if (rand(1, 100) <= 80) {
-                    $this->createWorkDayEntries($user->id, $currentDate->copy());
+                    $userId = $user->id;
+                    if (is_int($userId) || (is_string($userId) && ctype_digit($userId))) {
+                        $this->createWorkDayEntries((int) $userId, $currentDate->copy());
+                    }
                 }
 
                 $currentDate->addDay();
@@ -91,16 +101,24 @@ class WorkHourSeeder extends Seeder
      * Create some incomplete work days for testing.
      */
     /**
-     * @param \Illuminate\Database\Eloquent\Collection<int, \Modules\Employee\Models\Employee> $users
+     * @param \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\User> $users
      */
     private function createIncompleteWorkDays(Collection $users): void
     {
         foreach ($users as $user) {
+            if (!$user instanceof \Modules\User\Models\User) {
+                continue;
+            }
             $today = Carbon::today();
 
+            $userId = $user->id;
+            if (!is_int($userId) && !is_string($userId)) {
+                continue;
+            }
+            
             // User who clocked in but didn't clock out
             WorkHour::create([
-                'employee_id' => $user->id,
+                'employee_id' => (int) $userId,
                 'timestamp' => $today->copy()->setTime(8, 30, 0),
                 'type' => 'clock_in',
                 'notes' => 'Current work session',
@@ -110,14 +128,14 @@ class WorkHourSeeder extends Seeder
             // User on break yesterday
             $yesterday = Carbon::yesterday();
             WorkHour::create([
-                'employee_id' => $user->id,
+                'employee_id' => (int) $userId,
                 'timestamp' => $yesterday->copy()->setTime(8, 0, 0),
                 'type' => 'clock_in',
                 'status' => 'approved',
             ]);
 
             WorkHour::create([
-                'employee_id' => $user->id,
+                'employee_id' => (int) $userId,
                 'timestamp' => $yesterday->copy()->setTime(12, 0, 0),
                 'type' => 'break_start',
                 'notes' => 'Extended lunch break',

@@ -17,16 +17,12 @@
     },
     "require": {
         "php": "^8.2",
-=======
->>>>>>> 82e032a (.)
         "laravel/framework": "*",
         "filament/filament": "*"
     },
     "require-dev": {
-=======
-        "phpstan/phpstan": "*",
-        "pestphp/pest": "*"
->>>>>>> 82e032a (.)
+        "phpstan/phpstan": "^1.10",
+        "pestphp/pest": "^2.0"
     },
     "minimum-stability": "dev"
 }

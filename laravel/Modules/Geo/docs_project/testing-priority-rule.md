@@ -51,7 +51,7 @@ Questa è la regola più importante che devo sempre ricordare in ogni interazion
 ## Comandi di Verifica
 ```bash
 # Eseguire tutti i test
-cd /var/www/html/_bases/base_techplanner_fila3_mono/laravel
+cd /var/www/html/_bases/base_saluteora/laravel
 php artisan test
 
 # Eseguire test specifici per modulo

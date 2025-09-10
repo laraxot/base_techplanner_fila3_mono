@@ -118,10 +118,10 @@ class GetPdfContentByRecordAction
         ];
 
         // Add specific relationship data if available
-        if (method_exists($record, 'valutatore') && $record->relationLoaded('valutatore')) {
+        if (method_exists($record, 'valutatore') && $record->relationLoaded('valutatore') && isset($record->valutatore)) {
             $valutatore = $record->valutatore;
-            if (null !== $valutatore) {
-                $params['firma'] = $valutatore->nome_diri ?? null;
+            if (is_object($valutatore) && isset($valutatore->nome_diri)) {
+                $params['firma'] = $valutatore->nome_diri;
             }
         }
 
@@ -138,16 +138,20 @@ class GetPdfContentByRecordAction
     protected function generateFilename(Model $record): string
     {
         $modelName = class_basename(get_class($record));
-        $baseFilename = mb_strtolower($modelName).'_'.$record->getKey();
+        $recordKey = $record->getKey();
+        $baseFilename = mb_strtolower($modelName).'_'.(string)($recordKey ?? 'unknown');
 
         // Enhanced filename for records with identification fields
         if (isset($record->matr) && isset($record->cognome) && isset($record->nome)) {
-            return 'scheda_'.$record->getKey().'_'.$record->matr.'_'.
-                   $record->cognome.'_'.$record->nome.'.pdf';
+            $matr = is_string($record->matr) ? $record->matr : 'unknown';
+            $cognome = is_string($record->cognome) ? $record->cognome : 'unknown';
+            $nome = is_string($record->nome) ? $record->nome : 'unknown';
+            
+            return 'scheda_'.(string)($recordKey ?? 'unknown').'_'.$matr.'_'.$cognome.'_'.$nome.'.pdf';
         }
 
         // Enhanced filename for records with name field
-        if (isset($record->name)) {
+        if (isset($record->name) && is_string($record->name)) {
             return $baseFilename.'_'.Str::slug($record->name).'.pdf';
         }
 
@@ -189,8 +193,6 @@ class GetPdfContentByRecordAction
         } catch (\Exception $e) {
             \Log::error('PDF generation failed in GetPdfContentByRecordAction', [
                 'filename' => $filename,
-                'record_type' => get_class($record ?? null),
-                'record_id' => $record->getKey() ?? null,
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
             ]);

@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllAppointmentsAction;
 use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Jobs\UpdateAppointmentJob;
-use Tests\TestCase;use Illuminate\Support\Facades\Queue;
-use Modules\TechPlanner\Actions\UpdateAllAppointmentsAction;
-use Modules\TechPlanner\Models\Appointment;
+use Tests\TestCase;
 
 /**
  * Test unitario per l'action UpdateAllAppointmentsAction.
@@ -21,6 +19,7 @@ use Modules\TechPlanner\Models\Appointment;
 class UpdateAllAppointmentsActionTest extends TestCase
 {
     use RefreshDatabase;
+
     private UpdateAllAppointmentsAction $action;
 
     protected function setUp(): void
@@ -434,6 +433,7 @@ class UpdateAllAppointmentsActionTest extends TestCase
         $activeAppointments = Appointment::factory()->count(2)->create();
         $deletedAppointments = Appointment::factory()->count(2)->create();
         
+
         // Soft delete alcuni appuntamenti
         $deletedAppointments->each(function ($appointment) {
             $appointment->delete();
@@ -569,6 +569,7 @@ class UpdateAllAppointmentsActionTest extends TestCase
         $appointments = Appointment::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
         
+
         $updateData = [
             'description' => $longText,
             'notes' => 'Updated notes',

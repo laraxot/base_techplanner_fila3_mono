@@ -17,9 +17,7 @@ class ActivityDatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call([
-            \Modules\Activity\Database\Seeders\ActivitySeeder::class,
-            \Modules\Activity\Database\Seeders\SnapshotSeeder::class,
-            \Modules\Activity\Database\Seeders\StoredEventSeeder::class,
+           
         ]);
     }
 }

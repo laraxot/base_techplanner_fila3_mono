@@ -9,7 +9,17 @@ use Parental\HasParent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 /**
+ * Class Admin
+ * 
+ * NOTA: Il trait HasFactory è stato rimosso perché già incluso nella catena di ereditarietà (BaseUser -> User -> Admin).
+ * Dichiararlo qui è ridondante e può causare warning o confusione.
+ * Vedi docs/DRY-model-traits.md
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string|null $date_of_birth
  * Employee Module Admin Model
  *
  * Admin user type using Single Table Inheritance with Parental package.
@@ -97,8 +107,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property-read mixed|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team> $teams
  * @property-read int|null $teams_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Tenant\Models\Tenant> $tenants
- * @property-read int|null $tenants_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
  * @property-read int|null $tokens_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Gdpr\Models\Treatment> $treatments

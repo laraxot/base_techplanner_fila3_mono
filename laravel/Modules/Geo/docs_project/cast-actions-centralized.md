@@ -5,7 +5,7 @@ Il progetto SaluteOra utilizza azioni cast centralizzate nel modulo Xot per gara
 
 ## Posizione delle Azioni
 ```
-/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules/Xot/app/Actions/Cast/
+/var/www/html/_bases/base_saluteora/laravel/Modules/Xot/app/Actions/Cast/
 ├── SafeIntCastAction.php
 ├── SafeStringCastAction.php
 └── SafeFloatCastAction.php

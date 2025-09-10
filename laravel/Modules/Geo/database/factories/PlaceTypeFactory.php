@@ -45,7 +45,7 @@ class PlaceTypeFactory extends Factory
 
         return [
             'name' => $name,
-            'description' => $placeTypes[$name],
+            'description' => is_string($name) && isset($placeTypes[$name]) ? $placeTypes[$name] : 'Default description',
         ];
     }
 

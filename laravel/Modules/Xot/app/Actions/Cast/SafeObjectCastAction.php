@@ -58,7 +58,7 @@ class SafeObjectCastAction
         Assert::object($object);
         Assert::stringNotEmpty($property);
         
-        return isset($object->{$property}) && $object->{$property} !== null;
+        return isset($object->{$property}) && null != $object->{$property};
     }
 
     /**

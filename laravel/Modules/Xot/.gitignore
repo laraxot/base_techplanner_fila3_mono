@@ -57,7 +57,6 @@ Homestead.json
 .DS_Store
 *.old
 *.old1
-*.old2
 *.backup
 *.bak
 *.new

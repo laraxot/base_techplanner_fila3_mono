@@ -5,6 +5,12 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Modules\TechPlanner\Models\BaseModel;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Model;
+use Tests\TestCase;
+
+uses(TestCase::class, RefreshDatabase::class);
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;use Illuminate\Database\Eloquent\Model;
 use Modules\TechPlanner\Models\BaseModel;
 

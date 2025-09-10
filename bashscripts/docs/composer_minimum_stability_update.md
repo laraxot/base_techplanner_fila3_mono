@@ -132,6 +132,13 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+
+=======
+=======
+=======
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -189,11 +196,14 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 =======
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
 =======
 =======
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -201,6 +211,7 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Verifica configurazione
 composer config --list | grep minimum-stability
 
@@ -259,6 +270,13 @@ composer check-platform-reqs
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+
+=======
+=======
+=======
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -316,11 +334,14 @@ composer check-platform-reqs
 =======
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
 =======
 =======
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -328,6 +349,7 @@ composer check-platform-reqs
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Abilita debug composer
 composer update -vvv
 
@@ -356,6 +378,8 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 *Totale file verificati: 22* 
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
@@ -377,6 +401,7 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 *Totale file verificati: 22* 
 =======
 *Totale file verificati: 22* 
@@ -395,7 +420,10 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 =======
 *Totale file verificati: 22* 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

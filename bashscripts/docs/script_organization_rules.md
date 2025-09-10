@@ -62,6 +62,9 @@ chmod +x bashscripts/utils/script.sh
 *Regole create il: $(date)*
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 04d882f8f6 (.)
 =======
 =======
@@ -70,3 +73,4 @@ chmod +x bashscripts/utils/script.sh
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

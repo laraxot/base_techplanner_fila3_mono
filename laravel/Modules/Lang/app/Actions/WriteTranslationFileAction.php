@@ -94,7 +94,7 @@ class WriteTranslationFileAction
         unlink($tempFile);
 
         if ($returnCode !== 0) {
-            $error = implode("\n", $output);
+            $error = implode("\n", $output ?? []);
             throw new \Exception("Sintassi PHP non valida: {$error}");
         }
     }

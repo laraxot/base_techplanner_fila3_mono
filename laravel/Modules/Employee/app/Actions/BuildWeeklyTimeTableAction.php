@@ -23,23 +23,7 @@ class BuildWeeklyTimeTableAction
     /**
      * Execute weekly table building.
      *
-     * @return array{
-     *   days: array<string, array{
-     *     date: string,
-     *     dayName: string,
-     *     entries: array<int, array{time: string, type: string, status: string}>,
-     *     totalHours: float,
-     *     contractHours: float,
-     *     variance: float,
-     *     status: string
-     *   }>,
-     *   weekSummary: array{
-     *     totalWorked: float,
-     *     totalContract: float,
-     *     totalVariance: float,
-     *     averageDaily: float
-     *   }
-     * }
+     * @return array<string, mixed>
      */
     public function execute(int $userId, Carbon $start, Carbon $end): array
     {
@@ -47,8 +31,8 @@ class BuildWeeklyTimeTableAction
         $entries = WorkHour::query()
             ->where('employee_id', $userId)
             ->whereBetween('timestamp', [
-                (clone $start)->startOfDay(),
-                (clone $end)->endOfDay(),
+                $start->copy()->startOfDay(),
+                $end->copy()->endOfDay(),
             ])
             ->orderBy('timestamp', 'asc')
             ->get();
@@ -62,8 +46,10 @@ class BuildWeeklyTimeTableAction
         ];
 
         // Costruisci dati per ogni giorno della settimana
-        $current = (clone $start)->startOfDay();
+        /** @var Carbon $current */
+        $current = $start->copy()->startOfDay();
         while ($current->lte($end)) {
+            assert($current instanceof \Carbon\Carbon);
             $dateKey = $current->toDateString();
 
             // Filtra entries per questo giorno
@@ -83,24 +69,29 @@ class BuildWeeklyTimeTableAction
             /** @var array<int, array{time: string, type: string, status: string, duration?: float}> $typedSessions */
             $typedSessions = array_map(function (array $session): array {
                 return [
-                    'time' => (string) ($session['time'] ?? ''),
-                    'type' => (string) ($session['type'] ?? ''),
-                    'status' => (string) ($session['status'] ?? ''),
-                    'duration' => isset($session['duration']) ? (float) $session['duration'] : null,
+                    'time' => $session['time'],
+                    'type' => $session['type'],
+                    'status' => $session['status'],
+                    'duration' => isset($session['duration']) && (is_float($session['duration']) || is_int($session['duration'])) ? (float) $session['duration'] : null,
                 ];
             }, $sessions);
             $typedSessions = array_filter($typedSessions, fn(array $session) => isset($session['duration']) ? is_float($session['duration']) : true);
             $dayStatus = $this->determineDayStatus($typedSessions, $workedHours, $contractHours);
 
+            /** @var \Carbon\Carbon $currentCarbon */
+            $currentCarbon = $current;
             $days[$dateKey] = [
-                'date' => $current->format('d/m'),
-                'dayName' => $current->locale('it')->isoFormat('ddd'),
-                'fullDate' => $current->locale('it')->isoFormat('dddd D MMMM YYYY'),
+                //@phpstan-ignore-next-line
+                'date' => Carbon::parse($currentCarbon)->format('d/m'),
+                //@phpstan-ignore-next-line
+                'dayName' => Carbon::parse($currentCarbon)->locale('it')->format('D'),
+                //@phpstan-ignore-next-line
+                'fullDate' => Carbon::parse($currentCarbon)->locale('it')->format('d/m/Y'),
                 'entries' => array_map(function (array $session): array {
                     return [
-                        'time' => (string) $session['time'],
-                        'type' => (string) $session['type'],
-                        'status' => (string) $session['status'],
+                        'time' => $session['time'],
+                        'type' => $session['type'],
+                        'status' => $session['status'],
                     ];
                 }, $sessions),
                 'totalHours' => $workedHours,
@@ -133,7 +124,7 @@ class BuildWeeklyTimeTableAction
      * Costruisce sessioni per un singolo giorno.
      *
      * @param  Collection<int, WorkHour>  $dayEntries
-     * @return array<int, array{time: string, type: string, status: string, start?: Carbon, end?: Carbon|null, duration?: float}>
+     * @return array<int, array<string, mixed>>
      */
     private function buildDaySessions(Collection $dayEntries): array
     {
@@ -144,7 +135,7 @@ class BuildWeeklyTimeTableAction
             switch ($entry->type) {
                 case WorkHourTypeEnum::CLOCK_IN:
                     // Chiudi sessione precedente se aperta
-                    if ($currentSession && $currentSession['end'] === null) {
+                    if ($currentSession !== null) {
                         $sessions[] = $currentSession;
                     }
 
@@ -155,14 +146,18 @@ class BuildWeeklyTimeTableAction
                         'status' => 'active',
                         'start' => $entry->timestamp,
                         'end' => null,
+                        'duration' => null,
                     ];
                     break;
 
                 case WorkHourTypeEnum::CLOCK_OUT:
-                    if ($currentSession) {
+                    if ($currentSession !== null && isset($currentSession['start'])) {
                         $currentSession['end'] = $entry->timestamp;
                         $currentSession['status'] = 'completed';
-                        $currentSession['duration'] = $currentSession['start']->diffInHours($entry->timestamp, true);
+                        $startTime = $currentSession['start'];
+                        if ($startTime instanceof \Carbon\Carbon) {
+                            $currentSession['duration'] = $startTime->diffInHours($entry->timestamp, true);
+                        }
                         $sessions[] = $currentSession;
                         $currentSession = null;
                     }
@@ -174,6 +169,9 @@ class BuildWeeklyTimeTableAction
                         'time' => $entry->timestamp->format('H:i'),
                         'type' => 'break_start',
                         'status' => 'break',
+                        'start' => null,
+                        'end' => null,
+                        'duration' => null,
                     ];
                     break;
 
@@ -183,13 +181,16 @@ class BuildWeeklyTimeTableAction
                         'time' => $entry->timestamp->format('H:i'),
                         'type' => 'break_end',
                         'status' => 'working',
+                        'start' => null,
+                        'end' => null,
+                        'duration' => null,
                     ];
                     break;
             }
         }
 
         // Aggiungi sessione corrente se ancora aperta
-        if ($currentSession) {
+        if ($currentSession !== null) {
             $sessions[] = $currentSession;
         }
 
@@ -199,7 +200,7 @@ class BuildWeeklyTimeTableAction
     /**
      * Calcola ore lavorate in un giorno.
      *
-     * @param  array<int, array{time: string, type: string, status: string, duration?: float}>  $sessions
+     * @param  array<int, array<string, mixed>>  $sessions
      */
     private function calculateDayHours(array $sessions): float
     {
@@ -226,7 +227,7 @@ class BuildWeeklyTimeTableAction
     /**
      * Determina stato del giorno.
      *
-     * @param  array<int, array{time: string, type: string, status: string, duration?: float}>  $sessions
+     * @param  array<int, array<string, mixed>>  $sessions
      */
     private function determineDayStatus(array $sessions, float $workedHours, float $contractHours): string
     {

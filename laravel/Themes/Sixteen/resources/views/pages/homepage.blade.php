@@ -121,7 +121,7 @@
 =======
                 <x-bootstrap-italia.button variant="outline-primary" href="/servizi">
                     Tutti i servizi
-                </x-button>
+                </x-bootstrap-italia.button>
             </div>
         </div>
     </section>
@@ -144,7 +144,7 @@
 =======
                 <x-bootstrap-italia.button variant="outline-primary" href="/notizie">
                     Tutte le notizie
-                </x-button>
+                </x-bootstrap-italia.button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

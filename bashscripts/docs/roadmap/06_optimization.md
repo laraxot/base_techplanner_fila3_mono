@@ -9,6 +9,11 @@
 aurmich/dev
 =======
 <<<<<<< HEAD
+=======
+=======
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 =======
@@ -19,9 +24,14 @@ aurmich/dev
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 
 =======
 
+=======
+<<<<<<< HEAD
+
+=======
 =======
 <<<<<<< HEAD
 
@@ -55,18 +65,22 @@ aurmich/dev
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
 =======
 =======
 
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # ⚡ Fase 6: Ottimizzazione
 
 ## 📋 Panoramica
@@ -173,6 +187,8 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 9de04485 (.)
 =======
 =======
@@ -183,7 +199,7 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
-=======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
@@ -193,10 +209,14 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 - [Fase 7: Documentazione](../roadmap/07_documentation.md)
 
 ## 📅 Timeline
@@ -223,6 +243,8 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 =======
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
@@ -236,7 +258,7 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
-=======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
@@ -244,10 +266,14 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
@@ -342,6 +368,8 @@ aurmich/dev
 
 
 =======
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 9de04485 (.)
@@ -353,7 +381,7 @@ aurmich/dev
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
-=======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
@@ -363,10 +391,14 @@ aurmich/dev
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 
@@ -415,6 +447,8 @@ aurmich/dev
 
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
 =======
@@ -427,7 +461,7 @@ aurmich/dev
 =======
 >>>>>>> f198176d (.)
 >>>>>>> d20d0523 (.)
-=======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
@@ -435,7 +469,11 @@ aurmich/dev
 =======
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Filament\Resources;
 
-use Filament\Forms;use Modules\TechPlanner\Models\Client;
+use Filament\Forms;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Modules\Xot\Filament\Resources\XotBaseResource;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Geo\Filament\Forms\Components\AddressSection;
 use Modules\Notify\Filament\Forms\Components\ContactSection;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
+use Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
+use Modules\TechPlanner\Models\Client;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 /**
  * @property ClientResource $resource
@@ -21,14 +24,13 @@ class ClientResource extends XotBaseResource
 
     public static function getFormSchema(): array
     {
-        $fixes=Client::whereNull('city')->whereNotNull('company_office')->get();//company_office
-        foreach($fixes as $client){
-            $client->update(['city'=>$client->company_office]);
-        }
+        // Note: company_office property was removed from Client model
+        // This migration code is no longer needed
         $fixes=Client::whereNull('route')->whereNotNull('address')->get();//company_office
         foreach($fixes as $client){
             $client->update(['route'=>$client->address]);
-        }        return [
+        }
+        return [
             'business_closed' => TextInput::make('business_closed'),
             'activity' => TextInput::make('activity'),
             'company_name' => TextInput::make('company_name')->required(),
@@ -41,7 +43,8 @@ class ClientResource extends XotBaseResource
             'city' => TextInput::make('city')->nullable(),
             'postal_code' => TextInput::make('postal_code')->nullable(),
             'province' => TextInput::make('province')->nullable(),
-            'country' => TextInput::make('country')->nullable(),            //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
+            'country' => TextInput::make('country')->nullable(),
+            //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
             'contacts' => ContactSection::make('contacts'),
             'competent_health_unit' => TextInput::make('competent_health_unit'),
             'company_office' => TextInput::make('company_office'),

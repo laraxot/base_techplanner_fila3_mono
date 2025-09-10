@@ -129,6 +129,8 @@ Script per il push dei subtree. Funzionalità:
 3. Problemi di permessi: controllare fileMode e symlinks
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -147,12 +149,16 @@ Script per il push dei subtree. Funzionalità:
 =======
 =======
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 =======
+=======
+<<<<<<< HEAD
 =======
 >>>>>>> f52d0712 (.)
 =======
+>>>>>>> ec52a6b4 (.)
 # Script Git
 
 Questi script sono utilizzati per automatizzare le operazioni Git nel progetto.
@@ -251,6 +257,10 @@ Script per il push dei subtree. Funzionalità:
 
 [Torna alla documentazione principale](/docs/maintenance.md#git-management) 
 <<<<<<< HEAD
+=======
+=======
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -272,3 +282,4 @@ Script per il push dei subtree. Funzionalità:
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;use Modules\TechPlanner\Models\Appointment;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\TechPlanner\Models\Client;
+use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Models\Device;
+use Modules\TechPlanner\Models\Location;
 use Modules\TechPlanner\Models\LegalOffice;
 use Modules\TechPlanner\Models\LegalRepresentative;
-use Modules\TechPlanner\Models\Location;
 use Modules\TechPlanner\Models\MedicalDirector;
+use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\PhoneCall;
-use Modules\TechPlanner\Models\Worker;
+use Tests\TestCase;
 
 /**
  * Test unitario per il modello Client.
@@ -22,12 +24,14 @@ use Modules\TechPlanner\Models\Worker;
 class ClientTest extends TestCase
 {
     use RefreshDatabase;
+
     private Client $client;
 
     protected function setUp(): void
     {
         parent::setUp();
         
+
         $this->client = Client::factory()->create();
     }
 
@@ -197,6 +201,7 @@ class ClientTest extends TestCase
     {
         $clientId = $this->client->id;
         
+
         $this->client->delete();
         
 
@@ -214,6 +219,10 @@ class ClientTest extends TestCase
     {
         $clientId = $this->client->id;
         
+        $this->client->delete();
+        $this->assertSoftDeleted('clients', ['id' => $clientId]);
+        
+
         $this->client->delete();
         $this->assertSoftDeleted('clients', ['id' => $clientId]);
 

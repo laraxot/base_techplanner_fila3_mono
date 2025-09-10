@@ -121,8 +121,10 @@ return [
             'help' => 'Data ultimo aggiornamento',
             'tooltip' => 'Timestamp ultimo aggiornamento',
             'description' => 'Data e ora dell\'ultimo aggiornamento',
-        ],        'toggleColumns' => [
+        ],
+        'toggleColumns' => [
             'label' => 'toggleColumns',
+            'help' => 'Toggle colonne tabella',
         ],
     ],
     'actions' => [

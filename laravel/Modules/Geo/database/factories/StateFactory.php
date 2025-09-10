@@ -35,7 +35,7 @@ class StateFactory extends Factory
 
         return [
             'state' => $state,
-            'state_code' => $italianRegions[$state],
+            'state_code' => is_string($state) && isset($italianRegions[$state]) ? $italianRegions[$state] : 'XX',
         ];
     }
 

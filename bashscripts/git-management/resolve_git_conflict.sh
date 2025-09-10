@@ -51,6 +51,8 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 
 1. Fix any syntax errors, unresolved merge conflicts, or logical issues
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 2. Remove git conflict markers if present
 =======
 <<<<<<< HEAD
@@ -59,6 +61,7 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 =======
 <<<<<<< HEAD
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -67,7 +70,10 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 =======
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
@@ -77,6 +83,9 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 2. Remove git conflict markers if present
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> ec52a6b4 (.)
 =======
 =======
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
@@ -85,7 +94,10 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 >>>>>>> 574afe9e (.)
 2. Remove git conflict markers if present
 >>>>>>> 42ab2308 (.)
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
 =======
@@ -98,9 +110,12 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 >>>>>>> 7de7063d (.)
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -111,10 +126,13 @@ You are an expert PHP developer tasked with fixing and optimizing the following 
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 3. Optimize the code structure and readability without changing functionality
 4. Ensure consistency in formatting and naming conventions
 5. Apply PHP best practices and modern syntax where appropriate

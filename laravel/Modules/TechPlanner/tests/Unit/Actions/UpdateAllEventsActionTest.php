@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllEventsAction;
 use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Jobs\UpdateEventJob;
-use Tests\TestCase;use Illuminate\Support\Facades\Queue;
-use Modules\TechPlanner\Actions\UpdateAllEventsAction;
-use Modules\TechPlanner\Models\Event;
+use Tests\TestCase;
 
 /**
  * Test unitario per l'action UpdateAllEventsAction.
@@ -21,6 +19,7 @@ use Modules\TechPlanner\Models\Event;
 class UpdateAllEventsActionTest extends TestCase
 {
     use RefreshDatabase;
+
     private UpdateAllEventsAction $action;
 
     protected function setUp(): void
@@ -434,6 +433,7 @@ class UpdateAllEventsActionTest extends TestCase
         $activeEvents = Event::factory()->count(2)->create();
         $deletedEvents = Event::factory()->count(2)->create();
         
+
         // Soft delete alcuni eventi
         $deletedEvents->each(function ($event) {
             $event->delete();
@@ -569,6 +569,7 @@ class UpdateAllEventsActionTest extends TestCase
         $events = Event::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
         
+
         $updateData = [
             'description' => $longText,
             'notes' => 'Updated notes',

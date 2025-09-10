@@ -74,8 +74,8 @@ return [
             ],
             'is_active' => [
                 'label' => 'Attivo',
-                'tooltip' => 'Stato di attivazione del template',
-            ],
+                'tooltip' => 'Stato di attivazione del template'
+            ]
         ],
         'filters' => [
             'category' => [
@@ -91,8 +91,8 @@ return [
                 'options' => [
                     'active' => ['label' => 'Attivo'],
                     'inactive' => ['label' => 'Inattivo']
-                ],
-            ],
+                ]
+            ]
         ],
         'actions' => [
             'edit' => [
@@ -108,8 +108,8 @@ return [
             'preview' => [
                 'label' => 'Anteprima',
                 'icon' => 'heroicon-o-eye',
-                'color' => 'success',
-            ],
+                'color' => 'success'
+            ]
         ],
         'preview' => [
             'title' => 'Anteprima Template',
@@ -126,4 +126,4 @@ return [
             ],
         ],
     ],
-];
+]; 

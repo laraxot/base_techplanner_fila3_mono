@@ -7,6 +7,8 @@ namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Models\Client;
+use Modules\TechPlanner\Models\Worker;
+use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Models\Location;
@@ -34,6 +36,7 @@ class EventTest extends TestCase
     {
         parent::setUp();
         
+
         $this->event = Event::factory()->create();
     }
 
@@ -179,6 +182,7 @@ class EventTest extends TestCase
         
         $this->event->delete();
         
+
         $this->event->delete();
 
         $this->assertSoftDeleted('events', ['id' => $eventId]);
@@ -190,6 +194,10 @@ class EventTest extends TestCase
     {
         $eventId = $this->event->id;
         
+        $this->event->delete();
+        $this->assertSoftDeleted('events', ['id' => $eventId]);
+        
+
         $this->event->delete();
         $this->assertSoftDeleted('events', ['id' => $eventId]);
 
@@ -224,6 +232,7 @@ class EventTest extends TestCase
     {
         $now = now();
         
+
         // Evento in corso
         $this->event->update([
             'start_date' => $now->subHour(),
@@ -254,6 +263,7 @@ class EventTest extends TestCase
     {
         $now = now();
         
+
         // Evento passato
         $this->event->update([
             'start_date' => $now->subHours(3),
@@ -276,6 +286,7 @@ class EventTest extends TestCase
     {
         $now = now();
         
+
         // Evento futuro
         $this->event->update([
             'start_date' => $now->addHours(1),
@@ -298,6 +309,7 @@ class EventTest extends TestCase
     {
         $today = now();
         
+
         // Evento oggi
         $this->event->update([
             'start_date' => $today->copy()->startOfDay(),
@@ -320,6 +332,7 @@ class EventTest extends TestCase
     {
         $thisWeek = now();
         
+
         // Evento questa settimana
         $this->event->update([
             'start_date' => $thisWeek->copy()->startOfWeek(),
@@ -342,6 +355,7 @@ class EventTest extends TestCase
     {
         $thisMonth = now();
         
+
         // Evento questo mese
         $this->event->update([
             'start_date' => $thisMonth->copy()->startOfMonth(),

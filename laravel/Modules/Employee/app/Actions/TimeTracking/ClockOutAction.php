@@ -9,26 +9,39 @@ use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\TimeEntry;
 use Spatie\QueueableAction\QueueableAction;
 
+/**
+ * Clock out action for employees.
+ */
 class ClockOutAction
 {
     use QueueableAction;
 
+    /**
+     * Execute clock out for an employee.
+     */
     public function execute(Employee $employee): void
     {
-        // Check if there is a clock in to clock out from
+        // Find the most recent clock-in entry for today without clock-out
         $lastEntry = TimeEntry::where('employee_id', $employee->id)
-            ->whereDate('created_at', Carbon::today())
+            ->whereDate('clock_in', Carbon::today())
+            ->whereNull('clock_out')
             ->latest()
             ->first();
 
-        if (! $lastEntry || $lastEntry->type === 'clock_out') {
-            // Optionally throw an exception or handle the case where user is not clocked in
+        if (!$lastEntry) {
+            // User hasn't clocked in or already clocked out
             return;
         }
 
-        TimeEntry::create([
-            'employee_id' => $employee->id,
-            'type' => 'clock_out',
+        // Update the entry with clock-out time
+        $lastEntry->update([
+            'clock_out' => Carbon::now(),
+        ]);
+
+        // Calculate total hours
+        $totalHours = $lastEntry->calculateTotalHours();
+        $lastEntry->update([
+            'total_hours' => $totalHours,
         ]);
     }
 }

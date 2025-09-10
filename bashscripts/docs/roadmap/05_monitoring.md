@@ -57,6 +57,11 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema, fornen
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -72,6 +77,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema, fornen
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -84,6 +90,11 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -99,6 +110,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -115,6 +127,11 @@ aurmich/dev
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -130,6 +147,7 @@ aurmich/dev
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -142,6 +160,11 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -157,6 +180,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -171,6 +195,11 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -186,6 +215,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # 📊 Fase 5: Monitoraggio
 
 ## 📋 Panoramica
@@ -241,6 +271,11 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -256,6 +291,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ## 🔄 Collegamenti
 - [Roadmap Principale](../roadmap.md)
 - [Documentazione Script](../project.md)
@@ -269,6 +305,11 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
@@ -284,6 +325,7 @@ Questa fase si concentra sul monitoraggio e l'ottimizzazione del sistema.
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 aurmich/dev
 
 ## Collegamenti tra versioni di 05_monitoring.md

@@ -107,8 +107,11 @@ Soluzione: sudo chmod 777 -R .
 sudo update-alternatives --config php
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -133,7 +136,10 @@ composer go
 =======
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

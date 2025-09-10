@@ -37,6 +37,8 @@ class AppointmentResource extends XotBaseResource
                     'completed' => 'Completed',
                     'cancelled' => 'Cancelled',
                 ])
+                ->required(),
+            Forms\Components\Textarea::make('notes')
 
                 ->maxLength(65535)
                 ->columnSpanFull(),

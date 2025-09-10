@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 
 use Filament\Actions;
-
 use Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord;
+use Modules\TechPlanner\Filament\Resources\AppointmentResource;
 
-/**
- * Page per la modifica di un appuntamento.
- * 
- * Estende XotBaseEditRecord seguendo le regole Laraxot.
- */
 class EditAppointment extends XotBaseEditRecord
 {
-    protected static string $resource = \Modules\TechPlanner\Filament\Resources\AppointmentResource::class;
+    protected static string $resource = AppointmentResource::class;
+
+   
+
 }

@@ -59,6 +59,10 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 =======
 <<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
 =======
@@ -68,6 +72,7 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
@@ -81,6 +86,11 @@ Lo script può essere integrato con Git hooks per verificare automaticamente la 
 =======
 <<<<<<< HEAD
 
+=======
+
+=======
+<<<<<<< HEAD
+
 <<<<<<< HEAD
 >>>>>>> f71d08e230 (.)
 =======
@@ -96,6 +106,7 @@ Lo script può essere integrato con Git hooks per verificare automaticamente la 
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # .git/hooks/pre-commit
 #!/bin/bash
 ```
@@ -124,6 +135,9 @@ Dopo l'esecuzione dello script, è consigliabile verificare che tutti i conflitt
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 =======
 <<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 >>>>>>> 1831d11e78 (.)
 =======
 =======
@@ -132,3 +146,4 @@ Dopo l'esecuzione dello script, è consigliabile verificare che tutti i conflitt
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

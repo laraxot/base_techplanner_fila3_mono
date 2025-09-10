@@ -188,64 +188,101 @@ class WorkHour extends BaseModel
         return $query->whereDate('timestamp', Carbon::today());
     }
 
-     /**
+    /**
+     * Get the formatted time.
+     *
      * @return string
-     */    public function getFormattedTimeAttribute(): string
+     */
+    public function getFormattedTimeAttribute(): string
     {
         return $this->timestamp->format('H:i:s');
     }
 
-     /**
+    /**
+     * Get the formatted date.
+     *
      * @return string
-     */    public function getFormattedDateAttribute(): string
+     */
+    public function getFormattedDateAttribute(): string
     {
         return $this->timestamp->format('d/m/Y');
     }
 
-     /**
+    /**
+     * Get the formatted date and time.
+     *
      * @return string
-     */    public function getFormattedDateTimeAttribute(): string
+     */
+    public function getFormattedDateTimeAttribute(): string
     {
         return $this->timestamp->format('d/m/Y H:i:s');
     }
 
-     /** Check if the work hour is a clock in.
+    /**
+     * Check if the work hour is a clock in.
      *
      * @return bool
-     */    public function isClockIn(): bool
+     */
+    public function isClockIn(): bool
     {
         return $this->type === WorkHourTypeEnum::CLOCK_IN->value;
     }
 
+    /**
+     * Check if the work hour is a clock out.
+     *
+     * @return bool
+     */
     public function isClockOut(): bool
     {
         return $this->type === WorkHourTypeEnum::CLOCK_OUT->value;
     }
 
+    /**
+     * Check if the work hour is a break start.
+     *
+     * @return bool
+     */
     public function isBreakStart(): bool
     {
         return $this->type === WorkHourTypeEnum::BREAK_START->value;
     }
 
+    /**
+     * Check if the work hour is a break end.
+     *
+     * @return bool
+     */
     public function isBreakEnd(): bool
     {
         return $this->type === WorkHourTypeEnum::BREAK_END->value;
     }
 
-            public static function getLastEntryForEmployee(int $employeeId, ?Carbon $date = null): ?WorkHour
+    /**
+     * Get the last work hour entry for an employee on a specific date.
+     *
+     * @param int $employeeId
+     * @param Carbon|null $date
+     * @return WorkHour|null
+     */
+    public static function getLastEntryForEmployee(int $employeeId, ?Carbon $date = null): ?WorkHour
     {
         $date = $date ?? Carbon::today();
+        
         return static::forEmployee($employeeId)
             ->forDate($date)
             ->orderBy('timestamp', 'desc')
             ->first();
     }
 
-     /**
+    /**
+     * Get the next expected action for an employee based on their last entry.
+     *
      * @param int $employeeId
      * @param Carbon|null $date
      * @return string
-     */    public static function getNextAction(int $employeeId, ?Carbon $date = null): string
+     */
+    public static function getNextAction(int $employeeId, ?Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
@@ -263,11 +300,13 @@ class WorkHour extends BaseModel
     }
 
     /**
+     * Validate if a new entry is allowed based on the last entry.
+     *
      * @param int $employeeId
      * @param string $type
      * @param Carbon|null $date
      * @return bool
-     */    
+     */
     public static function isValidNextEntry(int $employeeId, string $type, ?Carbon $date = null): bool
     {
         $expectedAction = static::getNextAction($employeeId, $date);
@@ -275,6 +314,8 @@ class WorkHour extends BaseModel
     }
 
     /**
+     * Get all work hours for an employee on a specific date.
+     *
      * @param int $employeeId
      * @param Carbon|null $date
      * @return \Illuminate\Database\Eloquent\Collection<int, WorkHour>
@@ -288,7 +329,10 @@ class WorkHour extends BaseModel
             ->orderBy('timestamp', 'asc')
             ->get();
     }
-     /**
+
+    /**
+     * Calculate total worked hours for an employee on a specific date.
+     *
      * @param int $employeeId
      * @param Carbon|null $date
      * @return float Hours worked
@@ -296,6 +340,11 @@ class WorkHour extends BaseModel
     public static function calculateWorkedHours(int $employeeId, ?Carbon $date = null): float
     {
         $entries = static::getTodayEntries($employeeId, $date);
+        
+        if ($entries->isEmpty()) {
+            return 0.0;
+        }
+
         $totalMinutes = 0;
         $clockInTime = null;
 
@@ -315,18 +364,26 @@ class WorkHour extends BaseModel
                     }
                     $clockInTime = null;
                     break;
-                    
+
                 case WorkHourTypeEnum::BREAK_END->value:
                     $clockInTime = $entry->timestamp; // Resume work
                     break;
-                    
+
+                case WorkHourTypeEnum::CLOCK_OUT->value:
+                    if ($clockInTime) {
+                        $totalMinutes += $clockInTime->diffInMinutes($entry->timestamp);
+                        $clockInTime = null;
+                    }
+                    break;
             }
         }
 
         return round($totalMinutes / 60, 2);
     }
 
-     /**
+    /**
+     * Get the current status for an employee.
+     *
      * @param int $employeeId
      * @param Carbon|null $date
      * @return string
@@ -336,15 +393,15 @@ class WorkHour extends BaseModel
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
         if (! $lastEntry) {
-            return "not_clocked_in";
+            return 'not_clocked_in';
         }
 
         return match ($lastEntry->type) {
-            WorkHourTypeEnum::CLOCK_IN->value => "clocked_in",
-            WorkHourTypeEnum::BREAK_START->value => "on_break",
-            WorkHourTypeEnum::BREAK_END->value => "clocked_in",
-            WorkHourTypeEnum::CLOCK_OUT->value => "clocked_out",
-            default => "not_clocked_in",
+            WorkHourTypeEnum::CLOCK_IN->value => 'clocked_in',
+            WorkHourTypeEnum::BREAK_START->value => 'on_break',
+            WorkHourTypeEnum::BREAK_END->value => 'clocked_in',
+            WorkHourTypeEnum::CLOCK_OUT->value => 'clocked_out',
+            default => 'not_clocked_in',
         };
     }
 }

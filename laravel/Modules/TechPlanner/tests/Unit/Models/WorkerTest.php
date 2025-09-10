@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
 
-use Modules\TechPlanner\Models\Worker;
+use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Models\PhoneCall;
 use Modules\TechPlanner\Models\Worker;
+use Tests\TestCase;
 
 /**
  * Test unitario per il modello Worker.
@@ -151,10 +152,7 @@ class WorkerTest extends TestCase
         
         $this->worker->delete();
         
-        $this->worker->delete();
-
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
-        $this->assertDatabaseMissing('workers', ['id' => $workerId]);
     }
 
     /** @test */

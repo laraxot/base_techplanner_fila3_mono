@@ -337,8 +337,8 @@ Il componente esistente è buono ma può essere migliorato per seguire il sistem
 
 <!-- ❌ ERRATO -->
 <x-pub_theme::blocks.forms.login-card-agid />
+<x-sixteen::blocks.forms.login-card-agid />
 <x-pub_theme::blocks.forms.login-card-agid />
-=======
 <x-sixteen::blocks.forms.login-card-agid />
 ```
 

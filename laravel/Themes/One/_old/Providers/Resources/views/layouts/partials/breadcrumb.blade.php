@@ -1,1 +1,0 @@
-pezzo obbligatorio per il tema 

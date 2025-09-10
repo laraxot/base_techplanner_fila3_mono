@@ -73,7 +73,7 @@ class TestSushiModel extends Model
     protected $table = 'test_sushi';
 
     /**
-     * Override del path JSON in ambiente di test per NON toccare config/local/.
+     * Override del path JSON in ambiente di test per NON toccare config/local/saluteora/.
      */
     public function getJsonFile(): string
     {

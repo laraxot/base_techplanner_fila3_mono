@@ -27,9 +27,11 @@ class WorkHourFactory extends Factory
     public function definition(): array
     {
         $timestamp = $this->faker->dateTimeBetween('-30 days', 'now');
+        $hour = $this->faker->numberBetween(8, 18);
+        $minute = $this->faker->randomElement([0, 15, 30, 45]);
         $carbonTimestamp = Carbon::instance($timestamp)->setTime(
-            (int) $this->faker->numberBetween(8, 18),
-            (int) $this->faker->randomElement([0, 15, 30, 45]),
+            is_int($hour) ? $hour : (int) $hour,
+            is_int($minute) ? $minute : (int) $minute,
             0
         );
         
@@ -54,9 +56,11 @@ class WorkHourFactory extends Factory
     }
 
     /**
+     * Create a sequence of work hours for a full work day.
+     *
      * @param int $employeeId
      * @param Carbon $date
-     * @return array<int, WorkHour>
+     * @return array<int, \Modules\Employee\Models\WorkHour>
      */
     public function workDaySequence(int $employeeId, Carbon $date): array
     {
@@ -68,38 +72,45 @@ class WorkHourFactory extends Factory
             0
         );
         
-        $entries[] = $this->state([
+        /** @var \Modules\Employee\Models\WorkHour $clockIn */
+        $clockIn = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $clockInTime,
             'type' => WorkHourTypeEnum::CLOCK_IN->value,
             'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
+        $entries[] = $clockIn;
 
         $breakStartTime = $clockInTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
-        $entries[] = $this->state([
+        /** @var \Modules\Employee\Models\WorkHour $breakStart */
+        $breakStart = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $breakStartTime,
             'type' => WorkHourTypeEnum::BREAK_START->value,
             'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
+        $entries[] = $breakStart;
 
         $breakEndTime = $breakStartTime->copy()->addMinutes((int) $this->faker->numberBetween(30, 60));
-        $entries[] = $this->state([
+        /** @var \Modules\Employee\Models\WorkHour $breakEnd */
+        $breakEnd = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $breakEndTime,
             'type' => WorkHourTypeEnum::BREAK_END->value,
             'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
+        $entries[] = $breakEnd;
 
         $clockOutTime = $breakEndTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
-        $entries[] = $this->state([
+        /** @var \Modules\Employee\Models\WorkHour $clockOut */
+        $clockOut = $this->state([
             'employee_id' => $employeeId,
             'timestamp' => $clockOutTime,
             'type' => WorkHourTypeEnum::CLOCK_OUT->value,
             'status' => WorkHourStatusEnum::APPROVED->value,
         ])->make();
+        $entries[] = $clockOut;
 
-        /** @var array<int, WorkHour> $entries */
         return $entries;
     }
 

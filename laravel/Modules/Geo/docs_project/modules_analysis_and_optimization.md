@@ -119,7 +119,7 @@ User/docs/
 #### 🔧 Ottimizzazioni Richieste
 
 ##### Riusabilità
-- **Rimuovere** path hardcoded tipo `/var/www/html/_bases/base_techplanner_fila3_mono/`
+- **Rimuovere** path hardcoded tipo `/var/www/html/saluteora/`
 - **Generalizzare** esempi di configurazione
 - **Utilizzare** variabili di ambiente dinamiche
 

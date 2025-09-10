@@ -233,7 +233,7 @@ class TimeClockPage extends XotBasePage
             ->whereDate('created_at', $today)
             ->first();
 
-        $endTime = $clockOut ? $clockOut->created_at : now();
+        $endTime = $clockOut->created_at ?? now();
         $totalMinutes = $endTime->diffInMinutes($clockIn->created_at);
 
         // Subtract break time if any
@@ -251,7 +251,7 @@ class TimeClockPage extends XotBasePage
                 ->first();
 
             if ($breakEnd) {
-                $breakMinutes = $breakEnd->created_at->diffInMinutes($breakStart->created_at);
+                $breakMinutes = $breakEnd->created_at?->diffInMinutes($breakStart->created_at) ?? 0;
                 $totalMinutes -= $breakMinutes;
             }
         }

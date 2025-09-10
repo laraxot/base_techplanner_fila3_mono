@@ -28,8 +28,8 @@ ABSOLUTE CRITICAL - Documentation organization is fundamental
 
 ## Actions Completed
 
-1. ✅ Removed forbidden `/var/www/html/_bases/base_techplanner_fila3_mono/docs` directory
-2. ✅ Removed forbidden `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/docs` directory  
+1. ✅ Removed forbidden `/var/www/html/_bases/base_saluteora/docs` directory
+2. ✅ Removed forbidden `/var/www/html/_bases/base_saluteora/laravel/docs` directory  
 3. ✅ Moved all content to appropriate location in `docs_project/`
 4. ✅ Created rule documentation
 5. ✅ Updated AI memories with this critical rule
@@ -38,11 +38,11 @@ ABSOLUTE CRITICAL - Documentation organization is fundamental
 
 ```bash
 # Verify forbidden directories are removed
-ls -la /var/www/html/_bases/base_techplanner_fila3_mono/docs          # Should not exist
-ls -la /var/www/html/_bases/base_techplanner_fila3_mono/laravel/docs  # Should not exist
+ls -la /var/www/html/_bases/base_saluteora/docs          # Should not exist
+ls -la /var/www/html/_bases/base_saluteora/laravel/docs  # Should not exist
 
 # Verify content moved to correct location
-ls -la /var/www/html/_bases/base_techplanner_fila3_mono/docs_project/ # Should contain moved files
+ls -la /var/www/html/_bases/base_saluteora/docs_project/ # Should contain moved files
 ```
 
 The forbidden documentation directories have been successfully removed and the rule has been documented and implemented.

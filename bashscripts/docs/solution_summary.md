@@ -155,6 +155,8 @@ return [
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 =======
@@ -168,6 +170,7 @@ return [
 =======
 >>>>>>> 71ff9e32 (.)
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -182,7 +185,10 @@ return [
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
 =======
+<<<<<<< HEAD
+=======
 >>>>>>> f52d0712 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 
 =======
@@ -191,7 +197,10 @@ return [
 
 =======
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+=======
 >>>>>>> develop
+>>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> 9de04485 (.)
 =======
@@ -207,6 +216,9 @@ return [
 >>>>>>> f71d08e230 (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> ec52a6b4 (.)
 >>>>>>> e9356a3a (.)
 =======
 
@@ -214,10 +226,13 @@ return [
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 42ab2308 (.)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 # Pubblicazione delle configurazioni
 php artisan vendor:publish --tag=zeus-bolt-config
 
@@ -350,6 +365,8 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 *Versione: 1.0*
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 *Autore: AI Assistant* 
 =======
 =======
@@ -367,12 +384,22 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+*Autore: AI Assistant* 
+=======
+<<<<<<< HEAD
+=======
+*Autore: AI Assistant* 
+>>>>>>> 3c18aa7e (.)
+>>>>>>> 9c02579 (.)
+=======
 >>>>>>> develop
 *Autore: AI Assistant* 
 =======
@@ -388,6 +415,7 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
 =======
+>>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
@@ -404,10 +432,13 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 >>>>>>> f52d0712 (.)
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> 59901687 (.)
 >>>>>>> 85c5198c (.)
@@ -426,6 +457,11 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 >>>>>>> e1b46df35 (.)
 >>>>>>> f71d08e230 (.)
 <<<<<<< HEAD
+>>>>>>> e9356a3a (.)
+=======
+>>>>>>> 42ab2308 (.)
+=======
+<<<<<<< HEAD
 =======
 >>>>>>> e9356a3a (.)
 =======
@@ -435,3 +471,4 @@ La soluzione implementata risolve completamente l'errore originale e fornisce un
 =======
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
+>>>>>>> ec52a6b4 (.)

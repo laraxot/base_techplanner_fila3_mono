@@ -12,25 +12,24 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <!-- Alert Informazione -->
 <x-pub_theme::blocks.alerts.alert variant="info" title="Informazione">
 =======
-=======
 <x-sixteen::blocks.alerts.alert variant="info" title="Informazione">
     Questo è un messaggio informativo per l'utente.
-</x-pub_theme::blocks.alerts.alert>
+</x-sixteen::blocks.alerts.alert>
 
 <!-- Alert Successo -->
-<x-pub_theme::blocks.alerts.alert variant="success" title="Operazione completata">
+<x-sixteen::blocks.alerts.alert variant="success" title="Operazione completata">
     L'operazione è stata completata con successo.
-</x-pub_theme::blocks.alerts.alert>
+</x-sixteen::blocks.alerts.alert>
 
 <!-- Alert Warning -->
-<x-pub_theme::blocks.alerts.alert variant="warning" title="Attenzione">
+<x-sixteen::blocks.alerts.alert variant="warning" title="Attenzione">
     Attenzione: questa azione non può essere annullata.
-</x-pub_theme::blocks.alerts.alert>
+</x-sixteen::blocks.alerts.alert>
 
 <!-- Alert Errore -->
-<x-pub_theme::blocks.alerts.alert variant="danger" title="Errore">
+<x-sixteen::blocks.alerts.alert variant="danger" title="Errore">
     Si è verificato un errore durante l'operazione.
-</x-pub_theme::blocks.alerts.alert>
+</x-sixteen::blocks.alerts.alert>
 ```
 
 ### Alert Dismissible
@@ -85,7 +84,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 </x-sixteen::blocks.alerts.toast>
 
 <!-- Toast di errore -->
-<x-pub_theme::blocks.alerts.toast 
+<x-sixteen::blocks.alerts.toast 
     variant="danger"
     position="top-center"
     duration="8000"
@@ -104,30 +103,29 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <!-- Pulsante Primario -->
 <x-pub_theme::blocks.buttons.button variant="primary" size="md">
 =======
-=======
 <x-sixteen::blocks.buttons.button variant="primary" size="md">
     Conferma Azione
-</x-pub_theme::blocks.buttons.button>
+</x-sixteen::blocks.buttons.button>
 
 <!-- Pulsante Secondario -->
-<x-pub_theme::blocks.buttons.button variant="secondary" size="md">
+<x-sixteen::blocks.buttons.button variant="secondary" size="md">
     Annulla
-</x-pub_theme::blocks.buttons.button>
+</x-sixteen::blocks.buttons.button>
 
 <!-- Pulsante Outline -->
-<x-pub_theme::blocks.buttons.button variant="outline" size="md">
+<x-sixteen::blocks.buttons.button variant="outline" size="md">
     Modifica
-</x-pub_theme::blocks.buttons.button>
+</x-sixteen::blocks.buttons.button>
 
 <!-- Pulsante Ghost -->
-<x-pub_theme::blocks.buttons.button variant="ghost" size="md">
+<x-sixteen::blocks.buttons.button variant="ghost" size="md">
     Visualizza
-</x-pub_theme::blocks.buttons.button>
+</x-sixteen::blocks.buttons.button>
 
 <!-- Pulsante Pericolo -->
-<x-pub_theme::blocks.buttons.button variant="danger" size="md">
+<x-sixteen::blocks.buttons.button variant="danger" size="md">
     Elimina
-</x-pub_theme::blocks.buttons.button>
+</x-sixteen::blocks.buttons.button>
 ```
 
 ### Pulsanti con Icone
@@ -150,7 +148,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 </x-sixteen::blocks.buttons.button>
 
 <!-- Pulsante con icona a destra -->
-<x-pub_theme::blocks.buttons.button 
+<x-sixteen::blocks.buttons.button 
     variant="outline" 
     icon="heroicon-o-arrow-right"
     icon-position="right"
@@ -167,22 +165,21 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <x-pub_theme::blocks.buttons.button-group>
     <x-pub_theme::blocks.buttons.button-group-item variant="outline">
 =======
-=======
 <x-sixteen::blocks.buttons.button-group>
     <x-sixteen::blocks.buttons.button-group-item variant="outline">
         <x-heroicon-o-chevron-left class="h-4 w-4" />
         Precedente
-    </x-pub_theme::blocks.buttons.button-group-item>
+    </x-sixteen::blocks.buttons.button-group-item>
     
-    <x-pub_theme::blocks.buttons.button-group-item variant="primary">
+    <x-sixteen::blocks.buttons.button-group-item variant="primary">
         Pagina 1
-    </x-pub_theme::blocks.buttons.button-group-item>
+    </x-sixteen::blocks.buttons.button-group-item>
     
-    <x-pub_theme::blocks.buttons.button-group-item variant="outline">
+    <x-sixteen::blocks.buttons.button-group-item variant="outline">
         Successivo
         <x-heroicon-o-chevron-right class="h-4 w-4" />
-    </x-pub_theme::blocks.buttons.button-group-item>
-</x-pub_theme::blocks.buttons.button-group>
+    </x-sixteen::blocks.buttons.button-group-item>
+</x-sixteen::blocks.buttons.button-group>
 ```
 
 ## Card e Contenitori
@@ -200,7 +197,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <p class="text-gray-600">
         Questa è una card semplice con contenuto di testo.
     </p>
-</x-pub_theme::blocks.cards.card>
+</x-sixteen::blocks.cards.card>
 ```
 
 ### Card con Header e Footer
@@ -216,7 +213,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold text-gray-900">Titolo Card</h3>
-            <x-pub_theme::blocks.utilities.badge variant="success">Nuovo</x-pub_theme::blocks.utilities.badge>
+            <x-sixteen::blocks.utilities.badge variant="success">Nuovo</x-sixteen::blocks.utilities.badge>
         </div>
     </x-slot>
     
@@ -234,16 +231,15 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         <div class="flex justify-end space-x-2">
             <x-pub_theme::blocks.buttons.button variant="outline" size="sm">
 =======
-=======
             <x-sixteen::blocks.buttons.button variant="outline" size="sm">
                 Annulla
-            </x-pub_theme::blocks.buttons.button>
-            <x-pub_theme::blocks.buttons.button variant="primary" size="sm">
+            </x-sixteen::blocks.buttons.button>
+            <x-sixteen::blocks.buttons.button variant="primary" size="sm">
                 Salva
-            </x-pub_theme::blocks.buttons.button>
+            </x-sixteen::blocks.buttons.button>
         </div>
     </x-slot>
-</x-pub_theme::blocks.cards.card>
+</x-sixteen::blocks.cards.card>
 ```
 
 ### Card con Overlay
@@ -264,12 +260,11 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         </p>
         <x-pub_theme::blocks.buttons.button variant="primary" size="sm">
 =======
-=======
         <x-sixteen::blocks.buttons.button variant="primary" size="sm">
             Scopri di più
-        </x-pub_theme::blocks.buttons.button>
+        </x-sixteen::blocks.buttons.button>
     </div>
-</x-pub_theme::blocks.cards.card-overlay>
+</x-sixteen::blocks.cards.card-overlay>
 ```
 
 ## Form e Input
@@ -397,13 +392,12 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <div class="flex justify-end space-x-3">
         <x-pub_theme::blocks.buttons.button variant="outline">
 =======
-=======
         <x-sixteen::blocks.buttons.button variant="outline">
             Annulla
-        </x-pub_theme::blocks.buttons.button>
-        <x-pub_theme::blocks.buttons.button variant="primary">
+        </x-sixteen::blocks.buttons.button>
+        <x-sixteen::blocks.buttons.button variant="primary">
             Salva
-        </x-pub_theme::blocks.buttons.button>
+        </x-sixteen::blocks.buttons.button>
     </div>
 </form>
 ```
@@ -522,7 +516,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 =======
             </x-sixteen::blocks.cards.card>
             
-            <x-pub_theme::blocks.cards.card>
+            <x-sixteen::blocks.cards.card>
                 <div class="text-center">
                     <x-heroicon-o-shield-check class="h-12 w-12 text-green-600 mx-auto mb-4" />
                     <h3 class="text-lg font-semibold mb-2">Sicurezza</h3>
@@ -534,7 +528,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 =======
             </x-sixteen::blocks.cards.card>
             
-            <x-pub_theme::blocks.cards.card>
+            <x-sixteen::blocks.cards.card>
                 <div class="text-center">
                     <x-heroicon-o-chart-bar class="h-12 w-12 text-purple-600 mx-auto mb-4" />
                     <h3 class="text-lg font-semibold mb-2">Analytics</h3>
@@ -548,7 +542,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             </x-sixteen::blocks.cards.card>
         </x-sixteen::blocks.layout.grid>
     </div>
-</x-pub_theme::blocks.layout.container>
+</x-sixteen::blocks.layout.container>
 ```
 
 ## Feedback
@@ -637,40 +631,38 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <div class="flex items-center space-x-2">
         <x-pub_theme::blocks.utilities.badge variant="primary">
 =======
-=======
         <x-sixteen::blocks.utilities.badge variant="primary">
             Nuovo
-        </x-pub_theme::blocks.utilities.badge>
+        </x-sixteen::blocks.utilities.badge>
         
-        <x-pub_theme::blocks.utilities.badge variant="success">
+        <x-sixteen::blocks.utilities.badge variant="success">
             Completato
-        </x-pub_theme::blocks.utilities.badge>
+        </x-sixteen::blocks.utilities.badge>
         
-        <x-pub_theme::blocks.utilities.badge variant="warning">
+        <x-sixteen::blocks.utilities.badge variant="warning">
             In attesa
-        </x-pub_theme::blocks.utilities.badge>
+        </x-sixteen::blocks.utilities.badge>
         
-        <x-pub_theme::blocks.utilities.badge variant="danger">
+        <x-sixteen::blocks.utilities.badge variant="danger">
             Errore
-        </x-pub_theme::blocks.utilities.badge>
+        </x-sixteen::blocks.utilities.badge>
     </div>
     
     <!-- Badge Pill -->
     <div class="flex items-center space-x-2">
         <x-pub_theme::blocks.utilities.badge variant="primary" pill="true">
 =======
-=======
         <x-sixteen::blocks.utilities.badge variant="primary" pill="true">
             Pill Badge
-        </x-pub_theme::blocks.utilities.badge>
+        </x-sixteen::blocks.utilities.badge>
         
-        <x-pub_theme::blocks.utilities.badge variant="success" pill="true">
+        <x-sixteen::blocks.utilities.badge variant="success" pill="true">
             Success Pill
-        </x-pub_theme::blocks.utilities.badge>
+        </x-sixteen::blocks.utilities.badge>
     </div>
     
     <!-- Badge Dismissible -->
-    <x-pub_theme::blocks.utilities.badge 
+    <x-sixteen::blocks.utilities.badge 
         variant="info" 
         dismissible="true"
     >
@@ -704,7 +696,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     </x-sixteen::blocks.utilities.tooltip>
     
     <!-- Tooltip Bottom -->
-    <x-pub_theme::blocks.utilities.tooltip 
+    <x-sixteen::blocks.utilities.tooltip 
         content="Descrizione dettagliata"
         position="bottom"
         variant="light"
@@ -720,7 +712,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     </x-sixteen::blocks.utilities.tooltip>
     
     <!-- Tooltip Click -->
-    <x-pub_theme::blocks.utilities.tooltip 
+    <x-sixteen::blocks.utilities.tooltip 
         content="Clicca per vedere il tooltip"
         position="right"
         trigger="click"
@@ -763,14 +755,13 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         </div>
     </x-pub_theme::blocks.navigation.navbar>
 =======
-=======
     </x-sixteen::blocks.navigation.navbar>
     
     <!-- Main Content -->
     <main class="py-8">
-        <x-pub_theme::blocks.layout.container>
+        <x-sixteen::blocks.layout.container>
             <!-- Breadcrumb -->
-            <x-pub_theme::blocks.navigation.breadcrumb 
+            <x-sixteen::blocks.navigation.breadcrumb 
                 :items="[
                     ['label' => 'Home', 'href' => '/'],
                     ['label' => 'Componenti'],
@@ -794,14 +785,13 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                 <div class="space-y-4">
                     <x-pub_theme::blocks.alerts.alert variant="info" title="Informazione">
 =======
-=======
                     <x-sixteen::blocks.alerts.alert variant="info" title="Informazione">
                         Questo è un esempio di alert informativo.
-                    </x-pub_theme::blocks.alerts.alert>
+                    </x-sixteen::blocks.alerts.alert>
                     
-                    <x-pub_theme::blocks.alerts.alert variant="success" title="Successo">
+                    <x-sixteen::blocks.alerts.alert variant="success" title="Successo">
                         Operazione completata con successo!
-                    </x-pub_theme::blocks.alerts.alert>
+                    </x-sixteen::blocks.alerts.alert>
                 </div>
             </section>
             
@@ -816,7 +806,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                 <x-sixteen::blocks.cards.card>
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <x-pub_theme::blocks.forms.input 
+                            <x-sixteen::blocks.forms.input 
                                 name="nome"
                                 label="Nome"
                                 placeholder="Inserisci il tuo nome"
@@ -878,16 +868,15 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                         <div class="flex justify-end space-x-3">
                             <x-pub_theme::blocks.buttons.button variant="outline">
 =======
-=======
                             <x-sixteen::blocks.buttons.button variant="outline">
                                 Annulla
-                            </x-pub_theme::blocks.buttons.button>
-                            <x-pub_theme::blocks.buttons.button variant="primary">
+                            </x-sixteen::blocks.buttons.button>
+                            <x-sixteen::blocks.buttons.button variant="primary">
                                 Invia
-                            </x-pub_theme::blocks.buttons.button>
+                            </x-sixteen::blocks.buttons.button>
                         </div>
                     </form>
-                </x-pub_theme::blocks.cards.card>
+                </x-sixteen::blocks.cards.card>
             </section>
             
             <!-- Progress Section -->
@@ -946,7 +935,7 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             <div class="text-center">
                 <p>&copy; 2024 Tema Sixteen. Tutti i diritti riservati.</p>
             </div>
-        </x-pub_theme::blocks.layout.container>
+        </x-sixteen::blocks.layout.container>
     </footer>
 </body>
 </html>
