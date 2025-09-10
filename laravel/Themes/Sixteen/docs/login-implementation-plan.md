@@ -51,7 +51,6 @@ login.blade.php (Layout AGID + Branding PA)
 - `x-pub_theme::layouts.guest` - Layout base per utenti non autenticati
 - `x-pub_theme::blocks.layout.container` - Container responsive
 - `x-pub_theme::blocks.layout.grid` - Sistema griglia
-=======
 - `x-sixteen::layouts.guest` - Layout base per utenti non autenticati
 - `x-sixteen::blocks.layout.container` - Container responsive
 - `x-sixteen::blocks.layout.grid` - Sistema griglia
@@ -74,7 +73,6 @@ login.blade.php (Layout AGID + Branding PA)
         <!-- Header PA -->
         <div class="text-center mb-8">
             <x-pub_theme::ui.logo class="mx-auto h-16 w-auto" />
-=======
 <x-sixteen::layouts.guest>
     <x-sixteen::blocks.layout.container>
         <!-- Header PA -->
@@ -92,7 +90,6 @@ login.blade.php (Layout AGID + Branding PA)
         <x-pub_theme::blocks.cards.card class="max-w-md mx-auto">
             @livewire(\Modules\User\Http\Livewire\Auth\Login::class)
         </x-pub_theme::blocks.cards.card>
-=======
         <x-sixteen::blocks.cards.card class="max-w-md mx-auto">
             @livewire(\Modules\User\Http\Livewire\Auth\Login::class)
         </x-sixteen::blocks.cards.card>
@@ -108,7 +105,6 @@ login.blade.php (Layout AGID + Branding PA)
         </div>
     </x-pub_theme::blocks.layout.container>
 </x-pub_theme::layouts.guest>
-=======
     </x-sixteen::blocks.layout.container>
 </x-sixteen::layouts.guest>
 ```
@@ -211,7 +207,6 @@ login.blade.php (Layout AGID + Branding PA)
 
 **Modifiche**:
 1. ✅ Sostituire layout con `x-pub_theme::layouts.guest`
-=======
 1. ✅ Sostituire layout con `x-sixteen::layouts.guest`
 2. ✅ Aggiungere header con branding PA
 3. ✅ Implementare struttura con componenti Sixteen

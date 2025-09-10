@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\BaseProfileResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Actions\DeleteAction;
 use Filament\Infolists\Components;
 use Filament\Infolists\Components\TextEntry;
@@ -12,20 +11,11 @@ use Filament\Infolists\Infolist;
 use Modules\User\Filament\Resources\BaseProfileResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-=======
-use Filament\Infolists\Components;
-use Filament\Infolists\Components\TextEntry;
-use Modules\User\Filament\Resources\BaseProfileResource;
->>>>>>> 9831a351 (.)
 
 class ViewProfile extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
 {
     protected static string $resource = BaseProfileResource::class;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9831a351 (.)
     /**
      * @return array<string, \Filament\Infolists\Components\Component>
      */

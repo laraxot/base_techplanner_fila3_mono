@@ -10,7 +10,6 @@ namespace Modules\User\Datas;
 
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\TextInput;
-<<<<<<< HEAD
 use Filament\Forms\Get;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -19,13 +18,6 @@ use Modules\Tenant\Services\TenantService;
 use Spatie\LaravelData\Data;
 use Filament\Forms\Components\TextInput as FilamentTextInput;
 use Filament\Forms\Components\TextInput as FormsTextInput;
-=======
-use Filament\Forms\Components\TextInput as FormsTextInput;
-use Filament\Forms\Get;
-use Illuminate\Validation\Rules\Password;
-use Modules\Tenant\Services\TenantService;
-use Spatie\LaravelData\Data;
->>>>>>> 9831a351 (.)
 
 /**
  * Classe per la gestione dei dati relativi alle password.
@@ -45,22 +37,15 @@ class PasswordData extends Data
         public int $compromisedThreshold = 0,
         public ?string $failMessage = null,
         private ?string $field_name = null,
-<<<<<<< HEAD
     ) {
     }
-=======
-    ) {}
->>>>>>> 9831a351 (.)
 
     private static ?self $instance = null;
 
     /**
      * Crea un'istanza della classe PasswordData.
-<<<<<<< HEAD
      *
      * @return self
-=======
->>>>>>> 9831a351 (.)
      */
     public static function make(): self
     {
@@ -148,10 +133,6 @@ class PasswordData extends Data
     public function setFieldName(string $field_name): self
     {
         $this->field_name = $field_name;
-<<<<<<< HEAD
-=======
-
->>>>>>> 9831a351 (.)
         return $this;
     }
 
@@ -199,11 +180,7 @@ class PasswordData extends Data
         }
 
         $this->setFieldName($field_name);
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 9831a351 (.)
         return [
             $this->getPasswordFormComponent($field_name),
             $this->getPasswordConfirmationFormComponent(),

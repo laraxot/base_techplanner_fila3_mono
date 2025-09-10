@@ -10,10 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\User\Contracts\TeamContract;
 use Modules\User\Models\Scopes\TenantScope;
 use Modules\User\Models\Tenant;
-<<<<<<< HEAD
 use Modules\Xot\Datas\XotData;
-=======
->>>>>>> 9831a351 (.)
 
 /**
  * @property TeamContract $currentTeam
@@ -22,11 +19,8 @@ trait InteractsWithTenant
 {
     /**
      * Tenant corrente.
-<<<<<<< HEAD
      *
      * @var Model|null
-=======
->>>>>>> 9831a351 (.)
      */
     protected ?Model $currentTenant = null;
 
@@ -34,10 +28,6 @@ trait InteractsWithTenant
      * Relazione con il tenant a cui appartiene il modello.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Illuminate\Database\Eloquent\Model, self>
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 9831a351 (.)
      * @phpstan-return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     public function tenant(): BelongsTo
@@ -56,11 +46,8 @@ trait InteractsWithTenant
 
     /**
      * Ottiene il tenant corrente.
-<<<<<<< HEAD
      *
      * @return Model|null
-=======
->>>>>>> 9831a351 (.)
      */
     protected function getTenant(): ?Model
     {
@@ -69,11 +56,8 @@ trait InteractsWithTenant
 
     /**
      * Carica il tenant dalla sessione.
-<<<<<<< HEAD
      *
      * @return void
-=======
->>>>>>> 9831a351 (.)
      */
     protected function loadTenantFromSession(): void
     {
@@ -136,11 +120,7 @@ trait InteractsWithTenant
         if ($tenant !== null) {
             $tenantId = $tenant->getKey();
             if ($tenantId !== null) {
-<<<<<<< HEAD
                 static::addGlobalScope(new TenantScope());
-=======
-                static::addGlobalScope(new TenantScope);
->>>>>>> 9831a351 (.)
             }
         }
     }

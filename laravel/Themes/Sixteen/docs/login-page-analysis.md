@@ -102,7 +102,6 @@ login.blade.php (Layout PA + Branding)
 - **Button**: `x-pub_theme::blocks.buttons.button`
 - **Alert**: `x-pub_theme::blocks.alerts.alert`
 - **Card**: `x-pub_theme::blocks.cards.card`
-=======
 
 ### 3. Struttura Proposta
 ```blade

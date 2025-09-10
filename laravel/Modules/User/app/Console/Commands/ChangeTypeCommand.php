@@ -7,19 +7,12 @@ namespace Modules\User\Console\Commands;
 use Illuminate\Console\Command;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Datas\XotData;
-<<<<<<< HEAD
 use Illuminate\Support\Arr;
 use Symfony\Component\Console\Input\InputOption;
 use Webmozart\Assert\Assert;
 
 use function Laravel\Prompts\text;
 use function Laravel\Prompts\select;
-=======
-use Webmozart\Assert\Assert;
-
-use function Laravel\Prompts\select;
-use function Laravel\Prompts\text;
->>>>>>> 9831a351 (.)
 
 /**
  * Command to change user type based on project configuration.
@@ -55,17 +48,13 @@ class ChangeTypeCommand extends Command
 
     /**
      * Execute the console command.
-<<<<<<< HEAD
      *
      * @return void
-=======
->>>>>>> 9831a351 (.)
      */
     public function handle(): void
     {
         $xot = XotData::make();
         $email = text('User email?');
-<<<<<<< HEAD
         
         /** @var UserContract $user */
         $user = XotData::make()->getUserByEmail($email);
@@ -76,51 +65,26 @@ class ChangeTypeCommand extends Command
         }
         if (!method_exists($user, 'getChildTypes')) {
             $this->error('User model does not have childTypes method.');
-=======
-
-        /** @var UserContract $user */
-        $user = XotData::make()->getUserByEmail($email);
-
-        if (! $user) {
-            $this->error("User with email '{$email}' not found.");
-
-            return;
-        }
-        if (! method_exists($user, 'getChildTypes')) {
-            $this->error('User model does not have childTypes method.');
-
->>>>>>> 9831a351 (.)
             return;
         }
 
         $childTypes = $xot->getUserChildTypes();
         /** @phpstan-ignore nullsafe.neverNull */
         $this->info("Current user type: {$user->type?->getLabel()}");
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 9831a351 (.)
         $typeClass = $xot->getUserChildTypeClass();
         /** @var array<string, string> */
         $options = [];
         foreach ($childTypes as $key => $item) {
             if (is_object($item) && method_exists($item, 'getLabel') && app(\Modules\Xot\Actions\Cast\SafeObjectCastAction::class)->hasNonNullProperty($item, 'value')) {
                 $value = app(\Modules\Xot\Actions\Cast\SafeObjectCastAction::class)->getStringProperty($item, 'value', '');
-<<<<<<< HEAD
                 $options[$value] = (string)$item->getLabel();
             } else {
                 $options[(string)$key] = 'Unknown';
-=======
-                $options[$value] = (string) $item->getLabel();
-            } else {
-                $options[(string) $key] = 'Unknown';
->>>>>>> 9831a351 (.)
             }
         }
 
         $newType = select('Select new user type:', $options);
-<<<<<<< HEAD
         
         $newTypeEnum = $typeClass::tryFrom($newType);
         Assert::notNull($newTypeEnum);
@@ -129,15 +93,6 @@ class ChangeTypeCommand extends Command
         $user->type = $newTypeEnum;
         $user->save();
         
-=======
-
-        $newTypeEnum = $typeClass::tryFrom($newType);
-        Assert::notNull($newTypeEnum);
-
-        $user->type = $newTypeEnum;
-        $user->save();
-
->>>>>>> 9831a351 (.)
         $this->info("User type changed to '{$newTypeEnum->getLabel()}' for {$email}");
     }
 }

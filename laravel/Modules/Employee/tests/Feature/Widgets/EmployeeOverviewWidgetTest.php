@@ -127,11 +127,7 @@ describe('EmployeeOverviewWidget', function () {
         }
 
         // Act
-<<<<<<< HEAD
         $widget = new EmployeeOverviewWidget();
-=======
-        $widget = new EmployeeOverviewWidget;
->>>>>>> cda86dd (.)
         $stats = $widget->getStats();
 
         // Assert - Il primo stat dovrebbe avere chart data

@@ -6,22 +6,14 @@ namespace Modules\User\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
-<<<<<<< HEAD
 
 use function Laravel\Prompts\password;
 
-=======
->>>>>>> 9831a351 (.)
 use Modules\User\Datas\PasswordData;
 use Modules\User\Events\NewPasswordSet;
 use Modules\Xot\Datas\XotData;
 use Webmozart\Assert\Assert;
 
-<<<<<<< HEAD
-=======
-use function Laravel\Prompts\password;
-
->>>>>>> 9831a351 (.)
 class ChangePasswordCommand extends Command
 {
     protected $signature = 'user:change-password';
@@ -40,11 +32,7 @@ class ChangePasswordCommand extends Command
         }
 
         // Ensure we fetched a persisted user and not a transient instance to avoid accidental insert
-<<<<<<< HEAD
         if (null == $user || ! $user->exists) {
-=======
-        if ($user == null || ! $user->exists) {
->>>>>>> 9831a351 (.)
             $this->error('User not found or not persisted. Please create the user first (name, email, type, etc.).');
 
             return;

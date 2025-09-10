@@ -28,10 +28,6 @@ use Modules\Xot\Datas\XotData;
  * @property string|null $updated_by
  * @property string|null $created_by
  * @property \Modules\Xot\Contracts\UserContract|null $user
-<<<<<<< HEAD
-=======
- *
->>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser query()
@@ -47,35 +43,17 @@ use Modules\Xot\Datas\XotData;
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUserId($value)
-<<<<<<< HEAD
  * @property string $uuid (DC2Type:guid)
  * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUuid($value)
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
  * @mixin IdeHelperSocialiteUser
  * @method static \Modules\User\Database\Factories\SocialiteUserFactory factory($count = null, $state = [])
-=======
- *
- * @property string $uuid (DC2Type:guid)
- *
- * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUuid($value)
- *
- * @property \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
- * @mixin IdeHelperSocialiteUser
- *
- * @method static \Modules\User\Database\Factories\SocialiteUserFactory factory($count = null, $state = [])
- *
->>>>>>> 9831a351 (.)
  * @mixin \Eloquent
  */
 class SocialiteUser extends BaseModel
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> 9831a351 (.)
     /** @var list<string> */
     protected $fillable = [
         // 'id',

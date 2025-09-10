@@ -12,13 +12,7 @@ use Modules\Xot\Filament\Widgets\XotBaseChartWidget;
 class UserTypeRegistrationsChartWidget extends XotBaseChartWidget
 {
     protected static ?string $heading = null;
-<<<<<<< HEAD
     protected static ?int $sort = 1;
-=======
-
-    protected static ?int $sort = 1;
-
->>>>>>> 9831a351 (.)
     protected static bool $isLazy = true;
 
     public string $model;
@@ -46,17 +40,10 @@ class UserTypeRegistrationsChartWidget extends XotBaseChartWidget
         }
 
         // Fallback ai valori di default se i filtri non sono disponibili
-<<<<<<< HEAD
         if (null === $startDate) {
             $startDate = now()->subDays(30);
         }
         if (null === $endDate) {
-=======
-        if ($startDate === null) {
-            $startDate = now()->subDays(30);
-        }
-        if ($endDate === null) {
->>>>>>> 9831a351 (.)
             $endDate = now();
         }
 

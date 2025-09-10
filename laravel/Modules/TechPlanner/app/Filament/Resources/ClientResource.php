@@ -31,10 +31,11 @@ class ClientResource extends XotBaseResource
         foreach($fixes as $client){
             $client->update(['route'=>$client->address]);
         }
-        $fixes=Client::whereNull('city')->whereNotNull('company_office')->get();//company_office
-        foreach($fixes as $client){
-            $client->update(['city'=>$client->company_office]);
-        }
+        // Skip company_office migration as field doesn't exist
+        // $fixes=Client::whereNull('city')->whereNotNull('company_office')->get();//company_office
+        // foreach($fixes as $client){
+        //     $client->update(['city'=>$client->company_office]);
+        // }
         return [
             'business_closed' => Toggle::make('business_closed'),
             'activity' => TextInput::make('activity'),
@@ -52,7 +53,7 @@ class ClientResource extends XotBaseResource
             //'address'=>AddressSection::make('address'),//->relationship('address'), TO DO !
             'contacts' => ContactSection::make('contacts'),
             'competent_health_unit' => TextInput::make('competent_health_unit'),
-            'company_office' => TextInput::make('company_office'),
+            // 'company_office' field removed - property doesn't exist in Client model
             'notes' => Textarea::make('notes'),
         ];
     }

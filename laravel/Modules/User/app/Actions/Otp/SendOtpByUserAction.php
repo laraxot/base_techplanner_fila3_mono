@@ -70,11 +70,7 @@ class SendOtpByUserAction
      * Update user's password with a hashed temporary OTP and set expiration properties.
      *
      * @param  UserContract  $user  user to update
-<<<<<<< HEAD
      * @param  string $temporaryPassword  generated temporary password
-=======
-     * @param  string  $temporaryPassword  generated temporary password
->>>>>>> 9831a351 (.)
      * @param  Carbon  $expirationTime  expiration time for the OTP
      */
     private function updateUserWithOtp(UserContract $user, string $temporaryPassword, Carbon $expirationTime): void
@@ -90,11 +86,7 @@ class SendOtpByUserAction
      * Send OTP notification to user's email.
      *
      * @param  UserContract  $user  user to notify
-<<<<<<< HEAD
      * @param  string $temporaryPassword  temporary password to include in notification
-=======
-     * @param  string  $temporaryPassword  temporary password to include in notification
->>>>>>> 9831a351 (.)
      */
     private function dispatchOtpNotification(UserContract $user, string $temporaryPassword): void
     {

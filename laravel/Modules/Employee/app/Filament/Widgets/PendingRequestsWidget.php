@@ -16,11 +16,7 @@ class PendingRequestsWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.pending-requests-widget';
 
-<<<<<<< HEAD
     protected int|string|array $columnSpan = 1;
-=======
-    protected int|string|array $columnSpan = 'full';
->>>>>>> cda86dd (.)
 
     protected static ?int $sort = 5;
 
@@ -41,7 +37,6 @@ class PendingRequestsWidget extends XotBaseWidget
      */
     protected function getPendingRequests(): array
     {
-<<<<<<< HEAD
         // Mock data for demonstration - in production this would come from a database
         return [
             [
@@ -50,19 +45,6 @@ class PendingRequestsWidget extends XotBaseWidget
                 'title' => 'Ferie Natale',
                 'description' => 'Ferie dal 23 dicembre al 2 gennaio',
                 'submitted_date' => now()->subDays(2),
-=======
-        // Mock data for now - in production this would come from a database
-        // Return empty array to show the "all managed" state
-        return [
-            // Uncomment to show pending requests example:
-            /*
-            [
-                'id' => 1,
-                'type' => 'vacation',
-                'title' => 'Richiesta Ferie Agosto',
-                'description' => 'Ferie dal 15 al 30 agosto 2024',
-                'submitted_date' => now()->subDays(3),
->>>>>>> cda86dd (.)
                 'status' => 'pending',
                 'approver' => 'Mario Rossi',
                 'priority' => 'normal',
@@ -72,18 +54,13 @@ class PendingRequestsWidget extends XotBaseWidget
                 'id' => 2,
                 'type' => 'permit',
                 'title' => 'Permesso Medico',
-<<<<<<< HEAD
                 'description' => 'Visita cardiologica - 3 ore',
-=======
-                'description' => 'Visita specialistica - 2 ore',
->>>>>>> cda86dd (.)
                 'submitted_date' => now()->subDay(),
                 'status' => 'pending',
                 'approver' => 'Sara Bianchi',
                 'priority' => 'high',
                 'icon' => 'heroicon-o-heart',
             ],
-<<<<<<< HEAD
             [
                 'id' => 3,
                 'type' => 'smart_working',
@@ -95,9 +72,6 @@ class PendingRequestsWidget extends XotBaseWidget
                 'priority' => 'normal',
                 'icon' => 'heroicon-o-home',
             ],
-=======
-            */
->>>>>>> cda86dd (.)
         ];
     }
 

@@ -8,19 +8,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\User\Filament\Resources\RoleResource;
-<<<<<<< HEAD
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
-
-
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-
-
-
-
-=======
->>>>>>> 9831a351 (.)
 
 class CreateRole extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord
 {

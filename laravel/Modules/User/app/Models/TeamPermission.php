@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Models;
 
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Builder;
-=======
->>>>>>> 9831a351 (.)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Team Permission Model
-<<<<<<< HEAD
  * 
-=======
- *
->>>>>>> 9831a351 (.)
  * Represents a permission assigned to a user within a team context.
  *
  * @property string $id
@@ -28,23 +21,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \DateTime|null $updated_at
  * @property Team $team
  * @property User $user
-<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TeamPermission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TeamPermission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TeamPermission query()
-=======
- *
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TeamPermission newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TeamPermission newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|TeamPermission query()
- *
->>>>>>> 9831a351 (.)
  * @mixin IdeHelperTeamPermission
  * @mixin \Eloquent
  */
 class TeamPermission extends Model
 {
-<<<<<<< HEAD
     /** 
      * The database connection that should be used by the model.
      *
@@ -56,19 +40,6 @@ class TeamPermission extends Model
      * The attributes that are mass assignable.
      *
      * @var list<string> 
-=======
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'user';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
->>>>>>> 9831a351 (.)
      */
     protected $fillable = [
         'team_id',

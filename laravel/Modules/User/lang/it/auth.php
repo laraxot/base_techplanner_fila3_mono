@@ -98,7 +98,6 @@ return [
         'remember' => 'Ricordami',
         'email_structured' => [
             'label' => 'Email',
-<<<<<<< HEAD
             'placeholder' => 'Inserisci la tua email'
         ],
         'password_structured' => [
@@ -107,16 +106,6 @@ return [
         ],
         'remember_structured' => [
             'label' => 'Ricordami'
-=======
-            'placeholder' => 'Inserisci la tua email',
-        ],
-        'password_structured' => [
-            'label' => 'Password',
-            'placeholder' => 'Inserisci la tua password',
-        ],
-        'remember_structured' => [
-            'label' => 'Ricordami',
->>>>>>> 9831a351 (.)
         ],
         'submit' => 'Accedi',
         'forgot_password' => 'Password dimenticata?',
@@ -161,7 +150,6 @@ return [
         // Structured version
         'name_structured' => [
             'label' => 'Nome',
-<<<<<<< HEAD
             'placeholder' => 'Inserisci il tuo nome completo'
         ],
         'email_structured' => [
@@ -175,21 +163,6 @@ return [
         'password_confirmation_structured' => [
             'label' => 'Conferma Password',
             'placeholder' => 'Conferma la password'
-=======
-            'placeholder' => 'Inserisci il tuo nome completo',
-        ],
-        'email_structured' => [
-            'label' => 'Email',
-            'placeholder' => 'Inserisci la tua email',
-        ],
-        'password_structured' => [
-            'label' => 'Password',
-            'placeholder' => 'Inserisci la password',
-        ],
-        'password_confirmation_structured' => [
-            'label' => 'Conferma Password',
-            'placeholder' => 'Conferma la password',
->>>>>>> 9831a351 (.)
         ],
     ],
 
@@ -206,11 +179,7 @@ return [
         // Structured version
         'email_structured' => [
             'label' => 'Email',
-<<<<<<< HEAD
             'placeholder' => 'Inserisci la tua email'
-=======
-            'placeholder' => 'Inserisci la tua email',
->>>>>>> 9831a351 (.)
         ],
     ],
 
@@ -241,7 +210,6 @@ return [
         // Structured version
         'email_structured' => [
             'label' => 'Email',
-<<<<<<< HEAD
             'placeholder' => 'Inserisci la tua email'
         ],
         'password_structured' => [
@@ -251,17 +219,6 @@ return [
         'password_confirmation_structured' => [
             'label' => 'Conferma Password',
             'placeholder' => 'Conferma la nuova password'
-=======
-            'placeholder' => 'Inserisci la tua email',
-        ],
-        'password_structured' => [
-            'label' => 'Nuova Password',
-            'placeholder' => 'Inserisci la nuova password',
-        ],
-        'password_confirmation_structured' => [
-            'label' => 'Conferma Password',
-            'placeholder' => 'Conferma la nuova password',
->>>>>>> 9831a351 (.)
         ],
     ],
 
@@ -340,11 +297,7 @@ return [
             'try_again' => 'Riprova',
         ],
     ],
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 9831a351 (.)
     // Reset Password
     'passwords' => [
         'reset' => 'La tua password è stata reimpostata!',

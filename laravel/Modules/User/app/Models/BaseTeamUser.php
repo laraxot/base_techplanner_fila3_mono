@@ -13,10 +13,6 @@ use Parental\HasChildren;
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser query()
-<<<<<<< HEAD
-=======
- *
->>>>>>> 9831a351 (.)
  * @property int $id
  * @property string $uuid
  * @property string|null $team_id
@@ -27,10 +23,6 @@ use Parental\HasChildren;
  * @property string|null $created_by
  * @property string|null $updated_by
  * @property string|null $customer_id
-<<<<<<< HEAD
-=======
- *
->>>>>>> 9831a351 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereCustomerId($value)
@@ -41,25 +33,12 @@ use Parental\HasChildren;
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereUuid($value)
-<<<<<<< HEAD
  * @property Carbon|null $deleted_at
  * @property string|null $deleted_by
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereDeletedBy($value)
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
-=======
- *
- * @property Carbon|null $deleted_at
- * @property string|null $deleted_by
- *
- * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamUser whereDeletedBy($value)
- *
- * @property \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
->>>>>>> 9831a351 (.)
  * @mixin \Eloquent
  */
 abstract class BaseTeamUser extends BasePivot
@@ -67,9 +46,5 @@ abstract class BaseTeamUser extends BasePivot
     use HasChildren;
 
     protected $connection = 'user';
-<<<<<<< HEAD
-=======
-
->>>>>>> 9831a351 (.)
     protected $table = 'team_user';
 }

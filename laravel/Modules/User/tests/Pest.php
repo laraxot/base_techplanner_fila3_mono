@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-<<<<<<< HEAD
 use Modules\User\Tests\TestCase;
-=======
-namespace Modules\User\Tests;
->>>>>>> 9831a351 (.)
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +15,7 @@ namespace Modules\User\Tests;
 |
 */
 
-<<<<<<< HEAD
 pest()->extend(TestCase::class)
-=======
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
->>>>>>> 9831a351 (.)
     ->in('Feature', 'Unit');
 
 /*

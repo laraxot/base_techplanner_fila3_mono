@@ -11,7 +11,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 ```blade
 <!-- Alert Informazione -->
 <x-pub_theme::blocks.alerts.alert variant="info" title="Informazione">
-=======
 <x-sixteen::blocks.alerts.alert variant="info" title="Informazione">
     Questo è un messaggio informativo per l'utente.
 </x-sixteen::blocks.alerts.alert>
@@ -36,7 +35,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.alerts.alert 
-=======
 <x-sixteen::blocks.alerts.alert 
     variant="info" 
     dismissible="true"
@@ -44,7 +42,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 >
     Questo alert può essere chiuso dall'utente.
 </x-pub_theme::blocks.alerts.alert>
-=======
 </x-sixteen::blocks.alerts.alert>
 ```
 
@@ -52,7 +49,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.alerts.alert-link 
-=======
 <x-sixteen::blocks.alerts.alert-link 
     variant="success"
     href="/dettagli-operazione"
@@ -60,7 +56,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 >
     Operazione completata. Clicca per vedere i dettagli.
 </x-pub_theme::blocks.alerts.alert-link>
-=======
 </x-sixteen::blocks.alerts.alert-link>
 ```
 
@@ -69,7 +64,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 ```blade
 <!-- Toast di successo -->
 <x-pub_theme::blocks.alerts.toast 
-=======
 <x-sixteen::blocks.alerts.toast 
     variant="success"
     position="top-right"
@@ -80,7 +74,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 <!-- Toast di errore -->
 <x-pub_theme::blocks.alerts.toast 
-=======
 </x-sixteen::blocks.alerts.toast>
 
 <!-- Toast di errore -->
@@ -91,7 +84,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 >
     Errore durante il salvataggio.
 </x-pub_theme::blocks.alerts.toast>
-=======
 </x-sixteen::blocks.alerts.toast>
 ```
 
@@ -102,7 +94,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 ```blade
 <!-- Pulsante Primario -->
 <x-pub_theme::blocks.buttons.button variant="primary" size="md">
-=======
 <x-sixteen::blocks.buttons.button variant="primary" size="md">
     Conferma Azione
 </x-sixteen::blocks.buttons.button>
@@ -133,7 +124,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 ```blade
 <!-- Pulsante con icona a sinistra -->
 <x-pub_theme::blocks.buttons.button 
-=======
 <x-sixteen::blocks.buttons.button 
     variant="primary" 
     icon="heroicon-o-plus"
@@ -144,7 +134,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 <!-- Pulsante con icona a destra -->
 <x-pub_theme::blocks.buttons.button 
-=======
 </x-sixteen::blocks.buttons.button>
 
 <!-- Pulsante con icona a destra -->
@@ -155,7 +144,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 >
     Avanti
 </x-pub_theme::blocks.buttons.button>
-=======
 </x-sixteen::blocks.buttons.button>
 ```
 
@@ -164,7 +152,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 ```blade
 <x-pub_theme::blocks.buttons.button-group>
     <x-pub_theme::blocks.buttons.button-group-item variant="outline">
-=======
 <x-sixteen::blocks.buttons.button-group>
     <x-sixteen::blocks.buttons.button-group-item variant="outline">
         <x-heroicon-o-chevron-left class="h-4 w-4" />
@@ -192,7 +179,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         Questa è una card semplice con contenuto di testo.
     </p>
 </x-pub_theme::blocks.cards.card>
-=======
 <x-sixteen::blocks.cards.card>
     <p class="text-gray-600">
         Questa è una card semplice con contenuto di testo.
@@ -208,7 +194,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold text-gray-900">Titolo Card</h3>
             <x-pub_theme::blocks.utilities.badge variant="success">Nuovo</x-pub_theme::blocks.utilities.badge>
-=======
 <x-sixteen::blocks.cards.card with-header="true" with-footer="true">
     <x-slot name="header">
         <div class="flex items-center justify-between">
@@ -230,7 +215,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <x-slot name="footer">
         <div class="flex justify-end space-x-2">
             <x-pub_theme::blocks.buttons.button variant="outline" size="sm">
-=======
             <x-sixteen::blocks.buttons.button variant="outline" size="sm">
                 Annulla
             </x-sixteen::blocks.buttons.button>
@@ -246,7 +230,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.cards.card-overlay 
-=======
 <x-sixteen::blocks.cards.card-overlay 
     image-src="/images/hero-bg.jpg"
     overlay-title="Servizi Digitali"
@@ -259,7 +242,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             Scopri le nostre soluzioni digitali per la pubblica amministrazione.
         </p>
         <x-pub_theme::blocks.buttons.button variant="primary" size="sm">
-=======
         <x-sixteen::blocks.buttons.button variant="primary" size="sm">
             Scopri di più
         </x-sixteen::blocks.buttons.button>
@@ -275,7 +257,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <form class="space-y-6">
     <!-- Input Email -->
     <x-pub_theme::blocks.forms.input 
-=======
     <x-sixteen::blocks.forms.input 
         name="email"
         type="email"
@@ -288,7 +269,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Input Password -->
     <x-pub_theme::blocks.forms.input 
-=======
     <x-sixteen::blocks.forms.input 
         name="password"
         type="password"
@@ -302,7 +282,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Select Paese -->
     <x-pub_theme::blocks.forms.select 
-=======
     <x-sixteen::blocks.forms.select 
         name="country"
         label="Paese di residenza"
@@ -318,7 +297,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Checkbox Termini -->
     <x-pub_theme::blocks.forms.checkbox 
-=======
     <x-sixteen::blocks.forms.checkbox 
         name="terms"
         label="Accetto i termini e condizioni"
@@ -331,21 +309,18 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         <label class="block text-sm font-medium text-gray-700">Genere</label>
         <div class="space-y-2">
             <x-pub_theme::blocks.forms.radio 
-=======
             <x-sixteen::blocks.forms.radio 
                 name="gender"
                 value="male"
                 label="Maschio"
             />
             <x-pub_theme::blocks.forms.radio 
-=======
             <x-sixteen::blocks.forms.radio 
                 name="gender"
                 value="female"
                 label="Femmina"
             />
             <x-pub_theme::blocks.forms.radio 
-=======
             <x-sixteen::blocks.forms.radio 
                 name="gender"
                 value="other"
@@ -356,7 +331,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Switch Notifiche -->
     <x-pub_theme::blocks.forms.switch 
-=======
     <x-sixteen::blocks.forms.switch 
         name="notifications"
         label="Ricevi notifiche"
@@ -365,7 +339,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Textarea Descrizione -->
     <x-pub_theme::blocks.forms.textarea 
-=======
     <x-sixteen::blocks.forms.textarea 
         name="description"
         label="Descrizione"
@@ -377,7 +350,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- File Upload -->
     <x-pub_theme::blocks.forms.file-upload 
-=======
     <x-sixteen::blocks.forms.file-upload 
         name="documents"
         label="Carica documenti"
@@ -391,7 +363,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <!-- Pulsanti Form -->
     <div class="flex justify-end space-x-3">
         <x-pub_theme::blocks.buttons.button variant="outline">
-=======
         <x-sixteen::blocks.buttons.button variant="outline">
             Annulla
         </x-sixteen::blocks.buttons.button>
@@ -408,7 +379,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.navigation.navbar 
-=======
 <x-sixteen::blocks.navigation.navbar 
     brand="Logo Azienda"
     brand-href="/"
@@ -447,7 +417,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         </div>
     </x-slot>
 </x-pub_theme::blocks.navigation.navbar>
-=======
 </x-sixteen::blocks.navigation.navbar>
 ```
 
@@ -455,7 +424,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.navigation.breadcrumb 
-=======
 <x-sixteen::blocks.navigation.breadcrumb 
     :items="[
         ['label' => 'Home', 'href' => '/'],
@@ -470,7 +438,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.navigation.pagination 
-=======
 <x-sixteen::blocks.navigation.pagination 
     :current-page="5"
     :total-pages="20"
@@ -488,7 +455,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 
 ```blade
 <x-pub_theme::blocks.layout.container>
-=======
 <x-sixteen::blocks.layout.container>
     <div class="space-y-8">
         <!-- Header Section -->
@@ -502,7 +468,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         <!-- Grid di Card -->
         <x-pub_theme::blocks.layout.grid cols="3" gap="lg" responsive="true">
             <x-pub_theme::blocks.cards.card>
-=======
         <x-sixteen::blocks.layout.grid cols="3" gap="lg" responsive="true">
             <x-sixteen::blocks.cards.card>
                 <div class="text-center">
@@ -513,7 +478,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             </x-pub_theme::blocks.cards.card>
             
             <x-pub_theme::blocks.cards.card>
-=======
             </x-sixteen::blocks.cards.card>
             
             <x-sixteen::blocks.cards.card>
@@ -525,7 +489,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             </x-pub_theme::blocks.cards.card>
             
             <x-pub_theme::blocks.cards.card>
-=======
             </x-sixteen::blocks.cards.card>
             
             <x-sixteen::blocks.cards.card>
@@ -538,7 +501,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
         </x-pub_theme::blocks.layout.grid>
     </div>
 </x-pub_theme::blocks.layout.container>
-=======
             </x-sixteen::blocks.cards.card>
         </x-sixteen::blocks.layout.grid>
     </div>
@@ -553,7 +515,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <div class="space-y-6">
     <!-- Progress Base -->
     <x-pub_theme::blocks.feedback.progress 
-=======
     <x-sixteen::blocks.feedback.progress 
         :value="75"
         :max="100"
@@ -564,7 +525,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Progress Animato -->
     <x-pub_theme::blocks.feedback.progress 
-=======
     <x-sixteen::blocks.feedback.progress 
         :value="60"
         :max="100"
@@ -577,7 +537,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Progress con Varianti -->
     <x-pub_theme::blocks.feedback.progress 
-=======
     <x-sixteen::blocks.feedback.progress 
         :value="90"
         :max="100"
@@ -595,7 +554,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <div class="space-y-6">
     <!-- Spinner Base -->
     <x-pub_theme::blocks.feedback.spinner 
-=======
     <x-sixteen::blocks.feedback.spinner 
         variant="primary"
         size="md"
@@ -604,7 +562,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Spinner Grande -->
     <x-pub_theme::blocks.feedback.spinner 
-=======
     <x-sixteen::blocks.feedback.spinner 
         variant="success"
         size="lg"
@@ -613,7 +570,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Spinner Senza Label -->
     <x-pub_theme::blocks.feedback.spinner 
-=======
     <x-sixteen::blocks.feedback.spinner 
         variant="primary"
         size="sm"
@@ -630,7 +586,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <!-- Badge Base -->
     <div class="flex items-center space-x-2">
         <x-pub_theme::blocks.utilities.badge variant="primary">
-=======
         <x-sixteen::blocks.utilities.badge variant="primary">
             Nuovo
         </x-sixteen::blocks.utilities.badge>
@@ -651,7 +606,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     <!-- Badge Pill -->
     <div class="flex items-center space-x-2">
         <x-pub_theme::blocks.utilities.badge variant="primary" pill="true">
-=======
         <x-sixteen::blocks.utilities.badge variant="primary" pill="true">
             Pill Badge
         </x-sixteen::blocks.utilities.badge>
@@ -668,7 +622,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     >
         Badge rimovibile
     </x-pub_theme::blocks.utilities.badge>
-=======
     </x-sixteen::blocks.utilities.badge>
 </div>
 ```
@@ -679,7 +632,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <div class="space-y-4">
     <!-- Tooltip Top -->
     <x-pub_theme::blocks.utilities.tooltip 
-=======
     <x-sixteen::blocks.utilities.tooltip 
         content="Informazioni aggiuntive"
         position="top"
@@ -692,7 +644,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Tooltip Bottom -->
     <x-pub_theme::blocks.utilities.tooltip 
-=======
     </x-sixteen::blocks.utilities.tooltip>
     
     <!-- Tooltip Bottom -->
@@ -708,7 +659,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
     
     <!-- Tooltip Click -->
     <x-pub_theme::blocks.utilities.tooltip 
-=======
     </x-sixteen::blocks.utilities.tooltip>
     
     <!-- Tooltip Click -->
@@ -721,7 +671,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             Click me
         </button>
     </x-pub_theme::blocks.utilities.tooltip>
-=======
     </x-sixteen::blocks.utilities.tooltip>
 </div>
 ```
@@ -741,7 +690,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
 <body class="bg-gray-50">
     <!-- Navbar -->
     <x-pub_theme::blocks.navigation.navbar 
-=======
     <x-sixteen::blocks.navigation.navbar 
         brand="Tema Sixteen"
         brand-href="/"
@@ -754,7 +702,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             <a href="/documentazione" class="text-gray-700 hover:text-blue-600">Documentazione</a>
         </div>
     </x-pub_theme::blocks.navigation.navbar>
-=======
     </x-sixteen::blocks.navigation.navbar>
     
     <!-- Main Content -->
@@ -784,7 +731,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                 <h2 class="text-2xl font-semibold text-gray-900 mb-6">Alert e Notifiche</h2>
                 <div class="space-y-4">
                     <x-pub_theme::blocks.alerts.alert variant="info" title="Informazione">
-=======
                     <x-sixteen::blocks.alerts.alert variant="info" title="Informazione">
                         Questo è un esempio di alert informativo.
                     </x-sixteen::blocks.alerts.alert>
@@ -802,7 +748,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <x-pub_theme::blocks.forms.input 
-=======
                 <x-sixteen::blocks.cards.card>
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -814,7 +759,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                             />
                             
                             <x-pub_theme::blocks.forms.input 
-=======
                             <x-sixteen::blocks.forms.input 
                                 name="cognome"
                                 label="Cognome"
@@ -824,7 +768,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                         </div>
                         
                         <x-pub_theme::blocks.forms.input 
-=======
                         <x-sixteen::blocks.forms.input 
                             name="email"
                             type="email"
@@ -835,7 +778,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                         />
                         
                         <x-pub_theme::blocks.forms.select 
-=======
                         <x-sixteen::blocks.forms.select 
                             name="categoria"
                             label="Categoria"
@@ -849,7 +791,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                         />
                         
                         <x-pub_theme::blocks.forms.textarea 
-=======
                         <x-sixteen::blocks.forms.textarea 
                             name="messaggio"
                             label="Messaggio"
@@ -858,7 +799,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                         />
                         
                         <x-pub_theme::blocks.forms.checkbox 
-=======
                         <x-sixteen::blocks.forms.checkbox 
                             name="newsletter"
                             label="Iscriviti alla newsletter"
@@ -867,7 +807,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                         
                         <div class="flex justify-end space-x-3">
                             <x-pub_theme::blocks.buttons.button variant="outline">
-=======
                             <x-sixteen::blocks.buttons.button variant="outline">
                                 Annulla
                             </x-sixteen::blocks.buttons.button>
@@ -884,7 +823,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                 <h2 class="text-2xl font-semibold text-gray-900 mb-6">Barre di Progresso</h2>
                 <div class="space-y-4">
                     <x-pub_theme::blocks.feedback.progress 
-=======
                     <x-sixteen::blocks.feedback.progress 
                         :value="75"
                         :max="100"
@@ -894,7 +832,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                     />
                     
                     <x-pub_theme::blocks.feedback.progress 
-=======
                     <x-sixteen::blocks.feedback.progress 
                         :value="45"
                         :max="100"
@@ -910,7 +847,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold text-gray-900 mb-6">Paginazione</h2>
                 <x-pub_theme::blocks.navigation.pagination 
-=======
                 <x-sixteen::blocks.navigation.pagination 
                     :current-page="3"
                     :total-pages="15"
@@ -919,7 +855,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                 />
             </section>
         </x-pub_theme::blocks.layout.container>
-=======
         </x-sixteen::blocks.layout.container>
     </main>
     
@@ -930,7 +865,6 @@ Questa documentazione fornisce esempi pratici di utilizzo di tutti i componenti 
                 <p>&copy; 2024 Tema Sixteen. Tutti i diritti riservati.</p>
             </div>
         </x-pub_theme::blocks.layout.container>
-=======
         <x-sixteen::blocks.layout.container>
             <div class="text-center">
                 <p>&copy; 2024 Tema Sixteen. Tutti i diritti riservati.</p>

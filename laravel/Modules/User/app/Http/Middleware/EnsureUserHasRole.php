@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-<<<<<<< HEAD
 /** 
 * Route::put('/post/{id}', function (string $id) {
 *   // ...
@@ -16,16 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 *})->middleware(EnsureUserHasRole::class.':editor,publisher');
 */
 
-=======
-/**
- * Route::put('/post/{id}', function (string $id) {
- *   // ...
- * })->middleware(EnsureUserHasRole::class.':editor');
- * Route::put('/post/{id}', function (string $id) {
- *     // ...
- *})->middleware(EnsureUserHasRole::class.':editor,publisher');
- */
->>>>>>> 9831a351 (.)
 class EnsureUserHasRole
 {
     /**
@@ -35,15 +24,13 @@ class EnsureUserHasRole
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (! $request->user()?->hasRole($role)) {
+        $user = $request->user();
+        // Check if user has role using Spatie Permission's hasRole method
+        if (! $user || ! method_exists($user, 'hasRole') || ! $user->hasRole($role)) {
             // Redirect...
             return redirect()->route('home');
         }
 
         return $next($request);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9831a351 (.)

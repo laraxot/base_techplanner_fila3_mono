@@ -28,19 +28,11 @@ trait HasRoles
     /**
      * Determine if the user has the given role.
      *
-<<<<<<< HEAD
      * @param string|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
      */
     public function hasRole($roles, ?string $guard = null): bool
     {
         if (is_string($roles) && false !== strpos($roles, '|')) {
-=======
-     * @param  string|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection  $roles
-     */
-    public function hasRole($roles, ?string $guard = null): bool
-    {
-        if (is_string($roles) && strpos($roles, '|') !== false) {
->>>>>>> 9831a351 (.)
             $roles = explode('|', $roles);
         }
 

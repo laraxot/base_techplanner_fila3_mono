@@ -3,7 +3,6 @@
 ## 🔄 Collegamenti
 - [Roadmap Principale](../../../../project_docs/roadmap.md)
 - [Analisi Tema Sixteen](../../../../project_docs/roadmap/themes/sixteen/analysis.md)
-=======
 - [Roadmap Principale](../../../../docs/roadmap.md)
 - [Analisi Tema Sixteen](../../../../docs/roadmap/themes/sixteen/analysis.md)
 
@@ -85,13 +84,11 @@
 - [Rating Module](../../../Modules/Rating/docs/roadmap.md)
 - [Seo Module](../../../Modules/Seo/docs/roadmap.md)
 - [Tenant Module](../../../Modules/Tenant/docs/roadmap.md)
-=======
 
 ---
 
 ## Collegamenti
 
 [⬅️ Torna alla Roadmap Principale](../../../../project_docs/roadmap.md)
-=======
 [⬅️ Torna alla Roadmap Principale](/docs/roadmap.md)
 

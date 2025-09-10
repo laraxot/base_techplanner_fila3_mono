@@ -11,11 +11,7 @@ use Modules\User\Models\RoleHasPermission;
 
 /**
  * RoleHasPermission Factory
-<<<<<<< HEAD
  * 
-=======
- *
->>>>>>> 9831a351 (.)
  * @extends Factory<RoleHasPermission>
  */
 class RoleHasPermissionFactory extends Factory
@@ -25,8 +21,14 @@ class RoleHasPermissionFactory extends Factory
     public function definition(): array
     {
         return [
-            'permission_id' => Permission::factory(),
-            'role_id' => Role::factory(),
+            'permission_id' => fn() => Permission::create([
+                'name' => fake()->unique()->slug(),
+                'guard_name' => 'web',
+            ])->id,
+            'role_id' => fn() => Role::create([
+                'name' => fake()->unique()->slug(),
+                'guard_name' => 'web',
+            ])->id,
         ];
     }
 

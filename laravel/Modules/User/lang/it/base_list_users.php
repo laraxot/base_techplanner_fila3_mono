@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 return array (
   'fields' => 
   array (
@@ -30,27 +29,3 @@ return array (
     ),
   ),
 );
-=======
-return [
-    'fields' => [
-        'deactivate' => [
-            'label' => 'deactivate',
-        ],
-        'unverified' => [
-            'label' => 'unverified',
-        ],
-        'verified' => [
-            'label' => 'verified',
-        ],
-        'email' => [
-            'label' => 'email',
-        ],
-        'name' => [
-            'label' => 'name',
-        ],
-        'changePassword' => [
-            'label' => 'changePassword',
-        ],
-    ],
-];
->>>>>>> 9831a351 (.)

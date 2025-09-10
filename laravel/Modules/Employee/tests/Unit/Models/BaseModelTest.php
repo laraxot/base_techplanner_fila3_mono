@@ -4,23 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Tests\Unit\Models;
 
-<<<<<<< HEAD
 use Modules\Employee\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
-
-
-=======
-use Illuminate\Database\Eloquent\Model;
-use Modules\Employee\Models\BaseModel;
-
-beforeEach(function () {
-    $this->baseModel = new class extends BaseModel
-    {
-        protected $table = 'test_employee_table';
-    };
-});
->>>>>>> cda86dd (.)
 
 test('base model extends eloquent model', function () {
     expect($this->baseModel)->toBeInstanceOf(Model::class);

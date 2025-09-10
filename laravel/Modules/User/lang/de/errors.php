@@ -64,8 +64,4 @@ return [
             'description' => 'Der eingegebene Wert ist zu kurz.',
         ],
     ],
-<<<<<<< HEAD
 ]; 
-=======
-];
->>>>>>> 9831a351 (.)

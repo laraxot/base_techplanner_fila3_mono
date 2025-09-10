@@ -4,21 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Tests\Unit\Models;
 
-<<<<<<< HEAD
 use Illuminate\Foundation\Testing\RefreshDatabase;
-=======
-use Illuminate\Foundation\Testing\DatabaseTransactions;
->>>>>>> 9831a351 (.)
 use Modules\User\Models\Device;
 use Tests\TestCase;
 
 class DeviceTest extends TestCase
 {
-<<<<<<< HEAD
     use RefreshDatabase;
-=======
-
->>>>>>> 9831a351 (.)
 
     public function test_can_create_device_with_minimal_data(): void
     {
@@ -70,11 +62,7 @@ class DeviceTest extends TestCase
         ]);
 
         // Verifica campi JSON
-<<<<<<< HEAD
         $this->assertEquals(['en', 'it', 'de'], $device->languages);
-=======
-        expect(['en', 'it', 'de'], $device->languages);
->>>>>>> 9831a351 (.)
     }
 
     public function test_device_has_soft_deletes(): void
@@ -100,11 +88,7 @@ class DeviceTest extends TestCase
         $restoredDevice->restore();
 
         $this->assertDatabaseHas('devices', ['id' => $deviceId]);
-<<<<<<< HEAD
         $this->assertNull($restoredDevice->deleted_at);
-=======
-        expect($restoredDevice->deleted_at);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_device_by_uuid(): void
@@ -114,13 +98,8 @@ class DeviceTest extends TestCase
 
         $foundDevice = Device::where('uuid', $uuid)->first();
 
-<<<<<<< HEAD
         $this->assertNotNull($foundDevice);
         $this->assertEquals($device->id, $foundDevice->id);
-=======
-        expect($foundDevice);
-        expect($device->id, $foundDevice->id);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_device_by_mobile_id(): void
@@ -129,13 +108,8 @@ class DeviceTest extends TestCase
 
         $foundDevice = Device::where('mobile_id', 'unique_mobile_123')->first();
 
-<<<<<<< HEAD
         $this->assertNotNull($foundDevice);
         $this->assertEquals($device->id, $foundDevice->id);
-=======
-        expect($foundDevice);
-        expect($device->id, $foundDevice->id);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_device_by_device_type(): void
@@ -144,13 +118,8 @@ class DeviceTest extends TestCase
 
         $foundDevice = Device::where('device', 'iPhone 13 Pro')->first();
 
-<<<<<<< HEAD
         $this->assertNotNull($foundDevice);
         $this->assertEquals($device->id, $foundDevice->id);
-=======
-        expect($foundDevice);
-        expect($device->id, $foundDevice->id);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_device_by_platform(): void
@@ -161,13 +130,8 @@ class DeviceTest extends TestCase
 
         $iosDevices = Device::where('platform', 'iOS')->get();
 
-<<<<<<< HEAD
         $this->assertCount(1, $iosDevices);
         $this->assertEquals('iOS', $iosDevices->first()->platform);
-=======
-        expect(1, $iosDevices);
-        expect('iOS', $iosDevices->first()->platform);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_device_by_browser(): void
@@ -178,13 +142,8 @@ class DeviceTest extends TestCase
 
         $safariDevices = Device::where('browser', 'Safari')->get();
 
-<<<<<<< HEAD
         $this->assertCount(1, $safariDevices);
         $this->assertEquals('Safari', $safariDevices->first()->browser);
-=======
-        expect(1, $safariDevices);
-        expect('Safari', $safariDevices->first()->browser);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_device_by_version(): void
@@ -193,13 +152,8 @@ class DeviceTest extends TestCase
 
         $foundDevice = Device::where('version', '15.0.1')->first();
 
-<<<<<<< HEAD
         $this->assertNotNull($foundDevice);
         $this->assertEquals($device->id, $foundDevice->id);
-=======
-        expect($foundDevice);
-        expect($device->id, $foundDevice->id);
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_desktop_devices(): void
@@ -210,13 +164,8 @@ class DeviceTest extends TestCase
 
         $desktopDevices = Device::where('is_desktop', true)->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $desktopDevices);
         $this->assertTrue($desktopDevices->every(fn ($device) => $device->is_desktop));
-=======
-        expect(2, $desktopDevices);
-        expect($desktopDevices->every(fn ($device) => $device->is_desktop));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_mobile_devices(): void
@@ -227,13 +176,8 @@ class DeviceTest extends TestCase
 
         $mobileDevices = Device::where('is_mobile', true)->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $mobileDevices);
         $this->assertTrue($mobileDevices->every(fn ($device) => $device->is_mobile));
-=======
-        expect(2, $mobileDevices);
-        expect($mobileDevices->every(fn ($device) => $device->is_mobile));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_tablet_devices(): void
@@ -244,13 +188,8 @@ class DeviceTest extends TestCase
 
         $tabletDevices = Device::where('is_tablet', true)->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $tabletDevices);
         $this->assertTrue($tabletDevices->every(fn ($device) => $device->is_tablet));
-=======
-        expect(2, $tabletDevices);
-        expect($tabletDevices->every(fn ($device) => $device->is_tablet));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_phone_devices(): void
@@ -261,13 +200,8 @@ class DeviceTest extends TestCase
 
         $phoneDevices = Device::where('is_phone', true)->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $phoneDevices);
         $this->assertTrue($phoneDevices->every(fn ($device) => $device->is_phone));
-=======
-        expect(2, $phoneDevices);
-        expect($phoneDevices->every(fn ($device) => $device->is_phone));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_robot_devices(): void
@@ -278,13 +212,8 @@ class DeviceTest extends TestCase
 
         $robotDevices = Device::where('is_robot', true)->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $robotDevices);
         $this->assertTrue($robotDevices->every(fn ($device) => $device->is_robot));
-=======
-        expect(2, $robotDevices);
-        expect($robotDevices->every(fn ($device) => $device->is_robot));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_devices_by_language(): void
@@ -295,13 +224,8 @@ class DeviceTest extends TestCase
 
         $englishDevices = Device::whereJsonContains('languages', 'en')->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $englishDevices);
         $this->assertTrue($englishDevices->every(fn ($device) => in_array('en', $device->languages)));
-=======
-        expect(2, $englishDevices);
-        expect($englishDevices->every(fn ($device) => in_array('en', $device->languages)));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_find_devices_by_device_pattern(): void
@@ -312,13 +236,8 @@ class DeviceTest extends TestCase
 
         $iphoneDevices = Device::where('device', 'like', '%iPhone%')->get();
 
-<<<<<<< HEAD
         $this->assertCount(2, $iphoneDevices);
         $this->assertTrue($iphoneDevices->every(fn ($device) => str_contains($device->device, 'iPhone')));
-=======
-        expect(2, $iphoneDevices);
-        expect($iphoneDevices->every(fn ($device) => str_contains($device->device, 'iPhone')));
->>>>>>> 9831a351 (.)
     }
 
     public function test_can_update_device(): void
@@ -378,50 +297,30 @@ class DeviceTest extends TestCase
             ->where('browser', 'Safari')
             ->get();
 
-<<<<<<< HEAD
         $this->assertCount(1, $devices);
         $this->assertEquals('iOS', $devices->first()->platform);
         $this->assertTrue($devices->first()->is_mobile);
         $this->assertEquals('Safari', $devices->first()->browser);
-=======
-        expect(1, $devices);
-        expect('iOS', $devices->first()->platform);
-        expect($devices->first()->is_mobile);
-        expect('Safari', $devices->first()->browser);
->>>>>>> 9831a351 (.)
     }
 
     public function test_device_has_users_relationship(): void
     {
         $device = Device::factory()->create();
 
-<<<<<<< HEAD
         $this->assertTrue(method_exists($device, 'users'));
-=======
-        expect(method_exists($device, 'users'));
->>>>>>> 9831a351 (.)
     }
 
     public function test_device_has_factory(): void
     {
         $device = Device::factory()->create();
 
-<<<<<<< HEAD
         $this->assertNotNull($device->id);
         $this->assertInstanceOf(Device::class, $device);
-=======
-        expect($device->id);
-        expect(Device::class, $device);
->>>>>>> 9831a351 (.)
     }
 
     public function test_device_has_fillable_attributes(): void
     {
-<<<<<<< HEAD
         $device = new Device();
-=======
-        $device = new Device;
->>>>>>> 9831a351 (.)
 
         $expectedFillable = [
             'id',
@@ -440,20 +339,12 @@ class DeviceTest extends TestCase
             'is_phone',
         ];
 
-<<<<<<< HEAD
         $this->assertEquals($expectedFillable, $device->getFillable());
-=======
-        expect($expectedFillable, $device->getFillable());
->>>>>>> 9831a351 (.)
     }
 
     public function test_device_has_casts(): void
     {
-<<<<<<< HEAD
         $device = new Device();
-=======
-        $device = new Device;
->>>>>>> 9831a351 (.)
 
         $expectedCasts = [
             'id' => 'string',
@@ -472,35 +363,8 @@ class DeviceTest extends TestCase
             'is_phone' => 'boolean',
         ];
 
-<<<<<<< HEAD
         $this->assertEquals($expectedCasts, $device->getCasts());
     }
 }
 
 
-
-
-
-
-
-=======
-        expect($expectedCasts, $device->getCasts());
-    }
-}
-<<<<<<< HEAD
-
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a21b63 (.)
-=======
-
-=======
->>>>>>> a0c18bc (.)
->>>>>>> 8055579 (.)
-=======
->>>>>>> d51888e (.)
->>>>>>> 9831a351 (.)

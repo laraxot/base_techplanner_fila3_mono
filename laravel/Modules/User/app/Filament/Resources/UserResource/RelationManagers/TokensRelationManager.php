@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Resources\UserResource\RelationManagers;
 
 use Filament\Forms\Components\TextInput;
-<<<<<<< HEAD
 use Filament\Forms\Form;
-=======
->>>>>>> 9831a351 (.)
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
@@ -18,17 +15,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-=======
->>>>>>> 9831a351 (.)
 class TokensRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'tokens';

@@ -38,11 +38,7 @@ class RoleFactory extends Factory
             'contributor' => 'Contributor',
             'analyst' => 'Analyst',
             'support' => 'Support Agent',
-<<<<<<< HEAD
             'developer' => 'Developer'
-=======
-            'developer' => 'Developer',
->>>>>>> 9831a351 (.)
         ];
 
         $role = $this->faker->randomElement($roles);
@@ -56,11 +52,8 @@ class RoleFactory extends Factory
 
     /**
      * Crea un ruolo admin.
-<<<<<<< HEAD
      *
      * @return static
-=======
->>>>>>> 9831a351 (.)
      */
     public function admin(): static
     {
@@ -71,11 +64,8 @@ class RoleFactory extends Factory
 
     /**
      * Crea un ruolo manager.
-<<<<<<< HEAD
      *
      * @return static
-=======
->>>>>>> 9831a351 (.)
      */
     public function manager(): static
     {
@@ -86,11 +76,8 @@ class RoleFactory extends Factory
 
     /**
      * Crea un ruolo user.
-<<<<<<< HEAD
      *
      * @return static
-=======
->>>>>>> 9831a351 (.)
      */
     public function user(): static
     {
@@ -101,12 +88,9 @@ class RoleFactory extends Factory
 
     /**
      * Crea un ruolo con un guard specifico.
-<<<<<<< HEAD
      *
      * @param string $guard
      * @return static
-=======
->>>>>>> 9831a351 (.)
      */
     public function withGuard(string $guard): static
     {
@@ -115,7 +99,4 @@ class RoleFactory extends Factory
         ]);
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 9831a351 (.)

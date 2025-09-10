@@ -29,7 +29,6 @@ use Modules\User\Models\User;
  * @property-read User $user
  * @property-read User|null $createdBy
  * @property-read User|null $updatedBy
-<<<<<<< HEAD
  * @property-read \Modules\TechPlanner\Models\Profile|null $creator
  * @property-read string $formatted_date
  * @property-read string $formatted_time
@@ -43,8 +42,6 @@ use Modules\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeRecord query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeRecord valid()
  * @mixin \Eloquent
-=======
->>>>>>> cda86dd (.)
  */
 class TimeRecord extends BaseModel
 {
@@ -85,11 +82,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the user that owns the timbratura.
-<<<<<<< HEAD
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-=======
->>>>>>> cda86dd (.)
      */
     public function user(): BelongsTo
     {
@@ -98,11 +92,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the user that created the timbratura.
-<<<<<<< HEAD
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-=======
->>>>>>> cda86dd (.)
      */
     public function createdBy(): BelongsTo
     {
@@ -111,11 +102,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the user that updated the timbratura.
-<<<<<<< HEAD
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-=======
->>>>>>> cda86dd (.)
      */
     public function updatedBy(): BelongsTo
     {
@@ -125,12 +113,8 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include time records for a specific user.
      *
-<<<<<<< HEAD
      * @param \Illuminate\Database\Eloquent\Builder<static> $query
      * @param int $userId
-=======
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
->>>>>>> cda86dd (.)
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForUser($query, int $userId)
@@ -141,12 +125,8 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include time records of a specific type.
      *
-<<<<<<< HEAD
      * @param \Illuminate\Database\Eloquent\Builder<static> $query
      * @param string $type
-=======
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
->>>>>>> cda86dd (.)
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeOfType($query, string $type)
@@ -157,12 +137,8 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include time records for a specific date.
      *
-<<<<<<< HEAD
      * @param \Illuminate\Database\Eloquent\Builder<static> $query
      * @param Carbon $date
-=======
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
->>>>>>> cda86dd (.)
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeForDate($query, Carbon $date)
@@ -173,11 +149,7 @@ class TimeRecord extends BaseModel
     /**
      * Scope a query to only include valid time records.
      *
-<<<<<<< HEAD
      * @param \Illuminate\Database\Eloquent\Builder<static> $query
-=======
-     * @param  \Illuminate\Database\Eloquent\Builder<static>  $query
->>>>>>> cda86dd (.)
      * @return \Illuminate\Database\Eloquent\Builder<static>
      */
     public function scopeValid($query)
@@ -187,11 +159,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the formatted timestamp.
-<<<<<<< HEAD
      *
      * @return string
-=======
->>>>>>> cda86dd (.)
      */
     public function getFormattedTimestampAttribute(): string
     {
@@ -200,11 +169,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the formatted time only.
-<<<<<<< HEAD
      *
      * @return string
-=======
->>>>>>> cda86dd (.)
      */
     public function getFormattedTimeAttribute(): string
     {
@@ -213,11 +179,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the formatted date only.
-<<<<<<< HEAD
      *
      * @return string
-=======
->>>>>>> cda86dd (.)
      */
     public function getFormattedDateAttribute(): string
     {
@@ -226,11 +189,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record is an entry.
-<<<<<<< HEAD
      *
      * @return bool
-=======
->>>>>>> cda86dd (.)
      */
     public function isEntry(): bool
     {
@@ -239,11 +199,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record is an exit.
-<<<<<<< HEAD
      *
      * @return bool
-=======
->>>>>>> cda86dd (.)
      */
     public function isExit(): bool
     {
@@ -252,11 +209,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record is manual.
-<<<<<<< HEAD
      *
      * @return bool
-=======
->>>>>>> cda86dd (.)
      */
     public function isManual(): bool
     {
@@ -265,7 +219,6 @@ class TimeRecord extends BaseModel
 
     /**
      * Check if the time record has location data.
-<<<<<<< HEAD
      *
      * @return bool
      */
@@ -274,11 +227,3 @@ class TimeRecord extends BaseModel
         return !empty($this->latitude) && !empty($this->longitude);
     }
 } 
-=======
-     */
-    public function hasLocation(): bool
-    {
-        return ! empty($this->latitude) && ! empty($this->longitude);
-    }
-}
->>>>>>> cda86dd (.)

@@ -24,13 +24,9 @@ return new class extends XotBaseMigration
                 $table->increments('id');
                 $table->uuidMorphs('model');
                 $table->schemalessAttributes('extra_attributes');
-<<<<<<< HEAD
                 
                 
                 
-=======
-
->>>>>>> 9831a351 (.)
             }
         );
 

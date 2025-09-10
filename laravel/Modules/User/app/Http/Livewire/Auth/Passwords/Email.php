@@ -27,10 +27,6 @@ class Email extends Component
 
         if ($response === Password::RESET_LINK_SENT) {
             $this->emailSentMessage = trans('user::'.$response);
-<<<<<<< HEAD
-=======
-
->>>>>>> 9831a351 (.)
             return;
         }
 
@@ -57,11 +53,7 @@ class Email extends Component
         $view = 'pub_theme::livewire.auth.passwords.email';
 
         return view($view, [
-<<<<<<< HEAD
             'layout' => 'pub_theme::layouts.auth'
-=======
-            'layout' => 'pub_theme::layouts.auth',
->>>>>>> 9831a351 (.)
         ]);
     }
 }

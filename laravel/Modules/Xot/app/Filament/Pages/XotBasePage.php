@@ -265,11 +265,12 @@ abstract class XotBasePage extends FilamentPage implements HasForms
     {
         $user = $this->getUser();
 
-        // Verifiamo che il metodo hasPermissionTo esista sull'utente
-        //if (!method_exists($user, 'hasPermissionTo')) {
-        //    throw new \RuntimeException('Il modello utente deve implementare il metodo hasPermissionTo');
-        //}
+        
+        if (!method_exists($user, 'hasPermissionTo')) {
+            throw new \RuntimeException('Il modello utente deve implementare il metodo hasPermissionTo');
+        }
 
+        // Use method_exists to safely call hasPermissionTo
         return $user->hasPermissionTo($permission);
     }
 

@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\DeviceResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
-=======
->>>>>>> 9831a351 (.)
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Modules\User\Filament\Resources\DeviceResource;
@@ -60,9 +57,6 @@ class ListDevices extends XotBaseListRecords
                 ->sortable(),
         ];
     }
-<<<<<<< HEAD
 
     
-=======
->>>>>>> 9831a351 (.)
 }

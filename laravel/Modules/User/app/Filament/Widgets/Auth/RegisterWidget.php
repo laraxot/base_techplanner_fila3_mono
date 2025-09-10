@@ -1,25 +1,15 @@
 <?php
-<<<<<<< HEAD
-=======
-
->>>>>>> 9831a351 (.)
 declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets\Auth;
 
-<<<<<<< HEAD
 use Filament\Forms\ComponentContainer;
-=======
->>>>>>> 9831a351 (.)
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-<<<<<<< HEAD
 use Illuminate\Http\RedirectResponse;
-=======
->>>>>>> 9831a351 (.)
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -27,30 +17,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Modules\User\Models\User;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
-<<<<<<< HEAD
 use Webmozart\Assert\Assert;
-=======
->>>>>>> 9831a351 (.)
 
 class RegisterWidget extends XotBaseWidget
 {
     protected static string $view = 'user::widgets.auth.register-widget';
-<<<<<<< HEAD
     protected static ?int $sort = 2;
-=======
-
-    protected static ?int $sort = 2;
-
->>>>>>> 9831a351 (.)
     protected static ?string $maxHeight = '600px';
 
     public static function canView(): bool
     {
-<<<<<<< HEAD
         return !Auth::check();
-=======
-        return ! Auth::check();
->>>>>>> 9831a351 (.)
     }
 
     public function mount(): void
@@ -75,11 +52,7 @@ class RegisterWidget extends XotBaseWidget
                         ->maxLength(255)
                         ->autocomplete('given-name')
                         ->validationAttribute(__('user::auth.fields.first_name')),
-<<<<<<< HEAD
                     
-=======
-
->>>>>>> 9831a351 (.)
                     'last_name' => TextInput::make('last_name')
                         ->label(__('user::auth.fields.last_name'))
                         ->required()
@@ -88,11 +61,7 @@ class RegisterWidget extends XotBaseWidget
                         ->maxLength(255)
                         ->autocomplete('family-name')
                         ->validationAttribute(__('user::auth.fields.last_name')),
-<<<<<<< HEAD
                     
-=======
-
->>>>>>> 9831a351 (.)
                     'email' => TextInput::make('email')
                         ->label(__('user::auth.fields.email'))
                         ->required()
@@ -102,11 +71,7 @@ class RegisterWidget extends XotBaseWidget
                         ->autocomplete('email')
                         ->validationAttribute(__('user::auth.fields.email'))
                         ->helperText(__('user::auth.help.email')),
-<<<<<<< HEAD
                     
-=======
-
->>>>>>> 9831a351 (.)
                     'password_grid' => Grid::make(2)
                         ->schema([
                             'password' => TextInput::make('password')
@@ -123,11 +88,7 @@ class RegisterWidget extends XotBaseWidget
                                     'regex:/[A-Z]/',
                                     'regex:/[a-z]/',
                                     'regex:/[0-9]/',
-<<<<<<< HEAD
                                     'regex:/[^A-Za-z0-9]/'
-=======
-                                    'regex:/[^A-Za-z0-9]/',
->>>>>>> 9831a351 (.)
                                 ])
                                 ->validationMessages([
                                     'password.regex' => __('user::auth.validation.password.complexity'),
@@ -136,11 +97,7 @@ class RegisterWidget extends XotBaseWidget
                                 ->validationAttribute(__('user::auth.fields.password'))
                                 ->helperText(__('user::auth.help.password'))
                                 ->confirmed(),
-<<<<<<< HEAD
                             
-=======
-
->>>>>>> 9831a351 (.)
                             'password_confirmation' => TextInput::make('password_confirmation')
                                 ->label(__('user::auth.fields.password_confirmation'))
                                 ->password()
@@ -170,7 +127,6 @@ class RegisterWidget extends XotBaseWidget
         try {
             $validatedData = $this->validateForm();
             $this->logRegistrationAttempt($validatedData);
-<<<<<<< HEAD
             
             $user = DB::transaction(function () use ($validatedData) {
                 $user = $this->createUser($validatedData);
@@ -180,18 +136,6 @@ class RegisterWidget extends XotBaseWidget
             
             $this->handleSuccessfulRegistration($user);
             
-=======
-
-            $user = DB::transaction(function () use ($validatedData) {
-                $user = $this->createUser($validatedData);
-                $this->afterUserCreated($user);
-
-                return $user;
-            });
-
-            $this->handleSuccessfulRegistration($user);
-
->>>>>>> 9831a351 (.)
         } catch (ValidationException $e) {
             throw $e;
         } catch (\Exception $e) {
@@ -202,11 +146,7 @@ class RegisterWidget extends XotBaseWidget
     protected function validateForm(): array
     {
         $data = $this->form->getState();
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 9831a351 (.)
         return [
             'first_name' => app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($data['first_name']),
             'last_name' => app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($data['last_name']),
@@ -253,30 +193,18 @@ class RegisterWidget extends XotBaseWidget
         }
 
         Auth::login($user);
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 9831a351 (.)
         Notification::make()
             ->title(__('user::auth.registration.success'))
             ->success()
             ->send();
-<<<<<<< HEAD
             
-=======
-
->>>>>>> 9831a351 (.)
         $this->redirect(route('dashboard'));
     }
 
     protected function handleRegistrationError(\Exception $e): void
     {
-<<<<<<< HEAD
         Log::error('Registration failed: ' . $e->getMessage(), [
-=======
-        Log::error('Registration failed: '.$e->getMessage(), [
->>>>>>> 9831a351 (.)
             'exception' => $e,
             'trace' => $e->getTraceAsString(),
             'ip' => request()->ip(),

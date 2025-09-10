@@ -5,37 +5,22 @@ declare(strict_types=1);
 namespace Modules\User\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-<<<<<<< HEAD
 use Modules\User\Models\PermissionRole;
 use Modules\User\Models\Permission;
-=======
-use Modules\User\Models\Permission;
-use Modules\User\Models\PermissionRole;
->>>>>>> 9831a351 (.)
 use Modules\User\Models\Role;
 
 /**
  * PermissionRole Factory
-<<<<<<< HEAD
  * 
  * Factory for creating PermissionRole model instances for testing and seeding.
  * 
-=======
- *
- * Factory for creating PermissionRole model instances for testing and seeding.
- *
->>>>>>> 9831a351 (.)
  * @extends Factory<PermissionRole>
  */
 class PermissionRoleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-<<<<<<< HEAD
      * 
-=======
-     *
->>>>>>> 9831a351 (.)
      * @var class-string<PermissionRole>
      */
     protected $model = PermissionRole::class;
@@ -48,19 +33,22 @@ class PermissionRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'permission_id' => Permission::factory(),
-            'role_id' => Role::factory(),
+            'permission_id' => fn() => Permission::create([
+                'name' => fake()->unique()->slug(),
+                'guard_name' => 'web',
+            ])->id,
+            'role_id' => fn() => Role::create([
+                'name' => fake()->unique()->slug(),
+                'guard_name' => 'web',
+            ])->id,
         ];
     }
 
     /**
      * Create permission-role relationship for a specific permission.
-<<<<<<< HEAD
      *
      * @param Permission $permission
      * @return static
-=======
->>>>>>> 9831a351 (.)
      */
     public function forPermission(Permission $permission): static
     {
@@ -71,12 +59,9 @@ class PermissionRoleFactory extends Factory
 
     /**
      * Create permission-role relationship for a specific role.
-<<<<<<< HEAD
      *
      * @param Role $role
      * @return static
-=======
->>>>>>> 9831a351 (.)
      */
     public function forRole(Role $role): static
     {
@@ -84,8 +69,4 @@ class PermissionRoleFactory extends Factory
             'role_id' => $role->id,
         ]);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9831a351 (.)

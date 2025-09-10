@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources;
 
-<<<<<<< HEAD
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\Employee\Models\Employee;
-=======
-use Filament\Forms;
->>>>>>> cda86dd (.)
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
@@ -29,7 +25,6 @@ class WorkHourResource extends XotBaseResource
         return [
             Forms\Components\Section::make('Time Entry Details')
                 ->schema([
-<<<<<<< HEAD
                     Forms\Components\Select::make('employee_id')
                         ->relationship('employee', 'name')
                         ->required(),
@@ -41,9 +36,6 @@ class WorkHourResource extends XotBaseResource
                     
                     Forms\Components\Textarea::make('notes')
                         ->maxLength(65535),
-=======
-
->>>>>>> cda86dd (.)
                 ])
                 ->columns(2),
         ];

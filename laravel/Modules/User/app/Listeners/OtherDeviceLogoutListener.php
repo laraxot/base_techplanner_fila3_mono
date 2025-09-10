@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\User\Listeners;
 
-<<<<<<< HEAD
 use Illuminate\Auth\Events\OtherDeviceLogout;
 use Illuminate\Http\Request;
 use Modules\User\Models\AuthenticationLog;
@@ -12,13 +11,6 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Modules\User\Contracts\HasAuthentications;
-=======
-use Illuminate\Auth\Events\Login;
-use Illuminate\Auth\Events\OtherDeviceLogout;
-use Illuminate\Http\Request;
-use Modules\User\Contracts\HasAuthentications;
-use Modules\User\Models\AuthenticationLog;
->>>>>>> 9831a351 (.)
 
 // use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
@@ -71,11 +63,7 @@ class OtherDeviceLogoutListener
         $newUserAgent = $this->request->userAgent();
 
         $user = $event->user;
-<<<<<<< HEAD
         if (!$user || !($user instanceof HasAuthentications)) {
-=======
-        if (! $user || ! ($user instanceof HasAuthentications)) {
->>>>>>> 9831a351 (.)
             return;
         }
 

@@ -7,17 +7,11 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\TenantResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Actions;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Modules\User\Filament\Resources\TenantResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord;
-=======
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
-use Modules\User\Filament\Resources\TenantResource;
->>>>>>> 9831a351 (.)
 
 class ViewTenant extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
 {
@@ -41,9 +35,6 @@ class ViewTenant extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
                 ]),
         ];
     }
-<<<<<<< HEAD
 
     
-=======
->>>>>>> 9831a351 (.)
 }

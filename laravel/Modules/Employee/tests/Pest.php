@@ -2,13 +2,8 @@
 
 declare(strict_types=1);
 
-<<<<<<< HEAD
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Employee\Tests\TestCase;
-=======
-use Modules\Employee\Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
->>>>>>> cda86dd (.)
 
 // ✅ CONFIGURAZIONE CORRETTA PEST + DATABASE TRANSACTIONS
 uses(TestCase::class, DatabaseTransactions::class)->in('Feature', 'Unit', 'Integration');

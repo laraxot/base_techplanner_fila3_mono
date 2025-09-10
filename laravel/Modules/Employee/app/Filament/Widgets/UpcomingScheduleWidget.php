@@ -16,11 +16,7 @@ class UpcomingScheduleWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.upcoming-schedule-widget';
 
-<<<<<<< HEAD
     protected int|string|array $columnSpan = 1;
-=======
-    protected int|string|array $columnSpan = 'full';
->>>>>>> cda86dd (.)
 
     protected static ?int $sort = 2;
 
@@ -41,7 +37,6 @@ class UpcomingScheduleWidget extends XotBaseWidget
      */
     protected function getUpcomingEvents(): array
     {
-<<<<<<< HEAD
         // Mock implementation since Employee->workHours relation and special types don't exist
         return [
             [
@@ -81,64 +76,6 @@ class UpcomingScheduleWidget extends XotBaseWidget
                 'notes' => 'Meeting cliente',
             ],
         ];
-=======
-        // Query reale per eventi futuri (prossimi 7 giorni)
-        $startDate = now()->startOfDay();
-        $endDate = now()->addDays(7)->endOfDay();
-
-        // Query per WorkHours con tipi speciali nei prossimi 7 giorni
-        $upcomingEvents = Employee::whereHas('workHours', function ($query) use ($startDate, $endDate) {
-            $query->whereBetween('timestamp', [$startDate, $endDate])
-                ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave']);
-        })
-            ->with(['workHours' => function ($query) use ($startDate, $endDate) {
-                $query->whereBetween('timestamp', [$startDate, $endDate])
-                    ->whereIn('type', ['absence', 'smart_working', 'transfer', 'leave'])
-                    ->orderBy('timestamp');
-            }])
-            ->limit(10)
-            ->get();
-
-        $events = [];
-        foreach ($upcomingEvents as $employee) {
-            foreach ($employee->workHours as $workHour) {
-                $fullName = $this->getEmployeeFullName($employee);
-
-                $events[] = [
-                    'id' => $workHour->id,
-                    'employee_name' => $fullName,
-                    'employee_initials' => $this->getInitialsFromName($fullName),
-                    'event_type' => $workHour->type,
-                    'event_title' => $this->getEventTitle($workHour->type),
-                    'start_date' => $workHour->timestamp,
-                    'end_date' => $workHour->timestamp, // Per ora stesso giorno
-                    'status' => $workHour->status ?? 'approved',
-                    'location' => $workHour->location_name,
-                    'notes' => $workHour->notes ?? '',
-                ];
-            }
-        }
-
-        // Se non ci sono dati reali, usa dati di esempio
-        if (empty($events)) {
-            return [
-                [
-                    'id' => 1,
-                    'employee_name' => 'Esempio Dipendente',
-                    'employee_initials' => 'ED',
-                    'event_type' => 'absence',
-                    'event_title' => 'Ferie',
-                    'start_date' => now()->addDays(1),
-                    'end_date' => now()->addDays(3),
-                    'status' => 'approved',
-                    'location' => null,
-                    'notes' => 'Ferie programmate',
-                ],
-            ];
-        }
-
-        return $events;
->>>>>>> cda86dd (.)
     }
 
     /**
@@ -214,15 +151,8 @@ class UpcomingScheduleWidget extends XotBaseWidget
 
     /**
      * Get full name from Employee model using real database fields
-<<<<<<< HEAD
      */
     protected function getEmployeeFullName(\Modules\Employee\Models\Employee $employee): string
-=======
-     *
-     * @param  Employee  $employee
-     */
-    protected function getEmployeeFullName($employee): string
->>>>>>> cda86dd (.)
     {
         // Use full_name mutator if available
         if (! empty($employee->full_name)) {
