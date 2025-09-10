@@ -17,6 +17,8 @@ abstract class BaseUser extends Authenticatable
      */
     public function notifications(): MorphMany
     {
-        return $this->morphMany(config('notifications.notification_model', \Illuminate\Notifications\DatabaseNotification::class), 'notifiable');
+        /** @var class-string<\Illuminate\Database\Eloquent\Model> $notificationModel */
+        $notificationModel = config('notifications.notification_model', \Illuminate\Notifications\DatabaseNotification::class);
+        return $this->morphMany($notificationModel, 'notifiable');
     }
 }

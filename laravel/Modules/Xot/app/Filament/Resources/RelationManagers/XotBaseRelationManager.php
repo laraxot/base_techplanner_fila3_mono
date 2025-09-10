@@ -89,6 +89,7 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
     {
         $actions = [];
         $resource=static::class;
+        // @phpstan-ignore function.alreadyNarrowedType
         if (method_exists($resource, 'canAttach')) {
             $actions['attach'] = Tables\Actions\AttachAction::make()
                 ->icon('heroicon-o-link')
@@ -96,6 +97,7 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
                 ->tooltip(__('user::actions.attach.label'))
                 ->visible(fn (?Model $record): bool => $resource::canAttach());
         }
+        // @phpstan-ignore function.alreadyNarrowedType
         if (method_exists($resource, 'canCreate')) {
             $actions['create'] = Tables\Actions\CreateAction::make()
                 ->icon('heroicon-o-plus')
@@ -113,7 +115,8 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     public function getResource(): string
     {
-        $resource = static::$resource;
+        // Access property correctly as instance property
+        $resource = $this->resource ?? static::$resource ?? '';
         Assert::classExists($resource);
         Assert::isAOf($resource, XotBaseResource::class);
 

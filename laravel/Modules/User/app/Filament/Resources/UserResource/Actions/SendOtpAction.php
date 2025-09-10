@@ -27,6 +27,7 @@ class SendOtpAction extends Action
                 if ($action === null) {
                     throw new \RuntimeException('Impossibile istanziare SendOtpByUserAction');
                 }
+                // User model implements UserContract interface
                 $action->execute($record);
             })
             ->requiresConfirmation()
