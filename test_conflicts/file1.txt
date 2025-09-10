@@ -1,0 +1,11 @@
+Linea 1
+Linea 2
+<<<<<<< HEAD
+Versione HEAD - Linea 3
+Versione HEAD - Linea 4
+=======
+Versione MERGE - Linea 3
+Versione MERGE - Linea 4
+>>>>>>> branch-name
+Linea 5
+Linea 6
