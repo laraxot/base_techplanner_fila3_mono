@@ -11,7 +11,7 @@ return [
             'name' => 'Admin',
         ],
         'sort' => 84,
-        'icon' => 'heroicon-o-user-tie',
+        'icon' => 'techplanner-legal-representative',
     ],
     'actions' => [
         'create' => [

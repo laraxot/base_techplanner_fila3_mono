@@ -1,108 +1,277 @@
 <?php
 
-declare(strict_types=1);
-
-return [
-    'navigation' => [
-        'label' => 'Chiamate',
-        'name' => 'Chiamata',
-        'plural' => 'Chiamate',
-        'group' => [
-            'name' => 'Admin',
-        ],
-        'sort' => 51,
-        'icon' => 'phone call.navigation',
-    ],
-
-    'enums' => [
-        'inbound' => [
-            'label' => 'Entrata',
-            'color' => 'success',
-            'icon' => 'heroicon-o-arrow-down',
-        ],
-        'outbound' => [
-            'label' => 'Uscita',
-            'color' => 'warning',
-            'icon' => 'heroicon-o-arrow-up',
-        ],
-    ],
-
-    'actions' => [
-        'create' => [
-            'label' => 'Crea',
-        ],
-        'import' => [
-            'label' => 'Importa',
-        ],
-        'importClient' => [
-            'label' => 'Importa Cliente',
-        ],
-    ],
-
-    'fields' => [
-        'date' => ['label' => 'Data'],
-        'duration' => ['label' => 'Durata'],
-        'notes' => ['label' => 'Note'],
-        'call_type' => ['label' => 'Tipo Chiamata'],
-        'id' => ['label' => 'ID'],
-        'business_closed' => ['label' => 'Cessato'],
-        'company_name' => ['label' => 'Nome Azienda'],
-        'latitude' => ['label' => 'Latitudine'],
-        'longitude' => ['label' => 'Longitudine'],
-        'distance' => ['label' => 'Distanza'],
-        'distance_km' => ['label' => 'Distanza (km)'],
-        'is_active' => ['label' => 'Attivo'],
-        'full_address' => ['label' => 'Indirizzo Completo'],
-        'country' => ['label' => 'Paese'],
-        'fiscal_code' => ['label' => 'Codice Fiscale'],
-        'competent_health_unit' => ['label' => 'Unità Sanitaria Competente'],
-        'tax_code' => ['label' => 'Codice Fiscale Azienda'],
-        'vat_number' => ['label' => 'Partita IVA'],
-        'company_office' => ['label' => 'Sede Azienda'],
-        'address' => ['label' => 'Indirizzo'],
-        'street_number' => ['label' => 'Numero Civico'],
-        'province' => ['label' => 'Provincia'],
-        'postal_code' => ['label' => 'CAP'],
-        'phone' => ['label' => 'Telefono'],
-        'fax' => ['label' => 'Fax'],
-        'mobile' => ['label' => 'Cellulare'],
-        'email' => ['label' => 'Email'],
-        'activity' => ['label' => 'Attività'],
-        'name' => ['label' => 'Nome'],
-        'city' => ['label' => 'Città'],
-
-        // Azioni per tabella/lista
-        'toggleColumns' => ['label' => 'Attiva/Disattiva Colonne'],
-        'reorderRecords' => ['label' => 'Riorganizza Record'],
-        'detach' => ['label' => 'Separa'],
-        'resetFilters' => ['label' => 'Resetta Filtri'],
-        'applyFilters' => ['label' => 'Applica Filtri'],
-        'openFilters' => ['label' => 'Apri Filtri'],
-        'edit' => ['label' => 'Modifica'],
-        'view' => ['label' => 'Visualizza'],
-        'attach' => ['label' => 'Allega'],
-        'create' => ['label' => 'Crea'],
-        'delete' => ['label' => 'Elimina'],
-    ],
-
-    'import' => [
-        'label' => 'Importa Dati',
-        'name' => ['label' => 'Nome'],
-        'vat_number' => ['label' => 'Partita IVA'],
-        'fiscal_code' => ['label' => 'Codice Fiscale'],
-        'city' => ['label' => 'Città'],
-        'province' => ['label' => 'Provincia'],
-        'phone' => ['label' => 'Telefono'],
-        'email' => ['label' => 'Email'],
-        'is_active' => ['label' => 'Attivo'],
-        'created_at' => ['label' => 'Data Creazione'],
-        'updated_at' => ['label' => 'Ultima Modifica'],
-        'view' => ['label' => 'Visualizza'],
-        'edit' => ['label' => 'Modifica'],
-        'activity' => ['label' => 'Attività'],
-    ],
-
-    'model' => [
-        'label' => 'Chiamata',
-    ],
-];
+return array (
+  'navigation' => 
+  array (
+    'label' => 'Chiamate',
+    'name' => 'Chiamata',
+    'plural' => 'Chiamate',
+    'group' => 
+    array (
+      'name' => 'Admin',
+    ),
+    'sort' => 51,
+    'icon' => 'techplanner-phone-call',
+  ),
+  'enums' => 
+  array (
+    'inbound' => 
+    array (
+      'label' => 'Entrata',
+      'color' => 'success',
+      'icon' => 'heroicon-o-arrow-down',
+    ),
+    'outbound' => 
+    array (
+      'label' => 'Uscita',
+      'color' => 'warning',
+      'icon' => 'heroicon-o-arrow-up',
+    ),
+  ),
+  'actions' => 
+  array (
+    'create' => 
+    array (
+      'label' => 'Crea',
+    ),
+    'import' => 
+    array (
+      'label' => 'Importa',
+    ),
+    'importClient' => 
+    array (
+      'label' => 'Importa Cliente',
+    ),
+  ),
+  'fields' => 
+  array (
+    'date' => 
+    array (
+      'label' => 'Data',
+    ),
+    'duration' => 
+    array (
+      'label' => 'Durata',
+    ),
+    'notes' => 
+    array (
+      'label' => 'Note',
+    ),
+    'call_type' => 
+    array (
+      'label' => 'Tipo Chiamata',
+    ),
+    'id' => 
+    array (
+      'label' => 'ID',
+    ),
+    'business_closed' => 
+    array (
+      'label' => 'Cessato',
+    ),
+    'company_name' => 
+    array (
+      'label' => 'Nome Azienda',
+    ),
+    'latitude' => 
+    array (
+      'label' => 'Latitudine',
+    ),
+    'longitude' => 
+    array (
+      'label' => 'Longitudine',
+    ),
+    'distance' => 
+    array (
+      'label' => 'Distanza',
+    ),
+    'distance_km' => 
+    array (
+      'label' => 'Distanza (km)',
+    ),
+    'is_active' => 
+    array (
+      'label' => 'Attivo',
+    ),
+    'full_address' => 
+    array (
+      'label' => 'Indirizzo Completo',
+    ),
+    'country' => 
+    array (
+      'label' => 'Paese',
+    ),
+    'fiscal_code' => 
+    array (
+      'label' => 'Codice Fiscale',
+    ),
+    'competent_health_unit' => 
+    array (
+      'label' => 'Unità Sanitaria Competente',
+    ),
+    'tax_code' => 
+    array (
+      'label' => 'Codice Fiscale Azienda',
+    ),
+    'vat_number' => 
+    array (
+      'label' => 'Partita IVA',
+    ),
+    'company_office' => 
+    array (
+      'label' => 'Sede Azienda',
+    ),
+    'address' => 
+    array (
+      'label' => 'Indirizzo',
+    ),
+    'street_number' => 
+    array (
+      'label' => 'Numero Civico',
+    ),
+    'province' => 
+    array (
+      'label' => 'Provincia',
+    ),
+    'postal_code' => 
+    array (
+      'label' => 'CAP',
+    ),
+    'phone' => 
+    array (
+      'label' => 'Telefono',
+    ),
+    'fax' => 
+    array (
+      'label' => 'Fax',
+    ),
+    'mobile' => 
+    array (
+      'label' => 'Cellulare',
+    ),
+    'email' => 
+    array (
+      'label' => 'Email',
+    ),
+    'activity' => 
+    array (
+      'label' => 'Attività',
+    ),
+    'name' => 
+    array (
+      'label' => 'Nome',
+    ),
+    'city' => 
+    array (
+      'label' => 'Città',
+    ),
+    'toggleColumns' => 
+    array (
+      'label' => 'Attiva/Disattiva Colonne',
+    ),
+    'reorderRecords' => 
+    array (
+      'label' => 'Riorganizza Record',
+    ),
+    'detach' => 
+    array (
+      'label' => 'Separa',
+    ),
+    'resetFilters' => 
+    array (
+      'label' => 'Resetta Filtri',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'Applica Filtri',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'Apri Filtri',
+    ),
+    'edit' => 
+    array (
+      'label' => 'Modifica',
+    ),
+    'view' => 
+    array (
+      'label' => 'Visualizza',
+    ),
+    'attach' => 
+    array (
+      'label' => 'Allega',
+    ),
+    'create' => 
+    array (
+      'label' => 'Crea',
+    ),
+    'delete' => 
+    array (
+      'label' => 'Elimina',
+    ),
+    'layout' => 
+    array (
+      'label' => 'layout',
+    ),
+  ),
+  'import' => 
+  array (
+    'label' => 'Importa Dati',
+    'name' => 
+    array (
+      'label' => 'Nome',
+    ),
+    'vat_number' => 
+    array (
+      'label' => 'Partita IVA',
+    ),
+    'fiscal_code' => 
+    array (
+      'label' => 'Codice Fiscale',
+    ),
+    'city' => 
+    array (
+      'label' => 'Città',
+    ),
+    'province' => 
+    array (
+      'label' => 'Provincia',
+    ),
+    'phone' => 
+    array (
+      'label' => 'Telefono',
+    ),
+    'email' => 
+    array (
+      'label' => 'Email',
+    ),
+    'is_active' => 
+    array (
+      'label' => 'Attivo',
+    ),
+    'created_at' => 
+    array (
+      'label' => 'Data Creazione',
+    ),
+    'updated_at' => 
+    array (
+      'label' => 'Ultima Modifica',
+    ),
+    'view' => 
+    array (
+      'label' => 'Visualizza',
+    ),
+    'edit' => 
+    array (
+      'label' => 'Modifica',
+    ),
+    'activity' => 
+    array (
+      'label' => 'Attività',
+    ),
+  ),
+  'model' => 
+  array (
+    'label' => 'Chiamata',
+  ),
+);
