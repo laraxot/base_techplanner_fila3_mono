@@ -139,31 +139,39 @@ class DatabasePopulator
         echo "\n🏥 Phase 4: Business Logic (SaluteOra)\n";
         echo "=" . str_repeat("=", 50) . "\n";
         
-        // Studios
-        $this->createRecords('Studios', function() {
-            return \Modules\TechPlanner\Models\Studio::factory(25)->create();
-        });
+        // Studios - DISABLED: Model no longer exists
+        // $this->createRecords('Studios', function() {
+        //     return \Modules\TechPlanner\Models\Studio::factory(25)->create();
+        // });
         
-        // Patients with unique email handling
-        $this->createRecords('Patients', function() {
-            DB::statement('DELETE FROM users WHERE type = "patient"');
-            return \Modules\TechPlanner\Models\Patient::factory(500)->create();
-        });
+        // Patients with unique email handling - DISABLED: Model no longer exists
+        // $this->createRecords('Patients', function() {
+        //     DB::statement('DELETE FROM users WHERE type = "patient"');
+        //     return \Modules\TechPlanner\Models\Patient::factory(500)->create();
+        // });
         
-        // Doctors with unique email handling  
-        $this->createRecords('Doctors', function() {
+        // Doctors with unique email handling - DISABLED: Model no longer exists
+        // $this->createRecords('Doctors', function() {
             DB::statement('DELETE FROM users WHERE type = "doctor"');
-            return \Modules\TechPlanner\Models\Doctor::factory(50)->create();
-        });
+        //     return \Modules\TechPlanner\Models\Doctor::factory(50)->create();
+        // });
         
         // Appointments
         $this->createRecords('Appointments', function() {
-            return \Modules\TechPlanner\Models\Appointment::factory(1000)->create();
+            $appointmentClass = '\Modules\TechPlanner\Models\Appointment';
+            if (class_exists($appointmentClass) && method_exists($appointmentClass, 'factory')) {
+                return $appointmentClass::factory(1000)->create();
+            }
+            throw new \Exception('Appointment class or factory method not found');
         });
         
         // Reports
         $this->createRecords('Reports', function() {
-            return \Modules\TechPlanner\Models\Report::factory(300)->create();
+            $reportClass = '\Modules\TechPlanner\Models\Report';
+            if (class_exists($reportClass) && method_exists($reportClass, 'factory')) {
+                return $reportClass::factory(300)->create();
+            }
+            throw new \Exception('Report class or factory method not found');
         });
         
         // Profiles

@@ -111,11 +111,19 @@ class WorkHourDashboard extends Component
             $startOfWeek
         );
 
-        $this->weeklyStats = [
-            'total_hours' => $this->weekHours,
-            'days_worked' => $this->getDaysWorkedInPeriod($startOfWeek, $endOfWeek),
-            'average_daily' => $this->weekHours / 7,
-        ];
+        $this->weeklyStats = [];
+        
+        // Build proper weekly stats array
+        for ($i = 0; $i < 7; $i++) {
+            $date = $startOfWeek->copy()->addDays($i);
+            $dayHours = WorkHour::calculateWorkedHours($this->employee->id, $date);
+            $this->weeklyStats[] = [
+                'date' => $date->format('Y-m-d'),
+                'day' => $date->format('D'),
+                'hours' => (float) $dayHours,
+                'formatted_hours' => number_format($dayHours, 2) . 'h',
+            ];
+        }
     }
 
     private function calculateMonthlyStats(): void
@@ -134,11 +142,35 @@ class WorkHourDashboard extends Component
             $startOfMonth
         );
 
-        $this->monthlyStats = [
-            'total_hours' => $this->monthHours,
-            'days_worked' => $this->getDaysWorkedInPeriod($startOfMonth, $endOfMonth),
-            'average_daily' => $this->monthHours / Carbon::now()->daysInMonth,
-        ];
+        $this->monthlyStats = [];
+        
+        // Build proper monthly stats array by weeks
+        $currentWeek = $startOfMonth->copy();
+        $weekNumber = 1;
+        while ($currentWeek->lte($endOfMonth)) {
+            $weekEnd = $currentWeek->copy()->endOfWeek();
+            if ($weekEnd->gt($endOfMonth)) {
+                $weekEnd = $endOfMonth->copy();
+            }
+            
+            $weekHours = 0.0;
+            $tempDate = $currentWeek->copy();
+            while ($tempDate->lte($weekEnd)) {
+                $weekHours += WorkHour::calculateWorkedHours($this->employee->id, $tempDate);
+                $tempDate->addDay();
+            }
+            
+            $this->monthlyStats[] = [
+                'week' => $weekNumber,
+                'start_date' => $currentWeek->format('d/m'),
+                'end_date' => $weekEnd->format('d/m'),
+                'hours' => $weekHours,
+                'formatted_hours' => number_format($weekHours, 2) . 'h',
+            ];
+            
+            $currentWeek->addWeek();
+            $weekNumber++;
+        }
     }
 
     private function loadRecentEntries(): void
@@ -149,14 +181,21 @@ class WorkHourDashboard extends Component
         }
 
         $entries = WorkHour::getTodayEntries($this->employee->id);
-        $this->recentEntries = $entries->map(function (WorkHour $entry): array {
+        /** @var array<int, array{id: int, date: string, time: string, type: WorkHourTypeEnum, type_label: string, type_color: string, notes: string|null, status: WorkHourStatusEnum, status_color: string}> $mappedEntries */
+        $mappedEntries = $entries->map(function (WorkHour $entry): array {
             return [
                 'id' => $entry->id,
+                'date' => $entry->timestamp->format('Y-m-d'),
                 'time' => $entry->timestamp->format('H:i'),
-                'type' => (string) $entry->type,
-                'status' => (string) $entry->status,
+                'type' => $entry->type,
+                'type_label' => $entry->type instanceof WorkHourTypeEnum ? $entry->type->getLabel() : (string) $entry->type,
+                'type_color' => $entry->type instanceof WorkHourTypeEnum ? $entry->type->getColor() : 'gray',
+                'notes' => $entry->notes,
+                'status' => $entry->status,
+                'status_color' => $entry->status instanceof WorkHourStatusEnum ? $entry->status->getColor() : 'gray',
             ];
         })->toArray();
+        $this->recentEntries = $mappedEntries;
     }
 
     private function getDaysWorkedInPeriod(Carbon $start, Carbon $end): int
@@ -167,7 +206,7 @@ class WorkHourDashboard extends Component
 
         $entries = WorkHour::where('employee_id', $this->employee->id)
             ->whereBetween('timestamp', [$start, $end])
-            ->where('type', WorkHour::TYPE_CLOCK_IN)
+            ->where('type', WorkHourTypeEnum::CLOCK_IN->value)
             ->get();
 
         return $entries->groupBy(function (WorkHour $entry): string {

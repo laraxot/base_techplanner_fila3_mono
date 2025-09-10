@@ -65,12 +65,12 @@ class ExportTimeDataAction
             ],
             'summary' => $baseData['summary'],
             'weekData' => $weekData,
-            'entries' => $allEntries->map(function ($entry) {
+            'entries' => $allEntries->map(function (WorkHour $entry): array {
                 return [
                     'date' => $entry->timestamp->format('d/m/Y'),
                     'time' => $entry->timestamp->format('H:i'),
-                    'type' => $entry->type->value,
-                    'status' => $entry->status->value,
+                    'type' => $entry->type instanceof \BackedEnum ? $entry->type->value : (string) $entry->type,
+                    'status' => $entry->status instanceof \BackedEnum ? $entry->status->value : (string) $entry->status,
                     'location' => $entry->location_name ?? '',
                     'notes' => $entry->notes ?? '',
                 ];

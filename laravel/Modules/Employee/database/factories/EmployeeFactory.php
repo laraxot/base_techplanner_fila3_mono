@@ -43,7 +43,7 @@ class EmployeeFactory extends Factory
                 'address' => [
                     'street' => $this->faker->streetAddress(),
                     'city' => $this->faker->city(),
-                    'state' => $this->faker->state,
+                    'state' => $this->faker->state(),
                     'postal_code' => $this->faker->postcode(),
                     'country' => $this->faker->country(),
                 ],
@@ -113,7 +113,10 @@ class EmployeeFactory extends Factory
     public function withPersonalData(array $personalData): static
     {
         return $this->state(fn (array $attributes) => [
-            'personal_data' => array_merge($attributes['personal_data'] ?? [], $personalData),
+            'personal_data' => array_merge(
+                is_array($attributes['personal_data'] ?? null) ? $attributes['personal_data'] : [],
+                $personalData
+            ),
         ]);
     }
 
@@ -125,7 +128,10 @@ class EmployeeFactory extends Factory
     public function withContactData(array $contactData): static
     {
         return $this->state(fn (array $attributes) => [
-            'contact_data' => array_merge($attributes['contact_data'] ?? [], $contactData),
+            'contact_data' => array_merge(
+                is_array($attributes['contact_data'] ?? null) ? $attributes['contact_data'] : [],
+                $contactData
+            ),
         ]);
     }
 

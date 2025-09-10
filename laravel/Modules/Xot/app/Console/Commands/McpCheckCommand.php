@@ -13,6 +13,7 @@ class McpCheckCommand extends Command
     protected $signature = 'mcp:check {--fix : Correggi automaticamente le violazioni}';
     protected $description = 'Controlla le regole MCP nel progetto';
 
+    /** @var array<string, array<string, string>> */
     protected $rules = [
         'filament' => [
             'pattern' => '/extends\s+Resource/',
@@ -31,7 +32,7 @@ class McpCheckCommand extends Command
         ],
     ];
 
-    public function handle()
+    public function handle(): int
     {
         $this->info('Controllo regole MCP...');
 

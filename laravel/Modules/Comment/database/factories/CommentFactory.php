@@ -36,7 +36,7 @@ class CommentFactory extends Factory
             'commentator_id' => User::factory(),
             'parent_id' => null,
             'approved_at' => $this->faker->optional()->dateTime(),
-            'extra' => $this->faker->optional()->json(),
+            'extra' => $this->faker->optional()->randomElement([null, json_encode(['key' => 'value'])]),
             'created_by' => $this->faker->optional()->uuid(),
             'updated_by' => $this->faker->optional()->uuid(),
         ];

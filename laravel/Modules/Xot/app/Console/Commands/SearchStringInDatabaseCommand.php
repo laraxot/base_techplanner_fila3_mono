@@ -17,7 +17,9 @@ class SearchStringInDatabaseCommand extends Command
     public function handle(): int
     {
         $searchString = (string) $this->argument('search');
-        $specificTables = $this->option('table');
+        /** @var array<string>|string|true $specificTablesRaw */
+        $specificTablesRaw = $this->option('table');
+        $specificTables = is_array($specificTablesRaw) ? $specificTablesRaw : [];
 
         /** @var array<array{Tables_in_database: string}> $tables */
         $tables = DB::select('SHOW TABLES');
@@ -50,6 +52,7 @@ class SearchStringInDatabaseCommand extends Command
         $results = $query->get();
         if ($results->isNotEmpty()) {
             $this->info("Found matches in table: {$tableName}");
+            /** @var \Illuminate\Support\Collection<int, object> $results */
             $this->table(['Column', 'Value'], $this->formatResults($results));
         }
     }
@@ -64,7 +67,9 @@ class SearchStringInDatabaseCommand extends Command
         $formatted = [];
         foreach ($results as $row) {
             foreach ((array) $row as $column => $value) {
-                if (is_string($value) && str_contains($value, $this->argument('search'))) {
+                $searchArgument = $this->argument('search');
+                $searchString = is_string($searchArgument) ? $searchArgument : '';
+                if (is_string($value) && str_contains($value, $searchString)) {
                     $formatted[] = [$column, $value];
                 }
             }

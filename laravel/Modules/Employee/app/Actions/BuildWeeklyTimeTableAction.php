@@ -80,13 +80,29 @@ class BuildWeeklyTimeTableAction
             $variance = $workedHours - $contractHours;
 
             // Determina stato giorno
-            $dayStatus = $this->determineDayStatus($sessions, $workedHours, $contractHours);
+            /** @var array<int, array{time: string, type: string, status: string, duration?: float}> $typedSessions */
+            $typedSessions = array_map(function (array $session): array {
+                return [
+                    'time' => (string) ($session['time'] ?? ''),
+                    'type' => (string) ($session['type'] ?? ''),
+                    'status' => (string) ($session['status'] ?? ''),
+                    'duration' => isset($session['duration']) ? (float) $session['duration'] : null,
+                ];
+            }, $sessions);
+            $typedSessions = array_filter($typedSessions, fn(array $session) => isset($session['duration']) ? is_float($session['duration']) : true);
+            $dayStatus = $this->determineDayStatus($typedSessions, $workedHours, $contractHours);
 
             $days[$dateKey] = [
                 'date' => $current->format('d/m'),
                 'dayName' => $current->locale('it')->isoFormat('ddd'),
                 'fullDate' => $current->locale('it')->isoFormat('dddd D MMMM YYYY'),
-                'entries' => $sessions,
+                'entries' => array_map(function (array $session): array {
+                    return [
+                        'time' => (string) $session['time'],
+                        'type' => (string) $session['type'],
+                        'status' => (string) $session['status'],
+                    ];
+                }, $sessions),
                 'totalHours' => $workedHours,
                 'contractHours' => $contractHours,
                 'variance' => $variance,
@@ -117,7 +133,7 @@ class BuildWeeklyTimeTableAction
      * Costruisce sessioni per un singolo giorno.
      *
      * @param  Collection<int, WorkHour>  $dayEntries
-     * @return array<int, array{time: string, type: string, status: string, duration?: float}>
+     * @return array<int, array{time: string, type: string, status: string, start?: Carbon, end?: Carbon|null, duration?: float}>
      */
     private function buildDaySessions(Collection $dayEntries): array
     {
@@ -128,7 +144,7 @@ class BuildWeeklyTimeTableAction
             switch ($entry->type) {
                 case WorkHourTypeEnum::CLOCK_IN:
                     // Chiudi sessione precedente se aperta
-                    if ($currentSession && ! isset($currentSession['end'])) {
+                    if ($currentSession && $currentSession['end'] === null) {
                         $sessions[] = $currentSession;
                     }
 
@@ -190,7 +206,7 @@ class BuildWeeklyTimeTableAction
         $totalHours = 0.0;
 
         foreach ($sessions as $session) {
-            if (isset($session['duration'])) {
+            if (isset($session['duration']) && is_float($session['duration'])) {
                 $totalHours += $session['duration'];
             }
         }

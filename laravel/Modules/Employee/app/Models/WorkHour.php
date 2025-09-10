@@ -276,7 +276,8 @@ class WorkHour extends BaseModel
 
     /**
      * @param int $employeeId
-     * @param Carbon|null $date     * @return \Illuminate\Database\Eloquent\Collection<int, WorkHour>
+     * @param Carbon|null $date
+     * @return \Illuminate\Database\Eloquent\Collection<int, WorkHour>
      */
     public static function getTodayEntries(int $employeeId, ?Carbon $date = null): \Illuminate\Database\Eloquent\Collection
     {
@@ -298,7 +299,11 @@ class WorkHour extends BaseModel
         $totalMinutes = 0;
         $clockInTime = null;
 
+        /** @var WorkHour $entry */
         foreach ($entries as $entry) {
+            if (!($entry instanceof WorkHour)) {
+                continue;
+            }
             switch ($entry->type) {
                 case WorkHourTypeEnum::CLOCK_IN->value:
                     $clockInTime = $entry->timestamp;

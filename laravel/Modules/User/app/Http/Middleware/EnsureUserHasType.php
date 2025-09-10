@@ -25,7 +25,8 @@ class EnsureUserHasType
     public function handle(Request $request, Closure $next, string $type): Response
     {
         
-        if ($request->user()?->type->value !== $type) {
+        $user = $request->user();
+        if ($user === null || (isset($user->type->value) && $user->type->value !== $type)) {
             // Redirect...
             return redirect()->route('home');
         }
