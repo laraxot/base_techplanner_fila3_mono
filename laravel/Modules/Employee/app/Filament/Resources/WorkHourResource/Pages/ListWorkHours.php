@@ -21,18 +21,29 @@ class ListWorkHours extends XotBaseListRecords
      *
      * @return array<string, \Filament\Tables\Columns\Column>
      */
-    protected function getTableColumns(): array
+    public function getTableColumns(): array
     {
         return [
             'id' => TextColumn::make('id')
                 ->sortable()
                 ->searchable(),
 
-            'employee' => TextColumn::make('employee.full_name')
-                ->sortable()
-                ->searchable()
+            'employee.name' => TextColumn::make('employee.name')
+                //->sortable()
+                //->searchable()
                 //->default(fn (WorkHour $record)=> dddx($record->employee))
                 ,
+            'employee.full_name' => TextColumn::make('employee.full_name')
+                //->sortable()
+                //->searchable()
+                //->default(fn (WorkHour $record)=> dddx($record->employee))
+                ,
+            'employee.email' => TextColumn::make('employee.email')
+                //->sortable()
+                //->searchable()
+                //->default(fn (WorkHour $record)=> dddx($record->employee))
+                ,
+
 
             'type' => BadgeColumn::make('type')
                 ->colors([
