@@ -27,7 +27,8 @@ class SendOtpAction extends Action
                 if ($action === null) {
                     throw new \RuntimeException('Impossibile istanziare SendOtpByUserAction');
                 }
-                // User model implements UserContract interface
+                // User model extends BaseUser which implements UserContract interface
+                \assert($record instanceof \Modules\Xot\Contracts\UserContract);
                 $action->execute($record);
             })
             ->requiresConfirmation()

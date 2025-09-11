@@ -41,7 +41,7 @@ class Dashboard extends XotBaseDashboard
     public function getWidgets(): array
     {
         return [
-            // Widgets\TimeClockWidget::class,
+            Widgets\TimeClockWidget::class,
             // Widgets\TodoWidget::class,
             // Widgets\UpcomingScheduleWidget::class,
             // Widgets\PendingRequestsWidget::class,
