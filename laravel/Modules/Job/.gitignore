@@ -25,6 +25,7 @@ docs/cache/
 *.old
 *.old1
 *.backup
+*.backup.*
 *.bak
 
 # File di log
@@ -34,4 +35,4 @@ docs/cache/
 docs/phpstan/
 
 # Other
--e
+
