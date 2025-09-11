@@ -132,6 +132,8 @@ return array (
       'help' => 'Data di creazione del record',
       'tooltip' => 'Timestamp di creazione',
       'description' => 'Data e ora di creazione della voce',
+      'helper_text' => 'created_at',
+      'placeholder' => 'created_at',
     ),
     'updated_at' => 
     array (
@@ -148,6 +150,56 @@ return array (
     'reorderRecords' => 
     array (
       'label' => 'reorderRecords',
+    ),
+    'resetFilters' => 
+    array (
+      'label' => 'resetFilters',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'applyFilters',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
+    'delete' => 
+    array (
+      'label' => 'delete',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    'layout' => 
+    array (
+      'label' => 'layout',
+    ),
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'approvedBy' => 
+    array (
+      'name' => 
+      array (
+        'label' => 'approvedBy.name',
+      ),
+    ),
+    'employee' => 
+    array (
+      'full_name' => 
+      array (
+        'label' => 'employee.full_name',
+      ),
+    ),
+    'id' => 
+    array (
+      'label' => 'id',
     ),
   ),
   'actions' => 
@@ -675,5 +727,9 @@ return array (
       'description' => 'Rifiuta tutte le voci selezionate',
       'tooltip' => 'Operazione bulk rifiuto',
     ),
+  ),
+  'model' => 
+  array (
+    'label' => 'work hour.model',
   ),
 );

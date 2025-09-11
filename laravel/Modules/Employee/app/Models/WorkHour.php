@@ -128,7 +128,7 @@ class WorkHour extends BaseModel
      */
     public function employee(): BelongsTo
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(User::class, 'employee_id');
     }
 
     /**

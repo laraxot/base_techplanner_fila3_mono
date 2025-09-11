@@ -8,11 +8,74 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
+use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListWorkHours extends XotBaseListRecords
 {
     protected static string $resource = WorkHourResource::class;
 
-    // getTableColumns() method removed - XotBaseListRecords handles this automatically
+    /**
+     * Definisce le colonne della tabella per la lista delle ore di lavoro.
+     *
+     * @return array<string, \Filament\Tables\Columns\Column>
+     */
+    protected function getTableColumns(): array
+    {
+        return [
+            'id' => TextColumn::make('id')
+                ->sortable()
+                ->searchable(),
+
+            'employee' => TextColumn::make('employee.full_name')
+                ->sortable()
+                ->searchable()
+                //->default(fn (WorkHour $record)=> dddx($record->employee))
+                ,
+
+            'type' => BadgeColumn::make('type')
+                ->colors([
+                    'primary' => 'clock_in',
+                    'success' => 'clock_out',
+                    'warning' => 'break_start',
+                    'info' => 'break_end',
+                ])
+                ->formatStateUsing(fn (WorkHourTypeEnum $state): string =>
+                    $state->getLabel()
+                ),
+
+            'timestamp' => TextColumn::make('timestamp')
+                ->dateTime('d/m/Y H:i')
+                ->sortable(),
+
+            'location_name' => TextColumn::make('location_name')
+                ->searchable()
+                ->limit(30),
+
+                   'status' => BadgeColumn::make('status')
+                       ->colors([
+                           'warning' => 'pending',
+                           'success' => 'approved',
+                           'danger' => 'rejected',
+                           'secondary' => 'cancelled',
+                       ])
+                       ->formatStateUsing(fn (WorkHourStatusEnum $state): string =>
+                           $state->getLabel()
+                       ),
+
+            'approved_by' => TextColumn::make('approvedBy.name')
+                ->sortable()
+                ->searchable(),
+
+            'approved_at' => TextColumn::make('approved_at')
+                ->dateTime('d/m/Y H:i')
+                ->sortable(),
+
+            'created_at' => TextColumn::make('created_at')
+                ->dateTime('d/m/Y H:i')
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+        ];
+    }
 }
