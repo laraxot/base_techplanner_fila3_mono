@@ -42,6 +42,7 @@ class Dashboard extends XotBaseDashboard
     {
         return [
             Widgets\TimeClockWidget::class,
+            
             // Widgets\TodoWidget::class,
             // Widgets\UpcomingScheduleWidget::class,
             // Widgets\PendingRequestsWidget::class,
