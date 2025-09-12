@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\UserResource\Actions;
 
-use Filament\Tables\Actions\Action;
-use Modules\User\Actions\Otp\SendOtpByUserAction;
+use Webmozart\Assert\Assert;
 use Modules\User\Models\User;
+use Filament\Tables\Actions\Action;
 use Modules\Xot\Contracts\UserContract;
+use Modules\User\Actions\Otp\SendOtpByUserAction;
 
 /**
  * Azione Filament per l'invio di un OTP all'utente.
@@ -28,7 +29,7 @@ class SendOtpAction extends Action
                     throw new \RuntimeException('Impossibile istanziare SendOtpByUserAction');
                 }
                 // User model extends BaseUser which implements UserContract interface
-                \assert($record instanceof \Modules\Xot\Contracts\UserContract);
+                Assert::isInstanceOf($record, \Modules\Xot\Contracts\UserContract::class);
                 $action->execute($record);
             })
             ->requiresConfirmation()

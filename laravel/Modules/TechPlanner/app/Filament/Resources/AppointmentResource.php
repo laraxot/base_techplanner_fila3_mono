@@ -23,13 +23,18 @@ class AppointmentResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
+            /*
             Forms\Components\Select::make('client_id')
                 ->relationship('client', 'name')
                 ->required(),
-            Forms\Components\DatePicker::make('date')
+              */  
+            Forms\Components\DateTimePicker::make('date')
                 ->required(),
+                /*
             Forms\Components\TimePicker::make('time')
                 ->required(),
+            */
+            /*
             Forms\Components\Select::make('status')
                 ->options([
                     'scheduled' => 'Scheduled',
@@ -38,6 +43,7 @@ class AppointmentResource extends XotBaseResource
                     'cancelled' => 'Cancelled',
                 ])
                 ->required(),
+            */
             Forms\Components\Textarea::make('notes')
 
                 ->maxLength(65535)
