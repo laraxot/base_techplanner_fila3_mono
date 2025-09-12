@@ -124,7 +124,7 @@ class WorkHour extends BaseModel
     /**
      * Get the employee that owns the work hour record.
      *
-     * @return BelongsTo<Employee, $this>
+     * @return BelongsTo<Employee|User, $this>
      */
     public function employee(): BelongsTo
     {
