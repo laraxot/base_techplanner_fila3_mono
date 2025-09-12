@@ -1,6 +1,6 @@
 # PHPStan Config Immutability Rule
 
-- File: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/phpstan.neon`
+- File: `../laravel/phpstan.neon`
 - Status: IMMUTABLE. Do not modify this file from tooling or automation.
 - Ownership: Managed by the user. Any changes must be done manually by the user.
 

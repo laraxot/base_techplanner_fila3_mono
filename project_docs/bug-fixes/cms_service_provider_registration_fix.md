@@ -11,7 +11,7 @@
 ### Stack Trace Completo
 ```
 Exception: view not found: [pub_theme::components.blocks.navigation.simple] 
-path: [/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Themes/Sixteen/resources/views/components/blocks/navigation/simple.blade.php]
+path: [../laravel/Themes/Sixteen/resources/views/components/blocks/navigation/simple.blade.php]
 
 at Modules\Cms\Datas\BlockData:30
 ```

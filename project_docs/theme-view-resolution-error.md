@@ -4,7 +4,7 @@
 
 **Error**: `view not found: [pub_theme::components.blocks.navigation.simple]`
 
-**Path**: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Themes/Sixteen/resources/views/components/blocks/navigation/simple.blade.php`
+**Path**: `../laravel/Themes/Sixteen/resources/views/components/blocks/navigation/simple.blade.php`
 
 **Location**: `Modules\Cms\Datas\BlockData.php:30`
 

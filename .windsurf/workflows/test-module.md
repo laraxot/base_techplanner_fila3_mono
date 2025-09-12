@@ -32,7 +32,7 @@ Eseguire una suite completa di test per il modulo SaluteMo, inclusi:
 
 ```bash
 # Assicurati di essere nella directory corretta
-cd /var/www/html/_bases/base_techplanner_fila3_mono/laravel
+cd ../laravel
 
 # Installa le dipendenze se necessario
 composer install
@@ -85,7 +85,7 @@ if ! command -v local-php-security-checker &> /dev/null; then
     sudo mv local-php-security-checker /usr/local/bin/
 fi
 
-local-php-security-checker --path=/var/www/html/_bases/base_techplanner_fila3_mono/laravel
+local-php-security-checker --path=../laravel
 ```
 
 ## 🔍 Analisi Codice

@@ -16,7 +16,7 @@
 
 ### Statistiche Generali
 - **Totale file di test**: 615
-- **Directory Laravel**: `/var/www/html/_bases/base_techplanner_fila3_mono/laravel/`
+- **Directory Laravel**: `../laravel/`
 - **Framework**: Pest (con supporto PHPUnit legacy)
 
 ### Moduli con Test Esistenti

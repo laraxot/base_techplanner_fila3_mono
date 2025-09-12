@@ -194,8 +194,8 @@ public function getFormSchema(): array
 
 ## 🔗 Riferimenti
 
-- [Modules/User/docs/auth_widget_rules.md](/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules/User/docs/auth_widget_rules.md)
-- [Modules/User/docs/auth_widgets_view_namespaces.md](/var/www/html/_bases/base_techplanner_fila3_mono/laravel/Modules/User/docs/auth_widgets_view_namespaces.md)
+- [Modules/User/docs/auth_widget_rules.md](../laravel/Modules/User/docs/auth_widget_rules.md)
+- [Modules/User/docs/auth_widgets_view_namespaces.md](../laravel/Modules/User/docs/auth_widgets_view_namespaces.md)
 - [Filament Widgets Documentation](https://filamentphp.com/docs/4.x/widgets)
 
 ## 📝 Note Implementative

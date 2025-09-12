@@ -201,7 +201,7 @@ namespace Modules\SaluteMo\Tests\Unit; // Correct module namespace
 
 ```bash
 # Verifica autoload PSR-4 (deve essere eseguito dalla root Laravel)
-cd /var/www/html/_bases/base_saluteora/laravel
+cd ../laravel
 composer dump-autoload
 
 # Controlla errori di namespace con PHPStan
