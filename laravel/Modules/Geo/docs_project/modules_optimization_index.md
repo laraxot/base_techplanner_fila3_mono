@@ -109,7 +109,7 @@
 
 ### Setup Ambiente
 ```bash
-cd /var/www/html/_bases/base_saluteora
+cd ..
 
 # Verifica stato attuale
 ./bashscripts/check_module_reusability.sh

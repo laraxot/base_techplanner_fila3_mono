@@ -92,7 +92,7 @@ Single migrations ensure:
 - ✅ Reduced dependency complexity
 
 ### 5. Shared Resources Rule
-**CRITICAL**: The `/var/www/html/_bases/base_techplanner_fila3_mono/bashscripts/` directory is shared across multiple projects.
+**CRITICAL**: The `../bashscripts/` directory is shared across multiple projects.
 
 **❌ NEVER put project-specific files in shared directories:**
 ```bash

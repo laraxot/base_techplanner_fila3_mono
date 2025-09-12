@@ -384,7 +384,7 @@ class ProductFormWidget extends XotBaseWidget implements HasForms
 - Git for version control
 
 ### CRITICAL PROJECT STRUCTURE RULE
-**⚠️ NEVER ALLOW `/var/www/html/_bases/base_techplanner_fila3_mono/docs` TO EXIST**
+**⚠️ NEVER ALLOW `../docs` TO EXIST**
 - This directory is **OUTSIDE** the Laravel project structure
 - All documentation belongs within individual modules in their `docs/` directories
 - If found, it **MUST** be removed immediately to prevent confusion

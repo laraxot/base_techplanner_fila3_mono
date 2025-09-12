@@ -1,10 +1,10 @@
 # Memoria Critica: Struttura AI Guidelines
 
 ## REGOLA ASSOLUTA
-**NON deve esistere il file `/var/www/html/_bases/base_saluteora/laravel/.ai/guidelines.md`!**
+**NON deve esistere il file `../laravel/.ai/guidelines.md`!**
 
 ## Struttura Corretta
-- **Cartella**: `/var/www/html/_bases/base_saluteora/laravel/.ai/guidelines/`
+- **Cartella**: `../laravel/.ai/guidelines/`
 - **File**: Dentro la cartella, NON un file `.md` nella root
 - **Principi**: DRY + KISS + SOLID + ROBUST + INTELLIGENT + LARAXOT
 

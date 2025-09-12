@@ -40,10 +40,10 @@ class AdminPanelProvider extends XotBaseMainPanelProvider
 ### Validation Commands
 ```bash
 # Check current implementation
-grep -n "extends" /var/www/html/_bases/base_techplanner_fila3_mono/laravel/app/Providers/Filament/AdminPanelProvider.php
+grep -n "extends" ../laravel/app/Providers/Filament/AdminPanelProvider.php
 
 # Verify namespace import
-grep -n "XotBaseMainPanelProvider" /var/www/html/_bases/base_techplanner_fila3_mono/laravel/app/Providers/Filament/AdminPanelProvider.php
+grep -n "XotBaseMainPanelProvider" ../laravel/app/Providers/Filament/AdminPanelProvider.php
 ```
 
 ### Related Documentation

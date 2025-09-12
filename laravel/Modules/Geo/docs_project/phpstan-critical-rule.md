@@ -2,7 +2,7 @@
 
 ## ⚠️ ATTENZIONE: REGOLA ASSOLUTA ⚠️
 
-Il file `/var/www/html/_bases/base_saluteora/laravel/phpstan.neon` **NON DEVE MAI ESSERE MODIFICATO**.
+Il file `../laravel/phpstan.neon` **NON DEVE MAI ESSERE MODIFICATO**.
 
 ## Principi Fondamentali
 
@@ -119,7 +119,7 @@ Identificare file che causano problemi:
 ## Memoria e Regole
 
 Questa regola è documentata anche in:
-- `/var/www/html/_bases/base_saluteora/laravel/.ai/guidelines/phpstan-configuration-rule.md`
+- `../laravel/.ai/guidelines/phpstan-configuration-rule.md`
 - `.cursor/rules/phpstan-rule.md`
 - `.windsurf/rules/phpstan-rule.mdc`
 - Memoria AI permanente
