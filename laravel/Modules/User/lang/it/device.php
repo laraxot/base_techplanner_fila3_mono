@@ -3,6 +3,33 @@
 declare(strict_types=1);
 
 return [
+    // ==============================================
+    // NAVIGATION & STRUCTURE
+    // ==============================================
+    'navigation' => [
+        'label' => 'Dispositivi',
+        'plural_label' => 'Dispositivi',
+        'group' => [
+            'name' => 'Sicurezza',
+            'description' => 'Gestione dispositivi e sicurezza',
+        ],
+        'sort' => 50,
+        'icon' => 'heroicon-o-device-phone-mobile',
+        'badge' => 'Gestione dispositivi utente',
+    ],
+
+    // ==============================================
+    // MODEL INFORMATION
+    // ==============================================
+    'model' => [
+        'label' => 'Dispositivo',
+        'plural' => 'Dispositivi',
+        'description' => 'Gestione e monitoraggio dei dispositivi degli utenti',
+    ],
+
+    // ==============================================
+    // FIELDS - STRUTTURA ESPANSA OBBLIGATORIA
+    // ==============================================
     'fields' => [
         'uuid' => [
             'label' => 'UUID',
@@ -96,6 +123,10 @@ return [
             'help' => 'Indica se è uno smartphone o telefono cellulare',
         ],
     ],
+
+    // ==============================================
+    // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
+    // ==============================================
     'actions' => [
         'create' => [
             'label' => 'Crea Dispositivo',
@@ -168,27 +199,31 @@ return [
             ],
         ],
     ],
-    'navigation' => [
-        'sort' => 50,
-        'label' => 'Dispositivi',
-        'group' => 'Sicurezza',
-        'icon' => 'heroicon-o-device-phone-mobile',
-        'badge' => 'Gestione dispositivi utente',
-    ],
+
+    // ==============================================
+    // SECTIONS - ORGANIZZAZIONE FORM
+    // ==============================================
     'sections' => [
         'device_info' => [
             'label' => 'Informazioni Dispositivo',
             'description' => 'Dettagli tecnici del dispositivo',
+            'icon' => 'heroicon-o-information-circle',
         ],
         'device_type' => [
             'label' => 'Tipo Dispositivo',
             'description' => 'Categoria e classificazione del dispositivo',
+            'icon' => 'heroicon-o-device-phone-mobile',
         ],
         'browser_info' => [
             'label' => 'Informazioni Browser',
             'description' => 'Dettagli del browser utilizzato',
+            'icon' => 'heroicon-o-globe-alt',
         ],
     ],
+
+    // ==============================================
+    // FILTERS - RICERCA E FILTRI
+    // ==============================================
     'filters' => [
         'platform' => [
             'label' => 'Piattaforma',
@@ -217,10 +252,57 @@ return [
             ],
         ],
     ],
+
+    // ==============================================
+    // MESSAGES - FEEDBACK UTENTE
+    // ==============================================
     'messages' => [
         'empty_state' => 'Nessun dispositivo trovato',
         'search_placeholder' => 'Cerca dispositivi...',
         'loading' => 'Caricamento dispositivi in corso...',
+        'total_count' => 'Totale dispositivi: :count',
+        'created' => 'Dispositivo creato con successo',
+        'updated' => 'Dispositivo aggiornato con successo',
+        'deleted' => 'Dispositivo eliminato con successo',
+        'error_general' => 'Si è verificato un errore. Riprova più tardi.',
+        'error_validation' => 'Si sono verificati errori di validazione.',
+        'error_permission' => 'Non hai i permessi per eseguire questa azione.',
+        'success_operation' => 'Operazione completata con successo',
+        // Legacy support
         'total_devices' => 'Totale dispositivi: :count',
+    ],
+
+    // ==============================================
+    // VALIDATION - MESSAGGI DI VALIDAZIONE
+    // ==============================================
+    'validation' => [
+        'uuid_required' => 'L\'UUID è obbligatorio',
+        'uuid_unique' => 'Questo UUID è già in uso',
+        'platform_required' => 'La piattaforma è obbligatoria',
+        'device_required' => 'Il nome del dispositivo è obbligatorio',
+        'languages_array' => 'Le lingue devono essere un array',
+    ],
+
+    // ==============================================
+    // OPTIONS - OPZIONI E VALORI PREDEFINITI
+    // ==============================================
+    'options' => [
+        'platforms' => [
+            'ios' => 'iOS',
+            'android' => 'Android',
+            'windows' => 'Windows',
+            'linux' => 'Linux',
+            'macos' => 'macOS',
+        ],
+        'device_types' => [
+            'desktop' => 'Desktop',
+            'mobile' => 'Mobile',
+            'tablet' => 'Tablet',
+            'phone' => 'Telefono',
+        ],
+        'boolean_options' => [
+            'yes' => 'Sì',
+            'no' => 'No',
+        ],
     ],
 ];
