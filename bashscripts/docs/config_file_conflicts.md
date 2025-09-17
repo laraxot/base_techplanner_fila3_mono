@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -15,6 +16,8 @@
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # Gestione dei Conflitti nei File di Configurazione
 
 ## Panoramica
@@ -46,6 +49,7 @@ File come:
 
 ### 4. File di Ambiente
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -61,6 +65,8 @@ File come:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 
 - `.env`
 - `.env.example`
@@ -198,6 +204,7 @@ git commit -m "Risolto conflitto in file di configurazione"
 
 ## Collegamenti Bidirezionali
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 - `.env`
 - `.env.example`
@@ -353,6 +360,8 @@ git commit -m "Risolto conflitto in file di configurazione"
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 Il file presenta conflitti riguardanti le funzionalità PostCSS da abilitare:
 
 1. **Versione 1**: Configurazione base con solo tailwindcss e autoprefixer
@@ -426,6 +435,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -685,6 +695,14 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -785,6 +803,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1202,6 +1221,8 @@ I seguenti file di configurazione sono stati recentemente risolti:
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> e0c964a3 (first)
 >>>>>>> 3c18aa7e (.)
 # Risoluzione dei Conflitti nei File di Configurazione
 
@@ -1600,6 +1621,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1637,6 +1659,11 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Risoluzione dei Conflitti nei File di Configurazione
 
 ## Problema
@@ -1935,6 +1962,7 @@ I seguenti file di configurazione sono stati recentemente risolti:
 - [Documentazione PostCSS](https://postcss.org/)
 - [Documentazione Rector](https://getrector.org/documentation)
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1951,10 +1979,13 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 - [Risoluzione Conflitti Git](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/git_conflicts_resolution.md)
 - [Script di Risoluzione Automatica](/var/www/html/_bases/base_ptvx_fila3_mono/bashscripts/docs/fix_all_git_conflicts.md)
 - [Conflitti Merge Risolti Xot](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/conflitti_merge_risolti.md)
 - [Gestione della Configurazione](/var/www/html/_bases/base_ptvx_fila3_mono/laravel/Modules/Xot/docs/config.md)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
@@ -2255,3 +2286,5 @@ I seguenti file di configurazione sono stati recentemente risolti:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)

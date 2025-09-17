@@ -49,6 +49,10 @@ Spesso i conflitti riguardano funzioni duplicate o con logiche diverse. Ecco una
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -56,12 +60,26 @@ Spesso i conflitti riguardano funzioni duplicate o con logiche diverse. Ecco una
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -87,6 +105,15 @@ Spesso i conflitti riguardano funzioni duplicate o con logiche diverse. Ecco una
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Funzione di log avanzata: accetta sia log "message" che log "level" "message"
 log() {
     if [ $# -eq 2 ]; then
@@ -121,6 +148,10 @@ Quando si risolvono conflitti tra versioni che richiedono un numero diverso di p
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -128,12 +159,26 @@ Quando si risolvono conflitti tra versioni che richiedono un numero diverso di p
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -159,6 +204,15 @@ Quando si risolvono conflitti tra versioni che richiedono un numero diverso di p
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     echo "Usage: $0 <path> <remote_repo> [branch]"

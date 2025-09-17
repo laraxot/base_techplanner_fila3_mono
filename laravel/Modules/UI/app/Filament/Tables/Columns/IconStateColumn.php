@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\SelectColumn;
 use Spatie\ModelStates\HasStatesContract;
+use Filament\Notifications\Notification;
 
 class IconStateColumn extends IconColumn
 {
@@ -86,9 +87,14 @@ class IconStateColumn extends IconColumn
                 ];
             })
             ->action(function($record, $data) {
-                //dddx(['record'=>$record, 'data'=>$data]);
+                $state=$data['state'];
+                $model=Str::of(class_basename($record))->slug()->toString();
+                Assert::string($label=__('pub_theme::'.$model.'_states.'.$state.'.label'));
                 $record->state->transitionTo($data['state'],$data['message']);
-
+                Notification::make()
+                    ->title('Stato aggiornato a '.$label)
+                    ->success()
+                    ->send();
             })
         );
 

@@ -99,10 +99,10 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
                 ->icon('heroicon-o-pencil')
                 ->url(fn (Model $record): string => static::getResource()::getUrl('edit', ['record' => $record])),
 
-            'view' => Action::make('view')
-                ->label('Visualizza')
-                ->icon('heroicon-o-eye')
-                ->url(fn (Model $record): string => static::getResource()::getUrl('view', ['record' => $record])),
+            // 'view' => Action::make('view')
+            //     ->label('Visualizza')
+            //     ->icon('heroicon-o-eye')
+            //     ->url(fn (Model $record): string => static::getResource()::getUrl('view', ['record' => $record])),
         ];
     }
 

@@ -9,6 +9,10 @@ LOGS_DIR="$PROJECT_DIR/storage/logs/mcp"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 CONNECTOR_SCRIPT="$PROJECT_DIR/bashscripts/mcp/mysql-db-connector.js"
 =======
@@ -17,6 +21,11 @@ CONNECTOR_SCRIPT="$PROJECT_DIR/bashscripts/mcp/mysql-db-connector.js"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 CONNECTOR_SCRIPT="$PROJECT_DIR/bashscripts/mcp/mysql-db-connector.js"
 =======
 CONNECTOR_SCRIPT="$PROJECT_DIR/scripts/mysql-db-connector.js"
@@ -24,6 +33,10 @@ CONNECTOR_SCRIPT="$PROJECT_DIR/scripts/mysql-db-connector.js"
 =======
 CONNECTOR_SCRIPT="$PROJECT_DIR/scripts/mysql-db-connector.js"
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 CONNECTOR_SCRIPT="$PROJECT_DIR/bashscripts/mcp/mysql-db-connector.js"
 >>>>>>> e9356a3a (.)
@@ -41,6 +54,11 @@ CONNECTOR_SCRIPT="$PROJECT_DIR/scripts/mysql-db-connector.js"
 =======
 CONNECTOR_SCRIPT="$PROJECT_DIR/bashscripts/mcp/mysql-db-connector.js"
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 
 # Crea la directory dei log se non esiste
 mkdir -p "$LOGS_DIR"
@@ -68,6 +86,10 @@ echo "🚀 Avvio del server MCP MySQL personalizzato..."
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 =======
 <<<<<<< HEAD
@@ -87,6 +109,11 @@ echo "🚀 Avvio del server MCP MySQL personalizzato..."
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Imposta una dimensione di schermo standard per evitare errori
 export COLUMNS=80
 export LINES=24
@@ -94,6 +121,10 @@ export LINES=24
 # Avvia il connector senza utilizzare screen
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 =======
@@ -117,6 +148,15 @@ export LINES=24
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 cd "$PROJECT_DIR" && node "$CONNECTOR_SCRIPT" > "$LOGS_DIR/mysql.log" 2>&1 &
 
 # Attendi che il server si avvii

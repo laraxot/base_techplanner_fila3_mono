@@ -8,6 +8,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -35,6 +36,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -161,6 +165,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -188,6 +193,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -314,6 +322,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -341,6 +350,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -469,6 +481,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -496,6 +509,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -503,6 +519,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
  43df3e0 (.)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -530,6 +547,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 ## 🎯 Funzionalità Future
 
 ### 1. Dashboard Operazioni
@@ -655,6 +675,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 
 aurmich/dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -682,6 +703,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -808,6 +832,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -835,6 +860,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -961,6 +989,7 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 - Deployment produzione
 - Monitoraggio continuo
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -988,6 +1017,9 @@ Questa fase si concentra sull'implementazione di un sistema avanzato di monitora
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📊 Fase 6: Monitoraggio
 
 ## 📋 Panoramica
@@ -1275,6 +1307,7 @@ aurmich/dev
 - Aggiornamenti 
  43df3e0 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -1302,6 +1335,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 aurmich/dev
 
 ## Collegamenti tra versioni di 06_monitoring.md

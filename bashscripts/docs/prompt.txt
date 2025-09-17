@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -121,6 +122,8 @@
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -209,6 +212,7 @@
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
 =======
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -353,6 +357,9 @@
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # GUIDA ESSENZIALE LARAXOT
 
 ## DOCUMENTAZIONE
@@ -525,6 +532,7 @@
 - Aggiornare e studiare continuamente la documentazione
 - Consultare la documentazione prima di ogni azione
 - Ogni modulo ha la sua cartella docs da studiare e aggiornare
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -576,3 +584,6 @@
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)

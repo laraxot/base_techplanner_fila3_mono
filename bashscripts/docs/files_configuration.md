@@ -78,6 +78,7 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 ## Documentazione Correlata
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -105,6 +106,9 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -264,6 +268,7 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
 5338a990 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -287,6 +292,9 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -447,6 +455,7 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 ## Documentazione Correlata
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -475,6 +484,9 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # File di Configurazione
 
 Questa documentazione descrive i file di configurazione utilizzati nel progetto.
@@ -554,6 +566,7 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 
 ## Documentazione Correlata
 - [Gestione dei Repository Git](/docs/bashscripts/gestione_git.md)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 # File di Configurazione
@@ -805,3 +818,5 @@ Per aggiungere nuovi pattern di esclusione, si consiglia di:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)

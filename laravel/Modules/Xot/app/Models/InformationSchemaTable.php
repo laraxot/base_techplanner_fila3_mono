@@ -94,7 +94,7 @@ class InformationSchemaTable extends Model
         'table_schema',
         'table_name',
         'table_rows',
-        
+        'model_class',
         'updated_at',
         'updated_by',
         'created_at',
@@ -111,6 +111,7 @@ class InformationSchemaTable extends Model
         'table_schema' => 'string',
         'table_name' => 'string',
         'table_rows' => 'integer',
+        'model_class' => 'string',
         'updated_at' => 'datetime',
         'updated_by' => 'string',
         'created_at' => 'datetime',
@@ -147,8 +148,8 @@ class InformationSchemaTable extends Model
         $database = $connection->getDatabaseName();
         $driver = $connection->getDriverName();
         $table = $model->getTable();
-
-        $row= InformationSchemaTable::updateOrCreate(['table_schema'=>$database,'table_name'=>$table],['table_rows'=>$total]);
+        $where=['table_schema'=>$database,'model_class'=>$modelClass,'table_name'=>$table];
+        $row= InformationSchemaTable::updateOrCreate($where,['table_rows'=>$total]);
 
     }
    
@@ -179,8 +180,8 @@ class InformationSchemaTable extends Model
         $driver = $connection->getDriverName();
         $table = $model->getTable();
 
-        
-        $row= InformationSchemaTable::firstOrCreate(['table_schema'=>$database,'table_name'=>$table]);
+        $where=['table_schema'=>$database,'model_class'=>$modelClass,'table_name'=>$table];
+        $row= InformationSchemaTable::firstOrCreate($where);
         if($row->table_rows===null){
             $table_rows=$model->count();
             $row= tap($row)->update(['table_rows'=>$table_rows]);

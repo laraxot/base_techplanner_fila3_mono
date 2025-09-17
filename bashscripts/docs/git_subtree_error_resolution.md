@@ -56,6 +56,7 @@ fatal: you must provide the --prefix option
 **Soluzione**:
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -83,6 +84,9 @@ fatal: you must provide the --prefix option
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Verifica variabili
 if [ -z "$LOCAL_PATH" ] || [ -z "$REMOTE_REPO" ]; then
     echo "❌ Error: Missing required variables"

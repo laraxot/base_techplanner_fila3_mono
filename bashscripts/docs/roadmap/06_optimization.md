@@ -8,6 +8,7 @@
 
 aurmich/dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -38,10 +39,16 @@ aurmich/dev
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ea169dcc (.)
+=======
+
+=======
+<<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 9de04485 (.)
@@ -100,6 +107,12 @@ aurmich/dev
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> 3c18aa7e (.)
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # ⚡ Fase 6: Ottimizzazione
 
 ## 📋 Panoramica
@@ -203,6 +216,7 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 - [Documentazione Script](../project.md)
 - [Fase 5: Monitoraggio](../roadmap/05_monitoring.md)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -219,10 +233,13 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 =======
 >>>>>>> 85c5198c (.)
 =======
+=======
+>>>>>>> e0c964a3 (first)
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
 >>>>>>> d20d0523 (.)
 >>>>>>> f71d08e230 (.)
 >>>>>>> ec52a6b4 (.)
@@ -246,6 +263,8 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 - [Fase 7: Documentazione](../roadmap/07_documentation.md)
 
 ## 📅 Timeline
@@ -270,6 +289,7 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 - Fine-tuning
 - Manutenzione
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -314,6 +334,11 @@ Questa fase si concentra sull'ottimizzazione e il miglioramento continuo del sis
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 
 
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
@@ -407,6 +432,7 @@ aurmich/dev
 * [06_optimization.md](docs/roadmap/06_optimization.md)
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -423,10 +449,13 @@ aurmich/dev
 =======
 >>>>>>> 85c5198c (.)
 =======
+=======
+>>>>>>> e0c964a3 (first)
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
 >>>>>>> d20d0523 (.)
 >>>>>>> ec52a6b4 (.)
 =======
@@ -449,6 +478,8 @@ aurmich/dev
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 [0;34mℹ️ [2025-04-22 11:23:25] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 
@@ -495,6 +526,7 @@ aurmich/dev
 * [06_optimization.md](docs/roadmap/06_optimization.md)
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -538,3 +570,8 @@ aurmich/dev
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)

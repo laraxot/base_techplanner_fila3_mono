@@ -4,6 +4,7 @@ Il seguente formato propone una ristrutturazione completa del file di prompt `do
 
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -31,6 +32,9 @@ Il seguente formato propone una ristrutturazione completa del file di prompt `do
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # SISTEMA DI DOCUMENTAZIONE MODULARE
 
 ## 1. PRINCIPI FONDAMENTALI

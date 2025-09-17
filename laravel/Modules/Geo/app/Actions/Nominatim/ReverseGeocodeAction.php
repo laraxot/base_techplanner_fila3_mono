@@ -42,7 +42,7 @@ class ReverseGeocodeAction
                 'format' => 'json',
             ],
             'headers' => [
-                'User-Agent' => 'TechPlanner/1.0',
+                'User-Agent' => 'Xot/1.0',
             ],
         ]);
 

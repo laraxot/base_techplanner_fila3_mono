@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -18,6 +19,8 @@
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # 🛠️ Fase 2: Manutenzione
 
 ## 📋 Panoramica
@@ -61,6 +64,7 @@ Questa fase si concentra sulla manutenzione e ottimizzazione del sistema, garant
    - Alerting proattivo
    - Report automatizzati
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
@@ -78,12 +82,15 @@ Questa fase si concentra sulla manutenzione e ottimizzazione del sistema, garant
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 2. **Sicurezza**:
    - Verifica integrità dati
    - Backup crittografati
    - Controllo accessi
    - Audit log
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
@@ -101,6 +108,8 @@ Questa fase si concentra sulla manutenzione e ottimizzazione del sistema, garant
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 3. **Performance**:
    - Ottimizzazione risorse
    - Caching intelligente
@@ -171,6 +180,7 @@ Questa fase si concentra sulla manutenzione e ottimizzazione del sistema, garant
 ---
 
 Per ulteriori dettagli, consultare la documentazione degli script specifici e le sezioni successive della roadmap.
+<<<<<<< HEAD
 <<<<<<< HEAD
 - Bash 
 
@@ -297,5 +307,7 @@ aurmich/dev
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 
 

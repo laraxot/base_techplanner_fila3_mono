@@ -60,6 +60,7 @@ chmod +x bashscripts/utils/script.sh
   - ❌ BestPractices.md
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Regole create il: $(date)*
 =======
 <<<<<<< HEAD
@@ -77,3 +78,5 @@ chmod +x bashscripts/utils/script.sh
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)

@@ -5,6 +5,7 @@
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -32,6 +33,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -129,6 +133,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 - Logging strutturato
 - Monitoraggio performance
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -156,6 +161,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -260,6 +268,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 =======
 <<<<<<< HEAD
@@ -277,6 +286,8 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -374,6 +385,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 - Logging strutturato
 - Monitoraggio performance
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -401,6 +413,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -500,6 +515,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -527,6 +543,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -827,6 +846,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 
 aurmich/dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -854,6 +874,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 🔍 Fase 3: Verifica
 
 ## 📋 Panoramica
@@ -1053,6 +1076,7 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco HEAD (197 linee vs 1)[0m
  43df3e0 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -1080,6 +1104,9 @@ Questa fase si concentra sugli strumenti di verifica e controllo della qualità 
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 aurmich/dev
 
 ## Collegamenti tra versioni di 03_verification.md

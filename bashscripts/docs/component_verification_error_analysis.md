@@ -122,6 +122,7 @@ name('login');
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -144,15 +145,24 @@ name('login');
 <<<<<<< HEAD
 =======
 >>>>>>> ea169dcc (.)
+=======
+
+=======
+<<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -214,6 +224,8 @@ name('login');
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php" | head -20
 
@@ -231,6 +243,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -253,15 +266,24 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 <<<<<<< HEAD
 =======
 >>>>>>> ea169dcc (.)
+=======
+
+=======
+<<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -323,6 +345,8 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -384,6 +408,7 @@ L'errore è stato causato da:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 *Priorità: CRITICA* 
@@ -416,6 +441,8 @@ L'errore è stato causato da:
 >>>>>>> ec52a6b4 (.)
 <<<<<<< HEAD
 =======
+>>>>>>> e0c964a3 (first)
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -426,6 +453,7 @@ L'errore è stato causato da:
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -481,3 +509,5 @@ L'errore è stato causato da:
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)

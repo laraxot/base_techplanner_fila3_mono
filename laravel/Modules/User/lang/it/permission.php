@@ -21,11 +21,15 @@ return array (
       'placeholder' => 'Seleziona lo stato',
       'help' => 'Indica se il permesso è attivo',
     ),
-    'created_at' => 
+    'created_at' =>
     array (
       'label' => 'Data Creazione',
       'placeholder' => 'Data di creazione',
       'help' => 'Data di creazione del permesso',
+    ),
+    'applyFilters' =>
+    array (
+      'label' => 'Applica Filtri',
     ),
   ),
   'common' => 

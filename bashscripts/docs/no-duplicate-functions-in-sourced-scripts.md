@@ -27,6 +27,7 @@ Quando in uno script .sh si incorporano altre librerie tramite `source ./bashscr
 
 aurmich/dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -57,6 +58,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Principio DRY negli Script Bash: NO alla duplicazione di funzioni
 
 ## PERCHÉ È FONDAMENTALE
@@ -88,6 +92,7 @@ La duplicazione di funzioni negli script bash che importano librerie tramite `so
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -118,6 +123,9 @@ source ./bashscripts/lib/custom.sh
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Utilizzo le funzioni definite in custom.sh senza ridefinirle
 validate_input "$@"
 process_files "$1"
@@ -128,6 +136,7 @@ process_files "$1"
 #!/bin/bash
 source ./bashscripts/lib/custom.sh
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -158,6 +167,9 @@ source ./bashscripts/lib/custom.sh
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # GRAVE ERRORE: ridefinire funzioni già presenti in custom.sh
 function validate_input() {
   # Implementazione duplicata che potrebbe divergere dall'originale
@@ -181,6 +193,7 @@ function validate_input() {
 
  43df3e0 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -218,4 +231,7 @@ function validate_input() {
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 aurmich/dev

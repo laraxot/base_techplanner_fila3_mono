@@ -127,6 +127,7 @@
 - [Fase 7: AI Integration](./roadmap/07_ai_integration.md)
 - [Fase 8: Cloud Integration](./roadmap/08_cloud_integration.md)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -154,6 +155,9 @@
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 🗺️ Roadmap del Progetto
 
 ## 📋 Indice delle Fasi
@@ -279,6 +283,7 @@
 
  43df3e0 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -306,6 +311,9 @@
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 aurmich/dev
 
 # Roadmap Progetto

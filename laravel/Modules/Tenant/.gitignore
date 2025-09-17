@@ -1,28 +1,56 @@
-# Dependencies
+# ==============================================
+# LARAXOT MODULE TENANT - .GITIGNORE
+# ==============================================
+# Modulo Tenant Laraxot - Template standardizzato
+# Ultimo aggiornamento: 2025-01-06
+# ==============================================
+
+# ==============================================
+# DEPENDENCIES & PACKAGES
+# ==============================================
 vendor/
 node_modules/
 package-lock.json
-yarn-error.log
-npm-debug.log
+yarn.lock
+composer.lock
 
-# Build and compiled files
+# ==============================================
+# BUILD & COMPILED FILES
+# ==============================================
 /build
-/docs/package-lock.json
+build/
+dist/
 docs/cache/
 cache/
 
-# Cache and temporary files
+# ==============================================
+# CACHE & TEMPORARY FILES
+# ==============================================
 *.cache
 *.lock
 *.phar
-*.log
+*.jar
+*.tmp
+*.swp
+*.swo
 *.stackdump
-*.exe
 *:Zone.Identifier
-.phpunit.result.cache
+v8-compile-cache-*
 .php-cs-fixer.cache
+.phpunit.result.cache
 
-# Laravel specific
+# ==============================================
+# LOG FILES
+# ==============================================
+*.log
+error_log
+npm-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ==============================================
+# LARAVEL SPECIFIC
+# ==============================================
 bootstrap/compiled.php
 app/storage/
 public/storage
@@ -30,25 +58,85 @@ public/hot
 public_html/storage
 public_html/hot
 storage/*.key
-
-# Environment and configuration
 .env
+.env.*
+!.env.example
+
+# ==============================================
+# ENVIRONMENT & CONFIGURATION
+# ==============================================
 Homestead.yaml
 Homestead.json
 /.vagrant
+/.idea
+.phpintel
 
-# Git related
+# ==============================================
+# GIT SPECIFIC
+# ==============================================
 .git-rewrite/
 .git-blame-ignore-revs
 
-# Backup files
+# ==============================================
+# SYSTEM FILES
+# ==============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==============================================
+# BACKUP FILES
+# ==============================================
 *.old
 *.old1
+*.old2
 *.backup
+*.backup.*
 *.bak
+*.bakcup
+*.new
 
-# PHPStan documentation
+# ==============================================
+# DEVELOPMENT TOOLS
+# ==============================================
+.windsurf/
+.cursor/
+.phpstorm.meta.php
+
+# ==============================================
+# DOCUMENTATION CACHE
+# ==============================================
 docs/phpstan/
+docs/cache/
 
-# Other
--e
+# ==============================================
+# OLD DIRECTORIES (LEGACY CLEANUP)
+# ==============================================
+resources/views/Components_old/
+database/Migrations_old/
+database/Seeders_old/
+database/Factories_old/
+database_old/
+
+# ==============================================
+# MODULE SPECIFIC - TENANT
+# ==============================================
+# File di configurazione locale
+config/local.php
+config/development.php
+
+# Cache tenant
+storage/tenant/
+storage/multi-tenant/
+
+# File di test tenant
+tenant_test_data.json
+test_tenants.sql
+
+# ==============================================
+# END OF TENANT .GITIGNORE
+# ==============================================

@@ -1,6 +1,0 @@
-[
-  {
-    "type": "sqlite",
-    "path": "../laravel/database/saluteora_data.sqlite"
-  }
-]

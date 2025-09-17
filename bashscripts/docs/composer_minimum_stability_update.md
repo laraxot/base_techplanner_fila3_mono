@@ -130,6 +130,7 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 ### Comandi di Verifica
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -237,14 +238,27 @@ I seguenti file avevano già `"minimum-stability": "dev"`:
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+<<<<<<< HEAD
+
+=======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
+<<<<<<< HEAD
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Verifica configurazione
 composer config --list | grep minimum-stability
 
@@ -301,6 +315,7 @@ composer check-platform-reqs
 ### Log di Debug
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -408,14 +423,27 @@ composer check-platform-reqs
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+<<<<<<< HEAD
+
+=======
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
 >>>>>>> 59901687 (.)
+<<<<<<< HEAD
 >>>>>>> 85c5198c (.)
 =======
 >>>>>>> 9de04485 (.)
 >>>>>>> ea169dcc (.)
+=======
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Abilita debug composer
 composer update -vvv
 
@@ -440,6 +468,7 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 *File modificati: 4*
 *File già configurati: 18*
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Totale file verificati: 22* 
 =======
 *Totale file verificati: 22* 
@@ -454,10 +483,15 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 <<<<<<< HEAD
 =======
 >>>>>>> 85c5198c (.)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
 <<<<<<< HEAD
 =======
 *Totale file verificati: 22* 
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 337c5266 (.)
@@ -476,9 +510,13 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 >>>>>>> 59901687 (.)
 =======
 =======
+>>>>>>> 59901687 (.)
+>>>>>>> e0c964a3 (first)
+=======
 *Totale file verificati: 22* 
 >>>>>>> 3c18aa7e (.)
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
 >>>>>>> d20d0523 (.)
 =======
 *Totale file verificati: 22* 
@@ -513,3 +551,5 @@ La configurazione mantiene `"prefer-stable": true` per garantire stabilità quan
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)

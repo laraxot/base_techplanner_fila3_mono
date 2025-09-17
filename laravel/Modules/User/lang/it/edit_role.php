@@ -1,15 +1,18 @@
 <?php
 
-return array (
-  'actions' => 
-  array (
-    'view' => 
-    array (
-      'label' => 'view',
-    ),
-    'delete' => 
-    array (
-      'label' => 'delete',
-    ),
-  ),
-);
+return [
+    'actions' => [
+        'view' => [
+            'label' => 'Visualizza',
+        ],
+        'delete' => [
+            'label' => 'Elimina',
+        ],
+        'cancel' => [
+            'label' => 'Annulla',
+        ],
+        'save' => [
+            'label' => 'Salva',
+        ],
+    ],
+];

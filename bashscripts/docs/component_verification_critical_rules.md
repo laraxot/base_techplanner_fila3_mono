@@ -79,6 +79,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -96,6 +97,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
 
 =======
 <<<<<<< HEAD
@@ -103,6 +106,7 @@
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ea169dcc (.)
@@ -169,10 +173,15 @@
 =======
 >>>>>>> 85c5198c (.)
 >>>>>>> ea169dcc (.)
+=======
+
+=======
+>>>>>>> e0c964a3 (first)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -241,6 +250,11 @@
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Verifica componenti nel progetto
 find resources/views/components -name "*.blade.php"
 
@@ -258,6 +272,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -275,6 +290,8 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
 
 =======
 <<<<<<< HEAD
@@ -282,6 +299,7 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ea169dcc (.)
@@ -348,10 +366,15 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 =======
 >>>>>>> 85c5198c (.)
 >>>>>>> ea169dcc (.)
+=======
+
+=======
+>>>>>>> e0c964a3 (first)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -420,6 +443,11 @@ find vendor/filament -name "*.blade.php" | grep -E "(card|button|input)" | head 
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Test componente
 php artisan view:clear
 php artisan config:clear
@@ -505,6 +533,7 @@ name('login');
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -548,10 +577,13 @@ name('login');
 >>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
+=======
+>>>>>>> e0c964a3 (first)
 
 # ERRATO: Non testare
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -567,10 +599,16 @@ name('login');
 =======
 >>>>>>> 85c5198c (.)
 >>>>>>> ea169dcc (.)
+=======
+=======
+>>>>>>> f198176d (.)
+<<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
 
 # ERRATO: Non testare
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -612,11 +650,14 @@ name('login');
 =======
 >>>>>>> 85c5198c (.)
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # ERRATO: Non testare
 >>>>>>> 3c18aa7e (.)
 =======
 # ERRATO: Non testare
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -690,6 +731,11 @@ name('login');
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Usare componente senza test
 
 # CORRETTO: Testare sempre
@@ -698,6 +744,7 @@ php artisan config:clear
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -715,6 +762,8 @@ php artisan config:clear
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
 
 =======
 <<<<<<< HEAD
@@ -722,6 +771,7 @@ php artisan config:clear
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> ea169dcc (.)
@@ -788,10 +838,15 @@ php artisan config:clear
 =======
 >>>>>>> 85c5198c (.)
 >>>>>>> ea169dcc (.)
+=======
+
+=======
+>>>>>>> e0c964a3 (first)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -860,6 +915,11 @@ php artisan config:clear
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
 # Testare componente
 ```
 
@@ -898,6 +958,7 @@ L'errore è stato causato da:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -920,11 +981,14 @@ L'errore è stato causato da:
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+>>>>>>> e0c964a3 (first)
+=======
 <<<<<<< HEAD
 =======
 >>>>>>> f198176d (.)
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
@@ -965,11 +1029,14 @@ L'errore è stato causato da:
 <<<<<<< HEAD
 >>>>>>> ea169dcc (.)
 =======
+=======
+>>>>>>> e0c964a3 (first)
 *Priorità: CRITICA* 
 >>>>>>> 3c18aa7e (.)
 =======
 *Priorità: CRITICA*
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1032,3 +1099,8 @@ L'errore è stato causato da:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)

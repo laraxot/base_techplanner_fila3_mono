@@ -98,9 +98,13 @@ return array (
       'helper_text' => 'description',
       'placeholder' => 'description',
     ),
-    'delete' => 
+    'delete' =>
     array (
-      'label' => 'delete',
+      'label' => 'Elimina',
+    ),
+    'layout' =>
+    array (
+      'label' => 'Layout',
     ),
   ),
   'actions' => 

@@ -857,6 +857,10 @@ find docs/ -name "*" | grep '[A-Z]' | grep -v "README.md"
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 =======
 <<<<<<< HEAD
@@ -866,9 +870,18 @@ find docs/ -name "*" | grep '[A-Z]' | grep -v "README.md"
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
+=======
+=======
+>>>>>>> 4f97354 (.)
+<<<<<<< HEAD
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> f198176d (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 >>>>>>> e9356a3a (.)
 =======
@@ -883,6 +896,11 @@ find docs/ -name "*" | grep '[A-Z]' | grep -v "README.md"
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 
 
 facciamo un recfactor radicale di tutte le cartelle docs, in ottica dry + kiss, ti ricordo che dentro le cartelle docs, ne i nomi dei files ne i nomi delle cartelle devono contenere caratteri maiuscoli ad eccezzione di README.md
@@ -890,6 +908,10 @@ dentro le cartelle "docs" ne i nomi dei files ne i nomi delle sottocartelle di "
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 =======
 <<<<<<< HEAD
@@ -898,14 +920,28 @@ dentro le cartelle "docs" ne i nomi dei files ne i nomi delle sottocartelle di "
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> e0c964a3 (first)
+=======
+=======
+>>>>>>> 4f97354 (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> f198176d (.)
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 42ab2308 (.)
 =======
+=======
+>>>>>>> e0c964a3 (first)
+=======
+=======
+>>>>>>> 42ab2308 (.)
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 13fed511 (.)
 =======
 >>>>>>> a013e8e (.)
@@ -914,6 +950,10 @@ dentro le cartelle "docs" ne i nomi dei files ne i nomi delle sottocartelle di "
 >>>>>>> 9c02579 (.)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 59901687 (.)
 =======
 >>>>>>> f198176d (.)
@@ -931,3 +971,11 @@ dentro le cartelle "docs" ne i nomi dei files ne i nomi delle sottocartelle di "
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)

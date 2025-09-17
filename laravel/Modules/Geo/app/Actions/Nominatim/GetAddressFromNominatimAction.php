@@ -24,7 +24,7 @@ class GetAddressFromNominatimAction
     public function execute(string $address): ?AddressData
     {
         $response = Http::withHeaders([
-            'User-Agent' => 'TechPlanner/1.0',
+            'User-Agent' => 'Xot/1.0',
         ])->get(self::BASE_URL.'/search', [
             'q' => $address,
             'format' => 'json',

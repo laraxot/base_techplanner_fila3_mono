@@ -9,6 +9,7 @@
 aurmich/dev
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 aurmich/dev
 =======
 <<<<<<< HEAD
@@ -26,6 +27,8 @@ aurmich/dev
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 # 📱 Fase 9: UI/UX
 
 ## 📋 Panoramica
@@ -156,6 +159,7 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 aurmich/dev
 - Monitoraggio utilizzo
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -183,6 +187,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📱 Fase 9: UI/UX
 
 ## 📋 Panoramica
@@ -312,6 +319,7 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco incoming (1 linee vs 1)[0m
 aurmich/dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -339,6 +347,9 @@ aurmich/dev
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # 📱 Fase 9: UI/UX
 
 ## 📋 Panoramica
@@ -720,6 +731,7 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 [0;34mℹ️ [2025-04-22 11:23:26] Scelto blocco HEAD (253 linee vs 1)[0m
  43df3e0 (.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -747,6 +759,9 @@ Questa fase si concentra sullo sviluppo di interfacce utente moderne e intuitive
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 aurmich/dev
 
 ## Collegamenti tra versioni di 09_ui_ux.md

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -28,6 +29,10 @@
 
 
 >>>>>>> ea169dcc (.)
+=======
+
+
+>>>>>>> e0c964a3 (first)
 # Setup del Progetto Laravel
 
 Questo documento contiene la documentazione dettagliata dei comandi utilizzati per il setup di un progetto Laravel, insieme a spiegazioni, consigli e note per migliorare il processo.
@@ -51,6 +56,7 @@ Questo documento contiene la documentazione dettagliata dei comandi utilizzati p
 ### Verifica Requisiti
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -78,6 +84,9 @@ Questo documento contiene la documentazione dettagliata dei comandi utilizzati p
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Verifica versione PHP
 php -v
 
@@ -140,6 +149,7 @@ sudo add-apt-repository ppa:ondrej/php
 ### Configurazione File .env
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -167,6 +177,9 @@ sudo add-apt-repository ppa:ondrej/php
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Naviga nella directory del progetto
 cd laravel
 
@@ -196,6 +209,7 @@ php artisan key:generate
   ```ini
   APP_NAME=<nome progetto>
 <<<<<<< HEAD
+<<<<<<< HEAD
   APP_NAME=<nome progetto>
  80ec88ee9 (.)
 =======
@@ -216,11 +230,14 @@ php artisan key:generate
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 
   APP_NAME=<nome progetto>
 
   APP_NAME=SaluteOra
  80ec88ee9 (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -237,6 +254,8 @@ php artisan key:generate
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
   APP_ENV=local
   APP_DEBUG=true
   APP_URL=http://localhost
@@ -496,6 +515,7 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 ### Configurazione Tema Powerlevel10k
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -523,6 +543,9 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Modifica il file ~/.zshrc
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
@@ -660,6 +683,7 @@ sudo apt-get install --install-recommends webmin usermin
 ### Aggiornamento Composer e Dipendenze
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -687,6 +711,9 @@ sudo apt-get install --install-recommends webmin usermin
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Naviga nella directory del progetto
 cd laravel
 
@@ -986,6 +1013,7 @@ sudo pecl install redis
 
 ### Creazione Database MySQL
 ```bash
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Crea il file database.sqlite nella directory database
 touch laravel/database/database.sqlite
@@ -2267,11 +2295,14 @@ FLUSH PRIVILEGES;
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 mysql -u root -p
 CREATE DATABASE nome_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'nome_utente'@'localhost' IDENTIFIED BY 'password_sicura';
 GRANT ALL PRIVILEGES ON nome_database.* TO 'nome_utente'@'localhost';
 FLUSH PRIVILEGES;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -2288,6 +2319,8 @@ FLUSH PRIVILEGES;
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 ### Creazione Database SQLite
 ```bash
 
@@ -3680,6 +3713,7 @@ FLUSH PRIVILEGES;
 # Esci
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -3694,6 +3728,8 @@ FLUSH PRIVILEGES;
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 EXIT;
 ```
 
@@ -3702,6 +3738,7 @@ EXIT;
 - Utilizza la codifica utf8mb4 per il massimo supporto Unicode
 
 **Note:**
+<<<<<<< HEAD
 <<<<<<< HEAD
 ### Creazione Database SQLite
 ```bash
@@ -3865,6 +3902,8 @@ php artisan migrate
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 - Sostituire `nome_database`, `nome_utente` e `password_sicura` con valori reali
 - Conservare le credenziali in modo sicuro
 
@@ -3875,6 +3914,7 @@ php artisan migrate
 - Documentare ogni personalizzazione
 - Monitorare costantemente le performance del server
 - Aggiornare regolarmente sistema e dipendenze
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -3891,6 +3931,8 @@ php artisan migrate
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 - Crea un nuovo database per il progetto Laravel
 - Configura un utente dedicato con i permessi necessari
 - Imposta il charset e la collation corretti
@@ -4096,6 +4138,7 @@ php artisan migrate
 - Controllare la configurazione di PHP
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 <<<<<<< HEAD
@@ -4110,6 +4153,8 @@ php artisan migrate
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
 
 ## Conclusioni
 
@@ -4151,6 +4196,7 @@ sudo systemctl start redis-server
 ### Configurazione Redis
 ```ini
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -4178,6 +4224,9 @@ sudo systemctl start redis-server
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # /etc/redis/redis.conf
 maxmemory 256mb
 maxmemory-policy allkeys-lru
@@ -4204,6 +4253,7 @@ maxmemory-policy allkeys-lru
 ### Configurazione Performance
 ```apache
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -4231,6 +4281,9 @@ maxmemory-policy allkeys-lru
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # /etc/apache2/mods-available/mpm_prefork.conf
 <IfModule mpm_prefork_module>
     StartServers 5
@@ -4244,6 +4297,7 @@ maxmemory-policy allkeys-lru
 ### Gestione Moduli Apache
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -4271,6 +4325,9 @@ maxmemory-policy allkeys-lru
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Disabilita il modulo PHP 8.2
 sudo a2dismod php8.2
 
@@ -4505,6 +4562,7 @@ php artisan user:assign-module
 - Per rimuovere l'assegnazione di un modulo:
   ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -4559,3 +4617,6 @@ aurmich/dev
 =======
  43df3e0 (.)
 >>>>>>> ea169dcc (.)
+=======
+ 43df3e0 (.)
+>>>>>>> e0c964a3 (first)

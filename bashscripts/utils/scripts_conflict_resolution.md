@@ -190,6 +190,10 @@ I seguenti file sono stati recentemente risolti:
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -197,12 +201,26 @@ I seguenti file sono stati recentemente risolti:
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -228,6 +246,15 @@ I seguenti file sono stati recentemente risolti:
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 ### fix_structure.sh
 
 Mantenere la versione più avanzata con funzioni di logging colorate, migliorando:
@@ -297,6 +324,10 @@ I seguenti file sono stati recentemente risolti:
 Questa documentazione è collegata bidirezionalmente con la [documentazione principale sulla risoluzione dei conflitti](../../docs/bashscripts_conflict_resolution.md) nella root del progetto. 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -304,6 +335,16 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
@@ -312,6 +353,10 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -339,6 +384,15 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 #### Utilizzo
 ```bash
 ./bashscripts/utils/conflict_analyzer.sh
@@ -356,6 +410,10 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -363,12 +421,26 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -394,6 +466,15 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Trova tutti i file con conflitti
 ./bashscripts/git/find_conflicts.sh
 ```
@@ -402,6 +483,10 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -409,12 +494,26 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -440,6 +539,15 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Analizza i conflitti trovati
 ./bashscripts/utils/conflict_analyzer.sh
 ```
@@ -448,6 +556,10 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -455,12 +567,26 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -486,6 +612,15 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Risolvi manualmente i conflitti più critici
 ./bashscripts/utils/resolve_conflicts.sh [file_critico]
 ```
@@ -494,6 +629,10 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 ```bash
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -501,12 +640,26 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -532,6 +685,15 @@ Questa documentazione è collegata bidirezionalmente con la [documentazione prin
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Risolvi automaticamente i conflitti rimanenti meno critici
 ./bashscripts/utils/fix_all_git_conflicts.sh
 ```
@@ -571,6 +733,10 @@ Gli script possono essere migliorati e personalizzati. Per contribuire:
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -590,6 +756,17 @@ Gli script possono essere migliorati e personalizzati. Per contribuire:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+<<<<<<< HEAD
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 
 # Nome dello script
 
@@ -607,6 +784,10 @@ Gli script possono essere migliorati e personalizzati. Per contribuire:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 =======
 =======
@@ -624,12 +805,26 @@ Gli script possono essere migliorati e personalizzati. Per contribuire:
 =======
 >>>>>>> f52d0712 (.)
 >>>>>>> ec52a6b4 (.)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+=======
+=======
+>>>>>>> 574afe9e (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Nome dello script
 # =======================
 # Descrizione: Breve descrizione dello script
 # Utilizzo: ./path/to/script.sh [argomenti]
 # Autore: Nome dell'autore
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 =======
 =======
@@ -650,6 +845,18 @@ Gli script possono essere migliorati e personalizzati. Per contribuire:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+>>>>>>> 3c18aa7e (.)
+=======
+>>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # =======================
 
 # Dichiarazione delle costanti e variabili
@@ -669,6 +876,10 @@ Quando un `git pull` fallisce a causa di conflitti:
 git pull origin main
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -676,12 +887,26 @@ git pull origin main
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -707,6 +932,15 @@ git pull origin main
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Conflitti rilevati
 ./bashscripts/utils/conflict_analyzer.sh
 ./bashscripts/utils/resolve_conflicts.sh [file_conflittuale]
@@ -718,6 +952,10 @@ Prima di eseguire un commit, verificare l'assenza di conflitti:
 ./bashscripts/git/find_conflicts.sh
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -725,12 +963,26 @@ Prima di eseguire un commit, verificare l'assenza di conflitti:
 
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 
 =======
 >>>>>>> 3c18aa7e (.)
 =======
 >>>>>>> 574afe9e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 =======
@@ -756,6 +1008,15 @@ Prima di eseguire un commit, verificare l'assenza di conflitti:
 =======
 
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)
 # Se vengono trovati conflitti, risolverli
 git add .
 git commit -m "Messaggio del commit"
@@ -793,14 +1054,28 @@ Per pulire un repository con molti conflitti non risolti:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 4f97354 (.)
 <<<<<<< HEAD
 =======
 >>>>>>> d83fe8da (.)
 =======
 >>>>>>> 574afe9e (.)
 >>>>>>> 3c18aa7e (.)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f97354 (.)
 >>>>>>> 7de7063d (.)
 =======
 >>>>>>> 71ff9e32 (.)
@@ -820,3 +1095,12 @@ Per pulire un repository con molti conflitti non risolti:
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 59901687 (.)
+=======
+>>>>>>> f198176d (.)
+>>>>>>> e0c964a3 (first)
+=======
+>>>>>>> 4f97354 (.)

@@ -44,6 +44,7 @@ La risoluzione manuale dei conflitti negli script bash è particolarmente delica
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Versione avanzata con livelli di log
 log() {
     local level="$1"
@@ -128,6 +129,9 @@ log() {
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Versione avanzata con livelli di log
 log() {
     local level="$1"
@@ -157,6 +161,7 @@ log() {
 # Funzione avanzata per loggare messaggi che supporta entrambi i formati
 log() {
     # Supporta sia il formato avanzato con livelli che il formato semplice
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -173,6 +178,8 @@ log() {
 >>>>>>> ec52a6b4 (.)
 =======
 >>>>>>> ea169dcc (.)
+=======
+>>>>>>> e0c964a3 (first)
     if [ $# -eq 2 ]; then
         # Formato avanzato: log "level" "message"
         local level="$1"
@@ -199,6 +206,7 @@ log() {
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -229,6 +237,9 @@ log() {
 =======
 
 >>>>>>> ea169dcc (.)
+=======
+
+>>>>>>> e0c964a3 (first)
 # Versione che richiede 2 parametri
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <path> <remote_repo>"
@@ -253,6 +264,7 @@ BRANCH="$3"
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -304,6 +316,10 @@ BRANCH="$3"
 
 # Versione che supporta 2 o 3 parametri
 >>>>>>> ea169dcc (.)
+=======
+
+# Versione che supporta 2 o 3 parametri
+>>>>>>> e0c964a3 (first)
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     echo "Usage: $0 <path> <remote_repo> [branch]"
     exit 1
