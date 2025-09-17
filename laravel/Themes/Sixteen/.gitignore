@@ -45,4 +45,5 @@ docs/cache/
 *.old
 *.old1
 *.bakcup
+*.backup
 *.backup.*
