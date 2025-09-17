@@ -280,6 +280,20 @@ return array (
       'placeholder' => 'street_address',
       'label' => 'street_address',
     ),
+    'created_at' => 
+    array (
+      'description' => 'created_at',
+      'helper_text' => 'created_at',
+      'placeholder' => 'created_at',
+      'label' => 'created_at',
+    ),
+    'updated_at' => 
+    array (
+      'description' => 'updated_at',
+      'helper_text' => 'updated_at',
+      'placeholder' => 'updated_at',
+      'label' => 'updated_at',
+    ),
   ),
   'import' => 
   array (

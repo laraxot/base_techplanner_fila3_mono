@@ -68,5 +68,92 @@
         "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
         "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
         "table_rows": 94
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "table_name": "work_hours",
+        "id": 8,
+        "updated_at": "2025-09-12T11:05:14.753850Z",
+        "created_at": "2025-09-12T11:05:14.747626Z",
+        "updated_by": "0199376d-ef89-7229-b082-96a138baafe0",
+        "created_by": "0199376d-ef89-7229-b082-96a138baafe0",
+        "table_rows": 8
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "model_class": "Modules\\TechPlanner\\Models\\Appointment",
+        "table_name": "appointments",
+        "id": 9,
+        "updated_at": "2025-09-17T08:10:41.379322Z",
+        "created_at": "2025-09-17T08:10:41.361209Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 184
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "table_name": "clients",
+        "id": 10,
+        "updated_at": "2025-09-17T08:10:46.449257Z",
+        "created_at": "2025-09-17T08:10:41.395776Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 494,
+        "model_class": "Modules\\TechPlanner\\Models\\Client"
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "model_class": "Modules\\TechPlanner\\Models\\Device",
+        "table_name": "machines",
+        "id": 11,
+        "updated_at": "2025-09-17T08:10:41.422559Z",
+        "created_at": "2025-09-17T08:10:41.417775Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "model_class": "Modules\\TechPlanner\\Models\\LegalOffice",
+        "table_name": "legal_offices",
+        "id": 12,
+        "updated_at": "2025-09-17T08:10:41.442040Z",
+        "created_at": "2025-09-17T08:10:41.436322Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "model_class": "Modules\\TechPlanner\\Models\\LegalRepresentative",
+        "table_name": "legal_representatives",
+        "id": 13,
+        "updated_at": "2025-09-17T08:10:41.465885Z",
+        "created_at": "2025-09-17T08:10:41.459991Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "model_class": "Modules\\TechPlanner\\Models\\MedicalDirector",
+        "table_name": "medical_directors",
+        "id": 14,
+        "updated_at": "2025-09-17T08:10:41.487386Z",
+        "created_at": "2025-09-17T08:10:41.482007Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "u345161458_sottana",
+        "model_class": "Modules\\TechPlanner\\Models\\PhoneCall",
+        "table_name": "phone_calls",
+        "id": 15,
+        "updated_at": "2025-09-17T08:10:41.509943Z",
+        "created_at": "2025-09-17T08:10:41.503006Z",
+        "updated_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "created_by": "9ddf70bd-561e-4513-a742-5523567ef10b",
+        "table_rows": 95
     }
 ]

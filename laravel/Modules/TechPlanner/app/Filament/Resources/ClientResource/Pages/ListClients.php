@@ -97,6 +97,13 @@ class ListClients extends XotBaseListRecords
 
             'country' => TextColumn::make('country')
                 ->toggleable(isToggledHiddenByDefault: true),
+            'updated_at' => TextColumn::make('updated_at')
+                ->toggleable(isToggledHiddenByDefault: true)
+                ->sortable(),
+
+            'created_at' => TextColumn::make('created_at')
+                ->toggleable(isToggledHiddenByDefault: true)
+                ->sortable(),
 
             /*
             'contacts' => TextColumn::make('contacts')

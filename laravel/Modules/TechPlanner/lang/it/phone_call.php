@@ -56,10 +56,13 @@ return array (
     'notes' => 
     array (
       'label' => 'Note',
+      'description' => 'notes',
     ),
     'call_type' => 
     array (
       'label' => 'Tipo Chiamata',
+      'description' => 'call_type',
+      'helper_text' => 'call_type',
     ),
     'id' => 
     array (

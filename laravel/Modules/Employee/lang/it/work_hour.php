@@ -196,6 +196,14 @@ return array (
       array (
         'label' => 'employee.full_name',
       ),
+      'email' => 
+      array (
+        'label' => 'employee.email',
+      ),
+      'name' => 
+      array (
+        'label' => 'employee.name',
+      ),
     ),
     'id' => 
     array (
