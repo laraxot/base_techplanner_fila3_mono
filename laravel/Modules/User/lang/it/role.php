@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 return [
-    // ==============================================
     // NAVIGATION & STRUCTURE
-    // ==============================================
     'navigation' => [
         'label' => 'Ruoli',
         'plural_label' => 'Ruoli',
@@ -18,18 +16,14 @@ return [
         'badge' => 'Gestione ruoli e permessi',
     ],
 
-    // ==============================================
     // MODEL INFORMATION
-    // ==============================================
     'model' => [
         'label' => 'Ruolo',
         'plural' => 'Ruoli',
         'description' => 'Ruoli di accesso e permessi nel sistema',
     ],
 
-    // ==============================================
     // FIELDS - STRUTTURA ESPANSA OBBLIGATORIA
-    // ==============================================
     'fields' => [
         'id' => [
             'label' => 'ID',
@@ -113,9 +107,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
-    // ==============================================
     'actions' => [
         'create' => [
             'label' => 'Crea Ruolo',
@@ -224,9 +216,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // SECTIONS - ORGANIZZAZIONE FORM
-    // ==============================================
     'sections' => [
         'basic_info' => [
             'label' => 'Informazioni Base',
@@ -245,9 +235,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // FILTERS - RICERCA E FILTRI
-    // ==============================================
     'filters' => [
         'guard_name' => [
             'label' => 'Guard',
@@ -267,9 +255,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // MESSAGES - FEEDBACK UTENTE
-    // ==============================================
     'messages' => [
         'empty_state' => 'Nessun ruolo trovato',
         'search_placeholder' => 'Cerca ruoli...',
@@ -287,9 +273,7 @@ return [
         'success_operation' => 'Operazione completata con successo',
     ],
 
-    // ==============================================
     // VALIDATION - MESSAGGI DI VALIDAZIONE
-    // ==============================================
     'validation' => [
         'name_required' => 'Il nome del ruolo è obbligatorio',
         'name_unique' => 'Questo nome ruolo è già in uso',
@@ -300,9 +284,7 @@ return [
         'description_max' => 'La descrizione non può superare i :max caratteri',
     ],
 
-    // ==============================================
     // DESCRIPTIONS - DESCRIZIONI CONTESTUALI
-    // ==============================================
     'descriptions' => [
         'super_admin' => 'Accesso completo a tutte le funzionalità del sistema',
         'admin' => 'Accesso alla maggior parte delle funzionalità amministrative',
@@ -311,9 +293,7 @@ return [
         'user' => 'Accesso base alle funzionalità del sistema',
     ],
 
-    // ==============================================
     // OPTIONS - OPZIONI E VALORI PREDEFINITI
-    // ==============================================
     'options' => [
         'roles' => [
             'super_admin' => 'Super Amministratore',
@@ -336,9 +316,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // LEGACY SUPPORT - Compatibilità con codice esistente
-    // ==============================================
     'roles' => [
         'super_admin' => 'Super Amministratore',
         'admin' => 'Amministratore',

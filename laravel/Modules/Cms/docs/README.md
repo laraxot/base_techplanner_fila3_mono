@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Modulo CMS - Content Management System
 
 ## 🎯 Panoramica
@@ -54,7 +53,6 @@ Modules/Cms/
 
 ---
 **Ultimo aggiornamento**: Gennaio 2025
-=======
 # Modulo CMS
 > **Collegamenti correlati**
 > - [README.md documentazione generale SaluteOra](../../../../docs/README.md)
@@ -128,6 +126,7 @@ Il modulo CMS gestisce i contenuti e i widget del sistema, fornendo un sistema f
    - [Configurazione](configuration.md)
    - [Testing](testing.md)
    - [PHPStan](phpstan.md)
+   - [Correzioni PHPStan](phpstan-fixes.md)
 
 6. [UX/UI](#ux-ui)
    - [Web Design](webdesign.md)
@@ -303,4 +302,3 @@ npm run dev
 * [README.md](laravel/Themes/Two/docs/README.md)
 * [README.md](laravel/Themes/One/docs/README.md)
 
->>>>>>> 12a72f2 (.)

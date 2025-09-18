@@ -173,7 +173,7 @@ class PathHelper
         /** @var array<string> $directories */
         $directories = File::directories($modulesPath);
 
-        return array_map(fn (string $path): string => basename($path), $directories);
+        return array_map(basename(...), $directories);
     }
 
     /**

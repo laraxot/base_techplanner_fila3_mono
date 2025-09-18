@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 return [
-    // ==============================================
     // NAVIGATION & STRUCTURE
-    // ==============================================
     'navigation' => [
         'label' => 'Dashboard',
         'plural_label' => 'Dashboard',
@@ -18,18 +16,14 @@ return [
         'plural' => 'dashboard',
     ],
 
-    // ==============================================
     // MODEL INFORMATION
-    // ==============================================
     'model' => [
         'label' => 'Dashboard',
         'plural' => 'Dashboard',
         'description' => 'Pannello di controllo principale del sistema Xot',
     ],
 
-    // ==============================================
     // FIELDS - STRUTTURA ESPANSA OBBLIGATORIA
-    // ==============================================
     'fields' => [
         'name' => [
             'label' => 'Nome',
@@ -70,15 +64,10 @@ return [
             'label' => 'Seleziona Tutti',
             'tooltip' => 'Seleziona tutti gli elementi',
             'helper_text' => 'Seleziona tutti gli elementi disponibili nella lista',
-            // Legacy support
-            'name' => 'Seleziona Tutti',
-            'message' => '',
         ],
     ],
 
-    // ==============================================
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
-    // ==============================================
     'actions' => [
         'import' => [
             'label' => 'Importa Dati',
@@ -102,11 +91,11 @@ return [
         'export' => [
             'label' => 'Esporta Dati',
             'icon' => 'heroicon-o-arrow-down-tray',
-            'color' => 'primary',
+            'color' => 'success',
             'tooltip' => 'Esporta dati in formato file',
             'modal' => [
                 'heading' => 'Esporta Dati',
-                'description' => 'Esporta i dati selezionati',
+                'description' => 'Seleziona il formato di esportazione',
                 'confirm' => 'Esporta',
                 'cancel' => 'Annulla',
             ],
@@ -121,10 +110,7 @@ return [
             ],
         ],
     ],
-
-    // ==============================================
     // SECTIONS - ORGANIZZAZIONE FORM
-    // ==============================================
     'sections' => [
         'overview' => [
             'label' => 'Panoramica',
@@ -143,9 +129,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // MESSAGES - FEEDBACK UTENTE
-    // ==============================================
     'messages' => [
         'empty_state' => 'Nessun elemento trovato nella dashboard',
         'search_placeholder' => 'Cerca nella dashboard...',
@@ -155,18 +139,14 @@ return [
         'success_operation' => 'Operazione dashboard completata con successo',
     ],
 
-    // ==============================================
     // COMPONENTS - COMPONENTI DASHBOARD
-    // ==============================================
     'components' => [
         'resources' => 'Risorse',
         'pages' => 'Pagine',
         'widgets' => 'Widgets',
     ],
 
-    // ==============================================
     // LEGACY SUPPORT - Compatibilità con codice esistente
-    // ==============================================
     'resources' => 'Risorse',
     'pages' => 'Pagine',
     'widgets' => 'Widgets',

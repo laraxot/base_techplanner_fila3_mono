@@ -70,6 +70,7 @@ abstract class XotBaseRelationManager extends RelationManager
      *
      * @return array<string, Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [];

@@ -15,7 +15,7 @@ class FilterRelationsAction
      *
      * @return array<string, Relation>
      */
-    public function execute(Model $model, array $relations): array
+    public function execute(Model $_model, array $relations): array
     {
         $filtered = [];
 

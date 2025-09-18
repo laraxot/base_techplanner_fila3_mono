@@ -12,10 +12,7 @@ class ListSchedules extends XotBaseListRecords
 {
     protected static string $resource = ScheduleResource::class;
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public function getTableColumns(): array
     {
         return [

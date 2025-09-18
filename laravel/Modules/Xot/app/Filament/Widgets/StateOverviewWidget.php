@@ -49,6 +49,7 @@ class StateOverviewWidget extends XotBaseWidget
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -98,7 +99,7 @@ class StateOverviewWidget extends XotBaseWidget
         $res= Cache::remember(
             $this->getCacheKey(),
             now()->addMinutes(5),
-            fn () => $this->calculateStates()
+            $this->calculateStates(...)
         );
 
         Assert::isArray($res);

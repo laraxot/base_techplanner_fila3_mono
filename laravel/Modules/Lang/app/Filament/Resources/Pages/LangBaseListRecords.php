@@ -20,10 +20,7 @@ abstract class LangBaseListRecords extends XotBaseListRecords
     /**
      * @return array<string, \Filament\Actions\Action>
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 37612df (.)
     protected function getHeaderActions(): array
     {
         $parentActions = parent::getHeaderActions();

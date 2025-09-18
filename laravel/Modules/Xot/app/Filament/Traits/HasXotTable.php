@@ -222,7 +222,6 @@ trait HasXotTable
             ->filtersLayout(FiltersLayout::AboveContent)
             ->filtersFormColumns($this->getTableFiltersFormColumns())
             ->persistFiltersInSession()
-            ->persistSortInSession()
             ->headerActions($this->getTableHeaderActions())
             ->actions($this->getTableActions())
             ->bulkActions($this->getTableBulkActions())
@@ -293,21 +292,21 @@ trait HasXotTable
             $actions['view'] = Tables\Actions\ViewAction::make()
                 ->iconButton()
                 ->tooltip(__('user::actions.view'))
-                ->visible(fn (Model $record): bool => $resource::canView($record));
+                ->visible($resource::canView(...));
         }
 
         if (method_exists($resource, 'canEdit')) {
             $actions['edit'] = Tables\Actions\EditAction::make()
                 ->iconButton()
                 ->tooltip(__('user::actions.edit'))
-                ->visible(fn (Model $record): bool => $resource::canEdit($record));
+                ->visible($resource::canEdit(...));
         }
         
         if (method_exists($resource, 'canDelete')) {
             $actions['delete'] = Tables\Actions\DeleteAction::make()
                 ->iconButton()
                 ->tooltip(__('user::actions.delete'))
-                ->visible(fn (Model $record): bool => $resource::canDelete($record));
+                ->visible($resource::canDelete(...));
         }
         
         if ($this->shouldShowReplicateAction()) {

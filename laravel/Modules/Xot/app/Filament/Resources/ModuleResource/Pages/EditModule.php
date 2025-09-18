@@ -32,9 +32,19 @@ class EditModule extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 
     protected function afterSave(): void
     {
-        $module = $this->getTypedRecord();
-        $configPath = $this->buildConfigPath($module);
-        $this->updateModuleConfig($module, $configPath);
+        $module = $this->record; // Ottiene il record corrente
+        if (!$module instanceof \Illuminate\Database\Eloquent\Model || !isset($module->path)) {
+            return;
+        }
+
+        $config_path = $module->path.'/config/config.php';
+        $data = File::getRequire($config_path);
+        if (! is_array($data)) {
+            $data = [];
+        }
+        $data = array_merge($data, $module->toArray());
+        unset($data['path']);
+        app(SaveArrayAction::class)->execute($data, $config_path);
 
         /*
         $configPath = config_path('modules/colors.php');
@@ -59,38 +69,5 @@ class EditModule extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
         // Richiama il file di configurazione per essere sicuro che i colori siano caricati
         Config::set('modules.colors', $colorsConfig);
         */
-    }
-
-    private function getTypedRecord(): Module
-    {
-        if (!$this->record instanceof Module) {
-            throw new \RuntimeException('Expected Module record');
-        }
-
-        return $this->record;
-    }
-
-    private function buildConfigPath(Module $module): string
-    {
-        $path = $module->path;
-        if ($path === null) {
-            throw new \RuntimeException('Module path is required');
-        }
-
-        return $path . '/config/config.php';
-    }
-
-    private function updateModuleConfig(Module $module, string $configPath): void
-    {
-        $data = File::getRequire($configPath);
-        if (!is_array($data)) {
-            $data = [];
-        }
-
-        $moduleData = $module->toArray();
-        unset($moduleData['path']);
-
-        $data = array_merge($data, $moduleData);
-        app(SaveArrayAction::class)->execute($data, $configPath);
     }
 }

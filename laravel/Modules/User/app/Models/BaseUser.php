@@ -255,6 +255,7 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
         ));
     }
 
+    #[\Override]
     public function profile(): HasOne
     {
         /** @var class-string<\Illuminate\Database\Eloquent\Model> */
@@ -479,13 +480,12 @@ abstract class BaseUser extends Authenticatable implements HasName, HasTenants, 
      * @param string|null $guard
      * @return bool
      */
+    #[\Override]
     public function hasRole($roles, ?string $guard = null): bool
     {
         // Se è una stringa semplice, utilizziamo il metodo interno tramite relazione roles
         if (is_string($roles)) {
-            return once(function () use ($roles) {
-                return $this->roles()->where('name', $roles)->exists();
-            });
+            return once(fn() => $this->roles()->where('name', $roles)->exists());
         }
 
         // Per gli altri tipi, implementiamo una logica di base

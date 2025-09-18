@@ -19,10 +19,7 @@ class JobsWaitingResource extends XotBaseResource
 
     protected static bool $shouldRegisterNavigation = true;
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [

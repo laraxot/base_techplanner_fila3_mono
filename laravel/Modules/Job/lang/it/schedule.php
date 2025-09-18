@@ -1,23 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-return array (
-  'navigation' => 
-  array (
-    'name' => 'Schedulatore',
-    'plural' => 'Schedulatori',
-    'group' => 
-    array (
-      'name' => 'Jobs',
-      'description' => 'Gestione dei job schedulati',
-    ),
-    'label' => 'Schedulatore',
-    'sort' => 55,
-    'icon' => 'job-schedule-animated',
-  ),
-  'resource' => 
-  array (
-=======
 return  [
   'navigation' => 
    [
@@ -34,84 +16,10 @@ return  [
   ],
   'resource' => 
    [
->>>>>>> 4e86067 (.)
     'single' => 'Schedule',
     'plural' => 'Schedules',
     'navigation' => 'Settings',
     'history' => 'Show run history',
-<<<<<<< HEAD
-  ),
-  'fields' => 
-  array (
-    'name' => 
-    array (
-      'label' => 'Nome',
-      'tooltip' => 'Inserisci il nome del job programmato',
-      'placeholder' => 'Nome del job',
-    ),
-    'guard_name' => 
-    array (
-      'label' => 'Guard',
-      'tooltip' => 'Seleziona il guardiano per il job',
-      'placeholder' => 'Nome del guardiano',
-    ),
-    'permissions' => 
-    array (
-      'label' => 'Permessi',
-      'tooltip' => 'Assegna i permessi necessari al job',
-      'placeholder' => 'Permessi',
-    ),
-    'first_name' => 
-    array (
-      'label' => 'Nome',
-      'tooltip' => 'Nome del responsabile',
-      'placeholder' => 'Nome responsabile',
-    ),
-    'last_name' => 
-    array (
-      'label' => 'Cognome',
-      'tooltip' => 'Cognome del responsabile',
-      'placeholder' => 'Cognome responsabile',
-    ),
-    'command' => 
-    array (
-      'label' => 'Command',
-      'tooltip' => 'Inserisci il comando da eseguire',
-      'placeholder' => 'Comando',
-    ),
-    'arguments' => 
-    array (
-      'label' => 'Arguments',
-      'tooltip' => 'Specificare eventuali argomenti per il comando',
-      'placeholder' => 'Argomenti',
-    ),
-    'options' => 
-    array (
-      'label' => 'Options',
-      'tooltip' => 'Inserisci eventuali opzioni per il comando',
-      'placeholder' => 'Opzioni',
-    ),
-    'expression' => 
-    array (
-      'label' => 'Cron Expression',
-      'tooltip' => 'Imposta l\'espressione cron per la pianificazione',
-      'placeholder' => 'Espressione Cron',
-    ),
-    'log_filename' => 
-    array (
-      'label' => 'Log Filename',
-      'tooltip' => 'Nome del file di log',
-      'placeholder' => 'Log filename',
-    ),
-    'status' => 
-    array (
-      'label' => 'Status',
-      'tooltip' => 'Stato corrente del job',
-      'placeholder' => 'Stato',
-    ),
-    'actions' => 
-    array (
-=======
   ],
   'fields' => 
    [
@@ -183,53 +91,10 @@ return  [
     ],
     'actions' => 
      [
->>>>>>> 4e86067 (.)
       'label' => 'Actions',
       'tooltip' => 'Azioni disponibili per il job',
       'icon' => 'action-icon',
       'color' => 'blue',
-<<<<<<< HEAD
-    ),
-    'run_in_background' => 
-    array (
-      'label' => 'Run in Background',
-      'tooltip' => 'Esegui il job in background',
-      'placeholder' => 'Run in background',
-    ),
-    'created_at' => 
-    array (
-      'label' => 'Created At',
-      'tooltip' => 'Data di creazione del job',
-      'placeholder' => 'Data creazione',
-    ),
-    'updated_at' => 
-    array (
-      'label' => 'Updated At',
-      'tooltip' => 'Ultima data di aggiornamento',
-      'placeholder' => 'Data aggiornamento',
-    ),
-    'timezone' => 
-    array (
-      'label' => 'Fuso Orario',
-      'tooltip' => 'Imposta il fuso orario per il job',
-      'placeholder' => 'Fuso orario',
-    ),
-    'toggleColumns' => 
-    array (
-      'label' => 'toggleColumns',
-    ),
-    'reorderRecords' => 
-    array (
-      'label' => 'reorderRecords',
-    ),
-    'resetFilters' => 
-    array (
-      'label' => 'resetFilters',
-    ),
-  ),
-  'messages' => 
-  array (
-=======
     ],
     'run_in_background' => 
      [
@@ -270,7 +135,6 @@ return  [
   ],
   'messages' => 
    [
->>>>>>> 4e86067 (.)
     'no-records-found' => 'No records found.',
     'save-success' => 'Data saved successfully.',
     'save-error' => 'Error saving data.',
@@ -278,96 +142,14 @@ return  [
     'select' => 'Select a command',
     'custom' => 'Custom Command',
     'custom-command-here' => 'Custom Command here (e.g. `cat /proc/cpuinfo` or `artisan db:migrate`)',
-<<<<<<< HEAD
-  ),
-  'status' => 
-  array (
-=======
   ],
   'status' => 
    [
->>>>>>> 4e86067 (.)
     'active' => 'Active',
     'inactive' => 'Inactive',
     'trashed' => 'Trashed',
     'running' => 'In Esecuzione',
     'failed' => 'Fallito',
-<<<<<<< HEAD
-  ),
-  'buttons' => 
-  array (
-    'inactivate' => 
-    array (
-      'label' => 'Inactivate',
-      'icon' => 'icon-inactivate',
-      'color' => 'gray',
-    ),
-    'activate' => 
-    array (
-      'label' => 'Activate',
-      'icon' => 'icon-activate',
-      'color' => 'green',
-    ),
-    'history' => 
-    array (
-      'label' => 'History',
-      'icon' => 'icon-history',
-      'color' => 'purple',
-    ),
-    'run' => 
-    array (
-      'label' => 'Esegui Ora',
-      'modal' => 
-      array (
-        'heading' => 'Esegui Schedule',
-        'description' => 'Vuoi eseguire questo schedule ora?',
-      ),
-      'messages' => 
-      array (
-        'success' => 'Schedule eseguito con successo',
-      ),
-      'icon' => 'icon-run',
-      'color' => 'blue',
-    ),
-    'toggle' => 
-    array (
-      'label' => 'Attiva/Disattiva',
-      'modal' => 
-      array (
-        'heading' => 'Modifica Stato',
-        'description' => 'Vuoi modificare lo stato di questo schedule?',
-      ),
-      'messages' => 
-      array (
-        'success' => 'Stato modificato con successo',
-      ),
-      'icon' => 'icon-toggle',
-      'color' => 'orange',
-    ),
-    'delete' => 
-    array (
-      'label' => 'Elimina',
-      'modal' => 
-      array (
-        'heading' => 'Elimina Schedule',
-        'description' => 'Sei sicuro di voler eliminare questo schedule?',
-      ),
-      'messages' => 
-      array (
-        'success' => 'Schedule eliminato con successo',
-      ),
-      'icon' => 'icon-delete',
-      'color' => 'red',
-    ),
-  ),
-  'validation' => 
-  array (
-    'cron' => 'The field must be filled in the cron expression format.',
-    'regex' => 'The :attribute field must only contain letters, numbers, dashes, and underscores. Comma is also allowed.',
-  ),
-  'frequencies' => 
-  array (
-=======
   ],
   'buttons' => 
    [
@@ -442,7 +224,6 @@ return  [
   ],
   'frequencies' => 
    [
->>>>>>> 4e86067 (.)
     'everyMinute' => 'Ogni Minuto',
     'everyFiveMinutes' => 'Ogni 5 Minuti',
     'everyTenMinutes' => 'Ogni 10 Minuti',
@@ -454,15 +235,9 @@ return  [
     'monthly' => 'Ogni Mese',
     'quarterly' => 'Ogni Trimestre',
     'yearly' => 'Ogni Anno',
-<<<<<<< HEAD
-  ),
-  'days' => 
-  array (
-=======
   ],
   'days' => 
    [
->>>>>>> 4e86067 (.)
     'sunday' => 'Domenica',
     'monday' => 'Lunedì',
     'tuesday' => 'Martedì',
@@ -470,19 +245,11 @@ return  [
     'thursday' => 'Giovedì',
     'friday' => 'Venerdì',
     'saturday' => 'Sabato',
-<<<<<<< HEAD
-  ),
-  'cron' => 
-  array (
-    'help' => 
-    array (
-=======
   ],
   'cron' => 
    [
     'help' => 
      [
->>>>>>> 4e86067 (.)
       'title' => 'Aiuto Espressioni Cron',
       'minute' => 'Minuto (0-59)',
       'hour' => 'Ora (0-23)',
@@ -490,25 +257,11 @@ return  [
       'month' => 'Mese (1-12)',
       'day_of_week' => 'Giorno della Settimana (0-6)',
       'examples' => 
-<<<<<<< HEAD
-      array (
-=======
        [
->>>>>>> 4e86067 (.)
         'every_minute' => '* * * * * - Ogni minuto',
         'every_hour' => '0 * * * * - Ogni ora',
         'every_day' => '0 0 * * * - Ogni giorno a mezzanotte',
         'every_monday' => '0 0 * * 1 - Ogni lunedì a mezzanotte',
-<<<<<<< HEAD
-      ),
-    ),
-  ),
-  'model' => 
-  array (
-    'label' => 'schedule.model',
-  ),
-);
-=======
       ],
     ],
   ],
@@ -517,4 +270,3 @@ return  [
     'label' => 'schedule.model',
   ],
 ];
->>>>>>> 4e86067 (.)

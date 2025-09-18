@@ -1,9 +1,9 @@
-<?php return array (
+<?php return  [
   'fields' => 
-  array (
+   [
     'anno' => 
-    array (
+     [
       'label' => 'anno',
-    ),
-  ),
-);
+    ],
+  ],
+];

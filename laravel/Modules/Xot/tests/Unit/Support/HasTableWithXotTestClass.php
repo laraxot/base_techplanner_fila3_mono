@@ -24,6 +24,7 @@ class HasTableWithXotTestClass implements HasTable
         return $mock;
     }
 
+    #[\Override]
     public function getTableColumns(): array
     {
         return [];

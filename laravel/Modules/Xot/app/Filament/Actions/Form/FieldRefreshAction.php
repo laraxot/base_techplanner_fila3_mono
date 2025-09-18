@@ -12,7 +12,6 @@ namespace Modules\Xot\Filament\Actions\Form;
 // use Filament\Tables\Actions\Action;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use Webmozart\Assert\Assert;
 use Filament\Resources\Pages\ListRecords;
 use Modules\Xot\Actions\GetTransKeyAction;
@@ -28,36 +27,22 @@ class FieldRefreshAction extends Action
         $this->translateLabel();
         $this->icon('heroicon-o-arrow-path')
             ->tooltip('Ricalcola valore')
-            ->action($this->getRefreshAction());
-    }
+            ->action(function ($state,Set $set,$record) {
+                $name = $this->getName();
+                if ($name === null) {
+                    return;
+                }
 
-    private function getRefreshAction(): \Closure
-    {
-        return function (?string $state, Set $set, ?Model $record): void {
-            $name = $this->getName();
-            if ($name === null) {
-                throw new \RuntimeException('Action name is required for field refresh');
-            }
-
-            if ($record === null) {
-                throw new \RuntimeException('Record is required for field refresh');
-            }
-
-            $methodName = 'get' . Str::studly($name);
-
-            if (!method_exists($record, $methodName)) {
-                throw new \RuntimeException("Method {$methodName} does not exist on record");
-            }
-
-            $value = $record->{$methodName}();
-            $set($name, $value);
-
-            Notification::make()
-                ->title("Ricalcolato {$name}")
-                ->body("Vecchio valore: {$state}, nuovo valore: {$value}")
-                ->success()
-                ->send();
-        };
+                $method = 'get'.Str::studly($name).'';
+                $value = $record->$method();
+                $set($name, $value);
+                Notification::make()
+                    ->title('Ricalcolato '.$name)
+                    ->body('vecchio valore: '.$state.' nuovo valore: '.$value)
+                    ->success()
+                    ->send();
+            });
+            
     }
 
     public static function getDefaultName(): ?string

@@ -32,10 +32,6 @@ class JobServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
-<<<<<<< HEAD
-=======
-    #[\Override]
->>>>>>> 4e86067 (.)
     public function boot(): void
     {
         parent::boot();

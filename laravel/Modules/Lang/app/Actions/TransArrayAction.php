@@ -27,20 +27,12 @@ class TransArrayAction
         ?string $transKey,
     ): array {
         if (null === $transKey) {
-<<<<<<< HEAD
-            return Arr::map($array, fn (mixed $item): string => SafeStringCastAction::cast($item));
-=======
             return Arr::map($array, SafeStringCastAction::cast(...));
->>>>>>> 37612df (.)
         }
 
         $this->transKey = $transKey;
 
-<<<<<<< HEAD
-        return Arr::map($array, fn (mixed $item): string => $this->trans($item));
-=======
         return Arr::map($array, $this->trans(...));
->>>>>>> 37612df (.)
     }
 
     /**

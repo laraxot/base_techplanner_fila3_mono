@@ -122,10 +122,7 @@ class JobManager extends BaseModel
         return static::query();
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     protected function casts(): array
     {
         return [

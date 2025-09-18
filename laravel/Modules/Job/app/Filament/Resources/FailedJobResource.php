@@ -17,10 +17,7 @@ class FailedJobResource extends XotBaseResource
 {
     protected static ?string $model = FailedJob::class;
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [
@@ -46,20 +43,14 @@ class FailedJobResource extends XotBaseResource
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getRelations(): array
     {
         return [
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getPages(): array
     {
         return [

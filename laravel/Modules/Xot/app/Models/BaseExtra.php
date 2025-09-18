@@ -73,6 +73,7 @@ abstract class BaseExtra extends BaseModel implements ExtraContract
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [

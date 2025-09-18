@@ -52,6 +52,7 @@ class LoginWidget extends XotBaseWidget
      *
      * @return array<int, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -73,6 +74,7 @@ class LoginWidget extends XotBaseWidget
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
+    #[\Override]
     protected function getFormModel(): ?\Illuminate\Database\Eloquent\Model
     {
         return null;
@@ -83,6 +85,7 @@ class LoginWidget extends XotBaseWidget
      *
      * @return array<string, mixed>
      */
+    #[\Override]
     public function getFormFill(): array
     {
         return [
@@ -96,6 +99,7 @@ class LoginWidget extends XotBaseWidget
      *
      * @return void
      */
+    #[\Override]
     public function save(): void
     {
         try {

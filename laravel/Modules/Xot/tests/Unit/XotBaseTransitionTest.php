@@ -16,6 +16,7 @@ describe('XotBaseTransition', function () {
         {
             public static string $name = 'test_transition';
 
+            #[\Override]
             public function getNotificationRecipients(): array
             {
                 return [
@@ -24,6 +25,7 @@ describe('XotBaseTransition', function () {
                 ];
             }
 
+            #[\Override]
             public function sendRecipientNotification(?UserContract $recipient): void
             {
                 // Mock implementation
@@ -96,7 +98,7 @@ describe('XotBaseTransition', function () {
 
     it('can send notifications without errors', function () {
         // This should not throw an exception
-        expect(fn () => $this->transition->sendNotifications())->not->toThrow(Exception::class);
+        expect($this->transition->sendNotifications(...))->not->toThrow(Exception::class);
     });
 
     it('has getNotificationRecipients method', function () {
@@ -134,6 +136,7 @@ describe('XotBaseTransition', function () {
         {
             public static string $name = 'test_mixed_transition';
 
+            #[\Override]
             public function getNotificationRecipients(): array
             {
                 return [
@@ -172,6 +175,7 @@ describe('XotBaseTransition', function () {
                 ];
             }
 
+            #[\Override]
             public function sendRecipientNotification(?UserContract $recipient): void
             {
                 // Mock implementation
@@ -179,7 +183,7 @@ describe('XotBaseTransition', function () {
         };
 
         // This should process without errors
-        expect(fn () => $transition->sendNotifications())->not->toThrow(Exception::class);
+        expect($transition->sendNotifications(...))->not->toThrow(Exception::class);
     });
 
     it('validates abstract class structure', function () {

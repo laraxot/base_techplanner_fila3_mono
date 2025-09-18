@@ -8,7 +8,8 @@ use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property \Closure|\Illuminate\Database\Eloquent\Model|null $record
+ * @property ?Model $record
+ * @method ?Model getRecord()
  */
 abstract class XotBaseTableAction extends Action
 {
@@ -17,23 +18,10 @@ abstract class XotBaseTableAction extends Action
      */
     public function getRecord(): ?Model
     {
-        $record = $this->record;
-
-        // Handle Closure case (lazy loading)
-        if ($record instanceof \Closure) {
-            $record = $record();
+        if ($this->record instanceof \Closure) {
+            return null;
         }
 
-        return $record instanceof Model ? $record : null;
-    }
-
-    protected function requireRecord(): Model
-    {
-        $record = $this->getRecord();
-        if ($record === null) {
-            throw new \RuntimeException('Record is required for this action');
-        }
-
-        return $record;
+        return $this->record;
     }
 }

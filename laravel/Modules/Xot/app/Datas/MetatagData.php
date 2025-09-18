@@ -713,5 +713,41 @@ class MetatagData extends Data implements Wireable
         $xot=XotData::make();
         return $xot->pub_theme;
     }
+
+    /**
+     * Concatenate a title to the existing title.
+     * This method allows adding page-specific titles to the base site title.
+     *
+     * @param string $title The title to concatenate
+     * @return self
+     */
+    public function concatTitle(string $title): self
+    {
+        if (empty($this->title)) {
+            $this->title = $title;
+        } else {
+            $this->title = $title . ' - ' . $this->title;
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Concatenate a description to the existing description.
+     * This method allows adding page-specific descriptions to the base site description.
+     *
+     * @param string $description The description to concatenate
+     * @return self
+     */
+    public function concatDescription(string $description): self
+    {
+        if (empty($this->description)) {
+            $this->description = $description;
+        } else {
+            $this->description = $description . ' ' . $this->description;
+        }
+        
+        return $this;
+    }
     
 }

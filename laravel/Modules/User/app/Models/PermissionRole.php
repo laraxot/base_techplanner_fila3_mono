@@ -46,6 +46,7 @@ class PermissionRole extends BasePivot
     }
 
     /** @return array<string, string> */
+    #[\Override]
     protected function casts(): array
     {
         $parent = parent::casts();

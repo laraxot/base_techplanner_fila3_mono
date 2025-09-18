@@ -41,11 +41,7 @@ describe('GetTaskFrequenciesAction Integration', function () {
         // Mock config with non-array value
         config(['totem.frequencies' => 'invalid_value']);
 
-<<<<<<< HEAD
-        expect(fn () => $this->action->execute())
-=======
         expect($this->action->execute(...))
->>>>>>> 4e86067 (.)
             ->toThrow(Exception::class);
     });
 
@@ -53,11 +49,7 @@ describe('GetTaskFrequenciesAction Integration', function () {
         // Mock config with null value
         config(['totem.frequencies' => null]);
 
-<<<<<<< HEAD
-        expect(fn () => $this->action->execute())
-=======
         expect($this->action->execute(...))
->>>>>>> 4e86067 (.)
             ->toThrow(Exception::class);
     });
 

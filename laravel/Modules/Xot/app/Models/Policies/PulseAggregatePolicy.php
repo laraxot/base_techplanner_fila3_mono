@@ -12,6 +12,7 @@ class PulseAggregatePolicy extends XotBasePolicy
     /**
      * Determine whether the user can view any models.
      */
+    #[\Override]
     public function viewAny(UserContract $user): bool
     {
         return $user->hasPermissionTo('pulse_aggregate.viewAny');

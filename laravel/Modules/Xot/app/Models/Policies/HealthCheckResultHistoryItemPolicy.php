@@ -12,6 +12,7 @@ class HealthCheckResultHistoryItemPolicy extends XotBasePolicy
     /**
      * Determine whether the user can view any models.
      */
+    #[\Override]
     public function viewAny(UserContract $user): bool
     {
         return $user->hasPermissionTo('health_check_result_history_item.viewAny');

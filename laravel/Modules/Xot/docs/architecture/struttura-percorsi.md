@@ -138,7 +138,6 @@ find /var/www/html/base_techplanner_fila3_mono/laravel -type f -name "*.php" -ex
 
 ## Riferimenti correlati
 
-<<<<<<< HEAD
 - [Struttura del progetto](../Xot/docs/architecture/struttura-progetto.md)
 - [Regole di namespace](../Xot/docs/standards/namespace-conventions.md)
 - [Autoloading](../Xot/docs/standards/psr4-compliance.md)
@@ -148,14 +147,3 @@ find /var/www/html/base_techplanner_fila3_mono/laravel -type f -name "*.php" -ex
 - [Struttura del progetto](../Xot/docs/architecture/struttura-progetto.md)
 - [Regole di namespace](../Xot/docs/standards/namespace-conventions.md)
 - [Autoloading](../Xot/docs/standards/psr4-compliance.md)
-=======
-- [Struttura del progetto](/var/www/html/base_techplanner_fila3_mono/laravel/Modules/Xot/docs/architecture/struttura-progetto.md)
-- [Regole di namespace](/var/www/html/base_techplanner_fila3_mono/laravel/Modules/Xot/docs/standards/namespace-conventions.md)
-- [Autoloading](/var/www/html/base_techplanner_fila3_mono/laravel/Modules/Xot/docs/standards/psr4-compliance.md)
-- [Struttura del progetto](/var/www/html/base_saluteora/laravel/Modules/Xot/docs/architecture/struttura-progetto.md)
-- [Regole di namespace](/var/www/html/base_saluteora/laravel/Modules/Xot/docs/standards/namespace-conventions.md)
-- [Autoloading](/var/www/html/base_saluteora/laravel/Modules/Xot/docs/standards/psr4-compliance.md)
-- [Struttura del progetto](/var/www/html/base_techplanner_fila3_mono/laravel/Modules/Xot/docs/architecture/struttura-progetto.md)
-- [Regole di namespace](/var/www/html/base_techplanner_fila3_mono/laravel/Modules/Xot/docs/standards/namespace-conventions.md)
-- [Autoloading](/var/www/html/base_techplanner_fila3_mono/laravel/Modules/Xot/docs/standards/psr4-compliance.md)
->>>>>>> b7f2af3 (.)

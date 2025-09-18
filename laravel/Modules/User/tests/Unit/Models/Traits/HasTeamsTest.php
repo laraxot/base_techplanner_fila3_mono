@@ -358,9 +358,7 @@ describe('HasTeams Trait Performance', function () {
     });
 
     it('can handle team relationship queries efficiently', function () {
-        $teams = collect(range(1, 100))->map(function ($id) {
-            return new Team(['id' => $id, 'name' => "Team {$id}"]);
-        });
+        $teams = collect(range(1, 100))->map(fn ($id) => new Team(['id' => $id, 'name' => "Team {$id}"]));
 
         // Mock della relazione teams
         $this->user->shouldReceive('teams->get')

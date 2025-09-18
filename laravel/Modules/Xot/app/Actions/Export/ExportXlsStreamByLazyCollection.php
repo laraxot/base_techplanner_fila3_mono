@@ -45,10 +45,7 @@ class ExportXlsStreamByLazyCollection
                 $file = fopen('php://output', 'w+');
 
                 // Assicuriamo che le intestazioni siano stringhe
-                $headStrings = array_map(function ($item) {
-                    //return is_string($item) ? $item : (string) $item;
-                    return strval($item);
-                }, $head);
+                $headStrings = array_map(strval(...), $head);
 
                 fputcsv($file, $headStrings);
 
@@ -133,6 +130,6 @@ class ExportXlsStreamByLazyCollection
         }
 
         /** @var array<string> */
-        return $headings->map(fn($item) => strval($item))->toArray();
+        return $headings->map(strval(...))->toArray();
     }
 }

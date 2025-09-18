@@ -159,6 +159,7 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
     }
 
     /** @return array<string, string> */
+    #[\Override]
     protected function casts(): array
     {
         return [

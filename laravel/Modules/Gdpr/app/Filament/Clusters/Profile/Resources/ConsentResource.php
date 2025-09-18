@@ -17,66 +17,18 @@ class ConsentResource extends XotBaseResource
 
     protected static ?string $cluster = ProfileCluster::class;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    #[\Override]
->>>>>>> 97a11f9 (.)
-=======
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
     public static function getFormSchema(): array
     {
         return [
         ];
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    #[\Override]
->>>>>>> 97a11f9 (.)
-=======
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
     public static function getRelations(): array
     {
         return [
         ];
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    #[\Override]
->>>>>>> 97a11f9 (.)
-=======
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
     public static function getPages(): array
     {
         return [

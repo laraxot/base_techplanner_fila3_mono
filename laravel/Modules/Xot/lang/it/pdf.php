@@ -1,11 +1,11 @@
 <?php
 
-return array (
+return  [
   'fields' => 
-  array (
+   [
     'pdf' => 
-    array (
+     [
       'label' => 'pdf',
-    ),
-  ),
-);
+    ],
+  ],
+];

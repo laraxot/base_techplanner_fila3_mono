@@ -6,6 +6,7 @@ namespace Modules\Xot\Services\Trend\Adapters;
 
 class PgsqlAdapter extends AbstractAdapter
 {
+    #[\Override]
     public function format(string $column, string $interval): string
     {
         $format = match ($interval) {

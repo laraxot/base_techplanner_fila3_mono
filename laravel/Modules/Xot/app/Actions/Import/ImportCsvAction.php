@@ -99,9 +99,7 @@ class ImportCsvAction
      */
     private function prepareFields(array $columns): array
     {
-        return array_map(function (ColumnData $column) {
-            return 'decimal' === $column->type ? '@'.$column->name : $column->name;
-        }, $columns);
+        return array_map(fn (ColumnData $column) => 'decimal' === $column->type ? '@'.$column->name : $column->name, $columns);
     }
 
     /**

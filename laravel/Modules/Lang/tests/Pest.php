@@ -29,19 +29,9 @@ pest()->extend(TestCase::class)
 |
 */
 
-<<<<<<< HEAD
-expect()->extend('toBeTranslation', function () {
-    return $this->toBeInstanceOf(\Modules\Lang\Models\Translation::class);
-});
-
-expect()->extend('toBeLanguage', function () {
-    return $this->toBeInstanceOf(\Modules\Lang\Models\Language::class);
-});
-=======
 expect()->extend('toBeTranslation', fn () => $this->toBeInstanceOf(\Modules\Lang\Models\Translation::class));
 
 expect()->extend('toBeLanguage', fn () => $this->toBeInstanceOf(\Modules\Lang\Models\Language::class));
->>>>>>> 37612df (.)
 
 /*
 |--------------------------------------------------------------------------

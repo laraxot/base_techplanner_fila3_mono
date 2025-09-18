@@ -38,9 +38,7 @@ class ExportXlsByView
         ?string $transKey = null,
     ): BinaryFileResponse {
         // Assicuriamo che $fields sia un array di stringhe
-        $stringFields = array_map(function (string|int|float|bool $field): string {
-                return strval($field);
-            }, array_values($fields));
+        $stringFields = array_map(strval(...), array_values($fields));
 
         $export = new ViewExport(
             view: $view,

@@ -32,25 +32,6 @@ class GetCommandsAction
 
             /** @var Collection<int, array{name: string, description: string, required: bool}> $arguments */
             $arguments = collect($command->getDefinition()->getArguments())
-<<<<<<< HEAD
-                ->map(function ($argument) {
-                    return [
-                        'name' => $argument->getName(),
-                        'description' => $argument->getDescription(),
-                        'required' => $argument->isRequired(),
-                    ];
-                })->values();
-
-            /** @var Collection<int, array{name: string, description: string, required: bool}> $options */
-            $options = collect($command->getDefinition()->getOptions())
-                ->map(function ($option) {
-                    return [
-                        'name' => $option->getName(),
-                        'description' => $option->getDescription(),
-                        'required' => $option->isValueRequired(),
-                    ];
-                })->values();
-=======
                 ->map(fn ($argument) => [
                         'name' => $argument->getName(),
                         'description' => $argument->getDescription(),
@@ -64,7 +45,6 @@ class GetCommandsAction
                         'description' => $option->getDescription(),
                         'required' => $option->isValueRequired(),
                     ])->values();
->>>>>>> 4e86067 (.)
 
             return new CommandData(
                 name: $name,

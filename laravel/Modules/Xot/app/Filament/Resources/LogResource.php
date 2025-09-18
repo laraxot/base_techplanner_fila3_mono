@@ -22,6 +22,7 @@ class LogResource extends XotBaseResource
 
     protected static ?string $model = Log::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -61,12 +62,14 @@ class LogResource extends XotBaseResource
         ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

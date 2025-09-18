@@ -16,6 +16,7 @@ use Spatie\Translatable\HasTranslations;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string                          $slug
  * @property string                          $title
+ * @property string|null                     $description
  * @property string                          $content
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
@@ -71,6 +72,7 @@ class Page extends BaseModelLang
 
     protected $fillable = [
         'content',
+        'description',
         'slug',
         'title',
         'middleware',
@@ -85,7 +87,8 @@ class Page extends BaseModelLang
         'slug' => 'string',
         'middleware' => 'json',
         'content' => 'string',
-
+        'description' => 'string',
+        
         'content_blocks' => 'json',
         'sidebar_blocks' => 'json',
         'footer_blocks' => 'json',

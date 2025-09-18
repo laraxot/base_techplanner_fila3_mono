@@ -32,20 +32,12 @@ class TransCollectionAction
         ?string $transKey,
     ): Collection {
         if (null === $transKey) {
-<<<<<<< HEAD
-            return $collection->map(fn (mixed $item): string => SafeStringCastAction::cast($item));
-=======
             return $collection->map(SafeStringCastAction::cast(...));
->>>>>>> 37612df (.)
         }
 
         $this->transKey = $transKey;
 
-<<<<<<< HEAD
-        return $collection->map(fn (mixed $item): string => $this->trans($item));
-=======
         return $collection->map($this->trans(...));
->>>>>>> 37612df (.)
     }
 
     /**

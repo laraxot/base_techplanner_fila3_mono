@@ -171,8 +171,6 @@ abstract class XotBaseServiceProvider extends ServiceProvider
                 $key = $this->nameLower.'::'.$info['filename'];
                 Config::set($key, $content);
             }
-
-            $this->mergeConfigFrom($configPath, $this->nameLower);
         } catch (\Exception $e) {
             // Ignore missing configuration
             return;

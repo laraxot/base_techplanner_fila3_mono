@@ -28,21 +28,6 @@ use function Safe\json_encode;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property Consent|null                    $consent
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @method static \Modules\Gdpr\Database\Factories\EventFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Event   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event   newQuery()
@@ -56,59 +41,14 @@ use function Safe\json_encode;
  * @method static \Illuminate\Database\Eloquent\Builder|Event   whereSubjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event   whereTreatmentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event   whereUpdatedAt($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereUpdatedBy($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @property string $id
  * @property string|null                     $treatment_id
  * @property string|null                     $consent_id
@@ -123,21 +63,6 @@ use function Safe\json_encode;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  * @property Consent|null                    $consent
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @method static \Modules\Gdpr\Database\Factories\EventFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Event   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event   newQuery()
@@ -155,34 +80,9 @@ use function Safe\json_encode;
  * @method static \Illuminate\Database\Eloquent\Builder|Event   whereTreatmentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event   whereUpdatedBy($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
  * @mixin IdeHelperEvent
-=======
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
- *
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- *
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- * @mixin IdeHelperEvent
->>>>>>> faeca70 (.)
  * @mixin \Eloquent
  */
 class Event extends BaseModel

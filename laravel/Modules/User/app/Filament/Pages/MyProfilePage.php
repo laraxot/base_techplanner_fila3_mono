@@ -94,7 +94,7 @@ class MyProfilePage extends Page implements HasForms
                             ->required()
                             ->currentPassword(),
                         PasswordData::make()->getPasswordFormComponent('new_password')
-                            ->dehydrateStateUsing(fn ($state): string => Hash::make($state))
+                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                             ->live(debounce: 500)
                         // ->same('passwordConfirmation')
                         ,

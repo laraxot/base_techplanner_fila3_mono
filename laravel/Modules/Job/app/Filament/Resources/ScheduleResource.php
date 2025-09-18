@@ -48,10 +48,7 @@ class ScheduleResource extends XotBaseResource
             ]);
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getPages(): array
     {
         return [
@@ -62,10 +59,7 @@ class ScheduleResource extends XotBaseResource
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         static::$commands = app(GetCommandsAction::class)->execute();
@@ -132,10 +126,7 @@ class ScheduleResource extends XotBaseResource
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getRelations(): array
     {
         return [

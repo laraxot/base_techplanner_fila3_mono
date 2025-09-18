@@ -20,11 +20,13 @@ class ModelDeletionException extends ApplicationException
         $this->model = Str::afterLast($model, '\\');
     }
 
+    #[\Override]
     public function status(): int
     {
         return Response::HTTP_BAD_REQUEST;
     }
 
+    #[\Override]
     public function help(): string
     {
         $res = trans('exception.model_not_deleted.help');
@@ -35,6 +37,7 @@ class ModelDeletionException extends ApplicationException
         return $res;
     }
 
+    #[\Override]
     public function error(): string
     {
         $res = trans(

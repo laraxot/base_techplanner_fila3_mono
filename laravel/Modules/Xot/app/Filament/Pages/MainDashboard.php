@@ -29,9 +29,7 @@ class MainDashboard extends XotBaseDashboard
         
         Assert::notNull($user = auth()->user(), '['.__LINE__.']['.class_basename($this).']');
         $modules = $user->roles->filter(
-            static function ($item) {
-                return Str::endsWith($item->name, '::admin');
-            }
+            static fn ($item) => Str::endsWith($item->name, '::admin')
         );
         
         if (1 === $modules->count()) {

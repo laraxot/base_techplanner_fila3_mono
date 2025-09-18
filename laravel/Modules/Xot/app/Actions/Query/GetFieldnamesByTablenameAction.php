@@ -31,7 +31,7 @@ final class GetFieldnamesByTablenameAction
         }
 
         // Use default connection if none is provided
-        Assert::string($connectionName = $connectionName ?? config('database.default'));
+        Assert::string($connectionName ??= config('database.default'));
 
         // Validate database connection
         if (! $this->isValidConnection($connectionName)) {

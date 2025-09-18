@@ -37,7 +37,7 @@ class ResourceFormSchemaGenerator
             $fileContents = file_get_contents($filename);
 
             // Check if getFormSchema method already exists
-            if (strpos($fileContents, 'public function getFormSchema') !== false) {
+            if (str_contains($fileContents, 'public function getFormSchema') ) {
                 return false;
             }
 

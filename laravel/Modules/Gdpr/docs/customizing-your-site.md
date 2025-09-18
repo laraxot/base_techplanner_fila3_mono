@@ -38,12 +38,6 @@ Here’s a quick preview of what some of the basic type styles will look like in
 <div markdown="1" class="example pt-6">
 
 # h1 Heading
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> faeca70 (.)
 
 ## h2 Heading
 
@@ -53,25 +47,6 @@ Here’s a quick preview of what some of the basic type styles will look like in
 
 ##### h5 Heading
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
 ###### h6 Heading
 
 The quick brown fox jumps over the lazy dog
@@ -103,12 +78,6 @@ class Foo extends bar
 ```
 
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> faeca70 (.)
 
 ## Collegamenti tra versioni di customizing-your-site.md
 * [customizing-your-site.md](laravel/Modules/Gdpr/docs/customizing-your-site.md)
@@ -117,12 +86,3 @@ class Foo extends bar
 * [customizing-your-site.md](laravel/Modules/Tenant/docs/it/customizing-your-site.md)
 * [customizing-your-site.md](laravel/Modules/Cms/docs/customizing-your-site.md)
 
-<<<<<<< HEAD
-=======
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)

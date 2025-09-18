@@ -18,10 +18,7 @@ class ListImports extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public function getTableColumns(): array
     {
         return [
@@ -64,10 +61,7 @@ class ListImports extends XotBaseListRecords
     /**
      * @return array<string, Tables\Filters\BaseFilter>
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public function getTableFilters(): array
     {
         return [
@@ -77,10 +71,7 @@ class ListImports extends XotBaseListRecords
     /**
      * @return array<string, Tables\Actions\Action|Tables\Actions\ActionGroup>
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public function getTableActions(): array
     {
         return [
@@ -92,10 +83,7 @@ class ListImports extends XotBaseListRecords
     /**
      * @return array<string, Tables\Actions\BulkAction>
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public function getTableBulkActions(): array
     {
         return [

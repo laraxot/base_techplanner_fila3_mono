@@ -20,10 +20,7 @@ class ListFailedJobs extends XotBaseListRecords
 {
     protected static string $resource = FailedJobResource::class;
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public function getTableColumns(): array
     {
         return [
@@ -57,10 +54,7 @@ class ListFailedJobs extends XotBaseListRecords
     /**
      * @return array<string, \Filament\Actions\Action>
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     protected function getHeaderActions(): array
     {
         return [

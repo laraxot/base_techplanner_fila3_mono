@@ -23,21 +23,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @method static \Modules\Gdpr\Database\Factories\TreatmentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   newQuery()
@@ -52,40 +37,10 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   whereRequired($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   whereWeight($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
->>>>>>> ee97d89f (.)
-=======
->>>>>>> faeca70 (.)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment query()
@@ -129,29 +84,7 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment whereUpdatedBy($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
  * @property string|null $deleted_by
-=======
- *
- * @property string|null $deleted_by
- *
->>>>>>> cb0fd7e5 (.)
-=======
- *
- * @property string|null $deleted_by
- *
->>>>>>> 6f6abe7c (.)
-=======
- *
- * @property string|null $deleted_by
- *
->>>>>>> ee97d89f (.)
-=======
- * @property string|null $deleted_by
->>>>>>> faeca70 (.)
  * @method static \Modules\Gdpr\Database\Factories\TreatmentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   newQuery()
@@ -170,34 +103,9 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Treatment   whereWeight($value)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
  * @mixin IdeHelperTreatment
-=======
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
- *
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- *
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> cb0fd7e5 (.)
-=======
->>>>>>> 6f6abe7c (.)
-=======
->>>>>>> ee97d89f (.)
-=======
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- * @mixin IdeHelperTreatment
->>>>>>> faeca70 (.)
  * @mixin \Eloquent
  */
 class Treatment extends BaseModel

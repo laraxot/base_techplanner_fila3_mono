@@ -46,10 +46,7 @@ class FailedJob extends BaseModel
         'failed_at',
     ];
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     protected function casts(): array
     {
         return [

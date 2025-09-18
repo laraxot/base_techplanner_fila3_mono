@@ -17,10 +17,7 @@ class JobResource extends XotBaseResource
 
     protected static ?string $recordTitleAttribute = 'display_name';
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [
@@ -39,20 +36,14 @@ class JobResource extends XotBaseResource
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getRelations(): array
     {
         return [
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getPages(): array
     {
         return [

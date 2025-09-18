@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 return [
-    // ==============================================
     // NAVIGATION & STRUCTURE
-    // ==============================================
     'navigation' => [
         'label' => 'Azioni',
         'plural_label' => 'Azioni',
@@ -15,18 +13,14 @@ return [
         'badge' => 'Gestione azioni sistema',
     ],
 
-    // ==============================================
     // MODEL INFORMATION
-    // ==============================================
     'model' => [
         'label' => 'Azione',
         'plural' => 'Azioni',
         'description' => 'Sistema di azioni ed operazioni del framework Xot',
     ],
 
-    // ==============================================
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
-    // ==============================================
     'actions' => [
         'export_xls' => [
             'label' => 'Esporta Dati',
@@ -40,9 +34,7 @@ return [
         ],
     ],
 
-    // ==============================================
     // MESSAGES - FEEDBACK UTENTE
-    // ==============================================
     'messages' => [
         'empty_state' => 'Nessuna azione disponibile',
         'loading' => 'Caricamento azioni in corso...',
@@ -50,8 +42,6 @@ return [
         'success_operation' => 'Operazione completata con successo',
     ],
 
-    // ==============================================
     // LEGACY SUPPORT - Compatibilità con codice esistente
-    // ==============================================
     'export_xls' => 'Esporta Dati',
 ];

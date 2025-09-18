@@ -58,7 +58,7 @@ class RouteDynService
     /**
      * @param  array<string, mixed>  $v
      */
-    public static function getAs(array $v, ?string $namespace): string
+    public static function getAs(array $v, ?string $_namespace): string
     {
         if (isset($v['as'])) {
             Assert::string($as = $v['as']);
@@ -98,7 +98,7 @@ class RouteDynService
     /**
      * @param  array<string, mixed>  $v
      */
-    public static function getAct(array $v, ?string $namespace): string
+    public static function getAct(array $v, ?string $_namespace): string
     {
         if (isset($v['act'])) {
             Assert::string($act = $v['act']);
@@ -123,7 +123,7 @@ class RouteDynService
     /**
      * @param  array<string, mixed>  $v
      */
-    public static function getParamName(array $v, ?string $namespace): string
+    public static function getParamName(array $v, ?string $_namespace): string
     {
         if (isset($v['param_name'])) {
             Assert::string($param_name = $v['param_name']);
@@ -180,7 +180,7 @@ class RouteDynService
     /**
      * @param  array<string, mixed>  $v
      */
-    public static function getController(array $v, ?string $namespace): string
+    public static function getController(array $v, ?string $_namespace): string
     {
         if (isset($v['controller'])) {
             Assert::string($controller = $v['controller']);
@@ -199,7 +199,7 @@ class RouteDynService
     /**
      * @param  array<string, mixed>  $v
      */
-    public static function getUri(array $v, ?string $namespace): string
+    public static function getUri(array $v, ?string $_namespace): string
     {
         Assert::string($name = $v['name']);
 
@@ -211,7 +211,7 @@ class RouteDynService
      * @param  array<string, mixed>  $v
      * @return array<int, string>
      */
-    public static function getMethod(array $v, ?string $namespace): array
+    public static function getMethod(array $v, ?string $_namespace): array
     {
         if (isset($v['method'])) {
             return Arr::wrap($v['method']);

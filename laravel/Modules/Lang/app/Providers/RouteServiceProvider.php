@@ -34,10 +34,7 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
     /**
      * Bootstrap the module services.
      */
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 37612df (.)
     public function boot(): void
     {
         parent::boot();

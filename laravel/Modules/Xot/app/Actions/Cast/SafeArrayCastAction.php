@@ -148,13 +148,13 @@ class SafeArrayCastAction
         // Converte i valori al tipo richiesto
         switch ($valueType) {
             case 'string':
-                return array_map(fn($v) => SafeStringCastAction::cast($v), $array);
+                return array_map(SafeStringCastAction::cast(...), $array);
             case 'int':
-                return array_map(fn($v) => SafeIntCastAction::cast($v), $array);
+                return array_map(SafeIntCastAction::cast(...), $array);
             case 'float':
-                return array_map(fn($v) => SafeFloatCastAction::cast($v), $array);
+                return array_map(SafeFloatCastAction::cast(...), $array);
             case 'bool':
-                return array_map(fn($v) => SafeBooleanCastAction::cast($v), $array);
+                return array_map(SafeBooleanCastAction::cast(...), $array);
             default:
                 return $array;
         }

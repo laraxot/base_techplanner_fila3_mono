@@ -43,10 +43,7 @@ class FailedImportRow extends BaseModel
         'validation_error',
     ];
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     protected function casts(): array
     {
         return [

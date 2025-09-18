@@ -12,10 +12,7 @@ class ImportResource extends XotBaseResource
 {
     protected static ?string $model = Import::class;
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [
@@ -44,10 +41,7 @@ class ImportResource extends XotBaseResource
         ];
     }
 
-<<<<<<< HEAD
-=======
     #[\Override]
->>>>>>> 4e86067 (.)
     public static function getRelations(): array
     {
         return [
