@@ -48,13 +48,13 @@ class FormSearchAddressCategories extends Component
      * param \Illuminate\View\ComponentAttributeBag $attributes
      * param \Illuminate\Support\HtmlString         $slot
      */
-    public function mount(SessionManager $sessionManager/* $attributes, $slot */): void
+    public function mount(SessionManager $sessionManager)/* $attributes, $slot */ : void
     {
         $this->session = $sessionManager;
         // $this->attributes = $attributes;
         // $this->slot = $slot;
         $this->form_data[$this->name] = json_encode((object) [], JSON_THROW_ON_ERROR);
-        $this->form_data[$this->name.'_value'] = null;
+        $this->form_data[$this->name . '_value'] = null;
     }
 
     /**
@@ -82,13 +82,13 @@ class FormSearchAddressCategories extends Component
         $this->warningCivicNumber = false;
         $this->showActivityTypes = false;
 
-        if (! isset($this->form_data['latlng'])) {
+        if (!isset($this->form_data['latlng'])) {
             $this->warningSuggestedAddresses = true;
 
             return;
         }
 
-        if (! isset($this->form_data['street_number'])) {
+        if (!isset($this->form_data['street_number'])) {
             $this->warningCivicNumber = true;
 
             return;
@@ -119,7 +119,7 @@ class FormSearchAddressCategories extends Component
     {
         $data = (object) $this->form_data;
 
-        if (! isset($data->street_number)) {
+        if (!isset($data->street_number)) {
             $data->street_number = '';
             $this->warningCivicNumber = true;
         }
@@ -128,7 +128,8 @@ class FormSearchAddressCategories extends Component
             $data->route ?? '',
             $data->street_number ?? '',
             $data->locality ?? '',
-        ])->implode(', ');
+        ])
+            ->implode(', ');
     }
 
     /**
@@ -141,16 +142,16 @@ class FormSearchAddressCategories extends Component
         $this->showActivityTypes = false;
 
         $data = json_decode($val0, true, 512, JSON_THROW_ON_ERROR);
-        if (! \is_array($data)) {
+        if (!\is_array($data)) {
             $data = [];
         }
         $this->form_data = array_merge($this->form_data, $data);
         $this->form_data[$this->name] = $val0;
-        $this->form_data[$this->name.'_value'] = $val1;
+        $this->form_data[$this->name . '_value'] = $val1;
 
         if (\strlen($val1) < 4) {
             $val2 = $this->formatAddress();
-            $this->form_data[$this->name.'_value'] = $val2;
+            $this->form_data[$this->name . '_value'] = $val2;
         }
     }
 
@@ -164,40 +165,40 @@ class FormSearchAddressCategories extends Component
             'cap' => 'required|not_regex:/[a-z]/i|min:5|max:5',
         ]);
         /*
-
-
-        //dddx([$this->email, filter_var($this->email, FILTER_VALIDATE_EMAIL)]);
-        //sembra andare bene
-
-        if (false == filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            //$this->dispatch('closeModalNotServed');
-            //$this->dispatch('openModalWrongEmailCap');
-            $this->messageError = true;
-            dddx('mail non valida');
-
-            return;
-        }
-
-        //dddx([$this->cap, preg_match('/[a-z]/i', $this->cap)]);
-
-        if (preg_match('/[a-z]/i', $this->cap)) {
-            $this->messageError = true;
-            dddx('it has alphabet!');
-            //$this->dispatch('closeModalNotServed');
-            //$this->dispatch('openModalWrongEmailCap');
-
-            return;
-        }
-        */
+         *
+         *
+         * //dddx([$this->email, filter_var($this->email, FILTER_VALIDATE_EMAIL)]);
+         * //sembra andare bene
+         *
+         * if (false == filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+         * //$this->dispatch('closeModalNotServed');
+         * //$this->dispatch('openModalWrongEmailCap');
+         * $this->messageError = true;
+         * dddx('mail non valida');
+         *
+         * return;
+         * }
+         *
+         * //dddx([$this->cap, preg_match('/[a-z]/i', $this->cap)]);
+         *
+         * if (preg_match('/[a-z]/i', $this->cap)) {
+         * $this->messageError = true;
+         * dddx('it has alphabet!');
+         * //$this->dispatch('closeModalNotServed');
+         * //$this->dispatch('openModalWrongEmailCap');
+         *
+         * return;
+         * }
+         */
 
         $model = xotModel('not_served');
         /*
-        $not_served = new $not_served();
-        $not_served->cap = $this->cap;
-        $not_served->email = $this->email;
-        // $not_served->creation_date =
-        $not_served->save();
-        */
+         * $not_served = new $not_served();
+         * $not_served->cap = $this->cap;
+         * $not_served->email = $this->email;
+         * // $not_served->creation_date =
+         * $not_served->save();
+         */
         $data = [
             'cap' => $this->cap,
             'email' => $this->email,

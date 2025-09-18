@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="bg-white">
     <!-- Header -->
     <div class="relative bg-gray-800 pb-32">
@@ -60,4 +65,3 @@
       </div>
     </section>
   </div>
-  

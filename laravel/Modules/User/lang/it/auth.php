@@ -9,7 +9,6 @@ return [
     'throttle' => 'Troppi tentativi di accesso. Riprova fra :seconds secondi.',
     'general_error' => 'Si è verificato un errore. Riprova più tardi.',
     'unauthorized' => 'Non hai i permessi necessari per questa operazione.',
-
     // Login
     'login-via' => 'Accedi con',
     'login-failed' => 'Login fallito, riprova.',
@@ -68,26 +67,21 @@ return [
             ],
         ],
     ],
-
     'email' => 'Email',
     'name' => 'Nome',
     'confirm_password' => 'Conferma Password',
-
     // Messaggi di stato
     'logout_success' => 'Logout effettuato con successo.',
     'logout_error' => 'Si è verificato un errore durante il logout.',
-
     // Messaggi per il reset password
     'reset_password_notification_subject' => 'Reset Password Notification',
     'reset_password_notification_line_1' => 'You are receiving this email because we received a password reset request for your account.',
     'reset_password_notification_action' => 'Reset Password',
     'reset_password_notification_line_2' => 'This password reset link will expire in :count minutes.',
     'reset_password_notification_line_3' => 'If you did not request a password reset, no further action is required.',
-
     'Resend Verification Email' => 'Rinvia Email di Verifica',
     'Verify Your Email Address' => 'Verifica la tua email',
     'A fresh verification link has been sent to your email address.' => 'Un nuovo link di verifica è stato inviato al tuo indirizzo email.',
-
     'login' => [
         'title' => 'Accedi al tuo account',
         'subtitle' => 'Inserisci le tue credenziali per accedere',
@@ -98,14 +92,14 @@ return [
         'remember' => 'Ricordami',
         'email_structured' => [
             'label' => 'Email',
-            'placeholder' => 'Inserisci la tua email'
+            'placeholder' => 'Inserisci la tua email',
         ],
         'password_structured' => [
             'label' => 'Password',
-            'placeholder' => 'Inserisci la tua password'
+            'placeholder' => 'Inserisci la tua password',
         ],
         'remember_structured' => [
-            'label' => 'Ricordami'
+            'label' => 'Ricordami',
         ],
         'submit' => 'Accedi',
         'forgot_password' => 'Password dimenticata?',
@@ -129,7 +123,6 @@ return [
         'Remember' => 'Ricordami',
         'Forgot your password?' => 'Password dimenticata?',
     ],
-
     // Registrazione
     'register' => [
         'title' => 'Crea un nuovo account',
@@ -150,22 +143,21 @@ return [
         // Structured version
         'name_structured' => [
             'label' => 'Nome',
-            'placeholder' => 'Inserisci il tuo nome completo'
+            'placeholder' => 'Inserisci il tuo nome completo',
         ],
         'email_structured' => [
             'label' => 'Email',
-            'placeholder' => 'Inserisci la tua email'
+            'placeholder' => 'Inserisci la tua email',
         ],
         'password_structured' => [
             'label' => 'Password',
-            'placeholder' => 'Inserisci la password'
+            'placeholder' => 'Inserisci la password',
         ],
         'password_confirmation_structured' => [
             'label' => 'Conferma Password',
-            'placeholder' => 'Conferma la password'
+            'placeholder' => 'Conferma la password',
         ],
     ],
-
     // Password dimenticata
     'forgot_password' => [
         'title' => 'Password dimenticata?',
@@ -179,10 +171,9 @@ return [
         // Structured version
         'email_structured' => [
             'label' => 'Email',
-            'placeholder' => 'Inserisci la tua email'
+            'placeholder' => 'Inserisci la tua email',
         ],
     ],
-
     // Reset password
     'reset_password' => [
         'title' => 'Reimposta password',
@@ -210,18 +201,17 @@ return [
         // Structured version
         'email_structured' => [
             'label' => 'Email',
-            'placeholder' => 'Inserisci la tua email'
+            'placeholder' => 'Inserisci la tua email',
         ],
         'password_structured' => [
             'label' => 'Nuova Password',
-            'placeholder' => 'Inserisci la nuova password'
+            'placeholder' => 'Inserisci la nuova password',
         ],
         'password_confirmation_structured' => [
             'label' => 'Conferma Password',
-            'placeholder' => 'Conferma la nuova password'
+            'placeholder' => 'Conferma la nuova password',
         ],
     ],
-
     // Verifica Email
     'verification' => [
         'title' => 'Verifica il tuo indirizzo email',
@@ -231,7 +221,6 @@ return [
         'resend' => 'Clicca qui per richiederne un\'altra',
         'success' => 'Un nuovo link di verifica è stato inviato al tuo indirizzo email.',
     ],
-
     // Social Login
     'social' => [
         'title' => 'Accedi con',
@@ -240,7 +229,6 @@ return [
         'github' => 'GitHub',
         'error' => 'Si è verificato un errore con il login social.',
     ],
-
     // Messaggi di Errore
     'errors' => [
         'invalid_credentials' => 'Credenziali non valide.',
@@ -249,7 +237,6 @@ return [
         'too_many_attempts' => 'Troppi tentativi. Riprova più tardi.',
         'session_expired' => 'Sessione scaduta. Effettua nuovamente il login.',
     ],
-
     // Password Reset Widget - specific translations
     'password_reset' => [
         'email_placeholder' => 'Inserisci il tuo indirizzo email',
@@ -297,7 +284,6 @@ return [
             'try_again' => 'Riprova',
         ],
     ],
-    
     // Reset Password
     'passwords' => [
         'reset' => 'La tua password è stata reimpostata!',

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="space-y-6" wire:poll.30s="refreshStats">
     <!-- Dashboard Header -->
     <div class="bg-white rounded-lg shadow-sm border p-6">

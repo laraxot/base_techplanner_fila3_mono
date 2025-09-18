@@ -15,21 +15,16 @@ class ListProfiles extends UserListProfiles
     /**
      * @return array<string, Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
-            'id' => Tables\Columns\TextColumn::make('id')
-                ->searchable(),
-            'type' => Tables\Columns\TextColumn::make('type')
-                ->searchable(),
-            'first_name' => Tables\Columns\TextColumn::make('first_name')
-                ->searchable(),
-            'last_name' => Tables\Columns\TextColumn::make('last_name')
-                ->searchable(),
-            'full_name' => Tables\Columns\TextColumn::make('full_name')
-                ->searchable(),
-            'email' => Tables\Columns\TextColumn::make('email')
-                ->searchable(),
+            'id' => Tables\Columns\TextColumn::make('id')->searchable(),
+            'type' => Tables\Columns\TextColumn::make('type')->searchable(),
+            'first_name' => Tables\Columns\TextColumn::make('first_name')->searchable(),
+            'last_name' => Tables\Columns\TextColumn::make('last_name')->searchable(),
+            'full_name' => Tables\Columns\TextColumn::make('full_name')->searchable(),
+            'email' => Tables\Columns\TextColumn::make('email')->searchable(),
             'created_at' => Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -38,20 +33,15 @@ class ListProfiles extends UserListProfiles
                 ->dateTime()
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
-            'user_id' => Tables\Columns\TextColumn::make('user_id')
-                ->searchable(),
-            'updated_by' => Tables\Columns\TextColumn::make('updated_by')
-                ->searchable(),
-            'created_by' => Tables\Columns\TextColumn::make('created_by')
-                ->searchable(),
+            'user_id' => Tables\Columns\TextColumn::make('user_id')->searchable(),
+            'updated_by' => Tables\Columns\TextColumn::make('updated_by')->searchable(),
+            'created_by' => Tables\Columns\TextColumn::make('created_by')->searchable(),
             'deleted_at' => Tables\Columns\TextColumn::make('deleted_at')
                 ->dateTime()
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
-            'deleted_by' => Tables\Columns\TextColumn::make('deleted_by')
-                ->searchable(),
-            'is_active' => Tables\Columns\IconColumn::make('is_active')
-                ->boolean(),
+            'deleted_by' => Tables\Columns\TextColumn::make('deleted_by')->searchable(),
+            'is_active' => Tables\Columns\IconColumn::make('is_active')->boolean(),
         ];
     }
 }

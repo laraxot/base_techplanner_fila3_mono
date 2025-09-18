@@ -1,14 +1,17 @@
 <?php
 
-use function Laravel\Folio\{middleware, name};
+declare(strict_types=1);
+
+
 use Livewire\Volt\Component;
+
+use function Laravel\Folio\middleware;
+use function Laravel\Folio\name;
 
 name('dashboard');
 middleware(['auth', 'verified']);
 
-new class extends Component
-{
-};
+new class extends Component {};
 ?>
 
 <x-layouts.app>

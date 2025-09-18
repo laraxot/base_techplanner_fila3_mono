@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="attendance-list p-4">
     @if(empty($items))
         <div class="empty-state text-center py-8">

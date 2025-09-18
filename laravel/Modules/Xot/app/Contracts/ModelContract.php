@@ -72,13 +72,14 @@ interface ModelContract
      * @return bool
      */
     public function save(array $options = []);
-    /*
-         * Save a new model and return the instance. Allow mass-assignment.
-         *
-         * @return \Illuminate\Database\Eloquent\Model|$this
 
-        public function forceCreate(array $attributes);
-        */
+    /*
+     * Save a new model and return the instance. Allow mass-assignment.
+     *
+     * @return \Illuminate\Database\Eloquent\Model|$this
+     *
+     * public function forceCreate(array $attributes);
+     */
 
     /**
      * Convert the model instance to an array.
@@ -102,10 +103,9 @@ interface ModelContract
      * @param  mixed  $value
      * @param  string $boolean
      * @return $this
-
-    public function where($column, $operator = null, $value = null, $boolean = 'and');
-    */
-
+     *
+     * public function where($column, $operator = null, $value = null, $boolean = 'and');
+     */
     /*
      * Execute the query and get the first result or throw an exception.
      *
@@ -113,7 +113,7 @@ interface ModelContract
      * @return \Illuminate\Database\Eloquent\Model|static
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
-
-    public function firstOrFail($columns = ['*']);
-    */
+     *
+     * public function firstOrFail($columns = ['*']);
+     */
 }

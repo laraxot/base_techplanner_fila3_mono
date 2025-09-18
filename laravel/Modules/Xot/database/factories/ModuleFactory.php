@@ -9,7 +9,7 @@ use Modules\Xot\Models\Module;
 
 /**
  * Module Factory
- * 
+ *
  * @extends Factory<Module>
  */
 class ModuleFactory extends Factory
@@ -30,21 +30,21 @@ class ModuleFactory extends Factory
 
     public function active(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'is_active' => true,
         ]);
     }
 
     public function inactive(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'is_active' => false,
         ]);
     }
 
     public function highPriority(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'priority' => $this->faker->numberBetween(80, 100),
         ]);
     }

@@ -22,6 +22,7 @@ class ClientMapWidget extends XotBaseWidget
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -33,9 +34,7 @@ class ClientMapWidget extends XotBaseWidget
     protected function getData(): array
     {
         return [
-            'clients' => $this->getClientsQuery()
-                ->get(['latitude', 'longitude', 'name'])
-                ->toArray(),
+            'clients' => $this->getClientsQuery()->get(['latitude', 'longitude', 'name'])->toArray(),
         ];
     }
 

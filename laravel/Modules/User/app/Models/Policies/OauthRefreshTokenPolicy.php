@@ -20,10 +20,9 @@ class OauthRefreshTokenPolicy extends UserBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, OauthRefreshToken $oauthRefreshToken): bool
+    public function view(UserContract $user, OauthRefreshToken $_oauthRefreshToken): bool
     {
-        return $user->hasPermissionTo('oauth-refresh-token.view') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-refresh-token.view') || $user->hasRole('super-admin');
     }
 
     /**
@@ -37,28 +36,25 @@ class OauthRefreshTokenPolicy extends UserBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, OauthRefreshToken $oauthRefreshToken): bool
+    public function update(UserContract $user, OauthRefreshToken $_oauthRefreshToken): bool
     {
-        return $user->hasPermissionTo('oauth-refresh-token.update') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-refresh-token.update') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, OauthRefreshToken $oauthRefreshToken): bool
+    public function delete(UserContract $user, OauthRefreshToken $_oauthRefreshToken): bool
     {
-        return $user->hasPermissionTo('oauth-refresh-token.delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-refresh-token.delete') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, OauthRefreshToken $oauthRefreshToken): bool
+    public function restore(UserContract $user, OauthRefreshToken $_oauthRefreshToken): bool
     {
-        return $user->hasPermissionTo('oauth-refresh-token.restore') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-refresh-token.restore') || $user->hasRole('super-admin');
     }
 
     /**
@@ -66,7 +62,6 @@ class OauthRefreshTokenPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, OauthRefreshToken $oauthRefreshToken): bool
     {
-        return $user->hasPermissionTo('oauth-refresh-token.force-delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-refresh-token.force-delete') || $user->hasRole('super-admin');
     }
 }

@@ -42,7 +42,7 @@ class PositionFactory extends Factory
      */
     public function active(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'is_active' => true,
         ]);
     }
@@ -54,7 +54,7 @@ class PositionFactory extends Factory
      */
     public function inactive(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'is_active' => false,
         ]);
     }
@@ -67,7 +67,7 @@ class PositionFactory extends Factory
      */
     public function withTitle(string $title): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'title' => $title,
         ]);
     }
@@ -80,7 +80,7 @@ class PositionFactory extends Factory
      */
     public function withLevel(int $level): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'level' => $level,
         ]);
     }
@@ -93,7 +93,7 @@ class PositionFactory extends Factory
      */
     public function withDescription(string $description): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'description' => $description,
         ]);
     }

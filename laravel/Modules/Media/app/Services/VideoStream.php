@@ -27,9 +27,9 @@ class VideoStream
 
     private int $size = 0; // Total size of the video
 
-    private ?string $mime = null; // MIME type of the video
+    private null|string $mime = null; // MIME type of the video
 
-    private ?int $fileModifiedTime = null; // Last modified time of the video file
+    private null|int $fileModifiedTime = null; // Last modified time of the video file
 
     /** @var resource|null */
     private $stream = null; // File stream resource
@@ -51,7 +51,7 @@ class VideoStream
         }
 
         $mime = $filesystem->mimeType($path);
-        if($mime==false){
+        if ($mime === false) {
             throw new Exception('Unable to determine MIME type.');
         }
         $this->stream = $filesystem->readStream($path);
@@ -106,23 +106,23 @@ class VideoStream
         if ($unit !== 'bytes') {
             header('HTTP/1.1 416 Requested Range Not Satisfiable');
             header(sprintf('Content-Range: bytes %d-%d/%d', $this->start, $this->end, $this->size));
-            exit;
+            exit();
         }
 
         $rangeParts = explode('-', $range);
         $start = (int) $rangeParts[0];
-        $end = isset($rangeParts[1]) ? (int) $rangeParts[1] : $this->end;
+        $end = isset($rangeParts[1]) ? ((int) $rangeParts[1]) : $this->end;
 
         if ($start > $end || $start >= $this->size || $end >= $this->size) {
             header('HTTP/1.1 416 Requested Range Not Satisfiable');
             header(sprintf('Content-Range: bytes %d-%d/%d', $this->start, $this->end, $this->size));
-            exit;
+            exit();
         }
 
         $this->start = $start;
         $this->end = $end;
 
-        $length = $this->end - $this->start + 1;
+        $length = ($this->end - $this->start) + 1;
         header('HTTP/1.1 206 Partial Content');
         header('Content-Length: ' . $length);
         header(sprintf('Content-Range: bytes %d-%d/%d', $this->start, $this->end, $this->size));
@@ -135,13 +135,13 @@ class VideoStream
     {
         set_time_limit(0); // Disable time limit for streaming
 
-        if (! is_resource($this->stream)) {
+        if (!is_resource($this->stream)) {
             throw new Exception('Stream resource is not valid.');
         }
 
         fseek($this->stream, $this->start);
-        while (! feof($this->stream) && $this->start <= $this->end) {
-            $bytesToRead = min($this->bufferSize, $this->end - $this->start + 1);
+        while (!feof($this->stream) && $this->start <= $this->end) {
+            $bytesToRead = min($this->bufferSize, ($this->end - $this->start) + 1);
             if ($bytesToRead > 0) {
                 $data = fread($this->stream, $bytesToRead);
                 echo $data;
@@ -162,6 +162,6 @@ class VideoStream
             fclose($this->stream);
         }
 
-        exit;
+        exit();
     }
 }

@@ -8,7 +8,7 @@ use Modules\Notify\Datas\TelegramData;
 
 /**
  * Interfaccia per le azioni dei provider Telegram.
- * 
+ *
  * Questa interfaccia definisce il contratto che tutte le implementazioni
  * di provider Telegram devono rispettare.
  */
@@ -21,4 +21,4 @@ interface TelegramProviderActionInterface
      * @return array Risultato dell'operazione
      */
     public function execute(TelegramData $telegramData): array;
-} 
+}

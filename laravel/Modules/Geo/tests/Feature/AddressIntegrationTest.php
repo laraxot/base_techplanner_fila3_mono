@@ -46,13 +46,16 @@ function makeAddress(array $overrides = []): object
  */
 function formatFullAddress(object $a): string
 {
-    $parts = array_filter([
-        $a->route ?? null,
-        $a->street_number ?? null,
-        $a->locality ?? null,
-        $a->postal_code ?? null,
-        $a->country ?? null,
-    ], fn ($v) => (string) $v !== '');
+    $parts = array_filter(
+        [
+            $a->route ?? null,
+            $a->street_number ?? null,
+            $a->locality ?? null,
+            $a->postal_code ?? null,
+            $a->country ?? null,
+        ],
+        fn($v) => ((string) $v) !== '',
+    );
 
     return implode(', ', $parts);
 }
@@ -71,9 +74,12 @@ describe('Address Integration', function () {
             'is_primary' => true,
         ]);
 
-        expect($address->model_type)->toBe('patient')
-            ->and($address->model_id)->toBe($patient->id)
-            ->and($address->is_primary)->toBeTrue();
+        expect($address->model_type)
+            ->toBe('patient')
+            ->and($address->model_id)
+            ->toBe($patient->id)
+            ->and($address->is_primary)
+            ->toBeTrue();
     });
 
     it('generates proper full address from components', function () {
@@ -88,10 +94,14 @@ describe('Address Integration', function () {
 
         $fullAddress = formatFullAddress($address);
 
-        expect($fullAddress)->toContain('Via Giuseppe Verdi')
-            ->and($fullAddress)->toContain('42')
-            ->and($fullAddress)->toContain('Milano')
-            ->and($fullAddress)->toContain('20121');
+        expect($fullAddress)
+            ->toContain('Via Giuseppe Verdi')
+            ->and($fullAddress)
+            ->toContain('42')
+            ->and($fullAddress)
+            ->toContain('Milano')
+            ->and($fullAddress)
+            ->toContain('20121');
     });
 
     it('handles geolocation data correctly', function () {
@@ -100,8 +110,7 @@ describe('Address Integration', function () {
             'longitude' => 9.1900,
         ]);
 
-        expect($milan->latitude)->toBe(45.4642)
-            ->and($milan->longitude)->toBe(9.1900);
+        expect($milan->latitude)->toBe(45.4642)->and($milan->longitude)->toBe(9.1900);
     });
 
     it('can store Google Places API data', function () {
@@ -115,10 +124,14 @@ describe('Address Integration', function () {
             ],
         ]);
 
-        expect($address->place_id)->toBe('ChIJu46S-ZZjhkcRLuFvLjVZ400')
-            ->and($address->formatted_address)->toContain('Piazza del Duomo')
-            ->and($address->extra_data['google_types'])->toContain('establishment')
-            ->and($address->extra_data['rating'])->toBe(4.5);
+        expect($address->place_id)
+            ->toBe('ChIJu46S-ZZjhkcRLuFvLjVZ400')
+            ->and($address->formatted_address)
+            ->toContain('Piazza del Duomo')
+            ->and($address->extra_data['google_types'])
+            ->toContain('establishment')
+            ->and($address->extra_data['rating'])
+            ->toBe(4.5);
     });
 
     it('supports multiple addresses per entity', function () {
@@ -145,7 +158,8 @@ describe('Address Integration', function () {
         $primary = null;
         foreach ($patientAddresses as $addr) {
             if ($addr->is_primary === true) {
-                $primary = $addr; break;
+                $primary = $addr;
+                break;
             }
         }
 
@@ -162,8 +176,6 @@ describe('Address Integration', function () {
         $active = null; // would be null after soft-delete
         $withTrashed = $address; // still available with trashed scope
 
-        expect($active)->toBeNull()
-            ->and($withTrashed)->not->toBeNull()
-            ->and($withTrashed->deleted_at)->not->toBeNull();
+        expect($active)->toBeNull()->and($withTrashed)->not->toBeNull()->and($withTrashed->deleted_at)->not->toBeNull();
     });
 });

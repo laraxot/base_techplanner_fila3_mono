@@ -55,9 +55,7 @@ abstract class BaseTenant extends BaseModel implements HasAvatar, HasMedia, Tena
      */
     public function getSlugOptions(): SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
+        return SlugOptions::create()->generateSlugsFrom('name')->saveSlugsTo('slug');
     }
 
     /**
@@ -87,6 +85,7 @@ abstract class BaseTenant extends BaseModel implements HasAvatar, HasMedia, Tena
         // $this->setConnection('mysql');
         //return $this->belongsToManyX($userClass, null, 'tenant_id', 'user_id');
         return $this->belongsToManyX($userClass);
+
         // ->as('membership')
     }
 
@@ -95,7 +94,7 @@ abstract class BaseTenant extends BaseModel implements HasAvatar, HasMedia, Tena
      *
      * @return string|null URL dell'avatar o null se non presente
      */
-    public function getFilamentAvatarUrl(): ?string
+    public function getFilamentAvatarUrl(): null|string
     {
         // return $this->avatar_url;
         return $this->getFirstMediaUrl('avatar');
@@ -109,7 +108,6 @@ abstract class BaseTenant extends BaseModel implements HasAvatar, HasMedia, Tena
     //     $slug = Str::slug($this->name);
     //     $this->slug = $slug;
     //     $this->save();
-
     //     return $slug;
     // }
 }

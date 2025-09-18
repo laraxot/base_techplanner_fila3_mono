@@ -12,38 +12,29 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class LegalRepresentativeResource extends XotBaseResource
 {
-    protected static ?string $model = LegalRepresentative::class;
+    protected static null|string $model = LegalRepresentative::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            \Filament\Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('surname')
-                ->required()
-                ->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('name')->required()->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('surname')->required()->maxLength(255),
             \Filament\Forms\Components\TextInput::make('email')
                 ->email()
                 ->required()
                 ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('phone')
-                ->tel()
-                ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('tax_code')
-                ->maxLength(16),
-            \Filament\Forms\Components\TextInput::make('role')
-                ->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('phone')->tel()->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('tax_code')->maxLength(16),
+            \Filament\Forms\Components\TextInput::make('role')->maxLength(255),
         ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-            ])
-            ->filters([
-            ])
+            ->columns([])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -54,12 +45,13 @@ class LegalRepresentativeResource extends XotBaseResource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

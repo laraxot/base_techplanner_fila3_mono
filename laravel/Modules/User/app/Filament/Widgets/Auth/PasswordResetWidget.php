@@ -23,7 +23,7 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
  */
 class PasswordResetWidget extends XotBaseWidget
 {
-    public ?array $data = [];
+    public null|array $data = [];
     public bool $emailSent = false;
 
     /**
@@ -44,14 +44,16 @@ class PasswordResetWidget extends XotBaseWidget
                 ->autocomplete('email')
                 ->maxLength(255)
                 ->extraInputAttributes(['class' => 'text-center']),
-
             'error_display' => Forms\Components\Placeholder::make('error_display')
                 ->label('')
-                ->content(function ($get) {
+                ->content(function ($_get) {
                     $error = Session::get('error');
 
                     if ($error && is_string($error)) {
-                        $str = '<div class="text-red-600 font-medium bg-red-50 p-3 rounded-md border border-red-200">'.$error.'</div>';
+                        $str =
+                            '<div class="text-red-600 font-medium bg-red-50 p-3 rounded-md border border-red-200">' .
+                            $error .
+                            '</div>';
 
                         return new HtmlString($str);
                     }
@@ -88,21 +90,22 @@ class PasswordResetWidget extends XotBaseWidget
             // Clear the form
             $this->form->fill();
         } else {
-            Session::flash('error', trans('user::errors.'.$response.'.label'));
+            Session::flash('error', trans('user::errors.' . $response . '.label'));
             Notification::make()
                 ->title(__('user::auth.password_reset.email_failed.title'))
                 ->body(trans($response))
                 ->danger()
                 ->send();
         }
+
         /*} catch (\Exception $e) {
-            Notification::make()
-                ->title(__('user::auth.password_reset.email_failed.title'))
-                ->body(__('user::auth.password_reset.email_failed.generic'))
-                ->danger()
-                ->send();
-        }
-                */
+         * Notification::make()
+         * ->title(__('user::auth.password_reset.email_failed.title'))
+         * ->body(__('user::auth.password_reset.email_failed.generic'))
+         * ->danger()
+         * ->send();
+         * }
+         */
     }
 
     /**

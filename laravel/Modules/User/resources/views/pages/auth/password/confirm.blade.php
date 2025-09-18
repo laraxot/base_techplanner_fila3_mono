@@ -1,13 +1,16 @@
 <?php
 
-use function Laravel\Folio\name;
-use Livewire\Volt\Component;
+declare(strict_types=1);
+
+
 use Livewire\Attributes\Validate;
+use Livewire\Volt\Component;
+
+use function Laravel\Folio\name;
 
 name('password.confirm');
 
-new class extends Component
-{
+new class extends Component {
     #[Validate('required|current_password')]
     public $password = '';
 

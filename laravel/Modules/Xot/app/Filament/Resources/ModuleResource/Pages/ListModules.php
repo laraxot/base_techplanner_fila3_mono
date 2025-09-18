@@ -14,9 +14,8 @@ use Filament\Tables\Columns\TextColumn;
 use Modules\UI\Enums\TableLayoutEnum;
 use Modules\Xot\Filament\Resources\ModuleResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
-use Nwidart\Modules\Facades\Module;
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+use Nwidart\Modules\Facades\Module;
 
 class ListModules extends XotBaseListRecords
 {
@@ -39,14 +38,9 @@ class ListModules extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'name' => TextColumn::make('name')
-                ->searchable()
-                ->sortable(),
-            'path' => TextColumn::make('path')
-                ->searchable()
-                ->sortable(),
-            'enabled' => TextColumn::make('enabled')
-                ->sortable(),
+            'name' => TextColumn::make('name')->searchable()->sortable(),
+            'path' => TextColumn::make('path')->searchable()->sortable(),
+            'enabled' => TextColumn::make('enabled')->sortable(),
         ];
     }
 
@@ -78,13 +72,9 @@ class ListModules extends XotBaseListRecords
     public function getTableActions(): array
     {
         return [
-            ViewAction::make()
-                ,
-            EditAction::make()
-                ,
-            DeleteAction::make()
-
-                ->requiresConfirmation(),
+            ViewAction::make(),
+            EditAction::make(),
+            DeleteAction::make()->requiresConfirmation(),
         ];
     }
 

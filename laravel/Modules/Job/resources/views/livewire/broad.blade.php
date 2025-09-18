@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     @if (session()->has('message'))
     <div class="alert alert-success">

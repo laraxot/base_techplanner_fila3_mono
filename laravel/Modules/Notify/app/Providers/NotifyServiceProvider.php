@@ -6,10 +6,10 @@ namespace Modules\Notify\Providers;
 
 // use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Arr;
-use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Mail;
 use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Providers\XotBaseServiceProvider;
+use Webmozart\Assert\Assert;
 
 class NotifyServiceProvider extends XotBaseServiceProvider
 {
@@ -24,12 +24,13 @@ class NotifyServiceProvider extends XotBaseServiceProvider
     {
         parent::boot();
         //if (! app()->environment('production')) {
-            $mail=TenantService::config('mail');
-            Assert::isArray($mail);
-            $fallback_to=Arr::get($mail,'fallback_to',null);
-            if(is_string($fallback_to)){
-                Mail::alwaysTo($fallback_to);
-            }
-       // }
+        $mail = TenantService::config('mail');
+        Assert::isArray($mail);
+        $fallback_to = Arr::get($mail, 'fallback_to', null);
+        if (is_string($fallback_to)) {
+            Mail::alwaysTo($fallback_to);
+        }
+
+        // }
     }
 }

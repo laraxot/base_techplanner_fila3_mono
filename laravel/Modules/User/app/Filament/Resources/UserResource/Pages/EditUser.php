@@ -14,9 +14,8 @@ use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Hash;
 use Modules\User\Filament\Resources\UserResource;
 use Modules\User\Models\User;
-use Webmozart\Assert\Assert;
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+use Webmozart\Assert\Assert;
 
 /**
  * Pagina per la modifica degli utenti con particolare gestione della password.
@@ -29,7 +28,7 @@ class EditUser extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         Assert::isArray($data);
-        if (! array_key_exists('new_password', $data) || ! filled($data['new_password'])) {
+        if (!array_key_exists('new_password', $data) || !filled($data['new_password'])) {
             return $data;
         }
 

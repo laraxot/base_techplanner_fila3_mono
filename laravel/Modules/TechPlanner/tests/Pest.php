@@ -5,51 +5,43 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests;
 
 /*
-|--------------------------------------------------------------------------
-| Test Case
-|--------------------------------------------------------------------------
-|
-| Il TestCase di default per tutti i test del modulo TechPlanner.
-| Estende il TestCase specifico del modulo che fornisce il setup necessario.
-|
-*/
+ * |--------------------------------------------------------------------------
+ * | Test Case
+ * |--------------------------------------------------------------------------
+ * |
+ * | Il TestCase di default per tutti i test del modulo TechPlanner.
+ * | Estende il TestCase specifico del modulo che fornisce il setup necessario.
+ * |
+ */
 
-uses(TestCase::class)
-    ->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)
-    ->in('Feature', 'Unit');
+uses(TestCase::class)->uses(\Illuminate\Foundation\Testing\DatabaseTransactions::class)->in('Feature', 'Unit');
 
 /*
-|--------------------------------------------------------------------------
-| Expectations
-|--------------------------------------------------------------------------
-|
-| Aspettative globali per il modulo TechPlanner.
-| Quando definisci expectation globali, saranno disponibili
-| in tutti i test del modulo.
-|
-*/
+ * |--------------------------------------------------------------------------
+ * | Expectations
+ * |--------------------------------------------------------------------------
+ * |
+ * | Aspettative globali per il modulo TechPlanner.
+ * | Quando definisci expectation globali, saranno disponibili
+ * | in tutti i test del modulo.
+ * |
+ */
 
-expect()->extend('toBeProject', function () {
-    return $this->toBeInstanceOf(\Modules\TechPlanner\Models\Project::class);
-});
+expect()->extend('toBeProject', fn () => $this->toBeInstanceOf(\Modules\TechPlanner\Models\Project::class));
 
-expect()->extend('toBeTask', function () {
-    return $this->toBeInstanceOf(\Modules\TechPlanner\Models\Task::class);
-});
+expect()->extend('toBeTask', fn () => $this->toBeInstanceOf(\Modules\TechPlanner\Models\Task::class));
 
-expect()->extend('toBeResource', function () {
-    return $this->toBeInstanceOf(\Modules\TechPlanner\Models\Resource::class);
-});
+expect()->extend('toBeResource', fn () => $this->toBeInstanceOf(\Modules\TechPlanner\Models\Resource::class));
 
 /*
-|--------------------------------------------------------------------------
-| Functions
-|--------------------------------------------------------------------------
-|
-| Funzioni helper globali per i test del modulo TechPlanner.
-| Queste funzioni saranno disponibili in tutti i test.
-|
-*/
+ * |--------------------------------------------------------------------------
+ * | Functions
+ * |--------------------------------------------------------------------------
+ * |
+ * | Funzioni helper globali per i test del modulo TechPlanner.
+ * | Queste funzioni saranno disponibili in tutti i test.
+ * |
+ */
 
 function createProject(array $attributes = []): \Modules\TechPlanner\Models\Project
 {

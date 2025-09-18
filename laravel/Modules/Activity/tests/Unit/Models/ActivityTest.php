@@ -12,8 +12,10 @@ test('activity can be created', function () {
 
     expect($activity)
         ->toBeActivity()
-        ->and($activity->name)->toBe('Test Activity')
-        ->and($activity->description)->toBe('Test Description');
+        ->and($activity->name)
+        ->toBe('Test Activity')
+        ->and($activity->description)
+        ->toBe('Test Description');
 });
 
 test('activity has required attributes', function () {
@@ -28,17 +30,14 @@ test('activity has required attributes', function () {
 
 test('activity can be soft deleted', function () {
     $activity = createActivity();
-    
+
     $activity->delete();
-    
+
     expect($activity->trashed())->toBeTrue();
 });
 
 test('activity factory creates valid instances', function () {
     $activity = Activity::factory()->make();
-    
-    expect($activity)
-        ->toBeActivity()
-        ->and($activity->name)->toBeString()
-        ->and($activity->description)->toBeString();
+
+    expect($activity)->toBeActivity()->and($activity->name)->toBeString()->and($activity->description)->toBeString();
 });

@@ -20,9 +20,8 @@ abstract class UserPermissionBasePolicy
 {
     use HandlesAuthorization;
 
-    public function before(UserContract $user, string $ability): ?bool
+    public function before(UserContract $user, string $ability): null|bool
     {
-
         if ($user->hasRole('super-admin')) {
             return true;
         }
@@ -31,7 +30,7 @@ abstract class UserPermissionBasePolicy
         $permission_name = Str::of($class_name)
             ->before('Policy')
             ->lower()
-            ->append('.'.$ability)
+            ->append('.' . $ability)
             ->toString();
 
         try {

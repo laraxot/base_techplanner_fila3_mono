@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\User\Support;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\User\Contracts\HasShieldPermissions;
 use Modules\User\Datas\FilamentShieldData;
@@ -12,7 +13,6 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Webmozart\Assert\Assert;
-use Illuminate\Support\Facades\File;
 
 use function Safe\class_implements;
 use function Safe\class_uses;
@@ -25,16 +25,19 @@ class Utils
     public static function getFilamentAuthGuard(): string
     {
         return 'web';
-        // Assert::string($res = config('filament.auth.guard'), 'wip');
 
+        // Assert::string($res = config('filament.auth.guard'), 'wip');
         // return $res;
     }
 
     public static function isResourcePublished(): bool
     {
-        $roleResourcePath = app_path((string) Str::of('Filament\\Resources\\Shield\\RoleResource.php')->replace('\\', '/'));
+        $roleResourcePath = app_path((string) Str::of('Filament\\Resources\\Shield\\RoleResource.php')->replace(
+            '\\',
+            '/',
+        ));
 
-        $filesystem = new Filesystem;
+        $filesystem = new Filesystem();
 
         return $filesystem->exists($roleResourcePath);
     }
@@ -86,8 +89,12 @@ class Utils
 
     public static function isAuthProviderConfigured(): bool
     {
-        return in_array("BezhanSalleh\FilamentShield\Traits\HasFilamentShield", class_uses(static::getAuthProviderFQCN()))
-        || in_array(HasRoles::class, class_uses(static::getAuthProviderFQCN()));
+        return (
+            in_array(
+                "BezhanSalleh\FilamentShield\Traits\HasFilamentShield",
+                class_uses(static::getAuthProviderFQCN()),
+             strict: true) || in_array(HasRoles::class, class_uses(static::getAuthProviderFQCN()), strict: true)
+        );
     }
 
     public static function isSuperAdminEnabled(): bool
@@ -232,7 +239,7 @@ class Utils
 
     public static function doesResourceHaveCustomPermissions(string $resourceClass): bool
     {
-        return in_array(HasShieldPermissions::class, class_implements($resourceClass));
+        return in_array(HasShieldPermissions::class, class_implements($resourceClass), strict: true);
     }
 
     /**

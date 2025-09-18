@@ -5,8 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-return new class extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     public function up(): void
     {
         $this->tableCreate(
@@ -25,7 +24,7 @@ return new class extends XotBaseMigration
                 $table->index('event_class');
                 $table->index('aggregate_uuid');
                 $table->unique(['aggregate_uuid', 'aggregate_version']);
-            }
+            },
         );
 
         $this->tableUpdate(
@@ -34,7 +33,7 @@ return new class extends XotBaseMigration
              */
             function (Blueprint $table) {
                 $this->updateTimestamps($table, false);
-            }
+            },
         );
     }
 };

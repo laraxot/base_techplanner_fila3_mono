@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources\WorkHourResource\Widgets;
 
-use Filament\Widgets\StatsOverviewWidget\Stat;
 use Carbon\Carbon;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
@@ -39,17 +39,14 @@ class WorkHourStatsWidget extends XotBaseStatsOverviewWidget
                 ->description('Total time entries today')
                 ->descriptionIcon('heroicon-m-clock')
                 ->color('primary'),
-
             Stat::make('This Week', $weekTotal)
                 ->description('Total entries this week')
                 ->descriptionIcon('heroicon-m-calendar-days')
                 ->color('success'),
-
             Stat::make('Clock In/Out', $todayClockIns . '/' . $todayClockOuts)
                 ->description('Today\'s clock-ins/outs')
                 ->descriptionIcon('heroicon-m-arrow-path')
                 ->color('info'),
-
             Stat::make('Pending Approval', $pendingApprovals)
                 ->description('Entries awaiting approval')
                 ->descriptionIcon('heroicon-m-exclamation-circle')

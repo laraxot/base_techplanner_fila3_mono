@@ -7,8 +7,8 @@ namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllAppointmentsAction;
-use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Jobs\UpdateAppointmentJob;
+use Modules\TechPlanner\Models\Appointment;
 use Tests\TestCase;
 
 /**
@@ -25,15 +25,13 @@ class UpdateAllAppointmentsActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllAppointmentsAction();
-        
 
-        $this->action = new UpdateAllAppointmentsAction;
-
-        
         $this->action = new UpdateAllAppointmentsAction();
-        
+
+        $this->action = new UpdateAllAppointmentsAction();
+
+        $this->action = new UpdateAllAppointmentsAction();
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -64,10 +62,12 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_updates_all_appointments_with_given_data(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(3)->create([
-            'status' => 'Pending',
-            'priority' => 'Low',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Pending',
+                'priority' => 'Low',
+            ]);
 
         $updateData = [
             'status' => 'Confirmed',
@@ -210,10 +210,12 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_boolean_values(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(3)->create([
-            'is_urgent' => false,
-            'is_confirmed' => false,
-        ]);
+        $appointments = Appointment::factory()
+            ->count(3)
+            ->create([
+                'is_urgent' => false,
+                'is_confirmed' => false,
+            ]);
 
         $updateData = [
             'is_urgent' => true,
@@ -260,10 +262,12 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_decimal_values(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(2)->create([
-            'cost' => 100.00,
-            'insurance_coverage' => 80.00,
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'cost' => 100.00,
+                'insurance_coverage' => 80.00,
+            ]);
 
         $updateData = [
             'cost' => 150.00,
@@ -327,9 +331,11 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_transaction_rollback_on_error(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(3)->create([
-            'status' => 'Pending',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Pending',
+            ]);
 
         $updateData = [
             'status' => 'Confirmed',
@@ -373,9 +379,11 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_creates_audit_trail(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(2)->create([
-            'status' => 'Pending',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'status' => 'Pending',
+            ]);
 
         $updateData = [
             'status' => 'Confirmed',
@@ -432,7 +440,6 @@ class UpdateAllAppointmentsActionTest extends TestCase
         // Arrange
         $activeAppointments = Appointment::factory()->count(2)->create();
         $deletedAppointments = Appointment::factory()->count(2)->create();
-        
 
         // Soft delete alcuni appuntamenti
         $deletedAppointments->each(function ($appointment) {
@@ -538,10 +545,12 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_enum_values(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(2)->create([
-            'type' => 'Consultation',
-            'status' => 'Pending',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'type' => 'Consultation',
+                'status' => 'Pending',
+            ]);
 
         $updateData = [
             'type' => 'Treatment',
@@ -568,7 +577,6 @@ class UpdateAllAppointmentsActionTest extends TestCase
         // Arrange
         $appointments = Appointment::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
 
         $updateData = [
             'description' => $longText,
@@ -621,10 +629,12 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_nullable_fields(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(2)->create([
-            'location' => 'Main Office',
-            'contact_person' => 'John Doe',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'location' => 'Main Office',
+                'contact_person' => 'John Doe',
+            ]);
 
         $updateData = [
             'location' => null,
@@ -660,10 +670,7 @@ class UpdateAllAppointmentsActionTest extends TestCase
         // Assert
         foreach ($appointments as $appointment) {
             $appointment->refresh();
-            $this->assertGreaterThan(
-                $appointment->created_at,
-                $appointment->updated_at
-            );
+            $this->assertGreaterThan($appointment->created_at, $appointment->updated_at);
         }
     }
 
@@ -801,11 +808,13 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_appointment_specific_fields(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(3)->create([
-            'duration' => 30,
-            'follow_up_days' => 7,
-            'reminder_hours' => 24,
-        ]);
+        $appointments = Appointment::factory()
+            ->count(3)
+            ->create([
+                'duration' => 30,
+                'follow_up_days' => 7,
+                'reminder_hours' => 24,
+            ]);
 
         $updateData = [
             'duration' => 60,
@@ -832,11 +841,13 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_appointment_scheduling_fields(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(2)->create([
-            'start_time' => '09:00',
-            'end_time' => '09:30',
-            'timezone' => 'UTC',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'start_time' => '09:00',
+                'end_time' => '09:30',
+                'timezone' => 'UTC',
+            ]);
 
         $updateData = [
             'start_time' => '10:00',
@@ -863,11 +874,13 @@ class UpdateAllAppointmentsActionTest extends TestCase
     public function it_handles_appointment_medical_fields(): void
     {
         // Arrange
-        $appointments = Appointment::factory()->count(2)->create([
-            'diagnosis' => 'Common cold',
-            'prescription' => 'Rest and fluids',
-            'lab_results' => 'Normal',
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'diagnosis' => 'Common cold',
+                'prescription' => 'Rest and fluids',
+                'lab_results' => 'Normal',
+            ]);
 
         $updateData = [
             'diagnosis' => 'Updated diagnosis',

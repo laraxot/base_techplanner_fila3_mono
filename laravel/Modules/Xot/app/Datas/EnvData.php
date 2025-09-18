@@ -24,11 +24,11 @@ class EnvData extends Data implements Wireable
 
     public string $telegram_bot_token = '';
 
-    private static ?self $instance = null;
+    private static null|self $instance = null;
 
     public static function make(): self
     {
-        if (! self::$instance) {
+        if (!self::$instance) {
             $data = [];
 
             foreach ($_ENV as $k => $v) {
@@ -66,14 +66,14 @@ class EnvData extends Data implements Wireable
     {
         $key = str($key)->upper()->toString();
         $replace = $this->getLine($key, $value);
-        $pos_start = mb_strpos($env_content, $key.'=');
+        $pos_start = mb_strpos($env_content, $key . '=');
         if (false === $pos_start) {
             // throw new \Exception('['.__LINE__.']['.class_basename($this).']');
-            return $env_content."\n".$replace;
+            return $env_content . "\n" . $replace;
         }
         $pos_end = mb_strpos($env_content, "\n", $pos_start);
         if (false === $pos_end) {
-            throw new \Exception('['.__LINE__.']['.class_basename($this).']');
+            throw new \Exception('[' . __LINE__ . '][' . class_basename($this) . ']');
         }
 
         $length = $pos_end - $pos_start;
@@ -86,12 +86,12 @@ class EnvData extends Data implements Wireable
 
     public function getLine(string $key, int|bool|string $value): string
     {
-        $replace = $key.'=';
+        $replace = $key . '=';
         if (is_bool($value)) {
             $replace .= $value ? 'true' : 'false';
         }
         if (is_string($value)) {
-            $replace .= '"'.$value.'"';
+            $replace .= '"' . $value . '"';
         }
         if (is_int($value)) {
             $replace .= $value;

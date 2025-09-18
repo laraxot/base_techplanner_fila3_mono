@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{--
     View: user::filament.widgets.login
     Scopo: Widget di login Filament conforme a Windsurf/Xot

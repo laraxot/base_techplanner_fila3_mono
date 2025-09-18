@@ -20,20 +20,16 @@ class ViewNotification extends XotBaseViewRecord
     protected function getInfolistSchema(): array
     {
         return [
-            Section::make()
-                ->schema([
-                    TextEntry::make('id'),
-                    TextEntry::make('type'),
-                    TextEntry::make('notifiable_type'),
-                    TextEntry::make('notifiable_id'),
-                    TextEntry::make('data'),
-                    TextEntry::make('read_at')
-                        ->dateTime(),
-                    TextEntry::make('created_at')
-                        ->dateTime(),
-                    TextEntry::make('updated_at')
-                        ->dateTime(),
-                ])
+            Section::make()->schema([
+                TextEntry::make('id'),
+                TextEntry::make('type'),
+                TextEntry::make('notifiable_type'),
+                TextEntry::make('notifiable_id'),
+                TextEntry::make('data'),
+                TextEntry::make('read_at')->dateTime(),
+                TextEntry::make('created_at')->dateTime(),
+                TextEntry::make('updated_at')->dateTime(),
+            ]),
         ];
     }
 }

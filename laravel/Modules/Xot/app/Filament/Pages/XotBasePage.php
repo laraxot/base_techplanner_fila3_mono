@@ -10,15 +10,15 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page as FilamentPage;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Str;
 use Modules\Xot\Actions\View\GetViewByClassAction;
 use Modules\Xot\Filament\Traits\TransTrait;
+use Webmozart\Assert\Assert;
 
 /**
  * Classe base astratta per tutte le pagine Filament non legate a risorse specifiche.
@@ -41,7 +41,6 @@ abstract class XotBasePage extends FilamentPage implements HasForms
     use TransTrait;
     use InteractsWithForms;
 
-    
     /**
      * Vista predefinita per la pagina.
      * Deve essere sovrascritta nelle classi figlie.
@@ -54,7 +53,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
      *
      * @var class-string<Model>|null
      */
-    public static ?string $model = null;
+    public static null|string $model = null;
 
     /**
      * Dati del form.
@@ -68,7 +67,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
      * Cache timeout per operazioni di cache (in secondi).
      */
     protected static int $cacheTimeout = 3600;
-    
+
     /**
      * Ottiene il nome del modulo dalla classe.
      * Estrae il nome del modulo dal namespace della classe.
@@ -98,14 +97,18 @@ abstract class XotBasePage extends FilamentPage implements HasForms
      *
      * @return string La stringa tradotta o la chiave originale se non trovata
      */
-    public static function trans(string $key, array $replace = [], ?string $locale = null, bool $useFallback = true): string
-    {
+    public static function trans(
+        string $key,
+        array $replace = [],
+        null|string $locale = null,
+        bool $useFallback = true,
+    ): string {
         $moduleNameLow = Str::lower(static::getModuleName());
         $p = Str::after(static::class, 'Filament\\Pages\\');
         $p_arr = explode('\\', $p);
         $slug = collect($p_arr)->map(Str::kebab(...))->implode('.');
 
-        $translationKey = $moduleNameLow.'::'.$slug.'.'.$key;
+        $translationKey = $moduleNameLow . '::' . $slug . '.' . $key;
         $translation = __($translationKey, $replace, $locale);
 
         if ($translation === $translationKey && App::environment('local', 'development', 'testing')) {
@@ -170,10 +173,10 @@ abstract class XotBasePage extends FilamentPage implements HasForms
             throw new \LogicException(sprintf('Cannot determine model name from class %s', static::class));
         }
 
-        $modelNamespace = 'Modules\\'.$moduleName.'\\Models\\'.$modelName;
+        $modelNamespace = 'Modules\\' . $moduleName . '\\Models\\' . $modelName;
 
         // Verifica che la classe del modello esista
-        if (! class_exists($modelNamespace)) {
+        if (!class_exists($modelNamespace)) {
             throw new \LogicException("Model class {$modelNamespace} does not exist");
         }
         Assert::classExists($modelNamespace);
@@ -195,7 +198,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
         $form = $form->schema($this->getFormSchema());
 
         $form->statePath('data');
-        
+
         $debounce = $this->getAutosaveDebounce();
         if (null !== $debounce && method_exists($form, 'autosaveDebounce')) {
             $form->autosaveDebounce($debounce);
@@ -210,13 +213,10 @@ abstract class XotBasePage extends FilamentPage implements HasForms
      *
      * @return int|null Il tempo di debounce in millisecondi o null per disabilitare l'autosave
      */
-    protected function getAutosaveDebounce(): ?int
+    protected function getAutosaveDebounce(): null|int
     {
         return null; // Disabilitato per default
     }
-
-    
-    
 
     /**
      * Ottiene l'utente autenticato.
@@ -234,8 +234,10 @@ abstract class XotBasePage extends FilamentPage implements HasForms
             throw new \RuntimeException('Nessun utente autenticato trovato.');
         }
 
-        if (! $user instanceof Model) {
-            throw new \RuntimeException('L\'utente autenticato deve essere un modello Eloquent per permettere aggiornamenti.');
+        if (!($user instanceof Model)) {
+            throw new \RuntimeException(
+                'L\'utente autenticato deve essere un modello Eloquent per permettere aggiornamenti.',
+            );
         }
 
         /* @var Authenticatable&Model $user */
@@ -265,7 +267,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
     {
         $user = $this->getUser();
 
-        //@phpstan-ignore-next-line        
+        //@phpstan-ignore-next-line
         if (!method_exists($user, 'hasPermissionTo')) {
             throw new \RuntimeException('Il modello utente deve implementare il metodo hasPermissionTo');
         }
@@ -288,7 +290,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
             }
 
             // Se non troviamo una vista, lanciamo un'eccezione
-            throw new \RuntimeException('Nessuna vista trovata per la classe: '.static::class);
+            throw new \RuntimeException('Nessuna vista trovata per la classe: ' . static::class);
         }
 
         return static::$view;
@@ -308,7 +310,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
             return $view;
         }
 
-        throw new \RuntimeException("View [{$view}] not found for page: ".static::class);
+        throw new \RuntimeException("View [{$view}] not found for page: " . static::class);
     }
 
     /**
@@ -322,13 +324,13 @@ abstract class XotBasePage extends FilamentPage implements HasForms
     {
         $modelClass = $this->getModel();
 
-        if (! class_exists($modelClass)) {
+        if (!class_exists($modelClass)) {
             throw new \LogicException("Model class {$modelClass} does not exist");
         }
 
         /** @var class-string<Model> $modelClass */
         $instance = new $modelClass();
-        if (! $instance instanceof Model) {
+        if (!($instance instanceof Model)) {
             throw new \LogicException("Class {$modelClass} must extend Eloquent Model");
         }
 
@@ -343,7 +345,7 @@ abstract class XotBasePage extends FilamentPage implements HasForms
      *
      * @param class-string<Model>|null $modelClass
      */
-    protected function invalidateCache(?string $modelClass = null, int|string|null $id = null): void
+    protected function invalidateCache(null|string $modelClass = null, int|string|null $id = null): void
     {
         // Implementazione custom se necessaria
         // Per ora lasciamo vuoto, può essere implementato nelle classi figlie

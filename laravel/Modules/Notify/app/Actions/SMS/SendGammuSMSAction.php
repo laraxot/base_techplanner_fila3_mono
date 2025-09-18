@@ -8,12 +8,13 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Notify\Contracts\SMS\SmsActionContract;
-use Modules\Notify\Datas\SmsData;
 use Modules\Notify\Datas\SMS\GammuData;
+use Modules\Notify\Datas\SmsData;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\Process\Process;
-use function Safe\tempnam;
+
 use function Safe\file_put_contents;
+use function Safe\tempnam;
 use function Safe\unlink;
 
 final class SendGammuSMSAction implements SmsActionContract
@@ -30,7 +31,7 @@ final class SendGammuSMSAction implements SmsActionContract
     protected bool $debug;
 
     /** @var string|null */
-    protected ?string $defaultSender = null;
+    protected null|string $defaultSender = null;
 
     /**
      * Create a new action instance.
@@ -38,7 +39,7 @@ final class SendGammuSMSAction implements SmsActionContract
     public function __construct()
     {
         $this->gammuData = GammuData::make();
-        
+
         if (!$this->gammuData->path) {
             throw new Exception('Path Gammu non configurato in sms.php');
         }
@@ -80,12 +81,13 @@ final class SendGammuSMSAction implements SmsActionContract
         // Esegue il comando Gammu per inviare l'SMS
         $process = new Process([
             $this->gammuData->getPath(),
-            '-c', $this->gammuData->getConfig(),
+            '-c',
+            $this->gammuData->getConfig(),
             'sendsms',
             'TEXT',
             $to,
             '-text',
-            $tempFile
+            $tempFile,
         ]);
 
         $process->setTimeout($this->gammuData->getTimeout());
@@ -111,7 +113,7 @@ final class SendGammuSMSAction implements SmsActionContract
             throw new Exception(
                 $exception->getMessage() . '[' . __LINE__ . '][' . class_basename($this) . ']',
                 $exception->getCode(),
-                $exception
+                $exception,
             );
         }
     }

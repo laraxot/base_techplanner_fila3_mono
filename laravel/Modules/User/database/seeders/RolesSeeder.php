@@ -22,8 +22,6 @@ class RolesSeeder extends Seeder
         'Guard',
     ];
 
-    
-
     /**
      * Run the database seeds.
      */
@@ -43,10 +41,15 @@ class RolesSeeder extends Seeder
     private function displayResults(array $roles): void
     {
         $this->command->info('Roles seeded successfully:');
-        $this->command->table(self::$OUTPUT_TABLE_HEADERS, collect($roles)->map(fn (Role $role, int $index) => [
-                $index + 1,
-                $role->name,
-                $role->guard_name,
-            ])->toArray());
+        $this->command->table(
+            self::$OUTPUT_TABLE_HEADERS,
+            collect($roles)
+                ->map(fn(Role $role, int $index) => [
+                    $index + 1,
+                    $role->name,
+                    $role->guard_name,
+                ])
+                ->toArray(),
+        );
     }
 }

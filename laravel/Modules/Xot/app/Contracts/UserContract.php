@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
-use Laravel\Passport\Token;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Permission\Contracts\Role;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Models\Contracts\FilamentUser;
-use Modules\User\Contracts\HasTeamsContract;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\MediaLibrary\MediaCollections\FileAdder;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Laravel\Passport\Token;
+use Modules\User\Contracts\HasTeamsContract;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
+use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
-
 
 // use Filament\Models\Contracts\HasTenants;
 
@@ -50,14 +49,23 @@ use Spatie\Permission\Exceptions\RoleDoesNotExist;
  *
  * @mixin \Eloquent
  */
-interface UserContract extends Authenticatable, Authorizable, CanResetPassword, FilamentUser, HasTeamsContract, ModelContract, MustVerifyEmail, PassportHasApiTokensContract,HasMedia
+interface UserContract extends
+    Authenticatable,
+    Authorizable,
+    CanResetPassword,
+    FilamentUser,
+    HasTeamsContract,
+    ModelContract,
+    MustVerifyEmail,
+    PassportHasApiTokensContract,
+    HasMedia
 {
     /*
-    public function isSuperAdmin();
-    public function name();
-    public function areas();
-    public function avatar();
-    */
+     * public function isSuperAdmin();
+     * public function name();
+     * public function areas();
+     * public function avatar();
+     */
     public function profile(): HasOne;
 
     /**
@@ -95,7 +103,10 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
     /**
      * Determine if the model has (one of) the given role(s).
      */
-    public function hasRole(string|int|array|Role|\Illuminate\Support\Collection $roles, ?string $guard = null): bool;
+    public function hasRole(
+        string|int|array|Role|\Illuminate\Support\Collection $roles,
+        null|string $guard = null,
+    ): bool;
 
     /**
      * Assign the given role to the model.
@@ -112,6 +123,7 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
      * @return self
      */
     public function removeRole($role);
+
     /**
      * Get the current access token being used by the user.
      *
@@ -144,5 +156,5 @@ interface UserContract extends Authenticatable, Authorizable, CanResetPassword, 
      *
      * @throws PermissionDoesNotExist|GuardDoesNotMatch
      */
-    public function hasPermissionTo($permission, ?string $guardName = null): bool;
+    public function hasPermissionTo($permission, null|string $guardName = null): bool;
 }

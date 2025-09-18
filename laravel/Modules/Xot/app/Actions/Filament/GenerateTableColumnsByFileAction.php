@@ -34,20 +34,23 @@ class GenerateTableColumnsByFileAction
      * Genera colonne per tabelle e form Filament basate su un file di risorsa.
      *
      * @param File $file Il file della risorsa Filament
-     * 
+     *
      * @return void
      */
     public function execute(File $file): void
     {
-        if (! $file->isFile()) {
+        if (!$file->isFile()) {
             return;
         }
-        if (! \in_array($file->getExtension(), ['php'], false)) {
+        if (!\in_array($file->getExtension(), ['php'], false)) {
             return;
         }
         $filename = $file->getPathname();
         $class_name = Str::replace(base_path('Modules/'), 'Modules/', $filename);
-        Assert::string($class_name = Str::replace('/', '\\', $class_name), '['.__LINE__.']['.class_basename($this).']');
+        Assert::string(
+            $class_name = Str::replace('/', '\\', $class_name),
+            '[' . __LINE__ . '][' . class_basename($this) . ']',
+        );
         $class_name = Str::substr($class_name, 0, -4);
 
         // Verifichiamo che la classe esista
@@ -74,19 +77,15 @@ class GenerateTableColumnsByFileAction
         // *
         $body = app(GetMethodBodyAction::class)->execute($class_name, 'table');
         $body1 = app(GetStrBetweenStartsWithAction::class)->execute($body, '->columns(', '(', ')');
-        $body_new = '->columns(['.chr(13).$this->getResourceTableColumns($modelClass).chr(13).'])';
-        $body_up = Str::of($body)
-            ->replace($body1, $body_new)
-            ->toString();
+        $body_new = '->columns([' . chr(13) . $this->getResourceTableColumns($modelClass) . chr(13) . '])';
+        $body_up = Str::of($body)->replace($body1, $body_new)->toString();
         $content_new = Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
         // -------------------- FORM ------------------------------
         $body = app(GetMethodBodyAction::class)->execute($class_name, 'form');
         $body1 = app(GetStrBetweenStartsWithAction::class)->execute($body, '->schema(', '(', ')');
-        $body_new = '->schema(['.chr(13).$this->getResourceFormSchema($modelClass).chr(13).'])';
-        $body_up = Str::of($body)
-            ->replace($body1, $body_new)
-            ->toString();
+        $body_new = '->schema([' . chr(13) . $this->getResourceFormSchema($modelClass) . chr(13) . '])';
+        $body_up = Str::of($body)->replace($body1, $body_new)->toString();
         $content_new = Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
         // -----------------------------------------------------
@@ -96,20 +95,19 @@ class GenerateTableColumnsByFileAction
             $fillable = $modelInstance->getFillable();
 
             // Verifichiamo che $fillable sia un array e contenga 'anno'
-            if (is_array($fillable) && in_array('anno', $fillable)) {
+            if (is_array($fillable) && in_array('anno', $fillable, strict: true)) {
                 $body = app(GetMethodBodyAction::class)->execute($class_name, 'table');
                 $body1 = app(GetStrBetweenStartsWithAction::class)->execute($body, '->filters(', '(', ')');
                 $body_new = "->filters([
                         app(\Modules\Xot\Actions\Filament\Filter\GetYearFilter::class)->execute('anno',intval(date('Y')) - 3,intval(date('Y'))),
                     ],layout: \Filament\Tables\Enums\FiltersLayout::AboveContent)
                     ->persistFiltersInSession()";
-                $body_up = Str::of($body)
-                    ->replace($body1, $body_new)
-                    ->toString();
+                $body_up = Str::of($body)->replace($body1, $body_new)->toString();
                 $content_new = Str::of($file->getContents())->replace($body, $body_up)->toString();
                 LaravelFile::put($filename, $content_new);
             }
         }
+
         // */
     }
 
@@ -117,7 +115,7 @@ class GenerateTableColumnsByFileAction
      * Mostra informazioni di debug su un file.
      *
      * @param File $file Il file da analizzare
-     * 
+     *
      * @return void
      */
     public function ddFile(File $file): void

@@ -12,32 +12,27 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class ConsentResource extends XotBaseResource
 {
-    protected static ?string $model = Consent::class;
+    protected static null|string $model = Consent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static null|string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
             'treatment_id' => Forms\Components\Select::make('treatment_id')
                 ->relationship('treatment', 'name')
                 ->required(),
-            'subject_id' => Forms\Components\TextInput::make('subject_id')
-                ->required()
-                ->maxLength(191),
+            'subject_id' => Forms\Components\TextInput::make('subject_id')->required()->maxLength(191),
         ];
     }
 
     public function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('id')
-
-                ->searchable(),
-            Tables\Columns\TextColumn::make('treatment.name')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('subject_id')
-                ->searchable(),
+            Tables\Columns\TextColumn::make('id')->searchable(),
+            Tables\Columns\TextColumn::make('treatment.name')->searchable(),
+            Tables\Columns\TextColumn::make('subject_id')->searchable(),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -49,6 +44,7 @@ class ConsentResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

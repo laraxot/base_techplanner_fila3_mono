@@ -24,16 +24,11 @@ class SetDefaultRolesBySocialiteUserAction
     public function __construct(
         private readonly string $provider,
     ) {
-        $this->domainAnalyzer = app(
-            EmailDomainAnalyzer::class,
-            [
-                'ssoProvider' => $this->provider,
-            ]
-        );
+        $this->domainAnalyzer = app(EmailDomainAnalyzer::class, [
+            'ssoProvider' => $this->provider,
+        ]);
 
-        $this->defaultUserGuard = Guard::getDefaultName(
-            XotData::make()->getUserClass()
-        );
+        $this->defaultUserGuard = Guard::getDefaultName(XotData::make()->getUserClass());
     }
 
     public function execute(UserContract $userModel, SocialiteUserContract $oauthUser): void
@@ -56,17 +51,15 @@ class SetDefaultRolesBySocialiteUserAction
         }
 
         $defaultRoleNames = $this->domainAnalyzer->hasFirstPartyDomain()
-            ? (array) config(sprintf('services.%s.email_domains.first_party.role_names_search', $this->provider))
-            : (array) config(sprintf('services.%s.email_domains.client.role_names_search', $this->provider));
+            ? ((array) config(sprintf('services.%s.email_domains.first_party.role_names_search', $this->provider)))
+            : ((array) config(sprintf('services.%s.email_domains.client.role_names_search', $this->provider)));
 
         $rolesToSet = Role::query()
-            ->where(
-                static function (Builder $query) use ($defaultRoleNames): void {
-                    foreach ($defaultRoleNames as $roleName) {
-                        $query->orWhere('name', 'LIKE', $roleName);
-                    }
+            ->where(static function (Builder $query) use ($defaultRoleNames): void {
+                foreach ($defaultRoleNames as $roleName) {
+                    $query->orWhere('name', 'LIKE', $roleName);
                 }
-            )
+            })
             ->where('guard_name', '=', $this->defaultUserGuard)
             ->get();
 

@@ -20,7 +20,7 @@ class TemporaryUploadPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, TemporaryUpload $temporary_upload): bool
+    public function view(UserContract $user, TemporaryUpload $_temporary_upload): bool
     {
         return $user->hasPermissionTo('temporary_upload.view');
     }
@@ -36,7 +36,7 @@ class TemporaryUploadPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, TemporaryUpload $temporary_upload): bool
+    public function update(UserContract $user, TemporaryUpload $_temporary_upload): bool
     {
         return $user->hasPermissionTo('temporary_upload.update');
     }
@@ -44,7 +44,7 @@ class TemporaryUploadPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, TemporaryUpload $temporary_upload): bool
+    public function delete(UserContract $user, TemporaryUpload $_temporary_upload): bool
     {
         return $user->hasPermissionTo('temporary_upload.delete');
     }
@@ -52,7 +52,7 @@ class TemporaryUploadPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, TemporaryUpload $temporary_upload): bool
+    public function restore(UserContract $user, TemporaryUpload $_temporary_upload): bool
     {
         return $user->hasPermissionTo('temporary_upload.restore');
     }

@@ -10,47 +10,38 @@ use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictScalarReturnEx
 use RectorLaravel\Set\LaravelSetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths(
-        [
-            __DIR__,
-        ]
-    );
+    $rectorConfig->paths([
+        __DIR__,
+    ]);
 
-    $rectorConfig->skip(
-        [
-            '*/docs',
-            '*/vendor',
-            './vendor/',
-        ]
-    );
+    $rectorConfig->skip([
+        '*/docs',
+        '*/vendor',
+        './vendor/',
+    ]);
 
     // register a single rule
     // $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
     // $rectorConfig->rule(RedirectRouteToToRouteHelperRector::class);
-    $rectorConfig->rules(
-        [
-            ReturnTypeFromStrictNativeCallRector::class,
-            ReturnTypeFromStrictScalarReturnExprRector::class,
-        ]
-    );
+    $rectorConfig->rules([
+        ReturnTypeFromStrictNativeCallRector::class,
+        ReturnTypeFromStrictScalarReturnExprRector::class,
+    ]);
 
     // define sets of rules
-    $rectorConfig->sets(
-        [
-            PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
-            // SetList::DEAD_CODE,
-            // SetList::CODE_QUALITY,
-            LevelSetList::UP_TO_PHP_81,
-            LaravelSetList::LARAVEL_100,
-
-            // SetList::NAMING, //problemi con injuction
-            // SetList::TYPE_DECLARATION,
-            // SetList::CODING_STYLE,
-            // SetList::PRIVATIZATION,//problemi con final
-            // SetList::EARLY_RETURN,
-            // SetList::INSTANCEOF,
-        ]
-    );
+    $rectorConfig->sets([
+        PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
+        // SetList::DEAD_CODE,
+        // SetList::CODE_QUALITY,
+        LevelSetList::UP_TO_PHP_81,
+        LaravelSetList::LARAVEL_100,
+        // SetList::NAMING, //problemi con injuction
+        // SetList::TYPE_DECLARATION,
+        // SetList::CODING_STYLE,
+        // SetList::PRIVATIZATION,//problemi con final
+        // SetList::EARLY_RETURN,
+        // SetList::INSTANCEOF,
+    ]);
 
     $rectorConfig->importNames();
 };

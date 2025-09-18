@@ -9,25 +9,42 @@ describe('Address Model', function () {
     it('can be created with factory', function () {
         $address = Address::factory()->create();
 
-        expect($address)->toBeInstanceOf(Address::class)
-            ->and($address->exists)->toBeTrue()
-            ->and($address->id)->toBeInt();
+        expect($address)
+            ->toBeInstanceOf(Address::class)
+            ->and($address->exists)
+            ->toBeTrue()
+            ->and($address->id)
+            ->toBeInt();
     });
 
     it('has correct fillable attributes', function () {
-        $address = new Address;
+        $address = new Address();
 
         expect($address->getFillable())->toContain([
-            'model_type', 'model_id', 'name', 'description', 'route',
-            'street_number', 'locality', 'administrative_area_level_3',
-            'administrative_area_level_2', 'administrative_area_level_1',
-            'country', 'postal_code', 'formatted_address', 'place_id',
-            'latitude', 'longitude', 'type', 'is_primary', 'extra_data',
+            'model_type',
+            'model_id',
+            'name',
+            'description',
+            'route',
+            'street_number',
+            'locality',
+            'administrative_area_level_3',
+            'administrative_area_level_2',
+            'administrative_area_level_1',
+            'country',
+            'postal_code',
+            'formatted_address',
+            'place_id',
+            'latitude',
+            'longitude',
+            'type',
+            'is_primary',
+            'extra_data',
         ]);
     });
 
     it('implements HasGeolocation contract', function () {
-        $address = new Address;
+        $address = new Address();
 
         expect($address)->toBeInstanceOf(\Modules\Geo\Contracts\HasGeolocation::class);
     });
@@ -36,9 +53,9 @@ describe('Address Model', function () {
         $address = Address::factory()->create();
         $address->delete();
 
-        expect($address->deleted_at)->not->toBeNull()
-            ->and(Address::withTrashed()->find($address->id))->not->toBeNull()
-            ->and(Address::find($address->id))->toBeNull();
+        expect($address->deleted_at)
+            ->not->toBeNull()->and(Address::withTrashed()->find($address->id))
+            ->not->toBeNull()->and(Address::find($address->id))->toBeNull();
     });
 
     it('casts attributes correctly', function () {
@@ -49,10 +66,14 @@ describe('Address Model', function () {
             'extra_data' => ['key' => 'value'],
         ]);
 
-        expect($address->latitude)->toBeFloat()
-            ->and($address->longitude)->toBeFloat()
-            ->and($address->is_primary)->toBeBool()
-            ->and($address->extra_data)->toBeArray();
+        expect($address->latitude)
+            ->toBeFloat()
+            ->and($address->longitude)
+            ->toBeFloat()
+            ->and($address->is_primary)
+            ->toBeBool()
+            ->and($address->extra_data)
+            ->toBeArray();
     });
 
     it('has polymorphic relationship', function () {
@@ -70,10 +91,14 @@ describe('Address Model', function () {
                 'postal_code' => '20100',
             ]);
 
-            expect($address->full_address)->toBeString()
-                ->and($address->full_address)->toContain('Via Roma')
-                ->and($address->full_address)->toContain('123')
-                ->and($address->full_address)->toContain('Milano');
+            expect($address->full_address)
+                ->toBeString()
+                ->and($address->full_address)
+                ->toContain('Via Roma')
+                ->and($address->full_address)
+                ->toContain('123')
+                ->and($address->full_address)
+                ->toContain('Milano');
         });
 
         it('generates street_address accessor', function () {
@@ -82,9 +107,12 @@ describe('Address Model', function () {
                 'street_number' => '123',
             ]);
 
-            expect($address->street_address)->toBeString()
-                ->and($address->street_address)->toContain('Via Roma')
-                ->and($address->street_address)->toContain('123');
+            expect($address->street_address)
+                ->toBeString()
+                ->and($address->street_address)
+                ->toContain('Via Roma')
+                ->and($address->street_address)
+                ->toContain('123');
         });
     });
 
@@ -95,8 +123,7 @@ describe('Address Model', function () {
                 'longitude' => 9.1900,
             ]);
 
-            expect($address->latitude)->toBe(45.4642)
-                ->and($address->longitude)->toBe(9.1900);
+            expect($address->latitude)->toBe(45.4642)->and($address->longitude)->toBe(9.1900);
         });
 
         it('can calculate distance between addresses', function () {
@@ -189,9 +216,12 @@ describe('Address Model', function () {
 
             $address = Address::factory()->create(['extra_data' => $extraData]);
 
-            expect($address->extra_data)->toBe($extraData)
-                ->and($address->extra_data['building_type'])->toBe('residential')
-                ->and($address->extra_data['floor'])->toBe(3);
+            expect($address->extra_data)
+                ->toBe($extraData)
+                ->and($address->extra_data['building_type'])
+                ->toBe('residential')
+                ->and($address->extra_data['floor'])
+                ->toBe(3);
         });
     });
 });

@@ -13,11 +13,11 @@ class Children extends ViewField
     protected string $view = 'ui::filament.forms.components.navigation-builder';
 
     /*
-    public static function make($livewire): static
-    {
-        $result = app(static::class, ['livewire' => $livewire]);
-        $result->configure();
-        return $result;
-    }
-    */
+     * public static function make($livewire): static
+     * {
+     * $result = app(static::class, ['livewire' => $livewire]);
+     * $result->configure();
+     * return $result;
+     * }
+     */
 }

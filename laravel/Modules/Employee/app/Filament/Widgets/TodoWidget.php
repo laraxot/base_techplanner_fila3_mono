@@ -18,13 +18,14 @@ class TodoWidget extends XotBaseWidget
 
     protected int|string|array $columnSpan = 1;
 
-    protected static ?int $sort = 1;
+    protected static null|int $sort = 1;
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];

@@ -16,13 +16,13 @@ class NotificationData extends Data
     // public int $q;
     public string $from;
 
-    public ?string $from_email = null;
+    public null|string $from_email = null;
 
     public string $to;
 
-    public ?string $subject = null;
+    public null|string $subject = null;
 
-    public ?string $body_html = null;
+    public null|string $body_html = null;
 
     public string $body;
 
@@ -31,7 +31,8 @@ class NotificationData extends Data
     /**
      * @var DataCollection<AttachmentData>
      */
-    public ?DataCollection $attachments = null;
+    public null|DataCollection $attachments = null;
+
     // public ?array $attachment_paths = [];
 
     /**
@@ -50,12 +51,10 @@ class NotificationData extends Data
 
     public function getSmsData(): SmsData
     {
-        return SmsData::from(
-            [
-                'from' => $this->from,
-                'to' => $this->to,
-                'body' => $this->body,
-            ]
-        );
+        return SmsData::from([
+            'from' => $this->from,
+            'to' => $this->to,
+            'body' => $this->body,
+        ]);
     }
 }

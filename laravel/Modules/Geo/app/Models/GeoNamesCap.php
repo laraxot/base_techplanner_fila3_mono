@@ -27,16 +27,16 @@ class GeoNamesCap extends Model
 
     /** @var string */
     protected $table = 'geonames_cap';
-    // protected $connection = 'geo';
 
+    // protected $connection = 'geo';
     /*
      * { function_description }
      *
      */
     /*
-    function __construct(){
-        $this->setConnection('user');
-        parent::__construct();
-    }//end construct
-    */
+     * function __construct(){
+     * $this->setConnection('user');
+     * parent::__construct();
+     * }//end construct
+     */
 }

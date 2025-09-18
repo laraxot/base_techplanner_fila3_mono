@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Models;
 
-use Parental\HasParent;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Parental\HasParent;
 
 /**
  * Class Admin
- * 
+ *
  * NOTA: Il trait HasFactory è stato rimosso perché già incluso nella catena di ereditarietà (BaseUser -> User -> Admin).
  * Dichiararlo qui è ridondante e può causare warning o confusione.
  * Vedi docs/DRY-model-traits.md
@@ -211,11 +210,15 @@ class Admin extends User
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
-        return array_merge(parent::casts(), [
-            //'certifications' => 'array',
-            //'availability' => 'array',
-        ]);
+        return array_merge(
+            parent::casts(),
+            [
+                //'certifications' => 'array',
+                //'availability' => 'array',
+            ],
+        );
     }
 }

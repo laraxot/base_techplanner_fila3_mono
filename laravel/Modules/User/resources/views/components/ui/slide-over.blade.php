@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'name',
     'title' => 'Slide-over Title',
@@ -72,4 +77,3 @@ $maxWidth = [
         </div>
     </template>
 </div>
-

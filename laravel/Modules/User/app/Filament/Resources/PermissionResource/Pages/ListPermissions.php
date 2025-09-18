@@ -14,9 +14,8 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\User\Filament\Resources\PermissionResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
-use Webmozart\Assert\Assert;
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+use Webmozart\Assert\Assert;
 
 class ListPermissions extends XotBaseListRecords
 {
@@ -29,17 +28,10 @@ class ListPermissions extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'name' => TextColumn::make('name')
-                ->searchable()
-                ->sortable(),
-            'guard_name' => TextColumn::make('guard_name')
-                ->searchable()
-                ->sortable(),
-            'active' => IconColumn::make('active')
-                ->boolean(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
+            'name' => TextColumn::make('name')->searchable()->sortable(),
+            'guard_name' => TextColumn::make('guard_name')->searchable()->sortable(),
+            'active' => IconColumn::make('active')->boolean(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
         ];
     }
 
@@ -95,24 +87,24 @@ class ListPermissions extends XotBaseListRecords
         return [
             'delete' => DeleteBulkAction::make(),
             'attach_role' => BulkAction::make('Attach Role')
-                ->action(
-                    static function (Collection $collection, array $data): void {
-                        foreach ($collection as $record) {
-                            // Verifichiamo che $record sia un'istanza di Model prima di procedere
-                            Assert::isInstanceOf($record, \Illuminate\Database\Eloquent\Model::class, '['.__LINE__.']['.__CLASS__.']');
+                ->action(static function (Collection $collection, array $data): void {
+                    foreach ($collection as $record) {
+                        // Verifichiamo che $record sia un'istanza di Model prima di procedere
+                        Assert::isInstanceOf(
+                            $record,
+                            \Illuminate\Database\Eloquent\Model::class,
+                            '[' . __LINE__ . '][' . __CLASS__ . ']',
+                        );
 
-                            // Poi verifichiamo che il modello abbia il metodo roles() prima di chiamarlo
-                            if (method_exists($record, 'roles')) {
-                                $record->roles()->sync($data['role']);
-                                $record->save();
-                            }
+                        // Poi verifichiamo che il modello abbia il metodo roles() prima di chiamarlo
+                        if (method_exists($record, 'roles')) {
+                            $record->roles()->sync($data['role']);
+                            $record->save();
                         }
                     }
-                )
+                })
                 ->form([
-                    Select::make('role')
-                        ->options($roleModel::query()->pluck('name', 'id'))
-                        ->required(),
+                    Select::make('role')->options($roleModel::query()->pluck('name', 'id'))->required(),
                 ])
                 ->deselectRecordsAfterCompletion(),
         ];

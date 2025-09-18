@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title', 'text', 'background'])
 
 <div class="bg-gray-900">

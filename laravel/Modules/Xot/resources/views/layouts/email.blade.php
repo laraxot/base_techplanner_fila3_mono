@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,4 +49,4 @@
         @yield('content')
     </div>
 </body>
-</html> 
+</html>

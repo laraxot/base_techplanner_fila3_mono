@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\User\Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\User\Models\Team;
 use Modules\User\Models\User;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * Factory per il modello Team del modulo User.
@@ -40,7 +40,7 @@ class TeamFactory extends Factory
             'Contabilità',
             'Produzione',
             'Qualità',
-            'Logistica'
+            'Logistica',
         ];
 
         return [
@@ -57,7 +57,7 @@ class TeamFactory extends Factory
      */
     public function personal(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'personal_team' => true,
             'name' => $this->faker->firstName() . "'s Team",
         ]);
@@ -71,7 +71,7 @@ class TeamFactory extends Factory
      */
     public function ownedBy(int $userId): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'user_id' => $userId,
         ]);
     }
@@ -84,7 +84,7 @@ class TeamFactory extends Factory
      */
     public function withName(string $name): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'name' => $name . ' Team',
         ]);
     }

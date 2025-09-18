@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'location' => [
         'title' => 'Selezione Località',
@@ -9,4 +12,4 @@ return [
             'error' => 'Errore durante la selezione della località',
         ],
     ],
-]; 
+];

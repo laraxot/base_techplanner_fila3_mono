@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace Modules\Geo\Filament\Forms\Components;
 
 use Filament\Forms;
-use Webmozart\Assert\Assert;
 use Filament\Forms\Components\Section;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Geo\Filament\Resources\AddressResource;
+use Webmozart\Assert\Assert;
 
 // use Squire\Models\Country;
 
 class AddressField extends Forms\Components\Section
 {
-    
     //protected string $view = 'filament-forms::components.group';
 
     protected bool $disableLiveUpdates = false;
@@ -38,16 +37,16 @@ class AddressField extends Forms\Components\Section
     protected function getAddressFormSchema(): array
     {
         $baseSchema = AddressResource::getFormSchema();
-        
+
         // Rimuovi campi non necessari per relazioni semplici
         unset($baseSchema['name']);
         unset($baseSchema['is_primary']);
-        
+
         // Se i live updates sono disabilitati, rimuovi la reattività
         if ($this->disableLiveUpdates) {
             $baseSchema = $this->removeReactivityFromSchema($baseSchema);
         }
-        
+
         return $baseSchema;
     }
 
@@ -66,47 +65,45 @@ class AddressField extends Forms\Components\Section
                 /** @phpstan-ignore method.nonObject */
                 $field->live(false);
             }
-            
+
             /** @phpstan-ignore argument.type */
             if (method_exists($field, 'afterStateUpdated')) {
                 // Rimuovi callback afterStateUpdated
                 /** @phpstan-ignore method.nonObject */
                 $field->afterStateUpdated(null);
             }
-            
+
             /** @phpstan-ignore argument.type */
             if (method_exists($field, 'disabled')) {
                 // Rimuovi condizioni disabled dinamiche
                 /** @phpstan-ignore method.nonObject */
                 $field->disabled(false);
             }
-            
+
             $schema[$key] = $field;
         }
-        
+
         return $schema;
     }
 
-    
     /*
-    public function saveRelationships(): void
-    {
-        
-        $state = $this->getState();
-        $record = $this->getRecord();
-        $relationship = $record->{$this->getRelationship()}();
-
-        if (null === $relationship) {
-            return;
-        }
-        if ($address = $relationship->first()) {
-            $address->update($state);
-        } else {
-            $relationship->updateOrCreate($state);
-        }
-
-        $record->touch();
-    }
-    */
-    
+     * public function saveRelationships(): void
+     * {
+     *
+     * $state = $this->getState();
+     * $record = $this->getRecord();
+     * $relationship = $record->{$this->getRelationship()}();
+     *
+     * if (null === $relationship) {
+     * return;
+     * }
+     * if ($address = $relationship->first()) {
+     * $address->update($state);
+     * } else {
+     * $relationship->updateOrCreate($state);
+     * }
+     *
+     * $record->touch();
+     * }
+     */
 }

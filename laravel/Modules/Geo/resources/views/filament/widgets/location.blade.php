@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget>
     <x-filament::section>
         <form wire:submit="submit">
@@ -13,4 +18,4 @@
             </div>
         </form>
     </x-filament::section>
-</x-filament-widgets::widget> 
+</x-filament-widgets::widget>

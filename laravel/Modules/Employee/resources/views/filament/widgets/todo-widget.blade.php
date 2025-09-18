@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- TodoWidget View - HR Task Management --}}
 <x-filament-widgets::widget>
     <x-filament::section>

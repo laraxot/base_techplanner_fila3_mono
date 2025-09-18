@@ -29,7 +29,7 @@ class JobPolicy extends UserBasePolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(UserContract $user): bool
+    public function create(UserContract $_user): bool
     {
         return true;
     }
@@ -38,7 +38,7 @@ class JobPolicy extends UserBasePolicy
      * Determine whether the user can update the model.
      */
     // public function update(UserContract $user, Team $team): bool
-    public function update(UserContract $user): bool
+    public function update(UserContract $_user): bool
     {
         // return $user->ownsTeam($team);
         return false;

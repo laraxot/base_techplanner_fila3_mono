@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Lang\Actions;
 
-
-use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
-use Spatie\QueueableAction\QueueableAction;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
+use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 /**
  * Action per la traduzione di elementi di una collezione.
@@ -17,7 +16,7 @@ class TransCollectionAction
 {
     use QueueableAction;
 
-    public ?string $transKey;
+    public null|string $transKey;
 
     /**
      * Esegue la traduzione di una collezione.
@@ -27,10 +26,8 @@ class TransCollectionAction
      *
      * @return Collection<int|string, string>
      */
-    public function execute(
-        Collection $collection,
-        ?string $transKey,
-    ): Collection {
+    public function execute(Collection $collection, null|string $transKey): Collection
+    {
         if (null === $transKey) {
             return $collection->map(SafeStringCastAction::cast(...));
         }
@@ -59,7 +56,7 @@ class TransCollectionAction
         }
 
         // Prima prova la traduzione diretta
-        $key = $this->transKey.'.'.$item;
+        $key = $this->transKey . '.' . $item;
         $trans = trans($key);
 
         // Se la traduzione esiste ed è una stringa, la restituisce
@@ -69,7 +66,7 @@ class TransCollectionAction
 
         // Seconda prova: sostituisce i punti con underscore
         $itemWithUnderscore = str_replace('.', '_', $item);
-        $keyWithUnderscore = $this->transKey.'.'.$itemWithUnderscore;
+        $keyWithUnderscore = $this->transKey . '.' . $itemWithUnderscore;
         $transWithUnderscore = trans($keyWithUnderscore);
 
         // Se la traduzione con underscore esiste ed è una stringa, la restituisce

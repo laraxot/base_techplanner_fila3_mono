@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\UI\Forms\Components;
 
-use Filament\Forms\Components\Field;
 use Closure;
+use Filament\Forms\Components\Field;
 
 /**
  * Radio Card Selector Component
- * 
+ *
  * Componente riutilizzabile per selezione tramite card radio.
  * Popola automaticamente un TextInput con il nome dell'elemento selezionato.
  */
@@ -25,27 +25,27 @@ class RadioCardSelector extends Field
     /**
      * @var string|null
      */
-    protected ?string $sectionTitle = null;
+    protected null|string $sectionTitle = null;
 
     /**
      * @var string|null
      */
-    protected ?string $sectionSubtitle = null;
+    protected null|string $sectionSubtitle = null;
 
     /**
      * @var string|null
      */
-    protected ?string $targetFieldName = null;
+    protected null|string $targetFieldName = null;
 
     /**
      * @var string|null
      */
-    protected ?string $emptyStateTitle = null;
+    protected null|string $emptyStateTitle = null;
 
     /**
      * @var string|null
      */
-    protected ?string $emptyStateDescription = null;
+    protected null|string $emptyStateDescription = null;
 
     /**
      * Imposta le card disponibili per la selezione.
@@ -66,7 +66,7 @@ class RadioCardSelector extends Field
      * @param string|null $title
      * @return static
      */
-    public function sectionTitle(?string $title): static
+    public function sectionTitle(null|string $title): static
     {
         $this->sectionTitle = $title;
 
@@ -79,7 +79,7 @@ class RadioCardSelector extends Field
      * @param string|null $subtitle
      * @return static
      */
-    public function sectionSubtitle(?string $subtitle): static
+    public function sectionSubtitle(null|string $subtitle): static
     {
         $this->sectionSubtitle = $subtitle;
 
@@ -105,7 +105,7 @@ class RadioCardSelector extends Field
      * @param string|null $title
      * @return static
      */
-    public function emptyStateTitle(?string $title): static
+    public function emptyStateTitle(null|string $title): static
     {
         $this->emptyStateTitle = $title;
 
@@ -118,7 +118,7 @@ class RadioCardSelector extends Field
      * @param string|null $description
      * @return static
      */
-    public function emptyStateDescription(?string $description): static
+    public function emptyStateDescription(null|string $description): static
     {
         $this->emptyStateDescription = $description;
 
@@ -128,12 +128,12 @@ class RadioCardSelector extends Field
     /**
      * Ottiene le card per la visualizzazione.
      *
-     * 
+     *
      */
     public function getCards(): array
     {
         $result = $this->evaluate($this->cards);
-        
+
         return is_array($result) ? $result : [];
     }
 
@@ -142,7 +142,7 @@ class RadioCardSelector extends Field
      *
      * @return string|null
      */
-    public function getSectionTitle(): ?string
+    public function getSectionTitle(): null|string
     {
         return $this->sectionTitle;
     }
@@ -152,7 +152,7 @@ class RadioCardSelector extends Field
      *
      * @return string|null
      */
-    public function getSectionSubtitle(): ?string
+    public function getSectionSubtitle(): null|string
     {
         return $this->sectionSubtitle;
     }
@@ -162,7 +162,7 @@ class RadioCardSelector extends Field
      *
      * @return string|null
      */
-    public function getTargetFieldName(): ?string
+    public function getTargetFieldName(): null|string
     {
         return $this->targetFieldName;
     }
@@ -172,7 +172,7 @@ class RadioCardSelector extends Field
      *
      * @return string|null
      */
-    public function getEmptyStateTitle(): ?string
+    public function getEmptyStateTitle(): null|string
     {
         return $this->emptyStateTitle;
     }
@@ -182,8 +182,8 @@ class RadioCardSelector extends Field
      *
      * @return string|null
      */
-    public function getEmptyStateDescription(): ?string
+    public function getEmptyStateDescription(): null|string
     {
         return $this->emptyStateDescription;
     }
-} 
+}

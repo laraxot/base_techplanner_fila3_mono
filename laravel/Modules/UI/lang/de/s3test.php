@@ -8,7 +8,6 @@ return [
         'heading' => 'AWS Konfiguration Test',
         'description' => 'Seite zum Testen der S3 und CloudFront Konfiguration',
     ],
-    
     'fields' => [
         'attachment' => [
             'label' => 'Test Datei',
@@ -21,7 +20,6 @@ return [
             'helper_text' => 'Detaillierte Ausgabe der AWS Konfigurationstests',
         ],
     ],
-    
     'actions' => [
         'testS3Connection' => [
             'label' => '🔍 S3 Verbindung Testen',
@@ -54,14 +52,12 @@ return [
             'error' => 'Fehler beim Senden der E-Mail',
         ],
     ],
-    
     'notifications' => [
         'all_tests_completed' => 'Alle Tests abgeschlossen',
         's3_test_successful' => '✅ S3 und CloudFront Test erfolgreich abgeschlossen!',
         'test_failed' => '❌ Test fehlgeschlagen',
         'operations_completed' => 'Alle Operationen erfolgreich abgeschlossen',
     ],
-    
     'debug' => [
         'run_tests_message' => 'Tests ausführen um Ergebnisse zu sehen...',
         'configuration_title' => '📋 Konfiguration',

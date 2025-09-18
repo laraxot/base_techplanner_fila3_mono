@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\Employee\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,4 +22,3 @@ class AdminFactory extends Factory
         return [];
     }
 }
-

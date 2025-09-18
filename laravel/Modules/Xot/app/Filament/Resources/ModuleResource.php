@@ -9,20 +9,12 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Modules\UI\Filament\Forms\Components\IconPicker;
 use Modules\Xot\Filament\Resources\ModuleResource\Pages;
-use Modules\Xot\Models\Module;
-
-
-
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-
-
-
-
+use Modules\Xot\Models\Module;
 
 class ModuleResource extends XotBaseResource
 {
-    protected static ?string $model = Module::class;
+    protected static null|string $model = Module::class;
 
     /**
      * @return array<string, Forms\Components\Component>
@@ -42,8 +34,7 @@ class ModuleResource extends XotBaseResource
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Override]

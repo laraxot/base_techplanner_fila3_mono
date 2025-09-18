@@ -95,7 +95,7 @@ class NotifyTheme extends BaseModel
         'logo',
     ];
 
-    public function getLogoAttribute(?array $value): array
+    public function getLogoAttribute(null|array $value): array
     {
         return [
             // 'path' => asset(strval($this->logo_src)),
@@ -123,11 +123,9 @@ class NotifyTheme extends BaseModel
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             // 'published_at' => 'datetime:Y-m-d', // da verificare
             'view_params' => 'array',
         ];

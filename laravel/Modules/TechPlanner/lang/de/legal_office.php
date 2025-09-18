@@ -4,58 +4,55 @@ declare(strict_types=1);
 
 return [
     'navigation' => [
-        'label' => 'Rechtsanwaltskanzlei',
+        'label' => 'Anwaltskanzlei',
         'group' => 'TechPlanner',
         'icon' => 'heroicon-o-building-office',
         'sort' => 9,
     ],
-
     'resource' => [
-        'label' => 'Rechtsanwaltskanzlei',
-        'plural_label' => 'Rechtsanwaltskanzleien',
+        'label' => 'Anwaltskanzlei',
+        'plural_label' => 'Anwaltskanzleien',
         'navigation_group' => 'TechPlanner',
         'navigation_icon' => 'heroicon-o-building-office',
         'navigation_sort' => 9,
-        'description' => 'Verwaltung der Rechtsanwaltskanzleien',
+        'description' => 'Anwaltskanzlei-Verwaltung',
     ],
-
     'actions' => [
         'create' => [
-            'label' => 'Neue Kanzlei',
+            'label' => 'Neue Anwaltskanzlei',
             'icon' => 'heroicon-o-plus',
             'color' => 'primary',
-            'tooltip' => 'Eine neue Rechtsanwaltskanzlei erstellen',
+            'tooltip' => 'Neue Anwaltskanzlei erstellen',
         ],
         'edit' => [
             'label' => 'Bearbeiten',
             'icon' => 'heroicon-o-pencil',
             'color' => 'warning',
-            'tooltip' => 'Kanzlei bearbeiten',
+            'tooltip' => 'Anwaltskanzlei bearbeiten',
         ],
         'delete' => [
             'label' => 'Löschen',
             'icon' => 'heroicon-o-trash',
             'color' => 'danger',
-            'tooltip' => 'Kanzlei löschen',
+            'tooltip' => 'Anwaltskanzlei löschen',
         ],
         'view' => [
             'label' => 'Anzeigen',
             'icon' => 'heroicon-o-eye',
             'color' => 'info',
-            'tooltip' => 'Kanzlei anzeigen',
+            'tooltip' => 'Anwaltskanzlei anzeigen',
         ],
     ],
-
     'fields' => [
         'name' => [
-            'label' => 'Kanzleiename',
-            'placeholder' => 'Namen der Kanzlei eingeben',
-            'help' => 'Vollständiger Name der Rechtsanwaltskanzlei',
+            'label' => 'Kanzleienname',
+            'placeholder' => 'Anwaltskanzlei-Namen eingeben',
+            'help' => 'Vollständiger Name der Anwaltskanzlei',
         ],
         'address' => [
             'label' => 'Adresse',
             'placeholder' => 'Vollständige Adresse eingeben',
-            'help' => 'Vollständige Adresse der Kanzlei',
+            'help' => 'Vollständige Adresse der Anwaltskanzlei',
         ],
         'phone' => [
             'label' => 'Telefon',
@@ -75,19 +72,18 @@ return [
         'vat_number' => [
             'label' => 'USt-IdNr.',
             'placeholder' => 'USt-IdNr. eingeben',
-            'help' => 'Umsatzsteuer-Identifikationsnummer der Kanzlei',
+            'help' => 'USt-IdNr. der Anwaltskanzlei',
         ],
         'fiscal_code' => [
-            'label' => 'Steuernummer',
-            'placeholder' => 'Steuernummer eingeben',
-            'help' => 'Steuernummer der Kanzlei',
+            'label' => 'Steuerliche Identifikationsnummer',
+            'placeholder' => 'Steuerliche Identifikationsnummer eingeben',
+            'help' => 'Steuerliche Identifikationsnummer der Anwaltskanzlei',
         ],
         'is_active' => [
             'label' => 'Aktiv',
-            'help' => 'Ob die Kanzlei aktiv ist',
+            'help' => 'Ob die Anwaltskanzlei aktiv ist',
         ],
     ],
-
     'filters' => [
         'is_active' => [
             'label' => 'Status',
@@ -101,12 +97,11 @@ return [
             'placeholder' => 'Stadt auswählen',
         ],
     ],
-
     'messages' => [
-        'created' => 'Kanzlei erfolgreich erstellt',
-        'updated' => 'Kanzlei erfolgreich aktualisiert',
-        'deleted' => 'Kanzlei erfolgreich gelöscht',
-        'not_found' => 'Kanzlei nicht gefunden',
-        'validation_error' => 'Validierungsfehler bei der Eingabe',
+        'created' => 'Anwaltskanzlei erfolgreich erstellt',
+        'updated' => 'Anwaltskanzlei erfolgreich aktualisiert',
+        'deleted' => 'Anwaltskanzlei erfolgreich gelöscht',
+        'not_found' => 'Anwaltskanzlei nicht gefunden',
+        'validation_error' => 'Validierungsfehler in den eingegebenen Daten',
     ],
 ];

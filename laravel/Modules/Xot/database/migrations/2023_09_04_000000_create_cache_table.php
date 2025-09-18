@@ -15,12 +15,10 @@ return new class extends XotBaseMigration {
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(
-            static function (Blueprint $table): void {
-                $table->string('key')->primary();
-                $table->mediumText('value');
-                $table->integer('expiration');
-            }
-        );
+        $this->tableCreate(static function (Blueprint $table): void {
+            $table->string('key')->primary();
+            $table->mediumText('value');
+            $table->integer('expiration');
+        });
     }
 };

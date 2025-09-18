@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * Validatore per i dati geografici.
- * 
+ *
  * Questo servizio fornisce metodi per validare la struttura e l'integrità
  * dei dati geografici nel file JSON.
- * 
+ *
  * @see \Modules\Geo\docs\json-database.md
  */
 class GeoDataValidator
@@ -63,41 +63,33 @@ class GeoDataValidator
 
     /**
      * Valida i dati geografici.
-     * 
+     *
      * @param array $data Dati da validare
      * @return bool
      */
     public function validate(array $data): bool
     {
-        $validator = Validator::make(
-            $data,
-            self::VALIDATION_RULES,
-            self::CUSTOM_MESSAGES
-        );
+        $validator = Validator::make($data, self::VALIDATION_RULES, self::CUSTOM_MESSAGES);
 
         return !$validator->fails();
     }
 
     /**
      * Ottiene gli errori di validazione.
-     * 
+     *
      * @param array $data Dati da validare
      * @return array<string, string>
      */
     public function getErrors(array $data): array
     {
-        $validator = Validator::make(
-            $data,
-            self::VALIDATION_RULES,
-            self::CUSTOM_MESSAGES
-        );
+        $validator = Validator::make($data, self::VALIDATION_RULES, self::CUSTOM_MESSAGES);
 
         return $validator->errors()->toArray();
     }
 
     /**
      * Verifica l'integrità dei dati.
-     * 
+     *
      * @param array $data Dati da verificare
      * @return bool
      */
@@ -113,19 +105,19 @@ class GeoDataValidator
         $cityCodes = [];
 
         foreach ($data['regions'] as $region) {
-            if (in_array($region['code'], $regionCodes)) {
+            if (in_array($region['code'], $regionCodes, strict: true)) {
                 return false;
             }
             $regionCodes[] = $region['code'];
 
             foreach ($region['provinces'] as $province) {
-                if (in_array($province['code'], $provinceCodes)) {
+                if (in_array($province['code'], $provinceCodes, strict: true)) {
                     return false;
                 }
                 $provinceCodes[] = $province['code'];
 
                 foreach ($province['cities'] as $city) {
-                    if (in_array($city['code'], $cityCodes)) {
+                    if (in_array($city['code'], $cityCodes, strict: true)) {
                         return false;
                     }
                     $cityCodes[] = $city['code'];
@@ -135,4 +127,4 @@ class GeoDataValidator
 
         return true;
     }
-} 
+}

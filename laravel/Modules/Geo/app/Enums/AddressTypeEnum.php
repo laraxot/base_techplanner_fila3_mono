@@ -15,15 +15,15 @@ enum AddressTypeEnum: string
     case SHIPPING = 'shipping';
     case LEGAL = 'legal';
     case OTHER = 'other';
-    
+
     /**
      * Get the label for the enum value.
-     * 
+     *
      * @return string
      */
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::HOME => 'Casa',
             self::WORK => 'Lavoro',
             self::BILLING => 'Fatturazione',
@@ -32,10 +32,10 @@ enum AddressTypeEnum: string
             self::OTHER => 'Altro',
         };
     }
-    
+
     /**
      * Get all the options as key-value pairs.
-     * 
+     *
      * @return array<string, string>
      */
     public static function options(): array

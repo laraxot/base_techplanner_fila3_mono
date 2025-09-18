@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <!--
   This example requires some changes to your config:
 
@@ -140,4 +145,3 @@
       <!-- More main page content here... -->
     </main>
   </div>
-  

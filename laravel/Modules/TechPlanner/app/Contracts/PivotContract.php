@@ -19,4 +19,6 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string|null $price_currency
  * @property int|null $status
  */
-interface PivotContract {}
+interface PivotContract
+{
+}

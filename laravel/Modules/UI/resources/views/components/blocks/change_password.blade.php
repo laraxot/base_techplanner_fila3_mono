@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title' => 'Cambia Password'])
 
 <div class="bg-white p-6 rounded-lg shadow-md">
@@ -120,4 +125,4 @@ document.addEventListener('DOMContentLoaded', function() {
     password.addEventListener('input', checkPassword);
 });
 </script>
-@endpush 
+@endpush

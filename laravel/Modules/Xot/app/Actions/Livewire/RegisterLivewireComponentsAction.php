@@ -14,8 +14,7 @@ class RegisterLivewireComponentsAction
 
     public function execute(string $path, string $namespace, string $prefix = ''): void
     {
-        $comps = app(GetComponentsAction::class)
-            ->execute($path, $namespace.'\Http\Livewire', $prefix);
+        $comps = app(GetComponentsAction::class)->execute($path, $namespace . '\Http\Livewire', $prefix);
 
         foreach ($comps as $comp) {
             Livewire::component($comp->name, $comp->ns);

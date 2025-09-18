@@ -20,7 +20,7 @@ class RetrieveSocialiteUserAction
     /**
      * Execute the action.
      */
-    public function execute(string $provider, SocialiteUserContract $user): ?SocialiteUser
+    public function execute(string $provider, SocialiteUserContract $user): null|SocialiteUser
     {
         if (empty($provider)) {
             throw new \InvalidArgumentException('Il provider non può essere vuoto');
@@ -43,11 +43,11 @@ class RetrieveSocialiteUserAction
 
         // Accesso sicuro alla proprietà token in modo type-safe
         $token = '';
-        
+
         // Utilizzo ReflectionClass per accedere in modo sicuro alle proprietà/metodi
         try {
             $reflection = new \ReflectionClass($user);
-            
+
             // Prova prima i metodi standard
             if ($reflection->hasMethod('getToken')) {
                 $method = $reflection->getMethod('getToken');
@@ -63,18 +63,14 @@ class RetrieveSocialiteUserAction
                 if (is_string($tokenValue)) {
                     $token = $tokenValue;
                 }
-            } 
-            // Prova poi ad accedere alla proprietà
-            elseif ($reflection->hasProperty('token')) {
+            } elseif ($reflection->hasProperty('token')) { // Prova poi ad accedere alla proprietà
                 $property = $reflection->getProperty('token');
                 $property->setAccessible(true);
                 $tokenValue = $property->getValue($user);
                 if (is_string($tokenValue)) {
                     $token = $tokenValue;
                 }
-            }
-            // Fallback su accesso diretto con var_export
-            elseif (isset($user->token) && is_string($user->token)) {
+            } elseif (isset($user->token) && is_string($user->token)) { // Fallback su accesso diretto con var_export
                 $token = $user->token;
             }
         } catch (\ReflectionException $e) {

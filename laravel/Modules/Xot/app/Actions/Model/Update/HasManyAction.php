@@ -28,7 +28,7 @@ class HasManyAction
 
         $updateData = new HasManyUpdateData(
             foreignKey: $relation->getForeignKeyName(),
-            parentKey: $model->getAttribute($relation->getLocalKeyName())
+            parentKey: $model->getAttribute($relation->getLocalKeyName()),
         );
 
         match (true) {
@@ -52,12 +52,12 @@ class HasManyAction
         /** @var Builder $query */
         $query = $relationDTO->related->newQuery();
 
-        $query->where($updateData->foreignKey, $updateData->parentKey)
-            ->update([$updateData->foreignKey => null]);
+        $query->where($updateData->foreignKey, $updateData->parentKey)->update([$updateData->foreignKey => null]);
 
         $toIds = $relationDTO->data['to'] ?? [];
         if ($toIds) {
-            $query->whereIn($relationDTO->related->getKeyName(), $toIds)
+            $query
+                ->whereIn($relationDTO->related->getKeyName(), $toIds)
                 ->update([$updateData->foreignKey => $updateData->parentKey]);
         }
     }
@@ -69,7 +69,7 @@ class HasManyAction
 
         foreach ($relationDTO->data as $item) {
             Assert::isArray($item);
-            if (! isset($item[$keyName])) {
+            if (!isset($item[$keyName])) {
                 continue;
             }
 
@@ -78,11 +78,7 @@ class HasManyAction
                 $updateData->foreignKey => $updateData->parentKey,
             ]);
 
-            $result = app(UpdateAction::class)->execute(
-                $relationDTO->related,
-                $itemData,
-                []
-            );
+            $result = app(UpdateAction::class)->execute($relationDTO->related, $itemData, []);
 
             if ($result instanceof Model) {
                 $id = $result->getKey();
@@ -106,7 +102,9 @@ class HasManyAction
         array $updatedIds,
     ): void {
         if ($updatedIds) {
-            $relationDTO->related->newQuery()
+            $relationDTO
+                ->related
+                ->newQuery()
                 ->where($updateData->foreignKey, $updateData->parentKey)
                 ->whereNotIn($relationDTO->related->getKeyName(), $updatedIds)
                 ->update([$updateData->foreignKey => null]);

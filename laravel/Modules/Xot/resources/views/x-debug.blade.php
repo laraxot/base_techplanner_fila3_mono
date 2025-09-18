@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     @php
      if (! extension_loaded('xdebug')) {

@@ -82,6 +82,7 @@ class Device extends BaseModel
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -126,9 +127,9 @@ class Device extends BaseModel
     /**
      * Get the latest verification for this device.
      */
-    public function getLatestVerificationAttribute(): ?DeviceVerification
+    public function getLatestVerificationAttribute(): null|DeviceVerification
     {
-        return $this->verifications()->latest()->first() instanceof DeviceVerification
+        return ($this->verifications()->latest()->first() instanceof DeviceVerification)
             ? $this->verifications()->latest()->first()
             : null;
     }
@@ -138,7 +139,7 @@ class Device extends BaseModel
      */
     public function getNeedsVerificationAttribute(): bool
     {
-        if (! $this->latest_verification) {
+        if (!$this->latest_verification) {
             return true;
         }
 

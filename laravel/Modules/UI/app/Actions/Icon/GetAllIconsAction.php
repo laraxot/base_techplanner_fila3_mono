@@ -17,10 +17,10 @@ class GetAllIconsAction
     /**
      * @return array
      */
-    public function execute(string $context = 'form')
+    public function execute(string $_context = 'form')
     {
         $iconsFactory = App::make(IconFactory::class);
-        
+
         // Uso reflection per accedere alle icone in modo sicuro
         try {
             $reflection = new \ReflectionClass($iconsFactory);
@@ -50,12 +50,12 @@ class GetAllIconsAction
 
                     // $iconName = $this->getIconName($file, parentPath: $path, prefix: $prefix);
                     $iconName = str($file->getPathname())
-                        ->after($path.DIRECTORY_SEPARATOR)
+                        ->after($path . DIRECTORY_SEPARATOR)
                         ->replace(DIRECTORY_SEPARATOR, '.')
                         ->basename('.svg')
                         ->toString();
 
-                    $icons[] = $set['prefix'].'-'.$iconName;
+                    $icons[] = $set['prefix'] . '-' . $iconName;
                 }
             }
             $set['icons'] = $icons;

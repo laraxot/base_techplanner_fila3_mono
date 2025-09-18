@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['messages'])
 
 @if ($messages)
@@ -6,4 +11,4 @@
             <li>{{ $message }}</li>
         @endforeach
     </ul>
-@endif 
+@endif

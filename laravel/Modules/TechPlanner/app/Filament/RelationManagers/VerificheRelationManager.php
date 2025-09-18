@@ -12,19 +12,17 @@ class VerificheRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'verifiche';
 
-    protected static ?string $recordTitleAttribute = 'data_verifica';
+    protected static null|string $recordTitleAttribute = 'data_verifica';
 
     public function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('data_verifica')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('data_verifica')->dateTime(),
                 Tables\Columns\TextColumn::make('esito'),
                 Tables\Columns\TextColumn::make('note'),
             ])
-            ->filters([
-            ])
+            ->filters([])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
             ])

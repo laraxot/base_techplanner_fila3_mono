@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\TechPlanner\Filament\Resources\Pages;
 
 use Filament\Tables;
@@ -13,18 +16,10 @@ class ListDevices extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')
-                ->searchable()
-                ->sortable(),
-            Tables\Columns\TextColumn::make('serial_number')
-                ->searchable()
-                ->sortable(),
-            Tables\Columns\TextColumn::make('model')
-                ->searchable()
-                ->sortable(),
-            Tables\Columns\TextColumn::make('manufacturer')
-                ->searchable()
-                ->sortable(),
+            Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
+            Tables\Columns\TextColumn::make('serial_number')->searchable()->sortable(),
+            Tables\Columns\TextColumn::make('model')->searchable()->sortable(),
+            Tables\Columns\TextColumn::make('manufacturer')->searchable()->sortable(),
         ];
     }
 }

@@ -12,14 +12,14 @@ class TableExistsByModelClassActions
 {
     public function execute(string $modelClass): bool
     {
-        if (! class_exists($modelClass)) {
+        if (!class_exists($modelClass)) {
             return false;
         }
 
         Assert::isInstanceOf($model = app($modelClass), EloquentModel::class);
 
         // Controlla se il modello utilizza Sushi
-        if (in_array('Sushi\Sushi', class_uses_recursive($modelClass)) || method_exists($model, 'sushiRows')) {
+        if (in_array('Sushi\Sushi', class_uses_recursive($modelClass), strict: true) || method_exists($model, 'sushiRows')) {
             return true; // I modelli Sushi sono considerati come se avessero sempre una tabella
         }
 

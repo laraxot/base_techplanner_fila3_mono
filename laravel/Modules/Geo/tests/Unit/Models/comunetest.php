@@ -35,10 +35,7 @@ beforeEach(function (): void {
         ],
     ];
 
-    File::put(
-        base_path('database/content/comuni.json'),
-        json_encode($this->testData, JSON_PRETTY_PRINT)
-    );
+    File::put(base_path('database/content/comuni.json'), json_encode($this->testData, JSON_PRETTY_PRINT));
 });
 
 afterEach(function (): void {

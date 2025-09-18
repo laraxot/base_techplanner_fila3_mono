@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget>
     <div class="flex items-center gap-6 h-24 w-full" wire:poll.1s="updateData">
         

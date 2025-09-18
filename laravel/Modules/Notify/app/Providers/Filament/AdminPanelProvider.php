@@ -10,11 +10,11 @@ namespace Modules\Notify\Providers\Filament;
 
 use Filament\Notifications\Livewire\DatabaseNotifications;
 use Filament\Panel;
+use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\Blade;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
-use Filament\SpatieLaravelTranslatablePlugin;
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
@@ -22,23 +22,19 @@ class AdminPanelProvider extends XotBasePanelProvider
 
     #[\Override]
     public function panel(Panel $panel): Panel
-    { 
+    {
         $panel->plugins([
             SpatieLaravelTranslatablePlugin::make(),
         ]);
-        if (! XotData::make()->disable_database_notifications) {
+        if (!XotData::make()->disable_database_notifications) {
             DatabaseNotifications::trigger('notify::livewire.database-notifications-trigger');
             // DatabaseNotifications::databaseNotificationsPollingInterval('30s');
             DatabaseNotifications::pollingInterval('60s');
-            FilamentView::registerRenderHook(
-                'panels::user-menu.before',
-                static fn (): string => Blade::render('@livewire(\'database-notifications\')'),
-            );
+            FilamentView::registerRenderHook('panels::user-menu.before', static fn(): string => Blade::render(
+                '@livewire(\'database-notifications\')',
+            ));
         }
-
-       
 
         return parent::panel($panel);
     }
 }
-

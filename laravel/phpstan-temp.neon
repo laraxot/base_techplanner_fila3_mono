@@ -1,22 +1,16 @@
 parameters:
     level: 9
     paths:
-        - ./Modules/Employee/
+        - ./Modules/
+    ignoreErrors:
+        - '#PHPDoc tag @mixin contains unknown class #'
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
     excludePaths:
         - ./*/vendor/*
         - ./*/build/*
         - ./*/docs/*
         - ./*/Tests/*
-        - ./*/phpinsights.php
-        - ./*/rector.php
         - ./*/*.blade.php
-        - ./Modules/*/packages/*
-        - ./Modules/*/tests/*
-    tmpDir: /tmp/phpstan
     treatPhpDocTypesAsCertain: false
     reportUnmatchedIgnoredErrors: false
-
-
-
-
-

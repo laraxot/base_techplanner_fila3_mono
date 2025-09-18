@@ -33,10 +33,7 @@ class AssignTeamCommand extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    
 
     /**
      * Execute the console command.
@@ -52,29 +49,28 @@ class AssignTeamCommand extends Command
         $teamClass = $xot->getTeamClass();
 
         /** @var array<int|string, string>|\Illuminate\Support\Collection<int|string, string> */
-        $opts = $teamClass::pluck('name', 'id')
-            ->toArray();
+        $opts = $teamClass::pluck('name', 'id')->toArray();
 
         $rows = multiselect(
             label: 'What teams',
             options: $opts,
             required: true,
             scroll: 10,
-            // validate: function (array $values) {
-            //  return ! \in_array(\count($values), [1, 2], false)
-            //    ? 'A maximum of two'
-            //  : null;
-            // }
+        // validate: function (array $values) {
+        //  return ! \in_array(\count($values), [1, 2], false)
+        //    ? 'A maximum of two'
+        //  : null;
+        // }
         );
 
         $user->teams()->sync($rows);
         /*
-        foreach ($rows as $row) {
-            $role = Role::firstOrCreate(['name' => $row]);
-            $user->assignRole($role);
-        }
-        */
-        $this->info('Teams :'.implode(', ', $rows).' assigned to '.$email);
+         * foreach ($rows as $row) {
+         * $role = Role::firstOrCreate(['name' => $row]);
+         * $user->assignRole($role);
+         * }
+         */
+        $this->info('Teams :' . implode(', ', $rows) . ' assigned to ' . $email);
 
         $rows = $user->teams()->get()->toArray();
 
@@ -87,7 +83,7 @@ class AssignTeamCommand extends Command
             $this->newLine();
         } else {
             $this->newLine();
-            $this->warn('⚡ No teams ['.$teamClass.']');
+            $this->warn('⚡ No teams [' . $teamClass . ']');
             $this->newLine();
         }
     }

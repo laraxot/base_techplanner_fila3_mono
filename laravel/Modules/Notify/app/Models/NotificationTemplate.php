@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Blade;
 use Modules\Notify\Enums\NotificationTypeEnum;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -114,46 +114,46 @@ class NotificationTemplate extends BaseModel implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('attachments')
-            ->singleFile();
-    }
-/*
-    public function versions(): HasMany
-    {
-        return $this->hasMany(NotificationTemplateVersion::class, 'template_id')
-            ->orderByDesc('version');
+        $this->addMediaCollection('attachments')->singleFile();
     }
 
-    public function logs(): HasMany
-    {
-        return $this->hasMany(NotificationLog::class, 'template_id');
-    }
-*/
+    /*
+     * public function versions(): HasMany
+     * {
+     * return $this->hasMany(NotificationTemplateVersion::class, 'template_id')
+     * ->orderByDesc('version');
+     * }
+     *
+     * public function logs(): HasMany
+     * {
+     * return $this->hasMany(NotificationLog::class, 'template_id');
+     * }
+     */
     /*
      * Create a new version of the template.
      *
      * @param string $createdBy The user who created the version
      * @param string|null $notes Optional notes about the changes
      * @return self
-     
-    public function createNewVersion(string $createdBy, ?string $notes = null): self
-    {
-        $this->versions()->create([
-            'subject' => $this->subject,
-            'body_html' => $this->body_html,
-            'body_text' => $this->body_text,
-            'channels' => $this->channels,
-            'variables' => $this->variables,
-            'conditions' => $this->conditions,
-            'version' => $this->version,
-            'created_by' => $createdBy,
-            'change_notes' => $notes,
-        ]);
-
-        $this->increment('version');
-        return $this;
-    }
-*/
+     *
+     * public function createNewVersion(string $createdBy, ?string $notes = null): self
+     * {
+     * $this->versions()->create([
+     * 'subject' => $this->subject,
+     * 'body_html' => $this->body_html,
+     * 'body_text' => $this->body_text,
+     * 'channels' => $this->channels,
+     * 'variables' => $this->variables,
+     * 'conditions' => $this->conditions,
+     * 'version' => $this->version,
+     * 'created_by' => $createdBy,
+     * 'change_notes' => $notes,
+     * ]);
+     *
+     * $this->increment('version');
+     * return $this;
+     * }
+     */
     /**
      * Compile the template with the given data.
      *
@@ -202,7 +202,7 @@ class NotificationTemplate extends BaseModel implements HasMedia
      * @param array<string, mixed> $data The data to compile with
      * @return string|null
      */
-    protected function compileString(?string $template, array $data): ?string
+    protected function compileString(null|string $template, array $data): null|string
     {
         if (!$template) {
             return null;
@@ -267,7 +267,9 @@ class NotificationTemplate extends BaseModel implements HasMedia
      */
     public function getChannelsLabelAttribute(): string
     {
-        return collect($this->channels)->map(fn ($channel) => __('notify::template.fields.channel.options.' . $channel . '.label'))->implode(', ');
+        return collect($this->channels)
+            ->map(fn($channel) => __('notify::template.fields.channel.options.' . $channel . '.label'))
+            ->implode(', ');
     }
 
     /**

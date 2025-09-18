@@ -11,16 +11,16 @@ use Modules\User\Models\User;
 
 /**
  * Membership Factory
- * 
+ *
  * Factory for creating Membership model instances for testing and seeding.
- * 
+ *
  * @extends Factory<Membership>
  */
 class MembershipFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<Membership>
      */
     protected $model = Membership::class;
@@ -48,7 +48,7 @@ class MembershipFactory extends Factory
      */
     public function forTeam(Team $team): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'team_id' => $team->id,
         ]);
     }
@@ -61,7 +61,7 @@ class MembershipFactory extends Factory
      */
     public function forUser(User $user): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'user_id' => $user->id,
         ]);
     }
@@ -73,7 +73,7 @@ class MembershipFactory extends Factory
      */
     public function admin(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'admin',
         ]);
     }
@@ -85,7 +85,7 @@ class MembershipFactory extends Factory
      */
     public function editor(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'editor',
         ]);
     }
@@ -97,7 +97,7 @@ class MembershipFactory extends Factory
      */
     public function member(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'member',
         ]);
     }
@@ -109,7 +109,7 @@ class MembershipFactory extends Factory
      */
     public function viewer(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'viewer',
         ]);
     }

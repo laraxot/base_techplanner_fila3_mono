@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget>
     <x-filament::section collapsible>
         <x-filament::grid lg='2'>
@@ -52,4 +57,3 @@
     </x-filament-widgets::widget>
 
 --}}
-

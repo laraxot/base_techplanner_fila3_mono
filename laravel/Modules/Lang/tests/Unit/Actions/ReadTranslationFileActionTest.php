@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Modules\Lang\Actions\ReadTranslationFileAction;
 
 beforeEach(function () {
-    $this->action = new ReadTranslationFileAction;
+    $this->action = new ReadTranslationFileAction();
     $this->testFilePath = storage_path('test_translations.php');
     $this->testTranslations = [
         'auth' => [
@@ -24,7 +24,6 @@ afterEach(function () {
 });
 
 describe('ReadTranslationFileAction Business Logic', function () {
-
     test('can read valid translation file', function () {
         createTranslationFile($this->testFilePath, $this->testTranslations);
 
@@ -44,7 +43,7 @@ describe('ReadTranslationFileAction Business Logic', function () {
 
     test('throws exception for unreadable file', function () {
         createTranslationFile($this->testFilePath, $this->testTranslations);
-        chmod($this->testFilePath, 0000);
+        chmod($this->testFilePath, 0o000);
 
         $this->action->execute($this->testFilePath);
     })->throws(\Exception::class, 'File di traduzione non leggibile:');
@@ -117,8 +116,8 @@ describe('ReadTranslationFileAction Business Logic', function () {
         $lines = explode("\n", $phpContent);
 
         // Find the parent line and check indentation
-        $parentLine = array_filter($lines, fn ($line) => str_contains($line, "'parent'"));
-        $childLine = array_filter($lines, fn ($line) => str_contains($line, "'child'"));
+        $parentLine = array_filter($lines, fn($line) => str_contains($line, "'parent'"));
+        $childLine = array_filter($lines, fn($line) => str_contains($line, "'child'"));
 
         expect(current($parentLine))->toStartWith('    ');
         expect(current($childLine))->toStartWith('        ');

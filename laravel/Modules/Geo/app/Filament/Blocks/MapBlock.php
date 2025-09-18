@@ -13,23 +13,20 @@ use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 
 class MapBlock
 {
-    public static function make(
-        string $name = 'map',
-        string $context = 'form',
-    ): Block {
+    public static function make(string $name = 'map', string $context = 'form'): Block
+    {
         $view = 'geo::components.blocks.map.location-map-table';
         $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
 
         return Block::make($name)
             ->schema([
                 /*
-                Select::make('article_id')
-                    ->label('Article')
-                    ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
-                    ->required(),
-                */
-                TextInput::make('text')
-                    ->label('Link text (optional)'),
+                 * Select::make('article_id')
+                 * ->label('Article')
+                 * ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
+                 * ->required(),
+                 */
+                TextInput::make('text')->label('Link text (optional)'),
                 Select::make('_tpl')
                     ->label('layout')
                     ->options($views)

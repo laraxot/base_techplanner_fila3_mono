@@ -38,37 +38,37 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
 
     final public function form(Form $form): Form
     {
-        return $form->schema(
-            $this->getFormSchema()
-        );
+        return $form->schema($this->getFormSchema());
     }
 
     public function getFormSchema(): array
     {
         return $this->getResource()::getFormSchema();
     }
-//*
+
+    //*
     #[\Override]
     public function getTableColumns(): array
     {
-        $index=Arr::get($this->getResource()::getPages(),'index');
-        if(!$index){
+        $index = Arr::get($this->getResource()::getPages(), 'index');
+        if (!$index) {
             //throw new \Exception('Index page not found');
             return [];
         }
         /** @phpstan-ignore method.nonObject */
-        $index_page=$index->getPage();
-        
-        if(!method_exists($index_page,'getTableColumns')){
+        $index_page = $index->getPage();
+
+        if (!method_exists($index_page, 'getTableColumns')) {
             //throw new \Exception('method  getTableColumns on '.print_r($index_page,true).' not found');
             return [];
         }
         /** @phpstan-ignore argument.type */
-        $res= app($index_page)->getTableColumns();
+        $res = app($index_page)->getTableColumns();
 
         return $res;
     }
-//*/
+
+    //*/
     public function getTableActions(): array
     {
         return [
@@ -89,14 +89,14 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
     public function getTableHeaderActions(): array
     {
         $actions = [];
-        $resource=static::class;
+        $resource = static::class;
         // @phpstan-ignore function.alreadyNarrowedType
         if (method_exists($resource, 'canAttach')) {
             $actions['attach'] = Tables\Actions\AttachAction::make()
                 ->icon('heroicon-o-link')
                 ->iconButton()
                 ->tooltip(__('user::actions.attach.label'))
-                ->visible(fn (?Model $record): bool => $resource::canAttach());
+                ->visible(fn(null|Model $_record): bool => $resource::canAttach());
         }
         // @phpstan-ignore function.alreadyNarrowedType
         if (method_exists($resource, 'canCreate')) {
@@ -104,7 +104,7 @@ abstract class XotBaseRelationManager extends FilamentRelationManager
                 ->icon('heroicon-o-plus')
                 ->iconButton()
                 ->tooltip(static::trans('actions.create.tooltip'))
-                ->visible(fn (?Model $record): bool => $resource::canCreate());
+                ->visible(fn(null|Model $_record): bool => $resource::canCreate());
         }
         return $actions;
     }

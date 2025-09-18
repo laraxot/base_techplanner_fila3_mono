@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament::widget>
     <x-filament::card>
         <div class="flex flex-col gap-y-4">

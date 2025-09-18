@@ -9,7 +9,7 @@ use Modules\Geo\Datas\LocationData;
 /**
  * Data Transfer Object per le posizioni geografiche.
  */
-class LocationDTO
+readonly class LocationDTO
 {
     /**
      * @param float       $latitude  Latitudine in gradi decimali
@@ -17,11 +17,10 @@ class LocationDTO
      * @param string|null $name      Nome opzionale della posizione
      */
     public function __construct(
-        public readonly float $latitude,
-        public readonly float $longitude,
-        public readonly ?string $name = null,
-    ) {
-    }
+        public  float $latitude,
+        public  float $longitude,
+        public  null|string $name = null,
+    ) {}
 
     /**
      * Crea una nuova istanza da un oggetto LocationData.

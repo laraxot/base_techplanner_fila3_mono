@@ -45,7 +45,7 @@ class SetCurrentTeamCommand extends Command
         $xot = XotData::make();
         $user = $xot->getUserByEmail($email);
 
-        if (! $user instanceof \Illuminate\Database\Eloquent\Model) {
+        if (!($user instanceof \Illuminate\Database\Eloquent\Model)) {
             $this->error('Utente non trovato o non valido!');
             return;
         }

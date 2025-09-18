@@ -18,7 +18,7 @@ class TenantScope implements Scope
     /**
      * Apply the scope to a given Eloquent query builder.
      */
-    public function apply(Builder $builder, Model $model): void
+    public function apply(Builder $builder, Model $_model): void
     {
         $tenant_id = Filament::getTenant()?->getKey();
         if ($tenant_id !== null) {

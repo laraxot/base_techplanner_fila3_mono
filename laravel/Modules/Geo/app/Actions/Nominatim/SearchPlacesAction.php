@@ -25,7 +25,7 @@ class SearchPlacesAction
     public function __construct(string $userAgent)
     {
         $this->client = new Client();
-        $this->userAgent = $userAgent.' Application';
+        $this->userAgent = $userAgent . ' Application';
     }
 
     /**
@@ -35,21 +35,21 @@ class SearchPlacesAction
      *
      * @return Collection<int, LocationData>
      */
-    public function execute(string $query, ?string $country = null, int $limit = 10): Collection
+    public function execute(string $query, null|string $country = null, int $limit = 10): Collection
     {
         try {
             $response = $this->makeApiRequest($query, $country, $limit);
 
             return $this->parseResponse($response);
         } catch (GuzzleException $e) {
-            throw new \RuntimeException('Failed to search places: '.$e->getMessage());
+            throw new \RuntimeException('Failed to search places: ' . $e->getMessage());
         }
     }
 
     /**
      * @throws GuzzleException
      */
-    private function makeApiRequest(string $query, ?string $country = null, int $limit = 10): string
+    private function makeApiRequest(string $query, null|string $country = null, int $limit = 10): string
     {
         $params = [
             'q' => $query,
@@ -94,12 +94,10 @@ class SearchPlacesAction
             throw new \RuntimeException('No results found for query');
         }
 
-        return collect($data)->map(function (array $place): LocationData {
-            return new LocationData(
+        return collect($data)->map(fn (array $place): LocationData => new LocationData(
                 latitude: (float) $place['lat'],
                 longitude: (float) $place['lon'],
-                address: $place['display_name']
-            );
-        });
+                address: $place['display_name'],
+            ));
     }
 }

@@ -19,16 +19,10 @@ class ListRoles extends XotBaseListRecords
     {
         return [
             'id' => TextColumn::make('id'),
-            'name' => TextColumn::make('name')
-                ->searchable()
-                ->sortable(),
+            'name' => TextColumn::make('name')->searchable()->sortable(),
             // Tables\Columns\TextColumn::make('role'),
-            'guard_name' => TextColumn::make('guard_name')
-                ->searchable()
-                ->sortable(),
-            'team_id' => TextColumn::make('team.name')
-                ->searchable()
-                ->sortable(),
+            'guard_name' => TextColumn::make('guard_name')->searchable()->sortable(),
+            'team_id' => TextColumn::make('team.name')->searchable()->sortable(),
         ];
     }
 

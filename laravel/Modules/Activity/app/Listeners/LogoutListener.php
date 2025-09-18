@@ -11,7 +11,7 @@ class LogoutListener
     /**
      * Handle the event.
      */
-    public function handle(Logout $event): void
+    public function handle(Logout $_event): void
     {
         // Implementazione del logout tracking
     }

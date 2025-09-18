@@ -1,15 +1,15 @@
 <?php
 
-return  [
-  'actions' => 
-   [
-    'view' => 
-     [
-      'label' => 'view',
+declare(strict_types=1);
+
+
+return [
+    'actions' => [
+        'view' => [
+            'label' => 'view',
+        ],
+        'delete' => [
+            'label' => 'delete',
+        ],
     ],
-    'delete' => 
-     [
-      'label' => 'delete',
-    ],
-  ],
 ];

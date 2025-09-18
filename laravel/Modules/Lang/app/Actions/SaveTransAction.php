@@ -22,8 +22,11 @@ class SaveTransAction
 
         $filename = app(GetTransPathAction::class)->execute($key);
 
-        if (! File::exists($filename)) {
-            app(SaveArrayAction::class)->execute(data: $cont, filename: $filename);
+        if (!File::exists($filename)) {
+            app(SaveArrayAction::class)->execute(
+                data: $cont,
+                filename: $filename,
+            );
         }
 
         try {
@@ -37,7 +40,7 @@ class SaveTransAction
             ]);
         }
 
-        if (! is_array($cont)) {
+        if (!is_array($cont)) {
             $cont = [];
         }
 
@@ -48,10 +51,13 @@ class SaveTransAction
             $cont = $data;
         }
 
-        if (! is_array($cont)) {
+        if (!is_array($cont)) {
             throw new \Exception('Error in SaveTransAction');
         }
 
-        app(SaveArrayAction::class)->execute(data: $cont, filename: $filename);
+        app(SaveArrayAction::class)->execute(
+            data: $cont,
+            filename: $filename,
+        );
     }
 }

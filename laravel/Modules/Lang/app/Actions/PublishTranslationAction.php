@@ -21,25 +21,28 @@ class PublishTranslationAction
     public function execute(TranslationData $translationData): void
     {
         /*
-        $hints=app('translator')->getLoader()->namespaces();
-        $path=collect($hints)->get($row->namespace);
-        if($path==null){
-            throw new Exception('['.__LINE__.']['.class_basename($this).']');
-        }
-        $filename=app(\Modules\Xot\Actions\File\FixPathAction::class)->execute($path.'/'.$row->lang.'/'.$row->group.'.php');
-        */
+         * $hints=app('translator')->getLoader()->namespaces();
+         * $path=collect($hints)->get($row->namespace);
+         * if($path==null){
+         * throw new Exception('['.__LINE__.']['.class_basename($this).']');
+         * }
+         * $filename=app(\Modules\Xot\Actions\File\FixPathAction::class)->execute($path.'/'.$row->lang.'/'.$row->group.'.php');
+         */
         $filename = $translationData->getFilename();
         /*
-        $data=[];
-        if(File::exists($filename)){
-            $data=File::getRequire($filename);
-        }
-        */
+         * $data=[];
+         * if(File::exists($filename)){
+         * $data=File::getRequire($filename);
+         * }
+         */
         $data = $translationData->getData();
         $data_up = $data;
         Arr::set($data_up, $translationData->item, $translationData->value);
         if ($data !== $data_up) {
-            app(SaveArrayAction::class)->execute(data: $data_up, filename: $filename);
+            app(SaveArrayAction::class)->execute(
+                data: $data_up,
+                filename: $filename,
+            );
         }
     }
 }

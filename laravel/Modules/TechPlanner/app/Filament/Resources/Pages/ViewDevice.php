@@ -25,46 +25,29 @@ class ViewDevice extends XotBaseViewRecord
     /**
      * @return array<int|string,\Filament\Infolists\Components\Component>
      */
+    #[\Override]
     protected function getInfolistSchema(): array
     {
         return [
             Section::make('Informazioni Base')
                 ->schema([
-                    Grid::make(2)
-                        ->schema([
-                            TextEntry::make('name')
-                                ->label('Nome'),
-                            TextEntry::make('serial_number')
-                                ->label('Numero Seriale'),
-                            TextEntry::make('model')
-                                ->label('Modello'),
-                            TextEntry::make('manufacturer')
-                                ->label('Produttore'),
-                            TextEntry::make('type')
-                                ->label('Tipo'),
-                            TextEntry::make('status')
-                                ->label('Stato'),
-                        ]),
+                    Grid::make(2)->schema([
+                        TextEntry::make('name')->label('Nome'),
+                        TextEntry::make('serial_number')->label('Numero Seriale'),
+                        TextEntry::make('model')->label('Modello'),
+                        TextEntry::make('manufacturer')->label('Produttore'),
+                        TextEntry::make('type')->label('Tipo'),
+                        TextEntry::make('status')->label('Stato'),
+                    ]),
                 ])
                 ->collapsible(),
-
             Section::make('Dettagli Aggiuntivi')
                 ->schema([
-                    TextEntry::make('description')
-                        ->label('Descrizione')
-                        ->columnSpan(2),
-                    TextEntry::make('purchase_date')
-                        ->label('Data Acquisto')
-                        ->date(),
-                    TextEntry::make('warranty_expiry')
-                        ->label('Scadenza Garanzia')
-                        ->date(),
-                    TextEntry::make('created_at')
-                        ->label('Creato Il')
-                        ->dateTime(),
-                    TextEntry::make('updated_at')
-                        ->label('Aggiornato Il')
-                        ->dateTime(),
+                    TextEntry::make('description')->label('Descrizione')->columnSpan(2),
+                    TextEntry::make('purchase_date')->label('Data Acquisto')->date(),
+                    TextEntry::make('warranty_expiry')->label('Scadenza Garanzia')->date(),
+                    TextEntry::make('created_at')->label('Creato Il')->dateTime(),
+                    TextEntry::make('updated_at')->label('Aggiornato Il')->dateTime(),
                 ])
                 ->collapsible(),
         ];

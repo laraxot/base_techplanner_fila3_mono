@@ -24,7 +24,7 @@ class MockUserWithTeams extends Model
 }
 
 beforeEach(function () {
-    $this->user = new MockUserWithTeams;
+    $this->user = new MockUserWithTeams();
     $this->user->id = 1;
 
     // Mock del database per i test
@@ -48,7 +48,8 @@ describe('HasTeams Trait', function () {
         $teamId = 5;
 
         // Mock della relazione teams per simulare l'appartenenza
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $teamId)
             ->andReturn(true);
 
@@ -58,11 +59,12 @@ describe('HasTeams Trait', function () {
     });
 
     it('can check if user belongs to a team by Team model', function () {
-        $team = new Team;
+        $team = new Team();
         $team->id = 10;
 
         // Mock della relazione teams per simulare l'appartenenza
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $team->id)
             ->andReturn(true);
 
@@ -75,7 +77,8 @@ describe('HasTeams Trait', function () {
         $teamId = 999;
 
         // Mock della relazione teams per simulare la non appartenenza
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $teamId)
             ->andReturn(false);
 
@@ -86,15 +89,17 @@ describe('HasTeams Trait', function () {
 
     it('handles both integer and Team model parameters', function () {
         $teamId = 15;
-        $team = new Team;
+        $team = new Team();
         $team->id = 15;
 
         // Mock per entrambi i casi
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $teamId)
             ->andReturn(true);
 
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $team->id)
             ->andReturn(true);
 
@@ -113,8 +118,7 @@ describe('HasTeams Trait', function () {
         ]);
 
         // Mock della relazione teams per restituire la collezione
-        $this->user->shouldReceive('teams->get')
-            ->andReturn($teams);
+        $this->user->shouldReceive('teams->get')->andReturn($teams);
 
         $userTeams = $this->user->teams()->get();
 
@@ -130,21 +134,26 @@ describe('HasTeams Trait', function () {
         ]);
 
         // Mock della relazione teams con filtro
-        $this->user->shouldReceive('teams->where->get')
+        $this->user
+            ->shouldReceive('teams->where->get')
             ->with('is_active', true)
             ->andReturn($activeTeams);
 
-        $activeUserTeams = $this->user->teams()->where('is_active', true)->get();
+        $activeUserTeams = $this->user
+            ->teams()
+            ->where('is_active', true)
+            ->get();
 
         expect($activeUserTeams)->toHaveCount(2);
-        expect($activeUserTeams->every(fn ($team) => $team->is_active))->toBeTrue();
+        expect($activeUserTeams->every(fn($team) => $team->is_active))->toBeTrue();
     });
 
     it('can check team membership with timestamps', function () {
         $teamId = 25;
 
         // Mock della relazione teams con timestamps
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $teamId)
             ->andReturn(true);
 
@@ -157,7 +166,8 @@ describe('HasTeams Trait', function () {
         $teamIds = [1, 2, 3, 4, 5];
 
         foreach ($teamIds as $teamId) {
-            $this->user->shouldReceive('teams->where->exists')
+            $this->user
+                ->shouldReceive('teams->where->exists')
                 ->with('team_id', $teamId)
                 ->andReturn(true);
         }
@@ -173,14 +183,16 @@ describe('HasTeams Trait', function () {
 
         foreach ($invalidTeamIds as $teamId) {
             if (is_numeric($teamId) && $teamId > 0) {
-                $this->user->shouldReceive('teams->where->exists')
+                $this->user
+                    ->shouldReceive('teams->where->exists')
                     ->with('team_id', $teamId)
                     ->andReturn(false);
             }
         }
 
         // Test con ID 0 (valido ma probabilmente non esistente)
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', 0)
             ->andReturn(false);
 
@@ -189,11 +201,12 @@ describe('HasTeams Trait', function () {
     });
 
     it('can work with team pivot table', function () {
-        $team = new Team;
+        $team = new Team();
         $team->id = 30;
 
         // Mock della relazione teams con pivot
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $team->id)
             ->andReturn(true);
 
@@ -238,15 +251,15 @@ describe('HasTeams Trait', function () {
 
 describe('HasTeams Trait Integration', function () {
     it('can be used with User model', function () {
-        $user = new User;
+        $user = new User();
 
         expect($user)->toHaveMethod('teams');
         expect($user)->toHaveMethod('belongsToTeam');
     });
 
     it('maintains trait functionality across different models', function () {
-        $user1 = new MockUserWithTeams;
-        $user2 = new MockUserWithTeams;
+        $user1 = new MockUserWithTeams();
+        $user2 = new MockUserWithTeams();
 
         expect($user1)->toHaveMethod('teams');
         expect($user1)->toHaveMethod('belongsToTeam');
@@ -258,9 +271,10 @@ describe('HasTeams Trait Integration', function () {
         $teamIds = [10, 20, 30];
 
         foreach ($teamIds as $teamId) {
-            $this->user->shouldReceive('teams->where->exists')
+            $this->user
+                ->shouldReceive('teams->where->exists')
                 ->with('team_id', $teamId)
-                ->andReturn($teamId % 20 === 0); // Solo i team con ID multipli di 20
+                ->andReturn(($teamId % 20) === 0); // Solo i team con ID multipli di 20
         }
 
         $results = [];
@@ -280,8 +294,7 @@ describe('HasTeams Trait Integration', function () {
         ]);
 
         // Mock della relazione teams
-        $this->user->shouldReceive('teams->get')
-            ->andReturn($teams);
+        $this->user->shouldReceive('teams->get')->andReturn($teams);
 
         $userTeams = $this->user->teams()->get();
 
@@ -296,7 +309,8 @@ describe('HasTeams Trait Error Handling', function () {
         $nonExistentTeamId = 99999;
 
         // Mock della relazione teams per simulare team non esistente
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', $nonExistentTeamId)
             ->andReturn(false);
 
@@ -307,7 +321,8 @@ describe('HasTeams Trait Error Handling', function () {
 
     it('handles null team parameter gracefully', function () {
         // Mock della relazione teams per simulare parametro null
-        $this->user->shouldReceive('teams->where->exists')
+        $this->user
+            ->shouldReceive('teams->where->exists')
             ->with('team_id', null)
             ->andReturn(false);
 
@@ -320,8 +335,7 @@ describe('HasTeams Trait Error Handling', function () {
         $emptyTeams = collect([]);
 
         // Mock della relazione teams per restituire collezione vuota
-        $this->user->shouldReceive('teams->get')
-            ->andReturn($emptyTeams);
+        $this->user->shouldReceive('teams->get')->andReturn($emptyTeams);
 
         $userTeams = $this->user->teams()->get();
 
@@ -336,9 +350,10 @@ describe('HasTeams Trait Performance', function () {
         $largeTeamIds = range(1, 1000);
 
         foreach ($largeTeamIds as $teamId) {
-            $this->user->shouldReceive('teams->where->exists')
+            $this->user
+                ->shouldReceive('teams->where->exists')
                 ->with('team_id', $teamId)
-                ->andReturn($teamId % 2 === 0); // Solo team con ID pari
+                ->andReturn(($teamId % 2) === 0); // Solo team con ID pari
         }
 
         $startTime = microtime(true);
@@ -358,11 +373,10 @@ describe('HasTeams Trait Performance', function () {
     });
 
     it('can handle team relationship queries efficiently', function () {
-        $teams = collect(range(1, 100))->map(fn ($id) => new Team(['id' => $id, 'name' => "Team {$id}"]));
+        $teams = collect(range(1, 100))->map(fn($id) => new Team(['id' => $id, 'name' => "Team {$id}"]));
 
         // Mock della relazione teams
-        $this->user->shouldReceive('teams->get')
-            ->andReturn($teams);
+        $this->user->shouldReceive('teams->get')->andReturn($teams);
 
         $startTime = microtime(true);
 

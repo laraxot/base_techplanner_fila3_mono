@@ -7,8 +7,8 @@ namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllEventsAction;
-use Modules\TechPlanner\Models\Event;
 use Modules\TechPlanner\Jobs\UpdateEventJob;
+use Modules\TechPlanner\Models\Event;
 use Tests\TestCase;
 
 /**
@@ -25,15 +25,13 @@ class UpdateAllEventsActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllEventsAction();
-        
 
-        $this->action = new UpdateAllEventsAction;
-
-        
         $this->action = new UpdateAllEventsAction();
-        
+
+        $this->action = new UpdateAllEventsAction();
+
+        $this->action = new UpdateAllEventsAction();
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -64,10 +62,12 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_updates_all_events_with_given_data(): void
     {
         // Arrange
-        $events = Event::factory()->count(3)->create([
-            'status' => 'Pending',
-            'priority' => 'Low',
-        ]);
+        $events = Event::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Pending',
+                'priority' => 'Low',
+            ]);
 
         $updateData = [
             'status' => 'Confirmed',
@@ -210,10 +210,12 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_boolean_values(): void
     {
         // Arrange
-        $events = Event::factory()->count(3)->create([
-            'is_public' => false,
-            'is_recurring' => false,
-        ]);
+        $events = Event::factory()
+            ->count(3)
+            ->create([
+                'is_public' => false,
+                'is_recurring' => false,
+            ]);
 
         $updateData = [
             'is_public' => true,
@@ -260,10 +262,12 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_decimal_values(): void
     {
         // Arrange
-        $events = Event::factory()->count(2)->create([
-            'budget' => 1000.00,
-            'cost' => 500.00,
-        ]);
+        $events = Event::factory()
+            ->count(2)
+            ->create([
+                'budget' => 1000.00,
+                'cost' => 500.00,
+            ]);
 
         $updateData = [
             'budget' => 2000.00,
@@ -327,9 +331,11 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_transaction_rollback_on_error(): void
     {
         // Arrange
-        $events = Event::factory()->count(3)->create([
-            'status' => 'Pending',
-        ]);
+        $events = Event::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Pending',
+            ]);
 
         $updateData = [
             'status' => 'Confirmed',
@@ -373,9 +379,11 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_creates_audit_trail(): void
     {
         // Arrange
-        $events = Event::factory()->count(2)->create([
-            'status' => 'Pending',
-        ]);
+        $events = Event::factory()
+            ->count(2)
+            ->create([
+                'status' => 'Pending',
+            ]);
 
         $updateData = [
             'status' => 'Confirmed',
@@ -432,7 +440,6 @@ class UpdateAllEventsActionTest extends TestCase
         // Arrange
         $activeEvents = Event::factory()->count(2)->create();
         $deletedEvents = Event::factory()->count(2)->create();
-        
 
         // Soft delete alcuni eventi
         $deletedEvents->each(function ($event) {
@@ -538,10 +545,12 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_enum_values(): void
     {
         // Arrange
-        $events = Event::factory()->count(2)->create([
-            'type' => 'Meeting',
-            'status' => 'Pending',
-        ]);
+        $events = Event::factory()
+            ->count(2)
+            ->create([
+                'type' => 'Meeting',
+                'status' => 'Pending',
+            ]);
 
         $updateData = [
             'type' => 'Conference',
@@ -568,7 +577,6 @@ class UpdateAllEventsActionTest extends TestCase
         // Arrange
         $events = Event::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
 
         $updateData = [
             'description' => $longText,
@@ -621,10 +629,12 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_nullable_fields(): void
     {
         // Arrange
-        $events = Event::factory()->count(2)->create([
-            'location' => 'Main Hall',
-            'contact_person' => 'John Doe',
-        ]);
+        $events = Event::factory()
+            ->count(2)
+            ->create([
+                'location' => 'Main Hall',
+                'contact_person' => 'John Doe',
+            ]);
 
         $updateData = [
             'location' => null,
@@ -660,10 +670,7 @@ class UpdateAllEventsActionTest extends TestCase
         // Assert
         foreach ($events as $event) {
             $event->refresh();
-            $this->assertGreaterThan(
-                $event->created_at,
-                $event->updated_at
-            );
+            $this->assertGreaterThan($event->created_at, $event->updated_at);
         }
     }
 
@@ -801,11 +808,13 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_event_specific_fields(): void
     {
         // Arrange
-        $events = Event::factory()->count(3)->create([
-            'duration' => 60,
-            'max_participants' => 100,
-            'registration_deadline' => '2023-12-31',
-        ]);
+        $events = Event::factory()
+            ->count(3)
+            ->create([
+                'duration' => 60,
+                'max_participants' => 100,
+                'registration_deadline' => '2023-12-31',
+            ]);
 
         $updateData = [
             'duration' => 120,
@@ -832,11 +841,13 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_event_scheduling_fields(): void
     {
         // Arrange
-        $events = Event::factory()->count(2)->create([
-            'start_time' => '09:00',
-            'end_time' => '17:00',
-            'timezone' => 'UTC',
-        ]);
+        $events = Event::factory()
+            ->count(2)
+            ->create([
+                'start_time' => '09:00',
+                'end_time' => '17:00',
+                'timezone' => 'UTC',
+            ]);
 
         $updateData = [
             'start_time' => '10:00',
@@ -863,11 +874,13 @@ class UpdateAllEventsActionTest extends TestCase
     public function it_handles_event_recurring_fields(): void
     {
         // Arrange
-        $events = Event::factory()->count(2)->create([
-            'recurring_pattern' => 'weekly',
-            'recurring_interval' => 1,
-            'recurring_end_date' => '2023-12-31',
-        ]);
+        $events = Event::factory()
+            ->count(2)
+            ->create([
+                'recurring_pattern' => 'weekly',
+                'recurring_interval' => 1,
+                'recurring_end_date' => '2023-12-31',
+            ]);
 
         $updateData = [
             'recurring_pattern' => 'monthly',

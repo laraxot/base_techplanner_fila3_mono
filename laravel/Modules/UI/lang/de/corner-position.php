@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'top-left' => [
         'label' => 'alto a sinistra',

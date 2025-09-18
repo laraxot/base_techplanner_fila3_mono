@@ -29,35 +29,21 @@ class ListMediaConverts extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->sortable(),
-            'media.file_name' => TextColumn::make('media.file_name')
-                ->sortable(),
-            'format' => TextColumn::make('format')
-                ->searchable(),
-            'codec_video' => TextColumn::make('codec_video')
-                ->searchable(),
-            'codec_audio' => TextColumn::make('codec_audio')
-                ->searchable(),
-            'preset' => TextColumn::make('preset')
-                ->searchable(),
+            'id' => TextColumn::make('id')->sortable(),
+            'media.file_name' => TextColumn::make('media.file_name')->sortable(),
+            'format' => TextColumn::make('format')->searchable(),
+            'codec_video' => TextColumn::make('codec_video')->searchable(),
+            'codec_audio' => TextColumn::make('codec_audio')->searchable(),
+            'preset' => TextColumn::make('preset')->searchable(),
             'bitrate' => TextColumn::make('bitrate'),
-            'width' => TextColumn::make('width')
-                ->numeric(),
-            'height' => TextColumn::make('height')
-                ->numeric(),
-            'threads' => TextColumn::make('threads')
-                ->numeric(),
-            'speed' => TextColumn::make('speed')
-                ->numeric(),
-            'percentage' => TextColumn::make('percentage')
-                ->numeric(),
-            'remaining' => TextColumn::make('remaining')
-                ->numeric(),
-            'rate' => TextColumn::make('rate')
-                ->numeric(),
-            'execution_time' => TextColumn::make('execution_time')
-                ->numeric(),
+            'width' => TextColumn::make('width')->numeric(),
+            'height' => TextColumn::make('height')->numeric(),
+            'threads' => TextColumn::make('threads')->numeric(),
+            'speed' => TextColumn::make('speed')->numeric(),
+            'percentage' => TextColumn::make('percentage')->numeric(),
+            'remaining' => TextColumn::make('remaining')->numeric(),
+            'rate' => TextColumn::make('rate')->numeric(),
+            'execution_time' => TextColumn::make('execution_time')->numeric(),
         ];
     }
 
@@ -68,12 +54,18 @@ class ListMediaConverts extends XotBaseListRecords
     public function getTableFilters(): array
     {
         return [
-            'format' => SelectFilter::make('format')
-                ->options(MediaConvert::distinct()->pluck('format', 'format')->toArray(...)),
-            'codec_video' => SelectFilter::make('codec_video')
-                ->options(MediaConvert::distinct()->pluck('codec_video', 'codec_video')->toArray(...)),
-            'codec_audio' => SelectFilter::make('codec_audio')
-                ->options(MediaConvert::distinct()->pluck('codec_audio', 'codec_audio')->toArray(...)),
+            'format' => SelectFilter::make('format')->options(MediaConvert::distinct()->pluck(
+                'format',
+                'format',
+            )->toArray(...)),
+            'codec_video' => SelectFilter::make('codec_video')->options(MediaConvert::distinct()->pluck(
+                'codec_video',
+                'codec_video',
+            )->toArray(...)),
+            'codec_audio' => SelectFilter::make('codec_audio')->options(MediaConvert::distinct()->pluck(
+                'codec_audio',
+                'codec_audio',
+            )->toArray(...)),
         ];
     }
 
@@ -86,17 +78,14 @@ class ListMediaConverts extends XotBaseListRecords
         return [
             'view' => ViewAction::make(),
             'edit' => EditAction::make(),
-            'convert' => Action::make('convert')
-                ->action(function (MediaConvert $record): void {
-                    $record->update(['percentage' => 0]);
-                    $data = ConvertData::from([
-                        'file' => $record->file,
-                        'disk' => $record->disk,
-                    ]);
-                    app(ConvertVideoByMediaConvertAction::class)
-                        ->onQueue()
-                        ->execute($data, $record);
-                }),
+            'convert' => Action::make('convert')->action(function (MediaConvert $record): void {
+                $record->update(['percentage' => 0]);
+                $data = ConvertData::from([
+                    'file' => $record->file,
+                    'disk' => $record->disk,
+                ]);
+                app(ConvertVideoByMediaConvertAction::class)->onQueue()->execute($data, $record);
+            }),
         ];
     }
 

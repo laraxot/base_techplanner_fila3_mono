@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
 {{ Theme::add('https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js') }}
     {{ __FILE__ }}{{ __LINE__ }}

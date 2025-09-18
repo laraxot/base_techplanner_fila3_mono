@@ -6,8 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\Notify\Enums\ContactTypeEnum;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-return new class extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -25,21 +24,20 @@ return new class extends XotBaseMigration
             $table->string('phone')->nullable();
             $table->string('email')->nullable()->index();
             $table->text('notes')->nullable();
-
         });
         // -- UPDATE --
-        $this->tableUpdate(
-            function (Blueprint $table): void {
-                $contact_types = ContactTypeEnum::cases();
-                foreach ($contact_types as $contact_type) {
-                    if(!$this->hasColumn($contact_type->value)){
-                        $table->string($contact_type->value)->nullable();
-                    }
+        $this->tableUpdate(function (Blueprint $table): void {
+            $contact_types = ContactTypeEnum::cases();
+            foreach ($contact_types as $contact_type) {
+                if (!$this->hasColumn($contact_type->value)) {
+                    $table->string($contact_type->value)->nullable();
                 }
-
-
-                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
-        );
+
+            $this->updateTimestamps(
+                table: $table,
+                hasSoftDeletes: true,
+            );
+        });
     }
 };

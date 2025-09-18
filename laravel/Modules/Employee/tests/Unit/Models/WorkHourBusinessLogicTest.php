@@ -13,7 +13,6 @@ beforeEach(function () {
 });
 
 describe('WorkHour Business Logic Validation', function () {
-
     test('work hour constants are properly defined', function () {
         expect(WorkHour::TYPE_CLOCK_IN)->toBe('clock_in');
         expect(WorkHour::TYPE_CLOCK_OUT)->toBe('clock_out');

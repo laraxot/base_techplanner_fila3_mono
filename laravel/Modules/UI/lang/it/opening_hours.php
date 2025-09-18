@@ -7,19 +7,16 @@ return [
         'title' => 'Configurazione Orari',
         'description' => 'Imposta gli orari di apertura per ogni giorno della settimana. Lascia vuoto per giorni di chiusura.',
     ],
-    
     'headers' => [
         'day' => 'Giorno',
         'morning' => 'Mattino',
         'afternoon' => 'Pomeriggio',
     ],
-    
     'legend' => [
         'open' => 'Aperto',
         'closed' => 'Chiuso',
         'format' => 'Formato: HH:MM',
     ],
-    
     'days' => [
         'monday' => 'Lunedì',
         'tuesday' => 'Martedì',
@@ -29,13 +26,11 @@ return [
         'saturday' => 'Sabato',
         'sunday' => 'Domenica',
     ],
-    
     'periods' => [
         'morning' => 'Mattino',
         'afternoon' => 'Pomeriggio',
         'evening' => 'Sera',
     ],
-    
     'labels' => [
         'morning' => 'Mattino',
         'afternoon' => 'Pomeriggio',
@@ -43,21 +38,17 @@ return [
         'to' => 'Alle',
         'closed' => 'Chiuso',
     ],
-    
     'descriptions' => [
         'day_schedule' => 'Configura gli orari di apertura per questo giorno',
     ],
-    
     'placeholders' => [
         'morning_hours' => 'Orari del mattino',
         'afternoon_hours' => 'Orari del pomeriggio',
     ],
-    
     'notes' => [
         'format_hint' => 'Utilizzare il formato 24 ore (es. 14:30 per le 2:30 del pomeriggio)',
         'empty_hint' => 'Lasciare vuoto significa "chiuso"',
     ],
-    
     'validation' => [
         'invalid_format' => 'Formato orario non valido. Utilizzare HH:MM-HH:MM',
         'invalid_time_range' => 'L\'orario di apertura deve essere precedente all\'orario di chiusura',
@@ -80,4 +71,4 @@ return [
             'afternoon' => 'pomeriggio',
         ],
     ],
-]; 
+];

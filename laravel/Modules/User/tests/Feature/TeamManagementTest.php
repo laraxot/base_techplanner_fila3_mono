@@ -32,9 +32,7 @@ describe('Team Creation and Management', function () {
     });
 
     it('belongs to an owner', function () {
-        expect($this->team->owner)
-            ->toBeInstanceOf(User::class)
-            ->id->toBe($this->owner->id);
+        expect($this->team->owner)->toBeInstanceOf(User::class)->id->toBe($this->owner->id);
     });
 
     it('can have multiple teams per user', function () {
@@ -50,9 +48,7 @@ describe('Team Creation and Management', function () {
             'description' => 'Updated description',
         ]);
 
-        expect($this->team->fresh())
-            ->name->toBe('Updated Team Name')
-            ->description->toBe('Updated description');
+        expect($this->team->fresh())->name->toBe('Updated Team Name')->description->toBe('Updated description');
     });
 
     it('can delete a team', function () {
@@ -102,7 +98,11 @@ describe('Team Membership', function () {
             'joined_at' => now(),
         ]);
 
-        $membership = $this->team->users()->where('user_id', $this->member->id)->first()->pivot;
+        $membership = $this->team
+            ->users()
+            ->where('user_id', $this->member->id)
+            ->first()
+            ->pivot;
 
         expect($membership->role)->toBe('editor');
         expect($membership->joined_at)->not->toBeNull();
@@ -209,7 +209,8 @@ describe('Team Invitations', function () {
 
 describe('Team Permissions', function () {
     it('can have team-specific permissions', function () {
-        expect($this->team->permissions())->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class);
+        expect($this->team->permissions())
+            ->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class);
     });
 
     it('can assign permissions to team members', function () {
@@ -227,7 +228,11 @@ describe('Team Permissions', function () {
     it('can check team member permissions', function () {
         $this->team->users()->attach($this->member, ['role' => 'admin']);
 
-        $membership = $this->team->users()->where('user_id', $this->member->id)->first()->pivot;
+        $membership = $this->team
+            ->users()
+            ->where('user_id', $this->member->id)
+            ->first()
+            ->pivot;
 
         expect($membership->role)->toBe('admin');
     });
@@ -240,7 +245,7 @@ describe('Team Scopes and Queries', function () {
 
         $ownerTeams = Team::where('user_id', $this->owner->id)->get();
 
-        expect($ownerTeams->every(fn ($team) => $team->user_id === $this->owner->id))->toBe(true);
+        expect($ownerTeams->every(fn($team) => $team->user_id === $this->owner->id))->toBe(true);
     });
 
     it('can find teams by slug', function () {

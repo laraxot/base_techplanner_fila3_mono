@@ -19,16 +19,12 @@ class RegisterTeam extends RegisterTenant
     }
 
     public function getFormSchema(): array
-{
-    
-        
-    return [
-              
-                    TextInput::make('name'),
-                    // ...
-                
-      ];
-}
+    {
+        return [
+            TextInput::make('name'),
+            // ...
+        ];
+    }
 
     /**
      * @param  array<string, mixed>  $data

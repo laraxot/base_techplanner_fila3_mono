@@ -19,6 +19,7 @@ class GoogleMapsService extends BaseGeoService
 
     private const ELEVATION_URL = 'https://maps.googleapis.com/maps/api/elevation/json';
 
+    #[\Override]
     protected function getServiceName(): string
     {
         return 'google_maps';
@@ -87,10 +88,4 @@ class GoogleMapsService extends BaseGeoService
             throw GoogleMapsApiException::requestFailed($e->getMessage());
         }
     }
-
-
-
-
-
-
 }

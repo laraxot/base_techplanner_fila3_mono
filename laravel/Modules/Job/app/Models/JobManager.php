@@ -74,15 +74,13 @@ class JobManager extends BaseModel
 
     public function status(): Attribute
     {
-        return Attribute::make(
-            get: function (): string {
-                if ($this->isFinished()) {
-                    return $this->failed ? 'failed' : 'succeeded';
-                }
+        return Attribute::make(get: function (): string {
+            if ($this->isFinished()) {
+                return $this->failed ? 'failed' : 'succeeded';
+            }
 
-                return 'running';
-            },
-        );
+            return 'running';
+        });
     }
 
     public function isFinished(): bool
@@ -101,18 +99,18 @@ class JobManager extends BaseModel
 
     public function hasSucceeded(): bool
     {
-        if (! $this->isFinished()) {
+        if (!$this->isFinished()) {
             return false;
         }
 
-        return ! $this->hasFailed();
+        return !$this->hasFailed();
     }
 
     public function prunable(): \Illuminate\Database\Eloquent\Builder
     {
         if (config('jobs.pruning.activate')) {
             $retention_days = config('jobs.pruning.retention_days');
-            if (! is_int($retention_days)) {
+            if (!is_int($retention_days)) {
                 $retention_days = 365;
             }
 
@@ -131,11 +129,9 @@ class JobManager extends BaseModel
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'failed' => 'bool',
             'started_at' => 'datetime',
             'finished_at' => 'datetime',

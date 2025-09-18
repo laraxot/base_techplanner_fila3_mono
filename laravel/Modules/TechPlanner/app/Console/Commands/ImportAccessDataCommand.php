@@ -20,7 +20,7 @@ class ImportAccessDataCommand extends Command
     public function handle(): int
     {
         Assert::string($mdbPath = $this->argument('mdbPath'));
-        if (! $mdbPath || ! file_exists($mdbPath)) {
+        if (!$mdbPath || !file_exists($mdbPath)) {
             $this->error('Invalid MDB file path');
 
             return 1;
@@ -83,7 +83,7 @@ class ImportAccessDataCommand extends Command
 
             return 0;
         } catch (\Exception $e) {
-            $this->error('Error importing data: '.$e->getMessage());
+            $this->error('Error importing data: ' . $e->getMessage());
 
             return 1;
         }

@@ -33,10 +33,7 @@ class RemoveRoleCommand extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    
 
     /**
      * Execute the console command.
@@ -51,20 +48,18 @@ class RemoveRoleCommand extends Command
         /**
          * @var array<string, string>
          */
-        $opts = $user->roles
-            ->pluck('name', 'name')
-            ->toArray();
+        $opts = $user->roles->pluck('name', 'name')->toArray();
 
         $rows = multiselect(
             label: 'What roles',
             options: $opts,
             required: true,
             scroll: 10,
-            // validate: function (array $values) {
-            //  return ! \in_array(\count($values), [1, 2], false)
-            //    ? 'A maximum of two'
-            //  : null;
-            // }
+        // validate: function (array $values) {
+        //  return ! \in_array(\count($values), [1, 2], false)
+        //    ? 'A maximum of two'
+        //  : null;
+        // }
         );
 
         foreach ($rows as $row) {
@@ -73,7 +68,7 @@ class RemoveRoleCommand extends Command
             $user->removeRole($row);
         }
 
-        $this->info(implode(', ', $rows).' dessigned to '.$email);
+        $this->info(implode(', ', $rows) . ' dessigned to ' . $email);
     }
 
     /**

@@ -9,12 +9,11 @@ use Modules\Geo\Models\Place;
 /**
  * Action per aggiornare le coordinate di un luogo.
  */
-class UpdateCoordinatesAction
+readonly class UpdateCoordinatesAction
 {
     public function __construct(
-        private readonly GetCoordinatesAction $getCoordinates,
-    ) {
-    }
+        private  GetCoordinatesAction $getCoordinates,
+    ) {}
 
     /**
      * Aggiorna le coordinate di un luogo usando il suo indirizzo.
@@ -23,14 +22,14 @@ class UpdateCoordinatesAction
      */
     public function execute(Place $place): void
     {
-        if (! $place->address || ! is_string($place->address->formatted_address)) {
+        if (!$place->address || !is_string($place->address->formatted_address)) {
             throw new \RuntimeException('Place address is required');
         }
 
         $location = $this->getCoordinates->execute($place->address->formatted_address);
 
-        if (! $location) {
-            throw new \RuntimeException('Could not get coordinates for address: '.$place->address->formatted_address);
+        if (!$location) {
+            throw new \RuntimeException('Could not get coordinates for address: ' . $place->address->formatted_address);
         }
 
         $place->update([

@@ -29,8 +29,7 @@ class CreateSchedule extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreate
 
     public function form(Form $form): Form
     {
-        return $form
-            ->schema($this->getFormSchema());
+        return $form->schema($this->getFormSchema());
     }
 
     protected function onValidationError(ValidationException $exception): void
@@ -40,6 +39,4 @@ class CreateSchedule extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreate
             ->danger()
             ->send();
     }
-
-   
 }

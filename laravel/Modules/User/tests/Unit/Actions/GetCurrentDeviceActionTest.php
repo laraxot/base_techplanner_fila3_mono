@@ -22,7 +22,7 @@ class GetCurrentDeviceActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = new GetCurrentDeviceAction;
+        $this->action = new GetCurrentDeviceAction();
 
         // Mock the Agent class
         $this->mockAgent = Mockery::mock(Agent::class);
@@ -57,24 +57,38 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(true);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Safari')->andReturn('15.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Safari')
+            ->andReturn('15.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->device)->toBe('iPhone')
-            ->and($result->platform)->toBe('iOS')
-            ->and($result->browser)->toBe('Safari')
-            ->and($result->is_desktop)->toBeFalse()
-            ->and($result->is_mobile)->toBeTrue()
-            ->and($result->is_tablet)->toBeFalse()
-            ->and($result->is_phone)->toBeTrue()
-            ->and($result->is_robot)->toBeFalse()
-            ->and($result->version)->toBe('15.0')
-            ->and($result->robot)->toBe('unknown');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->device)
+            ->toBe('iPhone')
+            ->and($result->platform)
+            ->toBe('iOS')
+            ->and($result->browser)
+            ->toBe('Safari')
+            ->and($result->is_desktop)
+            ->toBeFalse()
+            ->and($result->is_mobile)
+            ->toBeTrue()
+            ->and($result->is_tablet)
+            ->toBeFalse()
+            ->and($result->is_phone)
+            ->toBeTrue()
+            ->and($result->is_robot)
+            ->toBeFalse()
+            ->and($result->version)
+            ->toBe('15.0')
+            ->and($result->robot)
+            ->toBe('unknown');
     }
 
     /** @test */
@@ -108,18 +122,26 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(true);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Chrome')->andReturn('120.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Chrome')
+            ->andReturn('120.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute($mobileId);
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->mobile_id)->toBe($mobileId)
-            ->and($result->device)->toBe('Android Phone')
-            ->and($result->platform)->toBe('Android')
-            ->and($result->browser)->toBe('Chrome');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->mobile_id)
+            ->toBe($mobileId)
+            ->and($result->device)
+            ->toBe('Android Phone')
+            ->and($result->platform)
+            ->toBe('Android')
+            ->and($result->browser)
+            ->toBe('Chrome');
     }
 
     /** @test */
@@ -129,7 +151,7 @@ class GetCurrentDeviceActionTest extends TestCase
         $emptyMobileId = '';
 
         // Act & Assert
-        expect(fn () => $this->action->execute($emptyMobileId))
+        expect(fn() => $this->action->execute($emptyMobileId))
             ->toThrow(\InvalidArgumentException::class, 'L\'ID mobile non può essere vuoto');
     }
 
@@ -148,18 +170,26 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Chrome')->andReturn('120.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Chrome')
+            ->andReturn('120.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute($nullMobileId);
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->mobile_id)->toBeNull()
-            ->and($result->device)->toBe('Desktop')
-            ->and($result->platform)->toBe('Windows')
-            ->and($result->browser)->toBe('Chrome');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->mobile_id)
+            ->toBeNull()
+            ->and($result->device)
+            ->toBe('Desktop')
+            ->and($result->platform)
+            ->toBe('Windows')
+            ->and($result->browser)
+            ->toBe('Chrome');
     }
 
     /** @test */
@@ -175,19 +205,28 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with(null)->andReturn(null);
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with(null)
+            ->andReturn(null);
         $this->mockAgent->shouldReceive('robot')->andReturn(null);
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->device)->toBe('unknown')
-            ->and($result->platform)->toBe('unknown')
-            ->and($result->browser)->toBe('unknown')
-            ->and($result->version)->toBe('unknown')
-            ->and($result->robot)->toBe('unknown');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->device)
+            ->toBe('unknown')
+            ->and($result->platform)
+            ->toBe('unknown')
+            ->and($result->browser)
+            ->toBe('unknown')
+            ->and($result->version)
+            ->toBe('unknown')
+            ->and($result->robot)
+            ->toBe('unknown');
     }
 
     /** @test */
@@ -203,16 +242,22 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(true);
-        $this->mockAgent->shouldReceive('version')->with('Robot')->andReturn('1.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Robot')
+            ->andReturn('1.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('Googlebot');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->is_robot)->toBeTrue()
-            ->and($result->robot)->toBe('Googlebot');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->is_robot)
+            ->toBeTrue()
+            ->and($result->robot)
+            ->toBe('Googlebot');
     }
 
     /** @test */
@@ -228,18 +273,26 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(true);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Safari')->andReturn('16.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Safari')
+            ->andReturn('16.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->is_tablet)->toBeTrue()
-            ->and($result->is_mobile)->toBeTrue()
-            ->and($result->is_phone)->toBeFalse()
-            ->and($result->device)->toBe('iPad');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->is_tablet)
+            ->toBeTrue()
+            ->and($result->is_mobile)
+            ->toBeTrue()
+            ->and($result->is_phone)
+            ->toBeFalse()
+            ->and($result->device)
+            ->toBe('iPad');
     }
 
     /** @test */
@@ -255,20 +308,30 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Firefox')->andReturn('115.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Firefox')
+            ->andReturn('115.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->is_desktop)->toBeTrue()
-            ->and($result->is_mobile)->toBeFalse()
-            ->and($result->is_tablet)->toBeFalse()
-            ->and($result->is_phone)->toBeFalse()
-            ->and($result->platform)->toBe('macOS')
-            ->and($result->browser)->toBe('Firefox');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->is_desktop)
+            ->toBeTrue()
+            ->and($result->is_mobile)
+            ->toBeFalse()
+            ->and($result->is_tablet)
+            ->toBeFalse()
+            ->and($result->is_phone)
+            ->toBeFalse()
+            ->and($result->platform)
+            ->toBe('macOS')
+            ->and($result->browser)
+            ->toBe('Firefox');
     }
 
     /** @test */
@@ -284,19 +347,28 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(true);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Chrome Mobile')->andReturn('120.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Chrome Mobile')
+            ->andReturn('120.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->is_mobile)->toBeTrue()
-            ->and($result->is_phone)->toBeTrue()
-            ->and($result->is_desktop)->toBeFalse()
-            ->and($result->is_tablet)->toBeFalse()
-            ->and($result->device)->toBe('Samsung Galaxy');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->is_mobile)
+            ->toBeTrue()
+            ->and($result->is_phone)
+            ->toBeTrue()
+            ->and($result->is_desktop)
+            ->toBeFalse()
+            ->and($result->is_tablet)
+            ->toBeFalse()
+            ->and($result->device)
+            ->toBe('Samsung Galaxy');
     }
 
     /** @test */
@@ -312,18 +384,26 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Samsung Internet')->andReturn('18.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Samsung Internet')
+            ->andReturn('18.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->device)->toBe('Smart TV')
-            ->and($result->platform)->toBe('Tizen')
-            ->and($result->browser)->toBe('Samsung Internet')
-            ->and($result->version)->toBe('18.0');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->device)
+            ->toBe('Smart TV')
+            ->and($result->platform)
+            ->toBe('Tizen')
+            ->and($result->browser)
+            ->toBe('Samsung Internet')
+            ->and($result->version)
+            ->toBe('18.0');
     }
 
     /** @test */
@@ -339,16 +419,22 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Internet Explorer')->andReturn('11.0');
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Internet Explorer')
+            ->andReturn('11.0');
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->browser)->toBe('Internet Explorer')
-            ->and($result->version)->toBe('11.0');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->browser)
+            ->toBe('Internet Explorer')
+            ->and($result->version)
+            ->toBe('11.0');
     }
 
     /** @test */
@@ -364,16 +450,22 @@ class GetCurrentDeviceActionTest extends TestCase
         $this->mockAgent->shouldReceive('isTablet')->andReturn(false);
         $this->mockAgent->shouldReceive('isPhone')->andReturn(false);
         $this->mockAgent->shouldReceive('isRobot')->andReturn(false);
-        $this->mockAgent->shouldReceive('version')->with('Unknown Browser')->andReturn(null);
+        $this->mockAgent
+            ->shouldReceive('version')
+            ->with('Unknown Browser')
+            ->andReturn(null);
         $this->mockAgent->shouldReceive('robot')->andReturn('unknown');
 
         // Act
         $result = $this->action->execute();
 
         // Assert
-        expect($result)->toBeInstanceOf(Device::class)
-            ->and($result->browser)->toBe('Unknown Browser')
-            ->and($result->version)->toBe('unknown');
+        expect($result)
+            ->toBeInstanceOf(Device::class)
+            ->and($result->browser)
+            ->toBe('Unknown Browser')
+            ->and($result->version)
+            ->toBe('unknown');
     }
 
     protected function tearDown(): void

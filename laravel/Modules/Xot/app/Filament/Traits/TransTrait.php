@@ -25,7 +25,7 @@ trait TransTrait
 
         if (is_string($res)) {
             if ($exceptionIfNotExist && $res === $tmp) {
-                throw new \Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
+                throw new \Exception('[' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
             }
 
             return $res;
@@ -34,11 +34,11 @@ trait TransTrait
         if (is_array($res)) {
             $first = current($res);
             if (is_string($first) || is_numeric($first)) {
-                return is_string($first) ? $first : (string) $first;
+                return is_string($first) ? $first : ((string) $first);
             }
         }
 
-        return 'fix:'.$tmp;
+        return 'fix:' . $tmp;
     }
 
     /**
@@ -49,7 +49,7 @@ trait TransTrait
         /** @var string */
         $transKey = app(GetTransKeyAction::class)->execute(static::class);
 
-        $key = $transKey.'.'.$key;
+        $key = $transKey . '.' . $key;
         $key = Str::of($key)->replace('.cluster.pages.', '.')->toString();
         if (Str::startsWith($key, 'edit_')) {
             $key = Str::after($key, 'edit_');
@@ -74,7 +74,7 @@ trait TransTrait
         /** @var string */
         $transKey = app(GetTransKeyAction::class)->execute(static::class);
 
-        $key = $transKey.'.'.$key;
+        $key = $transKey . '.' . $key;
         $key = Str::of($key)->replace('.cluster.pages.', '.')->toString();
         $key = Str::of($key)->replace('::edit_', '::')->toString();
 
@@ -87,14 +87,14 @@ trait TransTrait
     public static function getKeyTransClass(string $class): string
     {
         $piece = Str::of($class)->explode('\\')->toArray();
-        Assert::string($type = $piece[2]);
-        $module = Str::of($class)->between('Modules\\', '\\'.$type.'\\')->toString();
+        Assert::string($type = $piece[2], __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
+        $module = Str::of($class)->between('Modules\\', '\\' . $type . '\\')->toString();
 
         $module_low = Str::of($module)->lower()->toString();
 
-        $model = Str::of($class)->between('\\'.$type.'\\', '\\')->toString();
+        $model = Str::of($class)->between('\\' . $type . '\\', '\\')->toString();
         $model_snake = Str::of($model)->snake()->toString();
-        $key = $module_low.'::'.$model_snake;
+        $key = $module_low . '::' . $model_snake;
 
         return $key;
     }
@@ -105,7 +105,7 @@ trait TransTrait
     public static function transClass(string $class, string $key): string
     {
         $class_key = static::getKeyTransClass($class);
-        $key_full = $class_key.'.'.$key;
+        $key_full = $class_key . '.' . $key;
 
         return trans($key_full);
     }
@@ -130,7 +130,7 @@ trait TransTrait
 
         if ($key === $trans) {
             $group = Str::of($key)->before('.')->toString();
-            $item = Str::of($key)->after($group.'.')->toString();
+            $item = Str::of($key)->after($group . '.')->toString();
             $group_arr = trans($group);
             if (is_array($group_arr)) {
                 $trans = Arr::get($group_arr, $item);
@@ -143,7 +143,7 @@ trait TransTrait
         if (is_array($trans)) {
             $first = current($trans);
             if (is_string($first) || is_numeric($first)) {
-                return is_string($first) ? $first : (string) $first;
+                return is_string($first) ? $first : ((string) $first);
             }
         }
 
@@ -171,7 +171,7 @@ trait TransTrait
             return $newTrans;
         }
 
-        return 'fix:'.$key;
+        return 'fix:' . $key;
     }
 
     /**

@@ -28,7 +28,7 @@ class DomainsRelationManager extends XotBaseRelationManager
             'domain' => Forms\Components\TextInput::make('domain')
                 ->required()
                 ->prefix('http(s)://')
-                ->suffix('.'.request()->getHost())
+                ->suffix('.' . request()->getHost())
                 ->maxLength(255),
         ];
     }
@@ -38,35 +38,24 @@ class DomainsRelationManager extends XotBaseRelationManager
     {
         return $table
             ->recordTitleAttribute('domain')
-            ->columns(
-                [
-                    Tables\Columns\TextColumn::make('domain'),
-                    Tables\Columns\TextColumn::make('full-domain')->getStateUsing(static fn ($record) => Str::of($record->domain)->append('.')->append(request()->getHost())),
-                ]
-            )
-            ->filters(
-                [
-                ]
-            )
-            ->headerActions(
-                [
-                    Tables\Actions\CreateAction::make(),
-                ]
-            )
-            ->actions(
-                [
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ]
-            )
-            ->bulkActions(
-                [
-                    Tables\Actions\BulkActionGroup::make(
-                        [
-                            Tables\Actions\DeleteBulkAction::make(),
-                        ]
-                    ),
-                ]
-            );
+            ->columns([
+                Tables\Columns\TextColumn::make('domain'),
+                Tables\Columns\TextColumn::make('full-domain')->getStateUsing(
+                    static fn($record) => Str::of($record->domain)->append('.')->append(request()->getHost()),
+                ),
+            ])
+            ->filters([])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- Componente per la selezione di studi odontoiatrici tramite pulsanti --}}
 <x-dynamic-component
     :component="$getFieldWrapperView()"

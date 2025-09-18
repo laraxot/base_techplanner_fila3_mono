@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <html>
 	<head>
 		<title>{{ isset($senderName) ? $senderName : '' }}</title>

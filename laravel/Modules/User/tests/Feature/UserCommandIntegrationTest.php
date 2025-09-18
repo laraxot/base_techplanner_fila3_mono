@@ -13,12 +13,12 @@ uses(RefreshDatabase::class);
 
 describe('User Command Integration', function () {
     beforeEach(function () {
-        $this->command = new ChangeTypeCommand;
+        $this->command = new ChangeTypeCommand();
     });
 
     it('can be registered with Laravel artisan', function () {
         // Test that the command can be registered
-        $application = new Application;
+        $application = new Application();
         $application->add($this->command);
 
         expect($application->has('user:change-type'))->toBeTrue();
@@ -31,9 +31,12 @@ describe('User Command Integration', function () {
         expect($xotData)->toBeInstanceOf(XotData::class);
 
         // Test that required methods exist
-        expect(method_exists($xotData, 'getUserByEmail'))->toBeTrue()
-            ->and(method_exists($xotData, 'getUserChildTypes'))->toBeTrue()
-            ->and(method_exists($xotData, 'getUserChildTypeClass'))->toBeTrue();
+        expect(method_exists($xotData, 'getUserByEmail'))
+            ->toBeTrue()
+            ->and(method_exists($xotData, 'getUserChildTypes'))
+            ->toBeTrue()
+            ->and(method_exists($xotData, 'getUserChildTypeClass'))
+            ->toBeTrue();
     });
 
     it('validates command registration in service provider', function () {
@@ -46,8 +49,10 @@ describe('User Command Integration', function () {
 
     it('handles Laravel Prompts integration', function () {
         // Test that Laravel Prompts functions are available
-        expect(function_exists('Laravel\Prompts\text'))->toBeTrue()
-            ->and(function_exists('Laravel\Prompts\select'))->toBeTrue();
+        expect(function_exists('Laravel\Prompts\text'))
+            ->toBeTrue()
+            ->and(function_exists('Laravel\Prompts\select'))
+            ->toBeTrue();
     });
 
     it('validates Webmozart Assert integration', function () {
@@ -55,37 +60,46 @@ describe('User Command Integration', function () {
         expect(class_exists('Webmozart\Assert\Assert'))->toBeTrue();
 
         // Test basic assertion functionality
-        expect(fn () => \Webmozart\Assert\Assert::notNull('test'))
-            ->not->toThrow(Exception::class);
+        expect(fn() => \Webmozart\Assert\Assert::notNull('test'))->not->toThrow(Exception::class);
     });
 
     it('integrates with Illuminate Support Arr', function () {
         // Test Arr helper functionality
         $testArray = ['a' => 1, 'b' => 2, 'c' => 3];
 
-        $result = \Illuminate\Support\Arr::mapWithKeys($testArray, fn ($value, $key) => [$key.'_mapped' => $value * 2]);
+        $result = \Illuminate\Support\Arr::mapWithKeys($testArray, fn($value, $key) => [
+            $key . '_mapped' => $value * 2,
+        ]);
 
-        expect($result)->toBeArray()
-            ->and($result)->toHaveKeys(['a_mapped', 'b_mapped', 'c_mapped'])
-            ->and($result['a_mapped'])->toBe(2)
-            ->and($result['b_mapped'])->toBe(4)
-            ->and($result['c_mapped'])->toBe(6);
+        expect($result)
+            ->toBeArray()
+            ->and($result)
+            ->toHaveKeys(['a_mapped', 'b_mapped', 'c_mapped'])
+            ->and($result['a_mapped'])
+            ->toBe(2)
+            ->and($result['b_mapped'])
+            ->toBe(4)
+            ->and($result['c_mapped'])
+            ->toBe(6);
     });
 
     it('can handle command input/output operations', function () {
         // Test that the command has access to I/O methods
-        expect(method_exists($this->command, 'info'))->toBeTrue()
-            ->and(method_exists($this->command, 'error'))->toBeTrue()
-            ->and(method_exists($this->command, 'line'))->toBeTrue()
-            ->and(method_exists($this->command, 'comment'))->toBeTrue();
+        expect(method_exists($this->command, 'info'))
+            ->toBeTrue()
+            ->and(method_exists($this->command, 'error'))
+            ->toBeTrue()
+            ->and(method_exists($this->command, 'line'))
+            ->toBeTrue()
+            ->and(method_exists($this->command, 'comment'))
+            ->toBeTrue();
     });
 
     it('validates command signature and options', function () {
         $reflection = new ReflectionClass($this->command);
 
         // Check command properties
-        expect($reflection->hasProperty('name'))->toBeTrue()
-            ->and($reflection->hasProperty('description'))->toBeTrue();
+        expect($reflection->hasProperty('name'))->toBeTrue()->and($reflection->hasProperty('description'))->toBeTrue();
 
         $nameProperty = $reflection->getProperty('name');
         $nameProperty->setAccessible(true);
@@ -108,8 +122,10 @@ describe('User Command Integration', function () {
 
     it('handles command execution context', function () {
         // Test that the command can access Laravel application context
-        expect(method_exists($this->command, 'laravel'))->toBeTrue()
-            ->and(method_exists($this->command, 'getApplication'))->toBeTrue();
+        expect(method_exists($this->command, 'laravel'))
+            ->toBeTrue()
+            ->and(method_exists($this->command, 'getApplication'))
+            ->toBeTrue();
     });
 
     it('validates error handling patterns', function () {
@@ -122,13 +138,16 @@ describe('User Command Integration', function () {
 
     it('can work with type checking utilities', function () {
         // Test type checking functions used in the command
-        $testObject = new stdClass;
+        $testObject = new stdClass();
         $testObject->value = 'test';
-        $testObject->getLabel = fn () => 'Test Label';
+        $testObject->getLabel = fn() => 'Test Label';
 
-        expect(is_object($testObject))->toBeTrue()
-            ->and(property_exists($testObject, 'value'))->toBeTrue()
-            ->and(($testObject->value ?? null) !== null)->toBeTrue();
+        expect(is_object($testObject))
+            ->toBeTrue()
+            ->and(property_exists($testObject, 'value'))
+            ->toBeTrue()
+            ->and(($testObject->value ?? null) !== null)
+            ->toBeTrue();
     });
 
     it('integrates with Laravel configuration system', function () {
@@ -144,8 +163,7 @@ describe('User Command Integration', function () {
         // Test string operations used in the command
         $testString = 'TestValue';
 
-        expect((string) $testString)->toBe('TestValue')
-            ->and(is_string($testString))->toBeTrue();
+        expect((string) $testString)->toBe('TestValue')->and(is_string($testString))->toBeTrue();
     });
 
     it('validates array operations', function () {
@@ -154,37 +172,48 @@ describe('User Command Integration', function () {
 
         $mapped = [];
         foreach ($testArray as $key => $value) {
-            $mapped[$key.'_suffix'] = $value.'_modified';
+            $mapped[$key . '_suffix'] = $value . '_modified';
         }
 
-        expect($mapped)->toBeArray()
-            ->and($mapped)->toHaveKeys(['key1_suffix', 'key2_suffix'])
-            ->and($mapped['key1_suffix'])->toBe('value1_modified');
+        expect($mapped)
+            ->toBeArray()
+            ->and($mapped)
+            ->toHaveKeys(['key1_suffix', 'key2_suffix'])
+            ->and($mapped['key1_suffix'])
+            ->toBe('value1_modified');
     });
 
     it('can handle command lifecycle', function () {
         // Test command lifecycle methods
-        expect(method_exists($this->command, '__construct'))->toBeTrue()
-            ->and(method_exists($this->command, 'handle'))->toBeTrue();
+        expect(method_exists($this->command, '__construct'))
+            ->toBeTrue()
+            ->and(method_exists($this->command, 'handle'))
+            ->toBeTrue();
     });
 
     it('validates dependency injection compatibility', function () {
         // Test that the command can be instantiated through DI
         $commandFromContainer = app(ChangeTypeCommand::class);
 
-        expect($commandFromContainer)->toBeInstanceOf(ChangeTypeCommand::class)
-            ->and($commandFromContainer->getName())->toBe('user:change-type');
+        expect($commandFromContainer)
+            ->toBeInstanceOf(ChangeTypeCommand::class)
+            ->and($commandFromContainer->getName())
+            ->toBe('user:change-type');
     });
 
     it('handles console application integration', function () {
         // Test console application features
-        expect($this->command)->toBeInstanceOf(\Illuminate\Console\Command::class)
-            ->and($this->command)->toBeInstanceOf(\Symfony\Component\Console\Command\Command::class);
+        expect($this->command)
+            ->toBeInstanceOf(\Illuminate\Console\Command::class)
+            ->and($this->command)
+            ->toBeInstanceOf(\Symfony\Component\Console\Command\Command::class);
     });
 
     it('validates command help and description', function () {
-        expect($this->command->getDescription())->toBe('Change user type based on project configuration')
-            ->and($this->command->getName())->toBe('user:change-type');
+        expect($this->command->getDescription())
+            ->toBe('Change user type based on project configuration')
+            ->and($this->command->getName())
+            ->toBe('user:change-type');
     });
 
     it('can access Laravel facades', function () {
@@ -196,22 +225,28 @@ describe('User Command Integration', function () {
         // Test reflection operations used in the command logic
         $reflection = new ReflectionClass($this->command);
 
-        expect($reflection)->toBeInstanceOf(ReflectionClass::class)
-            ->and($reflection->getName())->toBe(ChangeTypeCommand::class);
+        expect($reflection)
+            ->toBeInstanceOf(ReflectionClass::class)
+            ->and($reflection->getName())
+            ->toBe(ChangeTypeCommand::class);
     });
 
     it('validates method existence checks', function () {
         // Test method_exists functionality used in the command
-        expect(method_exists($this->command, 'handle'))->toBeTrue()
-            ->and(method_exists($this->command, 'nonExistentMethod'))->toBeFalse();
+        expect(method_exists($this->command, 'handle'))
+            ->toBeTrue()
+            ->and(method_exists($this->command, 'nonExistentMethod'))
+            ->toBeFalse();
     });
 
     it('can handle object property access safely', function () {
         // Test safe property access patterns
-        $testObject = new stdClass;
+        $testObject = new stdClass();
         $testObject->testProperty = 'test_value';
 
-        expect(property_exists($testObject, 'testProperty'))->toBeTrue()
-            ->and(property_exists($testObject, 'nonExistentProperty'))->toBeFalse();
+        expect(property_exists($testObject, 'testProperty'))
+            ->toBeTrue()
+            ->and(property_exists($testObject, 'nonExistentProperty'))
+            ->toBeFalse();
     });
 });

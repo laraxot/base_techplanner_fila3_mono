@@ -7,19 +7,16 @@ return [
         'title' => 'Öffnungszeiten Konfiguration',
         'description' => 'Stellen Sie die Öffnungszeiten für jeden Wochentag ein. Leer lassen für geschlossene Tage.',
     ],
-    
     'headers' => [
         'day' => 'Tag',
         'morning' => 'Vormittag',
         'afternoon' => 'Nachmittag',
     ],
-    
     'legend' => [
         'open' => 'Geöffnet',
         'closed' => 'Geschlossen',
         'format' => 'Format: HH:MM',
     ],
-    
     'days' => [
         'monday' => 'Montag',
         'tuesday' => 'Dienstag',
@@ -29,13 +26,11 @@ return [
         'saturday' => 'Samstag',
         'sunday' => 'Sonntag',
     ],
-    
     'periods' => [
         'morning' => 'Vormittag',
         'afternoon' => 'Nachmittag',
         'evening' => 'Abend',
     ],
-    
     'labels' => [
         'morning' => 'Vormittag',
         'afternoon' => 'Nachmittag',
@@ -43,21 +38,17 @@ return [
         'to' => 'Bis',
         'closed' => 'Geschlossen',
     ],
-    
     'descriptions' => [
         'day_schedule' => 'Konfigurieren Sie die Öffnungszeiten für diesen Tag',
     ],
-    
     'placeholders' => [
         'morning_hours' => 'Vormittagszeiten',
         'afternoon_hours' => 'Nachmittagszeiten',
     ],
-    
     'notes' => [
         'format_hint' => 'Verwenden Sie das 24-Stunden-Format (z.B. 14:30 für 14:30 Uhr)',
         'empty_hint' => 'Leer lassen bedeutet "geschlossen"',
     ],
-    
     'validation' => [
         'invalid_format' => 'Ungültiges Zeitformat. Verwenden Sie HH:MM-HH:MM',
         'invalid_time_range' => 'Öffnungszeit muss vor Schließungszeit liegen',

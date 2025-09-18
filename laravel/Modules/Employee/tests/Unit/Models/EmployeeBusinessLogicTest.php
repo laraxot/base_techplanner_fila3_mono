@@ -30,7 +30,6 @@ beforeEach(function () {
 });
 
 describe('Employee Model Business Logic', function () {
-
     test('employee can be created with required data', function () {
         expect($this->employee)->toBeEmployee();
         expect($this->employee->employee_code)->toBe('EMP001');

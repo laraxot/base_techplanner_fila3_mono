@@ -41,7 +41,7 @@ class OptimizeRouteAction
         }
 
         $apiKey = config('services.google.maps.key');
-        if (! $apiKey) {
+        if (!$apiKey) {
             throw new \RuntimeException('Google Maps API key not found');
         }
 
@@ -49,19 +49,19 @@ class OptimizeRouteAction
         $response = Http::get('https://maps.googleapis.com/maps/api/directions/json', [
             'origin' => $this->formatLocation($origin),
             'destination' => $this->formatLocation($destination),
-            'waypoints' => 'optimize:true|'.implode('|', $waypoints),
+            'waypoints' => 'optimize:true|' . implode('|', $waypoints),
             'mode' => $mode,
             'optimize' => $optimize,
             'key' => $apiKey,
         ]);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             throw new \RuntimeException('Failed to get directions from Google Maps API');
         }
 
         /** @var array{routes?: array<int, array{legs: array<int, array{distance: array{text: string, value: int}, duration: array{text: string, value: int}, start_location: array{lat: float, lng: float}, end_location: array{lat: float, lng: float}, steps: array<int, array{distance: array{text: string, value: int}, duration: array{text: string, value: int}, start_location: array{lat: float, lng: float}, end_location: array{lat: float, lng: float}, html_instructions: string, travel_mode: string}>}>, overview_polyline: array{points: string}, summary: string, warnings: array<int, string>, waypoint_order: array<int, int>}>} $data */
         $data = $response->json();
-        if (! isset($data['routes'][0])) {
+        if (!isset($data['routes'][0])) {
             return [];
         }
 
@@ -77,13 +77,7 @@ class OptimizeRouteAction
      */
     private function formatWaypoints(array $locations): array
     {
-        return collect($locations)
-            ->map(
-                function (LocationData $location): string {
-                    return $this->formatLocation($location);
-                }
-            )
-            ->all();
+        return collect($locations)->map($this->formatLocation(...))->all();
     }
 
     /**
@@ -134,7 +128,7 @@ class OptimizeRouteAction
                     $waypoints->push(new LocationData(
                         latitude: $leg['start_location']['lat'],
                         longitude: $leg['start_location']['lng'],
-                        address: null
+                        address: null,
                     ));
 
                     $totalDistance += $leg['distance']['value'];
@@ -156,12 +150,12 @@ class OptimizeRouteAction
                 }
 
                 // Aggiungi l'ultima posizione
-                if (! empty($route['legs'])) {
+                if (!empty($route['legs'])) {
                     $lastLeg = end($route['legs']);
                     $waypoints->push(new LocationData(
                         latitude: $lastLeg['end_location']['lat'],
                         longitude: $lastLeg['end_location']['lng'],
-                        address: null
+                        address: null,
                     ));
                 }
 
@@ -170,10 +164,10 @@ class OptimizeRouteAction
                     originalWaypoints: $originalLocations,
                     totalDistance: $totalDistance,
                     totalDuration: $totalDuration,
-                    steps: $steps
+                    steps: $steps,
                 );
             },
-            $routes
+            $routes,
         );
     }
 }

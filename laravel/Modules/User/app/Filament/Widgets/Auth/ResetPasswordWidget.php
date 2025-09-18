@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Widgets\Auth;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
@@ -81,13 +81,9 @@ class ResetPasswordWidget extends XotBaseWidget
     #[\Override]
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Section::make()
-                    ->schema($this->getFormSchema())
-                    ->columns(1),
-            ])
-            ->statePath('data');
+        return $form->schema([
+            Section::make()->schema($this->getFormSchema())->columns(1),
+        ])->statePath('data');
     }
 
     /**
@@ -102,15 +98,13 @@ class ResetPasswordWidget extends XotBaseWidget
     {
         $data = $this->form->getState();
 
-        $reset_data =Arr::only($data,['email','password','password_confirmation','token']);
-        $status = Password::reset( $reset_data,
-            function ($user, $password): void {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                    'remember_token' => Str::random(60),
-                ])->save();
-            }
-        );
+        $reset_data = Arr::only($data, ['email', 'password', 'password_confirmation', 'token']);
+        $status = Password::reset($reset_data, function ($user, $password): void {
+            $user->forceFill([
+                'password' => Hash::make($password),
+                'remember_token' => Str::random(60),
+            ])->save();
+        });
 
         if ($status === Password::PASSWORD_RESET) {
             session()->flash('status', __($status));

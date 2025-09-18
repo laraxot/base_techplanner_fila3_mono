@@ -11,6 +11,7 @@ use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
+
 class CreateWorkHour extends XotBaseCreateRecord
 {
     protected static string $resource = WorkHourResource::class;
@@ -34,10 +35,10 @@ class CreateWorkHour extends XotBaseCreateRecord
     protected function beforeCreate(): void
     {
         $data = $this->form->getState();
-        
+
         $timestamp = Carbon::parse((string) ($data['timestamp'] ?? ''));
         $employeeId = (int) ($data['employee_id'] ?? 0);
-        
+
         $existingEntry = WorkHour::query()
             ->where('employee_id', $employeeId)
             ->where('timestamp', $timestamp)
@@ -55,7 +56,7 @@ class CreateWorkHour extends XotBaseCreateRecord
         }
     }
 
-    protected function getCreatedNotificationTitle(): ?string
+    protected function getCreatedNotificationTitle(): null|string
     {
         return 'Work hour entry created successfully';
     }

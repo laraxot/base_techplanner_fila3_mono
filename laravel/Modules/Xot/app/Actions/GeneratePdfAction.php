@@ -25,7 +25,7 @@ final class GeneratePdfAction
             $html2pdf->WriteHTML($html);
 
             return match ($outputMode) {
-                'content' => $html2pdf->Output($filename.'.pdf', 'S'),
+                'content' => $html2pdf->Output($filename . '.pdf', 'S'),
                 'file' => $this->saveToFile($html2pdf, $filename),
                 default => $html2pdf->Output(),
             };

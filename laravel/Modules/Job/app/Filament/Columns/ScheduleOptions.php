@@ -20,15 +20,15 @@ class ScheduleOptions extends TextColumn
     public function getTags(): array
     {
         /*
-        if($this->record==null){
-            return [];
-        }
-        if($this->withValue)
-        return $this->record->getOptions();
-        else{
-            return parent::getTags();
-        }
-        */
+         * if($this->record==null){
+         * return [];
+         * }
+         * if($this->withValue)
+         * return $this->record->getOptions();
+         * else{
+         * return parent::getTags();
+         * }
+         */
         return [];
     }
 }

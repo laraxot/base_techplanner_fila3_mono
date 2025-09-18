@@ -63,7 +63,7 @@ class SushiCommand extends Command
         try {
             $path = base_path('database/content/comuni.json');
 
-            if (! File::exists($path)) {
+            if (!File::exists($path)) {
                 $this->error('File comuni.json non trovato');
 
                 return 1;
@@ -74,7 +74,7 @@ class SushiCommand extends Command
             $rawData = json_decode(File::get($path), true);
 
             // Validazione tipo per evitare foreach su mixed
-            if (! is_array($rawData)) {
+            if (!is_array($rawData)) {
                 $this->error('Il file JSON non contiene un array valido');
 
                 return 1;
@@ -87,8 +87,8 @@ class SushiCommand extends Command
 
             foreach ($data as $comune) {
                 // Type guard per ogni elemento del foreach
-                if (! is_array($comune)) {
-                    $this->warn('Elemento non valido saltato: '.gettype($comune));
+                if (!is_array($comune)) {
+                    $this->warn('Elemento non valido saltato: ' . gettype($comune));
 
                     continue;
                 }
@@ -97,8 +97,8 @@ class SushiCommand extends Command
                 $arrayComune = $comune;
 
                 // Validazione sicura degli offset con type guards
-                if (! $this->isValidComuneData($arrayComune)) {
-                    $this->warn('Dati comune non validi saltati: '.json_encode($arrayComune));
+                if (!$this->isValidComuneData($arrayComune)) {
+                    $this->warn('Dati comune non validi saltati: ' . json_encode($arrayComune));
 
                     continue;
                 }
@@ -112,8 +112,8 @@ class SushiCommand extends Command
                     'provincia' => is_string($validComune['provincia'] ?? null) ? $validComune['provincia'] : '',
                     'comune' => is_string($validComune['comune'] ?? null) ? $validComune['comune'] : '',
                     'cap' => is_string($validComune['cap'] ?? null) ? $validComune['cap'] : '',
-                    'lat' => is_numeric($validComune['lat'] ?? null) ? (float) $validComune['lat'] : 0.0,
-                    'lng' => is_numeric($validComune['lng'] ?? null) ? (float) $validComune['lng'] : 0.0,
+                    'lat' => is_numeric($validComune['lat'] ?? null) ? ((float) $validComune['lat']) : 0.0,
+                    'lng' => is_numeric($validComune['lng'] ?? null) ? ((float) $validComune['lng']) : 0.0,
                     'created_at' => $validComune['created_at'] ?? now(),
                     'updated_at' => $validComune['updated_at'] ?? now(),
                 ]);
@@ -123,7 +123,7 @@ class SushiCommand extends Command
 
             return 0;
         } catch (\Exception $e) {
-            $this->error('Errore durante l\'aggiornamento del database: '.$e->getMessage());
+            $this->error('Errore durante l\'aggiornamento del database: ' . $e->getMessage());
 
             return 1;
         }
@@ -139,7 +139,7 @@ class SushiCommand extends Command
         $requiredFields = ['id', 'regione', 'provincia', 'comune', 'cap', 'lat', 'lng'];
 
         foreach ($requiredFields as $field) {
-            if (! array_key_exists($field, $comune)) {
+            if (!array_key_exists($field, $comune)) {
                 return false;
             }
         }
@@ -160,7 +160,7 @@ class SushiCommand extends Command
 
             return 0;
         } catch (\Exception $e) {
-            $this->error('Errore durante la pulizia del database: '.$e->getMessage());
+            $this->error('Errore durante la pulizia del database: ' . $e->getMessage());
 
             return 1;
         }
@@ -197,7 +197,7 @@ class SushiCommand extends Command
 
             return 0;
         } catch (\Exception $e) {
-            $this->error('Errore durante la verifica dello stato del database: '.$e->getMessage());
+            $this->error('Errore durante la verifica dello stato del database: ' . $e->getMessage());
 
             return 1;
         }

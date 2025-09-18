@@ -180,7 +180,7 @@ class AnalyzeTranslationFiles extends Command
         $resourceFiles = [];
 
         foreach (array_keys($allFiles) as $file) {
-            if (str_contains($file, '/send_') ) {
+            if (str_contains($file, '/send_')) {
                 $sendFiles[] = $file;
             } else {
                 $resourceFiles[] = $file;
@@ -222,7 +222,7 @@ class AnalyzeTranslationFiles extends Command
             $navigationKeys = [];
 
             foreach (array_keys($keys) as $key) {
-                if (str_starts_with((string) $key, 'navigation.') ) {
+                if (str_starts_with((string) $key, 'navigation.')) {
                     $navigationKeys[] = str_replace('navigation.', '', (string) $key);
                 }
             }

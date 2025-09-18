@@ -22,9 +22,11 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function view(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-        return $user->hasPermissionTo('device-profile.view') ||
-               $user->id === $deviceProfile->user_id ||
-               $user->hasRole('super-admin');
+        return (
+            $user->hasPermissionTo('device-profile.view') ||
+            $user->id === $deviceProfile->user_id ||
+            $user->hasRole('super-admin')
+        );
     }
 
     /**
@@ -38,28 +40,25 @@ class DeviceProfilePolicy extends UserBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, DeviceProfile $deviceProfile): bool
+    public function update(UserContract $user, DeviceProfile $_deviceProfile): bool
     {
-        return $user->hasPermissionTo('device-profile.update') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('device-profile.update') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, DeviceProfile $deviceProfile): bool
+    public function delete(UserContract $user, DeviceProfile $_deviceProfile): bool
     {
-        return $user->hasPermissionTo('device-profile.delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('device-profile.delete') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, DeviceProfile $deviceProfile): bool
+    public function restore(UserContract $user, DeviceProfile $_deviceProfile): bool
     {
-        return $user->hasPermissionTo('device-profile.restore') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('device-profile.restore') || $user->hasRole('super-admin');
     }
 
     /**
@@ -67,7 +66,6 @@ class DeviceProfilePolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, DeviceProfile $deviceProfile): bool
     {
-        return $user->hasPermissionTo('device-profile.force-delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('device-profile.force-delete') || $user->hasRole('super-admin');
     }
 }

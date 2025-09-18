@@ -16,20 +16,23 @@ class BelongsToManyAction
 {
     use QueueableAction;
 
-    public function execute(Model $model, RelationDTO $relationDTO): void
+    public function execute(Model $_model, RelationDTO $relationDTO): void
     {
         Assert::isInstanceOf($rows = $relationDTO->rows, BelongsToMany::class);
         // dddx(['row' => $row, 'relation' => $relation]);
-        if (\in_array('to', array_keys($relationDTO->data), false) || \in_array('from', array_keys($relationDTO->data), false)) {
+        if (
+            \in_array('to', array_keys($relationDTO->data), false) ||
+                \in_array('from', array_keys($relationDTO->data), false)
+        ) {
             // $this->saveMultiselectTwoSides($row, $relation->name, $relation->data);
             $to = $relationDTO->data['to'] ?? [];
 
             // Assicura che $to sia un array di ID validi
-            $to = is_iterable($to) ? iterator_to_array($to) : (array) $to;
+            $to = is_iterable($to) ? iterator_to_array($to) : ((array) $to);
             Assert::allScalar($to, 'The "to" field must contain only scalar values.');
 
             $rows->sync($to);
-            $status = 'collegati ['.implode(', ', $to).'] ';
+            $status = 'collegati [' . implode(', ', $to) . '] ';
             Session::flash('status', $status);
 
             return;
@@ -58,7 +61,7 @@ class BelongsToManyAction
         }
 
         // Sincronizza gli ID raccolti
-        if (! empty($ids)) {
+        if (!empty($ids)) {
             try {
                 // Assicura che $ids sia un array di valori scalari
                 // $ids è già un array non vuoto a questo punto, quindi non serve verificare se è iterabile

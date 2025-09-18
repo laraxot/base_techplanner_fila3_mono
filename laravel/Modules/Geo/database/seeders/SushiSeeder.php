@@ -19,7 +19,7 @@ class SushiSeeder extends Seeder
     {
         $path = base_path('database/content/comuni.json');
 
-        if (! File::exists($path)) {
+        if (!File::exists($path)) {
             $this->command->error('File comuni.json non trovato');
 
             return;
@@ -28,7 +28,7 @@ class SushiSeeder extends Seeder
         $data = json_decode(File::get($path), true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->command->error('Errore nel parsing del file JSON: '.json_last_error_msg());
+            $this->command->error('Errore nel parsing del file JSON: ' . json_last_error_msg());
 
             return;
         }
@@ -69,7 +69,7 @@ class SushiSeeder extends Seeder
         $requiredFields = ['id', 'regione', 'provincia', 'comune', 'cap', 'lat', 'lng'];
 
         foreach ($requiredFields as $field) {
-            if (! isset($comune[$field])) {
+            if (!isset($comune[$field])) {
                 return false;
             }
         }

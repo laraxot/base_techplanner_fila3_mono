@@ -13,19 +13,20 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class PhoneCallResource extends XotBaseResource
 {
-    protected static ?string $model = PhoneCall::class;
+    protected static null|string $model = PhoneCall::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
             Forms\Components\DateTimePicker::make('date'),
             Forms\Components\TextInput::make('duration'),
             Forms\Components\Textarea::make('notes'),
-            Forms\Components\Select::make('call_type')
-                ->options(PhoneCallEnum::class),
+            Forms\Components\Select::make('call_type')->options(PhoneCallEnum::class),
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

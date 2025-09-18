@@ -75,6 +75,10 @@ abstract class BaseModel extends Model
     {
         return [
             'id' => 'string',
-            'uuid' => 'string', 'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+            'uuid' => 'string',
+            'published_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
     }
 }

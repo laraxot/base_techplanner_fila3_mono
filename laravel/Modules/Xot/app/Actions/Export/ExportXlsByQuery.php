@@ -22,14 +22,14 @@ class ExportXlsByQuery
      * @param string $filename Nome del file Excel
      * @param array<int, string> $fields Campi da includere nell'export
      * @param int|null $limit Limite di righe da esportare
-     * 
+     *
      * @return BinaryFileResponse
      */
     public function execute(
         Builder $query,
         string $filename = 'test.xlsx',
         array $fields = [],
-        ?int $limit = null,
+        null|int $limit = null,
     ): BinaryFileResponse {
         // Assicuriamo che $fields sia un array di stringhe
         $stringFields = array_map(strval(...), array_values($fields));
@@ -37,7 +37,7 @@ class ExportXlsByQuery
         $export = new QueryExport(
             query: $query,
             transKey: null,
-            fields: $stringFields
+            fields: $stringFields,
         );
         // Note: QueryExport doesn't accept a limit parameter directly
         // If limit is needed, apply it to the query before passing to the exporter

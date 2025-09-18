@@ -16,8 +16,6 @@ class ActivityDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call([
-           
-        ]);
+        $this->call([]);
     }
 }

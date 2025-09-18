@@ -1,0 +1,79 @@
+[
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\Appointment",
+        "table_name": "appointments",
+        "id": 1,
+        "updated_at": "2025-09-18T13:37:15.433823Z",
+        "created_at": "2025-09-18T13:37:15.433113Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\Client",
+        "table_name": "clients",
+        "id": 2,
+        "updated_at": "2025-09-18T13:37:15.436855Z",
+        "created_at": "2025-09-18T13:37:15.435598Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\Device",
+        "table_name": "machines",
+        "id": 3,
+        "updated_at": "2025-09-18T13:37:15.438600Z",
+        "created_at": "2025-09-18T13:37:15.438025Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\LegalOffice",
+        "table_name": "legal_offices",
+        "id": 4,
+        "updated_at": "2025-09-18T13:37:15.440286Z",
+        "created_at": "2025-09-18T13:37:15.439696Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\LegalRepresentative",
+        "table_name": "legal_representatives",
+        "id": 5,
+        "updated_at": "2025-09-18T13:37:15.442014Z",
+        "created_at": "2025-09-18T13:37:15.441438Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\MedicalDirector",
+        "table_name": "medical_directors",
+        "id": 6,
+        "updated_at": "2025-09-18T13:37:15.443688Z",
+        "created_at": "2025-09-18T13:37:15.443135Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    },
+    {
+        "table_schema": "\/var\/www\/_bases\/base_techplanner_fila3_mono\/laravel\/database\/database.sqlite",
+        "model_class": "Modules\\TechPlanner\\Models\\PhoneCall",
+        "table_name": "phone_calls",
+        "id": 7,
+        "updated_at": "2025-09-18T13:37:15.445279Z",
+        "created_at": "2025-09-18T13:37:15.444759Z",
+        "updated_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "created_by": "01995d07-eb92-71c8-b90c-e4557a0e1c0d",
+        "table_rows": 0
+    }
+]

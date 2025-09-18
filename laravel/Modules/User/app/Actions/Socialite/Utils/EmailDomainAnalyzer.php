@@ -31,13 +31,15 @@ final class EmailDomainAnalyzer
 
     public function hasUnrecognizedDomain(): bool
     {
-        return ! $this->hasFirstPartyDomain() && ! $this->hasClientDomain();
+        return !$this->hasFirstPartyDomain() && !$this->hasClientDomain();
     }
 
     public function hasFirstPartyDomain(): bool
     {
         if (!isset($this->ssoUser)) {
-            throw new \RuntimeException('L\'utente SSO non è stato impostato. Utilizzare setUser() prima di chiamare questo metodo.');
+            throw new \RuntimeException(
+                'L\'utente SSO non è stato impostato. Utilizzare setUser() prima di chiamare questo metodo.',
+            );
         }
 
         $email = $this->ssoUser->getEmail();
@@ -59,7 +61,9 @@ final class EmailDomainAnalyzer
     public function hasClientDomain(): bool
     {
         if (!isset($this->ssoUser)) {
-            throw new \RuntimeException('L\'utente SSO non è stato impostato. Utilizzare setUser() prima di chiamare questo metodo.');
+            throw new \RuntimeException(
+                'L\'utente SSO non è stato impostato. Utilizzare setUser() prima di chiamare questo metodo.',
+            );
         }
 
         $email = $this->ssoUser->getEmail();
@@ -78,7 +82,7 @@ final class EmailDomainAnalyzer
         return $emailDomain === $configDomain;
     }
 
-    private function firstPartyDomain(): ?string
+    private function firstPartyDomain(): null|string
     {
         $res = config(sprintf('services.%s.email_domains.first_party.tld', $this->ssoProvider));
         if (!is_string($res) && $res !== null) {
@@ -87,7 +91,7 @@ final class EmailDomainAnalyzer
         return $res;
     }
 
-    private function clientDomain(): ?string
+    private function clientDomain(): null|string
     {
         $domain = config(sprintf('services.%s.email_domains.client.tld', $this->ssoProvider));
         if (!is_string($domain) && $domain !== null) {

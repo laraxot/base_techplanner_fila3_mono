@@ -10,25 +10,20 @@ use Modules\User\Filament\Resources\RoleResource\Pages\CreateRole;
 use Modules\User\Filament\Resources\RoleResource\Pages\EditRole;
 use Modules\User\Filament\Resources\RoleResource\Pages\ListRoles;
 use Modules\User\Models\Role;
-use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class RoleResource extends XotBaseResource
 {
-    protected static ?string $model = Role::class;
+    protected static null|string $model = Role::class;
 
     #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'name' => TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            'guard_name' => TextInput::make('guard_name')
-                ->required()
-                ->maxLength(255),
-            'enabled' => Toggle::make('enabled')
-                ->required(),
+            'name' => TextInput::make('name')->required()->maxLength(255),
+            'guard_name' => TextInput::make('guard_name')->required()->maxLength(255),
+            'enabled' => Toggle::make('enabled')->required(),
         ];
     }
 

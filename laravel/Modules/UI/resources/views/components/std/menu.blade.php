@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['name'])
 
 @if ($menu = \App\Models\Menu::whereName($name)->first())

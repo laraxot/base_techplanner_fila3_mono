@@ -25,12 +25,8 @@ class ListTeams extends XotBaseListRecords
                 ->counts('users')
                 ->numeric()
                 ->sortable(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
-            'updated_at' => TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
+            'updated_at' => TextColumn::make('updated_at')->dateTime()->sortable(),
         ];
     }
 }

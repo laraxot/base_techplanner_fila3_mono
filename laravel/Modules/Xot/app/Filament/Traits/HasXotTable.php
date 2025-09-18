@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Traits;
 
-use Filament\Tables;
 use Filament\Actions;
-use Filament\Tables\Table;
-use Webmozart\Assert\Assert;
-use Filament\Tables\Actions\Action;
-use Modules\UI\Enums\TableLayoutEnum;
-use Filament\Tables\Actions\BulkAction;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\BaseFilter;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
+use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Enums\FiltersLayout;
-use Filament\Tables\Columns\Layout\Stack;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Enums\ActionsPosition;
-use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\ActionsPosition;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\BaseFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Modules\Xot\Actions\Model\TableExistsByModelClassActions;
+use Modules\UI\Enums\TableLayoutEnum;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
+use Modules\Xot\Actions\Model\TableExistsByModelClassActions;
+use Webmozart\Assert\Assert;
 
 /**
  * Trait HasXotTable.
@@ -114,8 +114,7 @@ trait HasXotTable
     protected function getHeaderActions(): array
     {
         return [
-            'create' => Actions\CreateAction::make()
-                ->icon('heroicon-o-plus'),
+            'create' => Actions\CreateAction::make()->icon('heroicon-o-plus'),
         ];
     }
 
@@ -137,7 +136,6 @@ trait HasXotTable
      * @return array<string, Tables\Columns\Column>
      */
     abstract public function getTableColumns(): array;
-    
 
     /**
      * Get table filters form columns.
@@ -160,14 +158,14 @@ trait HasXotTable
     /**
      * Get table heading.
      */
-    public function getTableHeading(): ?string
+    public function getTableHeading(): null|string
     {
         $key = static::getKeyTrans('table.heading');
         /** @var string|array<int|string,mixed>|null $trans */
         //@phpstan-ignore-next-line
         $trans = trans($key);
 
-        return (is_string($trans) && $trans !== $key) ? $trans : null;
+        return is_string($trans) && $trans !== $key ? $trans : null;
     }
 
     /**
@@ -200,7 +198,7 @@ trait HasXotTable
     public function table(Table $table): Table
     {
         $modelClass = $this->getModelClass();
-        if (! app(TableExistsByModelClassActions::class)->execute($modelClass)) {
+        if (!app(TableExistsByModelClassActions::class)->execute($modelClass)) {
             $this->notifyTableMissing();
             return $this->configureEmptyTable($table);
         }
@@ -213,10 +211,7 @@ trait HasXotTable
         $table = $table
             ->recordTitleAttribute($this->getTableRecordTitleAttribute())
             ->heading($this->getTableHeading())
-            ->columns($this->layoutView->getTableColumns(
-                $this->getTableColumns(),
-                $this->getGridTableColumns()
-            ))
+            ->columns($this->layoutView->getTableColumns($this->getTableColumns(), $this->getGridTableColumns()))
             ->contentGrid($this->layoutView->getTableContentGrid())
             ->filters($this->getTableFilters())
             ->filtersLayout(FiltersLayout::AboveContent)
@@ -230,11 +225,11 @@ trait HasXotTable
             ->striped()
             ->paginated($this->getTablePaginated());
         /*
-            ->defaultSort(
-                column: $this->getDefaultTableSortColumn(),
-                direction: $this->getDefaultTableSortDirection(),
-            );
-        */
+         * ->defaultSort(
+         * column: $this->getDefaultTableSortColumn(),
+         * direction: $this->getDefaultTableSortDirection(),
+         * );
+         */
         return $table;
     }
 
@@ -246,7 +241,7 @@ trait HasXotTable
     /**
      * Get default table sort column.
      */
-    protected function getDefaultTableSortColumn(): ?string
+    protected function getDefaultTableSortColumn(): null|string
     {
         try {
             $modelClass = $this->getModelClass();
@@ -254,7 +249,7 @@ trait HasXotTable
             $model = app($modelClass);
             Assert::isInstanceOf($model, Model::class);
 
-            return $model->getTable().'.id';
+            return $model->getTable() . '.id';
         } catch (\Exception $e) {
             return null;
         }
@@ -263,7 +258,7 @@ trait HasXotTable
     /**
      * Get default table sort direction.
      */
-    protected function getDefaultTableSortDirection(): ?string
+    protected function getDefaultTableSortDirection(): null|string
     {
         return 'desc';
     }
@@ -287,7 +282,7 @@ trait HasXotTable
     {
         $actions = [];
         $resource = $this->getResource();
-        
+
         if (method_exists($resource, 'canView')) {
             $actions['view'] = Tables\Actions\ViewAction::make()
                 ->iconButton()
@@ -301,14 +296,14 @@ trait HasXotTable
                 ->tooltip(__('user::actions.edit'))
                 ->visible($resource::canEdit(...));
         }
-        
+
         if (method_exists($resource, 'canDelete')) {
             $actions['delete'] = Tables\Actions\DeleteAction::make()
                 ->iconButton()
                 ->tooltip(__('user::actions.delete'))
                 ->visible($resource::canDelete(...));
         }
-        
+
         if ($this->shouldShowReplicateAction()) {
             $actions['replicate'] = Tables\Actions\ReplicateAction::make()
                 ->iconButton()
@@ -387,7 +382,7 @@ trait HasXotTable
             }
         }
 
-        throw new \Exception('No model found in '.class_basename(__CLASS__).'::'.__FUNCTION__);
+        throw new \Exception('No model found in ' . class_basename(__CLASS__) . '::' . __FUNCTION__);
     }
 
     /**
@@ -416,11 +411,9 @@ trait HasXotTable
     protected function configureEmptyTable(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(static fn (Builder $query) => $query->whereNull('id'))
+            ->modifyQueryUsing(static fn(Builder $query) => $query->whereNull('id'))
             ->columns([
-                TextColumn::make('message')
-                    ->default(__('user::fields.message.default'))
-                    ->html(),
+                TextColumn::make('message')->default(__('user::fields.message.default'))->html(),
             ])
             ->headerActions([])
             ->actions([]);

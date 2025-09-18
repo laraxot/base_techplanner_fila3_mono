@@ -24,27 +24,13 @@ class ListSocialProviders extends XotBaseListRecords
                 ->searchable()
                 ->sortable()
                 ->wrap(),
-            'active' => IconColumn::make('active')
-                ->boolean()
-                ->sortable(),
-            'stateless' => IconColumn::make('stateless')
-                ->boolean()
-                ->sortable(),
-            'socialite' => IconColumn::make('socialite')
-                ->boolean()
-                ->sortable(),
-            'scopes' => TextColumn::make('scopes')
-                ->searchable()
-                ->wrap(),
-            'parameters' => TextColumn::make('parameters')
-                ->searchable()
-                ->wrap(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
-            'updated_at' => TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable(),
+            'active' => IconColumn::make('active')->boolean()->sortable(),
+            'stateless' => IconColumn::make('stateless')->boolean()->sortable(),
+            'socialite' => IconColumn::make('socialite')->boolean()->sortable(),
+            'scopes' => TextColumn::make('scopes')->searchable()->wrap(),
+            'parameters' => TextColumn::make('parameters')->searchable()->wrap(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
+            'updated_at' => TextColumn::make('updated_at')->dateTime()->sortable(),
         ];
     }
 
@@ -52,11 +38,10 @@ class ListSocialProviders extends XotBaseListRecords
     public function getTableFilters(): array
     {
         return [
-            'active' => \Filament\Tables\Filters\SelectFilter::make('active')
-                ->options([
-                    true => 'Active',
-                    false => 'Inactive',
-                ]),
+            'active' => \Filament\Tables\Filters\SelectFilter::make('active')->options([
+                true => 'Active',
+                false => 'Inactive',
+            ]),
         ];
     }
 }

@@ -16,7 +16,6 @@ beforeEach(function () {
 });
 
 describe('Project Management Business Logic', function () {
-
     test('project can be created with valid data', function () {
         $project = createProject([
             'name' => 'New Project',
@@ -24,9 +23,12 @@ describe('Project Management Business Logic', function () {
             'status' => 'planning',
         ]);
 
-        expect($project)->toBeProject()
-            ->and($project->name)->toBe('New Project')
-            ->and($project->status)->toBe('planning');
+        expect($project)
+            ->toBeProject()
+            ->and($project->name)
+            ->toBe('New Project')
+            ->and($project->status)
+            ->toBe('planning');
     });
 
     test('project can have multiple tasks', function () {
@@ -42,9 +44,12 @@ describe('Project Management Business Logic', function () {
             'status' => 'in_progress',
         ]);
 
-        expect($this->project->tasks)->toHaveCount(2)
-            ->and($this->project->tasks->first()->name)->toBe('Task 1')
-            ->and($this->project->tasks->last()->name)->toBe('Task 2');
+        expect($this->project->tasks)
+            ->toHaveCount(2)
+            ->and($this->project->tasks->first()->name)
+            ->toBe('Task 1')
+            ->and($this->project->tasks->last()->name)
+            ->toBe('Task 2');
     });
 
     test('project calculates completion percentage correctly', function () {
@@ -77,9 +82,12 @@ describe('Project Management Business Logic', function () {
             'end_date' => Carbon::today()->addDays(15),
         ]);
 
-        expect($this->project->resources)->toHaveCount(1)
-            ->and($this->project->resources->first()->name)->toBe('Developer')
-            ->and($this->project->resources->first()->pivot->allocation_percentage)->toBe(80);
+        expect($this->project->resources)
+            ->toHaveCount(1)
+            ->and($this->project->resources->first()->name)
+            ->toBe('Developer')
+            ->and($this->project->resources->first()->pivot->allocation_percentage)
+            ->toBe(80);
     });
 
     test('project validates date constraints', function () {
@@ -117,15 +125,13 @@ describe('Project Management Business Logic', function () {
 });
 
 describe('Task Management', function () {
-
     test('task belongs to project', function () {
         $task = createTask([
             'project_id' => $this->project->id,
             'name' => 'Test Task',
         ]);
 
-        expect($task->project_id)->toBe($this->project->id)
-            ->and($task->project->name)->toBe($this->project->name);
+        expect($task->project_id)->toBe($this->project->id)->and($task->project->name)->toBe($this->project->name);
     });
 
     test('task can have dependencies', function () {
@@ -141,8 +147,7 @@ describe('Task Management', function () {
 
         $task2->dependencies()->attach($task1->id);
 
-        expect($task2->dependencies)->toHaveCount(1)
-            ->and($task2->dependencies->first()->name)->toBe('First Task');
+        expect($task2->dependencies)->toHaveCount(1)->and($task2->dependencies->first()->name)->toBe('First Task');
     });
 
     test('task calculates progress correctly', function () {
@@ -158,7 +163,6 @@ describe('Task Management', function () {
 });
 
 describe('Resource Management', function () {
-
     test('resource can be allocated to multiple projects', function () {
         $resource = createResource([
             'name' => 'Senior Developer',
@@ -168,13 +172,14 @@ describe('Resource Management', function () {
 
         $project2 = createProject(['name' => 'Second Project']);
 
-        $resource->projects()->attach([
-            $this->project->id => ['allocation_percentage' => 50],
-            $project2->id => ['allocation_percentage' => 30],
-        ]);
+        $resource
+            ->projects()
+            ->attach([
+                $this->project->id => ['allocation_percentage' => 50],
+                $project2->id => ['allocation_percentage' => 30],
+            ]);
 
-        expect($resource->projects)->toHaveCount(2)
-            ->and($resource->getTotalAllocation())->toBe(80);
+        expect($resource->projects)->toHaveCount(2)->and($resource->getTotalAllocation())->toBe(80);
     });
 
     test('resource availability is calculated correctly', function () {
@@ -192,7 +197,6 @@ describe('Resource Management', function () {
 });
 
 describe('Project Analytics', function () {
-
     test('project tracks time accurately', function () {
         $task = createTask([
             'project_id' => $this->project->id,
@@ -200,8 +204,7 @@ describe('Project Analytics', function () {
             'actual_hours' => 25,
         ]);
 
-        expect($this->project->isOverBudget())->toBeTrue()
-            ->and($this->project->getBudgetVariance())->toBe(5);
+        expect($this->project->isOverBudget())->toBeTrue()->and($this->project->getBudgetVariance())->toBe(5);
     });
 
     test('project calculates critical path', function () {
@@ -220,7 +223,6 @@ describe('Project Analytics', function () {
         $task2->dependencies()->attach($task1->id);
 
         $criticalPath = $this->project->getCriticalPath();
-        expect($criticalPath)->toHaveCount(2)
-            ->and($criticalPath->sum('estimated_hours'))->toBe(25);
+        expect($criticalPath)->toHaveCount(2)->and($criticalPath->sum('estimated_hours'))->toBe(25);
     });
 });

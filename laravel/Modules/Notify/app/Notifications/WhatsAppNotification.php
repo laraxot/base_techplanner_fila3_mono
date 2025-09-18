@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Modules\Notify\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Modules\Notify\Datas\WhatsAppData;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notification;
+use Modules\Notify\Datas\WhatsAppData;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
 
 /**
  * Class WhatsAppNotification
  *
  * Notification class for sending WhatsApp messages through various providers.
- * 
+ *
  * @package Modules\Notify\Notifications
  */
 class WhatsAppNotification extends Notification implements ShouldQueue
@@ -48,25 +48,25 @@ class WhatsAppNotification extends Notification implements ShouldQueue
         } else {
             $to = $config['to'] ?? '';
             $from = $config['from'] ?? null;
-            
+
             /** @phpstan-ignore-next-line */
             $this->whatsappData = new WhatsAppData(
                 to: SafeStringCastAction::cast($to),
                 body: $content,
-                from: $from !== null ? SafeStringCastAction::cast($from) : null
+                from: $from !== null ? SafeStringCastAction::cast($from) : null,
             );
         }
-        
+
         $this->config = $config;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param mixed $_notifiable L'entità da notificare
      * @return array<int, string>
      */
-    public function via(mixed $notifiable): array
+    public function via(mixed $_notifiable): array
     {
         // TODO: Implementare WhatsAppChannel quando disponibile
         return ['whatsapp'];
@@ -105,7 +105,7 @@ class WhatsAppNotification extends Notification implements ShouldQueue
      *
      * @return string|null
      */
-    public function getProvider(): ?string
+    public function getProvider(): null|string
     {
         $provider = $this->config['provider'] ?? null;
         return is_string($provider) ? $provider : null;

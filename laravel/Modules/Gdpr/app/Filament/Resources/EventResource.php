@@ -11,39 +11,30 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class EventResource extends XotBaseResource
 {
-    protected static ?string $model = Event::class;
+    protected static null|string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static null|string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'treatment_id' => Forms\Components\TextInput::make('treatment_id')
-                ->maxLength(36)
-                ->default(null),
-            'consent_id' => Forms\Components\Select::make('consent_id')
-                ->relationship('consent', 'id'),
-            'subject_id' => Forms\Components\TextInput::make('subject_id')
-                ->required()
-                ->maxLength(191),
-            'ip' => Forms\Components\TextInput::make('ip')
-                ->required()
-                ->maxLength(191),
-            'action' => Forms\Components\TextInput::make('action')
-                ->required()
-                ->maxLength(191),
-            'payload' => Forms\Components\Textarea::make('payload')
-                ->required()
-                ->columnSpanFull(),
+            'treatment_id' => Forms\Components\TextInput::make('treatment_id')->maxLength(36)->default(null),
+            'consent_id' => Forms\Components\Select::make('consent_id')->relationship('consent', 'id'),
+            'subject_id' => Forms\Components\TextInput::make('subject_id')->required()->maxLength(191),
+            'ip' => Forms\Components\TextInput::make('ip')->required()->maxLength(191),
+            'action' => Forms\Components\TextInput::make('action')->required()->maxLength(191),
+            'payload' => Forms\Components\Textarea::make('payload')->required()->columnSpanFull(),
         ];
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

@@ -12,6 +12,7 @@ class ListLegalOffices extends XotBaseListRecords
 {
     protected static string $resource = LegalOfficeResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

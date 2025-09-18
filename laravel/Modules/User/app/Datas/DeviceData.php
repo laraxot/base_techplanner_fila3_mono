@@ -19,45 +19,42 @@ use Webmozart\Assert\Assert;
 class DeviceData extends Data
 {
     /*
-    case ApplicationVersion = 'X-App-Version';
-    case Application = 'X-Application';
-    case DeviceId = 'X-Device-Id';
-    case NotificationCode = 'X-Notification-Code';
-    case OperatingSystem = 'X-Operating-System';
-    case SynchronizationId = 'X-Synchronization-Identifier';
-    */
-    public ?string $appVersion = null;
+     * case ApplicationVersion = 'X-App-Version';
+     * case Application = 'X-Application';
+     * case DeviceId = 'X-Device-Id';
+     * case NotificationCode = 'X-Notification-Code';
+     * case OperatingSystem = 'X-Operating-System';
+     * case SynchronizationId = 'X-Synchronization-Identifier';
+     */
+    public null|string $appVersion = null;
 
     // = 'X-App-Version';
-    public ?string $application = null;
+    public null|string $application = null;
 
     // = 'X-Application';
-    public ?string $deviceId = null;
+    public null|string $deviceId = null;
 
     // = 'X-Device-Id';
-    public ?string $notificationCode = null;
+    public null|string $notificationCode = null;
 
     // = 'X-Notification-Code';
-    public ?string $operatingSystem = null;
+    public null|string $operatingSystem = null;
 
     // = 'X-Operating-System';
-    public ?string $synchronizationId = null; // = 'X-Synchronization-Identifier';
+    public null|string $synchronizationId = null; // = 'X-Synchronization-Identifier';
 
     public static function make(): self
     {
-        $headers = collect(request()->header())
-            ->mapWithKeys(
-                static function ($item, $key): array {
-                    if (Str::startsWith($key, 'X-')) {
-                        // $key = Str::afterFirst($key, 'X-');
-                        $key = Str::after($key, 'X-');
-                    }
+        $headers = collect(request()->header())->mapWithKeys(static function ($item, $key): array {
+            if (Str::startsWith($key, 'X-')) {
+                // $key = Str::afterFirst($key, 'X-');
+                $key = Str::after($key, 'X-');
+            }
 
-                    $key = Str::camel($key);
+            $key = Str::camel($key);
 
-                    return [$key => $item];
-                }
-            )->all();
+            return [$key => $item];
+        })->all();
 
         return self::from($headers);
     }
@@ -84,27 +81,25 @@ class DeviceData extends Data
         /**
          * @phpstan-ignore staticMethod.nonObject
          */
-        $synchronization = $synchronizationClass::create(
-            [
-                // $synchronization = Synchronization::create([
-                'user_id' => auth()->id(),
-                'mobile_device_id' => $this->deviceId,
-                'application' => $this->application ?? 'No-Set',
-                'application_version' => $this->appVersion ?? 'No-Set',
-                'api_name' => $apiName,
-                'called_at' => Carbon::now(),
-                // fulfilled_at
-            ]
-        );
-        Assert::string($synchronizationId = $synchronization->id);
+        $synchronization = $synchronizationClass::create([
+            // $synchronization = Synchronization::create([
+            'user_id' => auth()->id(),
+            'mobile_device_id' => $this->deviceId,
+            'application' => $this->application ?? 'No-Set',
+            'application_version' => $this->appVersion ?? 'No-Set',
+            'api_name' => $apiName,
+            'called_at' => Carbon::now(),
+            // fulfilled_at
+        ]);
+        Assert::string($synchronizationId = $synchronization->id, __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
         $this->synchronizationId = $synchronizationId;
 
         return $this->synchronizationId;
     }
 
     /*
-    public function getModel(){
-        MobileDevice::firstOrCreate();
-    }
-    */
+     * public function getModel(){
+     * MobileDevice::firstOrCreate();
+     * }
+     */
 }

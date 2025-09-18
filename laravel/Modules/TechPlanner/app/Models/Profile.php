@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\TechPlanner\Models;
 
 use Modules\User\Models\BaseProfile;
@@ -73,4 +76,6 @@ use Modules\User\Models\BaseProfile;
  * @method   static \Illuminate\Database\Eloquent\Builder<static>|Profile withoutRole($roles, $guard = null)
  * @mixin \Eloquent
  */
-class Profile extends BaseProfile {}
+class Profile extends BaseProfile
+{
+}

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Modules\Lang\Actions\GetAllTranslationAction;
 use Modules\Lang\Actions\ReadTranslationFileAction;
 use Modules\Lang\Actions\WriteTranslationFileAction;
+
 use function Safe\json_encode;
 
 /**
@@ -47,10 +48,10 @@ class TranslationFile extends BaseModel
     ];
 
     protected array $schema = [
-        'key' => "string",
-        'path' => "string",
-        'id' => "string",
-        'name' => "string",
+        'key' => 'string',
+        'path' => 'string',
+        'id' => 'string',
+        'name' => 'string',
         'content' => 'json',
     ];
 
@@ -70,26 +71,23 @@ class TranslationFile extends BaseModel
     public function getRows(): array
     {
         $files = app(GetAllTranslationAction::class)->execute();
-        $rows = Arr::map($files, function($item) {
+        $rows = Arr::map($files, function ($item) {
             $item['id'] = $item['key'];
             $item['name'] = basename($item['path'], '.php');
 
-
-            $item['content']=json_encode(File::getRequire($item['path']));
+            $item['content'] = json_encode(File::getRequire($item['path']));
             /*
-            // Carica il contenuto del file
-            try {
-                $readAction = app(ReadTranslationFileAction::class);
-                $item['content'] = $readAction->execute($item['path']);
-            } catch (\Exception $e) {
-                $item['content'] = [];
-            }
-            */
+             * // Carica il contenuto del file
+             * try {
+             * $readAction = app(ReadTranslationFileAction::class);
+             * $item['content'] = $readAction->execute($item['path']);
+             * } catch (\Exception $e) {
+             * $item['content'] = [];
+             * }
+             */
             //dddx($item);
             return $item;
         });
         return $rows;
     }
-
-   
 }

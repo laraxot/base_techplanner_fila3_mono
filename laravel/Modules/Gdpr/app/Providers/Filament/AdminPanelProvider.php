@@ -14,13 +14,17 @@ class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Gdpr';
 
+    #[\Override]
     public function panel(Panel $panel): Panel
     {
         $panel = parent::panel($panel);
-        FilamentAsset::register([
-            Css::make('gdpr-styles', asset('/vendor/cookie-consent/css/cookie-consent.css')),
-            // Js::make('gdpr-scripts', __DIR__.'/../../resources/dist/assets/app2.js'),
-        ], 'gdpr');
+        FilamentAsset::register(
+            [
+                Css::make('gdpr-styles', asset('/vendor/cookie-consent/css/cookie-consent.css')),
+                // Js::make('gdpr-scripts', __DIR__.'/../../resources/dist/assets/app2.js'),
+            ],
+            'gdpr',
+        );
 
         return $panel;
     }

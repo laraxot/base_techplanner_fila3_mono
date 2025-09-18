@@ -34,29 +34,31 @@ class EditWorkHour extends XotBaseEditRecord
         $currentRecord = $this->record;
 
         // Ensure we have a WorkHour record
-        if (! ($currentRecord instanceof WorkHour)) {
+        if (!($currentRecord instanceof WorkHour)) {
             throw new \InvalidArgumentException('Expected WorkHour record');
         }
 
         // Validate and cast form data
         $timestampValue = $data['timestamp'] ?? null;
-        if (! is_string($timestampValue) && ! ($timestampValue instanceof \DateTimeInterface)) {
+        if (!is_string($timestampValue) && !($timestampValue instanceof \DateTimeInterface)) {
             throw new \InvalidArgumentException('Invalid timestamp format');
         }
 
         $employeeIdValue = $data['employee_id'] ?? null;
-        if (! is_numeric($employeeIdValue)) {
+        if (!is_numeric($employeeIdValue)) {
             throw new \InvalidArgumentException('Invalid employee ID');
         }
         $employeeId = (int) $employeeIdValue;
 
-        $newTimestamp = Carbon::parse(is_string($timestampValue) ? $timestampValue : $timestampValue->format('Y-m-d H:i:s'));
+        $newTimestamp = Carbon::parse(
+            is_string($timestampValue) ? $timestampValue : $timestampValue->format('Y-m-d H:i:s'),
+        );
 
         // Skip validation if no changes to critical fields
         if (
             $currentRecord->employee_id === $data['employee_id'] &&
-            $currentRecord->type === $data['type'] &&
-            $currentRecord->timestamp->eq($newTimestamp)
+                $currentRecord->type === $data['type'] &&
+                $currentRecord->timestamp->eq($newTimestamp)
         ) {
             return;
         }
@@ -90,7 +92,7 @@ class EditWorkHour extends XotBaseEditRecord
         }
     }
 
-    protected function getSavedNotificationTitle(): ?string
+    protected function getSavedNotificationTitle(): null|string
     {
         return 'Work hour entry updated successfully';
     }

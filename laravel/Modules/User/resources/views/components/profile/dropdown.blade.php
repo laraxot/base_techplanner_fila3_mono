@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'alignment' => 'right',
     'width' => '48',
@@ -44,4 +49,4 @@ switch ($width) {
             {{ $content }}
         </div>
     </div>
-</div> 
+</div>

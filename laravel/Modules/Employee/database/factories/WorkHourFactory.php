@@ -6,10 +6,10 @@ namespace Modules\Employee\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Employee\Models\WorkHour;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\WorkHour;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Employee\Models\WorkHour>
@@ -30,11 +30,11 @@ class WorkHourFactory extends Factory
         $hour = $this->faker->numberBetween(8, 18);
         $minute = $this->faker->randomElement([0, 15, 30, 45]);
         $carbonTimestamp = Carbon::instance($timestamp)->setTime(
-            is_int($hour) ? $hour : (int) $hour,
-            is_int($minute) ? $minute : (int) $minute,
-            0
+            is_int($hour) ? $hour : ((int) $hour),
+            is_int($minute) ? $minute : ((int) $minute),
+            0,
         );
-        
+
         return [
             'employee_id' => Employee::factory(),
             'type' => $this->faker->randomElement(WorkHourTypeEnum::values()),
@@ -42,11 +42,13 @@ class WorkHourFactory extends Factory
             'location_lat' => $this->faker->optional(0.3)->latitude(),
             'location_lng' => $this->faker->optional(0.3)->longitude(),
             'location_name' => $this->faker->optional(0.3)->address(),
-            'device_info' => $this->faker->optional(0.2)->randomElements([
-                'device_type' => 'mobile',
-                'browser' => $this->faker->userAgent(),
-                'ip_address' => $this->faker->ipv4(),
-            ]),
+            'device_info' => $this->faker
+                ->optional(0.2)
+                ->randomElements([
+                    'device_type' => 'mobile',
+                    'browser' => $this->faker->userAgent(),
+                    'ip_address' => $this->faker->ipv4(),
+                ]),
             'photo_path' => $this->faker->optional(0.1)->imageUrl(),
             'notes' => $this->faker->optional(0.3)->sentence(),
             'status' => $this->faker->randomElement(WorkHourStatusEnum::values()),
@@ -65,13 +67,13 @@ class WorkHourFactory extends Factory
     public function workDaySequence(int $employeeId, Carbon $date): array
     {
         $entries = [];
-        
+
         $clockInTime = $date->copy()->setTime(
             (int) $this->faker->numberBetween(8, 9),
             (int) $this->faker->randomElement([0, 15, 30, 45]),
-            0
+            0,
         );
-        
+
         /** @var \Modules\Employee\Models\WorkHour $clockIn */
         $clockIn = $this->state([
             'employee_id' => $employeeId,
@@ -161,7 +163,7 @@ class WorkHourFactory extends Factory
             'timestamp' => $date->copy()->setTime(
                 (int) $this->faker->numberBetween(8, 18),
                 (int) $this->faker->randomElement([0, 15, 30, 45]),
-                0
+                0,
             ),
         ]);
     }

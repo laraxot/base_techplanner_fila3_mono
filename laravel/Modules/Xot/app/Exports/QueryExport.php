@@ -27,40 +27,40 @@ class QueryExport implements FromQuery, ShouldQueue, WithChunkReading, WithHeadi
     /** @var array<int, string> */
     public array $fields = [];
 
-    public ?string $transKey = null;
+    public null|string $transKey = null;
 
     public QueryBuilder|EloquentBuilder $query;
 
     /**
      * @param array<int, string> $fields
      */
-    public function __construct(QueryBuilder|EloquentBuilder $query, ?string $transKey = null, array $fields = [])
+    public function __construct(QueryBuilder|EloquentBuilder $query, null|string $transKey = null, array $fields = [])
     {
         $this->query = $query;
         $this->transKey = $transKey;
         $this->fields = $fields;
 
         /*
-        $this->headings = collect($query->first())
-            ->keys()
-            ->map(
-                function ($item) use ($transKey) {
-                    $t = $transKey.'.'.$item;
-                    $trans = trans($t);
-                    if ($trans != $t) {
-                        return $trans;
-                    }
-
-                    return $item;
-                }
-            )
-            ->toArray();
-        */
+         * $this->headings = collect($query->first())
+         * ->keys()
+         * ->map(
+         * function ($item) use ($transKey) {
+         * $t = $transKey.'.'.$item;
+         * $trans = trans($t);
+         * if ($trans != $t) {
+         * return $trans;
+         * }
+         *
+         * return $item;
+         * }
+         * )
+         * ->toArray();
+         */
     }
 
     public function getHead(): Collection
     {
-        if (! empty($this->fields)) {
+        if (!empty($this->fields)) {
             return collect($this->fields);
         }
         /**
@@ -90,6 +90,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithChunkReading, WithHeadi
     public function query(): QueryBuilder|EloquentBuilder|Relation
     {
         return $this->query;
+
         // ->orderBy('id');
     }
 
@@ -103,13 +104,11 @@ class QueryExport implements FromQuery, ShouldQueue, WithChunkReading, WithHeadi
      */
     public function map($item): array
     {
-        if (! empty($this->fields)) {
+        if (!empty($this->fields)) {
             return collect($item)->toArray();
         }
 
         // rameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
-        return collect($item)
-            ->only($this->fields)
-            ->toArray();
+        return collect($item)->only($this->fields)->toArray();
     }
 }

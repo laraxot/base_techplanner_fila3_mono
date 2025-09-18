@@ -11,28 +11,18 @@ use Filament\Forms\Components\TextInput;
 
 class Image
 {
-    public static function make(
-        string $name = 'image',
-        string $context = 'form',
-    ): Block {
+    public static function make(string $name = 'image', string $context = 'form'): Block
+    {
         return Block::make($name)
-            ->schema(
-                [
-                    FileUpload::make('image'),
-
-                    TextInput::make('url'),
-
-                    Select::make('ratio')
-                        ->options(static::getRatios())
-                        ->afterStateHydrated(static fn ($state, $set) => $state || $set('ratio', '4-3')),
-
-                    TextInput::make('alt')
-                        ->columnSpanFull(),
-
-                    TextInput::make('caption')
-                        ->columnSpanFull(),
-                ]
-            )
+            ->schema([
+                FileUpload::make('image'),
+                TextInput::make('url'),
+                Select::make('ratio')
+                    ->options(static::getRatios())
+                    ->afterStateHydrated(static fn($state, $set) => $state || $set('ratio', '4-3')),
+                TextInput::make('alt')->columnSpanFull(),
+                TextInput::make('caption')->columnSpanFull(),
+            ])
             ->columns('form' === $context ? 2 : 1);
     }
 
@@ -61,9 +51,7 @@ class Image
                 ->required()
                 ->image()
                 ->maxSize(5120),
-            \Filament\Forms\Components\TextInput::make('url')
-                ->url()
-                ->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('url')->url()->maxLength(255),
         ];
     }
 }

@@ -10,16 +10,16 @@ use Modules\User\Models\User;
 
 /**
  * Notification Factory
- * 
+ *
  * Factory for creating Notification model instances for testing and seeding.
- * 
+ *
  * @extends Factory<Notification>
  */
 class NotificationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<Notification>
      */
     protected $model = Notification::class;
@@ -58,7 +58,7 @@ class NotificationFactory extends Factory
      */
     public function unread(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'read_at' => null,
         ]);
     }
@@ -70,7 +70,7 @@ class NotificationFactory extends Factory
      */
     public function read(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'read_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
         ]);
     }
@@ -83,33 +83,35 @@ class NotificationFactory extends Factory
      */
     public function forUser(User $user): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'notifiable_type' => User::class,
             'notifiable_id' => $user->id,
         ]);
     }
 
-         /**
-      * Create notification with high priority.
-      *
-      * @return static
-      */
-     public function highPriority(): static
-     {
-         return $this->state(fn (array $attributes): array => [
-             'data' => array_merge(
-                 is_array($attributes['data'] ?? null) ? $attributes['data'] : [
-                     'title' => $this->faker->sentence(4),
-                     'message' => $this->faker->text(200),
-                     'action_url' => $this->faker->optional()->url(),
-                     'priority' => 'medium',
-                 ],
-                 [
-                     'priority' => 'high',
-                 ]
-             ),
-         ]);
-     }
+    /**
+     * Create notification with high priority.
+     *
+     * @return static
+     */
+    public function highPriority(): static
+    {
+        return $this->state(fn(array $attributes): array => [
+            'data' => array_merge(
+                is_array($attributes['data'] ?? null)
+                    ? $attributes['data']
+                    : [
+                        'title' => $this->faker->sentence(4),
+                        'message' => $this->faker->text(200),
+                        'action_url' => $this->faker->optional()->url(),
+                        'priority' => 'medium',
+                    ],
+                [
+                    'priority' => 'high',
+                ],
+            ),
+        ]);
+    }
 
     /**
      * Create notification with specific type.
@@ -119,7 +121,7 @@ class NotificationFactory extends Factory
      */
     public function ofType(string $type): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'type' => $type,
         ]);
     }

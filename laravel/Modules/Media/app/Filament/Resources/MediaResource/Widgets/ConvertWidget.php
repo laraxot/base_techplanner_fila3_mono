@@ -42,11 +42,9 @@ class ConvertWidget extends Widget
 
         // dddx($file_mp4);
 
-        $format = new \FFMpeg\Format\Video\WebM;
+        $format = new \FFMpeg\Format\Video\WebM();
         $extension = mb_strtolower(class_basename($format));
-        $file_new = Str::of($file_mp4)
-            ->replaceLast('.mp4', '.'.$extension)
-            ->toString();
+        $file_new = Str::of($file_mp4)->replaceLast('.mp4', '.' . $extension)->toString();
 
         /*
          * -preset ultrafast.
@@ -84,7 +82,8 @@ class ConvertWidget extends Widget
             // Pause for 1 second between numbers...
             // sleep(1);
 
-            $this->start = "{$this->percentage}% transcoded".PHP_EOL."{$this->remaining} seconds left at rate: {$this->rate}";
+            $this->start =
+                "{$this->percentage}% transcoded" . PHP_EOL . "{$this->remaining} seconds left at rate: {$this->rate}";
 
             // Decrement the counter...
             // $this->start = $this->start - 1;

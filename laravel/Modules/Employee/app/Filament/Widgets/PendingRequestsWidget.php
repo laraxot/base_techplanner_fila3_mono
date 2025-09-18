@@ -18,13 +18,14 @@ class PendingRequestsWidget extends XotBaseWidget
 
     protected int|string|array $columnSpan = 1;
 
-    protected static ?int $sort = 5;
+    protected static null|int $sort = 5;
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];

@@ -17,7 +17,10 @@ class WebbingbrasilMap extends MapWidget
     public function getMarkers(): array
     {
         return [
-            Marker::make('pos2')->lat(-15.7942)->lng(-47.8822)->popup('Hello Brasilia!'),
+            Marker::make('pos2')
+                ->lat(-15.7942)
+                ->lng(-47.8822)
+                ->popup('Hello Brasilia!'),
         ];
     }
 

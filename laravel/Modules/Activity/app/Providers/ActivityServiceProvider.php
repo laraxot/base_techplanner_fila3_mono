@@ -43,6 +43,7 @@ class ActivityServiceProvider extends XotBaseServiceProvider
      *
      * @return void
      */
+    #[\Override]
     public function boot(): void
     {
         parent::boot();
@@ -56,25 +57,20 @@ class ActivityServiceProvider extends XotBaseServiceProvider
      *
      * @return void
      */
-    public function register(): void
-    {
-        parent::register();
-        // Additional register logic can be added here
-    }
     
+
     /**
      * Registra le configurazioni del modulo.
      *
      * @return void
      */
+    #[\Override]
     protected function registerConfig(): void
     {
         $this->publishes([
             module_path($this->name, 'config/config.php') => config_path('activity.php'),
         ], 'config');
-        
-        $this->mergeConfigFrom(
-            module_path($this->name, 'config/config.php'), 'activity'
-        );
+
+        $this->mergeConfigFrom(module_path($this->name, 'config/config.php'), 'activity');
     }
 }

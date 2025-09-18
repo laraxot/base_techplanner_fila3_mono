@@ -7,7 +7,6 @@ namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
-use Illuminate\Foundation\Testing\WithFaker;use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\ClientResource;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages\CreateClient;
 use Modules\TechPlanner\Filament\Resources\ClientResource\Pages\EditClient;
@@ -19,9 +18,7 @@ use Tests\TestCase;
 class ClientResourceTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
-
-class ClientResourceTest extends TestCase
-{
+    
     protected User $admin;
 
     protected function setUp(): void

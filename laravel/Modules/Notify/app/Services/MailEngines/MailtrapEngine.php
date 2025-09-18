@@ -21,19 +21,19 @@ use Webmozart\Assert\Assert;
  */
 class MailtrapEngine
 {
-    public ?string $from = null;
+    public null|string $from = null;
 
     public string $to;
 
     public string $driver;
 
-    public ?string $body = null;
+    public null|string $body = null;
 
-    private static ?self $instance = null;
+    private static null|self $instance = null;
 
     public static function getInstance(): self
     {
-        if (! self::$instance instanceof self) {
+        if (!(self::$instance instanceof self)) {
             self::$instance = new self();
         }
 
@@ -68,7 +68,7 @@ class MailtrapEngine
         // Mail::raw('Hello World!', function($msg) {$msg->to('vair81@gmail.com')->subject('Test Email'); });
 
         // try {
-        Assert::string($this->body);
+        Assert::string($this->body, __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
         Mail::raw($this->body, function (Message $msg): void {
             // Verifichiamo che $this->to sia valido
             $to = $this->to;
@@ -80,6 +80,7 @@ class MailtrapEngine
 
             $msg->to($to)->subject('Test Email');
         });
+
         // Dead catch - ErrorException is never thrown in the try block.
         // } catch (ErrorException $e) {
         //    throw new Exception('['.__LINE__.']['.class_basename($this).']');

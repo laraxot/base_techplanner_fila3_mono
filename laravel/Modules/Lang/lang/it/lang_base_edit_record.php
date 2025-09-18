@@ -1,11 +1,12 @@
 <?php
 
-return  [
-  'actions' => 
-   [
-    'activeLocale' => 
-     [
-      'label' => 'activeLocale',
+declare(strict_types=1);
+
+
+return [
+    'actions' => [
+        'activeLocale' => [
+            'label' => 'activeLocale',
+        ],
     ],
-  ],
 ];

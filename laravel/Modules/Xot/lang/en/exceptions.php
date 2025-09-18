@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'backend' => [
         'takeaway' => [
             'newsletterSubscribe' => [
-                'messages' => [
-                ],
+                'messages' => [],
             ],
             'category' => [
                 'create_error' => 'Create Error',

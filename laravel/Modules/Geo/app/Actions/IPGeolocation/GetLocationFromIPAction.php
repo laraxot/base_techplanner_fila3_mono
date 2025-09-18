@@ -9,12 +9,11 @@ use Modules\Geo\Datas\IPLocationData;
 /**
  * Classe per ottenere la posizione da un indirizzo IP.
  */
-class GetLocationFromIPAction
+readonly class GetLocationFromIPAction
 {
     public function __construct(
-        private readonly FetchIPLocationAction $fetchIPLocationAction,
-    ) {
-    }
+        private  FetchIPLocationAction $fetchIPLocationAction,
+    ) {}
 
     /**
      * Ottiene i dati di geolocalizzazione per un indirizzo IP.
@@ -23,7 +22,7 @@ class GetLocationFromIPAction
      *
      * @return IPLocationData|null Dati di geolocalizzazione o null se non disponibili
      */
-    public function execute(string $ip): ?IPLocationData
+    public function execute(string $ip): null|IPLocationData
     {
         return $this->fetchIPLocationAction->execute($ip);
     }

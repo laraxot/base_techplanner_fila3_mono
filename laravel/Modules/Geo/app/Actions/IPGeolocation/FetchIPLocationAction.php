@@ -34,7 +34,7 @@ class FetchIPLocationAction
      */
     public function execute(string $ip): IPLocationData
     {
-        $response = $this->client->get(self::API_URL.$ip, [
+        $response = $this->client->get(self::API_URL . $ip, [
             'query' => [
                 'fields' => implode(',', [
                     'status',
@@ -69,7 +69,7 @@ class FetchIPLocationAction
         $data = json_decode($response->getBody()->getContents(), true);
 
         if ('success' !== $data['status']) {
-            throw new \RuntimeException('Failed to get IP location: '.($data['message'] ?? 'Unknown error'));
+            throw new \RuntimeException('Failed to get IP location: ' . ($data['message'] ?? 'Unknown error'));
         }
 
         return new IPLocationData(

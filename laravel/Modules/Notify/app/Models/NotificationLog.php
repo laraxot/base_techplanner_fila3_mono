@@ -9,7 +9,7 @@ use Modules\Notify\Enums\NotificationLogStatusEnum;
 
 /**
  * Modello per il logging delle notifiche.
- * 
+ *
  * @property int $id
  * @property int|null $template_id
  * @property string $recipient_type
@@ -72,20 +72,21 @@ final class NotificationLog extends BaseModel
      * Scope per filtrare i log per notifiable.
      */
     public function scopeForNotifiable(
-        \Illuminate\Database\Eloquent\Builder $query, 
-        \Illuminate\Database\Eloquent\Model $notifiable
+        \Illuminate\Database\Eloquent\Builder $query,
+        \Illuminate\Database\Eloquent\Model $notifiable,
     ): \Illuminate\Database\Eloquent\Builder {
-        return $query
-            ->where('recipient_type', $notifiable->getMorphClass())
-            ->where('recipient_id', $notifiable->getKey());
+        return $query->where('recipient_type', $notifiable->getMorphClass())->where(
+            'recipient_id',
+            $notifiable->getKey(),
+        );
     }
 
     /**
      * Scope per filtrare i log per stato.
      */
     public function scopeWithStatus(
-        \Illuminate\Database\Eloquent\Builder $query, 
-        NotificationLogStatusEnum $status
+        \Illuminate\Database\Eloquent\Builder $query,
+        NotificationLogStatusEnum $status,
     ): \Illuminate\Database\Eloquent\Builder {
         return $query->where('status', $status);
     }
@@ -94,8 +95,8 @@ final class NotificationLog extends BaseModel
      * Scope per filtrare i log per template.
      */
     public function scopeForTemplate(
-        \Illuminate\Database\Eloquent\Builder $query, 
-        int $templateId
+        \Illuminate\Database\Eloquent\Builder $query,
+        int $templateId,
     ): \Illuminate\Database\Eloquent\Builder {
         return $query->where('template_id', $templateId);
     }

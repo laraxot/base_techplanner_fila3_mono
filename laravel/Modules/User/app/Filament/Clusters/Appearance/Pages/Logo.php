@@ -23,15 +23,15 @@ class Logo extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    public ?array $logoData = [];
+    public null|array $logoData = [];
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static null|string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'user::filament.clusters.appearance.pages.logo';
 
-    protected static ?string $cluster = Appearance::class;
+    protected static null|string $cluster = Appearance::class;
 
-    protected static ?int $navigationSort = 1;
+    protected static null|int $navigationSort = 1;
 
     public function mount(): void
     {
@@ -56,7 +56,8 @@ class Logo extends Page implements HasForms
                 FileUpload::make('logo_dark'),
                 TextInput::make('logo_height')->numeric()->default(32),
                 // ])->columns(2),
-            ])->columns(2)
+            ])
+            ->columns(2)
             // ->model($this->getUser())
             ->statePath('logoData');
     }
@@ -66,6 +67,7 @@ class Logo extends Page implements HasForms
         try {
             $data = $this->form->getState();
             dddx($data);
+
             // $this->handleRecordUpdate($this->getUser(), $data);
         } catch (Halt $exception) {
             dddx($exception->getMessage());
@@ -85,9 +87,7 @@ class Logo extends Page implements HasForms
     protected function getUpdateLogoFormActions(): array
     {
         return [
-            Action::make('updateLogoAction')
-
-                ->submit('editLogoForm'),
+            Action::make('updateLogoAction')->submit('editLogoForm'),
         ];
     }
 

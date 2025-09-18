@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-panels::page>
     <div class="space-y-6">
         <div class="p-4 bg-white rounded-lg shadow">
@@ -43,4 +48,4 @@
             </div>
         </div>
     </div>
-</x-filament-panels::page> 
+</x-filament-panels::page>

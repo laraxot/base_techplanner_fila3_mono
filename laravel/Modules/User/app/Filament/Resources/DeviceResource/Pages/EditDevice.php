@@ -6,7 +6,6 @@ namespace Modules\User\Filament\Resources\DeviceResource\Pages;
 
 use Filament\Actions\DeleteAction;
 use Modules\User\Filament\Resources\DeviceResource;
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class EditDevice extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord

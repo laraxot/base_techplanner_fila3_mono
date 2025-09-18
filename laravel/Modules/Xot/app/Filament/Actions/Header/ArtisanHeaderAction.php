@@ -21,8 +21,7 @@ class ArtisanHeaderAction extends Action
     {
         parent::setUp();
         $this->translateLabel()
-
-            // 
+            
             // ->tooltip(__('xot::actions.export_xls'))
 
             // ->icon('heroicon-o-cloud-arrow-down')
@@ -40,7 +39,7 @@ class ArtisanHeaderAction extends Action
             });
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'artisan_action';
     }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="leave-balance-display p-4">
     @foreach($balances as $key => $balance)
         <div class="balance-item mb-4 last:mb-0">

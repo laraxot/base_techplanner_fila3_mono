@@ -59,9 +59,9 @@ class OauthClient extends PassportClient
     protected $connection = 'user';
 
     /*
-    protected $fillable = [
-        'id', 'user_id', 'name', 'secret', 'provider', 'redirect',
-        'personal_access_client', 'password_client', 'revoked',
-    ];
-    */
+     * protected $fillable = [
+     * 'id', 'user_id', 'name', 'secret', 'provider', 'redirect',
+     * 'personal_access_client', 'password_client', 'revoked',
+     * ];
+     */
 }

@@ -5,17 +5,13 @@ declare(strict_types=1);
 return [
     'navigation' => [
         'label' => 'Telefonanrufe',
-        'group' => 'TechPlanner',
-        'icon' => 'heroicon-o-phone',
-        'sort' => 2,
-    ],
-    'resource' => [
-        'label' => 'Telefonanruf',
-        'plural_label' => 'Telefonanrufe',
-        'navigation_group' => 'TechPlanner',
-        'navigation_icon' => 'heroicon-o-phone',
-        'navigation_sort' => 2,
-        'description' => 'Verwaltung von Telefonanrufen',
+        'name' => 'Telefonanruf',
+        'plural' => 'Telefonanrufe',
+        'group' => [
+            'name' => 'Admin',
+        ],
+        'sort' => 51,
+        'icon' => 'techplanner-phone-call',
     ],
     'enums' => [
         'inbound' => [
@@ -28,103 +24,192 @@ return [
             'color' => 'warning',
             'icon' => 'heroicon-o-arrow-up',
         ],
-        'missed' => [
-            'label' => 'Verpasst',
-            'color' => 'danger',
-            'icon' => 'heroicon-o-x-circle',
-        ],
     ],
     'actions' => [
         'create' => [
-            'label' => 'Neuer Anruf',
-            'icon' => 'heroicon-o-plus',
-            'color' => 'primary',
-            'tooltip' => 'Neuen Telefonanruf aufzeichnen',
-        ],
-        'edit' => [
-            'label' => 'Anruf bearbeiten',
-            'icon' => 'heroicon-o-pencil',
-            'color' => 'warning',
-            'tooltip' => 'Ausgewählten Anruf bearbeiten',
-        ],
-        'delete' => [
-            'label' => 'Anruf löschen',
-            'icon' => 'heroicon-o-trash',
-            'color' => 'danger',
-            'tooltip' => 'Ausgewählten Anruf löschen',
-        ],
-        'view' => [
-            'label' => 'Anruf anzeigen',
-            'icon' => 'heroicon-o-eye',
-            'color' => 'info',
-            'tooltip' => 'Anrufdetails anzeigen',
+            'label' => 'Erstellen',
         ],
         'import' => [
-            'label' => 'Anrufe importieren',
-            'icon' => 'heroicon-o-arrow-up-tray',
-            'color' => 'secondary',
-            'tooltip' => 'Anrufe aus externer Datei importieren',
+            'label' => 'Importieren',
+        ],
+        'importClient' => [
+            'label' => 'Kunde importieren',
         ],
     ],
     'fields' => [
-        'client_id' => [
-            'label' => 'Kunde',
-            'placeholder' => 'Kunde auswählen',
-            'help' => 'Der Kunde, mit dem der Anruf geführt wurde',
-        ],
         'date' => [
             'label' => 'Datum',
-            'placeholder' => 'Datum auswählen',
-            'help' => 'Datum des Anrufs',
         ],
         'duration' => [
             'label' => 'Dauer',
-            'placeholder' => 'Dauer in Minuten eingeben',
-            'help' => 'Dauer des Anrufs in Minuten',
         ],
         'notes' => [
             'label' => 'Notizen',
-            'placeholder' => 'Anrufnotizen eingeben',
-            'help' => 'Notizen und Details zum Anruf',
+            'description' => 'notes',
         ],
         'call_type' => [
             'label' => 'Anruftyp',
-            'placeholder' => 'Typ auswählen',
-            'help' => 'Art des geführten Anrufs',
-            'options' => [
-                'inbound' => 'Eingehend',
-                'outbound' => 'Ausgehend',
-                'missed' => 'Verpasst',
-            ],
+            'description' => 'call_type',
+            'helper_text' => 'call_type',
         ],
         'id' => [
             'label' => 'ID',
-            'help' => 'Eindeutiger Bezeichner des Anrufs',
+        ],
+        'business_closed' => [
+            'label' => 'Geschlossen',
+        ],
+        'company_name' => [
+            'label' => 'Firmenname',
+        ],
+        'latitude' => [
+            'label' => 'Breitengrad',
+        ],
+        'longitude' => [
+            'label' => 'Längengrad',
+        ],
+        'distance' => [
+            'label' => 'Entfernung',
+        ],
+        'distance_km' => [
+            'label' => 'Entfernung (km)',
+        ],
+        'is_active' => [
+            'label' => 'Aktiv',
+        ],
+        'full_address' => [
+            'label' => 'Vollständige Adresse',
+        ],
+        'country' => [
+            'label' => 'Land',
+        ],
+        'fiscal_code' => [
+            'label' => 'Steuerliche Identifikationsnummer',
+        ],
+        'competent_health_unit' => [
+            'label' => 'Zuständige Gesundheitsbehörde',
+        ],
+        'tax_code' => [
+            'label' => 'Firmensteuercode',
+        ],
+        'vat_number' => [
+            'label' => 'USt-IdNr.',
+        ],
+        'company_office' => [
+            'label' => 'Firmensitz',
+        ],
+        'address' => [
+            'label' => 'Adresse',
+        ],
+        'street_number' => [
+            'label' => 'Hausnummer',
+        ],
+        'province' => [
+            'label' => 'Provinz',
+        ],
+        'postal_code' => [
+            'label' => 'Postleitzahl',
+        ],
+        'phone' => [
+            'label' => 'Telefon',
+        ],
+        'fax' => [
+            'label' => 'Fax',
+        ],
+        'mobile' => [
+            'label' => 'Mobil',
+        ],
+        'email' => [
+            'label' => 'E-Mail',
+        ],
+        'activity' => [
+            'label' => 'Aktivität',
+        ],
+        'name' => [
+            'label' => 'Name',
+        ],
+        'city' => [
+            'label' => 'Stadt',
+        ],
+        'toggleColumns' => [
+            'label' => 'Spalten umschalten',
+        ],
+        'reorderRecords' => [
+            'label' => 'Datensätze neu ordnen',
+        ],
+        'detach' => [
+            'label' => 'Trennen',
+        ],
+        'resetFilters' => [
+            'label' => 'Filter zurücksetzen',
+        ],
+        'applyFilters' => [
+            'label' => 'Filter anwenden',
+        ],
+        'openFilters' => [
+            'label' => 'Filter öffnen',
+        ],
+        'edit' => [
+            'label' => 'Bearbeiten',
+        ],
+        'view' => [
+            'label' => 'Anzeigen',
+        ],
+        'attach' => [
+            'label' => 'Anhängen',
+        ],
+        'create' => [
+            'label' => 'Erstellen',
+        ],
+        'delete' => [
+            'label' => 'Löschen',
+        ],
+        'layout' => [
+            'label' => 'layout',
         ],
     ],
-    'filters' => [
-        'client' => [
-            'label' => 'Kunde',
-            'placeholder' => 'Kunde auswählen',
-            'help' => 'Nach spezifischem Kunden filtern',
+    'import' => [
+        'label' => 'Daten importieren',
+        'name' => [
+            'label' => 'Name',
         ],
-        'call_type' => [
-            'label' => 'Anruftyp',
-            'placeholder' => 'Typ auswählen',
-            'help' => 'Nach Anruftyp filtern',
+        'vat_number' => [
+            'label' => 'USt-IdNr.',
         ],
-        'date_range' => [
-            'label' => 'Zeitraum',
-            'from_date' => 'Von Datum',
-            'to_date' => 'Bis Datum',
-            'help' => 'Interessanten Zeitraum auswählen',
+        'fiscal_code' => [
+            'label' => 'Steuerliche Identifikationsnummer',
+        ],
+        'city' => [
+            'label' => 'Stadt',
+        ],
+        'province' => [
+            'label' => 'Provinz',
+        ],
+        'phone' => [
+            'label' => 'Telefon',
+        ],
+        'email' => [
+            'label' => 'E-Mail',
+        ],
+        'is_active' => [
+            'label' => 'Aktiv',
+        ],
+        'created_at' => [
+            'label' => 'Erstellungsdatum',
+        ],
+        'updated_at' => [
+            'label' => 'Letzte Änderung',
+        ],
+        'view' => [
+            'label' => 'Anzeigen',
+        ],
+        'edit' => [
+            'label' => 'Bearbeiten',
+        ],
+        'activity' => [
+            'label' => 'Aktivität',
         ],
     ],
-    'messages' => [
-        'created' => 'Anruf erfolgreich aufgezeichnet',
-        'updated' => 'Anruf erfolgreich aktualisiert',
-        'deleted' => 'Anruf erfolgreich gelöscht',
-        'imported' => 'Anrufe erfolgreich importiert',
+    'model' => [
+        'label' => 'Telefonanruf',
     ],
 ];
-

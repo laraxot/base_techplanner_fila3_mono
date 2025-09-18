@@ -13,11 +13,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\ModelStates\HasStatesContract;
 
-
-
 /**
  * Employee Module User Model
- * 
+ *
  * Extends BaseUser with Single Table Inheritance for Employee module.
  * Parent class for Admin and Employee models using Parental STI.
  *

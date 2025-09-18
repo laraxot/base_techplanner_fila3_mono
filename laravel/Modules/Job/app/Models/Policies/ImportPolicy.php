@@ -20,7 +20,7 @@ class ImportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Import $import): bool
+    public function view(UserContract $user, Import $_import): bool
     {
         return $user->hasPermissionTo('import.view');
     }
@@ -36,7 +36,7 @@ class ImportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Import $import): bool
+    public function update(UserContract $user, Import $_import): bool
     {
         return $user->hasPermissionTo('import.update');
     }
@@ -44,7 +44,7 @@ class ImportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Import $import): bool
+    public function delete(UserContract $user, Import $_import): bool
     {
         return $user->hasPermissionTo('import.delete');
     }
@@ -52,7 +52,7 @@ class ImportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Import $import): bool
+    public function restore(UserContract $user, Import $_import): bool
     {
         return $user->hasPermissionTo('import.restore');
     }

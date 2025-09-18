@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament::section>
     <x-slot name="heading">
         {{ __('user::widgets.edit_user.title') }}

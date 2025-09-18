@@ -58,7 +58,7 @@ class Reset extends Component
                 event(new PasswordReset($user));
 
                 $this->guard()->login($user);
-            }
+            },
         );
 
         /* @phpstan-ignore argument.type */
@@ -83,7 +83,8 @@ class Reset extends Component
 
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
-        app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::livewire.auth.passwords.reset', 'pub_theme::livewire.auth.passwords.reset');
+        app(\Modules\Xot\Actions\File\ViewCopyAction::class)
+            ->execute('user::livewire.auth.passwords.reset', 'pub_theme::livewire.auth.passwords.reset');
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::layouts.auth', 'pub_theme::layouts.auth');
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::layouts.base', 'pub_theme::layouts.base');
 
@@ -93,7 +94,7 @@ class Reset extends Component
         $view = 'pub_theme::livewire.auth.passwords.reset';
 
         return view($view, [
-            'layout' => 'pub_theme::layouts.auth'
+            'layout' => 'pub_theme::layouts.auth',
         ]);
     }
 

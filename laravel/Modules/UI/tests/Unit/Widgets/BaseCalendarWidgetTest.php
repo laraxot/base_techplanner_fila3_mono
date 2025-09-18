@@ -34,12 +34,9 @@ class MockCalendarWidget extends BaseCalendarWidget
     public function getFormSchema(): array
     {
         return [
-            \Filament\Forms\Components\TextInput::make('title')
-                ->required(),
-            \Filament\Forms\Components\DateTimePicker::make('start')
-                ->required(),
-            \Filament\Forms\Components\DateTimePicker::make('end')
-                ->required(),
+            \Filament\Forms\Components\TextInput::make('title')->required(),
+            \Filament\Forms\Components\DateTimePicker::make('start')->required(),
+            \Filament\Forms\Components\DateTimePicker::make('end')->required(),
         ];
     }
 }
@@ -56,7 +53,7 @@ class MockEventModel extends Model
 }
 
 beforeEach(function () {
-    $this->widget = new MockCalendarWidget;
+    $this->widget = new MockCalendarWidget();
 });
 
 describe('BaseCalendarWidget Inheritance', function () {
@@ -138,8 +135,7 @@ describe('BaseCalendarWidget Event Management', function () {
     });
 
     it('handles empty event list', function () {
-        $widget = new class extends BaseCalendarWidget
-        {
+        $widget = new class extends BaseCalendarWidget {
             public string $model = MockEventModel::class;
 
             public function fetchEvents(array $fetchInfo): array
@@ -165,8 +161,7 @@ describe('BaseCalendarWidget Event Management', function () {
     });
 
     it('handles large event lists efficiently', function () {
-        $widget = new class extends BaseCalendarWidget
-        {
+        $widget = new class extends BaseCalendarWidget {
             public string $model = MockEventModel::class;
 
             public function fetchEvents(array $fetchInfo): array
@@ -177,7 +172,7 @@ describe('BaseCalendarWidget Event Management', function () {
                         'id' => $i,
                         'title' => "Event {$i}",
                         'start' => "2025-01-01T{$i}:00:00",
-                        'end' => '2025-01-01T'.($i + 1).':00:00',
+                        'end' => '2025-01-01T' . ($i + 1) . ':00:00',
                         'color' => '#3B82F6',
                     ];
                 }
@@ -217,7 +212,7 @@ describe('BaseCalendarWidget Form Schema', function () {
     it('includes required form fields', function () {
         $formSchema = $this->widget->getFormSchema();
 
-        $fieldNames = collect($formSchema)->map(fn ($field) => $field->getName())->toArray();
+        $fieldNames = collect($formSchema)->map(fn($field) => $field->getName())->toArray();
 
         expect($fieldNames)->toContain('title', 'start', 'end');
     });
@@ -225,7 +220,7 @@ describe('BaseCalendarWidget Form Schema', function () {
     it('has title field with required validation', function () {
         $formSchema = $this->widget->getFormSchema();
 
-        $titleField = collect($formSchema)->first(fn ($field) => $field->getName() === 'title');
+        $titleField = collect($formSchema)->first(fn($field) => $field->getName() === 'title');
 
         expect($titleField)->not->toBeNull();
         expect($titleField->isRequired())->toBeTrue();
@@ -234,7 +229,7 @@ describe('BaseCalendarWidget Form Schema', function () {
     it('has start date field with required validation', function () {
         $formSchema = $this->widget->getFormSchema();
 
-        $startField = collect($formSchema)->first(fn ($field) => $field->getName() === 'start');
+        $startField = collect($formSchema)->first(fn($field) => $field->getName() === 'start');
 
         expect($startField)->not->toBeNull();
         expect($startField->isRequired())->toBeTrue();
@@ -243,7 +238,7 @@ describe('BaseCalendarWidget Form Schema', function () {
     it('has end date field with required validation', function () {
         $formSchema = $this->widget->getFormSchema();
 
-        $endField = collect($formSchema)->first(fn ($field) => $field->getName() === 'end');
+        $endField = collect($formSchema)->first(fn($field) => $field->getName() === 'end');
 
         expect($endField)->not->toBeNull();
         expect($endField->isRequired())->toBeTrue();
@@ -316,8 +311,18 @@ describe('BaseCalendarWidget Calendar Options', function () {
 
     it('can set month names', function () {
         $monthNames = [
-            'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-            'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre',
+            'Gennaio',
+            'Febbraio',
+            'Marzo',
+            'Aprile',
+            'Maggio',
+            'Giugno',
+            'Luglio',
+            'Agosto',
+            'Settembre',
+            'Ottobre',
+            'Novembre',
+            'Dicembre',
         ];
 
         $this->widget->monthNames($monthNames);
@@ -418,8 +423,7 @@ describe('BaseCalendarWidget Validation', function () {
 
 describe('BaseCalendarWidget Performance', function () {
     it('handles large date ranges efficiently', function () {
-        $widget = new class extends BaseCalendarWidget
-        {
+        $widget = new class extends BaseCalendarWidget {
             public string $model = MockEventModel::class;
 
             public function fetchEvents(array $fetchInfo): array
@@ -491,9 +495,8 @@ describe('BaseCalendarWidget Performance', function () {
 describe('BaseCalendarWidget Integration', function () {
     it('works with different model types', function () {
         $widgets = [
-            new MockCalendarWidget,
-            new class extends BaseCalendarWidget
-            {
+            new MockCalendarWidget(),
+            new class extends BaseCalendarWidget {
                 public string $model = MockEventModel::class;
 
                 public function fetchEvents(array $fetchInfo): array
@@ -516,8 +519,8 @@ describe('BaseCalendarWidget Integration', function () {
     });
 
     it('maintains consistent behavior across instances', function () {
-        $widget1 = new MockCalendarWidget;
-        $widget2 = new MockCalendarWidget;
+        $widget1 = new MockCalendarWidget();
+        $widget2 = new MockCalendarWidget();
 
         $fetchInfo = [
             'start' => '2025-01-01T00:00:00',

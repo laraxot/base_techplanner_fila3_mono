@@ -17,12 +17,10 @@ trait HasRoles
      */
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Role::class,
-            'model_has_roles',
-            'model_id',
-            'role_id'
-        )->where('model_type', self::class);
+        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id')->where(
+            'model_type',
+            self::class,
+        );
     }
 
     /**
@@ -30,9 +28,9 @@ trait HasRoles
      *
      * @param string|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
      */
-    public function hasRole($roles, ?string $guard = null): bool
+    public function hasRole($roles, null|string $guard = null): bool
     {
-        if (is_string($roles) &&  str_contains($roles, '|')) {
+        if (is_string($roles) && str_contains($roles, '|')) {
             $roles = explode('|', $roles);
         }
 
@@ -50,6 +48,6 @@ trait HasRoles
             return false;
         }
 
-        return ! is_null($roles) && $this->roles->contains('id', $roles->id);
+        return !is_null($roles) && $this->roles->contains('id', $roles->id);
     }
 }

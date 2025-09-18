@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Models;
 
-use Sushi\Sushi;
-
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Modules\Tenant\Models\Traits\SushiToJson;
+use Sushi\Sushi;
 
 /**
  * Modello per i comuni italiani con Sushi.
- * 
+ *
  * Implementa il pattern Facade per fornire un'interfaccia unificata a tutti i dati geografici:
  * regioni, province, città, CAP, codici ISTAT, ecc.
  * Tutti i dati sono estratti da file JSON e gestiti tramite Sushi.
@@ -56,15 +55,13 @@ use Modules\Tenant\Models\Traits\SushiToJson;
  */
 class Comune extends BaseModel
 {
-
     use SushiToJson;
 
-    public string $jsonDirectory='';
+    public string $jsonDirectory = '';
 
     /** @var array<int, string> */
-    public $translatable = [
-    ];
-    
+    public $translatable = [];
+
     /** @var list<string> */
     protected $fillable = [
         'id',
@@ -88,15 +85,12 @@ class Comune extends BaseModel
         'title' => 'json',
         'slug' => 'string',
         'content' => 'string',
-
         'zona' => 'json',
         'provincia' => 'json',
         'regione' => 'json',
         'cap' => 'json',
-
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-
         'created_by' => 'string',
         'updated_by' => 'string',
     ];
@@ -112,6 +106,7 @@ class Comune extends BaseModel
     }
 
     /** @return array<string, string>     */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -130,7 +125,11 @@ class Comune extends BaseModel
     public static function getRegioni(): Collection
     {
         /** @phpstan-ignore return.type */
-        return static::all()->pluck('regione')->unique()->sort()->values();
+        return static::all()
+            ->pluck('regione')
+            ->unique()
+            ->sort()
+            ->values();
     }
 
     /**
@@ -158,9 +157,7 @@ class Comune extends BaseModel
     public static function getComuniByProvincia(string $provincia): Collection
     {
         /** @phpstan-ignore return.type */
-        return static::where('provincia', $provincia)
-            ->orderBy('nome')
-            ->get();
+        return static::where('provincia', $provincia)->orderBy('nome')->get();
     }
 
     /**
@@ -169,12 +166,11 @@ class Comune extends BaseModel
      * @param string $nome The name of the comune to find (case insensitive)
      * @return static|null The found comune or null if not found
      */
-    public static function findByNome(string $nome): ?self
+    public static function findByNome(string $nome): null|self
     {
         /** @phpstan-ignore return.type */
-        return static::all()->first(function ($comune) use ($nome) {
-            return strtolower($comune->nome) === strtolower($nome);
-        });
+        return static::all()
+            ->first(fn ($comune) => strtolower($comune->nome) === strtolower($nome));
     }
 
     /**
@@ -191,14 +187,14 @@ class Comune extends BaseModel
 
     /**
      * Find a city by ID
-     * 
+     *
      * @param int $id
      * @return array{id: int, nome: string, provincia: string, regione: string, cap: string, codice_catastale: string, popolazione: int, altitudine: int, superficie: float, lat: float, lng: float, zona_altimetrica: string}|null
      */
-    public static function findComune(int $id): ?array
+    public static function findComune(int $id): null|array
     {
         $comune = static::query()->where('id', $id)->first();
-        
+
         /** @phpstan-ignore return.type */
         return $comune ? $comune->toArray() : null;
     }

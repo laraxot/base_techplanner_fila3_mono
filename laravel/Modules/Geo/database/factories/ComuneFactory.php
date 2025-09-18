@@ -9,7 +9,7 @@ use Modules\Geo\Models\Comune;
 
 /**
  * Factory for Comune model.
- * 
+ *
  * @extends Factory<Comune>
  */
 class ComuneFactory extends Factory
@@ -40,23 +40,93 @@ class ComuneFactory extends Factory
          * }>
          */
         $comuniReali = [
-            ['nome' => 'Milano', 'regione' => 'Lombardia', 'provincia' => 'Milano', 'cap' => '20100', 'lat' => 45.4642, 'lng' => 9.1900],
-            ['nome' => 'Roma', 'regione' => 'Lazio', 'provincia' => 'Roma', 'cap' => '00100', 'lat' => 41.9028, 'lng' => 12.4964],
-            ['nome' => 'Napoli', 'regione' => 'Campania', 'provincia' => 'Napoli', 'cap' => '80100', 'lat' => 40.8518, 'lng' => 14.2681],
-            ['nome' => 'Torino', 'regione' => 'Piemonte', 'provincia' => 'Torino', 'cap' => '10100', 'lat' => 45.0703, 'lng' => 7.6869],
-            ['nome' => 'Palermo', 'regione' => 'Sicilia', 'provincia' => 'Palermo', 'cap' => '90100', 'lat' => 38.1157, 'lng' => 13.3613],
-            ['nome' => 'Genova', 'regione' => 'Liguria', 'provincia' => 'Genova', 'cap' => '16100', 'lat' => 44.4056, 'lng' => 8.9463],
-            ['nome' => 'Bologna', 'regione' => 'Emilia-Romagna', 'provincia' => 'Bologna', 'cap' => '40100', 'lat' => 44.4949, 'lng' => 11.3426],
-            ['nome' => 'Firenze', 'regione' => 'Toscana', 'provincia' => 'Firenze', 'cap' => '50100', 'lat' => 43.7696, 'lng' => 11.2558],
-            ['nome' => 'Bari', 'regione' => 'Puglia', 'provincia' => 'Bari', 'cap' => '70100', 'lat' => 41.1171, 'lng' => 16.8719],
-            ['nome' => 'Catania', 'regione' => 'Sicilia', 'provincia' => 'Catania', 'cap' => '95100', 'lat' => 37.5079, 'lng' => 15.0830],
+            [
+                'nome' => 'Milano',
+                'regione' => 'Lombardia',
+                'provincia' => 'Milano',
+                'cap' => '20100',
+                'lat' => 45.4642,
+                'lng' => 9.1900,
+            ],
+            [
+                'nome' => 'Roma',
+                'regione' => 'Lazio',
+                'provincia' => 'Roma',
+                'cap' => '00100',
+                'lat' => 41.9028,
+                'lng' => 12.4964,
+            ],
+            [
+                'nome' => 'Napoli',
+                'regione' => 'Campania',
+                'provincia' => 'Napoli',
+                'cap' => '80100',
+                'lat' => 40.8518,
+                'lng' => 14.2681,
+            ],
+            [
+                'nome' => 'Torino',
+                'regione' => 'Piemonte',
+                'provincia' => 'Torino',
+                'cap' => '10100',
+                'lat' => 45.0703,
+                'lng' => 7.6869,
+            ],
+            [
+                'nome' => 'Palermo',
+                'regione' => 'Sicilia',
+                'provincia' => 'Palermo',
+                'cap' => '90100',
+                'lat' => 38.1157,
+                'lng' => 13.3613,
+            ],
+            [
+                'nome' => 'Genova',
+                'regione' => 'Liguria',
+                'provincia' => 'Genova',
+                'cap' => '16100',
+                'lat' => 44.4056,
+                'lng' => 8.9463,
+            ],
+            [
+                'nome' => 'Bologna',
+                'regione' => 'Emilia-Romagna',
+                'provincia' => 'Bologna',
+                'cap' => '40100',
+                'lat' => 44.4949,
+                'lng' => 11.3426,
+            ],
+            [
+                'nome' => 'Firenze',
+                'regione' => 'Toscana',
+                'provincia' => 'Firenze',
+                'cap' => '50100',
+                'lat' => 43.7696,
+                'lng' => 11.2558,
+            ],
+            [
+                'nome' => 'Bari',
+                'regione' => 'Puglia',
+                'provincia' => 'Bari',
+                'cap' => '70100',
+                'lat' => 41.1171,
+                'lng' => 16.8719,
+            ],
+            [
+                'nome' => 'Catania',
+                'regione' => 'Sicilia',
+                'provincia' => 'Catania',
+                'cap' => '95100',
+                'lat' => 37.5079,
+                'lng' => 15.0830,
+            ],
         ];
 
         /** @var array{nome: string, regione: string, provincia: string, cap: string, lat: float|int|string, lng: float|int|string} $comuneData */
         $comuneData = $this->faker->randomElement($comuniReali);
         $latBase = (float) $comuneData['lat'];
         $lngBase = (float) $comuneData['lng'];
-        
+
         return [
             'nome' => $comuneData['nome'],
             'codice' => $this->faker->unique()->numberBetween(1000, 9999),
@@ -199,10 +269,8 @@ class ComuneFactory extends Factory
      */
     public function named(string $name): static
     {
-        return $this->state(function (array $attributes) use ($name): array {
-            return array_merge($attributes, [
+        return $this->state(fn (array $attributes) => array_merge($attributes, [
                 'nome' => $name,
-            ]);
-        });
+            ]));
     }
 }

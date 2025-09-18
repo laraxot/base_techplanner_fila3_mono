@@ -16,7 +16,7 @@ describe('NotificationType Business Logic', function () {
             'description',
             'template',
         ];
-        
+
         expect($notificationType->getFillable())->toEqual($expectedFillable);
     });
 
@@ -25,7 +25,7 @@ describe('NotificationType Business Logic', function () {
         $notificationType->name = 'Email Verification';
         $notificationType->description = 'Email verification notification type';
         $notificationType->template = 'email-verification-template';
-        
+
         expect($notificationType->name)->toBe('Email Verification');
         expect($notificationType->description)->toBe('Email verification notification type');
         expect($notificationType->template)->toBe('email-verification-template');
@@ -33,14 +33,14 @@ describe('NotificationType Business Logic', function () {
 
     test('notification type model can be instantiated without errors', function () {
         $notificationType = new NotificationType();
-        
+
         expect($notificationType)->toBeInstanceOf(NotificationType::class);
         expect($notificationType)->toBeInstanceOf(\Illuminate\Database\Eloquent\Model::class);
     });
 
     test('notification type can be queried', function () {
         $query = NotificationType::query();
-        
+
         expect($query)->toBeInstanceOf(\Illuminate\Database\Eloquent\Builder::class);
     });
 });

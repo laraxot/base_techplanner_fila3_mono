@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Pdf;
 
-use Spipu\Html2Pdf\Html2Pdf;
-use Webmozart\Assert\Assert;
-use Modules\Xot\Datas\PdfData;
 use Illuminate\Support\Facades\Storage;
+use Modules\Xot\Datas\PdfData;
 use Spatie\QueueableAction\QueueableAction;
+use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Webmozart\Assert\Assert;
 
 class StreamDownloadPdfAction
 {
@@ -25,32 +25,27 @@ class StreamDownloadPdfAction
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
     public function execute(
-        ?string $html=null,
-        ?string $view=null,
-        ?array $data=null,
+        null|string $html = null,
+        null|string $view = null,
+        null|array $data = null,
         string $filename = 'my_doc.pdf',
-        
-    ){
-
-        if($html==null && $view!=null){
-            if(!view()->exists($view)){
-                throw new \Exception('View '.$view.' not found');
+    ) {
+        if ($html === null && $view !== null) {
+            if (!view()->exists($view)) {
+                throw new \Exception('View ' . $view . ' not found');
             }
-            if(!is_array($data)){
+            if (!is_array($data)) {
                 $data = [];
             }
             $html = view($view, $data)->render();
         }
-        Assert::string($html);
+        Assert::string($html, __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
         $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A4', 'it', true, 'UTF-8', [10, 10, 10, 10]);
         $html2pdf->writeHTML($html);
-        
+
         // Genera e scarica il PDF
-        return response()->streamDownload(
-            function () use ($html2pdf) {
-                $html2pdf->output();
-            },
-            'report-' . $filename
-        );
+        return response()->streamDownload(function () use ($html2pdf) {
+            $html2pdf->output();
+        }, 'report-' . $filename);
     }
 }

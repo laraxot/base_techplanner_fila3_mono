@@ -18,17 +18,16 @@ return [
         'Modules\\Notify\\Providers\\NotifyServiceProvider',
     ],
     /*
-    |--------------------------------------------------------------------------
-    | Email Layout Configuration
-    |--------------------------------------------------------------------------
-    |
-    | This file contains the configuration for email layouts and templates.
-    |
-    */
+     * |--------------------------------------------------------------------------
+     * | Email Layout Configuration
+     * |--------------------------------------------------------------------------
+     * |
+     * | This file contains the configuration for email layouts and templates.
+     * |
+     */
 
     // Logo URL for email headers
     'logo_url' => env('MAIL_LOGO_URL', null),
-
     // Footer text for all emails
     //'footer_text' => env('MAIL_FOOTER_TEXT', '© ' . date('Y') . ' ' . config('app.name') . '. All rights reserved.'),
 
@@ -39,28 +38,24 @@ return [
         'instagram' => env('MAIL_SOCIAL_INSTAGRAM', null),
         'linkedin' => env('MAIL_SOCIAL_LINKEDIN', null),
     ],
-
     // Unsubscribe URL
     'unsubscribe_url' => env('MAIL_UNSUBSCRIBE_URL', null),
-
     /*
-    |--------------------------------------------------------------------------
-    | Mail Templates
-    |--------------------------------------------------------------------------
-    |
-    | Configuration for mail templates
-    |
-    */
+     * |--------------------------------------------------------------------------
+     * | Mail Templates
+     * |--------------------------------------------------------------------------
+     * |
+     * | Configuration for mail templates
+     * |
+     */
 
     // Default layout to use
     'default_layout' => 'notify::mail-layouts.base.default',
-
     // Available layouts
     'layouts' => [
         'default' => 'notify::mail-layouts.base.default',
         // Add more layouts here
     ],
-
     // Available templates
     'templates' => [
         'welcome' => 'notify::mail-layouts.templates.welcome',

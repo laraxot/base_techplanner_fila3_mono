@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget>
     <x-filament::section>
         {{-- Widget content

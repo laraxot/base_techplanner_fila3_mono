@@ -22,13 +22,16 @@ class ExportXlsTableAction extends Action
     {
         parent::setUp();
         $this->translateLabel()
-            
             ->tooltip(__('xot::actions.export_xls'))
-             // ->icon('fas-file-excel')
+            // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
             ->action(static function (RelationManager $livewire) {
                 $livewire_class = $livewire::class;
-                $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
+                $filename =
+                    class_basename($livewire) .
+                    '-' .
+                    collect($livewire->tableFilters)->flatten()->implode('-') .
+                    '.xlsx';
                 $transKey = app(GetTransKeyAction::class)->execute($livewire_class);
                 $transKey .= '.fields';
                 $query = $livewire->getFilteredTableQuery();
@@ -39,7 +42,7 @@ class ExportXlsTableAction extends Action
                 if (method_exists($livewire_class, 'getXlsFields')) {
                     $rawFields = $livewire_class::getXlsFields($livewire->tableFilters);
                     Assert::isArray($rawFields);
-                    
+
                     // Ensure fields are properly formatted as array<int, string>
                     $fields = [];
                     foreach ($rawFields as $key => $field) {
@@ -55,7 +58,7 @@ class ExportXlsTableAction extends Action
             });
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'export_xls';
     }

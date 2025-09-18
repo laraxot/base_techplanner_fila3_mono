@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     <form wire:submit="login">
         {{ $this->form }}

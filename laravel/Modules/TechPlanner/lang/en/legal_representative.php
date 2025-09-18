@@ -4,92 +4,59 @@ declare(strict_types=1);
 
 return [
     'navigation' => [
-        'label' => 'Legal Representatives',
-        'group' => 'TechPlanner',
-        'icon' => 'heroicon-o-user-group',
-        'sort' => 3,
-    ],
-    'resource' => [
         'label' => 'Legal Representative',
-        'plural_label' => 'Legal Representatives',
-        'navigation_group' => 'TechPlanner',
-        'navigation_icon' => 'heroicon-o-user-group',
-        'navigation_sort' => 3,
-        'description' => 'Legal representative management',
+        'name' => 'Legal Representative',
+        'plural' => 'Legal Representatives',
+        'group' => [
+            'name' => 'Admin',
+        ],
+        'sort' => 84,
+        'icon' => 'techplanner-legal-representative',
     ],
     'actions' => [
         'create' => [
-            'label' => 'New Representative',
-            'icon' => 'heroicon-o-plus',
-            'color' => 'primary',
-            'tooltip' => 'Add a new legal representative',
+            'label' => 'create',
         ],
-        'edit' => [
-            'label' => 'Edit Representative',
-            'icon' => 'heroicon-o-pencil',
-            'color' => 'warning',
-            'tooltip' => 'Edit the selected representative',
+        'importDevice' => [
+            'label' => 'importDevice',
         ],
-        'delete' => [
-            'label' => 'Delete Representative',
-            'icon' => 'heroicon-o-trash',
-            'color' => 'danger',
-            'tooltip' => 'Delete the selected representative',
-        ],
-        'view' => [
-            'label' => 'View Representative',
-            'icon' => 'heroicon-o-eye',
-            'color' => 'info',
-            'tooltip' => 'View representative details',
+        'importMedicalDirector' => [
+            'label' => 'importMedicalDirector',
         ],
     ],
     'fields' => [
-        'name' => [
-            'label' => 'Name',
-            'placeholder' => 'Enter full name',
-            'help' => 'Full name of the legal representative',
+        'edit' => [
+            'label' => 'edit',
         ],
-        'email' => [
-            'label' => 'Email',
-            'placeholder' => 'Enter email address',
-            'help' => 'Email address of the representative',
+        'title' => [
+            'label' => 'Title',
         ],
-        'phone' => [
-            'label' => 'Phone',
-            'placeholder' => 'Enter phone number',
-            'help' => 'Phone number of the representative',
+        'subtitle' => [
+            'label' => 'Subtitle',
         ],
-        'role' => [
-            'label' => 'Role',
-            'placeholder' => 'Select role',
-            'help' => 'Role of the legal representative',
-            'options' => [
-                'lawyer' => 'Lawyer',
-                'notary' => 'Notary',
-                'consultant' => 'Consultant',
-            ],
+        'price' => [
+            'label' => 'Price',
         ],
-        'id' => [
-            'label' => 'ID',
-            'help' => 'Unique identifier of the representative',
+        'price_currency' => [
+            'label' => 'Price Currency',
         ],
-    ],
-    'filters' => [
-        'name' => [
-            'label' => 'Name',
-            'placeholder' => 'Search by name',
-            'help' => 'Filter by representative name',
+        'status' => [
+            'label' => 'Status',
         ],
-        'role' => [
-            'label' => 'Role',
-            'placeholder' => 'Select role',
-            'help' => 'Filter by representative role',
+        'applyFilters' => [
+            'label' => 'applyFilters',
         ],
-    ],
-    'messages' => [
-        'created' => 'Legal representative created successfully',
-        'updated' => 'Legal representative updated successfully',
-        'deleted' => 'Legal representative deleted successfully',
+        'toggleColumns' => [
+            'label' => 'toggleColumns',
+        ],
+        'reorderRecords' => [
+            'label' => 'reorderRecords',
+        ],
+        'resetFilters' => [
+            'label' => 'resetFilters',
+        ],
+        'openFilters' => [
+            'label' => 'openFilters',
+        ],
     ],
 ];
-

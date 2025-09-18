@@ -8,7 +8,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 /**
  * Helper standardizzato per upload documenti usando Spatie Media Library.
- * 
+ *
  * Filosofia: Centralizzazione della configurazione per garantire coerenza sistemica.
  * Politica: Type safety, GDPR compliance, multi-tenant isolation.
  * Zen: Semplicità attraverso la standardizzazione, non la duplicazione.
@@ -38,10 +38,10 @@ class SpatieDocumentUpload
 
     /**
      * Upload documento identità - documento sensibile paziente.
-     * 
+     *
      * Collection: 'documenti_identita'
      * Security: Private disk, audit trail
-     * 
+     *
      * @return SpatieMediaLibraryFileUpload
      */
     public static function forIdentityDocument(): SpatieMediaLibraryFileUpload
@@ -54,10 +54,10 @@ class SpatieDocumentUpload
 
     /**
      * Upload certificazione ISEE - documento fiscale sensibile.
-     * 
+     *
      * Collection: 'certificazioni_isee'
      * Formats: Solo PDF per documenti ufficiali
-     * 
+     *
      * @return SpatieMediaLibraryFileUpload
      */
     public static function forIseeDocument(): SpatieMediaLibraryFileUpload
@@ -69,10 +69,10 @@ class SpatieDocumentUpload
 
     /**
      * Upload certificato gravidanza - documento medico sensibile.
-     * 
+     *
      * Collection: 'certificati_gravidanza'
      * GDPR: Retention policy automatica
-     * 
+     *
      * @return SpatieMediaLibraryFileUpload
      */
     public static function forPregnancyDocument(): SpatieMediaLibraryFileUpload
@@ -84,10 +84,10 @@ class SpatieDocumentUpload
 
     /**
      * Upload certificazioni professionali mediche - documenti multipli.
-     * 
+     *
      * Collection: 'certificazioni_professionali'
      * Multiple: Supporta caricamento multiplo con riordinamento
-     * 
+     *
      * @return SpatieMediaLibraryFileUpload
      */
     public static function forCertifications(): SpatieMediaLibraryFileUpload
@@ -102,7 +102,7 @@ class SpatieDocumentUpload
 
     /**
      * Upload documento generico con collection personalizzata.
-     * 
+     *
      * @param string $name Nome del campo
      * @param string $collection Nome della collection
      * @param array<string> $mimeTypes Tipi MIME accettati
@@ -110,10 +110,10 @@ class SpatieDocumentUpload
      * @return SpatieMediaLibraryFileUpload
      */
     public static function custom(
-        string $name, 
-        string $collection, 
+        string $name,
+        string $collection,
         array $mimeTypes = ['image/jpeg', 'image/png', 'application/pdf'],
-        int $maxSize = 10240
+        int $maxSize = 10240,
     ): SpatieMediaLibraryFileUpload {
         return SpatieMediaLibraryFileUpload::make($name)
             ->collection($collection)
@@ -126,4 +126,4 @@ class SpatieDocumentUpload
             ->acceptedFileTypes($mimeTypes)
             ->imagePreviewHeight('150');
     }
-} 
+}

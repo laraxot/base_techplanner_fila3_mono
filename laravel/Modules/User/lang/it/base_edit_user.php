@@ -1,11 +1,12 @@
 <?php
 
-return  [
-  'actions' => 
-   [
-    'delete' => 
-     [
-      'label' => 'delete',
+declare(strict_types=1);
+
+
+return [
+    'actions' => [
+        'delete' => [
+            'label' => 'delete',
+        ],
     ],
-  ],
 ];

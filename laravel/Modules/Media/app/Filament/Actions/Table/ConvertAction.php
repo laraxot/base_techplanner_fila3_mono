@@ -32,6 +32,7 @@ class ConvertAction extends Action
                     ->inlineLabel(false),
             ])
             ->action(dddx(...));
+
         // ->requiresConfirmation()
     }
 }

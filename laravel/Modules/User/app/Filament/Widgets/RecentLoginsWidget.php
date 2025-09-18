@@ -12,7 +12,7 @@ use Modules\User\Models\AuthenticationLog;
 
 class RecentLoginsWidget extends BaseWidget
 {
-    protected static ?string $heading = 'Recent Logins'; // Rendi static la proprietà
+    protected static null|string $heading = 'Recent Logins'; // Rendi static la proprietà
 
     protected int|string|array $columnSpan = 'full';
 
@@ -42,12 +42,11 @@ class RecentLoginsWidget extends BaseWidget
 
     /**
      * Optionally configure additional table settings.
-     * 
+     *
      * @return array<string, \Filament\Tables\Actions\Action|\Filament\Tables\Actions\ActionGroup>
      */
     public function getTableActions(): array
     {
-        return [
-        ];
+        return [];
     }
 }

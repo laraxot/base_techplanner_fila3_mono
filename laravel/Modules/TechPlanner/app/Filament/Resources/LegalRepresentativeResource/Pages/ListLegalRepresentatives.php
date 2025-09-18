@@ -12,6 +12,7 @@ class ListLegalRepresentatives extends XotBaseListRecords
 {
     protected static string $resource = LegalRepresentativeResource::class;
 
+    #[\Override]
     protected function getHeaderActions(): array
     {
         return [

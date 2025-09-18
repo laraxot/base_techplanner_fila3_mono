@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title', 'subtitle', 'image', 'cta_text', 'cta_link'])
 
 <section class="relative bg-white overflow-hidden">
@@ -27,4 +32,4 @@
             <img class="absolute inset-0 w-full h-full object-cover" src="{{ $image }}" alt="Hero background">
         </div>
     </div>
-</section> 
+</section>

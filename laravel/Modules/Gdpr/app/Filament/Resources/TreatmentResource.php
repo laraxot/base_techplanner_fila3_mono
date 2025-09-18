@@ -12,32 +12,21 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class TreatmentResource extends XotBaseResource
 {
-    protected static ?string $model = Treatment::class;
+    protected static null|string $model = Treatment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static null|string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'active' => Forms\Components\Toggle::make('active')
-                ->required(),
-            'required' => Forms\Components\Toggle::make('required')
-                ->required(),
-            'name' => Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(191),
-            'description' => Forms\Components\Textarea::make('description')
-                ->required()
-                ->columnSpanFull(),
-            'documentVersion' => Forms\Components\TextInput::make('documentVersion')
-                ->maxLength(191)
-                ->default(null),
-            'documentUrl' => Forms\Components\TextInput::make('documentUrl')
-                ->maxLength(191)
-                ->default(null),
-            'weight' => Forms\Components\TextInput::make('weight')
-                ->required()
-                ->numeric(),
+            'active' => Forms\Components\Toggle::make('active')->required(),
+            'required' => Forms\Components\Toggle::make('required')->required(),
+            'name' => Forms\Components\TextInput::make('name')->required()->maxLength(191),
+            'description' => Forms\Components\Textarea::make('description')->required()->columnSpanFull(),
+            'documentVersion' => Forms\Components\TextInput::make('documentVersion')->maxLength(191)->default(null),
+            'documentUrl' => Forms\Components\TextInput::make('documentUrl')->maxLength(191)->default(null),
+            'weight' => Forms\Components\TextInput::make('weight')->required()->numeric(),
         ];
     }
 
@@ -45,21 +34,14 @@ class TreatmentResource extends XotBaseResource
     {
         return [
             // Tables\Columns\TextColumn::make('id')
-            //
+            
             //     ->searchable(),
-            Tables\Columns\IconColumn::make('active')
-                ->boolean(),
-            Tables\Columns\IconColumn::make('required')
-                ->boolean(),
-            Tables\Columns\TextColumn::make('name')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('documentVersion')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('documentUrl')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('weight')
-                ->numeric()
-                ->sortable(),
+            Tables\Columns\IconColumn::make('active')->boolean(),
+            Tables\Columns\IconColumn::make('required')->boolean(),
+            Tables\Columns\TextColumn::make('name')->searchable(),
+            Tables\Columns\TextColumn::make('documentVersion')->searchable(),
+            Tables\Columns\TextColumn::make('documentUrl')->searchable(),
+            Tables\Columns\TextColumn::make('weight')->numeric()->sortable(),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -71,6 +53,7 @@ class TreatmentResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

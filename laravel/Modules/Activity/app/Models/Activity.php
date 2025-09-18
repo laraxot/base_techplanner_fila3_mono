@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Activity\Models;
 
-use Spatie\Activitylog\Models\Activity as SpatieActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Spatie\Activitylog\Models\Activity as SpatieActivity;
 
 /**
  * Class Activity.
- * 
+ *
  * This class extends the BaseActivity model to represent activities in the application.
  *
  * @property int $id
@@ -73,6 +72,7 @@ class Activity extends SpatieActivity
     {
         return \Modules\Activity\Database\Factories\ActivityFactory::new();
     }
+
     /** @var list<string> */
     protected $fillable = [
         'id',

@@ -37,12 +37,12 @@ class Status extends Component
         Artisan::call('worker:check');
         $this->out .= Artisan::output();
 
-        $this->out .= '<br/>['.JobModel::count().'] Jobs';
-        $this->out .= '<br/>['.FailedJobModel::count().'] Failed Jobs';
-        $this->out .= '<br/>['.JobBatchModel::count().'] Job Batch';
+        $this->out .= '<br/>[' . JobModel::count() . '] Jobs';
+        $this->out .= '<br/>[' . FailedJobModel::count() . '] Failed Jobs';
+        $this->out .= '<br/>[' . JobBatchModel::count() . '] Job Batch';
         $queue_conn = getenv('QUEUE_CONNECTION');
         if ($queue_conn === false) {
-            throw new Exception('['.__LINE__.']['.class_basename($this).']');
+            throw new Exception('[' . __LINE__ . '][' . class_basename($this) . ']');
         }
 
         $this->old_value = $queue_conn;
@@ -60,19 +60,19 @@ class Status extends Component
 
         $acts = [
             /*
-            (object) [
-                'name' => 'batches-table',
-                'label' => 'Create a migration for the batches database table',
-            ],
-            (object) [
-                'name' => 'failed-table',
-                'label' => ' Create a migration for the failed queue jobs database table',
-            ],
-            (object) [
-                'name' => 'table',
-                'label' => 'Create a migration for the queue jobs database table',
-            ],
-            */
+             * (object) [
+             * 'name' => 'batches-table',
+             * 'label' => 'Create a migration for the batches database table',
+             * ],
+             * (object) [
+             * 'name' => 'failed-table',
+             * 'label' => ' Create a migration for the failed queue jobs database table',
+             * ],
+             * (object) [
+             * 'name' => 'table',
+             * 'label' => 'Create a migration for the queue jobs database table',
+             * ],
+             */
             (object) [
                 'name' => 'clear',
                 'label' => 'Delete all of the jobs from the specified queue',
@@ -81,29 +81,28 @@ class Status extends Component
                 'name' => 'failed',
                 'label' => 'List all of the failed queue jobs',
             ],
-
             (object) [
                 'name' => 'flush',
                 'label' => 'Flush all of the failed queue jobs',
             ],
             /* -- VUOLE ID
-            (object) [
-                'name' => 'forget',
-                'label' => 'Delete a failed queue job',
-            ],
-            */
+             * (object) [
+             * 'name' => 'forget',
+             * 'label' => 'Delete a failed queue job',
+             * ],
+             */
             /* --- RIMANE APPESO
-            (object) [
-                'name' => 'listen',
-                'label' => 'Listen to a given queue',
-            ],
-            */
+             * (object) [
+             * 'name' => 'listen',
+             * 'label' => 'Listen to a given queue',
+             * ],
+             */
             /*manca parametro
-            (object) [
-                'name' => 'monitor',
-                'label' => 'Monitor the size of the specified queues',
-            ],
-            */
+             * (object) [
+             * 'name' => 'monitor',
+             * 'label' => 'Monitor the size of the specified queues',
+             * ],
+             */
             (object) [
                 'name' => 'prune-batches',
                 'label' => 'Prune stale entries from the batches database',
@@ -121,17 +120,17 @@ class Status extends Component
                 'label' => 'Retry a failed queue job',
             ],
             /*-- vuole parametro
-            (object) [
-                'name' => 'retry-batch',
-                'label' => 'Retry the failed jobs for a batch',
-            ],
-            */
+             * (object) [
+             * 'name' => 'retry-batch',
+             * 'label' => 'Retry the failed jobs for a batch',
+             * ],
+             */
             /*-- rimane appeso
-            (object) [
-                'name' => 'work',
-                'label' => 'Start processing jobs on the queue as a daemon',
-            ],
-            */
+             * (object) [
+             * 'name' => 'work',
+             * 'label' => 'Start processing jobs on the queue as a daemon',
+             * ],
+             */
         ];
 
         $view_params = [
@@ -156,12 +155,12 @@ class Status extends Component
         $env_file = base_path('.env');
         $env_content = File::get($env_file);
         $new_content = Str::replace(
-            'QUEUE_CONNECTION='.$this->old_value,
-            'QUEUE_CONNECTION='.$this->form_data['conn'],
-            $env_content
+            'QUEUE_CONNECTION=' . $this->old_value,
+            'QUEUE_CONNECTION=' . $this->form_data['conn'],
+            $env_content,
         );
-        putenv('QUEUE_CONNECTION='.$this->form_data['conn']);
-        Assert::string($new_content, '['.__LINE__.']['.class_basename($this).']');
+        putenv('QUEUE_CONNECTION=' . $this->form_data['conn']);
+        Assert::string($new_content, '[' . __LINE__ . '][' . class_basename($this) . ']');
         File::put($env_file, $new_content);
         $this->old_value = $this->form_data['conn'];
     }
@@ -169,7 +168,7 @@ class Status extends Component
     public function artisan(string $cmd): void
     {
         $this->out .= '<hr/>';
-        Artisan::call('queue:'.$cmd);
+        Artisan::call('queue:' . $cmd);
         $this->out .= Artisan::output();
         $this->out .= '<hr/>';
     }
@@ -177,9 +176,7 @@ class Status extends Component
     public function dummyAction(): void
     {
         for ($i = 0; $i < 1000; $i++) {
-            app(DummyAction::class)
-                ->onQueue()
-                ->execute();
+            app(DummyAction::class)->onQueue()->execute();
         }
 
         session()->flash('message', '1000 dummy Action');

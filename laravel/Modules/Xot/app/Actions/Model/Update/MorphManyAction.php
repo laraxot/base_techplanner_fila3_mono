@@ -35,10 +35,10 @@ class MorphManyAction
             Assert::isArray($data);
             if (\in_array($keyName, array_keys($data), false)) {
                 /*
-                $related_id = $data[$keyName];
-                $row = $related->firstOrCreate([$keyName => $related_id]);
-                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row, $data, []);
-                */
+                 * $related_id = $data[$keyName];
+                 * $row = $related->firstOrCreate([$keyName => $related_id]);
+                 * $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row, $data, []);
+                 */
                 $res = app(UpdateAction::class)->execute($related, $data, []);
                 $ids[] = $res->getKey();
                 $models[] = $res;

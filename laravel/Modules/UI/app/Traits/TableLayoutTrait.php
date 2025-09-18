@@ -13,7 +13,7 @@ trait TableLayoutTrait
     {
         $value = Session::get('table_layout', TableLayout::GRID->value);
         if (is_string($value) || is_int($value)) {
-            return TableLayout::tryFrom((string)$value) ?? TableLayout::GRID;
+            return TableLayout::tryFrom((string) $value) ?? TableLayout::GRID;
         }
         return TableLayout::GRID;
     }
@@ -28,10 +28,10 @@ trait TableLayoutTrait
         $this->dispatch('$refresh');
         $this->resetTable();
     }
-    
+
     public function resetTable(): void
     {
         // Implementazione predefinita - le classi che usano questo trait dovrebbero sovrascrivere questo metodo
         $this->dispatch('reset-table');
     }
-} 
+}

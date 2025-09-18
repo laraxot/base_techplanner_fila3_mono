@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\UI\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Config;
 
@@ -18,8 +18,8 @@ class LanguageController extends Controller
     {
         // Usa configurazione per ottenere le lingue supportate
         $supportedLocales = Config::array('app.supported_locales', ['en', 'it']);
-        
-        if (!in_array($locale, $supportedLocales)) {
+
+        if (!in_array($locale, $supportedLocales, strict: true)) {
             $locale = Config::string('app.locale', 'en');
         }
 

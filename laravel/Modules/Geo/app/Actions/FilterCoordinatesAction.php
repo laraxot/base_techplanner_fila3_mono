@@ -43,7 +43,7 @@ class FilterCoordinatesAction
                     'distance' => $this->calculateDistance($centerLat, $centerLng, $lat, $lng),
                 ];
             })
-            ->filter(fn (array $coord): bool => $coord['distance'] <= $radiusKm)
+            ->filter(fn(array $coord): bool => $coord['distance'] <= $radiusKm)
             ->sortBy('distance')
             ->values()
             ->all();

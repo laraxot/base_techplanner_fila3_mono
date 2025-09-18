@@ -12,14 +12,12 @@ return [
         'sort' => 100,
         'badge' => 'Gestione azioni sistema',
     ],
-
     // MODEL INFORMATION
     'model' => [
         'label' => 'Azione',
         'plural' => 'Azioni',
         'description' => 'Sistema di azioni ed operazioni del framework Xot',
     ],
-
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
     'actions' => [
         'export_xls' => [
@@ -33,7 +31,6 @@ return [
             ],
         ],
     ],
-
     // MESSAGES - FEEDBACK UTENTE
     'messages' => [
         'empty_state' => 'Nessuna azione disponibile',
@@ -41,7 +38,6 @@ return [
         'error_general' => 'Si è verificato un errore. Riprova più tardi.',
         'success_operation' => 'Operazione completata con successo',
     ],
-
     // LEGACY SUPPORT - Compatibilità con codice esistente
     'export_xls' => 'Esporta Dati',
 ];

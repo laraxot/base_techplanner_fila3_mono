@@ -7,8 +7,8 @@ namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllDevicesAction;
-use Modules\TechPlanner\Models\Device;
 use Modules\TechPlanner\Jobs\UpdateDeviceJob;
+use Modules\TechPlanner\Models\Device;
 use Tests\TestCase;
 
 /**
@@ -25,15 +25,13 @@ class UpdateAllDevicesActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllDevicesAction();
-        
 
-        $this->action = new UpdateAllDevicesAction;
-
-        
         $this->action = new UpdateAllDevicesAction();
-        
+
+        $this->action = new UpdateAllDevicesAction();
+
+        $this->action = new UpdateAllDevicesAction();
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -64,10 +62,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_updates_all_devices_with_given_data(): void
     {
         // Arrange
-        $devices = Device::factory()->count(3)->create([
-            'status' => 'Inactive',
-            'location' => 'Storage',
-        ]);
+        $devices = Device::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Inactive',
+                'location' => 'Storage',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -210,10 +210,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_boolean_values(): void
     {
         // Arrange
-        $devices = Device::factory()->count(3)->create([
-            'is_active' => false,
-            'is_online' => false,
-        ]);
+        $devices = Device::factory()
+            ->count(3)
+            ->create([
+                'is_active' => false,
+                'is_online' => false,
+            ]);
 
         $updateData = [
             'is_active' => true,
@@ -260,10 +262,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_decimal_values(): void
     {
         // Arrange
-        $devices = Device::factory()->count(2)->create([
-            'cost' => 1000.00,
-            'maintenance_cost' => 100.00,
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'cost' => 1000.00,
+                'maintenance_cost' => 100.00,
+            ]);
 
         $updateData = [
             'cost' => 1500.00,
@@ -327,9 +331,11 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_transaction_rollback_on_error(): void
     {
         // Arrange
-        $devices = Device::factory()->count(3)->create([
-            'status' => 'Inactive',
-        ]);
+        $devices = Device::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -373,9 +379,11 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_creates_audit_trail(): void
     {
         // Arrange
-        $devices = Device::factory()->count(2)->create([
-            'status' => 'Inactive',
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -432,7 +440,6 @@ class UpdateAllDevicesActionTest extends TestCase
         // Arrange
         $activeDevices = Device::factory()->count(2)->create();
         $deletedDevices = Device::factory()->count(2)->create();
-        
 
         // Soft delete alcuni dispositivi
         $deletedDevices->each(function ($device) {
@@ -538,10 +545,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_enum_values(): void
     {
         // Arrange
-        $devices = Device::factory()->count(2)->create([
-            'type' => 'Computer',
-            'status' => 'Inactive',
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'type' => 'Computer',
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'type' => 'Mobile',
@@ -568,7 +577,6 @@ class UpdateAllDevicesActionTest extends TestCase
         // Arrange
         $devices = Device::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
 
         $updateData = [
             'description' => $longText,
@@ -621,10 +629,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_nullable_fields(): void
     {
         // Arrange
-        $devices = Device::factory()->count(2)->create([
-            'ip_address' => '192.168.1.100',
-            'mac_address' => '00:11:22:33:44:55',
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'ip_address' => '192.168.1.100',
+                'mac_address' => '00:11:22:33:44:55',
+            ]);
 
         $updateData = [
             'ip_address' => null,
@@ -660,10 +670,7 @@ class UpdateAllDevicesActionTest extends TestCase
         // Assert
         foreach ($devices as $device) {
             $device->refresh();
-            $this->assertGreaterThan(
-                $device->created_at,
-                $device->updated_at
-            );
+            $this->assertGreaterThan($device->created_at, $device->updated_at);
         }
     }
 
@@ -801,11 +808,13 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_device_specific_fields(): void
     {
         // Arrange
-        $devices = Device::factory()->count(3)->create([
-            'model' => 'Old Model',
-            'manufacturer' => 'Old Manufacturer',
-            'purchase_date' => '2020-01-01',
-        ]);
+        $devices = Device::factory()
+            ->count(3)
+            ->create([
+                'model' => 'Old Model',
+                'manufacturer' => 'Old Manufacturer',
+                'purchase_date' => '2020-01-01',
+            ]);
 
         $updateData = [
             'model' => 'New Model',
@@ -832,10 +841,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_device_maintenance_fields(): void
     {
         // Arrange
-        $devices = Device::factory()->count(2)->create([
-            'last_maintenance' => '2023-01-01',
-            'maintenance_interval' => 90,
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'last_maintenance' => '2023-01-01',
+                'maintenance_interval' => 90,
+            ]);
 
         $updateData = [
             'last_maintenance' => '2024-01-01',
@@ -860,10 +871,12 @@ class UpdateAllDevicesActionTest extends TestCase
     public function it_handles_device_warranty_fields(): void
     {
         // Arrange
-        $devices = Device::factory()->count(2)->create([
-            'warranty_expiry' => '2023-12-31',
-            'warranty_type' => 'Standard',
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'warranty_expiry' => '2023-12-31',
+                'warranty_type' => 'Standard',
+            ]);
 
         $updateData = [
             'warranty_expiry' => '2025-12-31',

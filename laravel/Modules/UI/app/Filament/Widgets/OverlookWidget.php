@@ -17,15 +17,15 @@ class OverlookWidget extends Widget
     public string $title = '';
 
     /*
-        public array $grid = [
-                    'default' => 6,
-                    'sm' => 6,
-                    'md' => 6,
-                    'lg' => 6,
-                    'xl' => 6,
-                    '2xl' => null,
-                ];
-                */
+     * public array $grid = [
+     * 'default' => 6,
+     * 'sm' => 6,
+     * 'md' => 6,
+     * 'lg' => 6,
+     * 'xl' => 6,
+     * '2xl' => null,
+     * ];
+     */
 
     public array $stats = [];
 
@@ -34,22 +34,22 @@ class OverlookWidget extends Widget
     protected int|string|array $columnSpan = 1;
 
     /*
-    public function mount(array $filter): void
-    {
-        $this->filter = $filter;
-
-        $this->data = $this->getData();
-        // dddx($this->data);
-        if (empty($this->grid)) {
-            $this->grid = [
-                'default' => 2,
-                'sm' => 2,
-                'md' => 3,
-                'lg' => 3,
-                'xl' => 3,
-                '2xl' => null,
-            ];
-        }
-    }
-    */
+     * public function mount(array $filter): void
+     * {
+     * $this->filter = $filter;
+     *
+     * $this->data = $this->getData();
+     * // dddx($this->data);
+     * if (empty($this->grid)) {
+     * $this->grid = [
+     * 'default' => 2,
+     * 'sm' => 2,
+     * 'md' => 3,
+     * 'lg' => 3,
+     * 'xl' => 3,
+     * '2xl' => null,
+     * ];
+     * }
+     * }
+     */
 }

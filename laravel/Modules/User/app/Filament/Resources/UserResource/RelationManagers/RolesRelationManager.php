@@ -20,13 +20,13 @@ class RolesRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'roles';
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static null|string $recordTitleAttribute = 'name';
 
     // protected static ?string $inverseRelationship = 'section'; // Since the inverse related model is `Category`, this is normally `category`, not `section`.
 
     // protected function mutateFormDataBeforeCreate(array $data): array
     // {
-    //
+    
     // }
 
     /**
@@ -36,13 +36,11 @@ class RolesRelationManager extends XotBaseRelationManager
     public function getFormSchema(): array
     {
         return [
-            'name' => TextInput::make('name')
-                ->required()
-                ->maxLength(255),
+            'name' => TextInput::make('name')->required()->maxLength(255),
             /*
-            'team_id' => Forms\Components\Select::make('team_id')
-                ->relationship('teams', 'name'),
-            */
+             * 'team_id' => Forms\Components\Select::make('team_id')
+             * ->relationship('teams', 'name'),
+             */
         ];
     }
 
@@ -52,50 +50,36 @@ class RolesRelationManager extends XotBaseRelationManager
         $xotData = XotData::make();
 
         return $table
-            ->columns(
-                [
-                    TextColumn::make('id'),
-                    TextColumn::make('name'),
-                    TextColumn::make('team_id'),
-                ]
-            )
-            ->filters(
-                [
-                ]
-            )
-            ->headerActions(
-                [
-                    // Tables\Actions\CreateAction::make(),
-                    AttachAction::make()
-                        // ->mutateFormDataUsing(function (array $data): array {
-                        //     // This is the test.
-                        //     $data['team_id'] = 2;
-                        //     return $data;
-                        // }),
-                        ->form(
-                            static fn (AttachAction $action): array => [
-                                $action->getRecordSelect(),
-                                // Forms\Components\TextInput::make('team_id')->required(),
-                                Select::make('team_id')
-                                    ->options($xotData->getTeamClass()::get()->pluck('name', 'id')),
-                                // ->options(function($item){
-                                //     dddx($this);
-                                // })
-                            ]
-                        ),
-                ]
-            )
-            ->actions(
-                [
-                    EditAction::make(),
-                    // Tables\Actions\DeleteAction::make(),
-                    DetachAction::make(),
-                ]
-            )
-            ->bulkActions(
-                [
-                    DeleteBulkAction::make(),
-                ]
-            );
+            ->columns([
+                TextColumn::make('id'),
+                TextColumn::make('name'),
+                TextColumn::make('team_id'),
+            ])
+            ->filters([])
+            ->headerActions([
+                // Tables\Actions\CreateAction::make(),
+                AttachAction::make()
+                    // ->mutateFormDataUsing(function (array $data): array {
+                    //     // This is the test.
+                    //     $data['team_id'] = 2;
+                    //     return $data;
+                    // }),
+                    ->form(static fn(AttachAction $action): array => [
+                        $action->getRecordSelect(),
+                        // Forms\Components\TextInput::make('team_id')->required(),
+                        Select::make('team_id')->options($xotData->getTeamClass()::get()->pluck('name', 'id')),
+                        // ->options(function($item){
+                        //     dddx($this);
+                        // })
+                    ]),
+            ])
+            ->actions([
+                EditAction::make(),
+                // Tables\Actions\DeleteAction::make(),
+                DetachAction::make(),
+            ])
+            ->bulkActions([
+                DeleteBulkAction::make(),
+            ]);
     }
 }

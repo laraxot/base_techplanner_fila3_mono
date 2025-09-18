@@ -18,7 +18,7 @@ class RoleRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'roles';
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static null|string $recordTitleAttribute = 'name';
 
     /**
      * @return array<string, \Filament\Forms\Components\Component>
@@ -35,22 +35,13 @@ class RoleRelationManager extends XotBaseRelationManager
     #[\Override]
     public function table(Table $table): Table
     {
-        return $table
-            ->columns(
-                [
-                    TextColumn::make('name')
-                        ->searchable(),
-                    TextColumn::make('guard_name')
-                        ->searchable(),
-                ]
-            )
-            ->filters(
-                [
-                ]
-            );
+        return $table->columns([
+            TextColumn::make('name')->searchable(),
+            TextColumn::make('guard_name')->searchable(),
+        ])->filters([]);
     }
 
-    protected static function getModelLabel(): ?string
+    protected static function getModelLabel(): null|string
     {
         // return __('filament-spatie-roles-permissions::filament-spatie.section.role');
         return __('filament-spatie-roles-permissions::filament-spatie.section.role');

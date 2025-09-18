@@ -81,4 +81,4 @@ class ReadTranslationFileAction
 
         return $content;
     }
-} 
+}

@@ -28,7 +28,7 @@ class XlsByModelClassAction
      * @param array<int, string> $includes Relazioni o campi da includere
      * @param array<int, string> $excludes Campi da escludere
      * @param callable|null $callback Callback per manipolare i dati
-     * 
+     *
      * @return BinaryFileResponse
      */
     public function execute(
@@ -36,19 +36,19 @@ class XlsByModelClassAction
         array $where = [],
         array $includes = [],
         array $excludes = [],
-        ?callable $callback = null,
+        null|callable $callback = null,
     ): BinaryFileResponse {
         // Verifichiamo che la classe del modello esista
         Assert::classExists($modelClass);
         Assert::subclassOf($modelClass, Model::class);
-        
+
         $with = $this->getWithByIncludes($includes);
 
         // Creiamo l'istanza del modello e costruiamo la query
         /** @var Model $model */
         $model = app($modelClass);
         $query = $model->query()->with($with);
-        
+
         // Applichiamo le condizioni where
         foreach ($where as $key => $value) {
             $query->where($key, $value);
@@ -57,19 +57,17 @@ class XlsByModelClassAction
         // Otteniamo i risultati
         /** @var Collection $rows */
         $rows = $query->get();
-        
+
         // Filtriamo i campi se sono specificati gli includes
         if ([] !== $includes) {
-            $rows = $rows->map(
-                static function ($item) use ($includes) {
-                    $data = [];
-                    foreach ($includes as $include) {
-                        $data[$include] = data_get($item, $include);
-                    }
-
-                    return $data;
+            $rows = $rows->map(static function ($item) use ($includes) {
+                $data = [];
+                foreach ($includes as $include) {
+                    $data[$include] = data_get($item, $include);
                 }
-            );
+
+                return $data;
+            });
         }
 
         // Nascondiamo i campi esclusi
@@ -100,7 +98,7 @@ class XlsByModelClassAction
      * Ottiene le relazioni da caricare in base ai campi inclusi.
      *
      * @param array<int, string> $includes Campi da includere
-     * 
+     *
      * @return array<int, string>
      */
     private function getWithByIncludes(array $includes): array
@@ -108,13 +106,13 @@ class XlsByModelClassAction
         $with = [];
         foreach ($includes as $include) {
             // Assicuriamo che $include sia una stringa
-            $includeStr = is_string($include) ? $include : (string) $include;
-            
+            $includeStr = is_string($include) ? $include : ((string) $include);
+
             // Verifichiamo se contiene un punto (indicatore di relazione)
             if (!Str::contains($includeStr, '.')) {
                 continue;
             }
-            
+
             // Estraiamo il nome della relazione (prima parte prima del punto)
             $parts = explode('.', $includeStr);
             if (!empty($parts[0])) {
@@ -129,15 +127,11 @@ class XlsByModelClassAction
      * Genera il nome del file di export.
      *
      * @param string $modelClass Classe del modello
-     * 
+     *
      * @return string
      */
     private function getExportName(string $modelClass): string
     {
-        return sprintf(
-            '%s %s.xlsx',
-            Str::slug(class_basename($modelClass)),
-            Carbon::now()->format('d-m-Y His'),
-        );
+        return sprintf('%s %s.xlsx', Str::slug(class_basename($modelClass)), Carbon::now()->format('d-m-Y His'));
     }
 }

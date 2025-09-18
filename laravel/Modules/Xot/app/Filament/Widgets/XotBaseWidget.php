@@ -58,24 +58,24 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
      *
      * @var array<string, mixed>
      */
-    public ?array $data = [];
+    public null|array $data = [];
 
     /*
-    public function __construct()
-    {
-        //parent::__construct();//Cannot call constructor
-        $view = app(GetViewByClassAction::class)->execute(static::class);
-        if(view()->exists($view)){
-            $this->view = $view;
-        }
-    }
-    */
+     * public function __construct()
+     * {
+     * //parent::__construct();//Cannot call constructor
+     * $view = app(GetViewByClassAction::class)->execute(static::class);
+     * if(view()->exists($view)){
+     * $this->view = $view;
+     * }
+     * }
+     */
     /*
-    public function mount(): void
-    {
-        $this->form->fill();
-    }
-    */
+     * public function mount(): void
+     * {
+     * $this->form->fill();
+     * }
+     */
 
     /**
      * Ottiene lo schema del form.
@@ -99,7 +99,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
         $data = $this->getFormFill();
 
         $form->model($this->getFormModel());
-        if (! empty($data)) {
+        if (!empty($data)) {
             // $form->fill($data);
             // $this->data=$data;
         }
@@ -110,7 +110,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
     public function getFormFill(): array
     {
         $model = $this->getFormModel();
-        if (null == $model) {
+        if (null === $model) {
             return [];
         }
         if (is_string($model)) {
@@ -127,7 +127,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
                     $defaults = $model->getDataDefaults();
                     $merge1 = array_merge($defaults, $res);
                     $merge1 = Arr::map($merge1, function ($value, $key) use ($defaults) {
-                        if (null == $value) {
+                        if (null === $value) {
                             $value = Arr::get($defaults, $key, null);
                         }
 
@@ -137,6 +137,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
                 }
 
                 return $res;
+
                 // dddx($model->with('studio')->relationsToArray());
             } catch (\Exception $e) {
                 // Se toArray() fallisce (problemi con enum), usa getAttributes()
@@ -211,18 +212,22 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
     public static function getNavigationLabel(): string
     {
         /*
-        return (string) (static::$navigationLabel ?? (string) str(static::getLabel())
-            ->headline());
-        */
+         * return (string) (static::$navigationLabel ?? (string) str(static::getLabel())
+         * ->headline());
+         */
         return static::transFunc(__FUNCTION__);
     }
 
     protected function getStepByName(string $name): Forms\Components\Wizard\Step
     {
-        $schema = Str::of($name)->snake()->studly()->prepend('get')->append('Schema')->toString();
+        $schema = Str::of($name)
+            ->snake()
+            ->studly()
+            ->prepend('get')
+            ->append('Schema')
+            ->toString();
 
-        return Forms\Components\Wizard\Step::make($name)
-            ->schema($this->$schema());
+        return Forms\Components\Wizard\Step::make($name)->schema($this->$schema());
     }
 
     public function getWizardSubmitAction(): Action
@@ -230,7 +235,7 @@ abstract class XotBaseWidget extends FilamentWidget implements HasForms, HasActi
         /** @var view-string $submit_view */
         $submit_view = 'pub_theme::filament.wizard.submit-button';
 
-        if(!view()->exists($submit_view)){
+        if (!view()->exists($submit_view)) {
             throw new \Exception("View {$submit_view} does not exist");
         }
         return Action::make('submit')

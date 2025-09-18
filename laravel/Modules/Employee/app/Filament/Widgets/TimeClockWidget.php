@@ -45,7 +45,7 @@ class TimeClockWidget extends XotBaseWidget
     /**
      * Ordine di visualizzazione (primo widget).
      */
-    protected static ?int $sort = 0;
+    protected static null|int $sort = 0;
 
     /**
      * Occupa tutta la larghezza della riga.
@@ -55,7 +55,7 @@ class TimeClockWidget extends XotBaseWidget
     /**
      * Polling per aggiornamento real-time.
      */
-    protected static ?string $pollingInterval = '1s';
+    protected static null|string $pollingInterval = '1s';
 
     /**
      * Ora corrente per display.
@@ -104,6 +104,7 @@ class TimeClockWidget extends XotBaseWidget
      *
      * @return array<string, mixed>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -145,16 +146,23 @@ class TimeClockWidget extends XotBaseWidget
             ->get();
 
         /** @var array<int, array{time: string, type: string, status: string}> $todayEntries */
-        $todayEntries = $entries->map(function (WorkHour $entry): array {
-            $type = $entry->type;
-            $status = $entry->status;
-            
-            return [
-                'time' => $entry->timestamp->format('H:i'),
-                'type' => is_object($type) && method_exists($type, 'value') ? $type->value : (is_string($type) ? $type : ''),
-                'status' => is_object($status) && method_exists($status, 'value') ? $status->value : (is_string($status) ? $status : ''),
-            ];
-        })->values()->all();
+        $todayEntries = $entries
+            ->map(function (WorkHour $entry): array {
+                $type = $entry->type;
+                $status = $entry->status;
+
+                return [
+                    'time' => $entry->timestamp->format('H:i'),
+                    'type' => is_object($type) && method_exists($type, 'value')
+                        ? $type->value
+                        : (is_string($type) ? $type : ''),
+                    'status' => is_object($status) && method_exists($status, 'value')
+                        ? $status->value
+                        : (is_string($status) ? $status : ''),
+                ];
+            })
+            ->values()
+            ->all();
         $this->todayEntries = $todayEntries;
     }
 
@@ -180,7 +188,6 @@ class TimeClockWidget extends XotBaseWidget
         }
     }
 
-
     /**
      * Clock-in action.
      */
@@ -200,7 +207,7 @@ class TimeClockWidget extends XotBaseWidget
      */
     public function clockOut(): void
     {
-        if (! $this->isClockedIn) {
+        if (!$this->isClockedIn) {
             $this->notifyWarning('Devi prima timbrare l\'entrata');
 
             return;
@@ -221,11 +228,11 @@ class TimeClockWidget extends XotBaseWidget
             'type' => $type,
             'timestamp' => Carbon::now(),
             'status' => WorkHourStatusEnum::PENDING,
-            'notes' => $successMessage.' da dashboard widget',
+            'notes' => $successMessage . ' da dashboard widget',
         ]);
 
         $this->updateData();
-        $this->notifySuccess($successMessage.' alle '.Carbon::now()->format('H:i'));
+        $this->notifySuccess($successMessage . ' alle ' . Carbon::now()->format('H:i'));
     }
 
     /**
@@ -233,7 +240,11 @@ class TimeClockWidget extends XotBaseWidget
      */
     private function notifySuccess(string $message): void
     {
-        Notification::make()->title('Successo')->body($message)->success()->send();
+        Notification::make()
+            ->title('Successo')
+            ->body($message)
+            ->success()
+            ->send();
     }
 
     /**
@@ -241,7 +252,11 @@ class TimeClockWidget extends XotBaseWidget
      */
     private function notifyWarning(string $message): void
     {
-        Notification::make()->title('Attenzione')->body($message)->warning()->send();
+        Notification::make()
+            ->title('Attenzione')
+            ->body($message)
+            ->warning()
+            ->send();
     }
 
     /**
@@ -249,6 +264,10 @@ class TimeClockWidget extends XotBaseWidget
      */
     private function notifyError(string $message): void
     {
-        Notification::make()->title('Errore')->body($message)->danger()->send();
+        Notification::make()
+            ->title('Errore')
+            ->body($message)
+            ->danger()
+            ->send();
     }
 }

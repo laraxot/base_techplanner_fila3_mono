@@ -19,9 +19,8 @@ class HasManyRelationData extends Data
         public mixed $parentKey,
         public array $updateData,
         #[MapInputName('from')]
-        public ?array $from = null,
+        public null|array $from = null,
         #[MapInputName('to')]
-        public ?array $to = null,
-    ) {
-    }
+        public null|array $to = null,
+    ) {}
 }

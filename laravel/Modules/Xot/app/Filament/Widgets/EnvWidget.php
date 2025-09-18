@@ -23,7 +23,7 @@ class EnvWidget extends Widget implements HasForms
     use InteractsWithForms;
 
     /** @var array<string, mixed>|null */
-    public ?array $data = [];
+    public null|array $data = [];
 
     public array $only = [];
 
@@ -40,15 +40,12 @@ class EnvWidget extends Widget implements HasForms
 
     public function form(Forms\Form $form): Forms\Form
     {
-        return $form
-            ->schema($this->getFormSchema())
-            ->columns(1)
-            ->statePath('data');
+        return $form->schema($this->getFormSchema())->columns(1)->statePath('data');
     }
 
     public function submit(): void
     {
-        if (! is_array($this->data)) {
+        if (!is_array($this->data)) {
             return;
         }
         EnvData::make()->update($this->data);
@@ -56,12 +53,13 @@ class EnvWidget extends Widget implements HasForms
             ->title('Saved successfully')
             ->success()
             ->send();
+
         /*
-        dddx([
-            'data' => $this->data,
-            // 'data1' => $this->form->getState(),
-        ]);
-        */
+         * dddx([
+         * 'data' => $this->data,
+         * // 'data1' => $this->form->getState(),
+         * ]);
+         */
     }
 
     /**
@@ -71,13 +69,12 @@ class EnvWidget extends Widget implements HasForms
     {
         $all = [
             'app_url' => TextInput::make('app_url')
-
                 ->placeholder('http://localhost')
                 ->helperText('Required for file uploads and other internal configs')
                 ->required(),
-            'debugbar_enabled' => Toggle::make('debugbar_enabled')
-
-                ->helperText('Enable/Disable debug mode to help debug errors'),
+            'debugbar_enabled' => Toggle::make('debugbar_enabled')->helperText(
+                'Enable/Disable debug mode to help debug errors',
+            ),
             'google_maps_api_key' => TextInput::make('google_maps_api_key')
                 ->placeholder('AIzaSyAuB_...')
                 ->helperText('google maps api key'),

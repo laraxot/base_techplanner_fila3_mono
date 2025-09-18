@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\Xot\Datas\Transformers;
 
 use Modules\Xot\Actions\File\AssetAction;
 use Spatie\LaravelData\Support\DataProperty;
-use Spatie\LaravelData\Transformers\Transformer;
 use Spatie\LaravelData\Support\Transformation\TransformationContext;
+use Spatie\LaravelData\Transformers\Transformer;
 
 /**
  * AssetTransformer - Trasforma riferimenti di file in percorsi completi per le risorse
@@ -18,21 +21,16 @@ class AssetTransformer implements Transformer
     /**
      * Trasforma un riferimento di file in un percorso completo
      *
-     * @param \Spatie\LaravelData\Support\DataProperty $property La proprietà di dati
+     * @param \Spatie\LaravelData\Support\DataProperty $_property La proprietà di dati (non utilizzata)
      * @param mixed $value Il valore da trasformare (es. "user::image.png")
-     * @param \Spatie\LaravelData\Support\Transformation\TransformationContext $context Il contesto di trasformazione
+     * @param \Spatie\LaravelData\Support\Transformation\TransformationContext $_context Il contesto di trasformazione (non utilizzato)
      * @return string Il percorso completo (es. "/modules/user/resources/image.png")
      */
-    public function transform(
-        DataProperty $property,
-        $value,
-        TransformationContext $context
-    ):string {
+    public function transform(DataProperty $_property, $value, TransformationContext $_context): string
+    {
         if (!is_string($value) || empty($value)) {
             return '';
         }
         return app(AssetAction::class)->execute($value);
     }
-
-
 }

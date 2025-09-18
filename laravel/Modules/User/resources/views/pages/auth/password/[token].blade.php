@@ -1,20 +1,21 @@
 <?php
 
-use Illuminate\Support\Str;
+declare(strict_types=1);
+
+
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
+use Livewire\Attributes\Validate;
+use Livewire\Volt\Component;
 
 use function Laravel\Folio\name;
 
-use Livewire\Volt\Component;
-use Livewire\Attributes\Validate;
-
 name('password.reset');
 
-new class extends Component
-{
+new class extends Component {
     #[Validate('required')]
     public $token;
 
@@ -54,7 +55,7 @@ new class extends Component
             },
         );
 
-        if ($response == Password::PASSWORD_RESET) {
+        if ($response === Password::PASSWORD_RESET) {
             session()->flash(trans($response));
 
             return redirect('/');

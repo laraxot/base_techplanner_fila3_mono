@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="bg-indigo-800">
     <div class="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8 lg:py-20">
       <div class="mx-auto max-w-4xl text-center">
@@ -20,4 +25,3 @@
       </dl>
     </div>
   </div>
-  

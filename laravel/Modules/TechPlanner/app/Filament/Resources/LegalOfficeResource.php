@@ -12,46 +12,31 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class LegalOfficeResource extends XotBaseResource
 {
-    protected static ?string $model = LegalOffice::class;
+    protected static null|string $model = LegalOffice::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            \Filament\Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('address')
-                ->required()
-                ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('city')
-                ->required()
-                ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('postal_code')
-                ->required()
-                ->maxLength(10),
-            \Filament\Forms\Components\TextInput::make('province')
-                ->required()
-                ->maxLength(2),
+            \Filament\Forms\Components\TextInput::make('name')->required()->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('address')->required()->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('city')->required()->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('postal_code')->required()->maxLength(10),
+            \Filament\Forms\Components\TextInput::make('province')->required()->maxLength(2),
             \Filament\Forms\Components\TextInput::make('country')
                 ->required()
                 ->default('IT')
                 ->maxLength(2),
-            \Filament\Forms\Components\TextInput::make('phone')
-                ->tel()
-                ->maxLength(255),
-            \Filament\Forms\Components\TextInput::make('email')
-                ->email()
-                ->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('phone')->tel()->maxLength(255),
+            \Filament\Forms\Components\TextInput::make('email')->email()->maxLength(255),
         ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-            ])
-            ->filters([
-            ])
+            ->columns([])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -62,12 +47,13 @@ class LegalOfficeResource extends XotBaseResource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

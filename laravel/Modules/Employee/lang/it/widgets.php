@@ -19,7 +19,6 @@ return [
             'description' => 'Non hai attività pendenti in questo momento.',
         ],
     ],
-
     'upcoming_schedule' => [
         'title' => 'Prossimi 7 giorni',
         'description' => 'Eventi e appuntamenti in programma',
@@ -46,7 +45,6 @@ return [
             'description' => 'Non ci sono eventi nei prossimi 7 giorni.',
         ],
     ],
-
     'time_off_balance' => [
         'title' => 'Le mie rimanenze',
         'description' => 'Saldi ferie e permessi per :month',
@@ -62,7 +60,6 @@ return [
         'last_updated' => 'Ultimo aggiornamento',
         'view_details' => 'Vedi dettagli',
     ],
-
     'today_presence' => [
         'title' => 'Chi c\'è oggi',
         'description' => 'Presenze in tempo reale',
@@ -74,7 +71,6 @@ return [
         'last_updated' => 'Aggiornato alle',
         'view_details' => 'Vedi dettaglio',
     ],
-
     'pending_requests' => [
         'title' => 'Le mie richieste in attesa',
         'description' => 'Stato delle tue richieste di approvazione',
@@ -101,7 +97,6 @@ return [
             'description' => 'Tutte le tue richieste sono state gestite dall\'amministratore.',
         ],
     ],
-
     // TimeClockWidget - Nuovo widget layout 3 colonne
     'time_clock' => [
         'session_active' => 'Sessione attiva',
@@ -118,7 +113,6 @@ return [
             'error_occurred' => 'Errore durante la timbratura',
         ],
     ],
-
     // Existing widgets
     'time_tracking' => [
         'session_active' => 'Sessione attiva',
@@ -139,7 +133,6 @@ return [
             'error_occurred' => 'Si è verificato un errore',
         ],
     ],
-
     'employee_overview' => [
         'title' => 'Panoramica dipendenti',
         'description' => 'Statistiche generali sui dipendenti',
@@ -148,7 +141,6 @@ return [
         'departments' => 'Dipartimenti',
         'new_this_month' => 'Nuovi questo mese',
     ],
-
     'work_hour_stats' => [
         'title' => 'Statistiche ore lavoro',
         'description' => 'Analisi delle timbrature',

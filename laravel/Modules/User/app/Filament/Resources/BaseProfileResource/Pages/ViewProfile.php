@@ -23,35 +23,31 @@ class ViewProfile extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecor
     public function getInfolistSchema(): array
     {
         return [
-            'profile_info' => Components\Section::make()
-                ->schema([
-                    Components\Split::make([
-                        Components\Grid::make(2)
-                            ->schema([
-                                Components\Group::make([
-                                    TextEntry::make('email'),
-                                    TextEntry::make('first_name'),
-                                    TextEntry::make('last_name'),
-                                    TextEntry::make('created_at')
-                                        ->badge()
-                                        ->date()
-                                        ->color('success'),
-                                ]),
-                                /*
-                                Components\Group::make([
-                                    Components\TextEntry::make('author.name'),
-                                    Components\TextEntry::make('category.name'),
-                                    Components\TextEntry::make('tags')
-                                        ->badge()
-                                        ->getStateUsing(fn () => ['one', 'two', 'three', 'four']),
-                                ]),
-                                */
-                            ]),
-                        Components\ImageEntry::make('image')
-                            ->hiddenLabel()
-                            ->grow(false),
-                    ])->from('lg'),
-                ]),
+            'profile_info' => Components\Section::make()->schema([
+                Components\Split::make([
+                    Components\Grid::make(2)->schema([
+                        Components\Group::make([
+                            TextEntry::make('email'),
+                            TextEntry::make('first_name'),
+                            TextEntry::make('last_name'),
+                            TextEntry::make('created_at')
+                                ->badge()
+                                ->date()
+                                ->color('success'),
+                        ]),
+                        /*
+                         * Components\Group::make([
+                         * Components\TextEntry::make('author.name'),
+                         * Components\TextEntry::make('category.name'),
+                         * Components\TextEntry::make('tags')
+                         * ->badge()
+                         * ->getStateUsing(fn () => ['one', 'two', 'three', 'four']),
+                         * ]),
+                         */
+                    ]),
+                    Components\ImageEntry::make('image')->hiddenLabel()->grow(false),
+                ])->from('lg'),
+            ]),
             'content' => Components\Section::make('Content')
                 ->schema([
                     TextEntry::make('content')

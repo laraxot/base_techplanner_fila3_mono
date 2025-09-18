@@ -80,11 +80,9 @@ class Result extends BaseModel
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'ran_at' => 'datetime',
         ];
     }

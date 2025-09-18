@@ -53,9 +53,7 @@ class BuildWeeklyTimeTableAction
             $dateKey = $current->toDateString();
 
             // Filtra entries per questo giorno
-            $dayEntries = $entries->filter(function ($entry) use ($current) {
-                return $entry->timestamp->isSameDay($current);
-            });
+            $dayEntries = $entries->filter(fn ($entry) => $entry->timestamp->isSameDay($current));
 
             // Costruisci sessioni per questo giorno
             $sessions = $this->buildDaySessions($dayEntries);
@@ -67,15 +65,18 @@ class BuildWeeklyTimeTableAction
 
             // Determina stato giorno
             /** @var array<int, array{time: string, type: string, status: string, duration?: float}> $typedSessions */
-            $typedSessions = array_map(function (array $session): array {
-                return [
+            $typedSessions = array_map(fn (array $session): array => [
                     'time' => $session['time'],
                     'type' => $session['type'],
                     'status' => $session['status'],
-                    'duration' => isset($session['duration']) && (is_float($session['duration']) || is_int($session['duration'])) ? (float) $session['duration'] : null,
-                ];
-            }, $sessions);
-            $typedSessions = array_filter($typedSessions, fn(array $session) => isset($session['duration']) ? is_float($session['duration']) : true);
+                    'duration' => isset($session['duration']) &&
+                    (is_float($session['duration']) || is_int($session['duration']))
+                        ? ((float) $session['duration'])
+                        : null,
+                ], $sessions);
+            $typedSessions = array_filter($typedSessions, fn(array $session) => isset($session['duration'])
+                ? is_float($session['duration'])
+                : true);
             $dayStatus = $this->determineDayStatus($typedSessions, $workedHours, $contractHours);
 
             /** @var \Carbon\Carbon $currentCarbon */
@@ -87,13 +88,11 @@ class BuildWeeklyTimeTableAction
                 'dayName' => Carbon::parse($currentCarbon)->locale('it')->format('D'),
                 //@phpstan-ignore-next-line
                 'fullDate' => Carbon::parse($currentCarbon)->locale('it')->format('d/m/Y'),
-                'entries' => array_map(function (array $session): array {
-                    return [
+                'entries' => array_map(fn (array $session): array => [
                         'time' => $session['time'],
                         'type' => $session['type'],
                         'status' => $session['status'],
-                    ];
-                }, $sessions),
+                    ], $sessions),
                 'totalHours' => $workedHours,
                 'contractHours' => $contractHours,
                 'variance' => $variance,
@@ -111,7 +110,7 @@ class BuildWeeklyTimeTableAction
         }
 
         // Calcola media giornaliera
-        $workDays = collect($days)->filter(fn ($day) => ! $day['isWeekend'])->count();
+        $workDays = collect($days)->filter(fn($day) => !$day['isWeekend'])->count();
         $weekSummary['averageDaily'] = $workDays > 0 ? round($weekSummary['totalWorked'] / $workDays, 2) : 0;
 
         return [

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="max-w-4xl mx-auto p-6 space-y-6" wire:poll.5s="refreshData">
     <!-- Header Section -->
     <div class="bg-white rounded-lg shadow-sm border p-6">

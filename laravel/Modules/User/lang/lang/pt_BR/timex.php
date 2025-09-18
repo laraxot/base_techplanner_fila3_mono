@@ -7,18 +7,15 @@ return [
         'label' => 'Agendamento',
         'pluralLabel' => 'Agendamentos',
     ],
-
     'modal' => [
         'submit' => 'Criar',
         'cancel' => 'Cancelar',
         'delete' => 'Deletar',
         'edit' => 'Editar',
     ],
-
     'events' => [
         'empty' => 'Nenhum evento futuro',
     ],
-
     'event' => [
         'subject' => 'Título',
         'body' => 'Mensagem',
@@ -29,13 +26,11 @@ return [
         'participants' => 'Participantes',
         'attachments' => 'Anexos',
     ],
-
     'event-list' => [
         'author' => 'Author: :name',
         'start' => 'Start: :start',
         'end' => 'End: :end',
     ],
-
     'labels' => [
         'navigation' => 'TiMEX',
         'breadcrumbs' => 'TiMEX',

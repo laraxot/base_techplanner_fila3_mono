@@ -24,12 +24,12 @@ class LogoutUserAction
      */
     public function execute(UserContract $user): void
     {
-        Assert::notNull($accessToken = $user->token(), '['.__FILE__.']['.__LINE__.']');
+        Assert::notNull($accessToken = $user->token(), '[' . __FILE__ . '][' . __LINE__ . ']');
         /*
-            DB::table('oauth_refresh_tokens')
-                ->where('access_token_id', $accessToken->)
-                ->delete();
-            */
+         * DB::table('oauth_refresh_tokens')
+         * ->where('access_token_id', $accessToken->)
+         * ->delete();
+         */
 
         // Assert::methodExists($accessToken, 'delete');
         if (method_exists($accessToken, 'getKey')) {
@@ -38,14 +38,14 @@ class LogoutUserAction
 
         if (method_exists($accessToken, 'delete')) {
             $accessToken->delete();
+
             // $user->token()->delete();
         }
 
         /*
-        MobileDeviceUser::where('user_id', $user->getKey())
-            ->update(['logout_at' => now()]);
-        */
-        DeviceUser::where('user_id', $user->getKey())
-            ->update(['logout_at' => now()]);
+         * MobileDeviceUser::where('user_id', $user->getKey())
+         * ->update(['logout_at' => now()]);
+         */
+        DeviceUser::where('user_id', $user->getKey())->update(['logout_at' => now()]);
     }
 }

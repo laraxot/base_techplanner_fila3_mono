@@ -8,13 +8,9 @@ use Modules\Employee\Tests\TestCase;
 // ✅ CONFIGURAZIONE CORRETTA PEST + DATABASE TRANSACTIONS
 uses(TestCase::class, DatabaseTransactions::class)->in('Feature', 'Unit', 'Integration');
 
-expect()->extend('toBeEmployee', function () {
-    return $this->toBeInstanceOf(\Modules\Employee\Models\Employee::class);
-});
+expect()->extend('toBeEmployee', fn () => $this->toBeInstanceOf(\Modules\Employee\Models\Employee::class));
 
-expect()->extend('toBeWorkHour', function () {
-    return $this->toBeInstanceOf(\Modules\Employee\Models\WorkHour::class);
-});
+expect()->extend('toBeWorkHour', fn () => $this->toBeInstanceOf(\Modules\Employee\Models\WorkHour::class));
 
 function createEmployee(array $attributes = []): \Modules\Employee\Models\Employee
 {

@@ -36,37 +36,36 @@ class ChangePasswordAction extends Action
                 PasswordData::make()->getPasswordFormComponent('new_password'),
                 TextInput::make('new_password_confirmation')
                     ->password()
-
                     ->placeholder(__('user::fields.confirm_password.placeholder'))
-                    ->rule('required', static fn ($get): bool => (bool) $get('new_password'))
+                    ->rule('required', static fn($get): bool => (bool) $get('new_password'))
                     ->same('new_password'),
             ]);
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'changePassword';
     }
 }
 
 /*
-Action::make('changePassword')
-                    ->action(function (UserContract $user, array $data): void {
-                        $user->update([
-                            'password' => Hash::make($data['new_password']),
-                        ]);
-                        Notification::make()->success()->title('Password changed successfully.');
-                    })
-                    ->form([
-                        TextInput::make('new_password')
-                            ->password()
-                            ->required()
-                            ->rule(Password::default()),
-                        TextInput::make('new_password_confirmation')
-                            ->password()
-                            ->rule('required', fn ($get): bool => (bool) $get('new_password'))
-                            ->same('new_password'),
-                    ])
-                    ->icon('heroicon-o-key')
-                // ->visible(fn (User $record): bool => $record->role_id === Role::ROLE_ADMINISTRATOR)
-*/
+ * Action::make('changePassword')
+ * ->action(function (UserContract $user, array $data): void {
+ * $user->update([
+ * 'password' => Hash::make($data['new_password']),
+ * ]);
+ * Notification::make()->success()->title('Password changed successfully.');
+ * })
+ * ->form([
+ * TextInput::make('new_password')
+ * ->password()
+ * ->required()
+ * ->rule(Password::default()),
+ * TextInput::make('new_password_confirmation')
+ * ->password()
+ * ->rule('required', fn ($get): bool => (bool) $get('new_password'))
+ * ->same('new_password'),
+ * ])
+ * ->icon('heroicon-o-key')
+ * // ->visible(fn (User $record): bool => $record->role_id === Role::ROLE_ADMINISTRATOR)
+ */

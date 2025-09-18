@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <tr>
     <td class="w50" width="50"></td>
     <td class="w560" width="560">

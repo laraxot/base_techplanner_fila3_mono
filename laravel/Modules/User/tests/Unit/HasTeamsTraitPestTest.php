@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 use Illuminate\Support\Collection;
 use Modules\User\Contracts\TeamContract;
 use Modules\User\Models\Role;
@@ -60,8 +63,10 @@ test('it correctly checks team ownership', function () {
 test('it uses belongs to many x for teams relationship', function () {
     // Verify teams() relationship returns BelongsToMany
     $relation = $this->user->teams();
-    expect($relation)->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class)
-        ->getTable()->toBe('team_user');
+    expect($relation)
+        ->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\BelongsToMany::class)
+        ->getTable()
+        ->toBe('team_user');
 });
 
 test('it correctly manages current team', function () {
@@ -69,13 +74,11 @@ test('it correctly manages current team', function () {
     $this->user->teams()->attach($this->team->id, ['role' => 'member']);
     $result = $this->user->switchTeam($this->team);
 
-    expect($result)->toBeTrue()
-        ->and($this->user->current_team_id)->toBe($this->team->id);
+    expect($result)->toBeTrue()->and($this->user->current_team_id)->toBe($this->team->id);
 
     // Test: Switch to null
     $result = $this->user->switchTeam(null);
-    expect($result)->toBeTrue()
-        ->and($this->user->current_team_id)->toBeNull();
+    expect($result)->toBeTrue()->and($this->user->current_team_id)->toBeNull();
 
     // Test: Switch to non-member team
     $otherTeam = Team::factory()->create();
@@ -86,8 +89,10 @@ test('it correctly manages current team', function () {
 test('it correctly identifies current team', function () {
     $this->user->switchTeam($this->personalTeam);
 
-    expect($this->user->isCurrentTeam($this->personalTeam))->toBeTrue()
-        ->and($this->user->isCurrentTeam($this->team))->toBeFalse();
+    expect($this->user->isCurrentTeam($this->personalTeam))
+        ->toBeTrue()
+        ->and($this->user->isCurrentTeam($this->team))
+        ->toBeFalse();
 });
 
 test('it returns all teams user owns or belongs to', function () {
@@ -98,18 +103,15 @@ test('it returns all teams user owns or belongs to', function () {
 
     expect($allTeams)
         ->toBeInstanceOf(Collection::class)
-        ->toHaveCount(2) // personal team + member team
+        ->toHaveCount(2)
         ->toContain($this->personalTeam)
-        ->toContain($this->team);
+        ->toContain($this->team); // personal team + member team
 });
 
 test('it returns owned teams', function () {
     $ownedTeams = $this->user->ownedTeams;
 
-    expect($ownedTeams)
-        ->toBeInstanceOf(Collection::class)
-        ->toHaveCount(1)
-        ->toContain($this->personalTeam);
+    expect($ownedTeams)->toBeInstanceOf(Collection::class)->toHaveCount(1)->toContain($this->personalTeam);
 });
 
 test('it returns personal team', function () {
@@ -124,16 +126,12 @@ test('it returns personal team', function () {
 test('it correctly determines team role', function () {
     // Test: Owner role
     $role = $this->user->teamRole($this->personalTeam);
-    expect($role)
-        ->toBeInstanceOf(Role::class)
-        ->name->toBe('owner');
+    expect($role)->toBeInstanceOf(Role::class)->name->toBe('owner');
 
     // Test: Member role
     $this->user->teams()->attach($this->team->id, ['role' => 'admin']);
     $role = $this->user->teamRole($this->team);
-    expect($role)
-        ->toBeInstanceOf(Role::class)
-        ->name->toBe('admin');
+    expect($role)->toBeInstanceOf(Role::class)->name->toBe('admin');
 
     // Test: No role
     $otherUser = User::factory()->create();
@@ -160,12 +158,16 @@ test('it provides team role name helper', function () {
 test('it correctly checks team role', function () {
     // Test: Has role
     $this->user->teams()->attach($this->team->id, ['role' => 'admin']);
-    expect($this->user->hasTeamRole($this->team, 'admin'))->toBeTrue()
-        ->and($this->user->hasTeamRole($this->team, 'editor'))->toBeFalse();
+    expect($this->user->hasTeamRole($this->team, 'admin'))
+        ->toBeTrue()
+        ->and($this->user->hasTeamRole($this->team, 'editor'))
+        ->toBeFalse();
 
     // Test: Owner has all roles
-    expect($this->user->hasTeamRole($this->personalTeam, 'admin'))->toBeTrue()
-        ->and($this->user->hasTeamRole($this->personalTeam, 'editor'))->toBeTrue();
+    expect($this->user->hasTeamRole($this->personalTeam, 'admin'))
+        ->toBeTrue()
+        ->and($this->user->hasTeamRole($this->personalTeam, 'editor'))
+        ->toBeTrue();
 
     // Test: No role
     $otherTeam = Team::factory()->create();
@@ -182,13 +184,15 @@ test('it correctly manages team permissions', function () {
         'permissions' => json_encode(['edit-content' => true]),
     ]);
 
-    expect($this->user->hasTeamPermission($this->team, 'edit-content'))->toBeTrue()
-        ->and($this->user->hasTeamPermission($this->team, 'delete-content'))->toBeFalse();
+    expect($this->user->hasTeamPermission($this->team, 'edit-content'))
+        ->toBeTrue()
+        ->and($this->user->hasTeamPermission($this->team, 'delete-content'))
+        ->toBeFalse();
 });
 
 test('it handles edge cases', function () {
     // Test: User without ID
-    $newUser = new User;
+    $newUser = new User();
     expect($newUser->belongsToTeams())->toBeFalse();
 
     // Test: Team without owner

@@ -18,7 +18,7 @@ class GetCoordinatesActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->action = new GetCoordinatesAction;
+        $this->action = new GetCoordinatesAction();
     }
 
     /** @test */
@@ -52,10 +52,14 @@ class GetCoordinatesActionTest extends TestCase
         $result = $this->action->execute($address);
 
         // Assert
-        expect($result)->toBeInstanceOf(LocationData::class)
-            ->and($result->latitude)->toBe($expectedLatitude)
-            ->and($result->longitude)->toBe($expectedLongitude)
-            ->and($result->address)->toBe($address);
+        expect($result)
+            ->toBeInstanceOf(LocationData::class)
+            ->and($result->latitude)
+            ->toBe($expectedLatitude)
+            ->and($result->longitude)
+            ->toBe($expectedLongitude)
+            ->and($result->address)
+            ->toBe($address);
     }
 
     /** @test */
@@ -66,7 +70,7 @@ class GetCoordinatesActionTest extends TestCase
         Config::set('services.google.maps.key', null);
 
         // Act & Assert
-        expect(fn () => $this->action->execute($address))
+        expect(fn() => $this->action->execute($address))
             ->toThrow(\RuntimeException::class, 'Google Maps API key not found');
     }
 
@@ -82,7 +86,7 @@ class GetCoordinatesActionTest extends TestCase
         ]);
 
         // Act & Assert
-        expect(fn () => $this->action->execute($address))
+        expect(fn() => $this->action->execute($address))
             ->toThrow(\RuntimeException::class, 'Failed to get coordinates from Google Maps API');
     }
 
@@ -217,9 +221,12 @@ class GetCoordinatesActionTest extends TestCase
         $result = $this->action->execute($address);
 
         // Assert
-        expect($result)->toBeInstanceOf(LocationData::class)
-            ->and($result->latitude)->toBe($expectedLatitude)
-            ->and($result->longitude)->toBe($expectedLongitude);
+        expect($result)
+            ->toBeInstanceOf(LocationData::class)
+            ->and($result->latitude)
+            ->toBe($expectedLatitude)
+            ->and($result->longitude)
+            ->toBe($expectedLongitude);
     }
 
     /** @test */
@@ -253,8 +260,7 @@ class GetCoordinatesActionTest extends TestCase
         $result = $this->action->execute($address);
 
         // Assert
-        expect($result)->toBeInstanceOf(LocationData::class)
-            ->and($result->address)->toBe($address);
+        expect($result)->toBeInstanceOf(LocationData::class)->and($result->address)->toBe($address);
     }
 
     /** @test */
@@ -288,16 +294,19 @@ class GetCoordinatesActionTest extends TestCase
         $result = $this->action->execute($address);
 
         // Assert
-        expect($result)->toBeInstanceOf(LocationData::class)
-            ->and($result->latitude)->toBe($expectedLatitude)
-            ->and($result->longitude)->toBe($expectedLongitude);
+        expect($result)
+            ->toBeInstanceOf(LocationData::class)
+            ->and($result->latitude)
+            ->toBe($expectedLatitude)
+            ->and($result->longitude)
+            ->toBe($expectedLongitude);
     }
 
     /** @test */
     public function it_handles_very_long_addresses(): void
     {
         // Arrange
-        $address = str_repeat('Via Roma 123, Milano, Italia - ', 50).'Ufficio 4° piano';
+        $address = str_repeat('Via Roma 123, Milano, Italia - ', 50) . 'Ufficio 4° piano';
         $expectedLatitude = 45.4642;
         $expectedLongitude = 9.1900;
 
@@ -324,8 +333,7 @@ class GetCoordinatesActionTest extends TestCase
         $result = $this->action->execute($address);
 
         // Assert
-        expect($result)->toBeInstanceOf(LocationData::class)
-            ->and($result->address)->toBe($address);
+        expect($result)->toBeInstanceOf(LocationData::class)->and($result->address)->toBe($address);
     }
 
     /** @test */
@@ -359,9 +367,12 @@ class GetCoordinatesActionTest extends TestCase
         $result = $this->action->execute($address);
 
         // Assert
-        expect($result)->toBeInstanceOf(LocationData::class)
-            ->and($result->latitude)->toBe($expectedLatitude)
-            ->and($result->longitude)->toBe($expectedLongitude);
+        expect($result)
+            ->toBeInstanceOf(LocationData::class)
+            ->and($result->latitude)
+            ->toBe($expectedLatitude)
+            ->and($result->longitude)
+            ->toBe($expectedLongitude);
     }
 
     /** @test */
@@ -376,7 +387,7 @@ class GetCoordinatesActionTest extends TestCase
         ]);
 
         // Act & Assert
-        expect(fn () => $this->action->execute($address))
+        expect(fn() => $this->action->execute($address))
             ->toThrow(\RuntimeException::class, 'Failed to get coordinates from Google Maps API');
     }
 
@@ -392,8 +403,7 @@ class GetCoordinatesActionTest extends TestCase
         ]);
 
         // Act & Assert
-        expect(fn () => $this->action->execute($address))
-            ->toThrow(\RuntimeException::class);
+        expect(fn() => $this->action->execute($address))->toThrow(\RuntimeException::class);
     }
 
     protected function tearDown(): void

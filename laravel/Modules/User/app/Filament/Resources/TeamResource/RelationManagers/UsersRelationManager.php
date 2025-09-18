@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Resources\TeamResource\RelationManagers;
 
 use Filament\Forms\Form;
+use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\User\Filament\Resources\UserResource;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-use Filament\Tables;
 
 class UsersRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'users';
 
-    protected static ?string $inverseRelationship = 'teams';
+    protected static null|string $inverseRelationship = 'teams';
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static null|string $recordTitleAttribute = 'name';
 
     /**
      * @return array<string, \Filament\Tables\Columns\Column>

@@ -11,10 +11,10 @@ use Modules\Xot\Traits\Updater;
 
 /**
  * Class BaseModel.
- * 
+ *
  * @property-read \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property-read \Modules\Xot\Contracts\ProfileContract|null $updater
- * 
+ *
  */
 abstract class BaseModel extends Model
 {
@@ -65,7 +65,7 @@ abstract class BaseModel extends Model
     public function __construct(array $attributes = [])
     {
         if (isset($this->prefix)) {
-            $this->table = $this->prefix.$this->table;
+            $this->table = $this->prefix . $this->table;
         }
 
         parent::__construct($attributes);
@@ -92,7 +92,6 @@ abstract class BaseModel extends Model
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',

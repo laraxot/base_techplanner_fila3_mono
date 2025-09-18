@@ -15,5 +15,4 @@ use Webmozart\Assert\Assert;
  */
 abstract class XotBaseField extends Field
 {
-    
 }

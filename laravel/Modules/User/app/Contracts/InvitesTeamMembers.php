@@ -14,5 +14,10 @@ use Modules\Xot\Contracts\UserContract;
  */
 interface InvitesTeamMembers
 {
-    public function invite(UserContract $userContract, TeamContract $teamContract, string $email, ?string $role = null): void;
+    public function invite(
+        UserContract $userContract,
+        TeamContract $teamContract,
+        string $email,
+        null|string $role = null,
+    ): void;
 }

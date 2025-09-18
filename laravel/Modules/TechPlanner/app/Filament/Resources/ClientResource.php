@@ -7,6 +7,7 @@ namespace Modules\TechPlanner\Filament\Resources;
 use Filament\Forms;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Geo\Filament\Forms\Components\AddressSection;
 use Modules\Notify\Filament\Forms\Components\ContactSection;
@@ -14,22 +15,22 @@ use Modules\TechPlanner\Filament\Resources\ClientResource\Pages;
 use Modules\TechPlanner\Filament\Resources\ClientResource\RelationManagers;
 use Modules\TechPlanner\Models\Client;
 use Modules\Xot\Filament\Resources\XotBaseResource;
-use Filament\Forms\Components\Toggle;
 
 /**
  * @property ClientResource $resource
  */
 class ClientResource extends XotBaseResource
 {
-    protected static ?string $model = Client::class;
+    protected static null|string $model = Client::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         // Note: company_office property was removed from Client model
         // This migration code is no longer needed
-        $fixes=Client::whereNull('route')->whereNotNull('address')->get();//company_office
-        foreach($fixes as $client){
-            $client->update(['route'=>$client->address]);
+        $fixes = Client::whereNull('route')->whereNotNull('address')->get(); //company_office
+        foreach ($fixes as $client) {
+            $client->update(['route' => $client->address]);
         }
         // Skip company_office migration as field doesn't exist
         // $fixes=Client::whereNull('city')->whereNotNull('company_office')->get();//company_office
@@ -58,6 +59,7 @@ class ClientResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [
@@ -68,27 +70,27 @@ class ClientResource extends XotBaseResource
     }
 
     /*
-    public static function getRelations(): array
-    {
-        return [
-            RelationManagers\PhoneCallsRelationManager::class,
-            RelationManagers\AppointmentsRelationManager::class,
-            RelationManagers\DevicesRelationManager::class,
-            RelationManagers\LegalRepresentativesRelationManager::class,
-            RelationManagers\LegalOfficesRelationManager::class,
-            RelationManagers\MedicalDirectorsRelationManager::class,
-        ];
-    }
-        */
+     * public static function getRelations(): array
+     * {
+     * return [
+     * RelationManagers\PhoneCallsRelationManager::class,
+     * RelationManagers\AppointmentsRelationManager::class,
+     * RelationManagers\DevicesRelationManager::class,
+     * RelationManagers\LegalRepresentativesRelationManager::class,
+     * RelationManagers\LegalOfficesRelationManager::class,
+     * RelationManagers\MedicalDirectorsRelationManager::class,
+     * ];
+     * }
+     */
     /*
-    public static function getGlobalSearchResultDetails(Model $record): array
-    {
-        return [
-            'Indirizzo' => $record->full_address,
-            'Coordinate' => $record->latitude && $record->longitude
-                ? "{$record->latitude}, {$record->longitude}"
-                : 'Non disponibili',
-        ];
-    }
-        */
+     * public static function getGlobalSearchResultDetails(Model $record): array
+     * {
+     * return [
+     * 'Indirizzo' => $record->full_address,
+     * 'Coordinate' => $record->latitude && $record->longitude
+     * ? "{$record->latitude}, {$record->longitude}"
+     * : 'Non disponibili',
+     * ];
+     * }
+     */
 }

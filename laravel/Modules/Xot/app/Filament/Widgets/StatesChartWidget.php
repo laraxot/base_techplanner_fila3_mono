@@ -6,18 +6,17 @@ namespace Modules\Xot\Filament\Widgets;
 
 use Modules\Xot\Filament\Widgets\XotBaseChartWidget;
 
-
 class StatesChartWidget extends XotBaseChartWidget
 {
-    protected static ?string $heading = null;
-    protected static ?int $sort = 4;
+    protected static null|string $heading = null;
+    protected static null|int $sort = 4;
     protected static bool $isLazy = true;
 
     public string $stateClass;
     public string $model;
 
     #[\Override]
-    public function getHeading(): ?string
+    public function getHeading(): null|string
     {
         return static::transClass($this->model, 'widgets.states_chart.heading');
     }
@@ -43,12 +42,21 @@ class StatesChartWidget extends XotBaseChartWidget
                     [
                         'label' => $label,
                         'data' => $states->pluck('count')->toArray(),
-                        'backgroundColor' => $states->keys()->map(fn($state) => $colors[$state] ?? 'rgb(156, 163, 175)')->toArray(),
-                        'borderColor' => $states->keys()->map(fn($state) => $colors[$state] ?? 'rgb(156, 163, 175)')->toArray(),
+                        'backgroundColor' => $states
+                            ->keys()
+                            ->map(fn($state) => $colors[$state] ?? 'rgb(156, 163, 175)')
+                            ->toArray(),
+                        'borderColor' => $states
+                            ->keys()
+                            ->map(fn($state) => $colors[$state] ?? 'rgb(156, 163, 175)')
+                            ->toArray(),
                         'borderWidth' => 1,
                     ],
                 ],
-                'labels' => $states->keys()->map(fn($state) => static::transClass($this->model, 'states.'.$state.'.label'))->toArray(),
+                'labels' => $states
+                    ->keys()
+                    ->map(fn($state) => static::transClass($this->model, 'states.' . $state . '.label'))
+                    ->toArray(),
             ];
         } catch (\Exception $e) {
             // Fallback appropriato senza logging inutile
@@ -72,4 +80,4 @@ class StatesChartWidget extends XotBaseChartWidget
     {
         return 'bar';
     }
-} 
+}

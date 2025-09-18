@@ -22,8 +22,8 @@ class JsonEncodeException extends ApplicationException
     public function help(): string
     {
         $res = trans('exception.json_not_encoded.help');
-        if (! \is_string($res)) {
-            throw new \Exception('['.__LINE__.']['.class_basename($this).']');
+        if (!\is_string($res)) {
+            throw new \Exception('[' . __LINE__ . '][' . class_basename($this) . ']');
         }
 
         return $res;
@@ -33,8 +33,8 @@ class JsonEncodeException extends ApplicationException
     public function error(): string
     {
         $res = trans('exception.json_not_encoded.error');
-        if (! \is_string($res)) {
-            throw new \Exception('['.__LINE__.']['.class_basename($this).']');
+        if (!\is_string($res)) {
+            throw new \Exception('[' . __LINE__ . '][' . class_basename($this) . ']');
         }
 
         return $res;

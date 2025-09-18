@@ -12,32 +12,27 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class SnapshotResource extends XotBaseResource
 {
-    protected static ?string $model = Snapshot::class;
+    protected static null|string $model = Snapshot::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'model_type' => TextInput::make('model_type')
-                ->required()
-                ->maxLength(255),
-            'model_id' => TextInput::make('model_id')
-                ->numeric()
-                ->required(),
-            'state' => KeyValue::make('state')
-                ->columnSpanFull(),
-            'created_by_type' => TextInput::make('created_by_type')
-                ->maxLength(255),
-            'created_by_id' => TextInput::make('created_by_id')
-                ->numeric(),
+            'model_type' => TextInput::make('model_type')->required()->maxLength(255),
+            'model_id' => TextInput::make('model_id')->numeric()->required(),
+            'state' => KeyValue::make('state')->columnSpanFull(),
+            'created_by_type' => TextInput::make('created_by_type')->maxLength(255),
+            'created_by_id' => TextInput::make('created_by_id')->numeric(),
         ];
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

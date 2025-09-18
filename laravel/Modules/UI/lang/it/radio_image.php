@@ -1,11 +1,12 @@
 <?php
 
-return  [
-  'fields' => 
-   [
-    'view' => 
-     [
-      'label' => 'view',
+declare(strict_types=1);
+
+
+return [
+    'fields' => [
+        'view' => [
+            'label' => 'view',
+        ],
     ],
-  ],
 ];

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Models\Traits;
 
-use Webmozart\Assert\Assert;
-use Modules\Geo\Models\Address;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Modules\Geo\Models\Address;
+use Webmozart\Assert\Assert;
 
 /**
  * Trait HasAddress
- * 
+ *
  * Fornisce funzionalità per la gestione degli indirizzi nei modelli Eloquent.
  * Questo trait implementa la relazione polimorfica con il modello Address
  * e offre metodi di utilità per la gestione degli indirizzi.
- * 
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Geo\Models\Address> $addresses
  */
 trait HasAddress
@@ -29,7 +29,7 @@ trait HasAddress
     {
         return $this->morphMany(Address::class, 'model');
     }
-    
+
     /**
      * Ottiene indirizzo associato al modello.
      *
@@ -39,108 +39,118 @@ trait HasAddress
     {
         return $this->morphOne(Address::class, 'model');
     }
-    
+
     /**
      * Ottiene l'indirizzo principale del modello.
      *
      * @return \Modules\Geo\Models\Address|null
      */
-    public function primaryAddress(): ?Address
+    public function primaryAddress(): null|Address
     {
-        $res= $this->addresses()->where('is_primary', true)->first();
-        if($res==null){
+        $res = $this->addresses()->where('is_primary', true)->first();
+        if ($res === null) {
             return $res;
         }
         Assert::isInstanceOf($res, Address::class);
         return $res;
     }
-    
+
     /**
      * Ottiene l'indirizzo completo formattato.
      *
      * @return string|null
      */
-    public function getFullAddress(): ?string
+    public function getFullAddress(): null|string
     {
         $address = $this->primaryAddress();
         return $address ? $address->getFullAddress() : null;
     }
 
-
-    public function getFullAddressAttribute(?string $value): ?string
+    public function getFullAddressAttribute(null|string $value): null|string
     {
-        if($value){
+        if ($value) {
             return $value;
         }
         $address = $this->address()->first();
-        if($address==null){
+        if ($address === null) {
             return null;
         }
         Assert::isInstanceOf($address, Address::class);
-        
-        $locality=$address->getLocality();
-        if($locality==null){
+
+        $locality = $address->getLocality();
+        if ($locality === null) {
             return null;
         }
-        
-        return $address->street_address.', '.$address->street_number.' - '.$address->postal_code.' '.$locality['nome'].' ('.$locality['provincia']['nome'].') ';
+
+        return (
+            $address->street_address .
+            ', ' .
+            $address->street_number .
+            ' - ' .
+            $address->postal_code .
+            ' ' .
+            $locality['nome'] .
+            ' (' .
+            $locality['provincia']['nome'] .
+            ') '
+        );
     }
-    
+
     /**
      * Ottiene la località dell'indirizzo principale.
      *
      * @return string|null
      */
-    public function getCity(): ?string
+    public function getCity(): null|string
     {
         $address = $this->primaryAddress();
         return $address ? $address->locality : null;
     }
-    
+
     /**
      * Ottiene il CAP dell'indirizzo principale.
      *
      * @return string|null
      */
-    public function getPostalCode(): ?string
+    public function getPostalCode(): null|string
     {
         $address = $this->primaryAddress();
         return $address ? $address->postal_code : null;
     }
-    
+
     /**
      * Ottiene la provincia dell'indirizzo principale.
      *
      * @return string|null
      */
-    public function getProvince(): ?string
+    public function getProvince(): null|string
     {
         $address = $this->primaryAddress();
         return $address ? $address->administrative_area_level_3 : null;
     }
-    
+
     /**
      * Ottiene la regione dell'indirizzo principale.
      *
      * @return string|null
      */
-    public function getRegion(): ?string
+    public function getRegion(): null|string
     {
         $address = $this->primaryAddress();
         return $address ? $address->administrative_area_level_2 : null;
     }
-    
+
     /**
      * Ottiene il paese dell'indirizzo principale.
      *
      * @return string|null
      */
-    public function getCountry(): ?string
+    public function getCountry(): null|string
     {
         $address = $this->primaryAddress();
         return $address ? $address->country : null;
     }
-    
+
     /**
      * Imposta un indirizzo come principale e rimuove il flag da tutti gli altri.
      *
@@ -150,20 +160,20 @@ trait HasAddress
     public function setAsPrimaryAddress(Address $address): bool
     {
         // Verifica che l'indirizzo appartenga a questo modello
-        if ($address->model_id != $this->id || $address->model_type != get_class($this)) {
+        if ($address->model_id !== $this->id || $address->model_type !== get_class($this)) {
             return false;
         }
-        
+
         // Rimuovi il flag is_primary da tutti gli altri indirizzi
         $this->addresses()
             ->where('id', '!=', $address->id)
             ->where('is_primary', true)
             ->update(['is_primary' => false]);
-        
+
         // Imposta questo indirizzo come principale
         return $address->update(['is_primary' => true]);
     }
-    
+
     /**
      * Ottiene gli indirizzi di un determinato tipo.
      *
@@ -174,7 +184,7 @@ trait HasAddress
     {
         return $this->addresses()->where('type', $type)->get();
     }
-    
+
     /**
      * Aggiunge un nuovo indirizzo al modello.
      *
@@ -187,7 +197,7 @@ trait HasAddress
         // Se è il primo indirizzo o è richiesto esplicitamente, impostalo come principale
         if ($setPrimary || $this->addresses()->count() === 0) {
             $data['is_primary'] = true;
-            
+
             // Rimuovi il flag is_primary da tutti gli altri indirizzi
             if ($this->addresses()->count() > 0) {
                 $this->addresses()->update(['is_primary' => false]);
@@ -196,25 +206,25 @@ trait HasAddress
         /** @phpstan-ignore return.type */
         return $this->addresses()->create($data);
     }
-    
+
     /**
      * Aggiorna l'indirizzo principale.
      *
      * @param array<string, mixed> $data
      * @return \Modules\Geo\Models\Address|null
      */
-    public function updatePrimaryAddress(array $data): ?Address
+    public function updatePrimaryAddress(array $data): null|Address
     {
         $primaryAddress = $this->primaryAddress();
-        
+
         if (!$primaryAddress) {
             return $this->addAddress($data, true);
         }
-        
+
         $primaryAddress->update($data);
         return $primaryAddress;
     }
-    
+
     /**
      * Scope per filtrare i modelli in base alla città dell'indirizzo.
      *
@@ -228,7 +238,7 @@ trait HasAddress
             $q->where('locality', $city);
         });
     }
-    
+
     /**
      * Scope per filtrare i modelli in base alla provincia dell'indirizzo.
      *
@@ -242,7 +252,7 @@ trait HasAddress
             $q->where('administrative_area_level_3', $province);
         });
     }
-    
+
     /**
      * Scope per filtrare i modelli in base alla regione dell'indirizzo.
      *
@@ -256,7 +266,7 @@ trait HasAddress
             $q->where('administrative_area_level_2', $region);
         });
     }
-    
+
     /**
      * Scope per filtrare i modelli in base al CAP dell'indirizzo.
      *

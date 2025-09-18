@@ -19,8 +19,7 @@ trait HasTenantNotifications
      */
     public function notifications(): MorphMany
     {
-        return $this->morphMany(NotificationLog::class, 'notifiable')
-            ->where('tenant_id', $this->getTenantId());
+        return $this->morphMany(NotificationLog::class, 'notifiable')->where('tenant_id', $this->getTenantId());
     }
 
     /**
@@ -30,8 +29,7 @@ trait HasTenantNotifications
      */
     public function unreadNotifications(): MorphMany
     {
-        return $this->notifications()
-            ->whereNull('read_at');
+        return $this->notifications()->whereNull('read_at');
     }
 
     /**
@@ -41,8 +39,7 @@ trait HasTenantNotifications
      */
     public function readNotifications(): MorphMany
     {
-        return $this->notifications()
-            ->whereNotNull('read_at');
+        return $this->notifications()->whereNotNull('read_at');
     }
 
     /**
@@ -52,7 +49,7 @@ trait HasTenantNotifications
      * @param string|null $tenantId
      * @return Builder
      */
-    public function scopeForTenant(Builder $query, ?string $tenantId = null): Builder
+    public function scopeForTenant(Builder $query, null|string $tenantId = null): Builder
     {
         $tenantId ??= $this->getTenantId();
         return $query->where('tenant_id', $tenantId);
@@ -63,7 +60,7 @@ trait HasTenantNotifications
      *
      * @return string|null
      */
-    protected function getTenantId(): ?string
+    protected function getTenantId(): null|string
     {
         /** @var TenantManager */
         $tenantManager = app(TenantManager::class);
@@ -110,4 +107,4 @@ trait HasTenantNotifications
             $builder->where($model->getTable() . '.tenant_id', $model->getTenantId());
         });
     }
-} 
+}

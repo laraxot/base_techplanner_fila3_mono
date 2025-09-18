@@ -25,7 +25,7 @@ describe('User Authentication', function () {
         ]);
 
         expect($result)->toBe(true);
-        expect(Auth::user()->id)->toBe($this->user->id);
+        expect(Auth::user()?->id)->toBe($this->user->id);
     });
 
     it('cannot authenticate with invalid password', function () {
@@ -104,7 +104,11 @@ describe('User Password Management', function () {
             'password_expires_at' => $expirationDate,
         ]);
 
-        expect($this->user->fresh()->password_expires_at->toDateString())
+        expect(
+            $this
+                ->user->fresh()
+                ->password_expires_at->toDateString(),
+        )
             ->toBe($expirationDate->toDateString());
     });
 });
@@ -121,9 +125,7 @@ describe('User Remember Token', function () {
         $token = Str::random(60);
         $this->user->update(['remember_token' => $token]);
 
-        $user = User::where('email', $this->user->email)
-            ->where('remember_token', $token)
-            ->first();
+        $user = User::where('email', $this->user->email)->where('remember_token', $token)->first();
 
         expect($user)->not->toBeNull();
         expect($user->id)->toBe($this->user->id);
@@ -263,7 +265,8 @@ describe('User Authentication Logging', function () {
     });
 
     it('can get latest authentication log', function () {
-        expect($this->user->latestAuthentication())->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\HasOne::class);
+        expect($this->user->latestAuthentication())
+            ->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\HasOne::class);
     });
 });
 

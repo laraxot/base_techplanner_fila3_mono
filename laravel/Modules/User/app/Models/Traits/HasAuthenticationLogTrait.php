@@ -34,8 +34,7 @@ trait HasAuthenticationLogTrait
      */
     public function authentications(): MorphMany
     {
-        return $this->morphMany(AuthenticationLog::class, 'authenticatable')
-            ->latest('login_at');
+        return $this->morphMany(AuthenticationLog::class, 'authenticatable')->latest('login_at');
     }
 
     /**
@@ -45,8 +44,7 @@ trait HasAuthenticationLogTrait
      */
     public function latestAuthentication(): MorphOne
     {
-        return $this->morphOne(AuthenticationLog::class, 'authenticatable')
-            ->latestOfMany('login_at');
+        return $this->morphOne(AuthenticationLog::class, 'authenticatable')->latestOfMany('login_at');
     }
 
     /**
@@ -64,7 +62,7 @@ trait HasAuthenticationLogTrait
      *
      * @return ?Carbon the timestamp of the last login or null if none exists
      */
-    public function lastLoginAt(): ?Carbon
+    public function lastLoginAt(): null|Carbon
     {
         /** @var AuthenticationLog|null $auth */
         $auth = $this->authentications()->first();
@@ -76,7 +74,7 @@ trait HasAuthenticationLogTrait
      *
      * @return ?Carbon the timestamp of the last successful login or null if none exists
      */
-    public function lastSuccessfulLoginAt(): ?Carbon
+    public function lastSuccessfulLoginAt(): null|Carbon
     {
         /** @var AuthenticationLog|null $auth */
         $auth = $this->authentications()->where('login_successful', true)->first();
@@ -88,7 +86,7 @@ trait HasAuthenticationLogTrait
      *
      * @return ?string the IP address of the last login or null if none exists
      */
-    public function lastLoginIp(): ?string
+    public function lastLoginIp(): null|string
     {
         /** @var AuthenticationLog|null $auth */
         $auth = $this->authentications()->first();
@@ -100,7 +98,7 @@ trait HasAuthenticationLogTrait
      *
      * @return ?string the IP address of the last successful login or null if none exists
      */
-    public function lastSuccessfulLoginIp(): ?string
+    public function lastSuccessfulLoginIp(): null|string
     {
         /** @var AuthenticationLog|null $auth */
         $auth = $this->authentications()->where('login_successful', true)->first();
@@ -112,7 +110,7 @@ trait HasAuthenticationLogTrait
      *
      * @return ?Carbon the timestamp of the previous login or null if less than two logins exist
      */
-    public function previousLoginAt(): ?Carbon
+    public function previousLoginAt(): null|Carbon
     {
         /** @var AuthenticationLog|null $auth */
         $auth = $this->authentications()->skip(1)->first();
@@ -124,7 +122,7 @@ trait HasAuthenticationLogTrait
      *
      * @return ?string the IP address of the previous login or null if less than two logins exist
      */
-    public function previousLoginIp(): ?string
+    public function previousLoginIp(): null|string
     {
         /** @var AuthenticationLog|null $auth */
         $auth = $this->authentications()->skip(1)->first();

@@ -7,8 +7,8 @@ return [
         'name' => 'Notifica',
     ],
     'navigation' => [
-        'name' => 'Notifica',              // Nome singolare
-        'plural' => 'Notifiche',           // Nome plurale
+        'name' => 'Notifica', // Nome singolare
+        'plural' => 'Notifiche', // Nome plurale
         'group' => 'Sistema',
         'label' => 'Notifiche',
         'icon' => 'notify-bell-animated',

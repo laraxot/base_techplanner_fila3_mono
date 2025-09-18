@@ -19,16 +19,13 @@ use Webmozart\Assert\Assert;
 
 class VideoSpatie
 {
-    public static function make(
-        string $name = 'video_spatie',
-        string $context = 'form',
-    ): Block {
+    public static function make(string $name = 'video_spatie', string $context = 'form'): Block
+    {
         return Block::make($name)
-
             ->schema([
                 Hidden::make('img_uuid')
                     ->default(Str::uuid()->toString(...))
-                    ->formatStateUsing(fn ($state) => $state ?? Str::uuid()->toString())
+                    ->formatStateUsing(fn($state) => $state ?? Str::uuid()->toString())
                     ->live(),
                 // ->required(),
 
@@ -41,42 +38,40 @@ class VideoSpatie
                     ->panelAspectRatio('2:1')
                     ->maxSize(502400)
                     ->disk('local')
-
                     ->preserveFilenames()
                     ->openable()
                     ->previewable()
                     ->downloadable()
                     // ->rules(Rule::dimensions()->maxWidth(600)->maxHeight(800))
-                    ->collection(fn (Get $get) => $get('img_uuid'))
-                    ->afterStateUpdated(
-                        function (HasForms $_livewire, SpatieMediaLibraryFileUpload $_component, TemporaryUploadedFile $state, Get $get, HasMedia $record) {
-                            // Call to an undefined method Filament\Forms\Contracts\HasForms::validateOnly().
-                            // $livewire->validateOnly($component->getStatePath());
-                            Assert::string($collection_name = $get('img_uuid'), '['.__LINE__.']['.class_basename(__CLASS__).']');
-                            $res = $record
-                                ->addMedia($state)
-                                ->withResponsiveImages()
-                                ->toMediaCollection($collection_name);
-                        }
-                    ),
+                    ->collection(fn(Get $get) => $get('img_uuid'))
+                    ->afterStateUpdated(function (
+                        HasForms $_livewire,
+                        SpatieMediaLibraryFileUpload $_component,
+                        TemporaryUploadedFile $state,
+                        Get $get,
+                        HasMedia $record,
+                    ) {
+                        // Call to an undefined method Filament\Forms\Contracts\HasForms::validateOnly().
+                        // $livewire->validateOnly($component->getStatePath());
+                        Assert::string(
+                            $collection_name = $get('img_uuid'),
+                            '[' . __LINE__ . '][' . class_basename(__CLASS__) . ']',
+                        );
+                        $res = $record->addMedia($state)->withResponsiveImages()->toMediaCollection($collection_name);
+                    }),
                 /*
-                Select::make('ratio')
-                    ->options(static::getRatios())
-                    ->afterStateHydrated(static fn ($state, $set) => $state || $set('ratio', '4-3')),
-
-                TextInput::make('alt')
-                    ->columnSpanFull(),
-                */
-                TextInput::make('caption')
-
+                 * Select::make('ratio')
+                 * ->options(static::getRatios())
+                 * ->afterStateHydrated(static fn ($state, $set) => $state || $set('ratio', '4-3')),
+                 *
+                 * TextInput::make('alt')
+                 * ->columnSpanFull(),
+                 */
+                TextInput::make('caption'),
                 // ->columnSpanFull()
-                ,
-
                 // Filament\Forms\Components\SpatieMediaLibraryFileUpload::whereCustomProperties does not exist.
                 // ->whereCustomProperties(fn(Forms\Get $get) => ['gallery_id' => $get('gallery_id')])
-
                 // ->customProperties(fn(Forms\Get $get) => ['gallery_id' => $get('gallery_id')]),
-
                 // Forms\Components\SpatieMediaLibraryFileUpload::make('media_id')
             ])
             ->columns('form' === $context ? 2 : 1);

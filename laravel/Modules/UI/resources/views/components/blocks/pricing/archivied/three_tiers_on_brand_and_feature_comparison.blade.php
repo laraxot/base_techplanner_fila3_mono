@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="bg-gray-50">
     <div class="relative bg-indigo-600">
       <!-- Overlapping background -->
@@ -1161,4 +1166,3 @@
       </div>
     </section>
   </div>
-  

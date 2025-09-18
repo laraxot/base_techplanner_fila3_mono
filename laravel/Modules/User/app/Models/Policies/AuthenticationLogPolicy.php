@@ -22,9 +22,11 @@ class AuthenticationLogPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->hasPermissionTo('authentication-log.view') ||
-               $user->id === $authenticationLog->authenticatable_id ||
-               $user->hasRole('super-admin');
+        return (
+            $user->hasPermissionTo('authentication-log.view') ||
+            $user->id === $authenticationLog->authenticatable_id ||
+            $user->hasRole('super-admin')
+        );
     }
 
     /**
@@ -38,28 +40,25 @@ class AuthenticationLogPolicy extends UserBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, AuthenticationLog $authenticationLog): bool
+    public function update(UserContract $user, AuthenticationLog $_authenticationLog): bool
     {
-        return $user->hasPermissionTo('authentication-log.update') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('authentication-log.update') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, AuthenticationLog $authenticationLog): bool
+    public function delete(UserContract $user, AuthenticationLog $_authenticationLog): bool
     {
-        return $user->hasPermissionTo('authentication-log.delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('authentication-log.delete') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, AuthenticationLog $authenticationLog): bool
+    public function restore(UserContract $user, AuthenticationLog $_authenticationLog): bool
     {
-        return $user->hasPermissionTo('authentication-log.restore') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('authentication-log.restore') || $user->hasRole('super-admin');
     }
 
     /**
@@ -67,7 +66,6 @@ class AuthenticationLogPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, AuthenticationLog $authenticationLog): bool
     {
-        return $user->hasPermissionTo('authentication-log.force-delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('authentication-log.force-delete') || $user->hasRole('super-admin');
     }
 }

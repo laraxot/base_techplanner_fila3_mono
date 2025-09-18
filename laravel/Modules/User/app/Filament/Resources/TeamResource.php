@@ -15,7 +15,6 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class TeamResource extends XotBaseResource
 {
-    
     /**
      * Get the model class name for this resource.
      *
@@ -34,15 +33,9 @@ class TeamResource extends XotBaseResource
     public static function getFormSchema(): array
     {
         return [
-            'name' => TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            'display_name' => TextInput::make('display_name')
-                ->maxLength(255),
-            'description' => TextInput::make('description')
-                ->maxLength(255),
+            'name' => TextInput::make('name')->required()->maxLength(255),
+            'display_name' => TextInput::make('display_name')->maxLength(255),
+            'description' => TextInput::make('description')->maxLength(255),
         ];
     }
-
-   
 }

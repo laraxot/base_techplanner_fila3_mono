@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- CSS Base per PDF - Componente riutilizzabile --}}
 {{-- 
     Motivazione DRY: Evita duplicazione di stili CSS tra diversi template PDF

@@ -20,7 +20,7 @@ class TranslationFilePolicy extends LangBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, TranslationFile $translation_file): bool
+    public function view(UserContract $user, TranslationFile $_translation_file): bool
     {
         return $user->hasPermissionTo('translation_file.view');
     }
@@ -36,7 +36,7 @@ class TranslationFilePolicy extends LangBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, TranslationFile $translation_file): bool
+    public function update(UserContract $user, TranslationFile $_translation_file): bool
     {
         return $user->hasPermissionTo('translation_file.update');
     }
@@ -44,7 +44,7 @@ class TranslationFilePolicy extends LangBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, TranslationFile $translation_file): bool
+    public function delete(UserContract $user, TranslationFile $_translation_file): bool
     {
         return $user->hasPermissionTo('translation_file.delete');
     }
@@ -52,7 +52,7 @@ class TranslationFilePolicy extends LangBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, TranslationFile $translation_file): bool
+    public function restore(UserContract $user, TranslationFile $_translation_file): bool
     {
         return $user->hasPermissionTo('translation_file.restore');
     }

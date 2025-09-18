@@ -5,21 +5,22 @@ declare(strict_types=1);
 namespace Modules\Geo\Filament\Forms\Components;
 
 use Filament\Forms;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
-use Filament\Forms\Components\Component;
 use Modules\Geo\Filament\Resources\AddressResource;
+
 use function Safe\preg_match;
 
 /**
  * Componente riutilizzabile per la gestione di indirizzi multipli.
- * 
+ *
  * Questo componente incapsula la logica complessa per gestire:
  * - Indirizzi multipli attraverso un Repeater
  * - Visibilità condizionale del campo 'name' (solo con più di 1 indirizzo)
  * - Gestione esclusiva del campo 'is_primary' (solo uno può essere primario)
  * - Utilizzo dello schema completo dell'AddressResource
- * 
+ *
  * @example
  * AddressesField::make('addresses')
  *     ->relationship('addresses')
@@ -39,9 +40,9 @@ class AddressesField extends Forms\Components\Repeater
             ->defaultItems(1)
             ->live()
             ->addActionLabel('Aggiungi Indirizzo');
-
     }
-     /**
+
+    /**
      * Schema form personalizzato per gli indirizzi con logica condizionale per i campi name e is_primary.
      *
      * @return array<string, \Filament\Forms\Components\Component>
@@ -88,9 +89,10 @@ class AddressesField extends Forms\Components\Repeater
                         /** @phpstan-ignore foreach.nonIterable */
                         foreach ($addresses as $index => $address) {
                             $indexStr = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($index);
-                            $currentIndexStr = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)->execute($currentIndex);
+                            $currentIndexStr = app(\Modules\Xot\Actions\Cast\SafeStringCastAction::class)
+                                ->execute($currentIndex);
                             if ($indexStr !== $currentIndexStr) {
-                                $set("../../addresses." . $indexStr . ".is_primary", false);
+                                $set('../../addresses.' . $indexStr . '.is_primary', false);
                             }
                         }
                     }
@@ -109,4 +111,4 @@ class AddressesField extends Forms\Components\Repeater
 
         return $baseSchema;
     }
-} 
+}

@@ -15,14 +15,10 @@ class ListPhoneCalls extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('date')
-                ->sortable(),
-            Tables\Columns\TextColumn::make('duration')
-                ->sortable(),
-            Tables\Columns\TextColumn::make('notes')
-                ->limit(50),
-            Tables\Columns\TextColumn::make('call_type')
-                ->sortable(),
+            Tables\Columns\TextColumn::make('date')->sortable(),
+            Tables\Columns\TextColumn::make('duration')->sortable(),
+            Tables\Columns\TextColumn::make('notes')->limit(50),
+            Tables\Columns\TextColumn::make('call_type')->sortable(),
         ];
     }
 }

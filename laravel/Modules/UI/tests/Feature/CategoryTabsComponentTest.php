@@ -57,12 +57,12 @@ test('category tabs shows counts when enabled', function () {
 
     // Should contain count indicators
     expect($html)->toContain('250'); // All markets count
-    expect($html)->toContain('45');  // Politics count
-    expect($html)->toContain('67');  // Sports count
-    expect($html)->toContain('34');  // Economics count
-    expect($html)->toContain('28');  // Technology count
-    expect($html)->toContain('23');  // Entertainment count
-    expect($html)->toContain('19');  // Crypto count
+    expect($html)->toContain('45'); // Politics count
+    expect($html)->toContain('67'); // Sports count
+    expect($html)->toContain('34'); // Economics count
+    expect($html)->toContain('28'); // Technology count
+    expect($html)->toContain('23'); // Entertainment count
+    expect($html)->toContain('19'); // Crypto count
 });
 
 test('category tabs hides counts when disabled', function () {
@@ -73,8 +73,12 @@ test('category tabs hides counts when disabled', function () {
     $html = $view->render();
 
     // Should not contain specific count numbers in count badges
-    expect($html)->not()->toContain('<span class="ml-1 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">45</span>');
-    expect($html)->not()->toContain('<span class="ml-1 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">67</span>');
+    expect($html)
+        ->not()
+        ->toContain('<span class="ml-1 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">45</span>');
+    expect($html)
+        ->not()
+        ->toContain('<span class="ml-1 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">67</span>');
 });
 
 test('category tabs has mobile scrollable styling', function () {
@@ -155,5 +159,5 @@ test('category tabs has proper category icons', function () {
     expect($html)->toContain('📈'); // Economics
     expect($html)->toContain('💻'); // Technology
     expect($html)->toContain('🎬'); // Entertainment
-    expect($html)->toContain('₿');  // Crypto
+    expect($html)->toContain('₿'); // Crypto
 });

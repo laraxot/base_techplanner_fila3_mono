@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-panels::page>
     <div class="space-y-6">
         <!-- Time Clock Component -->

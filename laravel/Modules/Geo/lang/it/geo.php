@@ -13,14 +13,13 @@ return [
             'label' => 'Online',
         ],
     ],
-
     'sections' => [
         'map' => [
             'navigation' => [
                 'name' => 'Mappa',
                 'group' => 'Geo',
                 'sort' => 10,
-                'icon' => 'geo-map',  // Questo è già corretto
+                'icon' => 'geo-map', // Questo è già corretto
                 'badge' => [
                     'color' => 'info',
                     'label' => 'Interattiva',
@@ -40,13 +39,12 @@ return [
                 'terrain' => 'Terreno',
             ],
         ],
-
         'location' => [
             'navigation' => [
                 'name' => 'Posizioni',
                 'group' => 'Geo',
                 'sort' => 20,
-                'icon' => 'geo-location',  // Questo è già corretto
+                'icon' => 'geo-location', // Questo è già corretto
                 'badge' => [
                     'color' => 'warning',
                     'label' => 'Da Verificare',
@@ -68,7 +66,6 @@ return [
             ],
         ],
     ],
-
     'common' => [
         'status' => [
             'active' => 'Attivo',

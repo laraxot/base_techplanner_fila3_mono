@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{--
     Vista per il componente AddressesField.
     
@@ -37,4 +42,4 @@
         {{-- Container dei componenti figlio (Repeater) --}}
         {{ $getChildComponentContainer() }}
     </div>
-</x-dynamic-component> 
+</x-dynamic-component>

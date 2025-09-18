@@ -30,4 +30,4 @@ class ClientFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
         ];
     }
-} 
+}

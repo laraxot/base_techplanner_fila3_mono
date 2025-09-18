@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Lang\Filament\Resources\Pages;
 
-use Filament\Forms\Form;
-use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\App;
-use Modules\Lang\Models\Translation;
-use Filament\Resources\Pages\CreateRecord;
 use Filament\Actions;
+use Filament\Forms\Form;
+use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+use Modules\Lang\Models\Translation;
+use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
 /**
  * Class LangBaseCreateRecord.

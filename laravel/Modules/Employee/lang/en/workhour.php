@@ -7,13 +7,11 @@ return [
         'label' => 'Work Hours',
         'group' => 'Employee Management',
     ],
-
     'resource' => [
         'label' => 'Work Hour',
         'plural_label' => 'Work Hours',
         'navigation_label' => 'Work Hours',
     ],
-
     'fields' => [
         'employee_id' => [
             'label' => 'Employee',
@@ -32,23 +30,23 @@ return [
             ],
         ],
         'timestamp' => [
-            'label' => 'Date & Time',
+            'label' => 'Date and Time',
             'placeholder' => 'Select date and time',
             'help' => 'Date and time of the work hour entry',
         ],
         'location_lat' => [
             'label' => 'Latitude',
-            'placeholder' => 'GPS latitude',
+            'placeholder' => 'GPS Latitude',
             'help' => 'GPS latitude coordinate',
         ],
         'location_lng' => [
             'label' => 'Longitude',
-            'placeholder' => 'GPS longitude',
+            'placeholder' => 'GPS Longitude',
             'help' => 'GPS longitude coordinate',
         ],
         'location_name' => [
             'label' => 'Location Name',
-            'placeholder' => 'Office, Home, Client site...',
+            'placeholder' => 'Office, Home, Client...',
             'help' => 'Descriptive name of the location',
         ],
         'device_info' => [
@@ -59,7 +57,7 @@ return [
         'photo_path' => [
             'label' => 'Photo',
             'placeholder' => 'Upload photo',
-            'help' => 'Optional photo verification for this entry',
+            'help' => 'Optional verification photo for this entry',
         ],
         'status' => [
             'label' => 'Status',
@@ -77,7 +75,7 @@ return [
             'help' => 'User who approved this entry',
         ],
         'approved_at' => [
-            'label' => 'Approved At',
+            'label' => 'Approved On',
             'placeholder' => 'Approval date',
             'help' => 'Date and time when this entry was approved',
         ],
@@ -87,28 +85,27 @@ return [
             'help' => 'Optional notes for this entry',
         ],
         'created_at' => [
-            'label' => 'Created At',
+            'label' => 'Created On',
         ],
         'updated_at' => [
-            'label' => 'Updated At',
+            'label' => 'Updated On',
         ],
     ],
-
     'actions' => [
         'create' => [
             'label' => 'Create Work Hour',
             'success' => 'Work hour entry created successfully',
-            'error' => 'Failed to create work hour entry',
+            'error' => 'Unable to create work hour entry',
         ],
         'edit' => [
             'label' => 'Edit Work Hour',
             'success' => 'Work hour entry updated successfully',
-            'error' => 'Failed to update work hour entry',
+            'error' => 'Unable to update work hour entry',
         ],
         'delete' => [
             'label' => 'Delete Work Hour',
             'success' => 'Work hour entry deleted successfully',
-            'error' => 'Failed to delete work hour entry',
+            'error' => 'Unable to delete work hour entry',
             'confirmation' => 'Are you sure you want to delete this work hour entry?',
         ],
         'view' => [
@@ -119,23 +116,23 @@ return [
         ],
         'clock_in' => [
             'label' => 'Clock In',
-            'success' => 'Successfully clocked in',
-            'error' => 'Failed to clock in',
+            'success' => 'Clock in recorded successfully',
+            'error' => 'Unable to record clock in',
         ],
         'clock_out' => [
             'label' => 'Clock Out',
-            'success' => 'Successfully clocked out',
-            'error' => 'Failed to clock out',
+            'success' => 'Clock out recorded successfully',
+            'error' => 'Unable to record clock out',
         ],
         'break_start' => [
             'label' => 'Start Break',
             'success' => 'Break started successfully',
-            'error' => 'Failed to start break',
+            'error' => 'Unable to start break',
         ],
         'break_end' => [
             'label' => 'End Break',
             'success' => 'Break ended successfully',
-            'error' => 'Failed to end break',
+            'error' => 'Unable to end break',
         ],
         'refresh' => [
             'label' => 'Refresh',
@@ -147,7 +144,6 @@ return [
             'label' => 'View All Entries',
         ],
     ],
-
     'filters' => [
         'employee' => [
             'label' => 'Employee',
@@ -164,15 +160,13 @@ return [
             'label' => 'Today Only',
         ],
     ],
-
     'tabs' => [
         'all' => 'All Entries',
         'today' => 'Today',
         'this_week' => 'This Week',
-        'clock_in' => 'Clock In',
-        'clock_out' => 'Clock Out',
+        'clock_in' => 'Clock Ins',
+        'clock_out' => 'Clock Outs',
     ],
-
     'pages' => [
         'timeclock' => [
             'title' => 'Employee Time Clock',
@@ -184,7 +178,6 @@ return [
             'subtitle' => 'Overview of work hours and statistics',
         ],
     ],
-
     'widgets' => [
         'stats' => [
             'today' => [
@@ -213,45 +206,41 @@ return [
             'empty_state' => 'No recent entries',
         ],
     ],
-
     'status' => [
         'not_clocked_in' => 'Not Clocked In',
         'clocked_in' => 'Clocked In',
         'on_break' => 'On Break',
         'clocked_out' => 'Clocked Out',
     ],
-
     'messages' => [
         'validation' => [
-            'invalid_sequence' => 'Invalid entry sequence. Last entry was: :last_entry. Expected next action: :expected_action',
+            'invalid_sequence' => 'Invalid entry sequence. Last entry: :last_entry. Expected action: :expected_action',
             'duplicate_entry' => 'An entry with the same timestamp and type already exists for this employee.',
             'outside_working_hours' => 'Time clock is only available between :start and :end',
             'invalid_time' => 'Work hours must be between :start and :end',
         ],
         'success' => [
             'entry_recorded' => 'Successfully recorded: :action',
-            'data_refreshed' => 'Data refreshed successfully',
+            'data_refreshed' => 'Data updated successfully',
         ],
         'error' => [
             'user_not_found' => 'User not found',
-            'invalid_action' => 'This action is not valid based on your current status',
-            'failed_to_record' => 'Failed to record time entry: :error',
+            'invalid_action' => 'This action is not valid based on your current state',
+            'failed_to_record' => 'Unable to record work hour entry: :error',
         ],
         'empty_states' => [
             'no_entries_today' => 'No entries recorded today',
             'no_recent_entries' => 'No recent entries',
         ],
     ],
-
     'summary' => [
         'total_hours_worked' => 'Total Hours Worked',
         'current_status' => 'Current Status',
         'total_entries' => 'Total Entries',
-        'todays_summary' => "Today's Summary",
-        'todays_entries' => "Today's Entries",
+        'todays_summary' => 'Today\'s Summary',
+        'todays_entries' => 'Today\'s Entries',
         'last_entry' => 'Last entry: :type at :time',
     ],
-
     'quick_actions' => [
         'title' => 'Quick Actions',
         'refresh_data' => 'Refresh Data',

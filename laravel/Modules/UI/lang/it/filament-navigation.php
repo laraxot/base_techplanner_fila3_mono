@@ -13,12 +13,10 @@ return [
         'created_at' => 'Data di creazione',
         'updated_at' => 'Data di aggiornamento',
     ],
-
     'select-options' => [
         'same-tab' => 'Stessa scheda',
         'new-tab' => 'Nuova scheda',
     ],
-
     'items' => [
         'empty' => 'Nessuna voce di menù.',
         'add-item' => 'Aggiungi voce di menù',
@@ -30,7 +28,6 @@ return [
         'remove' => 'Rimuovi',
         'sorted' => 'Ordinato',
     ],
-
     'items-modal' => [
         'title' => 'Voce di menù',
         'label' => 'Etichetta',

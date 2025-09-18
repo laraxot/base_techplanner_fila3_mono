@@ -6,7 +6,6 @@ return [
     'add_attachment' => [
         'title' => 'Allegati',
         'label' => 'Carica allegato',
-        'fields' => [
-        ],
+        'fields' => [],
     ],
 ];

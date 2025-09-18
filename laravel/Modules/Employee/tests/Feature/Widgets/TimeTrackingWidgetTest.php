@@ -15,7 +15,6 @@ use Modules\User\Models\User;
  * Test per il widget TimeTrackingWidget.
  */
 describe('TimeTrackingWidget', function () {
-
     beforeEach(function () {
         // Setup base per ogni test
         Carbon::setTestNow('2025-01-06 10:00:00');
@@ -38,9 +37,7 @@ describe('TimeTrackingWidget', function () {
 
     test('displays current time correctly', function () {
         // Act & Assert
-        Livewire::test(TimeTrackingWidget::class)
-            ->assertSee('10:00:00') // Ora corrente del test
-            ->assertSee('06/01/2025'); // Data corrente del test
+        Livewire::test(TimeTrackingWidget::class)->assertSee('10:00:00')->assertSee('06/01/2025'); // Ora corrente del test // Data corrente del test
     });
 
     test('shows not started status when no clock entries', function () {
@@ -89,14 +86,15 @@ describe('TimeTrackingWidget', function () {
 
     test('can perform clock in action', function () {
         // Act
-        Livewire::test(TimeTrackingWidget::class)
-            ->call('clockIn');
+        Livewire::test(TimeTrackingWidget::class)->call('clockIn');
 
         // Assert
-        expect(WorkHour::where('employee_id', $this->employee->id)
-            ->where('type', WorkHour::TYPE_CLOCK_IN)
-            ->whereDate('timestamp', today())
-            ->exists())->toBeTrue();
+        expect(
+            WorkHour::where('employee_id', $this->employee->id)
+                ->where('type', WorkHour::TYPE_CLOCK_IN)
+                ->whereDate('timestamp', today())
+                ->exists(),
+        )->toBeTrue();
     });
 
     test('can perform clock out action when clocked in', function () {
@@ -108,24 +106,20 @@ describe('TimeTrackingWidget', function () {
         ]);
 
         // Act
-        Livewire::test(TimeTrackingWidget::class)
-            ->call('clockOut');
+        Livewire::test(TimeTrackingWidget::class)->call('clockOut');
 
         // Assert
-        expect(WorkHour::where('employee_id', $this->employee->id)
-            ->where('type', WorkHour::TYPE_CLOCK_OUT)
-            ->whereDate('timestamp', today())
-            ->exists())->toBeTrue();
+        expect(
+            WorkHour::where('employee_id', $this->employee->id)
+                ->where('type', WorkHour::TYPE_CLOCK_OUT)
+                ->whereDate('timestamp', today())
+                ->exists(),
+        )->toBeTrue();
     });
 
     test('cannot clock out when not clocked in', function () {
         // Act & Assert
-        Livewire::test(TimeTrackingWidget::class)
-            ->call('clockOut')
-            ->assertDispatched('notify', function ($event) {
-                return $event['type'] === 'warning' &&
-                       str_contains($event['message'], 'Devi prima fare clock-in');
-            });
+        Livewire::test(TimeTrackingWidget::class)->call('clockOut')->assertDispatched('notify', fn ($event) => $event['type'] === 'warning' && str_contains($event['message'], 'Devi prima fare clock-in'));
     });
 
     test('can start break when clocked in', function () {
@@ -137,24 +131,20 @@ describe('TimeTrackingWidget', function () {
         ]);
 
         // Act
-        Livewire::test(TimeTrackingWidget::class)
-            ->call('startBreak');
+        Livewire::test(TimeTrackingWidget::class)->call('startBreak');
 
         // Assert
-        expect(WorkHour::where('employee_id', $this->employee->id)
-            ->where('type', WorkHour::TYPE_BREAK_START)
-            ->whereDate('timestamp', today())
-            ->exists())->toBeTrue();
+        expect(
+            WorkHour::where('employee_id', $this->employee->id)
+                ->where('type', WorkHour::TYPE_BREAK_START)
+                ->whereDate('timestamp', today())
+                ->exists(),
+        )->toBeTrue();
     });
 
     test('cannot start break when not clocked in', function () {
         // Act & Assert
-        Livewire::test(TimeTrackingWidget::class)
-            ->call('startBreak')
-            ->assertDispatched('notify', function ($event) {
-                return $event['type'] === 'warning' &&
-                       str_contains($event['message'], 'Devi prima fare clock-in');
-            });
+        Livewire::test(TimeTrackingWidget::class)->call('startBreak')->assertDispatched('notify', fn ($event) => $event['type'] === 'warning' && str_contains($event['message'], 'Devi prima fare clock-in'));
     });
 
     test('calculates session duration correctly', function () {
@@ -172,8 +162,7 @@ describe('TimeTrackingWidget', function () {
         Carbon::setTestNow('2025-01-06 10:00:00');
 
         // Act & Assert
-        Livewire::test(TimeTrackingWidget::class)
-            ->assertSee('02:00'); // 2 ore di durata
+        Livewire::test(TimeTrackingWidget::class)->assertSee('02:00'); // 2 ore di durata
     });
 
     test('displays daily stats correctly', function () {

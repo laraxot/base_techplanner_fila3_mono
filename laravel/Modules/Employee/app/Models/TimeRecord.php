@@ -226,4 +226,4 @@ class TimeRecord extends BaseModel
     {
         return !empty($this->latitude) && !empty($this->longitude);
     }
-} 
+}

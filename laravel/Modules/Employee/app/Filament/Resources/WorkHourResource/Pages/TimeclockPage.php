@@ -14,9 +14,9 @@ class TimeclockPage extends XotBasePage
 
     protected static string $view = 'employee::filament.pages.timeclock';
 
-    protected static ?string $title = 'Time Clock';
+    protected static null|string $title = 'Time Clock';
 
-    protected static ?string $navigationLabel = 'Time Clock';
+    protected static null|string $navigationLabel = 'Time Clock';
 
     protected function getHeaderActions(): array
     {
@@ -25,10 +25,11 @@ class TimeclockPage extends XotBasePage
                 ->label('Back to Work Hours')
                 ->icon('heroicon-o-arrow-left')
                 ->color('gray')
-                ->url(fn (): string => static::$resource::getUrl('index')),
+                ->url(fn(): string => static::$resource::getUrl('index')),
         ];
     }
 
+    #[\Override]
     public function getViewData(): array
     {
         return [

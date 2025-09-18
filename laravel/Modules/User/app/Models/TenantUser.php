@@ -43,7 +43,7 @@ use Illuminate\Support\Carbon;
 class TenantUser extends BasePivot
 {
     use HasFactory;
-    
+
     protected $connection = 'user';
 
     // public $incrementing = false;
@@ -65,15 +65,12 @@ class TenantUser extends BasePivot
         return [
             'id' => 'string',
             'uuid' => 'string',
-
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             // 'email_verified_at' => 'datetime',
             // 'password' => 'hashed', //Call to undefined cast [hashed] on column [password] in model [Modules\User\Models\User].
             // 'is_active' => 'boolean',

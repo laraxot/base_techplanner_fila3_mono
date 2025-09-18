@@ -21,8 +21,7 @@ class TravelTimeData extends Data
         public readonly string $formatted_duration,
         public readonly string $formatted_distance,
         public readonly string $status = 'OK',
-    ) {
-    }
+    ) {}
 
     /**
      * Crea un'istanza di errore.
@@ -35,7 +34,7 @@ class TravelTimeData extends Data
             distance_meters: 0,
             formatted_duration: 'N/D',
             formatted_distance: 'N/D',
-            status: $status
+            status: $status,
         );
     }
 
@@ -65,19 +64,19 @@ class TravelTimeData extends Data
         }
 
         $element = $response['rows'][0]['elements'][0] ?? null;
-        if (! $element || 'OK' !== ($element['status'] ?? null)) {
+        if (!$element || 'OK' !== ($element['status'] ?? null)) {
             return self::error($element['status'] ?? 'INVALID_RESPONSE');
         }
 
         return new self(
             duration_seconds: (int) $element['duration']['value'],
             duration_in_traffic_seconds: isset($element['duration_in_traffic'])
-                ? (int) $element['duration_in_traffic']['value']
-                : (int) $element['duration']['value'],
+                ? ((int) $element['duration_in_traffic']['value'])
+                : ((int) $element['duration']['value']),
             distance_meters: (int) $element['distance']['value'],
             formatted_duration: $element['duration']['text'],
             formatted_distance: $element['distance']['text'],
-            status: $response['status']
+            status: $response['status'],
         );
     }
 }

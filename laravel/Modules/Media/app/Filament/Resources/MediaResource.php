@@ -14,7 +14,7 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class MediaResource extends XotBaseResource
 {
-    protected static ?string $model = Media::class;
+    protected static null|string $model = Media::class;
 
     /**
      * @return array<string, \Filament\Forms\Components\Component>
@@ -45,8 +45,7 @@ class MediaResource extends XotBaseResource
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**

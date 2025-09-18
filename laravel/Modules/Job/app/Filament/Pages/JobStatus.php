@@ -19,7 +19,7 @@ class JobStatus extends Page
 
     public string $out = '';
 
-    protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
+    protected static null|string $navigationIcon = 'heroicon-o-computer-desktop';
 
     protected static string $view = 'job::filament.pages.job-status';
 
@@ -29,8 +29,6 @@ class JobStatus extends Page
             ClockWidget::make(),
         ];
     }
-
-    
 
     public function artisan(string $cmd): void
     {
@@ -50,19 +48,19 @@ class JobStatus extends Page
     {
         return [
             /*
-            (object) [
-                'name' => 'batches-table',
-                'label' => 'Create a migration for the batches database table',
-            ],
-            (object) [
-                'name' => 'failed-table',
-                'label' => ' Create a migration for the failed queue jobs database table',
-            ],
-            (object) [
-                'name' => 'table',
-                'label' => 'Create a migration for the queue jobs database table',
-            ],
-            */
+             * (object) [
+             * 'name' => 'batches-table',
+             * 'label' => 'Create a migration for the batches database table',
+             * ],
+             * (object) [
+             * 'name' => 'failed-table',
+             * 'label' => ' Create a migration for the failed queue jobs database table',
+             * ],
+             * (object) [
+             * 'name' => 'table',
+             * 'label' => 'Create a migration for the queue jobs database table',
+             * ],
+             */
             (object) [
                 'name' => 'queue:clear',
                 'label' => 'Delete all of the jobs from the specified queue',
@@ -71,29 +69,28 @@ class JobStatus extends Page
                 'name' => 'queue:failed',
                 'label' => 'List all of the failed queue jobs',
             ],
-
             (object) [
                 'name' => 'queue:flush',
                 'label' => 'Flush all of the failed queue jobs',
             ],
             /* -- VUOLE ID
-            (object) [
-                'name' => 'forget',
-                'label' => 'Delete a failed queue job',
-            ],
-            */
+             * (object) [
+             * 'name' => 'forget',
+             * 'label' => 'Delete a failed queue job',
+             * ],
+             */
             /* --- RIMANE APPESO
-            (object) [
-                'name' => 'listen',
-                'label' => 'Listen to a given queue',
-            ],
-            */
+             * (object) [
+             * 'name' => 'listen',
+             * 'label' => 'Listen to a given queue',
+             * ],
+             */
             /*manca parametro
-            (object) [
-                'name' => 'monitor',
-                'label' => 'Monitor the size of the specified queues',
-            ],
-            */
+             * (object) [
+             * 'name' => 'monitor',
+             * 'label' => 'Monitor the size of the specified queues',
+             * ],
+             */
             (object) [
                 'name' => 'queue:prune-batches',
                 'label' => 'Prune stale entries from the batches database',
@@ -111,22 +108,21 @@ class JobStatus extends Page
                 'label' => 'Retry a failed queue job',
             ],
             /*-- vuole parametro
-            (object) [
-                'name' => 'retry-batch',
-                'label' => 'Retry the failed jobs for a batch',
-            ],
-            */
+             * (object) [
+             * 'name' => 'retry-batch',
+             * 'label' => 'Retry the failed jobs for a batch',
+             * ],
+             */
             /*-- rimane appeso
-            (object) [
-                'name' => 'work',
-                'label' => 'Start processing jobs on the queue as a daemon',
-            ],
-            */
+             * (object) [
+             * 'name' => 'work',
+             * 'label' => 'Start processing jobs on the queue as a daemon',
+             * ],
+             */
             (object) [
                 'name' => 'worker:check',
                 'label' => 'Ensure that the queue listener is running.',
             ],
-
             (object) [
                 'name' => 'route:list',
                 'label' => 'Route list',

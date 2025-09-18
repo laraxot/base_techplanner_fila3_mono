@@ -8,10 +8,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 use Modules\Geo\Datas\AddressData;
+use Webmozart\Assert\Assert;
 
 use function Safe\json_decode;
-
-use Webmozart\Assert\Assert;
 
 /**
  * Action per ottenere l'indirizzo da coordinate tramite Bing Maps.
@@ -19,21 +18,20 @@ use Webmozart\Assert\Assert;
  * Questa classe utilizza l'API Bing Maps Geocoding per convertire
  * un indirizzo in coordinate geografiche e dettagli dell'indirizzo.
  */
-class GetAddressFromBingMapsAction
+readonly class GetAddressFromBingMapsAction
 {
     private const API_URL = 'http://dev.virtualearth.net/REST/v1/Locations';
 
     public function __construct(
-        private readonly Client $client,
-    ) {
-    }
+        private  Client $client,
+    ) {}
 
     /**
      * Ottiene i dettagli dell'indirizzo utilizzando Bing Maps.
      *
      * @throws \RuntimeException Se la chiave API non è configurata o la richiesta fallisce
      */
-    public function execute(string $address): ?AddressData
+    public function execute(string $address): null|AddressData
     {
         $this->validateInput($address);
 
@@ -87,7 +85,7 @@ class GetAddressFromBingMapsAction
      *
      * @throws \RuntimeException Se la risposta non è valida
      */
-    private function parseResponse(string $response): ?AddressData
+    private function parseResponse(string $response): null|AddressData
     {
         /** @var array{
          *     statusCode: int,

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title', 'description', 'button_text', 'button_link'])
 
 <section class="bg-white">
@@ -20,4 +25,4 @@
             </div>
         </div>
     </div>
-</section> 
+</section>

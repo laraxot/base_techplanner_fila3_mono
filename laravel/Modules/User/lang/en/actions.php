@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'attach_user' => 'Attach User',
     'associate_user' => 'Associate User',

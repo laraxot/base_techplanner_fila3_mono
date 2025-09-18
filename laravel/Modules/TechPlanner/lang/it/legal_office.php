@@ -9,7 +9,6 @@ return [
         'icon' => 'heroicon-o-building-office',
         'sort' => 9,
     ],
-
     'resource' => [
         'label' => 'Studio Legale',
         'plural_label' => 'Studi Legali',
@@ -18,7 +17,6 @@ return [
         'navigation_sort' => 9,
         'description' => 'Gestione degli studi legali',
     ],
-
     'actions' => [
         'create' => [
             'label' => 'Nuovo Studio Legale',
@@ -45,7 +43,6 @@ return [
             'tooltip' => 'Visualizza studio legale',
         ],
     ],
-
     'fields' => [
         'name' => [
             'label' => 'Nome Studio',
@@ -87,7 +84,6 @@ return [
             'help' => 'Se lo studio legale è attivo',
         ],
     ],
-
     'filters' => [
         'is_active' => [
             'label' => 'Stato',
@@ -101,7 +97,6 @@ return [
             'placeholder' => 'Seleziona una città',
         ],
     ],
-
     'messages' => [
         'created' => 'Studio legale creato con successo',
         'updated' => 'Studio legale aggiornato con successo',

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- Weekly Time Table Widget - Replica esatta dipendentincloud.it --}}
 <x-filament::widget>
     <x-filament::card>

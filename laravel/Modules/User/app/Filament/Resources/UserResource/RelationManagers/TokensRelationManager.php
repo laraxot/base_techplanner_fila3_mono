@@ -26,9 +26,7 @@ class TokensRelationManager extends XotBaseRelationManager
     public function getFormSchema(): array
     {
         return [
-            'name' => TextInput::make('name')
-                ->required()
-                ->maxLength(255),
+            'name' => TextInput::make('name')->required()->maxLength(255),
         ];
     }
 
@@ -37,39 +35,24 @@ class TokensRelationManager extends XotBaseRelationManager
     {
         return $table
             ->recordTitleAttribute('name')
-            ->columns(
-                [
-                    TextColumn::make('name'),
-                ]
-            )
-            ->filters(
-                [
-                ]
-            )
-            ->headerActions(
-                [
-                    CreateAction::make(),
-                ]
-            )
-            ->actions(
-                [
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ]
-            )
-            ->bulkActions(
-                [
-                    BulkActionGroup::make(
-                        [
-                            DeleteBulkAction::make(),
-                        ]
-                    ),
-                ]
-            )
-            ->emptyStateActions(
-                [
-                    // {{ tableEmptyStateActions }}
-                ]
-            );
+            ->columns([
+                TextColumn::make('name'),
+            ])
+            ->filters([])
+            ->headerActions([
+                CreateAction::make(),
+            ])
+            ->actions([
+                EditAction::make(),
+                DeleteAction::make(),
+            ])
+            ->bulkActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ])
+            ->emptyStateActions([
+                // {{ tableEmptyStateActions }}
+            ]);
     }
 }

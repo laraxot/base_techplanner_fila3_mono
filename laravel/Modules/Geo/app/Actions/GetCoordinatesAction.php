@@ -19,10 +19,10 @@ class GetCoordinatesAction
      *
      * @throws \RuntimeException Se la richiesta fallisce o la risposta non è valida
      */
-    public function execute(string $formattedAddress): ?LocationData
+    public function execute(string $formattedAddress): null|LocationData
     {
         $apiKey = config('services.google.maps.key');
-        if (! $apiKey) {
+        if (!$apiKey) {
             throw new \RuntimeException('Google Maps API key not found');
         }
 
@@ -31,7 +31,7 @@ class GetCoordinatesAction
             'key' => $apiKey,
         ]);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             throw new \RuntimeException('Failed to get coordinates from Google Maps API');
         }
 
@@ -47,7 +47,7 @@ class GetCoordinatesAction
         return new LocationData(
             latitude: (float) $location['lat'],
             longitude: (float) $location['lng'],
-            address: $formattedAddress
+            address: $formattedAddress,
         );
     }
 }

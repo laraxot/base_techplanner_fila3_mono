@@ -11,7 +11,7 @@ class LoginListener
     /**
      * Handle the event.
      */
-    public function handle(Login $event): void
+    public function handle(Login $_event): void
     {
         // ...
     }

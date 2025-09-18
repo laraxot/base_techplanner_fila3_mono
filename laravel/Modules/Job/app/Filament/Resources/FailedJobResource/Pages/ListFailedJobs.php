@@ -24,19 +24,13 @@ class ListFailedJobs extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->searchable()
-                ->sortable(),
+            'id' => TextColumn::make('id')->searchable()->sortable(),
             'uuid' => TextColumn::make('uuid')
                 ->searchable()
                 ->sortable()
                 ->copyable(),
-            'connection' => TextColumn::make('connection')
-                ->searchable()
-                ->sortable(),
-            'queue' => TextColumn::make('queue')
-                ->searchable()
-                ->sortable(),
+            'connection' => TextColumn::make('connection')->searchable()->sortable(),
+            'queue' => TextColumn::make('queue')->searchable()->sortable(),
             'payload' => TextColumn::make('payload')
                 ->searchable()
                 ->wrap()
@@ -45,9 +39,7 @@ class ListFailedJobs extends XotBaseListRecords
                 ->searchable()
                 ->wrap()
                 ->limit(100),
-            'failed_at' => TextColumn::make('failed_at')
-                ->dateTime()
-                ->sortable(),
+            'failed_at' => TextColumn::make('failed_at')->dateTime()->sortable(),
         ];
     }
 
@@ -60,28 +52,23 @@ class ListFailedJobs extends XotBaseListRecords
         return [
             'retry_all' => Action::make('retry_all')
                 ->requiresConfirmation()
-                ->action(
-                    static function (): void {
-                        Artisan::call('queue:retry all');
-                        Notification::make()
-                            ->title('All failed jobs have been pushed back onto the queue.')
-                            ->success()
-                            ->send();
-                    }
-                ),
-
+                ->action(static function (): void {
+                    Artisan::call('queue:retry all');
+                    Notification::make()
+                        ->title('All failed jobs have been pushed back onto the queue.')
+                        ->success()
+                        ->send();
+                }),
             'delete_all' => Action::make('delete_all')
                 ->requiresConfirmation()
                 ->color('danger')
-                ->action(
-                    static function (): void {
-                        FailedJob::truncate();
-                        Notification::make()
-                            ->title('All failed jobs have been removed.')
-                            ->success()
-                            ->send();
-                    }
-                ),
+                ->action(static function (): void {
+                    FailedJob::truncate();
+                    Notification::make()
+                        ->title('All failed jobs have been removed.')
+                        ->success()
+                        ->send();
+                }),
         ];
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- PendingRequestsWidget View - Employee Request Status (Compact Design) --}}
 <x-filament-widgets::widget>
     <x-filament::section>

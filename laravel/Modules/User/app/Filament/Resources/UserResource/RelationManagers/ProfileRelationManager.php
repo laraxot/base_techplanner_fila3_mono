@@ -19,7 +19,7 @@ class ProfileRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'profile';
 
-    protected static ?string $recordTitleAttribute = 'first_name';
+    protected static null|string $recordTitleAttribute = 'first_name';
 
     /**
      * @return array<string, \Filament\Forms\Components\Component>
@@ -30,9 +30,7 @@ class ProfileRelationManager extends XotBaseRelationManager
         return [
             'ente' => TextInput::make('ente'),
             'matr' => TextInput::make('matr'),
-            'first_name' => TextInput::make('first_name')
-                ->required()
-                ->maxLength(255),
+            'first_name' => TextInput::make('first_name')->required()->maxLength(255),
             'last_name' => TextInput::make('last_name'),
         ];
     }
@@ -41,35 +39,24 @@ class ProfileRelationManager extends XotBaseRelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->columns(
-                [
-                    TextColumn::make('id'),
-                    TextColumn::make('ente'),
-                    TextColumn::make('matr'),
-                    TextColumn::make('first_name'),
-                    TextColumn::make('last_name'),
-                ]
-            )
-            ->filters(
-                [
-                ]
-            )
-            ->headerActions(
-                [
-                    CreateAction::make(),
-                ]
-            )
-            ->actions(
-                [
-                    ViewAction::make(),
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ]
-            )
-            ->bulkActions(
-                [
-                    DeleteBulkAction::make(),
-                ]
-            );
+            ->columns([
+                TextColumn::make('id'),
+                TextColumn::make('ente'),
+                TextColumn::make('matr'),
+                TextColumn::make('first_name'),
+                TextColumn::make('last_name'),
+            ])
+            ->filters([])
+            ->headerActions([
+                CreateAction::make(),
+            ])
+            ->actions([
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
+            ])
+            ->bulkActions([
+                DeleteBulkAction::make(),
+            ]);
     }
 }

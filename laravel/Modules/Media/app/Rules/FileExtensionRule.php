@@ -15,32 +15,22 @@ class FileExtensionRule implements Rule
 
     public function __construct(array $validExtensions = [])
     {
-        $this->validExtensions = array_map(
-            mb_strtolower(...),
-            $validExtensions,
-        );
+        $this->validExtensions = array_map(mb_strtolower(...), $validExtensions);
     }
 
     /**
-     * @param  string $attribute
-     * @param  UploadedFile  $value
+     * @param  mixed $_attribute The attribute being validated (not used in this rule)
+     * @param  UploadedFile  $value The uploaded file to validate
      */
-    public function passes($attribute, $value): bool
+    public function passes($_attribute, $value): bool
     {
-        return in_array(
-            mb_strtolower($value->getClientOriginalExtension()),
-            $this->validExtensions,
-            strict: false,
-        );
+        return in_array(mb_strtolower($value->getClientOriginalExtension()), $this->validExtensions, strict: false);
     }
 
     public function message(): array|string
     {
-        return trans(
-            'media::validation.mime',
-            [
-                'mimes' => implode(', ', $this->validExtensions),
-            ]
-        );
+        return trans('media::validation.mime', [
+            'mimes' => implode(', ', $this->validExtensions),
+        ]);
     }
 }

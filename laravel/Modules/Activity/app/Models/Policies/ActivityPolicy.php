@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Activity\Models\Policies;
 
 use Modules\Activity\Models\Activity;
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Models\Policies\UserBasePolicy;
+use Modules\Xot\Contracts\UserContract;
 
 class ActivityPolicy extends UserBasePolicy
 {
@@ -21,7 +21,7 @@ class ActivityPolicy extends UserBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Activity $activity): bool
+    public function view(UserContract $user, Activity $_activity): bool
     {
         return $user->hasPermissionTo('activity.view');
     }
@@ -37,7 +37,7 @@ class ActivityPolicy extends UserBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Activity $activity): bool
+    public function update(UserContract $user, Activity $_activity): bool
     {
         return $user->hasPermissionTo('activity.update');
     }
@@ -45,7 +45,7 @@ class ActivityPolicy extends UserBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Activity $activity): bool
+    public function delete(UserContract $user, Activity $_activity): bool
     {
         return $user->hasPermissionTo('activity.delete');
     }
@@ -53,7 +53,7 @@ class ActivityPolicy extends UserBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Activity $activity): bool
+    public function restore(UserContract $user, Activity $_activity): bool
     {
         return $user->hasPermissionTo('activity.restore');
     }

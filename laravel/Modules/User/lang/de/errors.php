@@ -64,4 +64,4 @@ return [
             'description' => 'Der eingegebene Wert ist zu kurz.',
         ],
     ],
-]; 
+];

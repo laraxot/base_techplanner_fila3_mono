@@ -22,19 +22,20 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
  */
 class AttendanceOverviewWidget extends XotBaseWidget
 {
-    protected static ?int $sort = 3;
+    protected static null|int $sort = 3;
 
-    protected static ?string $maxHeight = '500px';
+    protected static null|string $maxHeight = '500px';
 
     protected int|string|array $columnSpan = 1;
 
-    public ?string $selectedDepartment = 'SVILUPPO';
+    public null|string $selectedDepartment = 'SVILUPPO';
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -50,62 +51,51 @@ class AttendanceOverviewWidget extends XotBaseWidget
                                 $this->selectedDepartment = $state;
                             }
                         }),
-
                     Tabs::make('attendance_type')
                         ->tabs([
                             Tab::make('absences')
                                 ->label(__('employee::widgets.attendance_overview.tabs.absences'))
                                 ->badge($this->getAbsencesCount())
                                 ->schema([
-                                    Placeholder::make('absences_list')
-                                        ->content(function (): \Illuminate\Contracts\View\View {
-                                            // @phpstan-ignore-next-line argument.type
-                                            return view('employee::widgets.attendance-overview.attendance-list', [
-                                                'items' => $this->getAbsences(),
-                                                'type' => 'absences',
-                                            ]);
-                                        }),
+                                    Placeholder::make(
+                                        'absences_list',
+                                    )->content(fn (): \Illuminate\Contracts\View\View => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getAbsences(),
+                                            'type' => 'absences',
+                                        ])),
                                 ]),
-
                             Tab::make('smart_working')
                                 ->label(__('employee::widgets.attendance_overview.tabs.smart_working'))
                                 ->badge($this->getSmartWorkingCount())
                                 ->schema([
-                                    Placeholder::make('smart_working_list')
-                                        ->content(function (): \Illuminate\Contracts\View\View {
-                                            // @phpstan-ignore-next-line argument.type
-                                            return view('employee::widgets.attendance-overview.attendance-list', [
-                                                'items' => $this->getSmartWorking(),
-                                                'type' => 'smart_working',
-                                            ]);
-                                        }),
+                                    Placeholder::make(
+                                        'smart_working_list',
+                                    )->content(fn (): \Illuminate\Contracts\View\View => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getSmartWorking(),
+                                            'type' => 'smart_working',
+                                        ])),
                                 ]),
-
                             Tab::make('transfers')
                                 ->label(__('employee::widgets.attendance_overview.tabs.transfers'))
                                 ->badge($this->getTransfersCount())
                                 ->schema([
-                                    Placeholder::make('transfers_list')
-                                        ->content(function (): \Illuminate\Contracts\View\View {
-                                            // @phpstan-ignore-next-line argument.type
-                                            return view('employee::widgets.attendance-overview.attendance-list', [
-                                                'items' => $this->getTransfers(),
-                                                'type' => 'transfers',
-                                            ]);
-                                        }),
+                                    Placeholder::make(
+                                        'transfers_list',
+                                    )->content(fn (): \Illuminate\Contracts\View\View => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getTransfers(),
+                                            'type' => 'transfers',
+                                        ])),
                                 ]),
                         ])
                         ->activeTab(1),
-
                     Actions::make([
                         Action::make('view_all')
                             ->label(__('employee::widgets.attendance_overview.view_all_presences'))
-                            ->url(fn () => route('filament.admin.resources.employees.index'))
+                            ->url(fn() => route('filament.admin.resources.employees.index'))
                             ->icon('heroicon-o-eye')
                             ->color('gray')
                             ->size('sm'),
-                    ])
-                        ->alignment('center'),
+                    ])->alignment('center'),
                 ])
                 ->extraAttributes(['class' => 'attendance-overview-widget']),
         ];
@@ -198,9 +188,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
         // Return mock data if no real smart working found
         if (count($result) === 0) {
-            $user = \Modules\User\Models\User::whereNotNull('first_name')
-                ->whereNotNull('last_name')
-                ->first();
+            $user = \Modules\User\Models\User::whereNotNull('first_name')->whereNotNull('last_name')->first();
 
             if ($user) {
                 $fullName = $user->full_name ?? 'Dipendente';
@@ -233,9 +221,7 @@ class AttendanceOverviewWidget extends XotBaseWidget
 
         // Return mock data if no real transfers found
         if (count($result) === 0) {
-            $user = \Modules\User\Models\User::whereNotNull('first_name')
-                ->whereNotNull('last_name')
-                ->first();
+            $user = \Modules\User\Models\User::whereNotNull('first_name')->whereNotNull('last_name')->first();
 
             if ($user) {
                 $fullName = $user->full_name ?? 'Dipendente';

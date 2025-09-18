@@ -24,12 +24,8 @@ class ListExports extends XotBaseListRecords
                 ->numeric()
                 ->sortable()
                 ->searchable(),
-            'name' => TextColumn::make('name')
-                ->sortable()
-                ->searchable(),
-            'status' => TextColumn::make('status')
-                ->sortable()
-                ->searchable(),
+            'name' => TextColumn::make('name')->sortable()->searchable(),
+            'status' => TextColumn::make('status')->sortable()->searchable(),
             'created_at' => TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()

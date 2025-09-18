@@ -20,7 +20,7 @@ class TaskPolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Task $task): bool
+    public function view(UserContract $user, Task $_task): bool
     {
         return $user->hasPermissionTo('task.view');
     }
@@ -36,7 +36,7 @@ class TaskPolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Task $task): bool
+    public function update(UserContract $user, Task $_task): bool
     {
         return $user->hasPermissionTo('task.update');
     }
@@ -44,7 +44,7 @@ class TaskPolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Task $task): bool
+    public function delete(UserContract $user, Task $_task): bool
     {
         return $user->hasPermissionTo('task.delete');
     }
@@ -52,7 +52,7 @@ class TaskPolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Task $task): bool
+    public function restore(UserContract $user, Task $_task): bool
     {
         return $user->hasPermissionTo('task.restore');
     }

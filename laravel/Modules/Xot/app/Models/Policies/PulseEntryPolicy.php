@@ -21,7 +21,7 @@ class PulseEntryPolicy extends XotBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, PulseEntry $pulse_entry): bool
+    public function view(UserContract $user, PulseEntry $_pulse_entry): bool
     {
         return $user->hasPermissionTo('pulse_entry.view');
     }
@@ -37,7 +37,7 @@ class PulseEntryPolicy extends XotBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, PulseEntry $pulse_entry): bool
+    public function update(UserContract $user, PulseEntry $_pulse_entry): bool
     {
         return $user->hasPermissionTo('pulse_entry.update');
     }
@@ -45,7 +45,7 @@ class PulseEntryPolicy extends XotBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, PulseEntry $pulse_entry): bool
+    public function delete(UserContract $user, PulseEntry $_pulse_entry): bool
     {
         return $user->hasPermissionTo('pulse_entry.delete');
     }
@@ -53,7 +53,7 @@ class PulseEntryPolicy extends XotBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, PulseEntry $pulse_entry): bool
+    public function restore(UserContract $user, PulseEntry $_pulse_entry): bool
     {
         return $user->hasPermissionTo('pulse_entry.restore');
     }

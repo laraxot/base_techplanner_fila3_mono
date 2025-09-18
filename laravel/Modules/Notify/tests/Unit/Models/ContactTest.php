@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Tests\TestCase;
-use Modules\Notify\Models\Contact;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Notify\Models\Contact;
+use Tests\TestCase;
 
 class ContactTest extends TestCase
 {
@@ -262,9 +262,7 @@ class ContactTest extends TestCase
             'value' => 'test@example.com',
         ]);
 
-        $foundContact = Contact::where('model_type', 'App\Models\User')
-            ->where('model_id', '123')
-            ->first();
+        $foundContact = Contact::where('model_type', 'App\Models\User')->where('model_id', '123')->first();
 
         $this->assertNotNull($foundContact);
         $this->assertEquals($contact->id, $foundContact->id);
@@ -656,10 +654,3 @@ class ContactTest extends TestCase
         $this->assertEquals(3, $orderedContacts[2]->order_column);
     }
 }
-
-
-
-
-
-
-

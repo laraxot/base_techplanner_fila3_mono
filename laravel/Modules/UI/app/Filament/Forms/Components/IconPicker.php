@@ -27,8 +27,8 @@ class IconPicker extends TextInput
 
         $this->suffixAction(
             \Filament\Forms\Components\Actions\Action::make('icon')
-                ->icon(fn (?string $state) => $state)
-            // ->modalContent(fn ($record) => view('ui::filament.forms.components.icon-picker', ['record' => $record]))
+                ->icon(fn(null|string $state) => $state)
+                // ->modalContent(fn ($record) => view('ui::filament.forms.components.icon-picker', ['record' => $record]))
                 ->form([
                     Select::make('pack')
                         ->options($packs)
@@ -37,11 +37,14 @@ class IconPicker extends TextInput
                     RadioIcon::make('newstate')
                         ->options(function (Get $get) use ($icons): array {
                             $pack = $get('pack');
-                            if (! is_string($pack)) {
+                            if (!is_string($pack)) {
                                 return [];
                             }
-                            $key = $pack.'.icons';
-                            Assert::isArray($opts = Arr::get($icons, $key, []), '['.__LINE__.']['.class_basename($this).']');
+                            $key = $pack . '.icons';
+                            Assert::isArray(
+                                $opts = Arr::get($icons, $key, []),
+                                '[' . __LINE__ . '][' . class_basename($this) . ']',
+                            );
                             $opts = array_combine($opts, $opts);
 
                             return $opts;
@@ -51,7 +54,7 @@ class IconPicker extends TextInput
                 ])
                 ->action(function (array $data, Set $set) {
                     $set('icon', $data['newstate']);
-                })
+                }),
         );
     }
 }

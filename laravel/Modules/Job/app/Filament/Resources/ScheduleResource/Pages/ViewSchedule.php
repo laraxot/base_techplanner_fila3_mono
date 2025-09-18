@@ -30,7 +30,7 @@ class ViewSchedule extends Page implements HasTable
     }
 
     #[Url]
-    public ?string $activeTab = null;
+    public null|string $activeTab = null;
 
     protected static string $resource = ScheduleResource::class;
 
@@ -51,55 +51,60 @@ class ViewSchedule extends Page implements HasTable
      *
      * @param string $record
      * @return void
-
-    public function mount($record): void
-    {
-        static::authorizeResourceAccess();
-
-        $this->record = $this->resolveRecord($record);
-
-        abort_unless(static::getResource()::canView($this->getRecord()), 403);
-    }
-
-    protected function getRelationManagers(): array
-    {
-        return [];
-    }
-
-
-    protected function getTableQuery(): Builder
-    {
-        return ScheduleHistory::where('schedule_id', $this->record->id)->latest();
-    }
-    */
+     *
+     * public function mount($record): void
+     * {
+     * static::authorizeResourceAccess();
+     *
+     * $this->record = $this->resolveRecord($record);
+     *
+     * abort_unless(static::getResource()::canView($this->getRecord()), 403);
+     * }
+     *
+     * protected function getRelationManagers(): array
+     * {
+     * return [];
+     * }
+     *
+     *
+     * protected function getTableQuery(): Builder
+     * {
+     * return ScheduleHistory::where('schedule_id', $this->record->id)->latest();
+     * }
+     */
 
     protected function getTableColumns(): array
     {
-        $date_format = Assert::string(config('app.date_format'), '['.__LINE__.']['.class_basename($this).']');
+        $date_format = Assert::string(config('app.date_format'), '[' . __LINE__ . '][' . class_basename($this) . ']');
 
         return [
             Tables\Columns\Layout\Split::make([
                 Tables\Columns\TextColumn::make('command'),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('created_at')->dateTime($date_format),
+                Tables\Columns\TextColumn::make('updated_at')->formatStateUsing(static function (
+                    $state,
+                    $record,
+                ): string {
+                    if ($state === $record->created_at) {
+                        return 'Processing...';
+                    }
 
-                    ->dateTime($date_format),
-                Tables\Columns\TextColumn::make('updated_at')
-
-                    ->formatStateUsing(static function ($state, $record): string {
-                        if ($state === $record->created_at) {
-                            return 'Processing...';
-                        }
-
-                        return $state->diffInSeconds($record->created_at).' seconds';
-                    }),
+                    return $state->diffInSeconds($record->created_at) . ' seconds';
+                }),
+                Tables\Columns\TextColumn::make('output')->formatStateUsing(
+                    static fn(string $state): string => (
+                        (count(explode('<br />', nl2br($state))) - 1) . ' rows of output'
+                    ),
+                ),
+            ]),
+            Tables\Columns\Layout\Panel::make([
                 Tables\Columns\TextColumn::make('output')
-                    ->formatStateUsing(static fn (string $state): string => (count(explode('<br />', nl2br($state))) - 1).' rows of output'),
-            ]), Tables\Columns\Layout\Panel::make([
-                Tables\Columns\TextColumn::make('output')->extraAttributes(['class' => '!max-w-max'], true)
-                    ->formatStateUsing(static fn (string $state): \Illuminate\Support\HtmlString => new HtmlString(nl2br($state))),
-            ])->collapsible()
+                    ->extraAttributes(['class' => '!max-w-max'], true)
+                    ->formatStateUsing(static fn(string $state): \Illuminate\Support\HtmlString => new HtmlString(nl2br(
+                        $state,
+                    ))),
+            ])->collapsible(),
             // ->collapsed(config('job::history_collapsed'))
-            ,
         ];
     }
 }

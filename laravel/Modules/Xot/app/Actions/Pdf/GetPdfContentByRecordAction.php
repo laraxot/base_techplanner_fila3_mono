@@ -36,7 +36,7 @@ class GetPdfContentByRecordAction
      *
      * @return string Contenuto binario del PDF
      */
-    public function execute(Model $record, ?string $filename = null): string
+    public function execute(Model $record, null|string $filename = null): string
     {
         // Generate view name following Laraxot conventions
         $viewName = $this->generateViewName($record);
@@ -45,8 +45,8 @@ class GetPdfContentByRecordAction
         $viewParams = $this->prepareViewParameters($record, $viewName);
 
         // Validate view existence
-        if (! view()->exists($viewName)) {
-            throw new \Exception("View '{$viewName}' not found for model ".get_class($record));
+        if (!view()->exists($viewName)) {
+            throw new \Exception("View '{$viewName}' not found for model " . get_class($record));
         }
 
         // Render view to HTML
@@ -94,7 +94,7 @@ class GetPdfContentByRecordAction
         $modelName = class_basename($modelClass);
         $module = Str::between($modelClass, 'Modules\\', '\\Models');
 
-        return mb_strtolower($module).'::'.Str::kebab($modelName).'.show.pdf';
+        return mb_strtolower($module) . '::' . Str::kebab($modelName) . '.show.pdf';
     }
 
     /**
@@ -114,11 +114,15 @@ class GetPdfContentByRecordAction
         $params = [
             'view' => $viewName,
             'row' => $record,
-            'transKey' => mb_strtolower($module).'::'.Str::plural(mb_strtolower($modelName)).'.fields',
+            'transKey' => mb_strtolower($module) . '::' . Str::plural(mb_strtolower($modelName)) . '.fields',
         ];
 
         // Add specific relationship data if available
-        if (method_exists($record, 'valutatore') && $record->relationLoaded('valutatore') && isset($record->valutatore)) {
+        if (
+            method_exists($record, 'valutatore') &&
+                $record->relationLoaded('valutatore') &&
+                isset($record->valutatore)
+        ) {
             $valutatore = $record->valutatore;
             if (is_object($valutatore) && isset($valutatore->nome_diri)) {
                 $params['firma'] = $valutatore->nome_diri;
@@ -139,24 +143,26 @@ class GetPdfContentByRecordAction
     {
         $modelName = class_basename(get_class($record));
         $recordKey = $record->getKey();
-        $baseFilename = mb_strtolower($modelName).'_'.(string)($recordKey ?? 'unknown');
+        $baseFilename = mb_strtolower($modelName) . '_' . ((string) ($recordKey ?? 'unknown'));
 
         // Enhanced filename for records with identification fields
         if (isset($record->matr, $record->cognome, $record->nome)) {
             $matr = is_string($record->matr) ? $record->matr : 'unknown';
             $cognome = is_string($record->cognome) ? $record->cognome : 'unknown';
             $nome = is_string($record->nome) ? $record->nome : 'unknown';
-            
-            return 'scheda_'.(string)($recordKey ?? 'unknown').'_'.$matr.'_'.$cognome.'_'.$nome.'.pdf';
+
+            return (
+                'scheda_' . ((string) ($recordKey ?? 'unknown')) . '_' . $matr . '_' . $cognome . '_' . $nome . '.pdf'
+            );
         }
 
         // Enhanced filename for records with name field
         if (isset($record->name) && is_string($record->name)) {
-            return $baseFilename.'_'.Str::slug($record->name).'.pdf';
+            return $baseFilename . '_' . Str::slug($record->name) . '.pdf';
         }
 
         // Default filename pattern
-        return $baseFilename.'.pdf';
+        return $baseFilename . '.pdf';
     }
 
     /**
@@ -174,12 +180,12 @@ class GetPdfContentByRecordAction
         try {
             // Create Html2Pdf instance with standard configuration
             $html2pdf = new Html2Pdf(
-                orientation: 'P',        // Portrait
-                format: 'A4',           // A4 format
-                lang: 'it',             // Italian language
-                unicode: true,          // Unicode support
-                encoding: 'UTF-8',      // UTF-8 encoding
-                margins: [10, 10, 10, 10] // 10mm margins on all sides
+                orientation: 'P', // Portrait
+                format: 'A4', // A4 format
+                lang: 'it', // Italian language
+                unicode: true, // Unicode support
+                encoding: 'UTF-8', // UTF-8 encoding
+                margins: [10, 10, 10, 10], // 10mm margins on all sides
             );
 
             // Configure additional settings
@@ -197,7 +203,7 @@ class GetPdfContentByRecordAction
                 'trace' => $e->getTraceAsString(),
             ]);
 
-            throw new \Exception('Failed to generate PDF content: '.$e->getMessage(), 0, $e);
+            throw new \Exception('Failed to generate PDF content: ' . $e->getMessage(), 0, $e);
         }
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\Notify\Datas;
 
 use Spatie\LaravelData\Data;
@@ -15,7 +18,7 @@ class NetfunSmsRequestData extends Data
     {
         return new self(
             token: $data['token'],
-            messages: $data['messages']
+            messages: $data['messages'],
         );
     }
 }

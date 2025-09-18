@@ -58,8 +58,3 @@ class Department extends BaseModel
         return $this->hasMany(Employee::class);
     }
 }
-
-
-
-
-

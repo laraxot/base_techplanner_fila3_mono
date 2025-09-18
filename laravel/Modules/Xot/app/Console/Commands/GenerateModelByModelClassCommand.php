@@ -33,17 +33,17 @@ class GenerateModelByModelClassCommand extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    
 
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-        Assert::classExists($model_class = $this->argument('model_class'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::classExists(
+            $model_class = $this->argument('model_class'),
+            '[' . __LINE__ . '][' . class_basename($this) . ']',
+        );
 
         app(GenerateModelByModelClass::class)
             ->setCustomReplaces(['DummyTable' => 'lime_survey_xxx'])

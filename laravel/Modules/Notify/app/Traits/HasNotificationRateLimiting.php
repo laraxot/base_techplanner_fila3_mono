@@ -87,4 +87,4 @@ trait HasNotificationRateLimiting
     {
         return "notify:{$type}:{$identifier}";
     }
-} 
+}

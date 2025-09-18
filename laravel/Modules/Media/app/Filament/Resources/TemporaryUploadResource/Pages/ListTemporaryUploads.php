@@ -8,9 +8,9 @@ use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Modules\Media\Filament\Resources\TemporaryUploadResource;
@@ -36,9 +36,7 @@ class ListTemporaryUploads extends XotBaseListRecords
                 ->searchable()
                 ->sortable()
                 ->wrap(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
         ];
     }
 
@@ -49,8 +47,10 @@ class ListTemporaryUploads extends XotBaseListRecords
     public function getTableFilters(): array
     {
         return [
-            'folder' => SelectFilter::make('folder')
-                ->options(TemporaryUpload::distinct()->pluck('folder', 'folder')->toArray(...)),
+            'folder' => SelectFilter::make('folder')->options(TemporaryUpload::distinct()->pluck(
+                'folder',
+                'folder',
+            )->toArray(...)),
         ];
     }
 

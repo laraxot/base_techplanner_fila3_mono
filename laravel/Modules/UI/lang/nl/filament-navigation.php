@@ -13,12 +13,10 @@ return [
         'created_at' => 'Aangemaakt op',
         'updated_at' => 'Aangepast op',
     ],
-
     'select-options' => [
         'same-tab' => 'Dezelfde tab',
         'new-tab' => 'Nieuwe tab',
     ],
-
     'items' => [
         'empty' => 'Geen elementen.',
         'add-item' => 'Nieuw element',
@@ -29,7 +27,6 @@ return [
         'dedent' => 'Terugspringen',
         'remove' => 'Verwijderen',
     ],
-
     'items-modal' => [
         'title' => 'Element',
         'label' => 'Label',

@@ -23,18 +23,17 @@ class ThemeNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public string $name, public array $view_params)
-    {
-    }
+    public function __construct(
+        public string $name,
+        public array $view_params,
+    ) {}
 
     /**
      * Get the notification's delivery channels.
      */
     public function via(CanThemeNotificationContract $notifiable): array
     {
-        return $notifiable
-            ->getNotificationData($this->name, $this->view_params)
-            ->channels;
+        return $notifiable->getNotificationData($this->name, $this->view_params)->channels;
     }
 
     /**
@@ -42,9 +41,7 @@ class ThemeNotification extends Notification implements ShouldQueue
      */
     public function toMail(CanThemeNotificationContract $notifiable): MailMessage
     {
-        $attachments = $notifiable
-            ->getNotificationData($this->name, $this->view_params)
-            ->attachments;
+        $attachments = $notifiable->getNotificationData($this->name, $this->view_params)->attachments;
 
         $mail_message = app(BuildMailMessageAction::class)
             ->execute($this->name, $notifiable->getModel(), $this->view_params, $attachments);
@@ -63,17 +60,15 @@ class ThemeNotification extends Notification implements ShouldQueue
      */
     public function toSms(CanThemeNotificationContract $notifiable): SmsData
     {
-        return $notifiable
-            ->getNotificationData($this->name, $this->view_params)
-            ->getSmsData();
-        /*
-        return SmsData::from([
-            'from' => $this->from,
-            'to' => $notifiable->routeNotificationFor('mobile'),
-            'body' => $this->html,
-        ]);
-        */
+        return $notifiable->getNotificationData($this->name, $this->view_params)->getSmsData();
 
+        /*
+         * return SmsData::from([
+         * 'from' => $this->from,
+         * 'to' => $notifiable->routeNotificationFor('mobile'),
+         * 'body' => $this->html,
+         * ]);
+         */
         // $notifiable->sendSmsCallback()
     }
 

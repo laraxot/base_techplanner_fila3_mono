@@ -14,14 +14,13 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class PhotonAddressData extends Data
 {
     public function __construct(
-        public ?string $country,
-        public ?string $city,
-        public ?string $postcode,
-        public ?string $street,
-        public ?string $housenumber,
+        public null|string $country,
+        public null|string $city,
+        public null|string $postcode,
+        public null|string $street,
+        public null|string $housenumber,
         public array $coordinates,
-    ) {
-    }
+    ) {}
 
     public static function fromPhotonFeature(array $feature): self
     {

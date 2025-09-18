@@ -13,20 +13,15 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class MedicalDirectorResource extends XotBaseResource
 {
-    protected static ?string $model = MedicalDirector::class;
+    protected static null|string $model = MedicalDirector::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('license_number')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('specialization')
-                ->required()
-                ->maxLength(255),
+            Forms\Components\TextInput::make('name')->required()->maxLength(255),
+            Forms\Components\TextInput::make('license_number')->required()->maxLength(255),
+            Forms\Components\TextInput::make('specialization')->required()->maxLength(255),
             Forms\Components\TextInput::make('email')
                 ->email()
                 ->required()
@@ -35,21 +30,16 @@ class MedicalDirectorResource extends XotBaseResource
                 ->tel()
                 ->required()
                 ->maxLength(255),
-            Forms\Components\DatePicker::make('license_expiry')
-                ->required(),
-            Forms\Components\Textarea::make('notes')
-                ->maxLength(65535)
-                ->columnSpanFull(),
+            Forms\Components\DatePicker::make('license_expiry')->required(),
+            Forms\Components\Textarea::make('notes')->maxLength(65535)->columnSpanFull(),
         ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-            ])
-            ->filters([
-            ])
+            ->columns([])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -60,12 +50,13 @@ class MedicalDirectorResource extends XotBaseResource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

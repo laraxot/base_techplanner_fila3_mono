@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Tests\Unit\Models;
 
-use Tests\TestCase;
-use Modules\Notify\Models\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Notify\Models\Notification;
+use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {

@@ -21,7 +21,7 @@ class ModulePolicy extends XotBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Module $module): bool
+    public function view(UserContract $user, Module $_module): bool
     {
         return $user->hasPermissionTo('module.view');
     }
@@ -37,7 +37,7 @@ class ModulePolicy extends XotBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Module $module): bool
+    public function update(UserContract $user, Module $_module): bool
     {
         return $user->hasPermissionTo('module.update');
     }
@@ -45,7 +45,7 @@ class ModulePolicy extends XotBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Module $module): bool
+    public function delete(UserContract $user, Module $_module): bool
     {
         return $user->hasPermissionTo('module.delete');
     }
@@ -53,7 +53,7 @@ class ModulePolicy extends XotBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Module $module): bool
+    public function restore(UserContract $user, Module $_module): bool
     {
         return $user->hasPermissionTo('module.restore');
     }

@@ -108,7 +108,7 @@ class BuildTimelineVisualizationAction
         $current = $weekStart->copy();
         while ($current->lte($weekEnd)) {
             $dateKey = $current->toDateString();
-            $dayEntries = $entries->filter(fn ($entry) => $entry->timestamp->isSameDay($current));
+            $dayEntries = $entries->filter(fn($entry) => $entry->timestamp->isSameDay($current));
 
             $blocks[$dateKey] = $this->buildDaySessionBlocks($dayEntries);
 
@@ -183,7 +183,7 @@ class BuildTimelineVisualizationAction
 
         // Calcola posizione nel timeline (06:00-20:00 = 840 minuti totali)
         $timelineStart = Carbon::today()->setTime(6, 0); // 06:00
-        $timelineEnd = Carbon::today()->setTime(20, 0);   // 20:00
+        $timelineEnd = Carbon::today()->setTime(20, 0); // 20:00
         $totalMinutes = $timelineStart->diffInMinutes($timelineEnd); // 840 minuti
 
         // Posizione inizio (percentuale da 06:00)
@@ -215,7 +215,7 @@ class BuildTimelineVisualizationAction
         $startTime = $session['startTime'];
         $endTime = $session['endTime'];
 
-        if (! $endTime) {
+        if (!$endTime) {
             return 'orange'; // Sessione in corso
         }
 
@@ -338,9 +338,14 @@ class BuildTimelineVisualizationAction
             if (!is_array($block)) {
                 continue;
             }
-            
+
             // Sessione senza uscita
-            if (isset($block['status']) && is_string($block['status']) && $block['status'] === 'active' && ! $date->isToday()) {
+            if (
+                isset($block['status']) &&
+                    is_string($block['status']) &&
+                    $block['status'] === 'active' &&
+                    !$date->isToday()
+            ) {
                 return true;
             }
 

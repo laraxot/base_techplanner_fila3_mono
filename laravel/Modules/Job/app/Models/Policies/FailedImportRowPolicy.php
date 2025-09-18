@@ -20,7 +20,7 @@ class FailedImportRowPolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, FailedImportRow $failed_import_row): bool
+    public function view(UserContract $user, FailedImportRow $_failed_import_row): bool
     {
         return $user->hasPermissionTo('failed_import_row.view');
     }
@@ -36,7 +36,7 @@ class FailedImportRowPolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, FailedImportRow $failed_import_row): bool
+    public function update(UserContract $user, FailedImportRow $_failed_import_row): bool
     {
         return $user->hasPermissionTo('failed_import_row.update');
     }
@@ -44,7 +44,7 @@ class FailedImportRowPolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, FailedImportRow $failed_import_row): bool
+    public function delete(UserContract $user, FailedImportRow $_failed_import_row): bool
     {
         return $user->hasPermissionTo('failed_import_row.delete');
     }
@@ -52,7 +52,7 @@ class FailedImportRowPolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, FailedImportRow $failed_import_row): bool
+    public function restore(UserContract $user, FailedImportRow $_failed_import_row): bool
     {
         return $user->hasPermissionTo('failed_import_row.restore');
     }

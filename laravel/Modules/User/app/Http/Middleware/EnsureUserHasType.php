@@ -1,19 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\User\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/** 
-* Route::put('/post/{id}', function (string $id) {
-*   // ...
-* })->middleware(EnsureUserHasRole::class.':editor');
-* Route::put('/post/{id}', function (string $id) {
-*     // ...
-*})->middleware(EnsureUserHasRole::class.':editor,publisher');
-*/
+/**
+ * Route::put('/post/{id}', function (string $id) {
+ *   // ...
+ * })->middleware(EnsureUserHasRole::class.':editor');
+ * Route::put('/post/{id}', function (string $id) {
+ *     // ...
+ *})->middleware(EnsureUserHasRole::class.':editor,publisher');
+ */
 
 class EnsureUserHasType
 {
@@ -24,22 +27,16 @@ class EnsureUserHasType
      */
     public function handle(Request $request, Closure $next, string $type): Response
     {
-        
         $userType = $request->user()?->type;
-<<<<<<< HEAD
-        if ($userType instanceof \Modules\User\Enums\UserType && $userType->value == $type) {
-            // Redirect...
-=======
-       
-        if ($userType instanceof \BackedEnum && $userType->value == $type) {
->>>>>>> 4efd3ae9 (.)
+
+        if ($userType instanceof \BackedEnum && $userType->value === $type) {
             return $next($request);
         }
 
-        if(is_string($userType) && $userType == $type){
+        if (is_string($userType) && $userType === $type) {
             return $next($request);
         }
-        
+
         return redirect()->route('home');
     }
 }

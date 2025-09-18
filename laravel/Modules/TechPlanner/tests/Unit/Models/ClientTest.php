@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
-use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Models\Device;
-use Modules\TechPlanner\Models\Location;
 use Modules\TechPlanner\Models\LegalOffice;
 use Modules\TechPlanner\Models\LegalRepresentative;
+use Modules\TechPlanner\Models\Location;
 use Modules\TechPlanner\Models\MedicalDirector;
-use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\PhoneCall;
+use Modules\TechPlanner\Models\Worker;
 use Tests\TestCase;
 
 /**
@@ -30,7 +30,6 @@ class ClientTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
 
         $this->client = Client::factory()->create();
     }
@@ -166,9 +165,11 @@ class ClientTest extends TestCase
     /** @test */
     public function it_has_many_devices(): void
     {
-        $devices = Device::factory()->count(3)->create([
-            'client_id' => $this->client->id,
-        ]);
+        $devices = Device::factory()
+            ->count(3)
+            ->create([
+                'client_id' => $this->client->id,
+            ]);
 
         $this->assertCount(3, $this->client->devices);
         $this->assertInstanceOf(Device::class, $this->client->devices->first());
@@ -177,9 +178,11 @@ class ClientTest extends TestCase
     /** @test */
     public function it_has_many_appointments(): void
     {
-        $appointments = Appointment::factory()->count(2)->create([
-            'client_id' => $this->client->id,
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'client_id' => $this->client->id,
+            ]);
 
         $this->assertCount(2, $this->client->appointments);
         $this->assertInstanceOf(Appointment::class, $this->client->appointments->first());
@@ -188,9 +191,11 @@ class ClientTest extends TestCase
     /** @test */
     public function it_has_many_phone_calls(): void
     {
-        $phoneCalls = PhoneCall::factory()->count(2)->create([
-            'client_id' => $this->client->id,
-        ]);
+        $phoneCalls = PhoneCall::factory()
+            ->count(2)
+            ->create([
+                'client_id' => $this->client->id,
+            ]);
 
         $this->assertCount(2, $this->client->phoneCalls);
         $this->assertInstanceOf(PhoneCall::class, $this->client->phoneCalls->first());
@@ -200,16 +205,13 @@ class ClientTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $clientId = $this->client->id;
-        
-
-        $this->client->delete();
-        
 
         $this->client->delete();
 
-        
         $this->client->delete();
-        
+
+        $this->client->delete();
+
         $this->assertSoftDeleted('clients', ['id' => $clientId]);
         $this->assertDatabaseMissing('clients', ['id' => $clientId]);
     }
@@ -218,26 +220,22 @@ class ClientTest extends TestCase
     public function it_can_be_restored(): void
     {
         $clientId = $this->client->id;
-        
+
         $this->client->delete();
         $this->assertSoftDeleted('clients', ['id' => $clientId]);
-        
 
         $this->client->delete();
         $this->assertSoftDeleted('clients', ['id' => $clientId]);
 
         $restoredClient = Client::withTrashed()->find($clientId);
         $restoredClient->restore();
-        
 
-        
         $this->client->delete();
         $this->assertSoftDeleted('clients', ['id' => $clientId]);
-        
+
         $restoredClient = Client::withTrashed()->find($clientId);
         $restoredClient->restore();
 
-        
         $this->assertDatabaseHas('clients', ['id' => $clientId]);
         $this->assertNull($restoredClient->deleted_at);
     }

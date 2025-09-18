@@ -14,7 +14,6 @@ beforeEach(function () {
 });
 
 describe('Work Hour Management Business Logic', function () {
-
     test('employee can clock in at start of day', function () {
         $clockIn = createWorkHour([
             'employee_id' => $this->employee->id,
@@ -181,8 +180,8 @@ describe('Work Hour Management Business Logic', function () {
         $todayEntries = WorkHour::getTodayEntries($this->employee->id, $this->today);
 
         expect($todayEntries)->toHaveCount(2);
-        expect($todayEntries->first()->id)->toBe($clockIn->id);
-        expect($todayEntries->last()->id)->toBe($breakStart->id);
+        expect($todayEntries->first()?->id)->toBe($clockIn->id);
+        expect($todayEntries->last()?->id)->toBe($breakStart->id);
     });
 
     test('multiple employees can have independent work hours', function () {

@@ -21,7 +21,7 @@ class SessionPolicy extends XotBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Session $session): bool
+    public function view(UserContract $user, Session $_session): bool
     {
         return $user->hasPermissionTo('session.view');
     }
@@ -37,7 +37,7 @@ class SessionPolicy extends XotBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Session $session): bool
+    public function update(UserContract $user, Session $_session): bool
     {
         return $user->hasPermissionTo('session.update');
     }
@@ -45,7 +45,7 @@ class SessionPolicy extends XotBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Session $session): bool
+    public function delete(UserContract $user, Session $_session): bool
     {
         return $user->hasPermissionTo('session.delete');
     }
@@ -53,7 +53,7 @@ class SessionPolicy extends XotBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Session $session): bool
+    public function restore(UserContract $user, Session $_session): bool
     {
         return $user->hasPermissionTo('session.restore');
     }

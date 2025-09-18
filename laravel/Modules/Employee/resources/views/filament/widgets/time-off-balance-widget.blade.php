@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- TimeOffBalanceWidget View - Leave Balance Display --}}
 <x-filament-widgets::widget>
     <x-filament::section>

@@ -10,7 +10,7 @@ use Modules\User\Models\User;
 
 /**
  * SocialiteUser Factory
- * 
+ *
  * @extends Factory<SocialiteUser>
  */
 class SocialiteUserFactory extends Factory
@@ -20,7 +20,7 @@ class SocialiteUserFactory extends Factory
     public function definition(): array
     {
         $provider = $this->faker->randomElement(['google', 'facebook', 'github', 'twitter']);
-        
+
         return [
             'user_id' => User::factory(),
             'provider' => $provider,

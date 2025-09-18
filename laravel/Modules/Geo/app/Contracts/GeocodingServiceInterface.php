@@ -11,5 +11,5 @@ interface GeocodingServiceInterface
      *
      * @return array{latitude: float, longitude: float}|null
      */
-    public function getCoordinates(string $address): ?array;
+    public function getCoordinates(string $address): null|array;
 }

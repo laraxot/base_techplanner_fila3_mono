@@ -20,7 +20,7 @@ class SchedulePolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Schedule $schedule): bool
+    public function view(UserContract $user, Schedule $_schedule): bool
     {
         return $user->hasPermissionTo('schedule.view');
     }
@@ -36,7 +36,7 @@ class SchedulePolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Schedule $schedule): bool
+    public function update(UserContract $user, Schedule $_schedule): bool
     {
         return $user->hasPermissionTo('schedule.update');
     }
@@ -44,7 +44,7 @@ class SchedulePolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Schedule $schedule): bool
+    public function delete(UserContract $user, Schedule $_schedule): bool
     {
         return $user->hasPermissionTo('schedule.delete');
     }
@@ -52,7 +52,7 @@ class SchedulePolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Schedule $schedule): bool
+    public function restore(UserContract $user, Schedule $_schedule): bool
     {
         return $user->hasPermissionTo('schedule.restore');
     }

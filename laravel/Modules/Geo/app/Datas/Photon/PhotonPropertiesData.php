@@ -9,11 +9,10 @@ use Spatie\LaravelData\Data;
 class PhotonPropertiesData extends Data
 {
     public function __construct(
-        public ?string $country,
-        public ?string $city,
-        public ?string $postcode,
-        public ?string $street,
-        public ?string $housenumber,
-    ) {
-    }
+        public null|string $country,
+        public null|string $city,
+        public null|string $postcode,
+        public null|string $street,
+        public null|string $housenumber,
+    ) {}
 }

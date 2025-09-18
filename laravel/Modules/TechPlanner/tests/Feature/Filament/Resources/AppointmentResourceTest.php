@@ -7,7 +7,6 @@ namespace Modules\TechPlanner\Tests\Feature\Filament\Resources;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
-use Illuminate\Foundation\Testing\WithFaker;use Livewire\Livewire;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages\CreateAppointment;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages\EditAppointment;
@@ -23,19 +22,7 @@ class AppointmentResourceTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     protected User $admin;
-
-class AppointmentResourceTest extends TestCase
-{
-    protected User $admin;
-
     protected Client $client;
-
-class AppointmentResourceTest extends TestCase
-{
-
-    protected User $admin;
-    protected Client $client;
-
     protected Worker $worker;
 
     protected function setUp(): void

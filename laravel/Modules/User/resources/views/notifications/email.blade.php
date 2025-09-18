@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'level' => 'success',
 ])
@@ -21,6 +26,7 @@
     {{-- Action Button --}}
     @isset($actionText)
         <?php
+
         // @phpstan-ignore variable.undefined
         $color = match ($level) {
             'success', 'error' => $level,

@@ -26,7 +26,6 @@ trait HasPlaceTrait
     }
 
     // ----- mutators -----
-
     // public function getPlaceAttribute(string $value){
     //     return
     // }

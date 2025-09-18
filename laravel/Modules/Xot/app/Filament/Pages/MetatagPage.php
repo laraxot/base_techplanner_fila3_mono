@@ -16,11 +16,11 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Support\Colors\Color;
 use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Datas\MetatagData;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 use Webmozart\Assert\Assert;
-use Filament\Support\Colors\Color;
 
 /**
  * @property ComponentContainer $form
@@ -30,9 +30,9 @@ class MetatagPage extends Page implements HasForms
     use InteractsWithForms;
     use NavigationLabelTrait;
 
-    public ?array $data = [];
+    public null|array $data = [];
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static null|string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'xot::filament.pages.metatag';
 
@@ -49,58 +49,52 @@ class MetatagPage extends Page implements HasForms
         $metatag = MetatagData::make();
 
         return $form
-            ->schema(
-                [
-                    TextInput::make('title')
-                        ->required(),
-                    TextInput::make('sitename'),
-                    TextInput::make('subtitle'),
-                    TextInput::make('generator'),
-                    TextInput::make('charset'),
-                    TextInput::make('author'),
-                    TextInput::make('description'),
-                    TextInput::make('keywords'),
-                    /*
-                FileUpload::make('logo_header')
-                    ->preserveFilenames()
-                    ->image()
-                    ->imageEditor()
-                    ->moveFiles()
-                    ->disk('public')
-                    ->visibility('public')
-                    ->directory('logo')
-                    ->formatStateUsing(fn ($state): array =>[basename($state)])
-                    //->formatStateUsing(fn ($state): array =>['/uploads/photos/pexels-giona-mason-19138633.jpg'])
-                    ->dehydrateStateUsing(fn ($state) => collect($state)->map(function($item){
-                        return Storage::disk('public')->url($item);
-                    })->first() )
-                                      ,
-                */
-                    TextInput::make('logo_header'),
-                    TextInput::make('logo_header_dark')
-                        ->helperText('logo for dark css'),
-                    TextInput::make('logo_height'),
-                    Repeater::make('colors')
-                        ->schema([
-                            Select::make('key')
-                                ->label('Chiave')
-                                ->required()
-                                ->options($metatag->getFilamentColors()),
-                            Select::make('color')
-                                ->label('Colore')
-                                ->options(array_combine(
-                                    array_keys(Color::all()),
-                                    array_keys(Color::all())
-                                ))
-                                ->reactive(),
-                            ColorPicker::make('hex')
-                                ->label('Colore personalizzato')
-                                ->visible(fn (Get $get) => $get('color') === 'custom')
-                                ->required(),
-                        ])
-                        ->columns(3),
-                ]
-            )->columns(2)
+            ->schema([
+                TextInput::make('title')->required(),
+                TextInput::make('sitename'),
+                TextInput::make('subtitle'),
+                TextInput::make('generator'),
+                TextInput::make('charset'),
+                TextInput::make('author'),
+                TextInput::make('description'),
+                TextInput::make('keywords'),
+                /*
+                 * FileUpload::make('logo_header')
+                 * ->preserveFilenames()
+                 * ->image()
+                 * ->imageEditor()
+                 * ->moveFiles()
+                 * ->disk('public')
+                 * ->visibility('public')
+                 * ->directory('logo')
+                 * ->formatStateUsing(fn ($state): array =>[basename($state)])
+                 * //->formatStateUsing(fn ($state): array =>['/uploads/photos/pexels-giona-mason-19138633.jpg'])
+                 * ->dehydrateStateUsing(fn ($state) => collect($state)->map(function($item){
+                 * return Storage::disk('public')->url($item);
+                 * })->first() )
+                 * ,
+                 */
+                TextInput::make('logo_header'),
+                TextInput::make('logo_header_dark')->helperText('logo for dark css'),
+                TextInput::make('logo_height'),
+                Repeater::make('colors')
+                    ->schema([
+                        Select::make('key')
+                            ->label('Chiave')
+                            ->required()
+                            ->options($metatag->getFilamentColors()),
+                        Select::make('color')
+                            ->label('Colore')
+                            ->options(array_combine(array_keys(Color::all()), array_keys(Color::all())))
+                            ->reactive(),
+                        ColorPicker::make('hex')
+                            ->label('Colore personalizzato')
+                            ->visible(fn(Get $get) => $get('color') === 'custom')
+                            ->required(),
+                    ])
+                    ->columns(3),
+            ])
+            ->columns(2)
             ->statePath('data');
     }
 
@@ -118,8 +112,7 @@ class MetatagPage extends Page implements HasForms
     protected function getFormActions(): array
     {
         return [
-            Action::make('save')
-                ->submit('save'),
+            Action::make('save')->submit('save'),
         ];
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- Studio Selector Component - Card cliccabili per selezione studio --}}
 <div 
     x-data="{
@@ -158,4 +163,4 @@
             </p>
         </div>
     @endif
-</div> 
+</div>

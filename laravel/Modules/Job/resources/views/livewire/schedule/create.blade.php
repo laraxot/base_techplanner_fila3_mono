@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     <form wire:submit.prevent="store">
         <div class="uk-flex uk-flex-between uk-flex-middle">

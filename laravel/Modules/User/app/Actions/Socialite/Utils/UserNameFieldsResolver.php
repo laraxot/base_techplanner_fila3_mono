@@ -11,17 +11,17 @@ use Laravel\Socialite\Contracts\User;
 /**
  * Classe che risolve e normalizza i campi del nome utente da dati di provider Socialite.
  */
-final class UserNameFieldsResolver
+final readonly class UserNameFieldsResolver
 {
     private const NAME_SEARCH = 'before';
 
     private const SURNAME_SEARCH = 'after';
 
-    public readonly ?string $name;
+    public  null|string $name;
 
-    public readonly ?string $first_name;
+    public  null|string $first_name;
 
-    public readonly ?string $last_name;
+    public  null|string $last_name;
 
     public function __construct(User $user)
     {
@@ -50,7 +50,7 @@ final class UserNameFieldsResolver
      */
     private function resolveNameFields(User $idpUser, string $searchMethod): string
     {
-        if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+        if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH], strict: true)) {
             throw new \InvalidArgumentException('Metodo di ricerca non valido');
         }
 
@@ -142,7 +142,7 @@ final class UserNameFieldsResolver
             return Str::of('');
         }
 
-        if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH])) {
+        if (!in_array($searchMethod, [self::NAME_SEARCH, self::SURNAME_SEARCH], strict: true)) {
             throw new \InvalidArgumentException('Metodo di ricerca non valido');
         }
 

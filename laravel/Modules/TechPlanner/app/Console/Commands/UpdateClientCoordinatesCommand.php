@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\TechPlanner\Console\Commands;
 
 use Illuminate\Console\Command;

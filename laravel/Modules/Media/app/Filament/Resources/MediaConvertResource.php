@@ -12,7 +12,7 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class MediaConvertResource extends XotBaseResource
 {
-    protected static ?string $model = MediaConvert::class;
+    protected static null|string $model = MediaConvert::class;
 
     /**
      * @return array<string, \Filament\Forms\Components\Component>
@@ -61,8 +61,7 @@ class MediaConvertResource extends XotBaseResource
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Override]

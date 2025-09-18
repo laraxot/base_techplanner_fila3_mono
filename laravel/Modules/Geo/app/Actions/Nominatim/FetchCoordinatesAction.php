@@ -49,7 +49,7 @@ class FetchCoordinatesAction
         $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data)) {
-            throw new \RuntimeException('No results found for address: '.$address);
+            throw new \RuntimeException('No results found for address: ' . $address);
         }
 
         $result = $data[0];
@@ -57,7 +57,7 @@ class FetchCoordinatesAction
         return new LocationData(
             latitude: (float) $result['lat'],
             longitude: (float) $result['lon'],
-            address: $result['display_name']
+            address: $result['display_name'],
         );
     }
 }

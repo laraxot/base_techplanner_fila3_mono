@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['blocks'])
 {{-- Blocks  --}}
 @foreach ($blocks as $block)

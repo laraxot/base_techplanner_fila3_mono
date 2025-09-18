@@ -18,7 +18,7 @@ class ModuleService
 {
     public string $name;
 
-    private static ?self $_instance = null;
+    private static null|self $_instance = null;
 
     /**
      * getInstance.
@@ -27,7 +27,7 @@ class ModuleService
      */
     public static function getInstance(): self
     {
-        if (! self::$_instance instanceof self) {
+        if (!(self::$_instance instanceof self)) {
             self::$_instance = new self();
         }
 
@@ -60,21 +60,21 @@ class ModuleService
     public function getModels(): array
     {
         /*
-        if (null == $module) {
-            return [];
-        }
-        */
+         * if (null == $module) {
+         * return [];
+         * }
+         */
         $mod = Module::find($this->name);
-        if (! $mod instanceof \Nwidart\Modules\Module) {
+        if (!($mod instanceof \Nwidart\Modules\Module)) {
             return [];
         }
 
-        $mod_path = $mod->getPath().'/Models';
+        $mod_path = $mod->getPath() . '/Models';
         $mod_path = str_replace(['\\', '/'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], $mod_path);
 
         $files = File::files($mod_path);
         $data = [];
-        $ns = 'Modules\\'.$mod->getName().'\\Models';  // con la barra davanti non va il search ?
+        $ns = 'Modules\\' . $mod->getName() . '\\Models'; // con la barra davanti non va il search ?
         foreach ($files as $file) {
             $filename = $file->getRelativePathname();
             $ext = '.php';
@@ -84,11 +84,10 @@ class ModuleService
 
                 $name = mb_substr($filename, 0, -mb_strlen($ext));
 
-                
                 /**
                  * @var class-string
                  */
-                $class = $ns.'\\'.$name;
+                $class = $ns . '\\' . $name;
                 //Strict comparison using === between stdClass and null will always evaluate to false.
 
                 //if ($tmp === null) {
@@ -100,7 +99,7 @@ class ModuleService
 
                 try {
                     $reflection_class = new \ReflectionClass($tmp->class);
-                    if (! $reflection_class->isAbstract()) {
+                    if (!$reflection_class->isAbstract()) {
                         $data[$tmp->name] = $tmp->class;
                     }
                 } catch (\Exception) {

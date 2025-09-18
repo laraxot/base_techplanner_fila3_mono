@@ -10,8 +10,9 @@ use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Log;
 use Modules\Notify\Datas\TelegramData;
 use Spatie\QueueableAction\QueueableAction;
-use function Safe\json_encode;
+
 use function Safe\json_decode;
+use function Safe\json_encode;
 
 final class SendBotmanTelegramAction
 {
@@ -22,7 +23,7 @@ final class SendBotmanTelegramAction
     private array $vars = [];
     protected bool $debug;
     protected int $timeout;
-    protected ?string $parseMode;
+    protected null|string $parseMode;
 
     /**
      * Create a new action instance.
@@ -37,13 +38,14 @@ final class SendBotmanTelegramAction
         /** @var string $apiUrl */
         $apiUrl = config('services.telegram.api_url', 'https://api.telegram.org');
         $this->apiUrl = $apiUrl;
-        
+
         // Parametri a livello di root
         /** @var string|null $parseMode */
         $parseMode = config('telegram.parse_mode');
         $this->parseMode = $parseMode;
         $this->debug = (bool) config('telegram.debug', false);
-        $this->timeout = app(\Modules\Xot\Actions\Cast\SafeIntCastAction::class)->execute(config('telegram.timeout'), 30);
+        $this->timeout = app(\Modules\Xot\Actions\Cast\SafeIntCastAction::class)
+            ->execute(config('telegram.timeout'), 30);
     }
 
     /**
@@ -63,12 +65,12 @@ final class SendBotmanTelegramAction
                 'type' => $telegramData->type,
             ]);
         }
-        
+
         $client = new Client([
             'timeout' => $this->timeout,
             'base_uri' => $this->apiUrl,
         ]);
-        
+
         // Determina l'endpoint in base al tipo di messaggio
         $endpoint = match ($telegramData->type) {
             'photo' => "/bot{$this->token}/sendPhoto",
@@ -78,53 +80,56 @@ final class SendBotmanTelegramAction
             'animation' => "/bot{$this->token}/sendAnimation",
             default => "/bot{$this->token}/sendMessage",
         };
-        
+
         // Prepara il payload in base al tipo di messaggio
         $payload = [
             'chat_id' => $telegramData->chatId,
             'disable_notification' => $telegramData->disableNotification,
         ];
-        
+
         if ($telegramData->replyToMessageId !== null) {
             $payload['reply_to_message_id'] = $telegramData->replyToMessageId;
         }
-        
+
         if ($telegramData->replyMarkup !== null) {
             $payload['reply_markup'] = json_encode($telegramData->replyMarkup);
         }
-        
+
         // Aggiungi parametri specifici per il tipo di messaggio
         if ($telegramData->type === 'text') {
             $payload['text'] = $telegramData->text;
             $payload['parse_mode'] = $telegramData->parseMode ?? $this->parseMode;
             $payload['disable_web_page_preview'] = $telegramData->disableWebPagePreview;
-        } elseif (in_array($telegramData->type, ['photo', 'video', 'document', 'audio', 'animation']) && !empty($telegramData->media)) {
+        } elseif (
+            in_array($telegramData->type, ['photo', 'video', 'document', 'audio', 'animation'], strict: true) &&
+                !empty($telegramData->media)
+        ) {
             $mediaType = $telegramData->type;
             $payload[$mediaType] = $telegramData->media[0];
             $payload['caption'] = $telegramData->text;
             $payload['parse_mode'] = $telegramData->parseMode ?? $this->parseMode;
         }
-        
+
         try {
             $response = $client->post($endpoint, [
                 'json' => $payload,
             ]);
-            
+
             $statusCode = $response->getStatusCode();
             $responseContent = $response->getBody()->getContents();
             /** @var array $responseData */
             $responseData = json_decode($responseContent, true);
-            
+
             // Salva i dati della risposta nelle variabili dell'azione
             $this->vars['status_code'] = $statusCode;
             $this->vars['status_txt'] = $responseContent;
             $this->vars['response_data'] = $responseData;
-            
+
             Log::info('Telegram BotMan inviato con successo', [
                 'chat_id' => $telegramData->chatId,
                 'response_code' => $statusCode,
             ]);
-            
+
             return [
                 'success' => $responseData['ok'] ?? false,
                 'message_id' => $responseData['result']['message_id'] ?? null,
@@ -136,18 +141,18 @@ final class SendBotmanTelegramAction
             $statusCode = $response->getStatusCode();
             /** @var array $responseBody */
             $responseBody = json_decode($response->getBody()->getContents(), true);
-            
+
             // Salva i dati dell'errore nelle variabili dell'azione
             $this->vars['error_code'] = $statusCode;
             $this->vars['error_message'] = $e->getMessage();
             $this->vars['error_response'] = $responseBody;
-            
+
             Log::warning('Errore invio Telegram BotMan', [
                 'chat_id' => $telegramData->chatId,
                 'status' => $statusCode,
                 'response' => $responseBody,
             ]);
-            
+
             return [
                 'success' => false,
                 'error' => $responseBody['description'] ?? 'Errore sconosciuto',

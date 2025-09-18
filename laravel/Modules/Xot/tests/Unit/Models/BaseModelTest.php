@@ -11,8 +11,7 @@ use Modules\Xot\Tests\TestCase;
 uses(TestCase::class);
 
 beforeEach(function () {
-    $this->baseModel = new class extends BaseModel
-    {
+    $this->baseModel = new class extends BaseModel {
         protected $table = 'test_table';
     };
 });

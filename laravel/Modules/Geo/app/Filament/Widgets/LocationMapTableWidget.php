@@ -23,25 +23,25 @@ use Modules\Geo\Models\Place;
 
 class LocationMapTableWidget extends MapTableWidget
 {
-    protected static ?string $heading = 'Location Map';
+    protected static null|string $heading = 'Location Map';
 
-    protected static ?int $sort = 1;
+    protected static null|int $sort = 1;
 
-    protected static ?string $pollingInterval = null;
+    protected static null|string $pollingInterval = null;
 
-    protected static ?bool $clustering = true;
+    protected static null|bool $clustering = true;
 
-    protected static ?bool $fitToBounds = true;
+    protected static null|bool $fitToBounds = true;
 
-    protected static ?string $mapId = 'incidents';
+    protected static null|string $mapId = 'incidents';
 
-    protected static ?bool $filtered = true;
+    protected static null|bool $filtered = true;
 
     protected static bool $collapsible = true;
 
-    public ?bool $mapIsFilter = false;
+    public null|bool $mapIsFilter = false;
 
-    protected static ?string $markerAction = 'markerAction';
+    protected static null|string $markerAction = 'markerAction';
 
     public function getConfig(): array
     {
@@ -71,22 +71,14 @@ class LocationMapTableWidget extends MapTableWidget
     {
         return [
             Forms\Components\Section::make()->schema([
-                TextInput::make('name')
-                    ->maxLength(256),
-                TextInput::make('lat')
-                    ->maxLength(32),
-                TextInput::make('lng')
-                    ->maxLength(32),
-                TextInput::make('street')
-                    ->maxLength(255),
-                TextInput::make('city')
-                    ->maxLength(255),
-                TextInput::make('state')
-                    ->maxLength(255),
-                TextInput::make('zip')
-                    ->maxLength(255),
-                TextInput::make('formatted_address')
-                    ->maxLength(1024),
+                TextInput::make('name')->maxLength(256),
+                TextInput::make('lat')->maxLength(32),
+                TextInput::make('lng')->maxLength(32),
+                TextInput::make('street')->maxLength(255),
+                TextInput::make('city')->maxLength(255),
+                TextInput::make('state')->maxLength(255),
+                TextInput::make('zip')->maxLength(255),
+                TextInput::make('formatted_address')->maxLength(1024),
             ]),
         ];
     }
@@ -99,16 +91,10 @@ class LocationMapTableWidget extends MapTableWidget
     protected function getTableColumns(): array
     {
         return [
-            TextColumn::make('name')
-                ->searchable(),
-            TextColumn::make('street')
-                ->searchable(),
-            TextColumn::make('city')
-                ->searchable()
-                ->sortable(),
-            TextColumn::make('state')
-                ->searchable()
-                ->sortable(),
+            TextColumn::make('name')->searchable(),
+            TextColumn::make('street')->searchable(),
+            TextColumn::make('city')->searchable()->sortable(),
+            TextColumn::make('state')->searchable()->sortable(),
             TextColumn::make('zip'),
         ];
     }
@@ -116,14 +102,12 @@ class LocationMapTableWidget extends MapTableWidget
     protected function getTableFilters(): array
     {
         return [
-            RadiusFilter::make('location')
-                ->section('Radius Filter')
-                ->selectUnit(),
+            RadiusFilter::make('location')->section('Radius Filter')->selectUnit(),
             MapIsFilter::make('map'),
         ];
     }
 
-    protected function getTableRecordAction(): ?string
+    protected function getTableRecordAction(): null|string
     {
         return 'edit';
     }
@@ -131,20 +115,16 @@ class LocationMapTableWidget extends MapTableWidget
     protected function getTableHeaderActions(): array
     {
         return [
-            CreateAction::make()
-                ->form($this->getFormSchema()),
+            CreateAction::make()->form($this->getFormSchema()),
         ];
     }
 
     public function getTableActions(): array
     {
         return [
-            Tables\Actions\ViewAction::make()
-                ->form($this->getFormSchema()),
-            Tables\Actions\EditAction::make()
-                ->form($this->getFormSchema()),
-            GoToAction::make()
-                ->zoom(fn () => 14),
+            Tables\Actions\ViewAction::make()->form($this->getFormSchema()),
+            Tables\Actions\EditAction::make()->form($this->getFormSchema()),
+            GoToAction::make()->zoom(fn() => 14),
             RadiusAction::make('location'),
         ];
     }
@@ -165,7 +145,7 @@ class LocationMapTableWidget extends MapTableWidget
         foreach ($locations as $location) {
             if ($location->latitude && $location->longitude) {
                 $iconUrl = $this->getMarkerIcon($location);
-                
+
                 $data[] = [
                     'location' => [
                         'lat' => (float) $location->latitude,
@@ -197,19 +177,16 @@ class LocationMapTableWidget extends MapTableWidget
                     TextEntry::make('state'),
                     TextEntry::make('zip'),
                     TextEntry::make('formatted_address'),
-                ])
-                    ->columns(3),
+                ])->columns(3),
             ])
-            ->record(function (array $arguments) {
-                return array_key_exists('model_id', $arguments) ? Location::find($arguments['model_id']) : null;
-            })
+            ->record(fn (array $arguments) => array_key_exists('model_id', $arguments) ? Location::find($arguments['model_id']) : null)
             ->modalSubmitAction(false);
     }
 
     /**
      * @return string|null
      */
-    public function getMarkerIcon(Place $place): ?string
+    public function getMarkerIcon(Place $place): null|string
     {
         $type = $place->placeType->slug ?? 'default';
         /** @var array<string, mixed>|null $markerConfig */
@@ -228,14 +205,14 @@ class LocationMapTableWidget extends MapTableWidget
         // Validazione sicura per accesso nested all'icona
         /** @var mixed $iconConfig */
         $iconConfig = $markerConfig['icon'] ?? null;
-        
+
         if (!is_array($iconConfig)) {
             return null;
         }
 
         /** @var string|null $iconUrl */
         $iconUrl = $iconConfig['url'] ?? null;
-        
+
         return is_string($iconUrl) ? $iconUrl : null;
     }
 }

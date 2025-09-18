@@ -36,34 +36,38 @@ abstract class XotBaseState extends State implements StateContract
     #[\Override]
     public function label(): string
     {
-        return static::transClass(static::class, 'states.'.static::getName().'.label');
+        return static::transClass(static::class, 'states.' . static::getName() . '.label');
+
         // return 'Annullato';
     }
 
     #[\Override]
     public function color(): string
     {
-        return static::transClass(static::class, 'states.'.static::getName().'.color');
+        return static::transClass(static::class, 'states.' . static::getName() . '.color');
     }
 
     #[\Override]
     public function bgColor(): string
     {
-        return static::transClass(static::class, 'states.'.static::getName().'.bg_color');
+        return static::transClass(static::class, 'states.' . static::getName() . '.bg_color');
+
         // return 'info';
     }
 
     #[\Override]
     public function icon(): string
     {
-        return static::transClass(static::class, 'states.'.static::getName().'.icon');
+        return static::transClass(static::class, 'states.' . static::getName() . '.icon');
+
         // return 'heroicon-o-x-circle';
     }
 
     #[\Override]
     public function modalHeading(): string
     {
-        return static::transClass(static::class, 'states.'.static::getName().'.modal_heading');
+        return static::transClass(static::class, 'states.' . static::getName() . '.modal_heading');
+
         // return 'Annulla Appuntamento';
     }
 
@@ -72,7 +76,8 @@ abstract class XotBaseState extends State implements StateContract
     {
         $appointment = $this->getModel();
 
-        return static::transClass(static::class, 'states.'.static::getName().'.modal_description');
+        return static::transClass(static::class, 'states.' . static::getName() . '.modal_description');
+
         // return 'Sei sicuro di voler annullare questo appuntamento?';
     }
 
@@ -83,9 +88,7 @@ abstract class XotBaseState extends State implements StateContract
     public function modalFormSchema(): array
     {
         return [
-            'message' => Components\Textarea::make('message')
-                ->required()
-                ->maxLength(255),
+            'message' => Components\Textarea::make('message')->required()->maxLength(255),
         ];
     }
 
@@ -135,12 +138,12 @@ abstract class XotBaseState extends State implements StateContract
         $message = Arr::get($data, 'message');
         $stateClass = static::class;
         /*
-
-        $appointmentId = $arguments['appointment'];
-        $appointment = Appointment::firstWhere('id',$appointmentId);
-
-        $appointment?->state->transitionTo($stateClass,$message);
-        */
+         *
+         * $appointmentId = $arguments['appointment'];
+         * $appointment = Appointment::firstWhere('id',$appointmentId);
+         *
+         * $appointment?->state->transitionTo($stateClass,$message);
+         */
         $record = $this->getModel();
         /* @phpstan-ignore-next-line */
         $record->state->transitionTo($stateClass, $message);
@@ -167,12 +170,12 @@ abstract class XotBaseState extends State implements StateContract
         $message = Arr::get($data, 'message');
         $stateClass = static::class;
         /*
-
-        $appointmentId = $arguments['appointment'];
-        $appointment = Appointment::firstWhere('id',$appointmentId);
-
-        $appointment?->state->transitionTo($stateClass,$message);
-        */
+         *
+         * $appointmentId = $arguments['appointment'];
+         * $appointment = Appointment::firstWhere('id',$appointmentId);
+         *
+         * $appointment?->state->transitionTo($stateClass,$message);
+         */
         /* @phpstan-ignore-next-line */
         $record->state->transitionTo($stateClass, $message);
     }
@@ -186,7 +189,10 @@ abstract class XotBaseState extends State implements StateContract
     {
         $states = static::getStateMapping()->toArray();
 
-        $states = Arr::map($states, fn ($stateClass, $state) => static::transClass(static::class, 'states.'.$state.'.label'));
+        $states = Arr::map($states, fn($_stateClass, $state) => static::transClass(
+            static::class,
+            'states.' . $state . '.label',
+        ));
 
         return $states;
     }

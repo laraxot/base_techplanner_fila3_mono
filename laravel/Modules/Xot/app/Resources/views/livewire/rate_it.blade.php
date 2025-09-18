@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     @component('ui::components.modal.simple', ['guid' => $modal_guid, 'title' => $modal_title])
         @slot('content')

@@ -29,7 +29,7 @@ class HealthPage extends Page
      */
     protected $listeners = ['refresh-component' => '$refresh'];
 
-    protected static ?string $navigationIcon = 'heroicon-o-heart';
+    protected static null|string $navigationIcon = 'heroicon-o-heart';
 
     protected static string $view = 'xot::filament.pages.health';
 
@@ -83,7 +83,6 @@ class HealthPage extends Page
     {
         return [
             Action::make('refresh')
-                
                 ->tooltip('refresh')
                 ->icon('heroicon-o-arrow-path')
                 ->button()

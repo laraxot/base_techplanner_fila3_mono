@@ -62,7 +62,6 @@ use Modules\Xot\Contracts\ProfileContract;
  */
 class Location extends BaseModel
 {
-    
     protected $fillable = [
         'name',
         'lat',
@@ -85,6 +84,7 @@ class Location extends BaseModel
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -100,16 +100,16 @@ class Location extends BaseModel
     protected function location(): Attribute
     {
         return Attribute::make(
-            get: fn (): array => [
+            get: fn(): array => [
                 'lat' => (float) $this->lat,
                 'lng' => (float) $this->lng,
             ],
-            set: function (?array $value): void {
+            set: function (null|array $value): void {
                 if (is_array($value)) {
                     $this->attributes['lat'] = $value['lat'] ?? null;
                     $this->attributes['lng'] = $value['lng'] ?? null;
                 }
-            }
+            },
         );
     }
 
@@ -137,8 +137,8 @@ class Location extends BaseModel
      */
     public function scopeWithinDistance(Builder $query, float $latitude, float $longitude, float $distanceInKm): Builder
     {
-        $haversine = "(6371 * acos(cos(radians($latitude)) * cos(radians(lat)) * cos(radians(lng) - radians($longitude)) + sin(radians($latitude)) * sin(radians(lat))))";
+        $haversine = "(6371 * acos(cos(radians({$latitude})) * cos(radians(lat)) * cos(radians(lng) - radians({$longitude})) + sin(radians({$latitude})) * sin(radians(lat))))";
 
-        return $query->whereRaw("$haversine <= ?", [$distanceInKm]);
+        return $query->whereRaw("{$haversine} <= ?", [$distanceInKm]);
     }
 }

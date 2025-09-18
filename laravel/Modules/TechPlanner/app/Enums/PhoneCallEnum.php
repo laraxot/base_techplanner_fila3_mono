@@ -15,16 +15,16 @@ enum PhoneCallEnum: string implements HasColor, HasIcon, HasLabel
 
     public function getLabel(): string
     {
-        return trans('techplanner::phone_call.enums.'.$this->value.'.label');
+        return trans('techplanner::phone_call.enums.' . $this->value . '.label');
     }
 
     public function getColor(): string
     {
-        return trans('techplanner::phone_call.enums.'.$this->value.'.color');
+        return trans('techplanner::phone_call.enums.' . $this->value . '.color');
     }
 
     public function getIcon(): string
     {
-        return trans('techplanner::phone_call.enums.'.$this->value.'.icon');
+        return trans('techplanner::phone_call.enums.' . $this->value . '.icon');
     }
 }

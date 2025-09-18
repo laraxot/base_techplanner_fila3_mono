@@ -19,13 +19,13 @@ use Modules\Geo\Exceptions\DistanceCalculationException;
  *
  * @see https://developers.google.com/maps/documentation/distance-matrix
  */
-class CalculateDistanceAction
+readonly class CalculateDistanceAction
 {
     /**
      * @param  CalculateDistanceMatrixAction  $distanceMatrixAction  Servizio per il calcolo delle distanze
      */
     public function __construct(
-        private readonly CalculateDistanceMatrixAction $distanceMatrixAction,
+        private  CalculateDistanceMatrixAction $distanceMatrixAction,
     ) {}
 
     /**
@@ -48,10 +48,7 @@ class CalculateDistanceAction
         $this->validateCoordinates($destination);
 
         try {
-            $response = $this->distanceMatrixAction->execute(
-                new Collection([$origin]),
-                new Collection([$destination])
-            );
+            $response = $this->distanceMatrixAction->execute(new Collection([$origin]), new Collection([$destination]));
 
             if (empty($response) || empty($response[0]) || empty($response[0][0])) {
                 throw DistanceCalculationException::invalidResponse();
@@ -59,7 +56,10 @@ class CalculateDistanceAction
 
             return $response[0][0];
         } catch (\Throwable $e) {
-            throw DistanceCalculationException::calculationError('Errore nel calcolo della distanza: '.$e->getMessage(), $e);
+            throw DistanceCalculationException::calculationError(
+                'Errore nel calcolo della distanza: ' . $e->getMessage(),
+                $e,
+            );
         }
     }
 

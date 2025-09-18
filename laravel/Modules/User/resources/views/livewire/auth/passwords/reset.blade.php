@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @section('title', 'Reset password')
 
 <div>

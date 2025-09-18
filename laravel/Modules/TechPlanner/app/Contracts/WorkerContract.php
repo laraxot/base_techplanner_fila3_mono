@@ -13,4 +13,6 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string|null $subtitle
  * @property PivotContract|null $pivot
  */
-interface WorkerContract {}
+interface WorkerContract
+{
+}

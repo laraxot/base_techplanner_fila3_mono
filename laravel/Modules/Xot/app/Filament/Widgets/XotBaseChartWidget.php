@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Widgets;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
-use Modules\Xot\Filament\Traits\TransTrait;
-use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use Filament\Widgets\ChartWidget as FilamentChartWidget;
+use Filament\Widgets\Concerns\InteractsWithPageFilters;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Modules\Xot\Filament\Traits\TransTrait;
 
 /**
  * Widget per visualizzare il trend delle registrazioni pazienti.
@@ -21,20 +21,20 @@ abstract class XotBaseChartWidget extends FilamentChartWidget
 {
     use TransTrait;
     use InteractsWithPageFilters;
-    protected static ?string $heading = null;
-    protected static ?int $sort = 1;
+
+    protected static null|string $heading = null;
+    protected static null|int $sort = 1;
     protected static bool $isLazy = true;
-    protected static ?string $pollingInterval = null;
+    protected static null|string $pollingInterval = null;
 
     /**
      * Restituisce il titolo del widget.
-     * 
+     *
      * CRITICO: Deve essere public per rispettare il contratto ChartWidget
      */
-    public function getHeading(): ?string
+    public function getHeading(): null|string
     {
         return static::trans('navigation.heading');
-        
     }
 
     /**
@@ -73,9 +73,14 @@ abstract class XotBaseChartWidget extends FilamentChartWidget
                     'mode' => 'index',
                     'intersect' => false,
                     'callbacks' => [
-                        'label' => 'function(context) {
-                            return "' . __('salutemo::widgets.patient_registration_trend.total_registrations') . '".replace(":count", context.parsed.y);
-                        }',
+                        'label' =>
+
+                                'function(context) {
+                            return "' .
+                                __('salutemo::widgets.patient_registration_trend.total_registrations') .
+                                '".replace(":count", context.parsed.y);
+                        }'
+                            ,
                     ],
                 ],
             ],
@@ -113,10 +118,8 @@ abstract class XotBaseChartWidget extends FilamentChartWidget
     /**
      * Restituisce l'altezza del widget.
      */
-    protected function getHeight(): ?string
+    protected function getHeight(): null|string
     {
         return '300px';
     }
-
-
-} 
+}

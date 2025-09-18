@@ -36,10 +36,10 @@ class EmailDataNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param object $notifiable The entity to be notified
+     * @param object $_notifiable The entity to be notified (not used in this method)
      * @return array<string>
      */
-    public function via(object $notifiable): array
+    public function via(object $_notifiable): array
     {
         return ['mail'];
     }
@@ -52,17 +52,17 @@ class EmailDataNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $mailMessage = (new MailMessage())
+        $mailMessage = new MailMessage()
             ->subject($this->emailData->subject)
             ->line($this->emailData->body);
 
-        if (! empty($this->emailData->body_html)) {
+        if (!empty($this->emailData->body_html)) {
             $mailMessage->view('notify::emails.template', [
                 'content' => $this->emailData->body_html,
             ]);
         }
 
-        if (! empty($this->emailData->from_email) && ! empty($this->emailData->from)) {
+        if (!empty($this->emailData->from_email) && !empty($this->emailData->from)) {
             $mailMessage->from($this->emailData->from_email, $this->emailData->from);
         }
 

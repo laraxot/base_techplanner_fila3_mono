@@ -18,41 +18,37 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
  */
 class AppointmentResource extends XotBaseResource
 {
-    protected static ?string $model = Appointment::class;
+    protected static null|string $model = Appointment::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
             /*
-            Forms\Components\Select::make('client_id')
-                ->relationship('client', 'name')
-                ->required(),
-              */  
-            Forms\Components\DateTimePicker::make('date')
-                ->required(),
-                /*
-            Forms\Components\TimePicker::make('time')
-                ->required(),
-            */
+             * Forms\Components\Select::make('client_id')
+             * ->relationship('client', 'name')
+             * ->required(),
+             */
+            Forms\Components\DateTimePicker::make('date')->required(),
             /*
-            Forms\Components\Select::make('status')
-                ->options([
-                    'scheduled' => 'Scheduled',
-                    'confirmed' => 'Confirmed',
-                    'completed' => 'Completed',
-                    'cancelled' => 'Cancelled',
-                ])
-                ->required(),
-            */
-            Forms\Components\Textarea::make('notes')
-
-                ->maxLength(65535)
-                ->columnSpanFull(),
+             * Forms\Components\TimePicker::make('time')
+             * ->required(),
+             */
+            /*
+             * Forms\Components\Select::make('status')
+             * ->options([
+             * 'scheduled' => 'Scheduled',
+             * 'confirmed' => 'Confirmed',
+             * 'completed' => 'Completed',
+             * 'cancelled' => 'Cancelled',
+             * ])
+             * ->required(),
+             */
+            Forms\Components\Textarea::make('notes')->maxLength(65535)->columnSpanFull(),
         ];
     }
 
-
-
+    #[\Override]
     public static function getPages(): array
     {
         return [

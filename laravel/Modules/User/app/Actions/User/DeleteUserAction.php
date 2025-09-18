@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\User\Actions\User;
 
-use Modules\User\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Modules\User\Models\User;
 use Spatie\QueueableAction\QueueableAction;
 
 class DeleteUserAction
 {
     use QueueableAction;
+
     /**
      * Elimina l'utente dopo aver verificato la password.
      *
@@ -25,7 +26,7 @@ class DeleteUserAction
         if (!Hash::check($confirmPassword, $user->password)) {
             return [
                 'success' => false,
-                'message' => 'La password inserita non è corretta'
+                'message' => 'La password inserita non è corretta',
             ];
         }
 
@@ -35,12 +36,12 @@ class DeleteUserAction
 
             return [
                 'success' => true,
-                'message' => 'Account eliminato con successo'
+                'message' => 'Account eliminato con successo',
             ];
         } catch (\Exception $e) {
             return [
                 'success' => false,
-                'message' => 'Si è verificato un errore durante l\'eliminazione dell\'account'
+                'message' => 'Si è verificato un errore durante l\'eliminazione dell\'account',
             ];
         }
     }

@@ -45,6 +45,7 @@ use Illuminate\Support\Carbon;
 class Membership extends BasePivot
 {
     use HasFactory;
+
     /** @var bool */
     public $incrementing = true;
 

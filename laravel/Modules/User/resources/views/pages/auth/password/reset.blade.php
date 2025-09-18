@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+
 use Illuminate\Support\Facades\Password;
-use function Laravel\Folio\name;
-use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
+use Livewire\Volt\Component;
+
+use function Laravel\Folio\name;
 
 name('password.request');
 
-new class extends Component
-{
+new class extends Component {
     #[Validate('required|email')]
     public $email = null;
 
@@ -20,7 +23,7 @@ new class extends Component
 
         $response = Password::broker()->sendResetLink(['email' => $this->email]);
 
-        if ($response == Password::RESET_LINK_SENT) {
+        if ($response === Password::RESET_LINK_SENT) {
             $this->emailSentMessage = trans($response);
 
             return;

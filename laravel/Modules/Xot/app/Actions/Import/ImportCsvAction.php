@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\Xot\Datas\ColumnData;
-
-use function Safe\ini_set;
-
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
+
+use function Safe\ini_set;
 
 class ImportCsvAction
 {
@@ -80,14 +79,17 @@ class ImportCsvAction
         $columns = $conn->getColumnListing($tbl);
         $excludedColumns = ['id'];
 
-        return array_map(function (string $column) use ($conn, $tbl) {
-            $type = $conn->getColumnType($tbl, $column);
+        return array_map(
+            function (string $column) use ($conn, $tbl) {
+                $type = $conn->getColumnType($tbl, $column);
 
-            return new ColumnData(
-                name: $column,
-                type: $type
-            );
-        }, array_diff($columns, $excludedColumns));
+                return new ColumnData(
+                    name: $column,
+                    type: $type,
+                );
+            },
+            array_diff($columns, $excludedColumns),
+        );
     }
 
     /**
@@ -99,7 +101,10 @@ class ImportCsvAction
      */
     private function prepareFields(array $columns): array
     {
-        return array_map(fn (ColumnData $column) => 'decimal' === $column->type ? '@'.$column->name : $column->name, $columns);
+        return array_map(
+            fn(ColumnData $column) => 'decimal' === $column->type ? ('@' . $column->name) : $column->name,
+            $columns,
+        );
     }
 
     /**
@@ -109,11 +114,16 @@ class ImportCsvAction
      */
     private function buildSql(string $path, string $db, string $tbl, string $fieldsUpList, array $columns): string
     {
-        $sql = "LOAD DATA LOW_PRIORITY LOCAL INFILE '{$path}' "
-            ."INTO TABLE `{$db}`.`{$tbl}` CHARACTER SET latin1 "
-            ."FIELDS TERMINATED BY ';' OPTIONALLY ENCLOSED BY '".'"'."' "
-            ."ESCAPED BY '".'"'."' "
-            ."LINES TERMINATED BY '\r\n' ({$fieldsUpList})";
+        $sql =
+            "LOAD DATA LOW_PRIORITY LOCAL INFILE '{$path}' " .
+            "INTO TABLE `{$db}`.`{$tbl}` CHARACTER SET latin1 " .
+            "FIELDS TERMINATED BY ';' OPTIONALLY ENCLOSED BY '" .
+            '"' .
+            "' " .
+            "ESCAPED BY '" .
+            '"' .
+            "' " .
+            "LINES TERMINATED BY '\r\n' ({$fieldsUpList})";
 
         $sqlReplace = [];
         foreach ($columns as $column) {
@@ -122,8 +132,8 @@ class ImportCsvAction
             }
         }
 
-        if (! empty($sqlReplace)) {
-            $sql .= ' SET '.implode(', ', $sqlReplace).';';
+        if (!empty($sqlReplace)) {
+            $sql .= ' SET ' . implode(', ', $sqlReplace) . ';';
         }
 
         return $sql;
@@ -140,13 +150,16 @@ class ImportCsvAction
      */
     private function transformColumnsToColumnData(array $columns): array
     {
-        return array_map(function ($column): ColumnData {
-            Assert::string($column, 'Column must be a string');
+        return array_map(
+            function ($column): ColumnData {
+                Assert::string($column, 'Column must be a string');
 
-            return new ColumnData(
-                name: $column,
-                type: 'string' // Default type, modify if necessary
-            );
-        }, $columns);
+                return new ColumnData(
+                    name: $column,
+                    type: 'string', // Default type, modify if necessary
+                );
+            },
+            $columns,
+        );
     }
 }

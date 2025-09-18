@@ -37,15 +37,15 @@ class CreateTeamCommand extends Command
         $name = text(
             label: 'What is name of team?',
             placeholder: 'E.g. Moderator, ',
-            // default: $user->name,
-            // hint: 'This will be displayed on your profile.'
+        // default: $user->name,
+        // hint: 'This will be displayed on your profile.'
         );
 
         $modelClass::create([
             'name' => $name,
         ]);
 
-        $map = static fn (Model $row) => $row->toArray();
+        $map = static fn(Model $row) => $row->toArray();
 
         $rows = $modelClass::get()->map($map);
 
@@ -59,7 +59,7 @@ class CreateTeamCommand extends Command
             $this->newLine();
         } else {
             $this->newLine();
-            $this->warn('⚡ No Teams ['.$modelClass.']');
+            $this->warn('⚡ No Teams [' . $modelClass . ']');
             $this->newLine();
         }
     }

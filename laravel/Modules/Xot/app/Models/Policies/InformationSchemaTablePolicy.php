@@ -21,7 +21,7 @@ class InformationSchemaTablePolicy extends XotBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, InformationSchemaTable $information_schema_table): bool
+    public function view(UserContract $user, InformationSchemaTable $_information_schema_table): bool
     {
         return $user->hasPermissionTo('information_schema_table.view');
     }
@@ -37,7 +37,7 @@ class InformationSchemaTablePolicy extends XotBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, InformationSchemaTable $information_schema_table): bool
+    public function update(UserContract $user, InformationSchemaTable $_information_schema_table): bool
     {
         return $user->hasPermissionTo('information_schema_table.update');
     }
@@ -45,7 +45,7 @@ class InformationSchemaTablePolicy extends XotBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, InformationSchemaTable $information_schema_table): bool
+    public function delete(UserContract $user, InformationSchemaTable $_information_schema_table): bool
     {
         return $user->hasPermissionTo('information_schema_table.delete');
     }
@@ -53,7 +53,7 @@ class InformationSchemaTablePolicy extends XotBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, InformationSchemaTable $information_schema_table): bool
+    public function restore(UserContract $user, InformationSchemaTable $_information_schema_table): bool
     {
         return $user->hasPermissionTo('information_schema_table.restore');
     }

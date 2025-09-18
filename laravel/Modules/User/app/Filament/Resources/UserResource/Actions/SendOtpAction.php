@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Resources\UserResource\Actions;
 
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
 use Filament\Tables\Actions\Action;
-use Modules\Xot\Contracts\UserContract;
 use Modules\User\Actions\Otp\SendOtpByUserAction;
+use Modules\User\Models\User;
+use Modules\Xot\Contracts\UserContract;
+use Webmozart\Assert\Assert;
 
 /**
  * Azione Filament per l'invio di un OTP all'utente.
@@ -19,8 +19,7 @@ class SendOtpAction extends Action
     {
         parent::setUp();
 
-        $this
-            ->tooltip(trans('user::otp.actions.send_otp'))
+        $this->tooltip(trans('user::otp.actions.send_otp'))
             ->icon('heroicon-o-key')
             ->action(function (User $record) {
                 // Sappiamo già che l'utente implementa UserContract perché il tipo User lo implementa
@@ -41,7 +40,7 @@ class SendOtpAction extends Action
     /**
      * Ottieni il nome predefinito dell'azione.
      */
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'send_otp';
     }

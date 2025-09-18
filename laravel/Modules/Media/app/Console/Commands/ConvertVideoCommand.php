@@ -21,20 +21,18 @@ class ConvertVideoCommand extends Command
     {
         Assert::string($disk = $this->argument('disk'));
         Assert::string($file = $this->argument('file'));
-        $this->info('disk: '.print_r($disk, true));
-        $this->info('file: '.print_r($file, true));
+        $this->info('disk: ' . print_r($disk, true));
+        $this->info('file: ' . print_r($file, true));
 
-        if (! Storage::disk($disk)->exists($file)) {
-            $this->error('['.$disk.'] file ['.$file.'] Not Exists');
+        if (!Storage::disk($disk)->exists($file)) {
+            $this->error('[' . $disk . '] file [' . $file . '] Not Exists');
 
             return '';
         }
 
-        $format = new WebM;
+        $format = new WebM();
         $extension = mb_strtolower(class_basename($format));
-        $file_new = Str::of($file)
-            ->replaceLast('.mp4', '.'.$extension)
-            ->toString();
+        $file_new = Str::of($file)->replaceLast('.mp4', '.' . $extension)->toString();
 
         $media = FFMpeg::fromDisk($disk)->open($file);
         $export = $media->export();
@@ -44,8 +42,9 @@ class ConvertVideoCommand extends Command
             $this->info("{$remaining} seconds left at rate: {$rate}");
         });
         // @phpstan-ignore method.nonObject, method.nonObject
-        $export->toDisk($disk)
-        // @phpstan-ignore method.nonObject
+        $export
+            ->toDisk($disk)
+            // @phpstan-ignore method.nonObject
             ->inFormat($format)
             // @phpstan-ignore method.nonObject
             ->save($file_new);

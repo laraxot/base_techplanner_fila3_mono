@@ -10,11 +10,11 @@ use Filament\Widgets\FilamentInfoWidget;
 
 class Dashboard extends BaseDashboard
 {
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static null|string $navigationIcon = 'heroicon-o-home';
 
-    protected static ?string $navigationGroup = 'TechPlanner';
+    protected static null|string $navigationGroup = 'TechPlanner';
 
-    protected static ?int $navigationSort = -2;
+    protected static null|int $navigationSort = -2;
 
     protected function getHeaderWidgets(): array
     {

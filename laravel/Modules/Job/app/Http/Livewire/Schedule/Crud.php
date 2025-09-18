@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Modules\Job\Http\Livewire\Schedule;
 
 use Exception;
-use Livewire\Component;
-use Modules\Job\Models\Task;
-use Webmozart\Assert\Assert;
-use Illuminate\Support\Collection;
-use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Support\Facades\Artisan;
-use Modules\Job\Actions\ExecuteTaskAction;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
+use Livewire\Component;
+use Modules\Job\Actions\ExecuteTaskAction;
+use Modules\Job\Models\Task;
+use Modules\Xot\Actions\GetViewAction;
 use Symfony\Component\Console\Command\Command;
+use Webmozart\Assert\Assert;
 
 /**
  * Class Schedule\Crud.
@@ -32,7 +32,7 @@ class Crud extends Component
             return $res;
         }
 
-        throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
+        throw new Exception('[' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
     }
 
     public function render(): Renderable
@@ -42,11 +42,11 @@ class Crud extends Component
         $view_params = [
             'tasks' => $tasks,
             /*
-            'task' => new Task(),
-            'commands' => $this->getCommands(),
-            'timezones' => timezone_identifiers_list(),
-            'frequencies' => $this->getFrequencies(),
-            */
+             * 'task' => new Task(),
+             * 'commands' => $this->getCommands(),
+             * 'timezones' => timezone_identifiers_list(),
+             * 'frequencies' => $this->getFrequencies(),
+             */
         ];
 
         return view($view, $view_params);
@@ -67,38 +67,36 @@ class Crud extends Component
         $all_commands = collect(Artisan::all());
 
         /*
-        if (! empty($command_filter)) {
-            // $all_commands = $all_commands->filter(function (Command $command) use ($command_filter, $whitelist) {
-            $all_commands = $all_commands->filter(
-                function ($command) use ($command_filter, $whitelist) {
-                    foreach ($command_filter as $filter) {
-                        if (fnmatch($filter, $command->getName())) {
-                            return $whitelist;
-                        }U/Notifications/VerifyEmail.php
-                    }
+         * if (! empty($command_filter)) {
+         * // $all_commands = $all_commands->filter(function (Command $command) use ($command_filter, $whitelist) {
+         * $all_commands = $all_commands->filter(
+         * function ($command) use ($command_filter, $whitelist) {
+         * foreach ($command_filter as $filter) {
+         * if (fnmatch($filter, $command->getName())) {
+         * return $whitelist;
+         * }U/Notifications/VerifyEmail.php
+         * }
+         *
+         * return ! $whitelist;
+         * }
+         * );
+         * }
+         */
 
-                    return ! $whitelist;
-                }
-            );
-        }
-        */
-
-        return $all_commands->sortBy(
-            static function (Command $command): string {
-                Assert::string($name = $command->getName());
-                if (mb_strpos($name, ':') === false) {
-                    return ':'.$name;
-                }
-
-                return $name;
+        return $all_commands->sortBy(static function (Command $command): string {
+            Assert::string($name = $command->getName());
+            if (mb_strpos($name, ':') === false) {
+                return ':' . $name;
             }
-        );
+
+            return $name;
+        });
     }
 
     public function executeTask(string $task_id): void
     {
         app(ExecuteTaskAction::class)->execute($task_id);
 
-        session()->flash('message', 'task ['.$task_id.'] executed at '.now());
+        session()->flash('message', 'task [' . $task_id . '] executed at ' . now());
     }
 }

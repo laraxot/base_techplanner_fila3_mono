@@ -5,8 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-return new class extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     public function up(): void
     {
         $this->tableCreate(function (Blueprint $table): void {
@@ -21,13 +20,13 @@ return new class extends XotBaseMigration
             $table->string('current_ma')->nullable();
             $table->date('first_verification_date')->nullable()->index();
             $table->text('notes')->nullable();
-
         });
 
-        $this->tableUpdate(
-            function (Blueprint $table): void {
-                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
-            }
-        );
+        $this->tableUpdate(function (Blueprint $table): void {
+            $this->updateTimestamps(
+                table: $table,
+                hasSoftDeletes: true,
+            );
+        });
     }
 };

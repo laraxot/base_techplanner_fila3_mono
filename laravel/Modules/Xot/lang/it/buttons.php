@@ -12,14 +12,12 @@ return [
         'sort' => 110,
         'badge' => 'Etichette pulsanti interfaccia',
     ],
-
     // MODEL INFORMATION
     'model' => [
         'label' => 'Pulsante',
         'plural' => 'Pulsanti',
         'description' => 'Etichette e testi per pulsanti e controlli dell\'interfaccia',
     ],
-
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
     'actions' => [
         'create' => [
@@ -77,7 +75,6 @@ return [
             'tooltip' => 'Chiudi finestra',
         ],
     ],
-
     // MESSAGES - FEEDBACK UTENTE
     'messages' => [
         'empty_state' => 'Nessun pulsante configurato',
@@ -85,7 +82,6 @@ return [
         'error_general' => 'Si è verificato un errore dell\'interfaccia',
         'success_operation' => 'Operazione dell\'interfaccia completata',
     ],
-
     // LEGACY SUPPORT - Compatibilità con codice esistente
     'backend' => [
         'access' => [

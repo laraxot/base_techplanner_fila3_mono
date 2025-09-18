@@ -21,7 +21,7 @@ class AddressField extends Forms\Components\Field
     {
         parent::setUp();
 
-        $this->afterStateHydrated(function (AddressField $component, ?Model $record) {
+        $this->afterStateHydrated(function (AddressField $_component, null|Model $record) {
             $data = [
                 'country' => null,
                 'street' => null,
@@ -29,15 +29,16 @@ class AddressField extends Forms\Components\Field
                 'state' => null,
                 'zip' => null,
             ];
-            
+
             //if ($record && method_exists($record, 'getRelationValue')) {
-                $relationship = $this->getRelationship();
-                if ($relationship && $record?->relationLoaded($relationship)) {
-                    $address = $record->getRelationValue($relationship);
-                    if (null !== $address && is_object($address) && method_exists($address, 'toArray')) {
-                        $data = $address->toArray();
-                    }
+            $relationship = $this->getRelationship();
+            if ($relationship && $record?->relationLoaded($relationship)) {
+                $address = $record->getRelationValue($relationship);
+                if (null !== $address && is_object($address) && method_exists($address, 'toArray')) {
+                    $data = $address->toArray();
                 }
+            }
+
             //}
         });
 
@@ -72,27 +73,17 @@ class AddressField extends Forms\Components\Field
     public function getChildComponents(): array
     {
         return [
-            Forms\Components\Grid::make()
-                ->schema([
-                    Forms\Components\Select::make('country')
-                        ->searchable(),
-                    // ->getSearchResultsUsing(fn (string $query) => Country::where('name', 'like', "%{$query}%")->pluck('name', 'id'))
-                    // ->getOptionLabelUsing(fn ($value): ?string => Country::firstWhere('id', $value)->getAttribute('name')),
-                ]),
-            Forms\Components\TextInput::make('street')
-
-                ->maxLength(255),
-            Forms\Components\Grid::make(3)
-                ->schema([
-                    Forms\Components\TextInput::make('city')
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('state')
-
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('zip')
-
-                        ->maxLength(255),
-                ]),
+            Forms\Components\Grid::make()->schema([
+                Forms\Components\Select::make('country')->searchable(),
+                // ->getSearchResultsUsing(fn (string $query) => Country::where('name', 'like', "%{$query}%")->pluck('name', 'id'))
+                // ->getOptionLabelUsing(fn ($value): ?string => Country::firstWhere('id', $value)->getAttribute('name')),
+            ]),
+            Forms\Components\TextInput::make('street')->maxLength(255),
+            Forms\Components\Grid::make(3)->schema([
+                Forms\Components\TextInput::make('city')->maxLength(255),
+                Forms\Components\TextInput::make('state')->maxLength(255),
+                Forms\Components\TextInput::make('zip')->maxLength(255),
+            ]),
         ];
     }
 

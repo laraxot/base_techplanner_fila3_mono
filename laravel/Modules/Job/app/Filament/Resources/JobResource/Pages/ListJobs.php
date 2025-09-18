@@ -25,36 +25,21 @@ class ListJobs extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->searchable()
-                ->sortable(),
-            'queue' => TextColumn::make('queue')
-                ->searchable()
-                ->sortable(),
-            'payload' => TextColumn::make('payload')
-                ->wrap()
-                ->searchable(),
-            'attempts' => TextColumn::make('attempts')
-                ->numeric()
-                ->sortable(),
+            'id' => TextColumn::make('id')->searchable()->sortable(),
+            'queue' => TextColumn::make('queue')->searchable()->sortable(),
+            'payload' => TextColumn::make('payload')->wrap()->searchable(),
+            'attempts' => TextColumn::make('attempts')->numeric()->sortable(),
             'status' => TextColumn::make('status')
                 ->badge()
-                ->color(fn (string $state): string => match ($state) {
+                ->color(fn(string $state): string => match ($state) {
                     'running' => 'primary',
                     'waiting' => 'warning',
                     default => 'danger',
                 }),
-            'reserved_at' => TextColumn::make('reserved_at')
-                ->dateTime()
-                ->sortable(),
-            'available_at' => TextColumn::make('available_at')
-                ->dateTime()
-                ->sortable(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
-            'payload_view' => ViewColumn::make('payload')
-                ->view('job::filament.tables.columns.array'),
+            'reserved_at' => TextColumn::make('reserved_at')->dateTime()->sortable(),
+            'available_at' => TextColumn::make('available_at')->dateTime()->sortable(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
+            'payload_view' => ViewColumn::make('payload')->view('job::filament.tables.columns.array'),
         ];
     }
 
@@ -65,14 +50,12 @@ class ListJobs extends XotBaseListRecords
     public function getTableFilters(): array
     {
         return [
-            'status' => SelectFilter::make('status')
-                ->options([
-                    'running' => 'Running',
-                    'waiting' => 'Waiting',
-                    'failed' => 'Failed',
-                ]),
-            'queue' => SelectFilter::make('queue')
-                ->options(Job::distinct()->pluck('queue', 'queue')->toArray(...)),
+            'status' => SelectFilter::make('status')->options([
+                'running' => 'Running',
+                'waiting' => 'Waiting',
+                'failed' => 'Failed',
+            ]),
+            'queue' => SelectFilter::make('queue')->options(Job::distinct()->pluck('queue', 'queue')->toArray(...)),
         ];
     }
 

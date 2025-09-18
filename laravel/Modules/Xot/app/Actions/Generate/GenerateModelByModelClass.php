@@ -37,14 +37,15 @@ class GenerateModelByModelClass
         $content_old = File::get($filename);
         $content = $content_old;
         foreach ($this->replaces as $k => $v) {
-            if (method_exists($this, 'replace'.$k)) {
-                $content = $this->{'replace'.$k}($v, $content);
+            if (method_exists($this, 'replace' . $k)) {
+                $content = $this->{'replace' . $k}($v, $content);
             }
+
             // $content=$this->replace($content,$k,$v);
         }
         $content = str_replace(' extends Model', ' extends BaseModel', $content);
         $content = str_replace('use HasFactory;', '', $content);
-        Assert::string($content, '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($content, '[' . __LINE__ . '][' . class_basename($this) . ']');
 
         if ($content !== $content_old) {
             File::put($filename, $content);
@@ -56,12 +57,15 @@ class GenerateModelByModelClass
     public function replaceDummyTable(string $value, string $content): string
     {
         $table_start = mb_strpos($content, 'protected $table');
-        Assert::integer($fillable_start = mb_strpos($content, 'protected $fillable'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::integer(
+            $fillable_start = mb_strpos($content, 'protected $fillable'),
+            '[' . __LINE__ . '][' . class_basename($this) . ']',
+        );
         $fillable_end = mb_strpos($content, '];', $fillable_start);
         if (false === $table_start) {
             $before = mb_substr($content, 0, $fillable_end + 2);
             $after = mb_substr($content, $fillable_end + 2);
-            $content = $before.PHP_EOL.'    protected $table = "'.$value.'";'.PHP_EOL.$after;
+            $content = $before . PHP_EOL . '    protected $table = "' . $value . '";' . PHP_EOL . $after;
         }
 
         return $content;
@@ -81,20 +85,21 @@ class GenerateModelByModelClass
         $artisan_cmd = 'module:make-model';
         $artisan_params = ['model' => $model_name, 'module' => $module_name];
         $res = Artisan::call($artisan_cmd, $artisan_params);
-        /*
-        $output=Artisan::output();
 
-        dddx(
-            [
-                'res'=>$res,
-                'output'=>$output,
-                'model_name'=>$model_name,
-                'module_name'=>$module_name,
-                'artisan_cmd'=>$artisan_cmd,
-                'artisan_params'=>$artisan_params,
-            ]
-        );
-        */
+        /*
+         * $output=Artisan::output();
+         *
+         * dddx(
+         * [
+         * 'res'=>$res,
+         * 'output'=>$output,
+         * 'model_name'=>$model_name,
+         * 'module_name'=>$module_name,
+         * 'artisan_cmd'=>$artisan_cmd,
+         * 'artisan_params'=>$artisan_params,
+         * ]
+         * );
+         */
     }
 
     public function setCustomReplaces(array $replaces): self

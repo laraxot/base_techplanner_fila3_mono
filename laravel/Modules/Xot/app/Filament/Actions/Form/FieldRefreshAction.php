@@ -10,14 +10,14 @@ namespace Modules\Xot\Filament\Actions\Form;
 
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
-use Filament\Forms\Set;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Filament\Resources\Pages\ListRecords;
-use Modules\Xot\Actions\GetTransKeyAction;
 use Filament\Forms\Components\Actions\Action;
-use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Filament\Forms\Set;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Str;
+use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Modules\Xot\Actions\GetTransKeyAction;
+use Webmozart\Assert\Assert;
 
 class FieldRefreshAction extends Action
 {
@@ -27,25 +27,24 @@ class FieldRefreshAction extends Action
         $this->translateLabel();
         $this->icon('heroicon-o-arrow-path')
             ->tooltip('Ricalcola valore')
-            ->action(function ($state,Set $set,$record) {
+            ->action(function ($state, Set $set, $record) {
                 $name = $this->getName();
                 if ($name === null) {
                     return;
                 }
 
-                $method = 'get'.Str::studly($name).'';
+                $method = 'get' . Str::studly($name) . '';
                 $value = $record->$method();
                 $set($name, $value);
                 Notification::make()
-                    ->title('Ricalcolato '.$name)
-                    ->body('vecchio valore: '.$state.' nuovo valore: '.$value)
+                    ->title('Ricalcolato ' . $name)
+                    ->body('vecchio valore: ' . $state . ' nuovo valore: ' . $value)
                     ->success()
                     ->send();
             });
-            
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'field_refresh';
     }

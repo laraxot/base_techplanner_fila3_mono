@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modules\Job\Models\Job;
 use Illuminate\Support\Carbon;
+use Modules\Job\Models\Job;
 
 describe('Job Business Logic', function () {
     it('can create job with basic information', function () {
@@ -23,10 +23,14 @@ describe('Job Business Logic', function () {
 
         $job = Job::create($jobData);
 
-        expect($job)->toBeInstanceOf(Job::class)
-            ->and($job->queue)->toBe('default')
-            ->and($job->attempts)->toBe(0)
-            ->and($job->reserved_at)->toBeNull();
+        expect($job)
+            ->toBeInstanceOf(Job::class)
+            ->and($job->queue)
+            ->toBe('default')
+            ->and($job->attempts)
+            ->toBe(0)
+            ->and($job->reserved_at)
+            ->toBeNull();
 
         $this->assertDatabaseHas('jobs', [
             'id' => $job->id,
@@ -72,8 +76,7 @@ describe('Job Business Logic', function () {
             'reserved_at' => now()->timestamp,
         ]);
 
-        expect($job->attempts)->toBe(1)
-            ->and($job->status)->toBe('running');
+        expect($job->attempts)->toBe(1)->and($job->status)->toBe('running');
 
         // Secondo tentativo
         $job->update([
@@ -82,8 +85,7 @@ describe('Job Business Logic', function () {
             'available_at' => now()->addMinutes(5)->timestamp,
         ]);
 
-        expect($job->attempts)->toBe(2)
-            ->and($job->status)->toBe('waiting');
+        expect($job->attempts)->toBe(2)->and($job->status)->toBe('waiting');
     });
 
     it('can extract display name from payload', function () {
@@ -132,13 +134,12 @@ describe('Job Business Logic', function () {
             'available_at' => now()->timestamp,
         ]);
 
-        expect($job->display_name)->toBe('App\Jobs\ComplexProcessingJob')
-            ->and($job->queue)->toBe('processing');
+        expect($job->display_name)->toBe('App\Jobs\ComplexProcessingJob')->and($job->queue)->toBe('processing');
     });
 
     it('can handle job scheduling and delays', function () {
         $futureTime = now()->addHours(2);
-        
+
         $job = Job::create([
             'queue' => 'scheduled',
             'payload' => json_encode(['displayName' => 'ScheduledJob']),
@@ -146,8 +147,7 @@ describe('Job Business Logic', function () {
             'available_at' => $futureTime->timestamp,
         ]);
 
-        expect($job->available_at)->toBeGreaterThan(now()->timestamp)
-            ->and($job->status)->toBe('waiting');
+        expect($job->available_at)->toBeGreaterThan(now()->timestamp)->and($job->status)->toBe('waiting');
     });
 
     it('can manage job reservation and processing', function () {
@@ -165,9 +165,7 @@ describe('Job Business Logic', function () {
             'attempts' => 1,
         ]);
 
-        expect($job->status)->toBe('running')
-            ->and($job->attempts)->toBe(1)
-            ->and($job->reserved_at)->not->toBeNull();
+        expect($job->status)->toBe('running')->and($job->attempts)->toBe(1)->and($job->reserved_at)->not->toBeNull();
 
         // Rilascia il job (fallimento o completamento)
         $job->update([
@@ -176,9 +174,7 @@ describe('Job Business Logic', function () {
             'available_at' => now()->addMinutes(10)->timestamp, // Delay per retry
         ]);
 
-        expect($job->status)->toBe('waiting')
-            ->and($job->attempts)->toBe(2)
-            ->and($job->reserved_at)->toBeNull();
+        expect($job->status)->toBe('waiting')->and($job->attempts)->toBe(2)->and($job->reserved_at)->toBeNull();
     });
 
     it('can handle job priority queues', function () {
@@ -203,9 +199,12 @@ describe('Job Business Logic', function () {
             'available_at' => now()->timestamp,
         ]);
 
-        expect($highPriorityJob->queue)->toBe('high')
-            ->and($lowPriorityJob->queue)->toBe('low')
-            ->and($defaultJob->queue)->toBe('default');
+        expect($highPriorityJob->queue)
+            ->toBe('high')
+            ->and($lowPriorityJob->queue)
+            ->toBe('low')
+            ->and($defaultJob->queue)
+            ->toBe('default');
     });
 
     it('can handle job cleanup and maintenance', function () {
@@ -227,8 +226,10 @@ describe('Job Business Logic', function () {
         ]);
 
         // Verifica che i job siano gestibili per la pulizia
-        expect($completedJob->reserved_at)->toBeLessThan(now()->subMinutes(30)->timestamp)
-            ->and($failedJob->attempts)->toBeGreaterThanOrEqual(5);
+        expect($completedJob->reserved_at)
+            ->toBeLessThan(now()->subMinutes(30)->timestamp)
+            ->and($failedJob->attempts)
+            ->toBeGreaterThanOrEqual(5);
     });
 
     it('can validate job payload integrity', function () {
@@ -269,11 +270,14 @@ describe('Job Business Logic', function () {
         }
 
         expect($batchJobs)->toHaveCount(5);
-        
+
         foreach ($batchJobs as $job) {
-            expect($job->queue)->toBe('batch')
-                ->and($job->display_name)->toBe('BatchJob')
-                ->and($job->status)->toBe('waiting');
+            expect($job->queue)
+                ->toBe('batch')
+                ->and($job->display_name)
+                ->toBe('BatchJob')
+                ->and($job->status)
+                ->toBe('waiting');
         }
     });
 });

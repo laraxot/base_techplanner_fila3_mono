@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'navigation' => [
         'name' => 'Cache Lock',
@@ -73,4 +76,4 @@ return [
             'lock_extended' => 'Durata del lock estesa',
         ],
     ],
-]; 
+];

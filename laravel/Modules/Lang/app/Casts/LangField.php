@@ -14,9 +14,10 @@ class LangField implements CastsAttributes
      *
      * @param BaseModelLang $model
      * @param string        $key
-     * @param array         $attributes
+     * @param mixed         $_value
+     * @param array         $_attributes
      */
-    public function get($model, $key, $value, $attributes)
+    public function get($model, $key, $_value, $_attributes)
     {
         return $model->post->{$key};
     }
@@ -26,11 +27,10 @@ class LangField implements CastsAttributes
      *
      * @param BaseModelLang $model
      * @param string        $key
-     * @param array         $attributes
-     * @param string        $key
-     * @param string        $value
+     * @param mixed         $value
+     * @param array         $_attributes
      */
-    public function set($model, $key, $value, $attributes): array
+    public function set($model, $key, $value, $_attributes): array
     {
         $post = $model->post;
         $post->{$key} = $value;

@@ -11,7 +11,7 @@ class JobMonitor extends Page
 {
     use NavigationLabelTrait;
 
-    protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
+    protected static null|string $navigationIcon = 'heroicon-o-computer-desktop';
 
     protected static string $view = 'job::filament.pages.job-monitor';
 

@@ -20,7 +20,7 @@ class ConsentPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Consent $consent): bool
+    public function view(UserContract $user, Consent $_consent): bool
     {
         return $user->hasPermissionTo('consent.view');
     }
@@ -36,7 +36,7 @@ class ConsentPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Consent $consent): bool
+    public function update(UserContract $user, Consent $_consent): bool
     {
         return $user->hasPermissionTo('consent.update');
     }
@@ -44,7 +44,7 @@ class ConsentPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Consent $consent): bool
+    public function delete(UserContract $user, Consent $_consent): bool
     {
         return $user->hasPermissionTo('consent.delete');
     }
@@ -52,7 +52,7 @@ class ConsentPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Consent $consent): bool
+    public function restore(UserContract $user, Consent $_consent): bool
     {
         return $user->hasPermissionTo('consent.restore');
     }

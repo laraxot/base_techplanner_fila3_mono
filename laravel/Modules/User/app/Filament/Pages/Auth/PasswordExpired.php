@@ -35,11 +35,11 @@ class PasswordExpired extends Page implements HasForms
     use InteractsWithFormActions;
     use NavigationPageLabelTrait;
 
-    public ?string $current_password = '';
+    public null|string $current_password = '';
 
-    public ?string $password = '';
+    public null|string $password = '';
 
-    public ?string $passwordConfirmation = '';
+    public null|string $passwordConfirmation = '';
 
     /**
      * @var view-string
@@ -58,8 +58,7 @@ class PasswordExpired extends Page implements HasForms
 
     public function getResetPasswordFormAction(): Action
     {
-        return Action::make('resetPassword')
-            ->submit('resetPassword');
+        return Action::make('resetPassword')->submit('resetPassword');
     }
 
     public function hasLogo(): bool
@@ -67,7 +66,7 @@ class PasswordExpired extends Page implements HasForms
         return false;
     }
 
-    public function resetPassword(): ?PasswordResetResponse
+    public function resetPassword(): null|PasswordResetResponse
     {
         $pwd = PasswordData::make();
         $data = $this->form->getState();
@@ -79,7 +78,7 @@ class PasswordExpired extends Page implements HasForms
         }
 
         // check if current password is correct
-        if ($user->password === null || ! Hash::check($current_password, $user->password)) {
+        if ($user->password === null || !Hash::check($current_password, $user->password)) {
             Notification::make()
                 ->title(__('user::otp.notifications.wrong_password.title'))
                 ->body(__('user::otp.notifications.wrong_password.body'))
@@ -101,7 +100,7 @@ class PasswordExpired extends Page implements HasForms
         }
 
         // check if both required columns exist in the database
-        if (! Schema::hasColumn('users', 'password_expires_at')) {
+        if (!Schema::hasColumn('users', 'password_expires_at')) {
             Notification::make()
                 ->title(__('user::otp.notifications.column_not_found.title'))
                 ->body(__('user::otp.notifications.column_not_found.body', [
@@ -131,7 +130,7 @@ class PasswordExpired extends Page implements HasForms
         ]);
 
         // Verificare che l'utente implementi l'interfaccia UserContract prima di passarlo all'evento
-        if (!$user instanceof \Modules\Xot\Contracts\UserContract) {
+        if (!($user instanceof \Modules\Xot\Contracts\UserContract)) {
             throw new \InvalidArgumentException('L\'utente deve implementare l\'interfaccia UserContract');
         }
 

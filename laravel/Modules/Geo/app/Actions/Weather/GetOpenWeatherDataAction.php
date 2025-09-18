@@ -12,7 +12,7 @@ class GetOpenWeatherDataAction
 {
     private const ENDPOINT = 'https://api.openweathermap.org/data/2.5/weather';
 
-    public function execute(float $latitude, float $longitude): ?array
+    public function execute(float $latitude, float $longitude): null|array
     {
         try {
             $response = Http::get(self::ENDPOINT, [
@@ -23,13 +23,13 @@ class GetOpenWeatherDataAction
                 'lang' => 'it',
             ]);
 
-            if (! $response->successful()) {
+            if (!$response->successful()) {
                 return null;
             }
 
             $data = $response->json();
 
-            if (! is_array($data)) {
+            if (!is_array($data)) {
                 return null;
             }
 
@@ -51,7 +51,7 @@ class GetOpenWeatherDataAction
                 'timestamp' => Arr::get($data, 'dt'),
             ];
         } catch (\Exception $e) {
-            Log::error('OpenWeather API error: '.$e->getMessage());
+            Log::error('OpenWeather API error: ' . $e->getMessage());
 
             return null;
         }

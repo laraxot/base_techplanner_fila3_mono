@@ -16,18 +16,10 @@ class ListProfiles extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'email' => TextColumn::make('email')
-                ->searchable()
-                ->sortable(),
-            'first_name' => TextColumn::make('first_name')
-                ->searchable()
-                ->sortable(),
-            'last_name' => TextColumn::make('last_name')
-                ->searchable()
-                ->sortable(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
+            'email' => TextColumn::make('email')->searchable()->sortable(),
+            'first_name' => TextColumn::make('first_name')->searchable()->sortable(),
+            'last_name' => TextColumn::make('last_name')->searchable()->sortable(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
         ];
     }
 }

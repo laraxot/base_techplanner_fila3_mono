@@ -10,6 +10,4 @@ use Modules\Media\Filament\Resources\MediaConvertResource;
 class EditMediaConvert extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {
     protected static string $resource = MediaConvertResource::class;
-
-   
 }

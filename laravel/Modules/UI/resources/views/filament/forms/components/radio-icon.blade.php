@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @php
     $gridDirection = $getGridDirection() ?? 'column';
     $id = $getId();

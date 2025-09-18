@@ -33,7 +33,7 @@ use Webmozart\Assert\Assert;
 
 class ScheduleResource extends XotBaseResource
 {
-    protected static ?string $model = Schedule::class;
+    protected static null|string $model = Schedule::class;
 
     protected static bool $shouldRegisterNavigation = true;
 
@@ -68,12 +68,15 @@ class ScheduleResource extends XotBaseResource
         return [
             'main_section' => Section::make([
                 Select::make('command')
-                    ->options(fn () => $commands_opts)
+                    ->options(fn() => $commands_opts)
                     ->reactive()
                     ->searchable()
                     ->required()
                     ->afterStateUpdated(function (Set $set, $state): void {
-                        Assert::isInstanceOf($command = static::$commands->where('name', $state)->first(), CommandData::class);
+                        Assert::isInstanceOf(
+                            $command = static::$commands->where('name', $state)->first(),
+                            CommandData::class,
+                        );
                         $params = $command->arguments;
                         $options_with_value = $command->options['withValue'] ?? [];
                         $set('params', $params);
@@ -83,8 +86,8 @@ class ScheduleResource extends XotBaseResource
                     ->schema([
                         Hidden::make('name'),
                         TextInput::make('value')
-                            ->label(fn (Get $get): mixed => $get('name'))
-                            ->required(fn (Get $get): mixed => $get('required')),
+                            ->label(fn(Get $get): mixed => $get('name'))
+                            ->required(fn(Get $get): mixed => $get('required')),
                     ])
                     ->addable(false)
                     ->deletable(false)
@@ -92,32 +95,27 @@ class ScheduleResource extends XotBaseResource
                 Repeater::make('options_with_value')
                     ->schema([
                         Hidden::make('name'),
-                        Hidden::make('type')
-                            ->default('string'),
+                        Hidden::make('type')->default('string'),
                         TextInput::make('value')
-                            ->label(fn (Get $get): mixed => $get('name'))
-                            ->required(fn (Get $get): mixed => $get('required')),
+                            ->label(fn(Get $get): mixed => $get('name'))
+                            ->required(fn(Get $get): mixed => $get('required')),
                     ])
                     ->addable(false)
                     ->deletable(false)
                     ->reorderable(false),
                 TextInput::make('expression')
                     ->placeholder('* * * * *')
-                    ->rules([new Corn])
+                    ->rules([new Corn()])
                     ->required(),
-                TagsInput::make('environments')
-                    ->placeholder(null),
-                TextInput::make('log_filename')
-                    ->helperText(static::trans('messages.help-log-filename')),
+                TagsInput::make('environments')->placeholder(null),
+                TextInput::make('log_filename')->helperText(static::trans('messages.help-log-filename')),
                 TextInput::make('webhook_before'),
                 TextInput::make('webhook_after'),
                 TextInput::make('email_output'),
                 Toggle::make('sendmail_success'),
                 Toggle::make('sendmail_error'),
-                Toggle::make('log_success')
-                    ->default(true),
-                Toggle::make('log_error')
-                    ->default(true),
+                Toggle::make('log_success')->default(true),
+                Toggle::make('log_error')->default(true),
                 Toggle::make('even_in_maintenance_mode'),
                 Toggle::make('without_overlapping'),
                 Toggle::make('on_one_server'),
@@ -130,7 +128,7 @@ class ScheduleResource extends XotBaseResource
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{--
     Studio Card Component - Visualizzazione informazioni studio odontoiatrico
     
@@ -263,4 +268,4 @@
             @endforeach
         </div>
     @endif
-</div> 
+</div>

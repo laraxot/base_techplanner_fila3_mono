@@ -31,8 +31,7 @@ class EditSchedule extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditReco
     #[\Override]
     public function form(Form $form): Form
     {
-        return $form
-            ->schema($this->getFormSchema());
+        return $form->schema($this->getFormSchema());
     }
 
     protected function onValidationError(ValidationException $exception): void

@@ -20,7 +20,7 @@ class ResultPolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Result $result): bool
+    public function view(UserContract $user, Result $_result): bool
     {
         return $user->hasPermissionTo('result.view');
     }
@@ -36,7 +36,7 @@ class ResultPolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Result $result): bool
+    public function update(UserContract $user, Result $_result): bool
     {
         return $user->hasPermissionTo('result.update');
     }
@@ -44,7 +44,7 @@ class ResultPolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Result $result): bool
+    public function delete(UserContract $user, Result $_result): bool
     {
         return $user->hasPermissionTo('result.delete');
     }
@@ -52,7 +52,7 @@ class ResultPolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Result $result): bool
+    public function restore(UserContract $user, Result $_result): bool
     {
         return $user->hasPermissionTo('result.restore');
     }

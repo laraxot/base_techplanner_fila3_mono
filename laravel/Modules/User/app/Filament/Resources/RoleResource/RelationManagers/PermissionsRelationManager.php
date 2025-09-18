@@ -39,29 +39,18 @@ class PermissionsRelationManager extends XotBaseRelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-
-                    ->sortable()
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
             ])
             ->filters([]) // Aggiungi eventuali filtri qui se necessario
             ->headerActions([
-                Tables\Actions\CreateAction::make()
-
-                    ->tooltip(__('Crea un nuovo permesso')),
+                Tables\Actions\CreateAction::make()->tooltip(__('Crea un nuovo permesso')),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-
-                    ->tooltip(__('Modifica permesso')),
-                Tables\Actions\DeleteAction::make()
-
-                    ->tooltip(__('Elimina permesso')),
+                Tables\Actions\EditAction::make()->tooltip(__('Modifica permesso')),
+                Tables\Actions\DeleteAction::make()->tooltip(__('Elimina permesso')),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make()
-
-                    ->tooltip(__('Elimina i permessi selezionati')),
+                Tables\Actions\DeleteBulkAction::make()->tooltip(__('Elimina i permessi selezionati')),
             ]);
     }
 }

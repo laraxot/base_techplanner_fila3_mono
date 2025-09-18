@@ -10,7 +10,6 @@ use Modules\Xot\Actions\Array\SaveArrayAction;
 use Modules\Xot\Filament\Resources\ModuleResource;
 use Modules\Xot\Models\Module;
 
-
 /**
  * @property Module $record
  */
@@ -33,13 +32,13 @@ class EditModule extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
     protected function afterSave(): void
     {
         $module = $this->record; // Ottiene il record corrente
-        if (!$module instanceof \Illuminate\Database\Eloquent\Model || !isset($module->path)) {
+        if (!($module instanceof \Illuminate\Database\Eloquent\Model) || !isset($module->path)) {
             return;
         }
 
-        $config_path = $module->path.'/config/config.php';
+        $config_path = $module->path . '/config/config.php';
         $data = File::getRequire($config_path);
-        if (! is_array($data)) {
+        if (!is_array($data)) {
             $data = [];
         }
         $data = array_merge($data, $module->toArray());
@@ -47,27 +46,27 @@ class EditModule extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
         app(SaveArrayAction::class)->execute($data, $config_path);
 
         /*
-        $configPath = config_path('modules/colors.php');
-
-        // Prepara l'array di colori
-        $colorsConfig = [
-            $module->name => [
-                'colors' => $module->colors,
-                'icon' => $module->icon,
-            ],
-        ];
-
-        // Se il file di configurazione esiste già, unisci i colori
-        if (File::exists($configPath)) {
-            $existingConfig = include $configPath;
-            $colorsConfig = array_merge($existingConfig, $colorsConfig);
-        }
-
-        // Salva il nuovo file di configurazione
-        File::put($configPath, '<?php return ' . var_export($colorsConfig, true) . ';');
-
-        // Richiama il file di configurazione per essere sicuro che i colori siano caricati
-        Config::set('modules.colors', $colorsConfig);
-        */
+         * $configPath = config_path('modules/colors.php');
+         *
+         * // Prepara l'array di colori
+         * $colorsConfig = [
+         * $module->name => [
+         * 'colors' => $module->colors,
+         * 'icon' => $module->icon,
+         * ],
+         * ];
+         *
+         * // Se il file di configurazione esiste già, unisci i colori
+         * if (File::exists($configPath)) {
+         * $existingConfig = include $configPath;
+         * $colorsConfig = array_merge($existingConfig, $colorsConfig);
+         * }
+         *
+         * // Salva il nuovo file di configurazione
+         * File::put($configPath, '<?php return ' . var_export($colorsConfig, true) . ';');
+         *
+         * // Richiama il file di configurazione per essere sicuro che i colori siano caricati
+         * Config::set('modules.colors', $colorsConfig);
+         */
     }
 }

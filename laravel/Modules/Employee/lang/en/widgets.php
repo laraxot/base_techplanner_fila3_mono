@@ -19,7 +19,6 @@ return [
             'description' => 'You have no pending tasks at the moment.',
         ],
     ],
-
     'upcoming_schedule' => [
         'title' => 'Next 7 days',
         'description' => 'Upcoming events and appointments',
@@ -46,7 +45,6 @@ return [
             'description' => 'There are no events in the next 7 days.',
         ],
     ],
-
     'time_off_balance' => [
         'title' => 'My balances',
         'description' => 'Leave and permit balances for :month',
@@ -62,7 +60,6 @@ return [
         'last_updated' => 'Last updated',
         'view_details' => 'View details',
     ],
-
     'today_presence' => [
         'title' => 'Who\'s here today',
         'description' => 'Real-time attendance',
@@ -74,7 +71,6 @@ return [
         'last_updated' => 'Updated at',
         'view_details' => 'View details',
     ],
-
     'pending_requests' => [
         'title' => 'My pending requests',
         'description' => 'Status of your approval requests',
@@ -101,7 +97,6 @@ return [
             'description' => 'All your requests have been handled by the administrator.',
         ],
     ],
-
     // Existing widgets
     'time_tracking' => [
         'title' => 'Time Tracking',
@@ -120,7 +115,6 @@ return [
             'break' => 'On break',
         ],
     ],
-
     'employee_overview' => [
         'title' => 'Employee overview',
         'description' => 'General employee statistics',
@@ -129,7 +123,6 @@ return [
         'departments' => 'Departments',
         'new_this_month' => 'New this month',
     ],
-
     'work_hour_stats' => [
         'title' => 'Work hour statistics',
         'description' => 'Time tracking analysis',

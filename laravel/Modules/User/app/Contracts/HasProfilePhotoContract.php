@@ -13,12 +13,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 interface HasProfilePhotoContract
 {
-    public function getFilamentAvatarUrl(): ?string;
+    public function getFilamentAvatarUrl(): null|string;
 
     /**
      * Update the user's profile photo.
      */
-    public function updateProfilePhoto(?string $photo): void;
+    public function updateProfilePhoto(null|string $photo): void;
 
     /**
      * Delete the user's profile photo.

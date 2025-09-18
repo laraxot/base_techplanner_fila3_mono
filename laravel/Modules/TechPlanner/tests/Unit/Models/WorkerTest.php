@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\TechPlanner\Tests\Unit\Models;
 
-
 use Modules\TechPlanner\Models\Appointment;
 use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Models\Device;
@@ -104,9 +103,11 @@ class WorkerTest extends TestCase
     /** @test */
     public function it_has_many_assigned_clients(): void
     {
-        $clients = Client::factory()->count(3)->create([
-            'assigned_worker_id' => $this->worker->id,
-        ]);
+        $clients = Client::factory()
+            ->count(3)
+            ->create([
+                'assigned_worker_id' => $this->worker->id,
+            ]);
 
         $this->assertCount(3, $this->worker->assignedClients);
         $this->assertInstanceOf(Client::class, $this->worker->assignedClients->first());
@@ -115,9 +116,11 @@ class WorkerTest extends TestCase
     /** @test */
     public function it_has_many_devices(): void
     {
-        $devices = Device::factory()->count(2)->create([
-            'assigned_worker_id' => $this->worker->id,
-        ]);
+        $devices = Device::factory()
+            ->count(2)
+            ->create([
+                'assigned_worker_id' => $this->worker->id,
+            ]);
 
         $this->assertCount(2, $this->worker->devices);
         $this->assertInstanceOf(Device::class, $this->worker->devices->first());
@@ -126,9 +129,11 @@ class WorkerTest extends TestCase
     /** @test */
     public function it_has_many_appointments(): void
     {
-        $appointments = Appointment::factory()->count(2)->create([
-            'worker_id' => $this->worker->id,
-        ]);
+        $appointments = Appointment::factory()
+            ->count(2)
+            ->create([
+                'worker_id' => $this->worker->id,
+            ]);
 
         $this->assertCount(2, $this->worker->appointments);
         $this->assertInstanceOf(Appointment::class, $this->worker->appointments->first());
@@ -137,9 +142,11 @@ class WorkerTest extends TestCase
     /** @test */
     public function it_has_many_phone_calls(): void
     {
-        $phoneCalls = PhoneCall::factory()->count(2)->create([
-            'worker_id' => $this->worker->id,
-        ]);
+        $phoneCalls = PhoneCall::factory()
+            ->count(2)
+            ->create([
+                'worker_id' => $this->worker->id,
+            ]);
 
         $this->assertCount(2, $this->worker->phoneCalls);
         $this->assertInstanceOf(PhoneCall::class, $this->worker->phoneCalls->first());
@@ -149,9 +156,9 @@ class WorkerTest extends TestCase
     public function it_can_be_soft_deleted(): void
     {
         $workerId = $this->worker->id;
-        
+
         $this->worker->delete();
-        
+
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
     }
 
@@ -159,7 +166,7 @@ class WorkerTest extends TestCase
     public function it_can_be_restored(): void
     {
         $workerId = $this->worker->id;
-        
+
         $this->worker->delete();
         $this->assertSoftDeleted('workers', ['id' => $workerId]);
 
@@ -352,14 +359,18 @@ class WorkerTest extends TestCase
     public function it_has_workload_calculation(): void
     {
         // Crea alcuni clienti assegnati
-        $clients = Client::factory()->count(5)->create([
-            'assigned_worker_id' => $this->worker->id,
-        ]);
+        $clients = Client::factory()
+            ->count(5)
+            ->create([
+                'assigned_worker_id' => $this->worker->id,
+            ]);
 
         // Crea alcuni appuntamenti
-        $appointments = Appointment::factory()->count(3)->create([
-            'worker_id' => $this->worker->id,
-        ]);
+        $appointments = Appointment::factory()
+            ->count(3)
+            ->create([
+                'worker_id' => $this->worker->id,
+            ]);
 
         $workload = $this->worker->calculateWorkload();
 

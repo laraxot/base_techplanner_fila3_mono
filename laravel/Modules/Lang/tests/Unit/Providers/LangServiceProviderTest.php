@@ -234,9 +234,25 @@ describe('LangServiceProvider Translation Quality', function () {
         $this->provider->boot();
 
         $commonKeys = [
-            'welcome', 'loading', 'error', 'success', 'cancel', 'save',
-            'delete', 'edit', 'create', 'update', 'back', 'next', 'previous',
-            'search', 'filter', 'sort', 'refresh', 'export', 'import',
+            'welcome',
+            'loading',
+            'error',
+            'success',
+            'cancel',
+            'save',
+            'delete',
+            'edit',
+            'create',
+            'update',
+            'back',
+            'next',
+            'previous',
+            'search',
+            'filter',
+            'sort',
+            'refresh',
+            'export',
+            'import',
         ];
 
         foreach ($commonKeys as $key) {
@@ -378,7 +394,7 @@ describe('LangServiceProvider Integration', function () {
         $this->provider->boot();
 
         // Verifica che le traduzioni siano disponibili nei template Blade
-        $translation = @lang('lang::common.welcome');
+        $translation = lang('lang::common.welcome');
         expect($translation)->toBeString();
         expect($translation)->not->toBe('lang::common.welcome');
     });

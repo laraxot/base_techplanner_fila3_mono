@@ -20,7 +20,7 @@ class ScheduleService
 
     public function __construct()
     {
-        Assert::string($modelClass = config('job::model'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($modelClass = config('job::model'), '[' . __LINE__ . '][' . class_basename($this) . ']');
         $this->model = app($modelClass);
     }
 
@@ -40,8 +40,8 @@ class ScheduleService
 
     public function clearCache(): void
     {
-        Assert::string($store = config('job::cache.store'), '['.__LINE__.']['.class_basename($this).']');
-        Assert::string($key = config('job::cache.key'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($store = config('job::cache.store'), '[' . __LINE__ . '][' . class_basename($this) . ']');
+        Assert::string($key = config('job::cache.key'), '[' . __LINE__ . '][' . class_basename($this) . ']');
 
         Cache::store($store)->forget($key);
     }
@@ -53,8 +53,8 @@ class ScheduleService
      */
     private function getFromCache()
     {
-        Assert::string($store = config('job::cache.store'), '['.__LINE__.']['.class_basename($this).']');
-        Assert::string($key = config('job::cache.key'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($store = config('job::cache.store'), '[' . __LINE__ . '][' . class_basename($this) . ']');
+        Assert::string($key = config('job::cache.key'), '[' . __LINE__ . '][' . class_basename($this) . ']');
 
         return Cache::store($store)->rememberForever($key, $this->model->active()->get(...));
     }

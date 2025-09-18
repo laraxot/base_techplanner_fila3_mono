@@ -18,41 +18,34 @@ use Modules\Geo\Datas\LocationData;
  * @param  int  $radius  Raggio in metri entro cui filtrare le coordinate
  * @return array<array{latitude: string, longitude: string}> Le coordinate filtrate
  */
-class FilterCoordinatesInRadiusAction
+readonly class FilterCoordinatesInRadiusAction
 {
     public function __construct(
-        private readonly CalculateDistanceAction $calculateDistanceAction,
+        private  CalculateDistanceAction $calculateDistanceAction,
     ) {}
 
     /**
      * @param  array<array{latitude: string, longitude: string}>  $coordinates
      * @return array<array{latitude: string, longitude: string}>
      */
-    public function execute(
-        float $centerLatitude,
-        float $centerLongitude,
-        array $coordinates,
-        int $radius,
-    ): array {
+    public function execute(float $centerLatitude, float $centerLongitude, array $coordinates, int $radius): array
+    {
         $centerLocation = new LocationData(
             latitude: $centerLatitude,
             longitude: $centerLongitude,
-            address: null
+            address: null,
         );
 
-        return array_filter(
-            $coordinates,
-            function (array $coordinate) use ($centerLocation, $radius): bool {
-                $targetLocation = new LocationData(
-                    latitude: (float) $coordinate['latitude'],
-                    longitude: (float) $coordinate['longitude'],
-                    address: null
-                );
+        return array_filter($coordinates, function (array $coordinate) use ($centerLocation, $radius): bool {
+            $targetLocation = new LocationData(
+                latitude: (float) $coordinate['latitude'],
+                longitude: (float) $coordinate['longitude'],
+                address: null,
+            );
 
-                $distance = $this->calculateDistanceAction->execute($centerLocation, $targetLocation)['distance']['value'];
+            $distance = $this->calculateDistanceAction->execute($centerLocation, $targetLocation)['distance']['value'];
 
-                return $distance <= $radius;
-            }
-        );
+            return $distance <= $radius;
+        });
     }
 }

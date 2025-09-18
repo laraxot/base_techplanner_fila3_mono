@@ -24,18 +24,13 @@ class ViewTenant extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
     public function getInfolistSchema(): array
     {
         return [
-            'tenant_info' => Section::make()
-                ->schema([
-                    TextEntry::make('id'),
-                    TextEntry::make('name'),
-                    TextEntry::make('slug'),
-                    TextEntry::make('created_at')
-                        ->dateTime(),
-                    TextEntry::make('updated_at')
-                        ->dateTime(),
-                ]),
+            'tenant_info' => Section::make()->schema([
+                TextEntry::make('id'),
+                TextEntry::make('name'),
+                TextEntry::make('slug'),
+                TextEntry::make('created_at')->dateTime(),
+                TextEntry::make('updated_at')->dateTime(),
+            ]),
         ];
     }
-
-    
 }

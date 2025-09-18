@@ -22,7 +22,7 @@ class GetFakerAction
 {
     use QueueableAction;
 
-    public function execute(string $name, ?string $type = null, ?string $table = null): string
+    public function execute(string $name, null|string $type = null, null|string $_table = null): string
     {
         if (null !== $type && Str::startsWith($type, 'factory(')) {
             return $type;

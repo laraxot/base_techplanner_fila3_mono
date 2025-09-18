@@ -6,9 +6,10 @@ namespace Modules\Lang\Actions;
 
 use Illuminate\Support\Facades\File;
 use Spatie\QueueableAction\QueueableAction;
-use function Safe\tempnam;
-use function Safe\file_put_contents;
+
 use function Safe\exec;
+use function Safe\file_put_contents;
+use function Safe\tempnam;
 use function Safe\unlink;
 
 class WriteTranslationFileAction
@@ -65,7 +66,7 @@ class WriteTranslationFileAction
 
         // Crea la directory di backup se non esiste
         if (!File::exists($backupDir)) {
-            File::makeDirectory($backupDir, 0755, true);
+            File::makeDirectory($backupDir, 0o755, true);
         }
 
         // Copia il file
@@ -117,4 +118,4 @@ class WriteTranslationFileAction
             app('translation.loader')->flush();
         }
     }
-} 
+}

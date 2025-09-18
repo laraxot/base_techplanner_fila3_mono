@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @extends('xot::layouts.email')
 
 @section('content')
@@ -13,4 +18,4 @@
         @endforeach
     </table>
 </div>
-@endsection 
+@endsection

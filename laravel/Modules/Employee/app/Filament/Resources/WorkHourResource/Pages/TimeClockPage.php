@@ -31,7 +31,7 @@ class TimeClockPage extends XotBasePage
 
     protected static string $view = 'employee::filament.pages.work-hours';
 
-    public ?array $filters = [
+    public null|array $filters = [
         'date_from' => null,
         'date_to' => null,
         'type' => null,
@@ -46,34 +46,29 @@ class TimeClockPage extends XotBasePage
         ]);
     }
 
+    #[\Override]
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Grid::make(4)
-                    ->schema([
-                        DatePicker::make('date_from')
-                            ->label('From Date')
-                            ->default(now()->startOfMonth())
-                            ->maxDate(fn (callable $get) => $get('date_to') ?: now()),
-
-                        DatePicker::make('date_to')
-                            ->label('To Date')
-                            ->default(now()->endOfMonth())
-                            ->minDate(fn (callable $get) => $get('date_from')),
-
-                        Forms\Components\Select::make('type')
-                            ->label('Type')
-                            ->options(WorkHourTypeEnum::class)
-                            ->placeholder('All Types'),
-
-                        Forms\Components\Select::make('status')
-                            ->label('Status')
-                            ->options(WorkHourStatusEnum::class)
-                            ->placeholder('All Statuses'),
-                    ]),
-            ])
-            ->statePath('filters');
+        return $form->schema([
+            Forms\Components\Grid::make(4)->schema([
+                DatePicker::make('date_from')
+                    ->label('From Date')
+                    ->default(now()->startOfMonth())
+                    ->maxDate(fn(callable $get) => $get('date_to') ?: now()),
+                DatePicker::make('date_to')
+                    ->label('To Date')
+                    ->default(now()->endOfMonth())
+                    ->minDate(fn(callable $get) => $get('date_from')),
+                Forms\Components\Select::make('type')
+                    ->label('Type')
+                    ->options(WorkHourTypeEnum::class)
+                    ->placeholder('All Types'),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->options(WorkHourStatusEnum::class)
+                    ->placeholder('All Statuses'),
+            ]),
+        ])->statePath('filters');
     }
 
     public function table(Table $table): Table
@@ -86,36 +81,27 @@ class TimeClockPage extends XotBasePage
                     ->dateTime('d/m/Y H:i')
                     ->sortable()
                     ->searchable(),
-
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
-                    ->formatStateUsing(fn (string $state): string => __("employee::enums.work_hour_type.{$state}"))
-                    ->color(fn (string $state): string => match ($state) {
+                    ->formatStateUsing(fn(string $state): string => __("employee::enums.work_hour_type.{$state}"))
+                    ->color(fn(string $state): string => match ($state) {
                         WorkHourTypeEnum::CLOCK_IN->value => 'success',
                         WorkHourTypeEnum::CLOCK_OUT->value => 'danger',
                         WorkHourTypeEnum::BREAK_START->value => 'warning',
                         WorkHourTypeEnum::BREAK_END->value => 'info',
                         default => 'gray',
                     }),
-
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->formatStateUsing(fn (string $state): string => __("employee::enums.work_hour_status.{$state}"))
-                    ->color(fn (string $state): string => match ($state) {
+                    ->formatStateUsing(fn(string $state): string => __("employee::enums.work_hour_status.{$state}"))
+                    ->color(fn(string $state): string => match ($state) {
                         WorkHourStatusEnum::PENDING->value => 'warning',
                         WorkHourStatusEnum::APPROVED->value => 'success',
                         WorkHourStatusEnum::REJECTED->value => 'danger',
                         default => 'gray',
                     }),
-
-                Tables\Columns\TextColumn::make('location_name')
-                    ->label('Location')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('notes')
-                    ->label('Notes')
-                    ->toggleable(isToggledHiddenByDefault: true),
-
+                Tables\Columns\TextColumn::make('location_name')->label('Location')->searchable(),
+                Tables\Columns\TextColumn::make('notes')->label('Notes')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created')
                     ->dateTime('d/m/Y H:i')
@@ -128,14 +114,13 @@ class TimeClockPage extends XotBasePage
             ->actions([
                 Tables\Actions\Action::make('edit')
                     ->icon('heroicon-o-pencil')
-                    ->url(fn (WorkHour $record): string => WorkHourResource::getUrl('edit', ['record' => $record])),
-
+                    ->url(fn(WorkHour $record): string => WorkHourResource::getUrl('edit', ['record' => $record])),
                 Tables\Actions\Action::make('delete')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
                     ->requiresConfirmation()
-                    ->action(fn (WorkHour $record) => $record->delete())
-                    ->visible(fn (WorkHour $record) => $record->status === WorkHourStatusEnum::PENDING->value),
+                    ->action(fn(WorkHour $record) => $record->delete())
+                    ->visible(fn(WorkHour $record) => $record->status === WorkHourStatusEnum::PENDING->value),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -155,22 +140,21 @@ class TimeClockPage extends XotBasePage
     {
         return WorkHour::query()
             ->where('employee_id', Auth::id())
-            ->when(
-                $this->filters['date_from'] ?? null,
-                fn (Builder $query, $date): Builder => $query->whereDate('timestamp', '>=', $date)
-            )
-            ->when(
-                $this->filters['date_to'] ?? null,
-                fn (Builder $query, $date): Builder => $query->whereDate('timestamp', '<=', $date)
-            )
-            ->when(
-                $this->filters['type'] ?? null,
-                fn (Builder $query, $type): Builder => $query->where('type', $type)
-            )
-            ->when(
-                $this->filters['status'] ?? null,
-                fn (Builder $query, $status): Builder => $query->where('status', $status)
-            )
+            ->when($this->filters['date_from'] ?? null, fn(Builder $query, $date): Builder => $query->whereDate(
+                'timestamp',
+                '>=',
+                $date,
+            ))
+            ->when($this->filters['date_to'] ?? null, fn(Builder $query, $date): Builder => $query->whereDate(
+                'timestamp',
+                '<=',
+                $date,
+            ))
+            ->when($this->filters['type'] ?? null, fn(Builder $query, $type): Builder => $query->where('type', $type))
+            ->when($this->filters['status'] ?? null, fn(Builder $query, $status): Builder => $query->where(
+                'status',
+                $status,
+            ))
             ->latest('timestamp');
     }
 
@@ -194,7 +178,6 @@ class TimeClockPage extends XotBasePage
                 ->label('Export')
                 ->icon('heroicon-o-arrow-down-tray')
                 ->action('exportWorkHours'),
-
             Actions\Action::make('back_to_list')
                 ->label('Back to Dashboard')
                 ->icon('heroicon-o-home')
@@ -203,6 +186,7 @@ class TimeClockPage extends XotBasePage
         ];
     }
 
+    #[\Override]
     public function getViewData(): array
     {
         return [
@@ -223,7 +207,7 @@ class TimeClockPage extends XotBasePage
             ->whereDate('created_at', $today)
             ->first();
 
-        if (! $clockIn) {
+        if (!$clockIn) {
             return '00:00';
         }
 
@@ -269,7 +253,7 @@ class TimeClockPage extends XotBasePage
             ->latest('timestamp')
             ->first();
 
-        if (! $lastAction) {
+        if (!$lastAction) {
             return 'not_clocked_in';
         }
 

@@ -51,6 +51,7 @@ class PhoneCall extends BaseModel
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return array_merge(parent::casts(), [

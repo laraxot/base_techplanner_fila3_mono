@@ -16,14 +16,10 @@ class EditTeamProfile extends EditTenantProfile
     }
 
     public function getFormSchema(): array
-{
-    
-        
-    return [
-              
-                    TextInput::make('name'),
-                    // ...
-                
-      ];
-}
+    {
+        return [
+            TextInput::make('name'),
+            // ...
+        ];
+    }
 }

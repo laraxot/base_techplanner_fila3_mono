@@ -79,7 +79,6 @@ class SocialProvider extends BaseModel
         'active' => 'boolean',
         'socialite' => 'boolean',
         'svg' => 'string',
-
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'created_by' => 'string',

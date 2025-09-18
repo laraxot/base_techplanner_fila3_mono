@@ -7,15 +7,7 @@ namespace Modules\Xot\Filament\Resources\CacheLockResource\Pages;
 use Filament\Tables\Columns\TextColumn;
 use Modules\Xot\Filament\Resources\CacheLockResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
-
-
-
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-
-
-
-
 
 class ListCacheLocks extends XotBaseListRecords
 {
@@ -33,9 +25,7 @@ class ListCacheLocks extends XotBaseListRecords
                 ->searchable()
                 ->sortable()
                 ->wrap(),
-            'expiration' => TextColumn::make('expiration')
-                ->numeric()
-                ->sortable(),
+            'expiration' => TextColumn::make('expiration')->numeric()->sortable(),
         ];
     }
 }

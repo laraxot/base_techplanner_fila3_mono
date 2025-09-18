@@ -48,7 +48,7 @@ enum DayOfWeek: int implements HasLabel, HasColor, HasIcon, HasDescription
      */
     public function getColor(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MONDAY => 'primary',
             self::TUESDAY => 'success',
             self::WEDNESDAY => 'warning',
@@ -65,7 +65,7 @@ enum DayOfWeek: int implements HasLabel, HasColor, HasIcon, HasDescription
      */
     public function getIcon(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MONDAY => 'heroicon-o-calendar',
             self::TUESDAY => 'heroicon-o-calendar',
             self::WEDNESDAY => 'heroicon-o-calendar',
@@ -75,14 +75,14 @@ enum DayOfWeek: int implements HasLabel, HasColor, HasIcon, HasDescription
             self::SUNDAY => 'heroicon-o-calendar',
         };
     }
-    
+
     /**
      * Restituisce la descrizione dettagliata di questo giorno della settimana.
      * Implementazione dell'interfaccia HasDescription di Filament.
      */
     public function getDescription(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MONDAY => __('saluteora::common.days.description.monday'),
             self::TUESDAY => __('saluteora::common.days.description.tuesday'),
             self::WEDNESDAY => __('saluteora::common.days.description.wednesday'),
@@ -125,7 +125,7 @@ enum DayOfWeek: int implements HasLabel, HasColor, HasIcon, HasDescription
     public static function workingDays(): Collection
     {
         /** @var Collection<int, self> $filtered */
-        $filtered = collect(self::cases())->filter(fn (self $day): bool => $day->value <= 5);
+        $filtered = collect(self::cases())->filter(fn(self $day): bool => $day->value <= 5);
         return $filtered;
     }
 
@@ -137,7 +137,7 @@ enum DayOfWeek: int implements HasLabel, HasColor, HasIcon, HasDescription
     public static function weekendDays(): Collection
     {
         /** @var Collection<int, self> $filtered */
-        $filtered = collect(self::cases())->filter(fn (self $day): bool => $day->value > 5);
+        $filtered = collect(self::cases())->filter(fn(self $day): bool => $day->value > 5);
         return $filtered;
     }
 
@@ -154,7 +154,7 @@ enum DayOfWeek: int implements HasLabel, HasColor, HasIcon, HasDescription
      */
     public function next(): self
     {
-        return match($this) {
+        return match ($this) {
             self::MONDAY => self::TUESDAY,
             self::TUESDAY => self::WEDNESDAY,
             self::WEDNESDAY => self::THURSDAY,

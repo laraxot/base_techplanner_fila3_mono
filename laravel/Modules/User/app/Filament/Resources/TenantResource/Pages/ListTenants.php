@@ -24,13 +24,8 @@ class ListTenants extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->searchable()
-                ->sortable(),
-
-            'name' => TextColumn::make('name')
-                ->searchable(),
-
+            'id' => TextColumn::make('id')->searchable()->sortable(),
+            'name' => TextColumn::make('name')->searchable(),
             'slug' => TextColumn::make('slug')
                 ->default(function ($record) {
                     if ($record === null) {

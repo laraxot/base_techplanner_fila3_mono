@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="relative bg-gray-900">
     <div class="absolute bottom-0 h-80 w-full xl:inset-0 xl:h-full">
       <div class="h-full w-full xl:grid xl:grid-cols-2">
@@ -33,4 +38,3 @@
       </div>
     </div>
   </div>
-  

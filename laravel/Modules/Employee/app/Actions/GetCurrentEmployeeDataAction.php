@@ -36,7 +36,7 @@ class GetCurrentEmployeeDataAction
         /** @var User|null $user */
         $user = User::find($userId);
 
-        if (! $user) {
+        if (!$user) {
             return [
                 'id' => $userId,
                 'name' => 'Unknown User',

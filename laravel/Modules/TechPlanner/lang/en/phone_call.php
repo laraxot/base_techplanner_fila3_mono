@@ -5,126 +5,211 @@ declare(strict_types=1);
 return [
     'navigation' => [
         'label' => 'Phone Calls',
-        'group' => 'TechPlanner',
-        'icon' => 'heroicon-o-phone',
-        'sort' => 2,
-    ],
-    'resource' => [
-        'label' => 'Phone Call',
-        'plural_label' => 'Phone Calls',
-        'navigation_group' => 'TechPlanner',
-        'navigation_icon' => 'heroicon-o-phone',
-        'navigation_sort' => 2,
-        'description' => 'Phone call management',
+        'name' => 'Phone Call',
+        'plural' => 'Phone Calls',
+        'group' => [
+            'name' => 'Admin',
+        ],
+        'sort' => 51,
+        'icon' => 'techplanner-phone-call',
     ],
     'enums' => [
         'inbound' => [
-            'label' => 'Incoming',
+            'label' => 'Inbound',
             'color' => 'success',
             'icon' => 'heroicon-o-arrow-down',
         ],
         'outbound' => [
-            'label' => 'Outgoing',
+            'label' => 'Outbound',
             'color' => 'warning',
             'icon' => 'heroicon-o-arrow-up',
-        ],
-        'missed' => [
-            'label' => 'Missed',
-            'color' => 'danger',
-            'icon' => 'heroicon-o-x-circle',
         ],
     ],
     'actions' => [
         'create' => [
-            'label' => 'New Call',
-            'icon' => 'heroicon-o-plus',
-            'color' => 'primary',
-            'tooltip' => 'Record a new phone call',
-        ],
-        'edit' => [
-            'label' => 'Edit Call',
-            'icon' => 'heroicon-o-pencil',
-            'color' => 'warning',
-            'tooltip' => 'Edit the selected call',
-        ],
-        'delete' => [
-            'label' => 'Delete Call',
-            'icon' => 'heroicon-o-trash',
-            'color' => 'danger',
-            'tooltip' => 'Delete the selected call',
-        ],
-        'view' => [
-            'label' => 'View Call',
-            'icon' => 'heroicon-o-eye',
-            'color' => 'info',
-            'tooltip' => 'View call details',
+            'label' => 'Create',
         ],
         'import' => [
-            'label' => 'Import Calls',
-            'icon' => 'heroicon-o-arrow-up-tray',
-            'color' => 'secondary',
-            'tooltip' => 'Import calls from external file',
+            'label' => 'Import',
+        ],
+        'importClient' => [
+            'label' => 'Import Client',
         ],
     ],
     'fields' => [
-        'client_id' => [
-            'label' => 'Client',
-            'placeholder' => 'Select client',
-            'help' => 'The client with whom the call was made',
-        ],
         'date' => [
             'label' => 'Date',
-            'placeholder' => 'Select date',
-            'help' => 'Date of the call',
         ],
         'duration' => [
             'label' => 'Duration',
-            'placeholder' => 'Enter duration in minutes',
-            'help' => 'Duration of the call in minutes',
         ],
         'notes' => [
             'label' => 'Notes',
-            'placeholder' => 'Enter call notes',
-            'help' => 'Notes and details about the call',
+            'description' => 'notes',
         ],
         'call_type' => [
             'label' => 'Call Type',
-            'placeholder' => 'Select type',
-            'help' => 'Type of call made',
-            'options' => [
-                'inbound' => 'Incoming',
-                'outbound' => 'Outgoing',
-                'missed' => 'Missed',
-            ],
+            'description' => 'call_type',
+            'helper_text' => 'call_type',
         ],
         'id' => [
             'label' => 'ID',
-            'help' => 'Unique identifier of the call',
+        ],
+        'business_closed' => [
+            'label' => 'Closed',
+        ],
+        'company_name' => [
+            'label' => 'Company Name',
+        ],
+        'latitude' => [
+            'label' => 'Latitude',
+        ],
+        'longitude' => [
+            'label' => 'Longitude',
+        ],
+        'distance' => [
+            'label' => 'Distance',
+        ],
+        'distance_km' => [
+            'label' => 'Distance (km)',
+        ],
+        'is_active' => [
+            'label' => 'Active',
+        ],
+        'full_address' => [
+            'label' => 'Full Address',
+        ],
+        'country' => [
+            'label' => 'Country',
+        ],
+        'fiscal_code' => [
+            'label' => 'Fiscal Code',
+        ],
+        'competent_health_unit' => [
+            'label' => 'Competent Health Unit',
+        ],
+        'tax_code' => [
+            'label' => 'Company Tax Code',
+        ],
+        'vat_number' => [
+            'label' => 'VAT Number',
+        ],
+        'company_office' => [
+            'label' => 'Company Office',
+        ],
+        'address' => [
+            'label' => 'Address',
+        ],
+        'street_number' => [
+            'label' => 'Street Number',
+        ],
+        'province' => [
+            'label' => 'Province',
+        ],
+        'postal_code' => [
+            'label' => 'Postal Code',
+        ],
+        'phone' => [
+            'label' => 'Phone',
+        ],
+        'fax' => [
+            'label' => 'Fax',
+        ],
+        'mobile' => [
+            'label' => 'Mobile',
+        ],
+        'email' => [
+            'label' => 'Email',
+        ],
+        'activity' => [
+            'label' => 'Activity',
+        ],
+        'name' => [
+            'label' => 'Name',
+        ],
+        'city' => [
+            'label' => 'City',
+        ],
+        'toggleColumns' => [
+            'label' => 'Toggle Columns',
+        ],
+        'reorderRecords' => [
+            'label' => 'Reorder Records',
+        ],
+        'detach' => [
+            'label' => 'Detach',
+        ],
+        'resetFilters' => [
+            'label' => 'Reset Filters',
+        ],
+        'applyFilters' => [
+            'label' => 'Apply Filters',
+        ],
+        'openFilters' => [
+            'label' => 'Open Filters',
+        ],
+        'edit' => [
+            'label' => 'Edit',
+        ],
+        'view' => [
+            'label' => 'View',
+        ],
+        'attach' => [
+            'label' => 'Attach',
+        ],
+        'create' => [
+            'label' => 'Create',
+        ],
+        'delete' => [
+            'label' => 'Delete',
+        ],
+        'layout' => [
+            'label' => 'layout',
         ],
     ],
-    'filters' => [
-        'client' => [
-            'label' => 'Client',
-            'placeholder' => 'Select client',
-            'help' => 'Filter by specific client',
+    'import' => [
+        'label' => 'Import Data',
+        'name' => [
+            'label' => 'Name',
         ],
-        'call_type' => [
-            'label' => 'Call Type',
-            'placeholder' => 'Select type',
-            'help' => 'Filter by call type',
+        'vat_number' => [
+            'label' => 'VAT Number',
         ],
-        'date_range' => [
-            'label' => 'Period',
-            'from_date' => 'From Date',
-            'to_date' => 'To Date',
-            'help' => 'Select the period of interest',
+        'fiscal_code' => [
+            'label' => 'Fiscal Code',
+        ],
+        'city' => [
+            'label' => 'City',
+        ],
+        'province' => [
+            'label' => 'Province',
+        ],
+        'phone' => [
+            'label' => 'Phone',
+        ],
+        'email' => [
+            'label' => 'Email',
+        ],
+        'is_active' => [
+            'label' => 'Active',
+        ],
+        'created_at' => [
+            'label' => 'Creation Date',
+        ],
+        'updated_at' => [
+            'label' => 'Last Modified',
+        ],
+        'view' => [
+            'label' => 'View',
+        ],
+        'edit' => [
+            'label' => 'Edit',
+        ],
+        'activity' => [
+            'label' => 'Activity',
         ],
     ],
-    'messages' => [
-        'created' => 'Call recorded successfully',
-        'updated' => 'Call updated successfully',
-        'deleted' => 'Call deleted successfully',
-        'imported' => 'Calls imported successfully',
+    'model' => [
+        'label' => 'Phone Call',
     ],
 ];
-

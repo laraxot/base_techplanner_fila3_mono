@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'content' => 'I dati personali forniti saranno trattati nel rispetto della normativa sulla privacy.',
     'link_text' => 'Informativa sulla Privacy',

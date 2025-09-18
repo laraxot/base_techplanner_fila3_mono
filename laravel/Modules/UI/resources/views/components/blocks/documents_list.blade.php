@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title' => 'Documenti'])
 
 <div class="bg-white p-6 rounded-lg shadow-md">
@@ -95,4 +100,4 @@
             {{ $documents->links() }}
         </div>
     @endif
-</div> 
+</div>

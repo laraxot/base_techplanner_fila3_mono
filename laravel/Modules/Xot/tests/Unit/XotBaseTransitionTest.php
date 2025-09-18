@@ -12,8 +12,7 @@ uses(RefreshDatabase::class);
 describe('XotBaseTransition', function () {
     beforeEach(function () {
         // Create a concrete test transition class
-        $this->transition = new class extends XotBaseTransition
-        {
+        $this->transition = new class extends XotBaseTransition {
             public static string $name = 'test_transition';
 
             #[\Override]
@@ -26,15 +25,14 @@ describe('XotBaseTransition', function () {
             }
 
             #[\Override]
-            public function sendRecipientNotification(?UserContract $recipient): void
+            public function sendRecipientNotification(null|UserContract $recipient): void
             {
                 // Mock implementation
             }
         };
 
         // Create a test record
-        $this->record = new class extends Model implements UserContract
-        {
+        $this->record = new class extends Model implements UserContract {
             protected $table = 'test_users';
 
             protected $fillable = ['name', 'email'];
@@ -55,7 +53,7 @@ describe('XotBaseTransition', function () {
                 return '';
             }
 
-            public function getRememberToken(): ?string
+            public function getRememberToken(): null|string
             {
                 return null;
             }
@@ -108,10 +106,14 @@ describe('XotBaseTransition', function () {
     it('returns correct notification recipients structure', function () {
         $recipients = $this->transition->getNotificationRecipients();
 
-        expect($recipients)->toBeArray()
-            ->and($recipients)->toHaveKey('test_user')
-            ->and($recipients)->toHaveKey('null_user')
-            ->and($recipients['null_user'])->toBeNull();
+        expect($recipients)
+            ->toBeArray()
+            ->and($recipients)
+            ->toHaveKey('test_user')
+            ->and($recipients)
+            ->toHaveKey('null_user')
+            ->and($recipients['null_user'])
+            ->toBeNull();
     });
 
     it('has sendRecipientNotification method', function () {
@@ -120,28 +122,24 @@ describe('XotBaseTransition', function () {
 
     it('can send notification to user contract', function () {
         // This should not throw an exception
-        expect(fn () => $this->transition->sendRecipientNotification($this->record))
-            ->not->toThrow(Exception::class);
+        expect(fn() => $this->transition->sendRecipientNotification($this->record))->not->toThrow(Exception::class);
     });
 
     it('can send notification to null recipient', function () {
         // This should not throw an exception
-        expect(fn () => $this->transition->sendRecipientNotification(null))
-            ->not->toThrow(Exception::class);
+        expect(fn() => $this->transition->sendRecipientNotification(null))->not->toThrow(Exception::class);
     });
 
     it('processes recipients correctly in sendNotifications', function () {
         // Mock recipients with mixed types
-        $transition = new class extends XotBaseTransition
-        {
+        $transition = new class extends XotBaseTransition {
             public static string $name = 'test_mixed_transition';
 
             #[\Override]
             public function getNotificationRecipients(): array
             {
                 return [
-                    'valid_user' => new class extends Model implements UserContract
-                    {
+                    'valid_user' => new class extends Model implements UserContract {
                         protected $table = 'test_users';
 
                         public function getAuthIdentifierName(): string
@@ -159,12 +157,14 @@ describe('XotBaseTransition', function () {
                             return '';
                         }
 
-                        public function getRememberToken(): ?string
+                        public function getRememberToken(): null|string
                         {
                             return null;
                         }
 
-                        public function setRememberToken($value): void {}
+                        public function setRememberToken($value): void
+                        {
+                        }
 
                         public function getRememberTokenName(): string
                         {
@@ -176,7 +176,7 @@ describe('XotBaseTransition', function () {
             }
 
             #[\Override]
-            public function sendRecipientNotification(?UserContract $recipient): void
+            public function sendRecipientNotification(null|UserContract $recipient): void
             {
                 // Mock implementation
             }
@@ -189,9 +189,12 @@ describe('XotBaseTransition', function () {
     it('validates abstract class structure', function () {
         $reflection = new ReflectionClass(XotBaseTransition::class);
 
-        expect($reflection->isAbstract())->toBeTrue()
-            ->and($reflection->hasMethod('sendNotifications'))->toBeTrue()
-            ->and($reflection->hasMethod('getRecord'))->toBeTrue();
+        expect($reflection->isAbstract())
+            ->toBeTrue()
+            ->and($reflection->hasMethod('sendNotifications'))
+            ->toBeTrue()
+            ->and($reflection->hasMethod('getRecord'))
+            ->toBeTrue();
     });
 
     it('has proper method signatures', function () {
@@ -199,8 +202,7 @@ describe('XotBaseTransition', function () {
 
         // Check sendNotifications method
         $sendMethod = $reflection->getMethod('sendNotifications');
-        expect($sendMethod->isPublic())->toBeTrue()
-            ->and($sendMethod->getReturnType()?->getName())->toBe('void');
+        expect($sendMethod->isPublic())->toBeTrue()->and($sendMethod->getReturnType()?->getName())->toBe('void');
 
         // Check getRecord method
         $getRecordMethod = $reflection->getMethod('getRecord');
@@ -226,7 +228,9 @@ describe('XotBaseTransition', function () {
 
     it('validates inheritance requirements', function () {
         // Test that concrete implementations must provide required methods
-        expect(method_exists($this->transition, 'getNotificationRecipients'))->toBeTrue()
-            ->and(method_exists($this->transition, 'sendRecipientNotification'))->toBeTrue();
+        expect(method_exists($this->transition, 'getNotificationRecipients'))
+            ->toBeTrue()
+            ->and(method_exists($this->transition, 'sendRecipientNotification'))
+            ->toBeTrue();
     });
 });

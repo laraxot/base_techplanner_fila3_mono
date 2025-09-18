@@ -13,12 +13,10 @@ return [
         'created_at' => 'Créé le',
         'updated_at' => 'Màj le',
     ],
-
     'select-options' => [
         'same-tab' => 'Même fenêtre',
         'new-tab' => 'Nouvelle fenêtre',
     ],
-
     'items' => [
         'empty' => 'pas d\'élément',
         'add-item' => 'Ajouter un élément',
@@ -29,7 +27,6 @@ return [
         'dedent' => 'Désindenter',
         'remove' => 'Supprimer',
     ],
-
     'items-modal' => [
         'title' => 'Élément',
         'label' => 'Label',

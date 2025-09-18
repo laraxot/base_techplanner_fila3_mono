@@ -18,26 +18,24 @@ class AddAttachmentAction extends Action
     protected function setUp(): void
     {
         parent::setUp();
-        $this
-            ->icon('heroicon-o-plus')
+        $this->icon('heroicon-o-plus')
             ->color('success')
             ->button()
-            ->form(
-                fn (): array => static::getFormSchema(false)
-            )
-            ->action(
-                static::formHandlerCallback(...),
-            );
+            ->form(fn(): array => static::getFormSchema(false))
+            ->action(static::formHandlerCallback(...));
     }
 
     public static function trans(string $key): string
     {
-        Assert::string($ris = trans('media::add_attachment_action.'.$key), '['.$key.']['.__LINE__.']['.class_basename(__CLASS__).']');
+        Assert::string(
+            $ris = trans('media::add_attachment_action.' . $key),
+            '[' . $key . '][' . __LINE__ . '][' . class_basename(__CLASS__) . ']',
+        );
 
         return $ris;
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'add_attachment';
     }
@@ -62,18 +60,18 @@ class AddAttachmentAction extends Action
                 ->required()
                 ->columnSpanFull(),
             /*
-            Radio::make('attachment_type')
-                ->hiddenLabel()
-                ->options(
-                    AttachmentTypeEnum::descriptionsByValue($asset ? AttachmentTypeEnum::cases() : AttachmentTypeEnum::operationCases()),
-                )
-                ->default(AttachmentTypeEnum::Image())
-                ->columns(
-                    $asset ? \count(AttachmentTypeEnum::cases()) : \count(AttachmentTypeEnum::operationCases()),
-                )
-                ->required()
-                ->columnSpanFull(),
-            */
+             * Radio::make('attachment_type')
+             * ->hiddenLabel()
+             * ->options(
+             * AttachmentTypeEnum::descriptionsByValue($asset ? AttachmentTypeEnum::cases() : AttachmentTypeEnum::operationCases()),
+             * )
+             * ->default(AttachmentTypeEnum::Image())
+             * ->columns(
+             * $asset ? \count(AttachmentTypeEnum::cases()) : \count(AttachmentTypeEnum::operationCases()),
+             * )
+             * ->required()
+             * ->columnSpanFull(),
+             */
             // Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->hint(static::trans('fields.name_hint'))
@@ -89,32 +87,26 @@ class AddAttachmentAction extends Action
         $mediaCollection = $data['attachment_type'] ?? 'default';
         // $mediaCollection = 'default';
 
-        if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
+        if (!method_exists($ownerRecord, 'addMediaFromDisk')) {
             throw new \Exception('wip');
         }
 
         $attachment = $ownerRecord
-            ->addMediaFromDisk(
-                $data['file'],
-                config('attachment.upload.disk.driver'),
-            )
-            ->setName(
-                $data['name'] ?? Str::beforeLast($data['original_file_name'], '.'),
-            )
+            ->addMediaFromDisk($data['file'], config('attachment.upload.disk.driver'))
+            ->setName($data['name'] ?? Str::beforeLast($data['original_file_name'], '.'))
             ->preservingOriginal()
             ->toMediaCollection($mediaCollection);
 
         $user_id = authId();
-        $attachment->update(
-            [
-                'created_by' => $user_id,
-                'updated_by' => $user_id,
-            ]
-        );
+        $attachment->update([
+            'created_by' => $user_id,
+            'updated_by' => $user_id,
+        ]);
+
         /*
-        $attachment->created_by=$user_id;
-        $attachment->created_by=$user_id;
-        $attachment->save();
-        */
+         * $attachment->created_by=$user_id;
+         * $attachment->created_by=$user_id;
+         * $attachment->save();
+         */
     }
 }

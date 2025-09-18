@@ -25,7 +25,6 @@ class SanitizeFieldsHeaderAction extends Action
     {
         parent::setUp();
         $this->translateLabel()
-            
             ->tooltip('sanitize')
             ->icon('heroicon-o-shield-exclamation')
             ->action(function (ListRecords $livewire) {
@@ -33,7 +32,7 @@ class SanitizeFieldsHeaderAction extends Action
                 $modelClass = $resource::getModel();
                 // @phpstan-ignore staticMethod.nonObject
                 $rows = $modelClass::get();
-                if (! is_iterable($rows)) {
+                if (!is_iterable($rows)) {
                     $rows = [];
                 }
                 $c = 0;
@@ -41,9 +40,9 @@ class SanitizeFieldsHeaderAction extends Action
                     Assert::isInstanceOf($row, Model::class);
                     $save = false;
                     foreach ($this->fields as $field) {
-                        Assert::string($item = $row->{$field});
+                        Assert::string($item = $row->{$field}, __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
                         $string = app(SanitizeAction::class)->execute($item);
-                        if ($string != $item) {
+                        if ($string !== $item) {
                             $row->{$field} = $string;
                             $save = true;
                             ++$c;
@@ -54,7 +53,7 @@ class SanitizeFieldsHeaderAction extends Action
                     }
                 }
                 Notification::make()
-                    ->title(''.$c.' record sanitized')
+                    ->title('' . $c . ' record sanitized')
                     ->success()
                     ->send();
             });
@@ -67,7 +66,7 @@ class SanitizeFieldsHeaderAction extends Action
         return $this;
     }
 
-    public static function getDefaultName(): ?string
+    public static function getDefaultName(): null|string
     {
         return 'sanitize-fields-header';
     }

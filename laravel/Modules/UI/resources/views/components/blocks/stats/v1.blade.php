@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title', 'stats'])
 
 <section class="bg-indigo-700">
@@ -20,4 +25,4 @@
             @endforeach
         </dl>
     </div>
-</section> 
+</section>

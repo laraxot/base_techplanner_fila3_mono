@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'title' => 'Titolo CTA',
     'description' => 'Descrizione della call to action',

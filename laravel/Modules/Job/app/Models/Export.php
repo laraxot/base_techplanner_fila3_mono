@@ -81,7 +81,6 @@ class Export extends BaseExport
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'payload' => 'array',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',

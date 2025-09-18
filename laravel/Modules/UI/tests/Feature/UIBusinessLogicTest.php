@@ -194,7 +194,7 @@ describe('UI Business Logic Integration', function () {
             expect($asset->is_compressed)->toBeTrue();
 
             // Verifica che gli asset CSS e JS possano essere minificati
-            if (in_array($asset->type, ['css', 'js'])) {
+            if (in_array($asset->type, ['css', 'js'], strict: true)) {
                 expect($asset->is_minified)->toBeTrue();
             }
         });
@@ -236,7 +236,7 @@ describe('UI Business Logic Integration', function () {
 
     describe('Component Service Business Rules', function () {
         it('enforces component rendering rules', function () {
-            $service = new ComponentService;
+            $service = new ComponentService();
 
             $component = Component::factory()->create([
                 'name' => 'renderable-component',
@@ -256,7 +256,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces component caching rules', function () {
-            $service = new ComponentService;
+            $service = new ComponentService();
 
             $component = Component::factory()->create([
                 'name' => 'cacheable-component',
@@ -277,7 +277,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces component validation rules', function () {
-            $service = new ComponentService;
+            $service = new ComponentService();
 
             $component = Component::factory()->create([
                 'name' => 'validated-component',
@@ -293,13 +293,14 @@ describe('UI Business Logic Integration', function () {
             expect($component->validation_rules)->toBeArray();
             expect($component->validation_rules['required'])->toBeTrue();
             expect($component->validation_rules['min_length'])->toBeGreaterThan(0);
-            expect($component->validation_rules['max_length'])->toBeGreaterThan($component->validation_rules['min_length']);
+            expect($component->validation_rules['max_length'])
+                ->toBeGreaterThan($component->validation_rules['min_length']);
         });
     });
 
     describe('Theme Service Business Rules', function () {
         it('enforces theme compilation rules', function () {
-            $service = new ThemeService;
+            $service = new ThemeService();
 
             $theme = Theme::factory()->create([
                 'name' => 'Compilable Theme',
@@ -318,13 +319,15 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces theme asset compilation', function () {
-            $service = new ThemeService;
+            $service = new ThemeService();
 
             $theme = $this->theme;
-            $assets = Asset::factory()->count(3)->create([
-                'theme_id' => $theme->id,
-                'type' => 'css',
-            ]);
+            $assets = Asset::factory()
+                ->count(3)
+                ->create([
+                    'theme_id' => $theme->id,
+                    'type' => 'css',
+                ]);
 
             // Verifica che il tema abbia asset da compilare
             expect($theme->assets)->toHaveCount(3);
@@ -341,7 +344,7 @@ describe('UI Business Logic Integration', function () {
         });
 
         it('enforces theme configuration inheritance', function () {
-            $service = new ThemeService;
+            $service = new ThemeService();
 
             $parentTheme = Theme::factory()->create([
                 'name' => 'Parent Theme',
@@ -361,10 +364,7 @@ describe('UI Business Logic Integration', function () {
             ]);
 
             // Verifica che il tema figlio erediti le configurazioni del padre
-            $mergedConfig = array_merge_recursive(
-                $parentTheme->config ?? [],
-                $childTheme->config ?? []
-            );
+            $mergedConfig = array_merge_recursive($parentTheme->config ?? [], $childTheme->config ?? []);
 
             expect($mergedConfig['colors']['primary'])->toBe('#007bff');
             expect($mergedConfig['colors']['secondary'])->toBe('#6c757d');
@@ -445,17 +445,21 @@ describe('UI Business Logic Integration', function () {
     describe('Performance and Optimization Business Rules', function () {
         it('enforces asset bundling rules', function () {
             $theme = $this->theme;
-            $cssAssets = Asset::factory()->count(3)->create([
-                'theme_id' => $theme->id,
-                'type' => 'css',
-                'should_bundle' => true,
-            ]);
+            $cssAssets = Asset::factory()
+                ->count(3)
+                ->create([
+                    'theme_id' => $theme->id,
+                    'type' => 'css',
+                    'should_bundle' => true,
+                ]);
 
-            $jsAssets = Asset::factory()->count(2)->create([
-                'theme_id' => $theme->id,
-                'type' => 'js',
-                'should_bundle' => true,
-            ]);
+            $jsAssets = Asset::factory()
+                ->count(2)
+                ->create([
+                    'theme_id' => $theme->id,
+                    'type' => 'js',
+                    'should_bundle' => true,
+                ]);
 
             // Verifica che gli asset siano marcati per il bundling
             foreach ($cssAssets as $asset) {
@@ -468,7 +472,7 @@ describe('UI Business Logic Integration', function () {
 
             // Verifica che il bundling riduca il numero di file
             $bundledCssCount = 1; // Un file CSS bundle
-            $bundledJsCount = 1;  // Un file JS bundle
+            $bundledJsCount = 1; // Un file JS bundle
 
             expect($bundledCssCount)->toBeLessThan($cssAssets->count());
             expect($bundledJsCount)->toBeLessThan($jsAssets->count());

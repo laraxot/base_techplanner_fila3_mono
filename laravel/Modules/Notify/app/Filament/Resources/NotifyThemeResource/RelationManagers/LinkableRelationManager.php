@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Resources\NotifyThemeResource\RelationManagers;
 
-use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
-
 
 class LinkableRelationManager extends XotBaseRelationManager
 {
     protected static string $relationship = 'linkable';
 
-    protected static ?string $recordTitleAttribute = 'id';
+    protected static null|string $recordTitleAttribute = 'id';
 
     #[\Override]
     public function getFormSchema(): array
     {
         return [
-            TextInput::make('id')
-                ->required()
-                ->maxLength(255),
+            TextInput::make('id')->required()->maxLength(255),
         ];
     }
 }

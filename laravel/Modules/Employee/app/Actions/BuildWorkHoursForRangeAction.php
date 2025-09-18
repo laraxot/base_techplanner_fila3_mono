@@ -76,7 +76,7 @@ class BuildWorkHoursForRangeAction
             $startStr = $s['in'] ? $s['in']->format('H:i') : null;
             $endStr = $s['out'] ? $s['out']->format('H:i') : null;
 
-            if (! isset($byDate[$dateKey])) {
+            if (!isset($byDate[$dateKey])) {
                 $byDate[$dateKey] = [];
             }
 

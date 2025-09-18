@@ -10,11 +10,11 @@ class GroupWidget extends XotBaseWidget
 {
     public array $widgets = [];
 
-    protected static ?string $pollingInterval = null;
+    protected static null|string $pollingInterval = null;
 
     #[\Override]
-    public function getFormSchema() :array {
+    public function getFormSchema(): array
+    {
         return [];
     }
-
 }

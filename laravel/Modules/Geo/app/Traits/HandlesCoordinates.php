@@ -15,14 +15,16 @@ trait HandlesCoordinates
      * @param float|null $latitude  La latitudine da validare
      * @param float|null $longitude La longitudine da validare
      */
-    protected function areValidCoordinates(?float $latitude, ?float $longitude): bool
+    protected function areValidCoordinates(null|float $latitude, null|float $longitude): bool
     {
-        return null !== $latitude
-            && null !== $longitude
-            && $latitude >= -90
-            && $latitude <= 90
-            && $longitude >= -180
-            && $longitude <= 180;
+        return (
+            null !== $latitude &&
+            null !== $longitude &&
+            $latitude >= -90 &&
+            $latitude <= 90 &&
+            $longitude >= -180 &&
+            $longitude <= 180
+        );
     }
 
     /**
@@ -40,9 +42,9 @@ trait HandlesCoordinates
         $latDelta = deg2rad($lat2 - $lat1);
         $lonDelta = deg2rad($lon2 - $lon1);
 
-        $a = sin($latDelta / 2) * sin($latDelta / 2) +
-            cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
-            sin($lonDelta / 2) * sin($lonDelta / 2);
+        $a =
+            (sin($latDelta / 2) * sin($latDelta / 2)) +
+            (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($lonDelta / 2) * sin($lonDelta / 2));
 
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
@@ -58,10 +60,6 @@ trait HandlesCoordinates
      */
     protected function formatCoordinates(float $latitude, float $longitude, int $decimals = 6): string
     {
-        return sprintf(
-            '%s, %s',
-            number_format($latitude, $decimals),
-            number_format($longitude, $decimals)
-        );
+        return sprintf('%s, %s', number_format($latitude, $decimals), number_format($longitude, $decimals));
     }
 }

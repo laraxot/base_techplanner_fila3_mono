@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title' => 'Prenota Appuntamento'])
 
 <div class="bg-white p-6 rounded-lg shadow-md" id="booking-form">
@@ -78,4 +83,4 @@
             </a>
         </div>
     @endif
-</div> 
+</div>

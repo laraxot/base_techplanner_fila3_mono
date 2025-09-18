@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'title' => 'Page Header Title', 
     'description' => 'Description goes here'

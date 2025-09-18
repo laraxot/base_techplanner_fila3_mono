@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <button 
     x-data="{
         darkMode: $persist(false).as('dark_mode'),

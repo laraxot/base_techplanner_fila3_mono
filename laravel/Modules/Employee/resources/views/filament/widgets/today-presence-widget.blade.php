@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- TodayPresenceWidget View - Real-time Presence Tracking --}}
 <x-filament-widgets::widget>
     <x-filament::section>

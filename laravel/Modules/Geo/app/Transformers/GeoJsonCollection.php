@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Geo\Transformers;
 
 /*
-*  GEOJSON e' uno standard
-* https://it.wikipedia.org/wiki/GeoJSON
-*/
+ *  GEOJSON e' uno standard
+ * https://it.wikipedia.org/wiki/GeoJSON
+ */
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -29,8 +29,8 @@ class GeoJsonCollection extends ResourceCollection
             'type' => 'FeatureCollection',
             'features' => $this->collection,
             /*'links' => [
-                'self' => 'link-value',
-            ],*/
+             * 'self' => 'link-value',
+             * ],*/
         ];
     }
 }

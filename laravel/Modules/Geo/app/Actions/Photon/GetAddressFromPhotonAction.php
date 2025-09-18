@@ -9,10 +9,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 use Modules\Geo\Datas\AddressData;
 use Modules\Geo\Datas\Photon\PhotonAddressData;
+use Webmozart\Assert\Assert;
 
 use function Safe\json_decode;
-
-use Webmozart\Assert\Assert;
 
 /**
  * Action per ottenere l'indirizzo e le coordinate tramite Photon.
@@ -20,19 +19,18 @@ use Webmozart\Assert\Assert;
  * Questa classe utilizza l'API Photon per convertire
  * un indirizzo in coordinate geografiche e dettagli dell'indirizzo.
  */
-class GetAddressFromPhotonAction
+readonly class GetAddressFromPhotonAction
 {
     private const API_URL = 'https://photon.komoot.io/api';
 
     public function __construct(
-        private readonly Client $client,
-    ) {
-    }
+        private  Client $client,
+    ) {}
 
     /**
      * Ottiene i dettagli dell'indirizzo utilizzando Photon.
      */
-    public function execute(string $address): ?AddressData
+    public function execute(string $address): null|AddressData
     {
         $this->validateInput($address);
 
@@ -54,7 +52,7 @@ class GetAddressFromPhotonAction
                 city: $photonData->city,
                 postal_code: (int) ($photonData->postcode ?: 0),
                 street: $photonData->street,
-                street_number: $photonData->housenumber
+                street_number: $photonData->housenumber,
             );
         } catch (\Exception $e) {
             Log::error('Exception during Photon API request', [

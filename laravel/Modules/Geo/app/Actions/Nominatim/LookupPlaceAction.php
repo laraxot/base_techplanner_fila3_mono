@@ -48,7 +48,7 @@ class LookupPlaceAction
         $data = json_decode($response->getBody()->getContents(), true);
 
         if (empty($data)) {
-            throw new \RuntimeException('No results found for OSM ID: '.$osmId);
+            throw new \RuntimeException('No results found for OSM ID: ' . $osmId);
         }
 
         $result = $data[0];
@@ -56,7 +56,7 @@ class LookupPlaceAction
         return new LocationData(
             latitude: (float) $result['lat'],
             longitude: (float) $result['lon'],
-            address: $result['display_name']
+            address: $result['display_name'],
         );
     }
 }

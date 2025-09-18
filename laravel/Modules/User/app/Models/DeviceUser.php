@@ -51,6 +51,7 @@ use Modules\Xot\Datas\XotData;
 class DeviceUser extends BasePivot
 {
     use HasFactory;
+
     /** @var list<string> */
     protected $fillable = [
         'id',
@@ -105,15 +106,12 @@ class DeviceUser extends BasePivot
             // 'locales' => 'array',
             'push_notifications_token' => 'string',
             'push_notifications_enabled' => 'boolean',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'login_at' => 'datetime',
             'logout_at' => 'datetime',
         ];

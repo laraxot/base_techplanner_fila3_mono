@@ -35,13 +35,17 @@ class RegisterController extends XotBaseController
     {
         $success = [];
         $messages = __('user::validation');
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            // 'password' => 'required',
-            'password' => ['required',  PasswordRule::defaults()],
-            'c_password' => 'required|same:password',
-        ], $messages);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                // 'password' => 'required',
+                'password' => ['required', PasswordRule::defaults()],
+                'c_password' => 'required|same:password',
+            ],
+            $messages,
+        );
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors()->all());
         }

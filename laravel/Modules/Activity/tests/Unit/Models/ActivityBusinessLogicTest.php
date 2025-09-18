@@ -7,7 +7,7 @@ use Modules\Activity\Models\Activity;
 describe('Activity Business Logic', function () {
     test('activity has correct connection configured', function () {
         $activity = new Activity();
-        
+
         expect($activity->getConnectionName())->toBe('activity');
     });
 
@@ -27,7 +27,7 @@ describe('Activity Business Logic', function () {
             'created_at',
             'updated_at',
         ];
-        
+
         expect($activity->getFillable())->toEqual($expectedFillable);
     });
 

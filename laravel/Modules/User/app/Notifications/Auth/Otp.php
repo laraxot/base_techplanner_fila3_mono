@@ -20,15 +20,18 @@ class Otp extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public UserContract $user, public string $code) {}
+    public function __construct(
+        public UserContract $user,
+        public string $code,
+    ) {}
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  \Illuminate\Notifications\AnonymousNotifiable  $notifiable
-     * @return array
+     * @param  mixed  $_notifiable L'entità da notificare
+     * @return array<int, string>
      */
-    public function via($notifiable)
+    public function via(mixed $_notifiable): array
     {
         return ['mail']; // Puoi aggiungere anche 'database', 'slack', ecc. se vuoi supportare altri canali.
     }
@@ -45,8 +48,7 @@ class Otp extends Notification implements ShouldQueue
         /** @var string */
         $app_name = config('app.name');
 
-        return (new MailMessage)
-
+        return new MailMessage()
             ->template('user::notifications.email')
             ->subject(__('user::otp.mail.subject'))
             ->greeting(__('user::otp.mail.greeting'))
@@ -64,7 +66,6 @@ class Otp extends Notification implements ShouldQueue
      */
     public function toArray(UserContract $notifiable)
     {
-        return [
-        ];
+        return [];
     }
 }

@@ -1,33 +1,21 @@
 <?php
 
-return  [
-  'actions' => 
-   [
-    'view' => 
-     [
-      'label' => 'view',
+declare(strict_types=1);
+
+
+return [
+    'actions' => [
+        'view' => [
+            'label' => 'view',
+        ],
+        'delete' => [
+            'label' => 'delete',
+        ],
+        'cancel' => [
+            'label' => 'cancel',
+        ],
+        'save' => [
+            'label' => 'save',
+        ],
     ],
-    'delete' => 
-     [
-      'label' => 'delete',
-<<<<<<< HEAD
-    ],
-=======
-    ),
->>>>>>> 4efd3ae9 (.)
-    'cancel' => 
-     [
-      'label' => 'cancel',
-    ],
-    'save' => 
-     [
-      'label' => 'save',
-<<<<<<< HEAD
-    ],
-  ],
 ];
-=======
-    ),
-  ),
-);
->>>>>>> 4efd3ae9 (.)

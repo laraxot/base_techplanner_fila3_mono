@@ -11,8 +11,8 @@ use Modules\Geo\Models\Place;
 use Modules\Geo\Models\Traits\GeoTrait;
 use Modules\TechPlanner\Contracts\WorkerContract;
 use Modules\TechPlanner\Models\Device;
-use Modules\Xot\Services\PanelService;
 use Modules\Xot\Actions\Cast\SafeStringCastAction;
+use Modules\Xot\Services\PanelService;
 
 /**
  * Modules\TechPlanner\Models\Worker.
@@ -135,15 +135,23 @@ use Modules\Xot\Actions\Cast\SafeStringCastAction;
 class Worker extends BaseModel implements WorkerContract
 {
     use GeoTrait;
+
     // protected $connection = 'customer'; // this will use the specified database conneciton
 
     /** @var list<string> */
     protected $fillable = [
-        'id', 'type',
-        'first_name', 'last_name', 'full_name',
-        'address', 'full_address',
-        'note', 'birth_day', 'birth_place',
-        'cod_fisc', 'p_iva',
+        'id',
+        'type',
+        'first_name',
+        'last_name',
+        'full_name',
+        'address',
+        'full_address',
+        'note',
+        'birth_day',
+        'birth_place',
+        'cod_fisc',
+        'p_iva',
     ];
 
     /**
@@ -151,6 +159,7 @@ class Worker extends BaseModel implements WorkerContract
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -199,7 +208,7 @@ class Worker extends BaseModel implements WorkerContract
         $lastNameStr = $this->safeStringCast($lastName);
         $firstNameStr = $this->safeStringCast($firstName);
 
-        $computed = trim($typeStr.' '.$lastNameStr.' '.$firstNameStr);
+        $computed = trim($typeStr . ' ' . $lastNameStr . ' ' . $firstNameStr);
 
         return $computed;
     }
@@ -225,19 +234,19 @@ class Worker extends BaseModel implements WorkerContract
     {
         // TODO: Implement jobRoles relation before using this scope
         return $query->where('id', '>', 0); // Temporary placeholder
-        
+
         /*
-        return $query->whereHas(
-            'jobRoles', function (Builder $query) use ($id): void {
-                $query->where('job_role_id', $id);
-            }
-        );
-        */
+         * return $query->whereHas(
+         * 'jobRoles', function (Builder $query) use ($id): void {
+         * $query->where('job_role_id', $id);
+         * }
+         * );
+         */
     }
 
-    public function getCodFiscAttribute(?string $value): ?string
+    public function getCodFiscAttribute(null|string $value): null|string
     {
-        if ($value == null) {
+        if ($value === null) {
             return null;
         }
         $value = str_replace(' ', '', $value);
@@ -248,6 +257,6 @@ class Worker extends BaseModel implements WorkerContract
         $citta = substr($value, 11, 4);
         $crc = substr($value, 15, 1);
 
-        return $nome.' '.$cognome.' '.$data.' '.$citta.' '.$crc;
+        return $nome . ' ' . $cognome . ' ' . $data . ' ' . $citta . ' ' . $crc;
     }
 }

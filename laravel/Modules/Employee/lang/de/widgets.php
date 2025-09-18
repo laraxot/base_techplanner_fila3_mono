@@ -19,7 +19,6 @@ return [
             'description' => 'Sie haben derzeit keine ausstehenden Aufgaben.',
         ],
     ],
-
     'upcoming_schedule' => [
         'title' => 'Nächste 7 Tage',
         'description' => 'Anstehende Termine und Veranstaltungen',
@@ -46,7 +45,6 @@ return [
             'description' => 'Es gibt keine Ereignisse in den nächsten 7 Tagen.',
         ],
     ],
-
     'time_off_balance' => [
         'title' => 'Meine Salden',
         'description' => 'Urlaubs- und Genehmigungssalden für :month',
@@ -62,7 +60,6 @@ return [
         'last_updated' => 'Zuletzt aktualisiert',
         'view_details' => 'Details anzeigen',
     ],
-
     'today_presence' => [
         'title' => 'Wer ist heute da',
         'description' => 'Echtzeit-Anwesenheit',
@@ -74,7 +71,6 @@ return [
         'last_updated' => 'Aktualisiert um',
         'view_details' => 'Details anzeigen',
     ],
-
     'pending_requests' => [
         'title' => 'Meine ausstehenden Anfragen',
         'description' => 'Status Ihrer Genehmigungsanfragen',
@@ -101,7 +97,6 @@ return [
             'description' => 'Alle Ihre Anfragen wurden vom Administrator bearbeitet.',
         ],
     ],
-
     // Existing widgets
     'time_tracking' => [
         'title' => 'Zeiterfassung',
@@ -120,7 +115,6 @@ return [
             'break' => 'In der Pause',
         ],
     ],
-
     'employee_overview' => [
         'title' => 'Mitarbeiterübersicht',
         'description' => 'Allgemeine Mitarbeiterstatistiken',
@@ -129,7 +123,6 @@ return [
         'departments' => 'Abteilungen',
         'new_this_month' => 'Neu in diesem Monat',
     ],
-
     'work_hour_stats' => [
         'title' => 'Arbeitsstundenstatistiken',
         'description' => 'Zeiterfassungsanalyse',

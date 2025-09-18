@@ -24,7 +24,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
     /**
      * Ordine di visualizzazione del widget.
      */
-    protected static ?int $sort = 1;
+    protected static null|int $sort = 1;
     protected int|string|array $columnSpan = 1;
 
     /**
@@ -44,9 +44,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
 
             // Dipendenti attivi oggi (hanno fatto almeno una timbratura)
             // Nota: Utilizziamo la tabella work_hours per le timbrature
-            $activeToday = WorkHour::whereDate('timestamp', $today)
-                ->distinct('employee_id')
-                ->count('employee_id');
+            $activeToday = WorkHour::whereDate('timestamp', $today)->distinct('employee_id')->count('employee_id');
 
             // Dipendenti in ferie (mockup - no status field in current schema)
             $onLeave = 0;
@@ -60,18 +58,15 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
                     ->descriptionIcon('heroicon-m-users')
                     ->color('primary')
                     ->chart($this->getEmployeeTrendChart()),
-
                 Stat::make(__('employee::widgets.overview.active_today'), $activeToday)
                     ->description(__('employee::widgets.overview.active_today_desc'))
                     ->descriptionIcon('heroicon-m-clock')
                     ->color($activeToday > 0 ? 'success' : 'gray')
                     ->chart($this->getDailyActivityChart()),
-
                 Stat::make(__('employee::widgets.overview.on_leave'), $onLeave)
                     ->description(__('employee::widgets.overview.on_leave_desc'))
                     ->descriptionIcon('heroicon-m-calendar')
                     ->color('success'), // Always success since no leave system implemented
-
                 Stat::make(__('employee::widgets.overview.new_this_month'), $newThisMonth)
                     ->description(__('employee::widgets.overview.new_this_month_desc'))
                     ->descriptionIcon('heroicon-m-user-plus')
@@ -107,9 +102,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
         $data = [];
         for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::today()->subDays($i);
-            $activeCount = WorkHour::whereDate('timestamp', $date)
-                ->distinct('employee_id')
-                ->count('employee_id');
+            $activeCount = WorkHour::whereDate('timestamp', $date)->distinct('employee_id')->count('employee_id');
             $data[] = $activeCount;
         }
 
@@ -126,9 +119,7 @@ class EmployeeOverviewWidget extends XotBaseStatsOverviewWidget
         $data = [];
         for ($i = 6; $i >= 0; $i--) {
             $month = Carbon::now()->subMonths($i);
-            $data[] = Employee::whereYear('created_at', $month->year)
-                ->whereMonth('created_at', $month->month)
-                ->count();
+            $data[] = Employee::whereYear('created_at', $month->year)->whereMonth('created_at', $month->month)->count();
         }
 
         return $data;

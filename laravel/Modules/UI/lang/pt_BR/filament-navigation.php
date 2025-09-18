@@ -13,12 +13,10 @@ return [
         'created_at' => 'Criado em',
         'updated_at' => 'Editado em',
     ],
-
     'select-options' => [
         'same-tab' => 'Mesma tab',
         'new-tab' => 'Nova tab',
     ],
-
     'items' => [
         'empty' => 'Nenhum item',
         'add-item' => 'Adicionar item',
@@ -29,7 +27,6 @@ return [
         'dedent' => 'Recuar',
         'remove' => 'Remover',
     ],
-
     'items-modal' => [
         'title' => 'Item',
         'label' => 'Nome',

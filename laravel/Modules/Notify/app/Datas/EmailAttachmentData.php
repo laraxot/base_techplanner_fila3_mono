@@ -11,7 +11,7 @@ class EmailAttachmentData extends Data
     public function __construct(
         private string $content,
         public string $name,
-        public string $contentType = 'application/octet-stream'
+        public string $contentType = 'application/octet-stream',
     ) {}
 
     public function getContent(): string

@@ -23,30 +23,23 @@ class ListLogs extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->sortable()
-                ->label('ID'),
-
+            'id' => TextColumn::make('id')->sortable()->label('ID'),
             'message' => TextColumn::make('message')
                 ->searchable()
                 ->wrap()
                 ->label('Message'),
-
             'level' => TextColumn::make('level')
                 ->searchable()
                 ->sortable()
                 ->label('Level'),
-
             'level_name' => TextColumn::make('level_name')
                 ->searchable()
                 ->sortable()
                 ->label('Level Name'),
-
             'context' => TextColumn::make('context')
                 ->searchable()
                 ->wrap()
                 ->label('Context'),
-
             'created_at' => TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -58,17 +51,16 @@ class ListLogs extends XotBaseListRecords
     public function getTableFilters(): array
     {
         return [
-            'level_name' => Tables\Filters\SelectFilter::make('level_name')
-                ->options([
-                    'emergency' => 'Emergency',
-                    'alert' => 'Alert',
-                    'critical' => 'Critical',
-                    'error' => 'Error',
-                    'warning' => 'Warning',
-                    'notice' => 'Notice',
-                    'info' => 'Info',
-                    'debug' => 'Debug',
-                ]),
+            'level_name' => Tables\Filters\SelectFilter::make('level_name')->options([
+                'emergency' => 'Emergency',
+                'alert' => 'Alert',
+                'critical' => 'Critical',
+                'error' => 'Error',
+                'warning' => 'Warning',
+                'notice' => 'Notice',
+                'info' => 'Info',
+                'debug' => 'Debug',
+            ]),
         ];
     }
 

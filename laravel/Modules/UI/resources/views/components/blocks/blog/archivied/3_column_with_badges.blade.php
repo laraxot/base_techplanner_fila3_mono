@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="bg-white px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24">
     <div class="relative mx-auto max-w-lg divide-y-2 divide-gray-200 lg:max-w-7xl">
       <div>
@@ -95,4 +100,3 @@
       </div>
     </div>
   </div>
-  

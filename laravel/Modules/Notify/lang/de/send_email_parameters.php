@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'resource' => [
         'name' => 'send_email_parameters',

@@ -1,13 +1,15 @@
 <?php
 
-use function Laravel\Folio\{name};
+declare(strict_types=1);
+
+
 use Livewire\Volt\Component;
+
+use function Laravel\Folio\name;
 
 name('genesis.about');
 
-new class extends Component
-{
-};
+new class extends Component {};
 ?>
 
 <x-layouts.marketing>

@@ -31,7 +31,7 @@ class ExportTimeDataAction
             'xlsx' => $this->exportToExcel($timeData, $userId, $startDate, $endDate),
             'csv' => $this->exportToCsv($timeData, $userId, $startDate, $endDate),
             'pdf' => $this->exportToPdf($timeData, $userId, $startDate, $endDate),
-            default => throw new \InvalidArgumentException("Unsupported export format: {$format}")
+            default => throw new \InvalidArgumentException("Unsupported export format: {$format}"),
         };
     }
 
@@ -65,16 +65,16 @@ class ExportTimeDataAction
             ],
             'summary' => $baseData['summary'],
             'weekData' => $weekData,
-            'entries' => $allEntries->map(function (WorkHour $entry): array {
-                return [
+            'entries' => $allEntries->map(fn (WorkHour $entry): array => [
                     'date' => $entry->timestamp->format('d/m/Y'),
                     'time' => $entry->timestamp->format('H:i'),
-                    'type' => $entry->type instanceof \BackedEnum ? $entry->type->value : (string) $entry->type,
-                    'status' => $entry->status instanceof \BackedEnum ? $entry->status->value : (string) $entry->status,
+                    'type' => ($entry->type instanceof \BackedEnum) ? $entry->type->value : ((string) $entry->type),
+                    'status' => ($entry->status instanceof \BackedEnum)
+                        ? $entry->status->value
+                        : ((string) $entry->status),
                     'location' => $entry->location_name ?? '',
                     'notes' => $entry->notes ?? '',
-                ];
-            })->toArray(),
+                ])->toArray(),
             'generatedAt' => Carbon::now()->format('d/m/Y H:i'),
         ];
     }
@@ -161,7 +161,7 @@ class ExportTimeDataAction
         // Converti in stringa CSV
         $output = '';
         foreach ($csv as $row) {
-            $output .= '"'.implode('","', $row).'"'."\n";
+            $output .= '"' . implode('","', $row) . '"' . "\n";
         }
 
         return $output;

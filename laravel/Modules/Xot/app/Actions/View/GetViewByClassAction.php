@@ -6,8 +6,8 @@ namespace Modules\Xot\Actions\View;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Spatie\QueueableAction\QueueableAction;
 use Modules\Xot\Actions\Module\GetModuleNameByModelClassAction;
+use Spatie\QueueableAction\QueueableAction;
 
 /**
  * Classe per la conversione di nomi di classi in nomi di viste.
@@ -31,7 +31,7 @@ class GetViewByClassAction
         $module = Str::of($class)->betweenFirst('Modules\\', '\\')->toString();
         $module_low = Str::of($module)->lower()->toString();
         $after = Str::of($class)
-            ->after('Modules\\'.$module.'\\')
+            ->after('Modules\\' . $module . '\\')
             ->explode('\\')
             ->toArray();
 
@@ -62,10 +62,10 @@ class GetViewByClassAction
         });
 
         $implode = implode('.', $mapped);
-        $view = $module_low.'::'.$implode.$suffix;
+        $view = $module_low . '::' . $implode . $suffix;
 
         if (!view()->exists($view)) {
-            throw new \Exception('View not found: '.$view);
+            throw new \Exception('View not found: ' . $view);
         }
 
         return $view;

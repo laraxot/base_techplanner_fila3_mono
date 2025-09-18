@@ -35,7 +35,7 @@ class PathHelper
      */
     public static function modulePath(string $moduleName): string
     {
-        return self::$modulesBasePath.'/'.$moduleName;
+        return self::$modulesBasePath . '/' . $moduleName;
     }
 
     /**
@@ -46,7 +46,7 @@ class PathHelper
      */
     public static function modelsPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/app/Models';
+        return self::modulePath($moduleName) . '/app/Models';
     }
 
     /**
@@ -57,7 +57,7 @@ class PathHelper
      */
     public static function migrationsPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/database/migrations';
+        return self::modulePath($moduleName) . '/database/migrations';
     }
 
     /**
@@ -68,7 +68,7 @@ class PathHelper
      */
     public static function seedersPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/database/seeders';
+        return self::modulePath($moduleName) . '/database/seeders';
     }
 
     /**
@@ -79,7 +79,7 @@ class PathHelper
      */
     public static function controllersPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/app/Http/Controllers';
+        return self::modulePath($moduleName) . '/app/Http/Controllers';
     }
 
     /**
@@ -90,7 +90,7 @@ class PathHelper
      */
     public static function filamentResourcesPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/app/Filament/Resources';
+        return self::modulePath($moduleName) . '/app/Filament/Resources';
     }
 
     /**
@@ -101,7 +101,7 @@ class PathHelper
      */
     public static function providersPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/app/Providers';
+        return self::modulePath($moduleName) . '/app/Providers';
     }
 
     /**
@@ -112,7 +112,7 @@ class PathHelper
      */
     public static function viewsPath(string $moduleName): string
     {
-        return self::modulePath($moduleName).'/resources/views';
+        return self::modulePath($moduleName) . '/resources/views';
     }
 
     /**
@@ -129,7 +129,7 @@ class PathHelper
         }
 
         // Verifica che il percorso contenga /laravel/ dopo /saluteora/
-        if (Str::contains($path, '/saluteora/') && ! Str::contains($path, '/saluteora/laravel/')) {
+        if (Str::contains($path, '/saluteora/') && !Str::contains($path, '/saluteora/laravel/')) {
             return false;
         }
 
@@ -166,7 +166,7 @@ class PathHelper
     {
         $modulesPath = self::$modulesBasePath;
 
-        if (! File::exists($modulesPath)) {
+        if (!File::exists($modulesPath)) {
             return [];
         }
 

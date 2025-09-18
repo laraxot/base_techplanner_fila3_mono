@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Modules\User\Livewire;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 /**
  * Logout component for handling user logout functionality.
@@ -21,7 +22,7 @@ class Logout extends Component
     /**
      * Handle user logout process.
      */
-    public function logout(): ?RedirectResponse
+    public function logout(): null|RedirectResponse
     {
         $this->processing = true;
 

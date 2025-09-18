@@ -15,35 +15,27 @@ class MedicalDirectorsRelationManager extends RelationManager
 {
     protected static string $relationship = 'medicalDirectors';
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static null|string $recordTitleAttribute = 'name';
 
     protected static string $resource = MedicalDirectorResource::class;
 
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('fiscal_code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('appointment_date')
-                    ->required(),
-                Forms\Components\DatePicker::make('expiry_date')
-                    ->required(),
-                Forms\Components\Toggle::make('is_active')
-                    ->required(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')->required()->maxLength(255),
+            Forms\Components\TextInput::make('fiscal_code')->required()->maxLength(255),
+            Forms\Components\TextInput::make('phone')
+                ->tel()
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('email')
+                ->email()
+                ->required()
+                ->maxLength(255),
+            Forms\Components\DatePicker::make('appointment_date')->required(),
+            Forms\Components\DatePicker::make('expiry_date')->required(),
+            Forms\Components\Toggle::make('is_active')->required(),
+        ]);
     }
 
     public function table(Table $table): Table
@@ -54,15 +46,11 @@ class MedicalDirectorsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('fiscal_code'),
                 Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('appointment_date')
-                    ->date(),
-                Tables\Columns\TextColumn::make('expiry_date')
-                    ->date(),
-                Tables\Columns\IconColumn::make('is_active')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('appointment_date')->date(),
+                Tables\Columns\TextColumn::make('expiry_date')->date(),
+                Tables\Columns\IconColumn::make('is_active')->boolean(),
             ])
-            ->filters([
-            ])
+            ->filters([])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
             ])

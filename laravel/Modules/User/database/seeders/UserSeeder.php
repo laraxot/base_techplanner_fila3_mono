@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\User\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Modules\User\Models\Role;
-use Modules\User\Models\Permission;
-use Modules\User\Models\Team;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Modules\User\Models\Permission;
+use Modules\User\Models\Role;
+use Modules\User\Models\Team;
 
 /**
  * Seeder per il modulo User.
- * 
+ *
  * Popola il database con dati di base per:
  * - Ruoli e permessi di sistema
  * - Team di default
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         try {
             $this->seedSystemRolesAndPermissions();
             $this->seedSystemTeams();
-            
+
             $this->command->info('✅ Seeding User completato con successo!');
         } finally {
             // Riabilita i controlli di foreign key (solo per MySQL)
@@ -63,21 +63,18 @@ class UserSeeder extends Seeder
             'delete users',
             'view users',
             'impersonate users',
-            
             // Role management
             'manage roles',
             'create roles',
             'edit roles',
             'delete roles',
             'view roles',
-            
             // Permission management
             'manage permissions',
             'create permissions',
             'edit permissions',
             'delete permissions',
             'view permissions',
-            
             // Team management
             'manage teams',
             'create teams',
@@ -86,14 +83,12 @@ class UserSeeder extends Seeder
             'view teams',
             'join teams',
             'leave teams',
-            
             // System settings
             'manage system settings',
             'view system settings',
             'manage modules',
             'view system logs',
             'manage backups',
-            
             // Analytics and reporting
             'view analytics',
             'export data',
@@ -130,7 +125,7 @@ class UserSeeder extends Seeder
 
         // Assegna permessi ai ruoli
         $superAdminRole->givePermissionTo(Permission::all());
-        
+
         $systemAdminRole->givePermissionTo([
             'manage users',
             'create users',
@@ -162,8 +157,8 @@ class UserSeeder extends Seeder
             'leave teams',
         ]);
 
-        $this->command->info("   ✓ Creati " . count($systemPermissions) . " permessi di sistema");
-        $this->command->info("   ✓ Creati 4 ruoli di sistema (super-admin, system-admin, moderator, user)");
+        $this->command->info('   ✓ Creati ' . count($systemPermissions) . ' permessi di sistema');
+        $this->command->info('   ✓ Creati 4 ruoli di sistema (super-admin, system-admin, moderator, user)');
     }
 
     /**
@@ -174,41 +169,35 @@ class UserSeeder extends Seeder
         $this->command->info('👥 Creazione team di sistema...');
 
         // Team di amministrazione
-        $adminTeam = Team::factory()
-            ->create([
-                'name' => 'Amministratori',
-                'personal_team' => false,
-            ]);
+        $adminTeam = Team::factory()->create([
+            'name' => 'Amministratori',
+            'personal_team' => false,
+        ]);
 
         // Team di sviluppo
-        $devTeam = Team::factory()
-            ->create([
-                'name' => 'Sviluppatori',
-                'personal_team' => false,
-            ]);
+        $devTeam = Team::factory()->create([
+            'name' => 'Sviluppatori',
+            'personal_team' => false,
+        ]);
 
         // Team di supporto
-        $supportTeam = Team::factory()
-            ->create([
-                'name' => 'Supporto Clienti',
-                'personal_team' => false,
-            ]);
+        $supportTeam = Team::factory()->create([
+            'name' => 'Supporto Clienti',
+            'personal_team' => false,
+        ]);
 
         // Team di marketing
-        $marketingTeam = Team::factory()
-            ->create([
-                'name' => 'Marketing',
-                'personal_team' => false,
-            ]);
+        $marketingTeam = Team::factory()->create([
+            'name' => 'Marketing',
+            'personal_team' => false,
+        ]);
 
         // Team generale
-        $generalTeam = Team::factory()
-            ->create([
-                'name' => 'Team Generale',
-                'personal_team' => false,
-            ]);
+        $generalTeam = Team::factory()->create([
+            'name' => 'Team Generale',
+            'personal_team' => false,
+        ]);
 
-        $this->command->info("   ✓ Creati 5 team di sistema");
+        $this->command->info('   ✓ Creati 5 team di sistema');
     }
 }
-

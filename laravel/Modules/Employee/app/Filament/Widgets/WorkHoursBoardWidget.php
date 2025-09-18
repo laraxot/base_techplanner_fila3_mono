@@ -26,9 +26,9 @@ class WorkHoursBoardWidget extends XotBaseWidget
 {
     protected static string $view = 'employee::filament.widgets.work-hours-board';
 
-    protected static ?int $sort = 0;
+    protected static null|int $sort = 0;
 
-    protected static ?string $maxHeight = '800px';
+    protected static null|string $maxHeight = '800px';
 
     // State management per navigazione settimana
     public Carbon $weekStart;
@@ -58,6 +58,7 @@ class WorkHoursBoardWidget extends XotBaseWidget
     /**
      * @return array<string, mixed>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -91,7 +92,8 @@ class WorkHoursBoardWidget extends XotBaseWidget
         $baseData = app(BuildWorkHoursForRangeAction::class)->execute($userId, $this->weekStart, $this->weekEnd);
 
         // 2. Dati timeline visualization (Action nuova)
-        $this->timelineData = app(BuildTimelineVisualizationAction::class)->execute($userId, $this->weekStart, $this->weekEnd);
+        $this->timelineData = app(BuildTimelineVisualizationAction::class)
+            ->execute($userId, $this->weekStart, $this->weekEnd);
 
         // 3. Info dipendente corrente
         $this->employeeInfo = app(GetCurrentEmployeeDataAction::class)->execute($userId);
@@ -128,11 +130,13 @@ class WorkHoursBoardWidget extends XotBaseWidget
             if (isset($sessionBlocks[$dateKey]) && is_array($sessionBlocks[$dateKey])) {
                 $dayBlocks = $sessionBlocks[$dateKey];
             }
-            $dayStatus = isset($dayStatuses[$dateKey]) && is_array($dayStatuses[$dateKey]) ? $dayStatuses[$dateKey] : ['status' => 'no_work', 'indicator' => '', 'color' => 'gray'];
+            $dayStatus = isset($dayStatuses[$dateKey]) && is_array($dayStatuses[$dateKey])
+                ? $dayStatuses[$dateKey]
+                : ['status' => 'no_work', 'indicator' => '', 'color' => 'gray'];
 
             // Calcola ore totali giorno
             $totalHours = 0;
-            if (! empty($dayBlocks)) {
+            if (!empty($dayBlocks)) {
                 $durations = array_column($dayBlocks, 'duration');
                 $totalHours = array_sum($durations);
             }
@@ -228,7 +232,7 @@ class WorkHoursBoardWidget extends XotBaseWidget
      */
     public function toggleToleranceThreshold(): void
     {
-        $this->showToleranceThreshold = ! $this->showToleranceThreshold;
+        $this->showToleranceThreshold = !$this->showToleranceThreshold;
         $this->loadWidgetData(); // Ricarica con/senza soglie
     }
 
@@ -276,7 +280,7 @@ class WorkHoursBoardWidget extends XotBaseWidget
     public function getTimePosition(string $time): float
     {
         [$hours, $minutes] = explode(':', $time);
-        $totalMinutes = ((int) $hours * 60) + (int) $minutes;
+        $totalMinutes = (((int) $hours) * 60) + ((int) $minutes);
         $baseMinutes = 6 * 60; // 06:00
         $maxMinutes = 20 * 60; // 20:00
 

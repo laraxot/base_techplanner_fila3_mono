@@ -1,16 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
+
 use App\Models\User;
 use Illuminate\Auth\Events\Login;
-use function Laravel\Folio\{middleware, name};
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
+
+use function Laravel\Folio\middleware;
+use function Laravel\Folio\name;
 
 middleware(['guest']);
 name('login');
 
-new class extends Component
-{
+new class extends Component {
     #[Validate('required|email')]
     public $email = '';
 

@@ -18,13 +18,14 @@ class UpcomingScheduleWidget extends XotBaseWidget
 
     protected int|string|array $columnSpan = 1;
 
-    protected static ?int $sort = 2;
+    protected static null|int $sort = 2;
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -128,8 +129,14 @@ class UpcomingScheduleWidget extends XotBaseWidget
     protected function getAvatarColor(string $initials): string
     {
         $colors = [
-            'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
-            'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500',
+            'bg-red-500',
+            'bg-blue-500',
+            'bg-green-500',
+            'bg-yellow-500',
+            'bg-purple-500',
+            'bg-pink-500',
+            'bg-indigo-500',
+            'bg-teal-500',
         ];
 
         $hash = array_sum(array_map('ord', str_split($initials)));
@@ -155,17 +162,17 @@ class UpcomingScheduleWidget extends XotBaseWidget
     protected function getEmployeeFullName(\Modules\Employee\Models\Employee $employee): string
     {
         // Use full_name mutator if available
-        if (! empty($employee->full_name)) {
+        if (!empty($employee->full_name)) {
             return $employee->full_name;
         }
 
         // Combine first_name + last_name
-        if (! empty($employee->first_name) || ! empty($employee->last_name)) {
-            return trim(($employee->first_name ?? '').' '.($employee->last_name ?? ''));
+        if (!empty($employee->first_name) || !empty($employee->last_name)) {
+            return trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? ''));
         }
 
         // Fallback to name field
-        return $employee->name ?? 'Dipendente #'.$employee->id;
+        return $employee->name ?? ('Dipendente #' . $employee->id);
     }
 
     /**
@@ -177,7 +184,7 @@ class UpcomingScheduleWidget extends XotBaseWidget
         $initials = '';
 
         foreach ($parts as $part) {
-            if (! empty($part)) {
+            if (!empty($part)) {
                 $initials .= strtoupper(substr($part, 0, 1));
             }
         }

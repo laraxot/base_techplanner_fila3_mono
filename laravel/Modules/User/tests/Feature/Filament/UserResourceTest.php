@@ -45,9 +45,7 @@ describe('ListUsers Page', function () {
     it('can render list page', function () {
         $users = User::factory()->count(3)->create();
 
-        Livewire::test(ListUsers::class)
-            ->assertSuccessful()
-            ->assertCanSeeTableRecords($users);
+        Livewire::test(ListUsers::class)->assertSuccessful()->assertCanSeeTableRecords($users);
     });
 
     it('can search users by name', function () {
@@ -119,16 +117,16 @@ describe('ListUsers Page', function () {
             'created_at' => now(),
         ]);
 
-        Livewire::test(ListUsers::class)
-            ->sortTable('created_at', 'desc')
-            ->assertCanSeeTableRecords([$newUser, $oldUser], inOrder: true);
+        Livewire::test(ListUsers::class)->sortTable('created_at', 'desc')->assertCanSeeTableRecords(
+            [$newUser, $oldUser],
+            inOrder: true,
+        );
     });
 });
 
 describe('CreateUser Page', function () {
     it('can render create page', function () {
-        Livewire::test(CreateUser::class)
-            ->assertSuccessful();
+        Livewire::test(CreateUser::class)->assertSuccessful();
     });
 
     it('can create a user', function () {
@@ -218,8 +216,7 @@ describe('EditUser Page', function () {
     it('can render edit page', function () {
         Livewire::test(EditUser::class, [
             'record' => $this->user->getRouteKey(),
-        ])
-            ->assertSuccessful();
+        ])->assertSuccessful();
     });
 
     it('can retrieve user data for editing', function () {
@@ -232,13 +229,12 @@ describe('EditUser Page', function () {
 
         Livewire::test(EditUser::class, [
             'record' => $user->getRouteKey(),
-        ])
-            ->assertFormSet([
-                'name' => 'Editable User',
-                'email' => 'editable@example.com',
-                'first_name' => 'Editable',
-                'last_name' => 'User',
-            ]);
+        ])->assertFormSet([
+            'name' => 'Editable User',
+            'email' => 'editable@example.com',
+            'first_name' => 'Editable',
+            'last_name' => 'User',
+        ]);
     });
 
     it('can save edited user', function () {
@@ -257,9 +253,7 @@ describe('EditUser Page', function () {
             ->call('save')
             ->assertHasNoFormErrors();
 
-        expect($user->fresh())
-            ->name->toBe('Updated Name')
-            ->email->toBe('updated@example.com');
+        expect($user->fresh())->name->toBe('Updated Name')->email->toBe('updated@example.com');
     });
 
     it('can activate and deactivate user', function () {
@@ -338,8 +332,7 @@ describe('ViewUser Page', function () {
     it('can render view page', function () {
         Livewire::test(ViewUser::class, [
             'record' => $this->user->getRouteKey(),
-        ])
-            ->assertSuccessful();
+        ])->assertSuccessful();
     });
 
     it('displays user information', function () {
@@ -364,8 +357,7 @@ describe('ViewUser Page', function () {
 
         Livewire::test(ViewUser::class, [
             'record' => $user->getRouteKey(),
-        ])
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         expect($user->roles)->toContain($role);
     });
@@ -377,8 +369,7 @@ describe('ViewUser Page', function () {
 
         Livewire::test(ViewUser::class, [
             'record' => $user->getRouteKey(),
-        ])
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         expect($user->permissions)->toContain($permission);
     });
@@ -386,13 +377,13 @@ describe('ViewUser Page', function () {
 
 describe('UserResource Bulk Actions', function () {
     it('can bulk activate users', function () {
-        $users = User::factory()->count(3)->create([
-            'is_active' => false,
-        ]);
+        $users = User::factory()
+            ->count(3)
+            ->create([
+                'is_active' => false,
+            ]);
 
-        Livewire::test(ListUsers::class)
-            ->selectTableRecords($users)
-            ->callTableBulkAction('activate');
+        Livewire::test(ListUsers::class)->selectTableRecords($users)->callTableBulkAction('activate');
 
         $users->each(function ($user) {
             expect($user->fresh()->is_active)->toBe(true);
@@ -400,13 +391,13 @@ describe('UserResource Bulk Actions', function () {
     });
 
     it('can bulk deactivate users', function () {
-        $users = User::factory()->count(3)->create([
-            'is_active' => true,
-        ]);
+        $users = User::factory()
+            ->count(3)
+            ->create([
+                'is_active' => true,
+            ]);
 
-        Livewire::test(ListUsers::class)
-            ->selectTableRecords($users)
-            ->callTableBulkAction('deactivate');
+        Livewire::test(ListUsers::class)->selectTableRecords($users)->callTableBulkAction('deactivate');
 
         $users->each(function ($user) {
             expect($user->fresh()->is_active)->toBe(false);
@@ -416,9 +407,7 @@ describe('UserResource Bulk Actions', function () {
     it('can bulk delete users', function () {
         $users = User::factory()->count(3)->create();
 
-        Livewire::test(ListUsers::class)
-            ->selectTableRecords($users)
-            ->callTableBulkAction('delete');
+        Livewire::test(ListUsers::class)->selectTableRecords($users)->callTableBulkAction('delete');
 
         $users->each(function ($user) {
             expect($user->fresh())->toBeNull();
@@ -429,11 +418,9 @@ describe('UserResource Bulk Actions', function () {
         $users = User::factory()->count(2)->create();
         $role = Role::factory()->create(['name' => 'Editor']);
 
-        Livewire::test(ListUsers::class)
-            ->selectTableRecords($users)
-            ->callTableBulkAction('assignRole', [
-                'role_id' => $role->id,
-            ]);
+        Livewire::test(ListUsers::class)->selectTableRecords($users)->callTableBulkAction('assignRole', [
+            'role_id' => $role->id,
+        ]);
 
         $users->each(function ($user) use ($role) {
             expect($user->fresh()->hasRole($role))->toBe(true);

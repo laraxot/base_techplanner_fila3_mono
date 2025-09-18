@@ -15,27 +15,21 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class WorkHourResource extends XotBaseResource
 {
-    protected static ?string $model = WorkHour::class;
+    protected static null|string $model = WorkHour::class;
 
     /**
      * @return array<string|int,\Filament\Forms\Components\Component>
      */
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
             Forms\Components\Section::make('Time Entry Details')
                 ->schema([
-                    Forms\Components\Select::make('employee_id')
-                        ->relationship('employee', 'name')
-                        ->required(),
-                    
-                    Forms\Components\DateTimePicker::make('clock_in')
-                        ->required(),
-                    
+                    Forms\Components\Select::make('employee_id')->relationship('employee', 'name')->required(),
+                    Forms\Components\DateTimePicker::make('clock_in')->required(),
                     Forms\Components\DateTimePicker::make('clock_out'),
-                    
-                    Forms\Components\Textarea::make('notes')
-                        ->maxLength(65535),
+                    Forms\Components\Textarea::make('notes')->maxLength(65535),
                 ])
                 ->columns(2),
         ];

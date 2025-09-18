@@ -12,17 +12,17 @@ interface HasGeolocation
     /**
      * Ottiene la latitudine.
      */
-    public function getLatitude(): ?float;
+    public function getLatitude(): null|float;
 
     /**
      * Ottiene la longitudine.
      */
-    public function getLongitude(): ?float;
+    public function getLongitude(): null|float;
 
     /**
      * Ottiene l'indirizzo formattato.
      */
-    public function getFormattedAddress(): ?string;
+    public function getFormattedAddress(): null|string;
 
     /**
      * Verifica se le coordinate sono valide.
@@ -32,10 +32,10 @@ interface HasGeolocation
     /**
      * Ottiene il tipo di luogo.
      */
-    public function getLocationType(): ?string;
+    public function getLocationType(): null|string;
 
     /**
      * Ottiene l'icona per la mappa.
      */
-    public function getMapIcon(): ?string;
+    public function getMapIcon(): null|string;
 }

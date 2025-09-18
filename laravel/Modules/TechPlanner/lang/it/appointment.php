@@ -14,7 +14,6 @@ return [
         'sort' => 10,
         'badge' => 'Gestione appuntamenti',
     ],
-
     // ==============================================
     // MODEL INFORMATION
     // ==============================================
@@ -23,7 +22,6 @@ return [
         'plural' => 'Appuntamenti',
         'description' => 'Gestione appuntamenti e prenotazioni',
     ],
-
     // ==============================================
     // FIELDS - STRUTTURA ESPANSA OBBLIGATORIA
     // ==============================================
@@ -90,7 +88,6 @@ return [
             'helper_text' => 'Data e ora dell\'ultimo aggiornamento dell\'appuntamento',
         ],
     ],
-
     // ==============================================
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
     // ==============================================
@@ -217,7 +214,6 @@ return [
             ],
         ],
     ],
-
     // ==============================================
     // SECTIONS - ORGANIZZAZIONE FORM
     // ==============================================
@@ -238,7 +234,6 @@ return [
             'icon' => 'heroicon-o-user',
         ],
     ],
-
     // ==============================================
     // FILTERS - RICERCA E FILTRI
     // ==============================================
@@ -265,7 +260,6 @@ return [
             'placeholder' => 'Cerca negli appuntamenti...',
         ],
     ],
-
     // ==============================================
     // MESSAGES - FEEDBACK UTENTE
     // ==============================================
@@ -286,7 +280,6 @@ return [
         'error_permission' => 'Non hai i permessi per eseguire questa azione.',
         'success_operation' => 'Operazione completata con successo',
     ],
-
     // ==============================================
     // VALIDATION - MESSAGGI DI VALIDAZIONE
     // ==============================================
@@ -299,7 +292,6 @@ return [
         'time_format' => 'L\'ora deve essere in formato HH:MM',
         'notes_max' => 'Le note non possono superare i :max caratteri',
     ],
-
     // ==============================================
     // DESCRIPTIONS - DESCRIZIONI CONTESTUALI
     // ==============================================
@@ -309,7 +301,6 @@ return [
         'best_practices' => 'Verificare sempre la disponibilità prima di confermare',
         'limitations' => 'Non è possibile modificare appuntamenti già completati',
     ],
-
     // ==============================================
     // OPTIONS - OPZIONI E VALORI PREDEFINITI
     // ==============================================

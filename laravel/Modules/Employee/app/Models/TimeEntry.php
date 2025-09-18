@@ -40,11 +40,26 @@ class TimeEntry extends BaseModel
 {
     /** @var list<string> */
     protected $fillable = [
-        'employee_id', 'clock_in', 'clock_out', 'break_start', 'break_end',
-        'break_duration', 'total_hours', 'regular_hours', 'overtime_hours',
-        'location_in', 'location_out', 'device_info', 'notes', 'employee_notes',
-        'supervisor_notes', 'status', 'approved_by', 'approved_at',
-        'rejection_reason', 'anomalies',
+        'employee_id',
+        'clock_in',
+        'clock_out',
+        'break_start',
+        'break_end',
+        'break_duration',
+        'total_hours',
+        'regular_hours',
+        'overtime_hours',
+        'location_in',
+        'location_out',
+        'device_info',
+        'notes',
+        'employee_notes',
+        'supervisor_notes',
+        'status',
+        'approved_by',
+        'approved_at',
+        'rejection_reason',
+        'anomalies',
     ];
 
     /**
@@ -148,7 +163,7 @@ class TimeEntry extends BaseModel
      */
     public function isApproved(): bool
     {
-        return in_array($this->status, ['approved', 'auto_approved']);
+        return in_array($this->status, ['approved', 'auto_approved'], strict: true);
     }
 
     /**

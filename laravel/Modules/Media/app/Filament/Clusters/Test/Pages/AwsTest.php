@@ -15,7 +15,7 @@ use Modules\Xot\Filament\Pages\XotBasePage;
 
 class AwsTest extends XotBasePage
 {
-    protected static ?string $cluster = Test::class;
+    protected static null|string $cluster = Test::class;
 
     public array $testResults = [];
     public string $activeTab = 's3';
@@ -33,23 +33,14 @@ class AwsTest extends XotBasePage
     #[\Override]
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Components\Tabs::make('Tests')
-                    ->tabs([
-                        Components\Tabs\Tab::make('S3')
-                            ->schema($this->getS3TestSchema()),
-
-                        Components\Tabs\Tab::make('CloudFront')
-                            ->schema($this->getCloudFrontTestSchema()),
-
-                        Components\Tabs\Tab::make('IAM')
-                            ->schema($this->getIamTestSchema()),
-
-                        Components\Tabs\Tab::make('Diagnostics')
-                            ->schema($this->getDiagnosticsSchema()),
-                    ]),
-            ]);
+        return $form->schema([
+            Components\Tabs::make('Tests')->tabs([
+                Components\Tabs\Tab::make('S3')->schema($this->getS3TestSchema()),
+                Components\Tabs\Tab::make('CloudFront')->schema($this->getCloudFrontTestSchema()),
+                Components\Tabs\Tab::make('IAM')->schema($this->getIamTestSchema()),
+                Components\Tabs\Tab::make('Diagnostics')->schema($this->getDiagnosticsSchema()),
+            ]),
+        ]);
     }
 
     protected function getS3TestSchema(): array
@@ -62,21 +53,18 @@ class AwsTest extends XotBasePage
                         Components\Actions\Action::make('test_s3_connection')
                             ->label(__('ui::aws_test.test_s3_connection'))
                             ->action('testS3Connection'),
-
                         Components\Actions\Action::make('test_s3_permissions')
                             ->label(__('ui::aws_test.test_s3_permissions'))
                             ->color('warning')
                             ->action('testS3Permissions'),
-
                         Components\Actions\Action::make('test_file_operations')
                             ->label(__('ui::aws_test.test_file_operations'))
                             ->color('success')
                             ->action('testS3FileOperations'),
                     ])->fullWidth(),
-
                     Components\ViewField::make('s3_results')
                         ->view('ui::filament.components.test-results')
-                        ->viewData(fn () => ['results' => $this->testResults['s3'] ?? null]),
+                        ->viewData(fn() => ['results' => $this->testResults['s3'] ?? null]),
                 ]),
         ];
     }
@@ -84,70 +72,50 @@ class AwsTest extends XotBasePage
     protected function getCloudFrontTestSchema(): array
     {
         return [
-            Components\Section::make('CloudFront Test')
-                ->schema([
-                    Components\TextInput::make('cloudfront_url')
-                        ->default(config('filesystems.cloudfront.url')),
-
-                    Components\Actions::make([
-                        Components\Actions\Action::make('test_cloudfront_config')
-                            ->action('testCloudFrontConfig'),
-
-                        Components\Actions\Action::make('test_signed_urls')
-                            ->action('testCloudFrontSignedUrls'),
-                    ]),
-
-                    Components\ViewField::make('cloudfront_results')
-                        ->view('ui::filament.components.test-results')
-                        ->viewData(fn () => ['results' => $this->testResults['cloudfront'] ?? null]),
+            Components\Section::make('CloudFront Test')->schema([
+                Components\TextInput::make('cloudfront_url')->default(config('filesystems.cloudfront.url')),
+                Components\Actions::make([
+                    Components\Actions\Action::make('test_cloudfront_config')->action('testCloudFrontConfig'),
+                    Components\Actions\Action::make('test_signed_urls')->action('testCloudFrontSignedUrls'),
                 ]),
+                Components\ViewField::make('cloudfront_results')
+                    ->view('ui::filament.components.test-results')
+                    ->viewData(fn() => ['results' => $this->testResults['cloudfront'] ?? null]),
+            ]),
         ];
     }
 
     protected function getIamTestSchema(): array
     {
         return [
-            Components\Section::make('IAM Permissions Test')
-                ->schema([
-                    Components\TextInput::make('iam_user')
-                        ->default(env('AWS_ACCESS_KEY_ID')),
-
-                    Components\Actions::make([
-                        Components\Actions\Action::make('test_iam_credentials')
-                            ->action('testIamCredentials'),
-
-                        Components\Actions\Action::make('test_iam_policies')
-                            ->color('warning')
-                            ->action('testIamPolicies'),
-                    ]),
-
-                    Components\ViewField::make('iam_results')
-                        ->view('ui::filament.components.test-results')
-                        ->viewData(fn () => ['results' => $this->testResults['iam'] ?? null]),
+            Components\Section::make('IAM Permissions Test')->schema([
+                Components\TextInput::make('iam_user')->default(env('AWS_ACCESS_KEY_ID')),
+                Components\Actions::make([
+                    Components\Actions\Action::make('test_iam_credentials')->action('testIamCredentials'),
+                    Components\Actions\Action::make('test_iam_policies')->color('warning')->action('testIamPolicies'),
                 ]),
+                Components\ViewField::make('iam_results')
+                    ->view('ui::filament.components.test-results')
+                    ->viewData(fn() => ['results' => $this->testResults['iam'] ?? null]),
+            ]),
         ];
     }
 
     protected function getDiagnosticsSchema(): array
     {
         return [
-            Components\Section::make('Complete Diagnostic')
-                ->schema([
-                    Components\Actions::make([
-                        Components\Actions\Action::make('run_full_diagnostic')
-                            ->color('danger')
-                            ->icon('heroicon-o-bolt')
-                            ->action('runFullDiagnostic'),
-                    ]),
-
-                    Components\ViewField::make('full_results')
-                        ->view('ui::filament.components.test-results')
-                        ->viewData(fn () => ['results' => $this->testResults['full'] ?? null]),
-
-                    Components\KeyValue::make('aws_config')
-                        ->columnSpanFull()
-                        ->state($this->getAwsConfig(...)),
+            Components\Section::make('Complete Diagnostic')->schema([
+                Components\Actions::make([
+                    Components\Actions\Action::make('run_full_diagnostic')
+                        ->color('danger')
+                        ->icon('heroicon-o-bolt')
+                        ->action('runFullDiagnostic'),
                 ]),
+                Components\ViewField::make('full_results')
+                    ->view('ui::filament.components.test-results')
+                    ->viewData(fn() => ['results' => $this->testResults['full'] ?? null]),
+                Components\KeyValue::make('aws_config')->columnSpanFull()->state($this->getAwsConfig(...)),
+            ]),
         ];
     }
 
@@ -259,7 +227,8 @@ class AwsTest extends XotBasePage
     protected function getAwsConfig(): array
     {
         return [
-            'AWS_ACCESS_KEY_ID' => substr((string) config('filesystems.disks.s3.key', ''), 0, self::KEY_PREVIEW_LENGTH).'...',
+            'AWS_ACCESS_KEY_ID' =>
+                substr((string) config('filesystems.disks.s3.key', ''), 0, self::KEY_PREVIEW_LENGTH) . '...',
             'AWS_DEFAULT_REGION' => config('filesystems.disks.s3.region'),
             'AWS_BUCKET' => config('filesystems.disks.s3.bucket'),
             'CLOUDFRONT_URL' => config('filesystems.cloudfront.url'),
@@ -267,7 +236,7 @@ class AwsTest extends XotBasePage
         ];
     }
 
-    protected function getS3Solution(?string $errorCode): string
+    protected function getS3Solution(null|string $errorCode): string
     {
         if (null === $errorCode) {
             return 'Unknown error - check AWS credentials and configuration';
@@ -280,7 +249,7 @@ class AwsTest extends XotBasePage
             'InvalidAccessKeyId' => 'Check AWS_ACCESS_KEY_ID',
         ];
 
-        return $solutions[$errorCode] ?? 'Consult AWS documentation for error: '.$errorCode;
+        return $solutions[$errorCode] ?? ('Consult AWS documentation for error: ' . $errorCode);
     }
 
     public function testS3Permissions(): void
@@ -317,7 +286,7 @@ class AwsTest extends XotBasePage
         } catch (AwsException $e) {
             $this->testResults['s3_permissions'] = [
                 'status' => 'error',
-                'message' => 'S3 permissions error: '.($e->getAwsErrorCode() ?? 'UnknownError'),
+                'message' => 'S3 permissions error: ' . ($e->getAwsErrorCode() ?? 'UnknownError'),
                 'details' => [
                     'Error' => $e->getMessage(),
                     'Solution' => $this->getS3Solution($e->getAwsErrorCode() ?? 'UnknownError'),
@@ -344,7 +313,7 @@ class AwsTest extends XotBasePage
                 ],
             ]);
 
-            $testFileName = 'test-file-'.now()->timestamp.'.txt';
+            $testFileName = 'test-file-' . now()->timestamp . '.txt';
             $testContent = 'Test file content for AWS S3 operations';
 
             // Test put operation
@@ -385,7 +354,7 @@ class AwsTest extends XotBasePage
         } catch (AwsException $e) {
             $this->testResults['s3_operations'] = [
                 'status' => 'error',
-                'message' => 'S3 file operations error: '.($e->getAwsErrorCode() ?? 'UnknownError'),
+                'message' => 'S3 file operations error: ' . ($e->getAwsErrorCode() ?? 'UnknownError'),
                 'details' => [
                     'Error' => $e->getMessage(),
                     'Solution' => $this->getS3Solution($e->getAwsErrorCode() ?? 'UnknownError'),
@@ -408,7 +377,7 @@ class AwsTest extends XotBasePage
             $keyPairId = config('filesystems.cloudfront.key_pair_id');
             $baseUrl = config('filesystems.cloudfront.url');
 
-            if (! $privateKey || ! $keyPairId || ! $baseUrl) {
+            if (!$privateKey || !$keyPairId || !$baseUrl) {
                 throw new \Exception('Missing CloudFront configuration');
             }
 
@@ -474,7 +443,7 @@ class AwsTest extends XotBasePage
         } catch (AwsException $e) {
             $this->testResults['iam_credentials'] = [
                 'status' => 'error',
-                'message' => 'IAM credentials error: '.($e->getAwsErrorCode() ?? 'UnknownError'),
+                'message' => 'IAM credentials error: ' . ($e->getAwsErrorCode() ?? 'UnknownError'),
                 'details' => [
                     'Error' => $e->getMessage(),
                     'Solution' => 'Check AWS access keys and secret',
@@ -530,7 +499,7 @@ class AwsTest extends XotBasePage
         } catch (AwsException $e) {
             $this->testResults['iam_policies'] = [
                 'status' => 'error',
-                'message' => 'IAM policies error: '.($e->getAwsErrorCode() ?? 'UnknownError'),
+                'message' => 'IAM policies error: ' . ($e->getAwsErrorCode() ?? 'UnknownError'),
                 'details' => [
                     'Error' => $e->getMessage(),
                     'Solution' => 'Check IAM user policies and permissions',

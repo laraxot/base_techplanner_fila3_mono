@@ -15,7 +15,7 @@ use Modules\Employee\Models\WorkHour;
 
 class TimeClock extends Component
 {
-    public ?Employee $employee = null;
+    public null|Employee $employee = null;
 
     public string $currentTime = '';
 
@@ -25,7 +25,7 @@ class TimeClock extends Component
 
     public string $currentStatus = '';
 
-    public ?WorkHour $lastEntry = null;
+    public null|WorkHour $lastEntry = null;
 
     /** @var array<int, array{time:string,type:string}> */
     public array $todayEntries = [];
@@ -37,10 +37,10 @@ class TimeClock extends Component
     /** @var array<string, string> */
     protected $listeners = ['refreshComponent' => '$refresh'];
 
-    public function mount(?int $employeeId = null): void
+    public function mount(null|int $employeeId = null): void
     {
         $employee = $employeeId ? Employee::find($employeeId) : (Auth::user()->employee ?? null);
-        $this->employee = $employee instanceof Employee ? $employee : null;
+        $this->employee = ($employee instanceof Employee) ? $employee : null;
 
         $this->updateTimeAndStatus();
         $this->loadTodayData();
@@ -58,7 +58,7 @@ class TimeClock extends Component
 
     public function clockAction(): void
     {
-        if (! $this->employee) {
+        if (!$this->employee) {
             $this->showNotification('Error', 'Employee not found', 'danger');
             return;
         }
@@ -66,12 +66,20 @@ class TimeClock extends Component
         try {
             $now = Carbon::now();
             if ($now->hour < 6 || $now->hour > 22) {
-                $this->showNotification('Outside Working Hours', 'Time clock is only available between 6:00 AM and 10:00 PM', 'warning');
+                $this->showNotification(
+                    'Outside Working Hours',
+                    'Time clock is only available between 6:00 AM and 10:00 PM',
+                    'warning',
+                );
                 return;
             }
 
-            if (! WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
-                $this->showNotification('Invalid Action', 'This action is not valid based on your current status', 'danger');
+            if (!WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
+                $this->showNotification(
+                    'Invalid Action',
+                    'This action is not valid based on your current status',
+                    'danger',
+                );
                 return;
             }
 
@@ -93,7 +101,7 @@ class TimeClock extends Component
             $this->loadTodayData();
             $this->dispatch('workHourRecorded');
         } catch (\Throwable $e) {
-            $this->showNotification('Error', 'Failed to record time entry: '.$e->getMessage(), 'danger');
+            $this->showNotification('Error', 'Failed to record time entry: ' . $e->getMessage(), 'danger');
         }
     }
 
@@ -119,19 +127,17 @@ class TimeClock extends Component
 
     private function loadTodayData(): void
     {
-        if (! $this->employee) {
+        if (!$this->employee) {
             $this->todayEntries = [];
             return;
         }
 
         $entries = WorkHour::getTodayEntries($this->employee->id);
         /** @var array<int, array{time:string,type:string}> */
-        $mappedEntries = $entries->map(function (WorkHour $entry): array {
-            return [
+        $mappedEntries = $entries->map(fn (WorkHour $entry): array => [
                 'time' => $entry->timestamp->format('H:i'),
                 'type' => (string) $entry->type,
-            ];
-        })->toArray();
+            ])->toArray();
         /** @var array<int, array{time:string,type:string}> $mappedEntries */
         $this->todayEntries = array_values($mappedEntries);
     }

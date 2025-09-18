@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Xot\Tests\Unit;
 
 use Filament\Tables\Table;
-use Modules\Xot\Tests\Unit\Support\HasTableWithXotTestClass;
-use Modules\Xot\Tests\Unit\Support\HasTableWithoutOptionalMethodsTestClass;
 use Modules\Xot\Tests\Unit\Support\DummyTestModel;
+use Modules\Xot\Tests\Unit\Support\HasTableWithoutOptionalMethodsTestClass;
+use Modules\Xot\Tests\Unit\Support\HasTableWithXotTestClass;
 
 uses(\Tests\TestCase::class);
 
@@ -22,42 +22,28 @@ it('tests table method with all methods implemented', function () {
         ->andReturn(true);
 
     // Create partial mock and defer missing to real methods so trait's table() runs
-    $mock = \Mockery::mock(HasTableWithXotTestClass::class)
-        ->makePartial()
-        ->shouldDeferMissing();
+    $mock = \Mockery::mock(HasTableWithXotTestClass::class)->makePartial()->shouldDeferMissing();
 
     // Expect getTableHeaderActions to be called
-    $mock->shouldReceive('getTableHeaderActions')
-        ->once()
-        ->andReturn([]);
+    $mock->shouldReceive('getTableHeaderActions')->once()->andReturn([]);
 
     // Expect getTableActions to be called
-    $mock->shouldReceive('getTableActions')
-        ->once()
-        ->andReturn([]);
+    $mock->shouldReceive('getTableActions')->once()->andReturn([]);
 
     // Expect getTableBulkActions to be called
-    $mock->shouldReceive('getTableBulkActions')
-        ->once()
-        ->andReturn([]);
+    $mock->shouldReceive('getTableBulkActions')->once()->andReturn([]);
 
     // Other required method stubs
-    $mock->shouldReceive('getModelClass')
-        ->andReturn(DummyTestModel::class);
-    $mock->shouldReceive('getTableRecordTitleAttribute')
-        ->andReturn('name');
-    $mock->shouldReceive('getTableHeading')
-        ->andReturn('Test Table');
-    $mock->shouldReceive('getTableFilters')
-        ->andReturn([]);
+    $mock->shouldReceive('getModelClass')->andReturn(DummyTestModel::class);
+    $mock->shouldReceive('getTableRecordTitleAttribute')->andReturn('name');
+    $mock->shouldReceive('getTableHeading')->andReturn('Test Table');
+    $mock->shouldReceive('getTableFilters')->andReturn([]);
     // Stub optional methods to avoid resolving translator / actions
     $mock->shouldReceive('getTableHeaderActions')->andReturn([]);
     $mock->shouldReceive('getTableActions')->andReturn([]);
     $mock->shouldReceive('getTableBulkActions')->andReturn([]);
-    $mock->shouldReceive('getTableFiltersFormColumns')
-        ->andReturn(1);
-    $mock->shouldReceive('getTableEmptyStateActions')
-        ->andReturn([]);
+    $mock->shouldReceive('getTableFiltersFormColumns')->andReturn(1);
+    $mock->shouldReceive('getTableEmptyStateActions')->andReturn([]);
 
     // Create a mock for Table
     $tableMock = \Mockery::mock(Table::class);
@@ -91,27 +77,19 @@ it('tests table method with no optional methods implemented', function () {
         ->andReturn(true);
 
     // Create partial mock and defer missing to real methods so trait's table() runs
-    $mock = \Mockery::mock(HasTableWithoutOptionalMethodsTestClass::class)
-        ->makePartial()
-        ->shouldDeferMissing();
+    $mock = \Mockery::mock(HasTableWithoutOptionalMethodsTestClass::class)->makePartial()->shouldDeferMissing();
 
     // Other required method stubs
-    $mock->shouldReceive('getModelClass')
-        ->andReturn(DummyTestModel::class);
-    $mock->shouldReceive('getTableRecordTitleAttribute')
-        ->andReturn('name');
-    $mock->shouldReceive('getTableHeading')
-        ->andReturn('Test Table');
-    $mock->shouldReceive('getTableFilters')
-        ->andReturn([]);
+    $mock->shouldReceive('getModelClass')->andReturn(DummyTestModel::class);
+    $mock->shouldReceive('getTableRecordTitleAttribute')->andReturn('name');
+    $mock->shouldReceive('getTableHeading')->andReturn('Test Table');
+    $mock->shouldReceive('getTableFilters')->andReturn([]);
     // Avoid constructing Filament Actions which require translator binding
     $mock->shouldReceive('getTableHeaderActions')->andReturn([]);
     $mock->shouldReceive('getTableActions')->andReturn([]);
     $mock->shouldReceive('getTableBulkActions')->andReturn([]);
-    $mock->shouldReceive('getTableFiltersFormColumns')
-        ->andReturn(1);
-    $mock->shouldReceive('getTableEmptyStateActions')
-        ->andReturn([]);
+    $mock->shouldReceive('getTableFiltersFormColumns')->andReturn(1);
+    $mock->shouldReceive('getTableEmptyStateActions')->andReturn([]);
 
     // Create a mock for Table
     $tableMock = \Mockery::mock(Table::class);

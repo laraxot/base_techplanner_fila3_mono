@@ -10,9 +10,9 @@ use Spatie\MediaLibrary\Conversions\ImageGenerators\ImageGenerator;
 
 class Webm extends ImageGenerator
 {
-    public function convert(string $file, ?Conversion $conversion = null): string
+    public function convert(string $file, null|Conversion $conversion = null): string
     {
-        $pathToImageFile = pathinfo($file, PATHINFO_DIRNAME).'/'.pathinfo($file, PATHINFO_FILENAME).'.webmXXX';
+        $pathToImageFile = pathinfo($file, PATHINFO_DIRNAME) . '/' . pathinfo($file, PATHINFO_FILENAME) . '.webmXXX';
         dddx([
             'file' => $file,
             '$pathToImageFile' => ${$pathToImageFile},
@@ -20,30 +20,30 @@ class Webm extends ImageGenerator
         ]);
 
         /*
-        $image = imagecreatefromwebp($file);
-
-        imagepng($image, $pathToImageFile, 9);
-
-        imagedestroy($image);
-        */
+         * $image = imagecreatefromwebp($file);
+         *
+         * imagepng($image, $pathToImageFile, 9);
+         *
+         * imagedestroy($image);
+         */
         return $pathToImageFile;
     }
 
     public function requirementsAreInstalled(): bool
     {
         /*
-        if (! function_exists('imagecreatefromwebp')) {
-            return false;
-        }
-
-        if (! function_exists('imagepng')) {
-            return false;
-        }
-
-        if (! function_exists('imagedestroy')) {
-            return false;
-        }
-        */
+         * if (! function_exists('imagecreatefromwebp')) {
+         * return false;
+         * }
+         *
+         * if (! function_exists('imagepng')) {
+         * return false;
+         * }
+         *
+         * if (! function_exists('imagedestroy')) {
+         * return false;
+         * }
+         */
         return true;
     }
 

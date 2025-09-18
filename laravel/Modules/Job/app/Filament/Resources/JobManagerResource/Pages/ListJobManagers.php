@@ -28,21 +28,11 @@ class ListJobManagers extends XotBaseListRecords
                 ->numeric()
                 ->sortable()
                 ->searchable(),
-            'queue' => TextColumn::make('queue')
-                ->sortable()
-                ->searchable(),
-            'payload' => TextColumn::make('payload')
-                ->wrap()
-                ->searchable(),
-            'attempts' => TextColumn::make('attempts')
-                ->numeric()
-                ->sortable(),
-            'reserved_at' => TextColumn::make('reserved_at')
-                ->dateTime()
-                ->sortable(),
-            'available_at' => TextColumn::make('available_at')
-                ->dateTime()
-                ->sortable(),
+            'queue' => TextColumn::make('queue')->sortable()->searchable(),
+            'payload' => TextColumn::make('payload')->wrap()->searchable(),
+            'attempts' => TextColumn::make('attempts')->numeric()->sortable(),
+            'reserved_at' => TextColumn::make('reserved_at')->dateTime()->sortable(),
+            'available_at' => TextColumn::make('available_at')->dateTime()->sortable(),
             'created_at' => TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()

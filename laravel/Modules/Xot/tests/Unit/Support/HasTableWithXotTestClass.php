@@ -35,7 +35,7 @@ class HasTableWithXotTestClass implements HasTable
         return \Mockery::mock(Table::class);
     }
 
-    public function getTablePage(): ?int
+    public function getTablePage(): null|int
     {
         return 1;
     }
@@ -45,12 +45,12 @@ class HasTableWithXotTestClass implements HasTable
         return 10;
     }
 
-    public function getTableSortColumn(): ?string
+    public function getTableSortColumn(): null|string
     {
         return null;
     }
 
-    public function getTableSortDirection(): ?string
+    public function getTableSortDirection(): null|string
     {
         return null;
     }
@@ -65,17 +65,17 @@ class HasTableWithXotTestClass implements HasTable
         return null;
     }
 
-    public function getTableFilterState(string $name): ?array
+    public function getTableFilterState(string $name): null|array
     {
         return [];
     }
 
-    public function getTableGrouping(): ?string
+    public function getTableGrouping(): null|string
     {
         return null;
     }
 
-    public function getTableSearchIndicator(): ?string
+    public function getTableSearchIndicator(): null|string
     {
         return null;
     }
@@ -150,7 +150,7 @@ class HasTableWithXotTestClass implements HasTable
         return null;
     }
 
-    public function getMountedTableAction(): ?string
+    public function getMountedTableAction(): null|string
     {
         return null;
     }
@@ -170,7 +170,7 @@ class HasTableWithXotTestClass implements HasTable
         return null;
     }
 
-    public function getMountedTableBulkAction(): ?string
+    public function getMountedTableBulkAction(): null|string
     {
         return null;
     }
@@ -180,7 +180,7 @@ class HasTableWithXotTestClass implements HasTable
         return null;
     }
 
-    public function getActiveTableLocale(): ?string
+    public function getActiveTableLocale(): null|string
     {
         return null;
     }

@@ -99,7 +99,7 @@ abstract class BaseTeam extends BaseModel implements TeamContract
     #[\Override]
     public function allUsers(): Collection
     {
-        if (! $this->owner instanceof User) {
+        if (!($this->owner instanceof User)) {
             return $this->users;
         }
 
@@ -132,7 +132,7 @@ abstract class BaseTeam extends BaseModel implements TeamContract
 
     /**
      * Determina se l'utente specificato appartiene al team.
-     * 
+     *
      * @param \Modules\Xot\Contracts\UserContract $user L'utente da verificare
      * @return bool True se l'utente appartiene al team, false altrimenti
      */
@@ -157,7 +157,7 @@ abstract class BaseTeam extends BaseModel implements TeamContract
     #[\Override]
     public function hasUserWithEmail(string $email): bool
     {
-        return $this->allUsers()->contains(static fn ($user): bool => $user->email === $email);
+        return $this->allUsers()->contains(static fn($user): bool => $user->email === $email);
     }
 
     /**
@@ -195,11 +195,9 @@ abstract class BaseTeam extends BaseModel implements TeamContract
     public function removeUser(UserContract $userContract): void
     {
         if ($userContract->current_team_id === $this->id) {
-            $userContract->forceFill(
-                [
-                    'current_team_id' => null,
-                ]
-            )->save();
+            $userContract->forceFill([
+                'current_team_id' => null,
+            ])->save();
         }
 
         $this->users()->detach($userContract);
@@ -207,17 +205,15 @@ abstract class BaseTeam extends BaseModel implements TeamContract
 
     /**
      * Rimuove tutte le risorse del team.
-     * 
+     *
      * @return void
      */
     #[\Override]
     public function purge(): void
     {
-        $this->owner()->where('current_team_id', $this->id)
-            ->update(['current_team_id' => null]);
+        $this->owner()->where('current_team_id', $this->id)->update(['current_team_id' => null]);
 
-        $this->users()->where('current_team_id', $this->id)
-            ->update(['current_team_id' => null]);
+        $this->users()->where('current_team_id', $this->id)->update(['current_team_id' => null]);
 
         $this->users()->detach();
 

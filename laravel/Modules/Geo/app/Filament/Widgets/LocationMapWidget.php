@@ -43,10 +43,10 @@ class LocationMapWidget extends MapWidget
     /**
      * Restituisce l'altezza massima del widget.
      */
-    protected function getMaxHeight(): ?string
+    protected function getMaxHeight(): null|string
     {
         $height = $this->maxHeight ?? '50vh';
-        return is_string($height) ? $height : (string) $height;
+        return is_string($height) ? $height : ((string) $height);
     }
 
     /**
@@ -60,7 +60,7 @@ class LocationMapWidget extends MapWidget
         $config = Config::get('maps', []);
 
         return [
-            'zoom' => is_numeric($config['zoom'] ?? null) ? (int) $config['zoom'] : 12,
+            'zoom' => is_numeric($config['zoom'] ?? null) ? ((int) $config['zoom']) : 12,
             'center' => $this->getMapCenter(),
             'mapTypeId' => is_string($config['type'] ?? null) ? $config['type'] : 'roadmap',
             'mapTypeControl' => true,
@@ -114,7 +114,8 @@ class LocationMapWidget extends MapWidget
                 }
 
                 return $marker;
-            })->all();
+            })
+            ->all();
     }
 
     /**
@@ -133,11 +134,11 @@ class LocationMapWidget extends MapWidget
         $centerConfig = $config['center'] ?? null;
 
         return [
-            'lat' => is_array($centerConfig) && is_numeric($centerConfig['lat'] ?? null) 
-                ? (float) $centerConfig['lat'] 
+            'lat' => is_array($centerConfig) && is_numeric($centerConfig['lat'] ?? null)
+                ? ((float) $centerConfig['lat'])
                 : $defaultLat,
-            'lng' => is_array($centerConfig) && is_numeric($centerConfig['lng'] ?? null) 
-                ? (float) $centerConfig['lng'] 
+            'lng' => is_array($centerConfig) && is_numeric($centerConfig['lng'] ?? null)
+                ? ((float) $centerConfig['lng'])
                 : $defaultLng,
         ];
     }
@@ -147,7 +148,7 @@ class LocationMapWidget extends MapWidget
      *
      * @return array{url: string, scaledSize: array{width: int, height: int}}|null
      */
-    protected function getMarkerIcon(Place $place): ?array
+    protected function getMarkerIcon(Place $place): null|array
     {
         /** @var array{
          *     icons?: array<string, array{
@@ -190,7 +191,7 @@ class LocationMapWidget extends MapWidget
     {
         /** @var view-string $viewName */
         $viewName = 'geo::filament.widgets.location-map-widget';
-        
+
         return ViewFacade::make($viewName, $this->getViewData());
     }
 }

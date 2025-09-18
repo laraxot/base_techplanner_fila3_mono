@@ -16,18 +16,18 @@ class JsonResponseData extends Data
 
     public string $message;
 
-    public ?int $code = null;
+    public null|int $code = null;
 
     public array $data = [];
 
     public int $status = 200;
 
     /*
-    public function toResponse($request)
-    {
-
-    }
-    */
+     * public function toResponse($request)
+     * {
+     *
+     * }
+     */
     public function response(): JsonResponse
     {
         $data = [

@@ -20,7 +20,7 @@ class MediaConvertPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, MediaConvert $media_convert): bool
+    public function view(UserContract $user, MediaConvert $_media_convert): bool
     {
         return $user->hasPermissionTo('media_convert.view');
     }
@@ -36,7 +36,7 @@ class MediaConvertPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, MediaConvert $media_convert): bool
+    public function update(UserContract $user, MediaConvert $_media_convert): bool
     {
         return $user->hasPermissionTo('media_convert.update');
     }
@@ -44,7 +44,7 @@ class MediaConvertPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, MediaConvert $media_convert): bool
+    public function delete(UserContract $user, MediaConvert $_media_convert): bool
     {
         return $user->hasPermissionTo('media_convert.delete');
     }
@@ -52,7 +52,7 @@ class MediaConvertPolicy extends MediaBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, MediaConvert $media_convert): bool
+    public function restore(UserContract $user, MediaConvert $_media_convert): bool
     {
         return $user->hasPermissionTo('media_convert.restore');
     }

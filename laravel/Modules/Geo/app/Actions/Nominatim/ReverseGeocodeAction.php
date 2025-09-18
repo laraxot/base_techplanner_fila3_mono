@@ -52,7 +52,7 @@ class ReverseGeocodeAction
         return new LocationData(
             latitude: $latitude,
             longitude: $longitude,
-            address: $data['display_name']
+            address: $data['display_name'],
         );
     }
 }

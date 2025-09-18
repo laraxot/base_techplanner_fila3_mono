@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament::page>
     @php
         // Ensure $results is defined with a default value

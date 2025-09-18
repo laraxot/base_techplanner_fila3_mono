@@ -18,11 +18,13 @@ class GetFileInfoAction extends BaseS3Action
         try {
             $result = $this->s3Client->headObject([
                 'Bucket' => $this->bucketName,
-                'Key'    => $key,
+                'Key' => $key,
             ]);
 
             $metadata = $result['@metadata'] ?? [];
-            $effectiveUri = is_array($metadata) && isset($metadata['effectiveUri']) ? (string) $metadata['effectiveUri'] : null;
+            $effectiveUri = is_array($metadata) && isset($metadata['effectiveUri'])
+                ? ((string) $metadata['effectiveUri'])
+                : null;
 
             $fileInfo = [
                 'exists' => true,
@@ -32,28 +34,27 @@ class GetFileInfoAction extends BaseS3Action
                 'contentType' => $result['ContentType'] ?? null,
                 'lastModified' => $result['LastModified'] ?? null,
                 'etag' => $result['ETag'] ?? null,
-                'metadata' => $result['Metadata'] ?? []
+                'metadata' => $result['Metadata'] ?? [],
             ];
 
             $this->logger->info('File info retrieved successfully', [
                 'key' => $key,
-                'size' => $fileInfo['contentLength']
+                'size' => $fileInfo['contentLength'],
             ]);
 
             return $fileInfo;
-
         } catch (S3Exception $exception) {
             $this->logger->error('Error getting file info from S3', [
                 'key' => $key,
                 'error' => $exception->getMessage(),
-                'statusCode' => $exception->getStatusCode()
+                'statusCode' => $exception->getStatusCode(),
             ]);
 
             return [
                 'exists' => false,
                 'key' => $key,
                 'error' => $exception->getMessage(),
-                'errorCode' => $exception->getStatusCode()
+                'errorCode' => $exception->getStatusCode(),
             ];
         }
     }

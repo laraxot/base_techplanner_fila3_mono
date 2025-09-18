@@ -29,7 +29,7 @@ class EmployeeFactory extends Factory
     {
         return [
             'user_id' => null,
-            'employee_code' => 'EMP'.$this->faker->unique()->numberBetween(1000, 9999),
+            'employee_code' => 'EMP' . $this->faker->unique()->numberBetween(1000, 9999),
             'personal_data' => [
                 'first_name' => $this->faker->firstName(),
                 'last_name' => $this->faker->lastName(),
@@ -81,7 +81,7 @@ class EmployeeFactory extends Factory
      */
     public function active(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'status' => 'attivo',
         ]);
     }
@@ -93,7 +93,7 @@ class EmployeeFactory extends Factory
      */
     public function inactive(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'status' => 'inattivo',
         ]);
     }
@@ -103,7 +103,7 @@ class EmployeeFactory extends Factory
      */
     public function withCode(string $code): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'employee_code' => $code,
         ]);
     }
@@ -115,10 +115,10 @@ class EmployeeFactory extends Factory
      */
     public function withPersonalData(array $personalData): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'personal_data' => array_merge(
                 is_array($attributes['personal_data'] ?? null) ? $attributes['personal_data'] : [],
-                $personalData
+                $personalData,
             ),
         ]);
     }
@@ -130,10 +130,10 @@ class EmployeeFactory extends Factory
      */
     public function withContactData(array $contactData): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'contact_data' => array_merge(
                 is_array($attributes['contact_data'] ?? null) ? $attributes['contact_data'] : [],
-                $contactData
+                $contactData,
             ),
         ]);
     }
@@ -143,7 +143,7 @@ class EmployeeFactory extends Factory
      */
     public function withStatus(string $status): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'status' => $status,
         ]);
     }

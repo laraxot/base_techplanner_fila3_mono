@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Esegue la migrazione.
      */
@@ -25,7 +24,7 @@ return new class extends Migration
             $table->string('status'); // sent, failed, pending
             $table->text('error')->nullable();
             $table->timestamps();
-            
+
             $table->index(['notifiable_type', 'notifiable_id']);
             $table->index('status');
             $table->index('sent_at');

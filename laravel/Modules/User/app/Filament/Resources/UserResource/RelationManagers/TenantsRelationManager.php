@@ -19,10 +19,9 @@ use Modules\Xot\Filament\Traits\HasXotTable;
  */
 class TenantsRelationManager extends XotBaseRelationManager
 {
-
     protected static string $relationship = 'tenants';
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static null|string $recordTitleAttribute = 'name';
 
     /**
      * Set up the form schema for tenant relations.
@@ -33,9 +32,7 @@ class TenantsRelationManager extends XotBaseRelationManager
     public function getFormSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
+            Forms\Components\TextInput::make('name')->required()->maxLength(255),
         ];
     }
 
@@ -48,8 +45,8 @@ class TenantsRelationManager extends XotBaseRelationManager
     public function getTableColumns(): array
     {
         $columns = app(ListTenants::class)->getTableColumns();
-        
+
         // Ensure we only return Column instances, filter out any Layout\Component instances
-        return array_filter($columns, fn ($column): bool => $column instanceof \Filament\Tables\Columns\Column);
+        return array_filter($columns, fn($column): bool => $column instanceof \Filament\Tables\Columns\Column);
     }
 }

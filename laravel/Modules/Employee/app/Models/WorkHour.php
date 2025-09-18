@@ -265,10 +265,10 @@ class WorkHour extends BaseModel
      * @param Carbon|null $date
      * @return WorkHour|null
      */
-    public static function getLastEntryForEmployee(int $employeeId, ?Carbon $date = null): ?WorkHour
+    public static function getLastEntryForEmployee(int $employeeId, null|Carbon $date = null): null|WorkHour
     {
-        $date = $date ?? Carbon::today();
-        
+        $date ??= Carbon::today();
+
         return static::forEmployee($employeeId)
             ->forDate($date)
             ->orderBy('timestamp', 'desc')
@@ -282,11 +282,11 @@ class WorkHour extends BaseModel
      * @param Carbon|null $date
      * @return string
      */
-    public static function getNextAction(int $employeeId, ?Carbon $date = null): string
+    public static function getNextAction(int $employeeId, null|Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
-        if (! $lastEntry) {
+        if (!$lastEntry) {
             return WorkHourTypeEnum::CLOCK_IN->value;
         }
 
@@ -307,7 +307,7 @@ class WorkHour extends BaseModel
      * @param Carbon|null $date
      * @return bool
      */
-    public static function isValidNextEntry(int $employeeId, string $type, ?Carbon $date = null): bool
+    public static function isValidNextEntry(int $employeeId, string $type, null|Carbon $date = null): bool
     {
         $expectedAction = static::getNextAction($employeeId, $date);
         return $expectedAction === $type;
@@ -320,10 +320,12 @@ class WorkHour extends BaseModel
      * @param Carbon|null $date
      * @return \Illuminate\Database\Eloquent\Collection<int, WorkHour>
      */
-    public static function getTodayEntries(int $employeeId, ?Carbon $date = null): \Illuminate\Database\Eloquent\Collection
-    {
-        $date = $date ?? Carbon::today();
-        
+    public static function getTodayEntries(
+        int $employeeId,
+        null|Carbon $date = null,
+    ): \Illuminate\Database\Eloquent\Collection {
+        $date ??= Carbon::today();
+
         return static::forEmployee($employeeId)
             ->forDate($date)
             ->orderBy('timestamp', 'asc')
@@ -337,10 +339,10 @@ class WorkHour extends BaseModel
      * @param Carbon|null $date
      * @return float Hours worked
      */
-    public static function calculateWorkedHours(int $employeeId, ?Carbon $date = null): float
+    public static function calculateWorkedHours(int $employeeId, null|Carbon $date = null): float
     {
         $entries = static::getTodayEntries($employeeId, $date);
-        
+
         if ($entries->isEmpty()) {
             return 0.0;
         }
@@ -388,11 +390,11 @@ class WorkHour extends BaseModel
      * @param Carbon|null $date
      * @return string
      */
-    public static function getCurrentStatus(int $employeeId, ?Carbon $date = null): string
+    public static function getCurrentStatus(int $employeeId, null|Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
-        if (! $lastEntry) {
+        if (!$lastEntry) {
             return 'not_clocked_in';
         }
 

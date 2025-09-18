@@ -29,7 +29,7 @@ class GetViewsSiblingsAndSelfAction
         $files = File::files($dir);
         $views = [];
         foreach ($files as $file) {
-            if (! Str::endsWith($file->getFilename(), '.blade.php')) {
+            if (!Str::endsWith($file->getFilename(), '.blade.php')) {
                 continue;
             }
 

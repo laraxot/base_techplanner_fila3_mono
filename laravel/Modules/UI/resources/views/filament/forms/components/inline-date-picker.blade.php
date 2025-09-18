@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{--
 /**
  * InlineDatePicker View - KISS Principle
@@ -137,4 +142,4 @@
 .inline-date-picker button {
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-</style> 
+</style>

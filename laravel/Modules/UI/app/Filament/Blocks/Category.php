@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\UI\Filament\Blocks;
 
 use Filament\Forms\Components\Select;
@@ -15,12 +18,10 @@ final class Category extends XotBaseBlock
                 ->required()
                 ->label(__('ui::blocks.category.fields.name.label'))
                 ->helperText(__('ui::blocks.category.fields.name.helper_text')),
-
             TextInput::make('slug')
                 ->required()
                 ->label(__('ui::blocks.category.fields.slug.label'))
                 ->helperText(__('ui::blocks.category.fields.slug.helper_text')),
-
             Select::make('parent_id')
                 ->relationship('parent', 'name')
                 ->label(__('ui::blocks.category.fields.parent.label'))
@@ -32,4 +33,4 @@ final class Category extends XotBaseBlock
     {
         return __('ui::blocks.category.title');
     }
-} 
+}

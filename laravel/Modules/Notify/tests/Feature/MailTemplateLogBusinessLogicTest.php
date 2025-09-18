@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Modules\Notify\Models\MailTemplateLog;
-use Modules\Notify\Models\MailTemplate;
 use Carbon\Carbon;
+use Modules\Notify\Models\MailTemplate;
+use Modules\Notify\Models\MailTemplateLog;
 
 describe('Mail Template Log Business Logic', function () {
     it('can create mail template log with basic information', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $logData = [
             'template_id' => $template->id,
             'mailable_type' => 'App\Mail\AppointmentConfirmation',
@@ -43,11 +43,16 @@ describe('Mail Template Log Business Logic', function () {
             'status_message' => 'Email inviata con successo',
         ]);
 
-        expect($log->status)->toBe('sent')
-            ->and($log->status_message)->toBe('Email inviata con successo')
-            ->and($log->data['recipient'])->toBe('patient@example.com')
-            ->and($log->data['variables']['patient_name'])->toBe('Mario Rossi')
-            ->and($log->metadata['campaign_id'])->toBe('appointment_confirmation_001');
+        expect($log->status)
+            ->toBe('sent')
+            ->and($log->status_message)
+            ->toBe('Email inviata con successo')
+            ->and($log->data['recipient'])
+            ->toBe('patient@example.com')
+            ->and($log->data['variables']['patient_name'])
+            ->toBe('Mario Rossi')
+            ->and($log->metadata['campaign_id'])
+            ->toBe('appointment_confirmation_001');
     });
 
     it('can manage mail template log relationships', function () {
@@ -56,13 +61,12 @@ describe('Mail Template Log Business Logic', function () {
             'template_id' => $template->id,
         ]);
 
-        expect($log->template)->toBeInstanceOf(MailTemplate::class)
-            ->and($log->template->id)->toBe($template->id);
+        expect($log->template)->toBeInstanceOf(MailTemplate::class)->and($log->template->id)->toBe($template->id);
     });
 
     it('can track email lifecycle events', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'pending',
@@ -92,16 +96,18 @@ describe('Mail Template Log Business Logic', function () {
             'clicked_at' => now()->addMinutes(7),
         ]);
 
-        expect($log->status)->toBe('clicked')
-            ->and($log->sent_at)->not->toBeNull()
-            ->and($log->delivered_at)->not->toBeNull()
-            ->and($log->opened_at)->not->toBeNull()
-            ->and($log->clicked_at)->not->toBeNull();
+        expect($log->status)
+            ->toBe('clicked')
+            ->and($log->sent_at)
+            ->not->toBeNull()->and($log->delivered_at)
+            ->not->toBeNull()->and($log->opened_at)
+            ->not->toBeNull()->and($log->clicked_at)
+            ->not->toBeNull();
     });
 
     it('can handle email failure scenarios', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'pending',
@@ -119,30 +125,36 @@ describe('Mail Template Log Business Logic', function () {
             ],
         ]);
 
-        expect($log->status)->toBe('failed')
-            ->and($log->status_message)->toBe('Indirizzo email non valido: invalid@email')
-            ->and($log->failed_at)->not->toBeNull()
-            ->and($log->metadata['error_code'])->toBe('INVALID_EMAIL')
-            ->and($log->metadata['retry_count'])->toBe(3);
+        expect($log->status)
+            ->toBe('failed')
+            ->and($log->status_message)
+            ->toBe('Indirizzo email non valido: invalid@email')
+            ->and($log->failed_at)
+            ->not->toBeNull()->and($log->metadata['error_code'])->toBe('INVALID_EMAIL')->and(
+                $log->metadata['retry_count'],
+            )->toBe(3);
     });
 
     it('can manage mailable polymorphic relationships', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'mailable_type' => 'App\Models\Appointment',
             'mailable_id' => 456,
         ]);
 
-        expect($log->mailable_type)->toBe('App\Models\Appointment')
-            ->and($log->mailable_id)->toBe(456)
-            ->and($log->mailable())->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\MorphTo::class);
+        expect($log->mailable_type)
+            ->toBe('App\Models\Appointment')
+            ->and($log->mailable_id)
+            ->toBe(456)
+            ->and($log->mailable())
+            ->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\MorphTo::class);
     });
 
     it('can handle complex data structures', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $complexData = [
             'recipient' => [
                 'email' => 'patient@example.com',
@@ -180,17 +192,23 @@ describe('Mail Template Log Business Logic', function () {
             'data' => $complexData,
         ]);
 
-        expect($log->data['recipient']['email'])->toBe('patient@example.com')
-            ->and($log->data['recipient']['name'])->toBe('Mario Rossi')
-            ->and($log->data['recipient']['preferences']['language'])->toBe('it')
-            ->and($log->data['template_data']['variables']['doctor_name'])->toBe('Dr. Bianchi')
-            ->and($log->data['template_data']['attachments'])->toContain('consent_form.pdf')
-            ->and($log->data['delivery_options']['priority'])->toBe('high');
+        expect($log->data['recipient']['email'])
+            ->toBe('patient@example.com')
+            ->and($log->data['recipient']['name'])
+            ->toBe('Mario Rossi')
+            ->and($log->data['recipient']['preferences']['language'])
+            ->toBe('it')
+            ->and($log->data['template_data']['variables']['doctor_name'])
+            ->toBe('Dr. Bianchi')
+            ->and($log->data['template_data']['attachments'])
+            ->toContain('consent_form.pdf')
+            ->and($log->data['delivery_options']['priority'])
+            ->toBe('high');
     });
 
     it('can manage metadata for analytics', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $analyticsMetadata = [
             'campaign_id' => 'appointment_confirmation_q4_2024',
             'segment' => 'new_patients',
@@ -222,17 +240,23 @@ describe('Mail Template Log Business Logic', function () {
             'metadata' => $analyticsMetadata,
         ]);
 
-        expect($log->metadata['campaign_id'])->toBe('appointment_confirmation_q4_2024')
-            ->and($log->metadata['segment'])->toBe('new_patients')
-            ->and($log->metadata['geolocation']['country'])->toBe('IT')
-            ->and($log->metadata['geolocation']['city'])->toBe('Milano')
-            ->and($log->metadata['device_info']['type'])->toBe('mobile')
-            ->and($log->metadata['engagement_metrics']['open_rate'])->toBe(0.85);
+        expect($log->metadata['campaign_id'])
+            ->toBe('appointment_confirmation_q4_2024')
+            ->and($log->metadata['segment'])
+            ->toBe('new_patients')
+            ->and($log->metadata['geolocation']['country'])
+            ->toBe('IT')
+            ->and($log->metadata['geolocation']['city'])
+            ->toBe('Milano')
+            ->and($log->metadata['device_info']['type'])
+            ->toBe('mobile')
+            ->and($log->metadata['engagement_metrics']['open_rate'])
+            ->toBe(0.85);
     });
 
     it('can handle delivery status transitions', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'pending',
@@ -245,8 +269,7 @@ describe('Mail Template Log Business Logic', function () {
             'status_message' => 'Email inviata al server SMTP',
         ]);
 
-        expect($log->status)->toBe('sent')
-            ->and($log->sent_at)->not->toBeNull();
+        expect($log->status)->toBe('sent')->and($log->sent_at)->not->toBeNull();
 
         // Transizione: sent -> delivered
         $log->update([
@@ -255,8 +278,7 @@ describe('Mail Template Log Business Logic', function () {
             'status_message' => 'Email consegnata alla casella di posta',
         ]);
 
-        expect($log->status)->toBe('delivered')
-            ->and($log->delivered_at)->not->toBeNull();
+        expect($log->status)->toBe('delivered')->and($log->delivered_at)->not->toBeNull();
 
         // Transizione: delivered -> opened
         $log->update([
@@ -265,13 +287,12 @@ describe('Mail Template Log Business Logic', function () {
             'status_message' => 'Email aperta dal destinatario',
         ]);
 
-        expect($log->status)->toBe('opened')
-            ->and($log->opened_at)->not->toBeNull();
+        expect($log->status)->toBe('opened')->and($log->opened_at)->not->toBeNull();
     });
 
     it('can handle bounce and complaint scenarios', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'sent',
@@ -290,10 +311,14 @@ describe('Mail Template Log Business Logic', function () {
             ],
         ]);
 
-        expect($log->status)->toBe('bounced')
-            ->and($log->status_message)->toBe('Indirizzo email inesistente')
-            ->and($log->metadata['bounce_type'])->toBe('hard')
-            ->and($log->metadata['bounce_reason'])->toBe('Address does not exist');
+        expect($log->status)
+            ->toBe('bounced')
+            ->and($log->status_message)
+            ->toBe('Indirizzo email inesistente')
+            ->and($log->metadata['bounce_type'])
+            ->toBe('hard')
+            ->and($log->metadata['bounce_reason'])
+            ->toBe('Address does not exist');
 
         // Simula complaint
         $log->update([
@@ -307,14 +332,17 @@ describe('Mail Template Log Business Logic', function () {
             ],
         ]);
 
-        expect($log->status)->toBe('complained')
-            ->and($log->status_message)->toBe('Email segnalata come spam')
-            ->and($log->metadata['complaint_type'])->toBe('abuse');
+        expect($log->status)
+            ->toBe('complained')
+            ->and($log->status_message)
+            ->toBe('Email segnalata come spam')
+            ->and($log->metadata['complaint_type'])
+            ->toBe('abuse');
     });
 
     it('can manage retry logic', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status' => 'failed',
@@ -336,8 +364,7 @@ describe('Mail Template Log Business Logic', function () {
             ],
         ]);
 
-        expect($log->status)->toBe('retrying')
-            ->and($log->metadata['retry_count'])->toBe(1);
+        expect($log->status)->toBe('retrying')->and($log->metadata['retry_count'])->toBe(1);
 
         // Secondo retry
         $log->update([
@@ -364,15 +391,19 @@ describe('Mail Template Log Business Logic', function () {
             ],
         ]);
 
-        expect($log->status)->toBe('failed')
-            ->and($log->status_message)->toBe('Tutti i tentativi falliti')
-            ->and($log->metadata['retry_count'])->toBe(3)
-            ->and($log->metadata['final_failure'])->toBeTrue();
+        expect($log->status)
+            ->toBe('failed')
+            ->and($log->status_message)
+            ->toBe('Tutti i tentativi falliti')
+            ->and($log->metadata['retry_count'])
+            ->toBe(3)
+            ->and($log->metadata['final_failure'])
+            ->toBeTrue();
     });
 
     it('can handle empty or null values gracefully', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
             'status_message' => null,
@@ -385,19 +416,27 @@ describe('Mail Template Log Business Logic', function () {
             'clicked_at' => null,
         ]);
 
-        expect($log->status_message)->toBeNull()
-            ->and($log->data)->toBeNull()
-            ->and($log->metadata)->toBeNull()
-            ->and($log->sent_at)->toBeNull()
-            ->and($log->delivered_at)->toBeNull()
-            ->and($log->failed_at)->toBeNull()
-            ->and($log->opened_at)->toBeNull()
-            ->and($log->clicked_at)->toBeNull();
+        expect($log->status_message)
+            ->toBeNull()
+            ->and($log->data)
+            ->toBeNull()
+            ->and($log->metadata)
+            ->toBeNull()
+            ->and($log->sent_at)
+            ->toBeNull()
+            ->and($log->delivered_at)
+            ->toBeNull()
+            ->and($log->failed_at)
+            ->toBeNull()
+            ->and($log->opened_at)
+            ->toBeNull()
+            ->and($log->clicked_at)
+            ->toBeNull();
     });
 
     it('can validate timestamp consistency', function () {
         $template = MailTemplate::factory()->create();
-        
+
         $now = now();
         $log = MailTemplateLog::factory()->create([
             'template_id' => $template->id,
@@ -408,14 +447,21 @@ describe('Mail Template Log Business Logic', function () {
         ]);
 
         // Verifica che i timestamp siano in ordine cronologico
-        expect($log->sent_at->lt($log->delivered_at))->toBeTrue()
-            ->and($log->delivered_at->lt($log->opened_at))->toBeTrue()
-            ->and($log->opened_at->lt($log->clicked_at))->toBeTrue();
+        expect($log->sent_at->lt($log->delivered_at))
+            ->toBeTrue()
+            ->and($log->delivered_at->lt($log->opened_at))
+            ->toBeTrue()
+            ->and($log->opened_at->lt($log->clicked_at))
+            ->toBeTrue();
 
         // Verifica che i timestamp non siano nel futuro
-        expect($log->sent_at->lte(now()))->toBeTrue()
-            ->and($log->delivered_at->lte(now()))->toBeTrue()
-            ->and($log->opened_at->lte(now()))->toBeTrue()
-            ->and($log->clicked_at->lte(now()))->toBeTrue();
+        expect($log->sent_at->lte(now()))
+            ->toBeTrue()
+            ->and($log->delivered_at->lte(now()))
+            ->toBeTrue()
+            ->and($log->opened_at->lte(now()))
+            ->toBeTrue()
+            ->and($log->clicked_at->lte(now()))
+            ->toBeTrue();
     });
 });

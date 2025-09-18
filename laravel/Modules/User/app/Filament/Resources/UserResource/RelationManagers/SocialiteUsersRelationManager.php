@@ -38,30 +38,21 @@ class SocialiteUsersRelationManager extends XotBaseRelationManager
     {
         return [
             Forms\Components\TextInput::make('provider')
-
                 ->required()
                 ->maxLength(255)
                 ->placeholder(__('Enter provider name, e.g., Google, Facebook')),
-
             Forms\Components\TextInput::make('provider_id')
-
                 ->required()
                 ->maxLength(255)
                 ->placeholder(__('Enter the provider ID for the user')),
-
             Forms\Components\TextInput::make('name')
-
                 ->maxLength(255)
                 ->placeholder(__('User’s name associated with the provider')),
-
             Forms\Components\TextInput::make('email')
-
                 ->email()
                 ->maxLength(255)
                 ->placeholder(__('User’s email associated with the provider')),
-
             Forms\Components\TextInput::make('avatar')
-
                 ->url()
                 ->maxLength(512)
                 ->placeholder(__('URL of the user’s avatar image')),
@@ -77,30 +68,15 @@ class SocialiteUsersRelationManager extends XotBaseRelationManager
     public function getTableColumns(): array
     {
         return [
-            TextColumn::make('provider')
-
-                ->searchable(),
-
-            TextColumn::make('provider_id')
-
-                ->searchable(),
-
-            TextColumn::make('name')
-
-                ->searchable(),
-
-            TextColumn::make('email')
-
-                ->searchable(),
-
-            ImageColumn::make('avatar')
-
-                ->size(40),
+            TextColumn::make('provider')->searchable(),
+            TextColumn::make('provider_id')->searchable(),
+            TextColumn::make('name')->searchable(),
+            TextColumn::make('email')->searchable(),
+            ImageColumn::make('avatar')->size(40),
         ];
     }
 
     //  * Query scope to apply conditions to the relation manager.
-
     // protected function applyTableQueryScope(Builder $query): Builder
     // {
     //     return $query->when(

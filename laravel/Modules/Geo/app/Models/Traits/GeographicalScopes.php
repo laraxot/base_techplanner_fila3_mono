@@ -25,22 +25,26 @@ trait GeographicalScopes
         return $query->orderBy($this->getDistanceExpression($latitude, $longitude));
     }
 
-    public function getDistanceExpression(float $latitude, float $longitude, ?string $alias = null): Expression|\Illuminate\Contracts\Database\Query\Expression
-    {
+    public function getDistanceExpression(
+        float $latitude,
+        float $longitude,
+        null|string $alias = null,
+    ): Expression|\Illuminate\Contracts\Database\Query\Expression {
         $sql = "
             (6371 * acos(
-                cos(radians($latitude)) *
+                cos(radians({$latitude})) *
                 cos(radians(latitude)) *
-                cos(radians(longitude) - radians($longitude)) +
-                sin(radians($latitude)) *
+                cos(radians(longitude) - radians({$longitude})) +
+                sin(radians({$latitude})) *
                 sin(radians(latitude))
             ))
         ";
         if (null !== $alias) {
-            $sql .= " AS $alias";
+            $sql .= " AS {$alias}";
         }
 
         return new \Illuminate\Database\Query\Expression($sql);
+
         // AS distance
     }
 }

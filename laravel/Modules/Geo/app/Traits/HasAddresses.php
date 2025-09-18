@@ -11,7 +11,7 @@ use Modules\Geo\Models\Address;
 
 /**
  * Trait HasAddresses
- * 
+ *
  * Questo trait fornisce funzionalità per gestire indirizzi multipli su qualsiasi modello.
  */
 trait HasAddresses
@@ -33,8 +33,7 @@ trait HasAddresses
      */
     public function primaryAddress(): MorphOne
     {
-        return $this->morphOne(Address::class, 'model')
-            ->where('is_primary', true);
+        return $this->morphOne(Address::class, 'model')->where('is_primary', true);
     }
 
     /**
@@ -44,8 +43,7 @@ trait HasAddresses
      */
     public function homeAddress(): MorphOne
     {
-        return $this->morphOne(Address::class, 'model')
-            ->where('type', AddressTypeEnum::HOME->value);
+        return $this->morphOne(Address::class, 'model')->where('type', AddressTypeEnum::HOME->value);
     }
 
     /**
@@ -55,8 +53,7 @@ trait HasAddresses
      */
     public function workAddress(): MorphOne
     {
-        return $this->morphOne(Address::class, 'model')
-            ->where('type', AddressTypeEnum::WORK->value);
+        return $this->morphOne(Address::class, 'model')->where('type', AddressTypeEnum::WORK->value);
     }
 
     /**
@@ -66,8 +63,7 @@ trait HasAddresses
      */
     public function billingAddress(): MorphOne
     {
-        return $this->morphOne(Address::class, 'model')
-            ->where('type', AddressTypeEnum::BILLING->value);
+        return $this->morphOne(Address::class, 'model')->where('type', AddressTypeEnum::BILLING->value);
     }
 
     /**
@@ -77,8 +73,7 @@ trait HasAddresses
      */
     public function shippingAddress(): MorphOne
     {
-        return $this->morphOne(Address::class, 'model')
-            ->where('type', AddressTypeEnum::SHIPPING->value);
+        return $this->morphOne(Address::class, 'model')->where('type', AddressTypeEnum::SHIPPING->value);
     }
 
     /**
@@ -129,7 +124,7 @@ trait HasAddresses
      */
     public function getAddressesByType($type)
     {
-        $typeValue = $type instanceof AddressTypeEnum ? $type->value : $type;
+        $typeValue = ($type instanceof AddressTypeEnum) ? $type->value : $type;
         return $this->addresses()->where('type', $typeValue)->get();
     }
 }

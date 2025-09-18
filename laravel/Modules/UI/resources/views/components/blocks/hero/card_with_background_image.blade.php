@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="bg-white">
     {{--
     <header>
@@ -240,4 +245,3 @@
       <!-- More main page content here... -->
     </main>
   </div>
-  

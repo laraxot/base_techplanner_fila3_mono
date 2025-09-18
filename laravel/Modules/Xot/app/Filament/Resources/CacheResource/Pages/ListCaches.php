@@ -13,7 +13,6 @@ use Modules\Xot\Filament\Resources\CacheResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Modules\Xot\Filament\Widgets\Clock;
 
-
 /**
  * @see CacheResource
  */
@@ -39,12 +38,10 @@ class ListCaches extends XotBaseListRecords
                 ->sortable()
                 ->wrap()
                 ->label('Key'),
-
             'value' => TextColumn::make('value')
                 ->searchable()
                 ->wrap()
                 ->label('Value'),
-
             'expiration' => TextColumn::make('expiration')
                 ->dateTime()
                 ->sortable()

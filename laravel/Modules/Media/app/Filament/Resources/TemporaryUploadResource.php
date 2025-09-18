@@ -18,7 +18,7 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class TemporaryUploadResource extends XotBaseResource
 {
-    protected static ?string $model = TemporaryUpload::class;
+    protected static null|string $model = TemporaryUpload::class;
 
     /**
      * @return array<string, \Filament\Forms\Components\Component>
@@ -32,11 +32,8 @@ class TemporaryUploadResource extends XotBaseResource
                 ->preserveFilenames()
                 ->acceptedFileTypes(['image/*', 'application/pdf', 'application/msword'])
                 ->maxSize(10240),
-            'folder' => \Filament\Forms\Components\TextInput::make('folder')
-                ->required()
-                ->maxLength(255),
-            'expires_at' => \Filament\Forms\Components\DateTimePicker::make('expires_at')
-                ->required(),
+            'folder' => \Filament\Forms\Components\TextInput::make('folder')->required()->maxLength(255),
+            'expires_at' => \Filament\Forms\Components\DateTimePicker::make('expires_at')->required(),
         ];
     }
 
@@ -46,8 +43,7 @@ class TemporaryUploadResource extends XotBaseResource
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\User\Http\Middleware;
 
 use Closure;
@@ -16,10 +19,10 @@ class EnsureRegistrationEnabled
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $enabled=Config::boolean('auth.registration_enabled', true);
+        $enabled = Config::boolean('auth.registration_enabled', true);
         // Controlla se la registrazione è disabilitata
         if (!$enabled) {
-            return redirect()->route('pages.view', ['slug'=>'register_disabled']);
+            return redirect()->route('pages.view', ['slug' => 'register_disabled']);
         }
 
         return $next($request);

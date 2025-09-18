@@ -12,17 +12,15 @@ use Filament\Forms\Components\TextInput;
 
 class ImagesGallery
 {
-    public static function make(
-        string $name = 'images_gallery',
-        string $context = 'form',
-    ): Block {
+    public static function make(string $name = 'images_gallery', string $context = 'form'): Block
+    {
         return Block::make($name)
             ->schema([
                 Repeater::make('gallery')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('image')
-                        // ->image()
-                        // ->maxSize(5000)
+                            // ->image()
+                            // ->maxSize(5000)
                             ->multiple()
                             ->enableReordering()
                             ->openable()
@@ -32,22 +30,16 @@ class ImagesGallery
                             // ->conversion('thumbnail')
                             ->disk('uploads')
                             ->directory('photos'),
-
-                        TextInput::make('title')
-                            ->columnSpanFull(),
-
-                        TextInput::make('subtitle')
-                            ->columnSpanFull(),
-
+                        TextInput::make('title')->columnSpanFull(),
+                        TextInput::make('subtitle')->columnSpanFull(),
                         Select::make('version')
-
                             ->required()
                             ->options([
                                 'v1' => 'versione 1',
                                 'v2' => 'versione 2',
                             ]),
-                    ])->columnSpanFull(),
-
+                    ])
+                    ->columnSpanFull(),
                 // FileUpload::make('image')
                 //     ,
                 // SpatieMediaLibraryFileUpload::make('image')
@@ -62,17 +54,13 @@ class ImagesGallery
                 //         // ->conversion('thumbnail')
                 //     ->disk('uploads')
                 //     ->directory('photos'),
-
                 // TextInput::make('url')
                 //     ,
-
                 // Select::make('ratio')
                 //     ->options(static::getRatios())
                 //     ->afterStateHydrated(static fn ($state, $set) => $state || $set('ratio', '4-3')),
-
                 // TextInput::make('alt')
                 //     ->columnSpanFull(),
-
                 // TextInput::make('caption')
                 //     ->columnSpanFull(),
             ])

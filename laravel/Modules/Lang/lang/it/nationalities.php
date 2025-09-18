@@ -48,7 +48,6 @@ return [
     'ge' => 'Georgiana',
     'am' => 'Armena',
     'az' => 'Azerbaigiana',
-
     // Americhe
     'us' => 'Statunitense',
     'ca' => 'Canadese',
@@ -92,7 +91,6 @@ return [
     'kn' => 'Kittitiana',
     'dm' => 'Dominicana',
     'bs' => 'Bahamense',
-
     // Asia
     'cn' => 'Cinese',
     'jp' => 'Giapponese',
@@ -138,7 +136,6 @@ return [
     'kg' => 'Kirghisa',
     'tj' => 'Tagika',
     'tm' => 'Turkmena',
-
     // Africa
     'eg' => 'Egiziana',
     'ly' => 'Libica',
@@ -194,7 +191,6 @@ return [
     'ao' => 'Angolana',
     'aq' => 'Antartica',
     'zr' => 'Zairese',
-
     // Oceania
     'au' => 'Australiana',
     'ax' => 'Alandese',
@@ -213,7 +209,6 @@ return [
     'pw' => 'Palau',
     'fm' => 'Micronesiana',
     'mh' => 'Marshallese',
-
     // Altri
     'xk' => 'Kosovara',
     'va' => 'Vaticana',

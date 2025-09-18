@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\UI\Actions;
 
 use Illuminate\Support\Facades\Auth;
@@ -10,11 +13,11 @@ class GetUserDataAction
 {
     use QueueableAction;
 
-    public function execute(): ?UserData
+    public function execute(): null|UserData
     {
         $user = Auth::user();
 
-        if (! $user) {
+        if (!$user) {
             return null;
         }
 
@@ -25,7 +28,7 @@ class GetUserDataAction
             avatar: $user->avatar ?? null,
             role: $user->role ?? null,
             permissions: $user->permissions->toArray() ?? [],
-            settings: $user->settings ?? []
+            settings: $user->settings ?? [],
         );
     }
-} 
+}

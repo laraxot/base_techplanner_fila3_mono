@@ -12,6 +12,7 @@ class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Employee';
 
+    #[\Override]
     public function panel(Panel $panel): Panel
     {
         $panel = parent::panel($panel);
@@ -36,7 +37,7 @@ class AdminPanelProvider extends XotBasePanelProvider
         $panel->userMenuItems([
             MenuItem::make()
                 ->label('Gestione Dipendenti')
-                ->url(fn (): string => \Modules\Employee\Filament\Pages\Dashboard::getUrl())
+                ->url(\Modules\Employee\Filament\Pages\Dashboard::getUrl(...))
                 ->icon('heroicon-m-users'),
         ]);
 

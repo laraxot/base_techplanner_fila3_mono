@@ -89,9 +89,9 @@ interface TeamContract extends ModelContract
 
     /* --non qui
      * Get the disk that profile photos should be stored on.
-
-    public function profilePhotoDisk(): string;
-    */
+     *
+     * public function profilePhotoDisk(): string;
+     */
 
     /**
      * Reload a fresh model instance from the database.

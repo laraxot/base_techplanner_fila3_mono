@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div
     x-data="{
         output: @entangle('output'),
@@ -56,4 +61,4 @@
 .animate-blink {
     animation: blink 1s infinite;
 }
-</style> 
+</style>

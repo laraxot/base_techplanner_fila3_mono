@@ -11,16 +11,16 @@ use Modules\User\Models\User;
 
 /**
  * TeamUser Factory
- * 
+ *
  * Factory for creating TeamUser model instances for testing and seeding.
- * 
+ *
  * @extends Factory<TeamUser>
  */
 class TeamUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<TeamUser>
      */
     protected $model = TeamUser::class;
@@ -47,7 +47,7 @@ class TeamUserFactory extends Factory
      */
     public function forTeam(Team $team): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'team_id' => $team->id,
         ]);
     }
@@ -60,7 +60,7 @@ class TeamUserFactory extends Factory
      */
     public function forUser(User $user): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'user_id' => $user->id,
         ]);
     }
@@ -72,7 +72,7 @@ class TeamUserFactory extends Factory
      */
     public function owner(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'owner',
         ]);
     }
@@ -84,7 +84,7 @@ class TeamUserFactory extends Factory
      */
     public function admin(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'admin',
         ]);
     }
@@ -96,7 +96,7 @@ class TeamUserFactory extends Factory
      */
     public function member(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'role' => 'member',
         ]);
     }

@@ -35,22 +35,19 @@ class GenerateFormCommand extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    
 
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-        Assert::string($module_name = $this->argument('module'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::string($module_name = $this->argument('module'), '[' . __LINE__ . '][' . class_basename($this) . ']');
         $module_path = Module::getModulePath($module_name);
-        if (! Str::endsWith($module_path, '/')) {
+        if (!Str::endsWith($module_path, '/')) {
             $module_path .= '/';
         }
-        $filament_resources_path = $module_path.'Filament/Resources';
+        $filament_resources_path = $module_path . 'Filament/Resources';
 
         $this->info($module_name); // = Progressioni
         $this->info($module_path); // = /var/www/html/ptvx/laravel/Modules/Progressioni/

@@ -43,18 +43,18 @@ class Region extends BaseModel
      */
     protected $keyType = 'integer';
 
-
     protected array $schema = [
         'id' => 'integer',
         'name' => 'string',
     ];
 
-    public function getRows(): array{
-        $rows=Comune::select("regione->codice as id","regione->nome as name")
+    public function getRows(): array
+    {
+        $rows = Comune::select('regione->codice as id', 'regione->nome as name')
             ->distinct()
-            ->orderBy("regione->nome")
+            ->orderBy('regione->nome')
             ->get();
-       
+
         return $rows->toArray();
     }
 
@@ -67,7 +67,7 @@ class Region extends BaseModel
     {
         return self::orderBy('name')
             ->get()
-            ->pluck("name", "id")
+            ->pluck('name', 'id')
             ->toArray();
     }
 }

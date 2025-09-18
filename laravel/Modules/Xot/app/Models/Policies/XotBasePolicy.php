@@ -17,7 +17,7 @@ abstract class XotBasePolicy
 {
     use HandlesAuthorization;
 
-    public function before(UserContract $user, string $ability): ?bool
+    public function before(UserContract $user, string $_ability): null|bool
     {
         return once(function () use ($user) {
             if ($user->hasRole('super-admin')) {

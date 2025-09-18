@@ -10,8 +10,8 @@ use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Notify\Contracts\SMS\SmsActionContract;
-use Modules\Notify\Datas\SmsData;
 use Modules\Notify\Datas\SMS\TwilioData;
+use Modules\Notify\Datas\SmsData;
 use Spatie\QueueableAction\QueueableAction;
 
 final class SendTwilioSMSAction implements SmsActionContract
@@ -28,7 +28,7 @@ final class SendTwilioSMSAction implements SmsActionContract
     protected bool $debug;
 
     /** @var string|null */
-    protected ?string $defaultSender = null;
+    protected null|string $defaultSender = null;
 
     /**
      * Create a new action instance.
@@ -36,7 +36,7 @@ final class SendTwilioSMSAction implements SmsActionContract
     public function __construct()
     {
         $this->twilioData = TwilioData::make();
-        
+
         if (!$this->twilioData->account_sid) {
             throw new Exception('Account SID Twilio non configurato in sms.php');
         }
@@ -76,10 +76,14 @@ final class SendTwilioSMSAction implements SmsActionContract
         // Twilio richiede l'autenticazione Basic
         $client = new Client([
             'timeout' => $this->twilioData->getTimeout(),
-            'auth' => [$this->twilioData->account_sid, $this->twilioData->auth_token]
+            'auth' => [$this->twilioData->account_sid, $this->twilioData->auth_token],
         ]);
 
-        $endpoint = $this->twilioData->getBaseUrl() . '/2010-04-01/Accounts/' . $this->twilioData->account_sid . '/Messages.json';
+        $endpoint =
+            $this->twilioData->getBaseUrl() .
+            '/2010-04-01/Accounts/' .
+            $this->twilioData->account_sid .
+            '/Messages.json';
 
         try {
             $response = $client->post($endpoint, [
@@ -87,7 +91,7 @@ final class SendTwilioSMSAction implements SmsActionContract
                     'To' => $to,
                     'From' => $from,
                     'Body' => $smsData->body,
-                ]
+                ],
             ]);
 
             $this->vars['status_code'] = $response->getStatusCode();
@@ -98,7 +102,7 @@ final class SendTwilioSMSAction implements SmsActionContract
             throw new Exception(
                 $clientException->getMessage() . '[' . __LINE__ . '][' . class_basename($this) . ']',
                 $clientException->getCode(),
-                $clientException
+                $clientException,
             );
         }
     }

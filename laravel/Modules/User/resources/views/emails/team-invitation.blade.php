@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @component('mail::message')
 {{ __('You have been invited to join the :team team!', ['team' => $invitation->team->name]) }}
 

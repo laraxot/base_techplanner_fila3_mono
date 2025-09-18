@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament::dropdown >
     <x-slot name="trigger" class="ml-4">
         <button @class([
@@ -16,4 +21,3 @@
         @endforeach
     </x-filament::dropdown.list>
 </x-filament::dropdown>
-

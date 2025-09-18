@@ -21,29 +21,29 @@ class BelongsToAction
         Assert::isInstanceOf($rows = $relationDTO->rows, BelongsTo::class);
 
         /*$relationDTO->data e' un array
-        if (! \is_array($relationDTO->data)) {
-            $related = $rows->getRelated();
-            $related = $related->find($relationDTO->data);
-            $res = $rows->associate($related);
-            $res->save();
+         * if (! \is_array($relationDTO->data)) {
+         * $related = $rows->getRelated();
+         * $related = $related->find($relationDTO->data);
+         * $res = $rows->associate($related);
+         * $res->save();
+         *
+         * return;
+         * }
+         */
 
-            return;
-        }
-        */
-
-        if (! Arr::isAssoc($relationDTO->data) && 1 === \count($relationDTO->data)) {
+        if (!Arr::isAssoc($relationDTO->data) && 1 === \count($relationDTO->data)) {
             $related_id = Arr::first($relationDTO->data);
             if (null === $related_id) {
                 return;
             }
-            
+
             $related = $relationDTO->related->find($related_id);
             // Verifica che $related non sia una Collection, ma un singolo modello
             if ($related instanceof \Illuminate\Database\Eloquent\Collection) {
                 $related = $related->first(); // Prendi il primo modello della collezione
             }
 
-            if (! $related instanceof Model) {
+            if (!($related instanceof Model)) {
                 throw new \Exception('Expected a single model, got null or invalid object.');
             }
             $res = $rows->associate($related);
@@ -56,7 +56,7 @@ class BelongsToAction
             $sub = $rows->firstOrCreate();
             // $sub = $rows->first() ?? $rows->getModel();
             if (null === $sub) {
-                throw new \Exception('['.__LINE__.']['.class_basename($this).']');
+                throw new \Exception('[' . __LINE__ . '][' . class_basename($this) . ']');
             }
 
             app(RelationAction::class)->execute($sub, $relationDTO->data);

@@ -12,5 +12,4 @@ use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 class EditNotification extends \Modules\Xot\Filament\Resources\Pages\XotBaseEditRecord
 {
     protected static string $resource = NotificationResource::class;
-
 }

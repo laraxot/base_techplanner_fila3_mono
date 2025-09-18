@@ -9,10 +9,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 use Modules\Geo\Datas\LocationData;
 use Modules\Geo\Datas\TravelTimeData;
+use Webmozart\Assert\Assert;
 
 use function Safe\json_decode;
-
-use Webmozart\Assert\Assert;
 
 /**
  * Action per calcolare il tempo di percorrenza tra due punti tramite Google Maps.
@@ -20,14 +19,13 @@ use Webmozart\Assert\Assert;
  * Questa classe utilizza l'API Google Maps Distance Matrix per calcolare
  * il tempo di percorrenza tra due località, considerando il traffico attuale.
  */
-class CalculateTravelTimeAction
+readonly class CalculateTravelTimeAction
 {
     private const API_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
 
     public function __construct(
-        private readonly Client $client,
-    ) {
-    }
+        private  Client $client,
+    ) {}
 
     /**
      * Calcola il tempo di percorrenza tra due punti.
@@ -65,7 +63,7 @@ class CalculateTravelTimeAction
         Assert::notSame(
             [$origin->latitude, $origin->longitude],
             [$destination->latitude, $destination->longitude],
-            'Origin and destination cannot be the same location'
+            'Origin and destination cannot be the same location',
         );
     }
 
@@ -119,7 +117,7 @@ class CalculateTravelTimeAction
         }
 
         $element = $data['rows'][0]['elements'][0] ?? null;
-        if (! $element || 'OK' !== ($element['status'] ?? null)) {
+        if (!$element || 'OK' !== ($element['status'] ?? null)) {
             return TravelTimeData::error($element['status'] ?? 'NO_ROUTE');
         }
 
@@ -129,7 +127,7 @@ class CalculateTravelTimeAction
             distance_meters: $element['distance']['value'],
             formatted_duration: $element['duration']['text'],
             formatted_distance: $element['distance']['text'],
-            status: $data['status']
+            status: $data['status'],
         );
     }
 }

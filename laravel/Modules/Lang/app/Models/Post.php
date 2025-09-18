@@ -101,10 +101,10 @@ class Post extends Model
     use Updater;
 
     /*
-    public function getUrlAttribute($value) {
-
-    }
-    */
+     * public function getUrlAttribute($value) {
+     *
+     * }
+     */
 
     final public const SEARCHABLE_FIELDS = ['title', 'guid', 'txt'];
 
@@ -129,18 +129,26 @@ class Post extends Model
 
     /** @var list<string> */
     protected $fillable = [
-        'id', 'user_id', 'post_id', 'lang', 'guid',
+        'id',
+        'user_id',
+        'post_id',
+        'lang',
+        'guid',
         'title',
         'subtitle',
         'post_type',
         'txt',
         // ------ IMAGE ---------
-        'image_src', 'image_alt', 'image_title',
+        'image_src',
+        'image_alt',
+        'image_title',
         // ------ SEO FIELDS -----
-        'meta_description', 'meta_keywords', // seo
+        'meta_description',
+        'meta_keywords', // seo
         'author_id',
         // ------ BUFFER ----
-        'url', 'url_lang', // buffer
+        'url',
+        'url_lang', // buffer
         'image_resize_src', // buffer
     ];
 
@@ -154,19 +162,17 @@ class Post extends Model
     protected $keyType = 'string';
 
     /*
-    public function getRouteKeyName() {
-        return inAdmin() ? 'guid' : 'post_id';
-    }
-    */
+     * public function getRouteKeyName() {
+     * return inAdmin() ? 'guid' : 'post_id';
+     * }
+     */
 
     /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions(): SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('guid');
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('guid');
     }
 
     // -------- relationship ------
@@ -179,23 +185,23 @@ class Post extends Model
     }
 
     /* deprecated
-    public function archive() {
-        $lang = $this->lang;
-        $post_type = $this->post_type;
-        $obj = $this->getLinkedModel();
-        $table = $obj->getTable();
-        $post_table = with(new Post())->getTable();
-        $rows = $obj->join($post_table, $post_table.'.post_id', $table.'.post_id')
-                    ->where('lang', $lang)
-                    ->where($post_table.'.post_type', $post_type)
-                    ->where($post_table.'.guid', '!=', $post_type)
-                    ->orderBy($table.'.updated_at', 'desc')
-                    ->with('post')
-                    ;
-
-        return $rows;
-    }
-    */
+     * public function archive() {
+     * $lang = $this->lang;
+     * $post_type = $this->post_type;
+     * $obj = $this->getLinkedModel();
+     * $table = $obj->getTable();
+     * $post_table = with(new Post())->getTable();
+     * $rows = $obj->join($post_table, $post_table.'.post_id', $table.'.post_id')
+     * ->where('lang', $lang)
+     * ->where($post_table.'.post_type', $post_type)
+     * ->where($post_table.'.guid', '!=', $post_type)
+     * ->orderBy($table.'.updated_at', 'desc')
+     * ->with('post')
+     * ;
+     *
+     * return $rows;
+     * }
+     */
 
     // end function
     // -------------- MUTATORS ------------------
@@ -209,24 +215,26 @@ class Post extends Model
     /**
      * Undocumented function.
      */
-    public function getTitleAttribute(?string $value): ?string
+    public function getTitleAttribute(null|string $value): null|string
     {
         if (null !== $value) {
             return $value;
         }
 
-        if (! empty($this->attributes['post_type'])) {
+        if (!empty($this->attributes['post_type'])) {
             // Assicuriamoci che i valori siano stringhe prima della concatenazione
             $postType = isset($this->attributes['post_type']) && is_string($this->attributes['post_type'])
-                ? $this->attributes['post_type'] : '';
+                ? $this->attributes['post_type']
+                : '';
             $postId = isset($this->attributes['post_id']) && is_scalar($this->attributes['post_id'])
-                ? (string) $this->attributes['post_id'] : '';
-            $value = $postType.' '.$postId;
+                ? ((string) $this->attributes['post_id'])
+                : '';
+            $value = $postType . ' ' . $postId;
         } else {
             // Assicuriamoci che post_type e post_id siano stringhe
             $postType = is_string($this->post_type) ? $this->post_type : '';
-            $postId = is_scalar($this->post_id) ? (string) $this->post_id : '';
-            $value = $postType.' '.$postId;
+            $postId = is_scalar($this->post_id) ? ((string) $this->post_id) : '';
+            $value = $postType . ' ' . $postId;
         }
 
         $this->title = $value;
@@ -239,22 +247,24 @@ class Post extends Model
     /**
      * ---.
      */
-    public function getGuidAttribute(?string $value): ?string
+    public function getGuidAttribute(null|string $value): null|string
     {
-        if (\is_string($value) && '' !== $value && ! str_contains($value, ' ')) {
+        if (\is_string($value) && '' !== $value && !str_contains($value, ' ')) {
             return $value;
         }
         $value = $this->title;
         if ('' === $value) {
             // Assicuriamoci che i valori siano stringhe prima della concatenazione
             $postType = isset($this->attributes['post_type']) && is_string($this->attributes['post_type'])
-                ? $this->attributes['post_type'] : '';
+                ? $this->attributes['post_type']
+                : '';
             $postId = isset($this->attributes['post_id']) && is_scalar($this->attributes['post_id'])
-                ? (string) $this->attributes['post_id'] : '';
-            $value = $postType.' '.$postId;
+                ? ((string) $this->attributes['post_id'])
+                : '';
+            $value = $postType . ' ' . $postId;
         }
         if (null === $value) {
-            $value = 'u-'.random_int(1, 1000);
+            $value = 'u-' . random_int(1, 1000);
         }
         $value = Str::slug($value);
         $this->guid = $value;
@@ -263,7 +273,7 @@ class Post extends Model
         return $value;
     }
 
-    public function getTxtAttribute(?string $value): ?string
+    public function getTxtAttribute(null|string $value): null|string
     {
         return $value ?? '';
     }
@@ -291,4 +301,6 @@ class Post extends Model
             'published_at' => 'datetime',
         ];
     }
-}// end class
+}
+
+// end class

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- Radio Card Selector Component --}}
 @php
     $cards = $getCards();
@@ -144,4 +149,4 @@
             </p>
         </div>
     @endif
-</div> 
+</div>

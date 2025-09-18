@@ -17,15 +17,14 @@ use Modules\Geo\Services\GoogleMapsService;
  *
  * @see https://developers.google.com/maps/documentation/elevation
  */
-class GetElevationAction
+readonly class GetElevationAction
 {
     /**
      * @param GoogleMapsService $googleMapsService Servizio per le richieste a Google Maps
      */
     public function __construct(
-        private readonly GoogleMapsService $googleMapsService,
-    ) {
-    }
+        private  GoogleMapsService $googleMapsService,
+    ) {}
 
     /**
      * Ottiene l'elevazione per una posizione geografica.
@@ -43,10 +42,7 @@ class GetElevationAction
 
         try {
             /** @var array<string, mixed> $response */
-            $response = $this->googleMapsService->getElevation(
-                $location->latitude,
-                $location->longitude
-            );
+            $response = $this->googleMapsService->getElevation($location->latitude, $location->longitude);
 
             if (!isset($response['results']) || !is_array($response['results']) || empty($response['results'])) {
                 throw ElevationException::invalidResponse();
@@ -63,7 +59,7 @@ class GetElevationAction
                 throw $e;
             }
 
-            throw ElevationException::serviceError('Errore nel recupero dell\'elevazione: '.$e->getMessage(), $e);
+            throw ElevationException::serviceError('Errore nel recupero dell\'elevazione: ' . $e->getMessage(), $e);
         }
     }
 

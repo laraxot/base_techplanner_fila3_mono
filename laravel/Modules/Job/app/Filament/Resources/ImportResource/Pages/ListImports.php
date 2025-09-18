@@ -22,31 +22,17 @@ class ListImports extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->searchable()
-                ->sortable(),
+            'id' => TextColumn::make('id')->searchable()->sortable(),
             'file_name' => TextColumn::make('file_name')
                 ->searchable()
                 ->sortable()
                 ->wrap(),
-            'file_disk' => TextColumn::make('file_disk')
-                ->searchable()
-                ->sortable(),
-            'importer' => TextColumn::make('importer')
-                ->searchable()
-                ->sortable(),
-            'processed_rows' => TextColumn::make('processed_rows')
-                ->numeric()
-                ->sortable(),
-            'total_rows' => TextColumn::make('total_rows')
-                ->numeric()
-                ->sortable(),
-            'successful_rows' => TextColumn::make('successful_rows')
-                ->numeric()
-                ->sortable(),
-            'completed_at' => TextColumn::make('completed_at')
-                ->dateTime()
-                ->sortable(),
+            'file_disk' => TextColumn::make('file_disk')->searchable()->sortable(),
+            'importer' => TextColumn::make('importer')->searchable()->sortable(),
+            'processed_rows' => TextColumn::make('processed_rows')->numeric()->sortable(),
+            'total_rows' => TextColumn::make('total_rows')->numeric()->sortable(),
+            'successful_rows' => TextColumn::make('successful_rows')->numeric()->sortable(),
+            'completed_at' => TextColumn::make('completed_at')->dateTime()->sortable(),
             'created_at' => TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -64,8 +50,7 @@ class ListImports extends XotBaseListRecords
     #[\Override]
     public function getTableFilters(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -75,8 +60,7 @@ class ListImports extends XotBaseListRecords
     public function getTableActions(): array
     {
         return [
-            'edit' => EditAction::make()
-                ,
+            'edit' => EditAction::make(),
         ];
     }
 

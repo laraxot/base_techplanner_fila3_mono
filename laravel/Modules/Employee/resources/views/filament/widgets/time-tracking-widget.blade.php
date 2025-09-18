@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget>
     <div class="grid grid-cols-3 gap-6 items-center h-20" wire:poll.1s="updateTimeData">
         {{-- Colonna SINISTRA: Orario e Data --}}

@@ -20,7 +20,7 @@ class GeoService
 
     public static string $longitude_field = 'longitude';
 
-    private static ?self $_instance = null;
+    private static null|self $_instance = null;
 
     /**
      * getInstance.
@@ -29,7 +29,7 @@ class GeoService
      */
     public static function getInstance(): self
     {
-        if (! self::$_instance instanceof GeoService) {
+        if (!(self::$_instance instanceof GeoService)) {
             self::$_instance = new self();
         }
 
@@ -88,9 +88,14 @@ class GeoService
     /* ::                                                                         : */
     /* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-    public static function distance(?float $lat1, ?float $lon1, ?float $lat2, ?float $lon2, ?string $unit): ?float
-    {
-        if (($lat1 === $lat2) && ($lon1 === $lon2)) {
+    public static function distance(
+        null|float $lat1,
+        null|float $lon1,
+        null|float $lat2,
+        null|float $lon2,
+        null|string $unit,
+    ): null|float {
+        if ($lat1 === $lat2 && $lon1 === $lon2) {
             return 0;
         }
         if (null === $lat1) {
@@ -106,7 +111,9 @@ class GeoService
             return null;
         }
         $theta = $lon1 - $lon2;
-        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist =
+            (sin(deg2rad($lat1)) * sin(deg2rad($lat2))) +
+            (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)));
         $dist = acos($dist);
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
@@ -127,12 +134,26 @@ class GeoService
     // echo GeoService::distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
     public static function haversine(float $latitude, float $longitude): string
     {
-        return '(6371 * acos(cos(radians('.$latitude.'))
-        * cos(radians(`'.self::$latitude_field.'`))
-        * cos(radians(`'.self::$longitude_field.'`)
-        - radians('.$longitude.'))
-        + sin(radians('.$latitude.'))
-        * sin(radians(`'.self::$latitude_field.'`)))) *1.1515';
+        return (
+            '(6371 * acos(cos(radians(' .
+            $latitude .
+            '))
+        * cos(radians(`' .
+            self::$latitude_field .
+            '`))
+        * cos(radians(`' .
+            self::$longitude_field .
+            '`)
+        - radians(' .
+            $longitude .
+            '))
+        + sin(radians(' .
+            $latitude .
+            '))
+        * sin(radians(`' .
+            self::$latitude_field .
+            '`)))) *1.1515'
+        );
     }
 
     /**
@@ -150,25 +171,32 @@ class GeoService
             $polygon[$j] = (object) $polygon[$j];
 
             if (
-                ($polygon[$i]->lat > $latitude !== ($polygon[$j]->lat > $latitude))
-                && ($longitude < ($polygon[$j]->lng - $polygon[$i]->lng) * ($latitude - $polygon[$i]->lat) / ($polygon[$j]->lat - $polygon[$i]->lat) + $polygon[$i]->lng)
+                ($polygon[$i]->lat > $latitude) !== ($polygon[$j]->lat > $latitude) &&
+                    $longitude <
+                    (
+                            (
+                                    (($polygon[$j]->lng - $polygon[$i]->lng) * ($latitude - $polygon[$i]->lat)) /
+                                        ($polygon[$j]->lat - $polygon[$i]->lat)
+                                ) +
+                                $polygon[$i]->lng
+                        )
             ) {
-                $c = ! $c;
+                $c = !$c;
             }
         }
 
         return (bool) $c;
     }
 
-    public static function pointInPolygon(float $lat, float $lng, ?string $polygon): bool
+    public static function pointInPolygon(float $lat, float $lng, null|string $polygon): bool
     {
         if (null === $polygon || '' === $polygon) {
             return false;
         }
 
         $original_data = json_decode($polygon, true, 512, JSON_THROW_ON_ERROR);
-        if (! \is_array($original_data)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        if (!\is_array($original_data)) {
+            throw new \Exception('[' . __LINE__ . '][' . __FILE__ . ']');
         }
 
         if (self::is_in_polygon($lat, $lng, $original_data)) {

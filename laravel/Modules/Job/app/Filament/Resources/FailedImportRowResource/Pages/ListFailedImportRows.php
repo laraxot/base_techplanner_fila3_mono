@@ -16,9 +16,7 @@ class ListFailedImportRows extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->searchable()
-                ->sortable(),
+            'id' => TextColumn::make('id')->searchable()->sortable(),
             'import_id' => TextColumn::make('import_id')
                 ->searchable()
                 ->sortable()
@@ -31,12 +29,8 @@ class ListFailedImportRows extends XotBaseListRecords
                 ->searchable()
                 ->wrap()
                 ->limit(200),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
-            'updated_at' => TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
+            'updated_at' => TextColumn::make('updated_at')->dateTime()->sortable(),
         ];
     }
 }

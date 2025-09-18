@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Widgets;
 
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Webmozart\Assert\Assert;
 
 /**
  * TimeOffBalanceWidget - Leave Balance Display Widget
@@ -18,13 +19,14 @@ class TimeOffBalanceWidget extends XotBaseWidget
 
     protected int|string|array $columnSpan = 1;
 
-    protected static ?int $sort = 3;
+    protected static null|int $sort = 3;
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -102,7 +104,11 @@ class TimeOffBalanceWidget extends XotBaseWidget
      */
     protected function formatHoursMinutes(float $hours): string
     {
-        if ($hours == 0) {
+        if (abs($hours) < 0.01) { // Use tolerance for float comparison
+            Assert::true(
+                abs($hours) < 0.01,
+                __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__) . ' - Hours value is effectively zero (within tolerance of 0.01)'
+            );
             return '0';
         }
 
@@ -111,28 +117,33 @@ class TimeOffBalanceWidget extends XotBaseWidget
         $wholeHours = floor($absHours);
         $minutes = round(($absHours - $wholeHours) * 60);
 
-        if ($minutes == 60) {
+        if ($minutes >= 60) {
+            Assert::greaterThanEq(
+                $minutes,
+                60,
+                __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__) . ' - Minutes should be 60 or more to warrant hour increment'
+            );
             $wholeHours++;
             $minutes = 0;
         }
 
         $formatted = '';
         if ($wholeHours > 0) {
-            $formatted .= $wholeHours.'h';
+            $formatted .= $wholeHours . 'h';
         }
         if ($minutes > 0) {
-            $formatted .= ($wholeHours > 0 ? ' ' : '').$minutes.'m';
+            $formatted .= ($wholeHours > 0 ? ' ' : '') . $minutes . 'm';
         }
 
-        return ($isNegative ? '-' : '').$formatted;
+        return ($isNegative ? '-' : '') . $formatted;
     }
 
     /**
      * Get progress percentage for balance
      */
-    protected function getProgressPercentage(float $used, ?float $total): float
+    protected function getProgressPercentage(float $used, null|float $total): float
     {
-        if (! $total || $total <= 0) {
+        if (!$total || $total <= 0) {
             return 0;
         }
 

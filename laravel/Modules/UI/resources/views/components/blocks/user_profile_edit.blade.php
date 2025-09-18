@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title' => 'Modifica Profilo'])
 
 <div class="bg-white p-6 rounded-lg shadow-md">

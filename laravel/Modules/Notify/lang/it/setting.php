@@ -1,9 +1,11 @@
 <?php
 
-return  [
-  'navigation' =>
-   [
-    'label' => 'Impostazioni Notifiche',
-    'group' => 'Notifiche',
-  ],
+declare(strict_types=1);
+
+
+return [
+    'navigation' => [
+        'label' => 'Impostazioni Notifiche',
+        'group' => 'Notifiche',
+    ],
 ];

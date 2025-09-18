@@ -21,7 +21,7 @@ class ExportXlsByLazyCollection
      * @param LazyCollection $collection La lazy collection da esportare
      * @param string $filename Nome del file Excel
      * @param array<int, string> $fields Campi da includere nell'export
-     * 
+     *
      * @return BinaryFileResponse
      */
     public function execute(
@@ -32,11 +32,7 @@ class ExportXlsByLazyCollection
         // Assicuriamo che $fields sia un array di stringhe
         $stringFields = array_map(strval(...), array_values($fields));
 
-        $export = new LazyCollectionExport(
-            $collection,
-            $filename,
-            $stringFields
-        );
+        $export = new LazyCollectionExport($collection, $filename, $stringFields);
 
         return Excel::download($export, $filename);
     }

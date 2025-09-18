@@ -14,7 +14,6 @@ use Modules\Employee\Models\WorkHour;
  * Test per il widget EmployeeOverviewWidget.
  */
 describe('EmployeeOverviewWidget', function () {
-
     beforeEach(function () {
         // Setup base per ogni test
         Carbon::setTestNow('2025-01-06 10:00:00');
@@ -30,9 +29,7 @@ describe('EmployeeOverviewWidget', function () {
         Employee::factory()->count(5)->create();
 
         // Act & Assert
-        Livewire::test(EmployeeOverviewWidget::class)
-            ->assertSee('Total Employees')
-            ->assertSee('5');
+        Livewire::test(EmployeeOverviewWidget::class)->assertSee('Total Employees')->assertSee('5');
     });
 
     test('displays active employees today', function () {
@@ -55,9 +52,7 @@ describe('EmployeeOverviewWidget', function () {
         ]);
 
         // Act & Assert
-        Livewire::test(EmployeeOverviewWidget::class)
-            ->assertSee('Active Today')
-            ->assertSee('2'); // Solo 2 dipendenti attivi
+        Livewire::test(EmployeeOverviewWidget::class)->assertSee('Active Today')->assertSee('2'); // Solo 2 dipendenti attivi
     });
 
     test('displays employees on leave', function () {
@@ -66,9 +61,7 @@ describe('EmployeeOverviewWidget', function () {
         Employee::factory()->count(2)->create(['status' => 'on_leave']);
 
         // Act & Assert
-        Livewire::test(EmployeeOverviewWidget::class)
-            ->assertSee('On Leave')
-            ->assertSee('2');
+        Livewire::test(EmployeeOverviewWidget::class)->assertSee('On Leave')->assertSee('2');
     });
 
     test('displays new employees this month', function () {
@@ -82,9 +75,7 @@ describe('EmployeeOverviewWidget', function () {
         Employee::factory()->count(2)->create(['created_at' => $lastMonth]);
 
         // Act & Assert
-        Livewire::test(EmployeeOverviewWidget::class)
-            ->assertSee('New This Month')
-            ->assertSee('3');
+        Livewire::test(EmployeeOverviewWidget::class)->assertSee('New This Month')->assertSee('3');
     });
 
     test('widget uses caching for performance', function () {
@@ -98,8 +89,7 @@ describe('EmployeeOverviewWidget', function () {
         expect(cache()->has('employee.overview.stats'))->toBeTrue();
 
         // Assert - Seconda chiamata dovrebbe usare la cache
-        $widget->assertSee('Total Employees')
-            ->assertSee('10');
+        $widget->assertSee('Total Employees')->assertSee('10');
     });
 
     test('displays appropriate colors based on values', function () {
@@ -111,8 +101,7 @@ describe('EmployeeOverviewWidget', function () {
         $component = Livewire::test(EmployeeOverviewWidget::class);
 
         // Assert - Dovrebbe mostrare 0 dipendenti attivi
-        $component->assertSee('Active Today')
-            ->assertSee('0');
+        $component->assertSee('Active Today')->assertSee('0');
     });
 
     test('chart data is generated correctly', function () {

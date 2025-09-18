@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Widgets\Auth;
 
-use Filament\Forms\Form;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TextInput as FormsTextInput;
+use Filament\Forms\Form;
 use Illuminate\Support\Facades\Password;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
-use Filament\Forms\Components\TextInput as FormsTextInput;
 
 /**
  * @property ComponentContainer $form
@@ -38,27 +38,23 @@ class ForgotPasswordWidget extends XotBaseWidget
     #[\Override]
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Section::make()
-                    ->schema([
-                        TextInput::make('email')
-                            ->email()
-                            ->required()
-                            ->maxLength(255),
-                    ])
-                    ->columns(1),
-            ])
-            ->statePath('data');
+        return $form->schema([
+            Section::make()
+                ->schema([
+                    TextInput::make('email')
+                        ->email()
+                        ->required()
+                        ->maxLength(255),
+                ])
+                ->columns(1),
+        ])->statePath('data');
     }
 
     public function sendResetLink(): void
     {
         $data = $this->form->getState();
 
-        $status = Password::sendResetLink(
-            ['email' => $data['email']]
-        );
+        $status = Password::sendResetLink(['email' => $data['email']]);
 
         if ($status === Password::RESET_LINK_SENT) {
             session()->flash('status', __($status));

@@ -176,5 +176,4 @@ return [
             'message' => 'Impossibile inviare il messaggio di test: :error',
         ],
     ],
-    
 ];

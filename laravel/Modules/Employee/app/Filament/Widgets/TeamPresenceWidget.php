@@ -11,6 +11,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Modules\Employee\Models\Employee;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Webmozart\Assert\Assert;
 
 /**
  * Team presence widget showing who's present/absent today.
@@ -20,19 +21,20 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
  */
 class TeamPresenceWidget extends XotBaseWidget
 {
-    protected static ?int $sort = 4;
+    protected static null|int $sort = 4;
 
-    protected static ?string $maxHeight = '400px';
+    protected static null|string $maxHeight = '400px';
 
     protected int|string|array $columnSpan = 1;
 
-    public ?string $selectedDepartment = 'SVILUPPO';
+    public null|string $selectedDepartment = 'SVILUPPO';
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         $presenceData = $this->getPresenceData();
@@ -45,37 +47,19 @@ class TeamPresenceWidget extends XotBaseWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
-                        ->afterStateUpdated(fn (mixed $state) => $this->selectedDepartment = is_string($state) ? $state : null),
-
-                    Placeholder::make('presence_stats')
-                        ->content(function () use ($presenceData): \Illuminate\Contracts\View\View {
-                            // @phpstan-ignore-next-line argument.type
-                            return view('employee::widgets.team-presence.stats-display', [
-                                'present' => $presenceData['present'],
-                                'absent' => $presenceData['absent'],
-                                'presentCount' => is_countable($presenceData['present']) ? count($presenceData['present']) : 0,
-                                'absentCount' => is_countable($presenceData['absent']) ? count($presenceData['absent']) : 0,
-                            ]);
-                        }),
-
-                    Placeholder::make('presence_list')
-                        ->content(function () use ($presenceData): \Illuminate\Contracts\View\View {
-                            // @phpstan-ignore-next-line argument.type
-                            return view('employee::widgets.team-presence.presence-list', [
-                                'present' => is_array($presenceData['present']) ? $presenceData['present'] : [],
-                                'absent' => is_array($presenceData['absent']) ? $presenceData['absent'] : [],
-                            ]);
-                        }),
-
+                        ->afterStateUpdated(
+                            fn(mixed $state) => $this->selectedDepartment = is_string($state) ? $state : null,
+                        ),
+                    Placeholder::make('presence_stats')->content(fn () => $this->renderStatsDisplay($presenceData)),
+                    Placeholder::make('presence_list')->content(fn () => $this->renderPresenceList($presenceData)),
                     Actions::make([
                         Action::make('view_detail')
                             ->label(__('employee::widgets.team_presence.view_detail'))
-                            ->url(fn () => route('filament.admin.resources.employees.index'))
+                            ->url(fn() => route('filament.admin.resources.employees.index'))
                             ->icon('heroicon-o-eye')
                             ->color('gray')
                             ->size('sm'),
-                    ])
-                        ->alignment('center'),
+                    ])->alignment('center'),
                 ])
                 ->extraAttributes(['class' => 'team-presence-widget']),
         ];
@@ -123,7 +107,7 @@ class TeamPresenceWidget extends XotBaseWidget
             ];
 
             // Mock presence logic: alternate between present/absent for demo
-            if ($index % 2 === 0) {
+            if (($index % 2) === 0) {
                 $present[] = array_merge($employeeData, [
                     'clock_in' => '08:30',
                     'status' => 'working',
@@ -158,5 +142,47 @@ class TeamPresenceWidget extends XotBaseWidget
         }
 
         return $initials;
+    }
+
+    /**
+     * Renderizza la view per le statistiche di presenza.
+     *
+     * @param array<string, mixed> $presenceData
+     * @return string
+     */
+    private function renderStatsDisplay(array $presenceData): string
+    {
+        try {
+            /** @phpstan-ignore-next-line */
+            return view('employee::widgets.team-presence.stats-display', [
+                'present' => $presenceData['present'],
+                'absent' => $presenceData['absent'],
+                'presentCount' => is_countable($presenceData['present'])
+                    ? count($presenceData['present'])
+                    : 0,
+                'absentCount' => is_countable($presenceData['absent']) ? count($presenceData['absent']) : 0,
+            ])->render();
+        } catch (\Exception $e) {
+            return '<div class="text-red-500">Error rendering stats display: ' . $e->getMessage() . '</div>';
+        }
+    }
+
+    /**
+     * Renderizza la view per la lista di presenza.
+     *
+     * @param array<string, mixed> $presenceData
+     * @return string
+     */
+    private function renderPresenceList(array $presenceData): string
+    {
+        try {
+            /** @phpstan-ignore-next-line */
+            return view('employee::widgets.team-presence.presence-list', [
+                'present' => is_array($presenceData['present']) ? $presenceData['present'] : [],
+                'absent' => is_array($presenceData['absent']) ? $presenceData['absent'] : [],
+            ])->render();
+        } catch (\Exception $e) {
+            return '<div class="text-red-500">Error rendering presence list: ' . $e->getMessage() . '</div>';
+        }
     }
 }

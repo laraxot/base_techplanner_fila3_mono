@@ -4,40 +4,39 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Clusters\Test\Pages;
 
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Modules\Notify\Datas\EmailData;
-use Illuminate\Support\Facades\Mail;
+use Filament\Forms;
 use Filament\Forms\ComponentContainer;
+use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification as FilamentNotification;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+use Modules\Notify\Datas\EmailData;
 use Modules\Notify\Emails\EmailDataEmail;
 use Modules\Notify\Filament\Clusters\Test;
 use Modules\Xot\Filament\Pages\XotBasePage;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
-use Filament\Notifications\Notification as FilamentNotification;
 
 /**
  * @property ComponentContainer $emailForm
  */
 class SendAwsEmailPage extends XotBasePage
 {
+    public null|array $emailData = [];
 
-    public ?array $emailData = [];
-
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
+    protected static null|string $navigationIcon = 'heroicon-o-envelope';
 
     protected static string $view = 'notify::filament.pages.send-email';
 
-    protected static ?string $cluster = Test::class;
-    
+    protected static null|string $cluster = Test::class;
+
     /**
      * Get the slug of the page
-     * 
+     *
      * This explicit definition ensures consistent URL generation for acronyms
      */
     public static function getSlug(): string
@@ -64,10 +63,7 @@ class SendAwsEmailPage extends XotBasePage
 
     public function emailForm(Form $form): Form
     {
-        return $form
-            ->schema($this->getEmailFormSchema())
-            ->model($this->getUser())
-            ->statePath('emailData');
+        return $form->schema($this->getEmailFormSchema())->model($this->getUser())->statePath('emailData');
     }
 
     public function getEmailFormSchema(): array
@@ -115,18 +111,13 @@ class SendAwsEmailPage extends XotBasePage
             $subject = is_string($data['subject']) ? $data['subject'] : '';
             $bodyHtml = is_string($data['body_html']) ? $data['body_html'] : '';
 
-            $emailData = new EmailData(
-                $to,
-                $subject,
-                $bodyHtml
-            );
+            $emailData = new EmailData($to, $subject, $bodyHtml);
 
             // Configurare lo specifico driver AWS SES per questo test
             config(['mail.default' => 'ses']);
 
             // Invia l'email utilizzando il servizio SES
-            Mail::to($to)
-                ->send(new EmailDataEmail($emailData));
+            Mail::to($to)->send(new EmailDataEmail($emailData));
 
             FilamentNotification::make()
                 ->success()
@@ -145,9 +136,7 @@ class SendAwsEmailPage extends XotBasePage
     protected function getEmailFormActions(): array
     {
         return [
-            Action::make('sendEmail')
-                ->label(__('notify::email.actions.send'))
-                ->submit('sendEmail'),
+            Action::make('sendEmail')->label(__('notify::email.actions.send'))->submit('sendEmail'),
         ];
     }
 
@@ -156,8 +145,10 @@ class SendAwsEmailPage extends XotBasePage
     {
         $user = Filament::auth()->user();
 
-        if (! $user instanceof Model) {
-            throw new \Exception('L\'utente autenticato deve essere un modello Eloquent per consentire l\'aggiornamento del profilo.');
+        if (!($user instanceof Model)) {
+            throw new \Exception(
+                'L\'utente autenticato deve essere un modello Eloquent per consentire l\'aggiornamento del profilo.',
+            );
         }
 
         return $user;

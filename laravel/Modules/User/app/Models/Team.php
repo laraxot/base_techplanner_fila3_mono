@@ -50,4 +50,6 @@ namespace Modules\User\Models;
  * @mixin IdeHelperTeam
  * @mixin \Eloquent
  */
-class Team extends BaseTeam {}
+class Team extends BaseTeam
+{
+}

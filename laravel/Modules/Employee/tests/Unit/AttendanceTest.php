@@ -157,7 +157,7 @@ class AttendanceTest extends TestCase
     public function it_can_format_timestamp()
     {
         $timestamp = Carbon::parse('2024-01-15 09:30:00');
-        
+
         $attendance = Attendance::create([
             'user_id' => $this->user->id,
             'timestamp' => $timestamp,
@@ -282,4 +282,4 @@ class AttendanceTest extends TestCase
         $this->assertEquals(1, $validAttendances->count());
         $this->assertEquals('valid', $validAttendances->first()->status);
     }
-} 
+}

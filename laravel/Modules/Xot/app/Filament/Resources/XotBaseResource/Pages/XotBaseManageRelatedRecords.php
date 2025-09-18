@@ -55,15 +55,11 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
     public function getTableColumns(): array
     {
         return [
-            'id' => TextColumn::make('id')
-                ->label('ID')
-                ->sortable(),
-
+            'id' => TextColumn::make('id')->label('ID')->sortable(),
             'name' => TextColumn::make('name')
                 ->label('Nome')
                 ->searchable()
                 ->sortable(),
-
             'created_at' => TextColumn::make('created_at')
                 ->label('Data Creazione')
                 ->dateTime('d/m/Y H:i')
@@ -80,9 +76,7 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
     public function getTableHeaderActions(): array
     {
         return [
-            'create' => CreateAction::make()
-                ->label('Crea Nuovo')
-                ->disableCreateAnother(),
+            'create' => CreateAction::make()->label('Crea Nuovo')->disableCreateAnother(),
         ];
     }
 
@@ -98,8 +92,7 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
             'edit' => Action::make('edit')
                 ->label('Modifica')
                 ->icon('heroicon-o-pencil')
-                ->url(fn (Model $record): string => static::getResource()::getUrl('edit', ['record' => $record])),
-
+                ->url(fn(Model $record): string => static::getResource()::getUrl('edit', ['record' => $record])),
             // 'view' => Action::make('view')
             //     ->label('Visualizza')
             //     ->icon('heroicon-o-eye')
@@ -122,21 +115,21 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
      * ->disableCreateAnother(),
      * ]);
      * }.
-     
-    public function table(Table $table): Table
-    {
-        return $table
-            ->columns($this->getTableColumns())
-            ->headerActions($this->getTableHeaderActions())
-            ->actions($this->getTableActions())
-            ->bulkActions([])
-            ->emptyStateActions([
-                'create' => CreateAction::make()
-                    ->label('Crea Nuovo')
-                    ->disableCreateAnother(),
-            ]);
-    }
-    */
+     *
+     * public function table(Table $table): Table
+     * {
+     * return $table
+     * ->columns($this->getTableColumns())
+     * ->headerActions($this->getTableHeaderActions())
+     * ->actions($this->getTableActions())
+     * ->bulkActions([])
+     * ->emptyStateActions([
+     * 'create' => CreateAction::make()
+     * ->label('Crea Nuovo')
+     * ->disableCreateAnother(),
+     * ]);
+     * }
+     */
     /**
      * Configura il form per la creazione/modifica dei record correlati.
      */
@@ -165,7 +158,7 @@ abstract class XotBaseManageRelatedRecords extends FilamentManageRelatedRecords
 
         return Str::of($relationship)
             ->title()
-            ->prepend($titleString.' - ')
+            ->prepend($titleString . ' - ')
             ->toString();
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title', 'description', 'members'])
 
 <div class="py-16 bg-base-100">

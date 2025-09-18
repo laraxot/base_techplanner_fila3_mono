@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
+
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
-use function Laravel\Folio\{middleware, name};
 use Livewire\Volt\Component;
+
+use function Laravel\Folio\middleware;
+use function Laravel\Folio\name;
 
 middleware(['auth', 'throttle:6,1']);
 name('verification.notice');
 
-new class extends Component
-{
+new class extends Component {
     public function resend()
     {
         $user = auth()->user();

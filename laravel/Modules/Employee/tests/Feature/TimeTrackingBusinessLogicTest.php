@@ -15,7 +15,6 @@ beforeEach(function () {
 });
 
 describe('Time Tracking Business Logic', function () {
-
     test('calculates accurate worked hours with multiple breaks', function () {
         createWorkHour([
             'employee_id' => $this->employee->id,
@@ -185,8 +184,8 @@ describe('Time Tracking Business Logic', function () {
 
         $lastEntry = WorkHour::getLastEntryForEmployee($this->employee->id, $this->today);
 
-        expect($lastEntry->id)->toBe($late->id);
-        expect($lastEntry->type)->toBe(WorkHourTypeEnum::CLOCK_OUT);
+        expect($lastEntry?->id)->toBe($late->id);
+        expect($lastEntry?->type)->toBe(WorkHourTypeEnum::CLOCK_OUT);
     });
 
     test('determines current employee status correctly', function () {
@@ -273,7 +272,7 @@ describe('Time Tracking Business Logic', function () {
         $workHour->approved_at = now();
         $workHour->save();
 
-        expect($workHour->fresh()->status)->toBe(WorkHourStatusEnum::APPROVED);
-        expect($workHour->fresh()->approved_at)->not->toBeNull();
+        expect($workHour->fresh()?->status)->toBe(WorkHourStatusEnum::APPROVED);
+        expect($workHour->fresh()?->approved_at)->not->toBeNull();
     });
 });

@@ -11,7 +11,7 @@ use Modules\User\Models\Team;
 
 /**
  * ProfileTeam Factory
- * 
+ *
  * @extends Factory<ProfileTeam>
  */
 class ProfileTeamFactory extends Factory

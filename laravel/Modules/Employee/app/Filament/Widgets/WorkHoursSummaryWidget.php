@@ -12,7 +12,7 @@ use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 class WorkHoursSummaryWidget extends XotBaseWidget
 {
-    protected static ?int $sort = 3;
+    protected static null|int $sort = 3;
 
     protected int|string|array $columnSpan = 1;
 
@@ -36,9 +36,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
         $dailyHours = [];
 
         /** @var \Illuminate\Database\Eloquent\Collection<int, WorkHour> $workHours */
-        $groupedByDate = $workHours->groupBy(function (WorkHour $item): string {
-            return $item->timestamp->format('Y-m-d');
-        });
+        $groupedByDate = $workHours->groupBy(fn (WorkHour $item): string => $item->timestamp->format('Y-m-d'));
 
         foreach ($groupedByDate as $date => $dayEntries) {
             $hoursForDay = WorkHour::calculateWorkedHours($employeeId, $dayEntries->first()?->timestamp);
@@ -46,7 +44,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
             $totalHours += $hoursForDay;
         }
 
-        $daysWorked = count(array_filter($dailyHours, fn ($hours) => $hours > 0));
+        $daysWorked = count(array_filter($dailyHours, fn($hours) => $hours > 0));
         $averageHoursPerDay = $daysWorked > 0 ? round($totalHours / $daysWorked, 2) : 0;
 
         return [
@@ -64,6 +62,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
         return 'heroicon-o-clock';
     }
 
+    #[\Override]
     public static function getNavigationLabel(): string
     {
         $label = __('employee::work_hours.weekly_summary');
@@ -71,7 +70,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
         return is_string($label) ? $label : 'Weekly Summary';
     }
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): null|string
     {
         $group = __('employee::navigation.work_hours');
 
@@ -83,6 +82,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
      *
      * @return array<int|string, Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -105,6 +105,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
     /**
      * Get the form model for the widget.
      */
+    #[\Override]
     public function getFormModel(): string|Model|null
     {
         return null; // No model needed for this widget
@@ -115,6 +116,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
      *
      * @return array<int|string, \Filament\Actions\Action>
      */
+    #[\Override]
     protected function getFormActions(): array
     {
         return [];
@@ -123,6 +125,7 @@ class WorkHoursSummaryWidget extends XotBaseWidget
     /**
      * Save the form data.
      */
+    #[\Override]
     public function save(): void
     {
         // No save action needed for this widget

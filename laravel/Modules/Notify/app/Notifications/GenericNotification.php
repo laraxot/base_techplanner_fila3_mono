@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Notifications;
 
-use Modules\Xot\Actions\Cast\SafeAttributeCastAction;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Modules\Xot\Actions\Cast\SafeAttributeCastAction;
 
 /**
  * Notifica generica configurabile per il sistema il progetto.
@@ -58,10 +57,10 @@ class GenericNotification extends Notification implements ShouldQueue
     /**
      * Ottiene i canali di consegna della notifica.
      *
-     * @param mixed $notifiable
+     * @param mixed $_notifiable L'entità da notificare (oggetto che riceverà la notifica)
      * @return array<int, string>
      */
-    public function via($notifiable): array
+    public function via(mixed $_notifiable): array
     {
         return $this->channels;
     }
@@ -74,7 +73,7 @@ class GenericNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable): MailMessage
     {
-        $mail = (new MailMessage())
+        $mail = new MailMessage()
             ->subject($this->title)
             ->greeting('Gentile ' . $this->getRecipientName($notifiable))
             ->line($this->message);
@@ -92,8 +91,7 @@ class GenericNotification extends Notification implements ShouldQueue
             }
         }
 
-        return $mail->salutation('Cordiali saluti,')
-            ->line('Team il progetto');
+        return $mail->salutation('Cordiali saluti,')->line('Team il progetto');
     }
 
     /**
@@ -105,19 +103,19 @@ class GenericNotification extends Notification implements ShouldQueue
     public function toTwilio($notifiable): array
     {
         $content = "il progetto: {$this->title}\n{$this->message}";
-        
+
         // Limita la lunghezza del messaggio SMS
         if (mb_strlen($content) > 320) {
             $content = mb_substr($content, 0, 317) . '...';
         }
-        
+
         // TODO: Implementare TwilioSmsMessage quando disponibile
         $to = '';
         if (is_object($notifiable) && method_exists($notifiable, 'routeNotificationForTwilio')) {
             $routeResult = $notifiable->routeNotificationForTwilio($this);
             $to = (string) ($routeResult ?? '');
         }
-        
+
         return [
             'content' => $content,
             'to' => $to,
@@ -152,21 +150,21 @@ class GenericNotification extends Notification implements ShouldQueue
         if (is_object($notifiable) && method_exists($notifiable, 'getFullName')) {
             return $notifiable->getFullName();
         }
-        
+
         if (is_object($notifiable) && $notifiable instanceof \Illuminate\Database\Eloquent\Model) {
             if (SafeAttributeCastAction::hasNonEmpty($notifiable, 'full_name')) {
                 return SafeAttributeCastAction::getString($notifiable, 'full_name', 'Utente');
             }
-            
+
             if (SafeAttributeCastAction::hasNonEmpty($notifiable, 'first_name')) {
                 return SafeAttributeCastAction::getString($notifiable, 'first_name', 'Utente');
             }
-            
+
             if (SafeAttributeCastAction::hasNonEmpty($notifiable, 'name')) {
                 return SafeAttributeCastAction::getString($notifiable, 'name', 'Utente');
             }
         }
-        
+
         return 'Utente';
     }
 }

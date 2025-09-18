@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Filament\Widgets;
 
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
 use Modules\Geo\Filament\Forms\LocationForm;
+use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
 /**
  * Widget per la selezione della località.
- * 
+ *
  * Questo widget fornisce un form per la selezione della località utilizzando
  * il form LocationForm.
- * 
+ *
  * @see \Modules\Geo\docs\json-database.md
  */
 class LocationWidget extends XotBaseWidget
@@ -20,7 +20,7 @@ class LocationWidget extends XotBaseWidget
     /**
      * Ordine di visualizzazione del widget.
      */
-    protected static ?int $sort = 1;
+    protected static null|int $sort = 1;
 
     /**
      * Numero di colonne occupate dal widget.
@@ -30,7 +30,7 @@ class LocationWidget extends XotBaseWidget
     /**
      * Dati del widget.
      */
-    public ?array $data = [];
+    public null|array $data = [];
 
     /**
      * Titolo del widget.
@@ -62,7 +62,7 @@ class LocationWidget extends XotBaseWidget
 
     /**
      * Inizializza il widget.
-     * 
+     *
      * @return void
      */
     public function mount(): void
@@ -72,9 +72,10 @@ class LocationWidget extends XotBaseWidget
 
     /**
      * Ottiene lo schema del form.
-     * 
+     *
      * @return array<int, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return $this->locationForm->getSchema();
@@ -82,7 +83,7 @@ class LocationWidget extends XotBaseWidget
 
     /**
      * Gestisce l'invio del form.
-     * 
+     *
      * @return void
      */
     public function submit(): void
@@ -94,17 +95,17 @@ class LocationWidget extends XotBaseWidget
         // Utilizzo metodo Livewire per notifiche
         $this->dispatch('notify', [
             'type' => 'success',
-            'message' => __('geo::widgets.location.messages.success')
+            'message' => __('geo::widgets.location.messages.success'),
         ]);
     }
 
     /**
      * Verifica se il widget può essere visualizzato.
-     * 
+     *
      * @return bool
      */
     public static function canView(): bool
     {
         return true;
     }
-} 
+}

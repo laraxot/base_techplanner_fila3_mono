@@ -15,23 +15,17 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class FailedJobResource extends XotBaseResource
 {
-    protected static ?string $model = FailedJob::class;
+    protected static null|string $model = FailedJob::class;
 
     #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'uuid' => Forms\Components\TextInput::make('uuid')
-                ->disabled()
-                ->columnSpan(4),
-            'failed_at' => Forms\Components\TextInput::make('failed_at')
-                ->disabled(),
-            'id' => Forms\Components\TextInput::make('id')
-                ->disabled(),
-            'connection' => Forms\Components\TextInput::make('connection')
-                ->disabled(),
-            'queue' => Forms\Components\TextInput::make('queue')
-                ->disabled(),
+            'uuid' => Forms\Components\TextInput::make('uuid')->disabled()->columnSpan(4),
+            'failed_at' => Forms\Components\TextInput::make('failed_at')->disabled(),
+            'id' => Forms\Components\TextInput::make('id')->disabled(),
+            'connection' => Forms\Components\TextInput::make('connection')->disabled(),
+            'queue' => Forms\Components\TextInput::make('queue')->disabled(),
             'exception' => Forms\Components\Textarea::make('exception')
                 ->disabled()
                 ->columnSpan(4)
@@ -46,8 +40,7 @@ class FailedJobResource extends XotBaseResource
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Override]

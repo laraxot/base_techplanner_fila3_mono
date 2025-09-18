@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Feature;
 
-use Modules\Xot\Models\XotBaseModel;
-use Modules\Xot\Models\BaseModel;
-use Modules\Xot\Models\Module;
-use Tests\TestCase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Modules\Xot\Models\BaseModel;
+use Modules\Xot\Models\Module;
+use Modules\Xot\Models\XotBaseModel;
+use Tests\TestCase;
 
 class XotBaseModelBusinessLogicTest extends TestCase
 {
@@ -422,4 +422,3 @@ class XotBaseModelBusinessLogicTest extends TestCase
         $this->assertIsArray($with);
     }
 }
-

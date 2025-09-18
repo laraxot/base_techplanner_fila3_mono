@@ -9,16 +9,16 @@ use Modules\Activity\Models\StoredEvent;
 
 /**
  * StoredEvent Factory
- * 
+ *
  * Factory for creating StoredEvent model instances for testing and seeding.
- * 
+ *
  * @extends Factory<StoredEvent>
  */
 class StoredEventFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     * 
+     *
      * @var class-string<StoredEvent>
      */
     protected $model = StoredEvent::class;
@@ -65,7 +65,7 @@ class StoredEventFactory extends Factory
      */
     public function withUuid(string $uuid): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'aggregate_uuid' => $uuid,
         ]);
     }
@@ -78,7 +78,7 @@ class StoredEventFactory extends Factory
      */
     public function withVersion(int $version): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'aggregate_version' => $version,
         ]);
     }
@@ -91,7 +91,7 @@ class StoredEventFactory extends Factory
      */
     public function withEventClass(string $eventClass): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $_attributes): array => [
             'event_class' => $eventClass,
         ]);
     }
@@ -103,15 +103,12 @@ class StoredEventFactory extends Factory
      */
     public function userEvent(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'event_class' => 'App\\Events\\UserRegistered',
-            'event_properties' => array_merge(
-                (array) ($attributes['event_properties'] ?? []),
-                [
-                    'user_id' => $this->faker->numberBetween(1, 100),
-                    'action' => 'user_registered',
-                ]
-            ),
+            'event_properties' => array_merge((array) ($attributes['event_properties'] ?? []), [
+                'user_id' => $this->faker->numberBetween(1, 100),
+                'action' => 'user_registered',
+            ]),
         ]);
     }
 }

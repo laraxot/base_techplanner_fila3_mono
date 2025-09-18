@@ -14,7 +14,6 @@ return [
         'sort' => 50,
         'badge' => 'Gestione processi in background',
     ],
-
     // ==============================================
     // MODEL INFORMATION
     // ==============================================
@@ -23,7 +22,6 @@ return [
         'plural' => 'Job',
         'description' => 'Processi in background e code di elaborazione',
     ],
-
     // ==============================================
     // FIELDS - STRUTTURA ESPANSA OBBLIGATORIA
     // ==============================================
@@ -77,7 +75,6 @@ return [
             'helper_text' => 'Data e ora dell\'ultimo aggiornamento del job',
         ],
     ],
-
     // ==============================================
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
     // ==============================================
@@ -188,7 +185,6 @@ return [
             ],
         ],
     ],
-
     // ==============================================
     // SECTIONS - ORGANIZZAZIONE FORM
     // ==============================================
@@ -209,7 +205,6 @@ return [
             'icon' => 'heroicon-o-document-text',
         ],
     ],
-
     // ==============================================
     // FILTERS - RICERCA E FILTRI
     // ==============================================
@@ -236,7 +231,6 @@ return [
             'placeholder' => 'Seleziona il periodo',
         ],
     ],
-
     // ==============================================
     // MESSAGES - FEEDBACK UTENTE
     // ==============================================
@@ -256,7 +250,6 @@ return [
         'error_permission' => 'Non hai i permessi per eseguire questa azione.',
         'success_operation' => 'Operazione completata con successo',
     ],
-
     // ==============================================
     // VALIDATION - MESSAGGI DI VALIDAZIONE
     // ==============================================
@@ -268,7 +261,6 @@ return [
         'available_at_required' => 'La data di disponibilità è obbligatoria',
         'available_at_after' => 'La data di disponibilità deve essere futura',
     ],
-
     // ==============================================
     // DESCRIPTIONS - DESCRIZIONI CONTESTUALI
     // ==============================================
@@ -278,7 +270,6 @@ return [
         'retry_mechanism' => 'Meccanismo di ri-tentativo per job falliti',
         'monitoring' => 'Monitoraggio dello stato e delle performance dei job',
     ],
-
     // ==============================================
     // OPTIONS - OPZIONI E VALORI PREDEFINITI
     // ==============================================

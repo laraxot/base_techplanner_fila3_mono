@@ -34,28 +34,28 @@ class Password extends Page implements HasForms
      *
      * @var array<string, mixed>|null
      */
-    public ?array $formData = [];
+    public null|array $formData = [];
 
     /**
      * Icona per la navigazione.
-     * 
+     *
      * @var string|null
      */
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static null|string $navigationIcon = 'heroicon-o-document-text';
 
     /**
      * Vista per la pagina.
-     * 
+     *
      * @var string
      */
     protected static string $view = 'user::filament.pages.password';
 
     /**
      * Ordinamento nella navigazione.
-     * 
+     *
      * @var int|null
      */
-    protected static ?int $navigationSort = 1;
+    protected static null|int $navigationSort = 1;
 
     /**
      * Inizializza la pagina.
@@ -75,34 +75,27 @@ class Password extends Page implements HasForms
     {
         return $form
             ->schema([
-                TextInput::make('otp_expiration_minutes')// Durata in minuti della validità della password temporanea
+                TextInput::make('otp_expiration_minutes')
+                    // Durata in minuti della validità della password temporanea
                     ->numeric()
                     ->helperText(static::trans('fields.otp_expiration_minutes.help'))
                     ->default(60),
-                TextInput::make('otp_length')// Lunghezza del codice OTP
+                TextInput::make('otp_length')
+                    // Lunghezza del codice OTP
                     ->helperText(static::trans('fields.otp_length.help'))
                     ->numeric(),
-                TextInput::make('expires_in')
-                    ->helperText(static::trans('fields.expires_in.help'))
-                    ->numeric(), // The number of days before the password expires.
-
-                TextInput::make('min')
-                    ->helperText(static::trans('fields.min.help'))
-                    ->numeric(), // = 6; // The minimum size of the password.
-                Toggle::make('mixedCase')
-                    ->helperText(static::trans('fields.mixedCase.help')), // = false; // If the password requires at least one uppercase and one lowercase letter.
-                Toggle::make('letters')
-                    ->helperText(static::trans('fields.letters.help')), // = false; // If the password requires at least one letter.
-                Toggle::make('numbers')
-                    ->helperText(static::trans('fields.numbers.help')), // = false; // If the password requires at least one number.
-                Toggle::make('symbols')
-                    ->helperText(static::trans('fields.symbols.help')), // = false; // If the password requires at least one symbol.
-                Toggle::make('uncompromised')
-                    ->helperText(static::trans('fields.uncompromised.help')), // = false; // If the password should not have been compromised in data leaks.
+                TextInput::make('expires_in')->helperText(static::trans('fields.expires_in.help'))->numeric(), // The number of days before the password expires.
+                TextInput::make('min')->helperText(static::trans('fields.min.help'))->numeric(), // = 6; // The minimum size of the password.
+                Toggle::make('mixedCase')->helperText(static::trans('fields.mixedCase.help')), // = false; // If the password requires at least one uppercase and one lowercase letter.
+                Toggle::make('letters')->helperText(static::trans('fields.letters.help')), // = false; // If the password requires at least one letter.
+                Toggle::make('numbers')->helperText(static::trans('fields.numbers.help')), // = false; // If the password requires at least one number.
+                Toggle::make('symbols')->helperText(static::trans('fields.symbols.help')), // = false; // If the password requires at least one symbol.
+                Toggle::make('uncompromised')->helperText(static::trans('fields.uncompromised.help')), // = false; // If the password should not have been compromised in data leaks.
                 TextInput::make('compromisedThreshold')
                     ->helperText(static::trans('fields.compromisedThreshold.help'))
                     ->numeric(), // = 1; // The number of times a password can appear in data leaks before being considered compromised.
-            ])->columns(3)
+            ])
+            ->columns(3)
             // ->model($this->getUser())
             ->statePath('formData');
     }
@@ -118,6 +111,7 @@ class Password extends Page implements HasForms
             /** @var array<string, mixed> $data */
             $data = $this->form->getState();
             TenantService::saveConfig('password', $data);
+
             // $this->handleRecordUpdate($this->getUser(), $data);
         } catch (Halt $exception) {
             dddx($exception->getMessage());
@@ -150,8 +144,7 @@ class Password extends Page implements HasForms
     protected function getUpdateFormActions(): array
     {
         return [
-            Action::make('updateDataAction')
-                ->submit('editDataForm'),
+            Action::make('updateDataAction')->submit('editDataForm'),
         ];
     }
 

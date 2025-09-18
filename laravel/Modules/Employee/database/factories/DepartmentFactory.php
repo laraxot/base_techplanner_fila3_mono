@@ -27,7 +27,7 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->word().' Department',
+            'name' => $this->faker->unique()->word() . ' Department',
             'description' => $this->faker->optional()->sentence(),
             'is_active' => $this->faker->boolean(80), // 80% chance of being active
             'status' => $this->faker->randomElement(['attivo', 'inattivo']),
@@ -42,7 +42,7 @@ class DepartmentFactory extends Factory
      */
     public function active(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'is_active' => true,
         ]);
     }
@@ -54,7 +54,7 @@ class DepartmentFactory extends Factory
      */
     public function inactive(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'is_active' => false,
         ]);
     }
@@ -67,7 +67,7 @@ class DepartmentFactory extends Factory
      */
     public function withName(string $name): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'name' => $name,
         ]);
     }
@@ -80,7 +80,7 @@ class DepartmentFactory extends Factory
      */
     public function withDescription(string $description): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $_attributes) => [
             'description' => $description,
         ]);
     }

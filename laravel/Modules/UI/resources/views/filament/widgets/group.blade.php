@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget>
     <x-filament::section collapsible icon="{{ $icon }}">
         <x-slot name="description">

@@ -1,11 +1,12 @@
 <?php
 
-return  [
-  'fields' => 
-   [
-    'newstate' => 
-     [
-      'label' => 'newstate',
+declare(strict_types=1);
+
+
+return [
+    'fields' => [
+        'newstate' => [
+            'label' => 'newstate',
+        ],
     ],
-  ],
 ];

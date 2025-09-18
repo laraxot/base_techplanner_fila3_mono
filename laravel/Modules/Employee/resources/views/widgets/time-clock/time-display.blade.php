@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div class="timeclock-display text-center p-6">
     <div class="time-section mb-4">
         <div class="current-time text-4xl font-bold text-gray-900 dark:text-white mb-2">

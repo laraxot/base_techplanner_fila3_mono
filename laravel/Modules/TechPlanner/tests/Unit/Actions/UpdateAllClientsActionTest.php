@@ -7,8 +7,8 @@ namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllClientsAction;
-use Modules\TechPlanner\Models\Client;
 use Modules\TechPlanner\Jobs\UpdateClientJob;
+use Modules\TechPlanner\Models\Client;
 use Tests\TestCase;
 
 /**
@@ -25,15 +25,13 @@ class UpdateAllClientsActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllClientsAction();
-        
 
-        $this->action = new UpdateAllClientsAction;
-
-        
         $this->action = new UpdateAllClientsAction();
-        
+
+        $this->action = new UpdateAllClientsAction();
+
+        $this->action = new UpdateAllClientsAction();
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -64,10 +62,12 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_updates_all_clients_with_given_data(): void
     {
         // Arrange
-        $clients = Client::factory()->count(3)->create([
-            'status' => 'Inactive',
-            'priority' => 'Low',
-        ]);
+        $clients = Client::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Inactive',
+                'priority' => 'Low',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -210,10 +210,12 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_handles_boolean_values(): void
     {
         // Arrange
-        $clients = Client::factory()->count(3)->create([
-            'is_active' => false,
-            'is_verified' => false,
-        ]);
+        $clients = Client::factory()
+            ->count(3)
+            ->create([
+                'is_active' => false,
+                'is_verified' => false,
+            ]);
 
         $updateData = [
             'is_active' => true,
@@ -260,10 +262,12 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_handles_decimal_values(): void
     {
         // Arrange
-        $clients = Client::factory()->count(2)->create([
-            'credit_limit' => 1000.00,
-            'balance' => 500.00,
-        ]);
+        $clients = Client::factory()
+            ->count(2)
+            ->create([
+                'credit_limit' => 1000.00,
+                'balance' => 500.00,
+            ]);
 
         $updateData = [
             'credit_limit' => 2000.00,
@@ -327,9 +331,11 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_handles_transaction_rollback_on_error(): void
     {
         // Arrange
-        $clients = Client::factory()->count(3)->create([
-            'status' => 'Inactive',
-        ]);
+        $clients = Client::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -373,9 +379,11 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_creates_audit_trail(): void
     {
         // Arrange
-        $clients = Client::factory()->count(2)->create([
-            'status' => 'Inactive',
-        ]);
+        $clients = Client::factory()
+            ->count(2)
+            ->create([
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -432,7 +440,6 @@ class UpdateAllClientsActionTest extends TestCase
         // Arrange
         $activeClients = Client::factory()->count(2)->create();
         $deletedClients = Client::factory()->count(2)->create();
-        
 
         // Soft delete alcuni clienti
         $deletedClients->each(function ($client) {
@@ -538,10 +545,12 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_handles_enum_values(): void
     {
         // Arrange
-        $clients = Client::factory()->count(2)->create([
-            'type' => 'Individual',
-            'status' => 'Inactive',
-        ]);
+        $clients = Client::factory()
+            ->count(2)
+            ->create([
+                'type' => 'Individual',
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'type' => 'Corporate',
@@ -568,7 +577,6 @@ class UpdateAllClientsActionTest extends TestCase
         // Arrange
         $clients = Client::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
 
         $updateData = [
             'description' => $longText,
@@ -621,10 +629,12 @@ class UpdateAllClientsActionTest extends TestCase
     public function it_handles_nullable_fields(): void
     {
         // Arrange
-        $clients = Client::factory()->count(2)->create([
-            'phone' => '+1234567890',
-            'address' => '123 Main St',
-        ]);
+        $clients = Client::factory()
+            ->count(2)
+            ->create([
+                'phone' => '+1234567890',
+                'address' => '123 Main St',
+            ]);
 
         $updateData = [
             'phone' => null,
@@ -660,10 +670,7 @@ class UpdateAllClientsActionTest extends TestCase
         // Assert
         foreach ($clients as $client) {
             $client->refresh();
-            $this->assertGreaterThan(
-                $client->created_at,
-                $client->updated_at
-            );
+            $this->assertGreaterThan($client->created_at, $client->updated_at);
         }
     }
 

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['user' => auth()->user()])
 
 <div class="relative">

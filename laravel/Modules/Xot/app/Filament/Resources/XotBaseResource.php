@@ -26,7 +26,7 @@ abstract class XotBaseResource extends FilamentResource
 {
     use NavigationLabelTrait;
 
-    protected static ?string $model = null;
+    protected static null|string $model = null;
 
     // protected static ?string $navigationIcon = 'heroicon-o-bell';
     // protected static ?string $navigationLabel = 'Custom Navigation Label';
@@ -52,17 +52,25 @@ abstract class XotBaseResource extends FilamentResource
      */
     public static function getModel(): string
     {
-        if (static::$model != null) {
+        if (static::$model !== null) {
             $res = static::$model;
-            Assert::subclassOf($res, \Illuminate\Database\Eloquent\Model::class, sprintf('Class %s must extend Eloquent Model', $res));
+            Assert::subclassOf(
+                $res,
+                \Illuminate\Database\Eloquent\Model::class,
+                sprintf('Class %s must extend Eloquent Model', $res),
+            );
 
             return $res;
         }
         $moduleName = static::getModuleName();
         $modelName = Str::before(class_basename(static::class), 'Resource');
-        $res = 'Modules\\'.$moduleName.'\Models\\'.$modelName;
+        $res = 'Modules\\' . $moduleName . '\Models\\' . $modelName;
         Assert::classExists($res, sprintf('Model class %s does not exist', $res));
-        Assert::subclassOf($res, \Illuminate\Database\Eloquent\Model::class, sprintf('Class %s must extend Eloquent Model', $res));
+        Assert::subclassOf(
+            $res,
+            \Illuminate\Database\Eloquent\Model::class,
+            sprintf('Class %s must extend Eloquent Model', $res),
+        );
         static::$model = $res;
 
         return $res;
@@ -75,8 +83,7 @@ abstract class XotBaseResource extends FilamentResource
 
     final public static function form(Form $form): Form
     {
-        return $form
-            ->schema(static::getFormSchema());
+        return $form->schema(static::getFormSchema());
     }
 
     /**
@@ -84,8 +91,7 @@ abstract class XotBaseResource extends FilamentResource
      */
     public static function extendTableCallback(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -95,16 +101,15 @@ abstract class XotBaseResource extends FilamentResource
      */
     public static function extendFormCallback(): array
     {
-        return [
-        ];
+        return [];
     }
 
-    public static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): null|string
     {
         try {
             $count = app(CountAction::class)->execute(static::getModel());
 
-            return number_format($count, 0).'';
+            return number_format($count, 0) . '';
         } catch (\Exception $e) {
             return '--';
         }
@@ -115,13 +120,13 @@ abstract class XotBaseResource extends FilamentResource
      */
     public static function getPages(): array
     {
-        $prefix = static::class.'\Pages\\';
+        $prefix = static::class . '\Pages\\';
         $name = Str::of(class_basename(static::class))->before('Resource')->toString();
         $plural = Str::of($name)->plural()->toString();
-        $index = Str::of($prefix)->append('List'.$plural)->toString();
-        $create = Str::of($prefix)->append('Create'.$name.'')->toString();
-        $edit = Str::of($prefix)->append('Edit'.$name.'')->toString();
-        $view = Str::of($prefix)->append('View'.$name.'')->toString();
+        $index = Str::of($prefix)->append('List' . $plural)->toString();
+        $create = Str::of($prefix)->append('Create' . $name . '')->toString();
+        $edit = Str::of($prefix)->append('Edit' . $name . '')->toString();
+        $view = Str::of($prefix)->append('View' . $name . '')->toString();
 
         /** @var class-string<\Filament\Resources\Pages\Page> $index */
         $index = $index;
@@ -154,7 +159,7 @@ abstract class XotBaseResource extends FilamentResource
     {
         $reflector = new \ReflectionClass(static::class);
         $filename = $reflector->getFileName();
-        Assert::string($filename);
+        Assert::string($filename, __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
 
         $path = Str::of($filename)
             ->before('.php')
@@ -162,16 +167,16 @@ abstract class XotBaseResource extends FilamentResource
             ->append('RelationManagers')
             ->toString();
 
-        $files = glob($path.DIRECTORY_SEPARATOR.'*RelationManager.php');
+        $files = glob($path . DIRECTORY_SEPARATOR . '*RelationManager.php');
         Assert::isArray($files);
 
         /** @var array<class-string<\Filament\Resources\RelationManagers\RelationManager>> $res */
         $res = [];
         foreach ($files as $file) {
             $className = Str::of($file)
-                ->after('RelationManagers'.DIRECTORY_SEPARATOR)
+                ->after('RelationManagers' . DIRECTORY_SEPARATOR)
                 ->before('.php')
-                ->prepend(static::class.'\RelationManagers\\')
+                ->prepend(static::class . '\RelationManagers\\')
                 ->toString();
 
             if (class_exists($className)) {
@@ -187,7 +192,7 @@ abstract class XotBaseResource extends FilamentResource
     {
         $submit_view = 'pub_theme::filament.wizard.submit-button';
         //@phpstan-ignore-next-line
-        if (! view()->exists($submit_view)) {
+        if (!view()->exists($submit_view)) {
             throw new \Exception("View {$submit_view} does not exist");
         }
         $render = view($submit_view)->render();
@@ -203,7 +208,7 @@ abstract class XotBaseResource extends FilamentResource
     public static function getAttachmentsSchema(bool $multiple = true): array
     {
         $model = static::getModel();
-        if (! method_exists($model, 'getAttachments')) {
+        if (!method_exists($model, 'getAttachments')) {
             return [];
         }
         $attachments = $model::getAttachments();
@@ -215,9 +220,13 @@ abstract class XotBaseResource extends FilamentResource
 
     protected static function getStepByName(string $name): Forms\Components\Wizard\Step
     {
-        $schema = Str::of($name)->snake()->studly()->prepend('get')->append('Schema')->toString();
+        $schema = Str::of($name)
+            ->snake()
+            ->studly()
+            ->prepend('get')
+            ->append('Schema')
+            ->toString();
 
-        return Forms\Components\Wizard\Step::make($name)
-            ->schema(static::$schema());
+        return Forms\Components\Wizard\Step::make($name)->schema(static::$schema());
     }
 }

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- Visualizzazione parametri come badge --}}
 @if(!empty($params))
     <div class="space-y-2">
@@ -19,4 +24,4 @@
             {{ __('notify::mail_template.fields.variables.helper_text') }}
         </div>
     </div>
-@endif 
+@endif

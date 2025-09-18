@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Geo\Models\Traits;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Sushi\Sushi;
 
 trait SushiToJsons
@@ -17,11 +17,7 @@ trait SushiToJsons
      */
     public function getSushiRows(): array
     {
-        return Cache::remember(
-            $this->getCacheKey(),
-            $this->getCacheDuration(),
-            fn () => $this->loadFromJson()
-        );
+        return Cache::remember($this->getCacheKey(), $this->getCacheDuration(), $this->loadFromJson(...));
     }
 
     /**
@@ -30,7 +26,7 @@ trait SushiToJsons
     protected function loadFromJson(): array
     {
         $path = $this->getJsonFile();
-        
+
         if (!File::exists($path)) {
             return [];
         }
@@ -74,7 +70,7 @@ trait SushiToJsons
     public function saveToJson(array $data): bool
     {
         $path = $this->getJsonFile();
-        
+
         try {
             File::put($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
             Cache::forget($this->getCacheKey());
@@ -94,13 +90,13 @@ trait SushiToJsons
         $attributes['id'] = $this->generateId();
         $attributes['created_at'] = now();
         $attributes['updated_at'] = now();
-        
+
         $data[] = $attributes;
-        
+
         if ($this->saveToJson($data)) {
             return $this->newInstance($attributes);
         }
-        
+
         throw new \RuntimeException('Impossibile salvare il record');
     }
 
@@ -111,14 +107,14 @@ trait SushiToJsons
     {
         $data = $this->loadFromJson();
         $index = $this->findIndex($this->getKey());
-        
+
         if ($index === null) {
             return false;
         }
-        
+
         $attributes['updated_at'] = now();
         $data[$index] = array_merge($data[$index], $attributes);
-        
+
         return $this->saveToJson($data);
     }
 
@@ -129,29 +125,29 @@ trait SushiToJsons
     {
         $data = $this->loadFromJson();
         $index = $this->findIndex($this->getKey());
-        
+
         if ($index === null) {
             return false;
         }
-        
+
         array_splice($data, $index, 1);
-        
+
         return $this->saveToJson($data);
     }
 
     /**
      * Trova l'indice di un record
      */
-    protected function findIndex($id): ?int
+    protected function findIndex($id): null|int
     {
         $data = $this->loadFromJson();
-        
+
         foreach ($data as $index => $item) {
             if ($item['id'] === $id) {
                 return $index;
             }
         }
-        
+
         return null;
     }
 
@@ -162,4 +158,4 @@ trait SushiToJsons
     {
         return uniqid('comune_', true);
     }
-} 
+}

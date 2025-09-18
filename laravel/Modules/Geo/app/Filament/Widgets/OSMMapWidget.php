@@ -60,7 +60,8 @@ class OSMMapWidget extends MapWidget
                 }
 
                 return $marker;
-            })->all();
+            })
+            ->all();
     }
 
     /**
@@ -73,8 +74,8 @@ class OSMMapWidget extends MapWidget
             return ['lat' => 41.9028, 'lng' => 12.4964]; // Rome, Italy
         }
 
-        $latitudes = $places->pluck('latitude')->filter(fn ($lat) => is_float($lat));
-        $longitudes = $places->pluck('longitude')->filter(fn ($lng) => is_float($lng));
+        $latitudes = $places->pluck('latitude')->filter(is_float(...));
+        $longitudes = $places->pluck('longitude')->filter(is_float(...));
 
         return [
             'lat' => $latitudes->average() ?? 0.0,
@@ -98,7 +99,7 @@ class OSMMapWidget extends MapWidget
     {
         /** @var view-string $viewName */
         $viewName = 'geo::filament.widgets.osm-map-info-window';
-        
+
         return view($viewName, [
             'place' => $place,
         ])->render();
@@ -107,13 +108,13 @@ class OSMMapWidget extends MapWidget
     /**
      * @return array{url: string, scaledSize: array{width: int, height: int}}|null
      */
-    protected function getMarkerIcon(Place $place): ?array
+    protected function getMarkerIcon(Place $place): null|array
     {
         // Uso placeType invece di type per evitare relazioni mancanti
         $type = $place->placeType->slug ?? 'default';
 
         $iconPath = resource_path("images/markers/{$type}.png");
-        if (! file_exists($iconPath)) {
+        if (!file_exists($iconPath)) {
             return null;
         }
 
@@ -130,7 +131,7 @@ class OSMMapWidget extends MapWidget
     {
         /** @var view-string $viewName */
         $viewName = 'geo::filament.widgets.osm-map-widget';
-        
+
         return view($viewName, [
             'data' => $this->getData(),
         ]);

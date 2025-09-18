@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     @php
       Theme::add('xot::css/adorable_rating.css');

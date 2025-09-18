@@ -47,14 +47,13 @@ class LogoutWidget extends XotBaseWidget
     #[\Override]
     public function getFormSchema(): array
     {
-        $view='filament.widgets.auth.logout-message';
+        $view = 'filament.widgets.auth.logout-message';
         //@phpstan-ignore-next-line
-        if(!view()->exists($view)){
-            throw new \Exception('View '.$view.' not found');
+        if (!view()->exists($view)) {
+            throw new \Exception('View ' . $view . ' not found');
         }
         return [
-            'logout_message' => View::make($view)
-                ->columnSpanFull(),
+            'logout_message' => View::make($view)->columnSpanFull(),
         ];
     }
 
@@ -190,10 +189,8 @@ class LogoutWidget extends XotBaseWidget
      */
     protected function redirectAfterLogout(): void
     {
-        redirect($this->getLocalizedHomeUrl())
-            ->with('success', __('user::auth.logout_success'))
-            ->send();
-        exit;
+        redirect($this->getLocalizedHomeUrl())->with('success', __('user::auth.logout_success'))->send();
+        exit();
     }
 
     /**

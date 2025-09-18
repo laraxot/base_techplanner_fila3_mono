@@ -7,13 +7,11 @@ return [
         'label' => 'Ore di Lavoro',
         'group' => 'Gestione Dipendenti',
     ],
-
     'resource' => [
         'label' => 'Ora di Lavoro',
         'plural_label' => 'Ore di Lavoro',
         'navigation_label' => 'Ore di Lavoro',
     ],
-
     'fields' => [
         'employee_id' => [
             'label' => 'Dipendente',
@@ -93,7 +91,6 @@ return [
             'label' => 'Aggiornato il',
         ],
     ],
-
     'actions' => [
         'create' => [
             'label' => 'Crea Ora di Lavoro',
@@ -147,7 +144,6 @@ return [
             'label' => 'Visualizza Tutte le Voci',
         ],
     ],
-
     'filters' => [
         'employee' => [
             'label' => 'Dipendente',
@@ -164,7 +160,6 @@ return [
             'label' => 'Solo Oggi',
         ],
     ],
-
     'tabs' => [
         'all' => 'Tutte le Voci',
         'today' => 'Oggi',
@@ -172,7 +167,6 @@ return [
         'clock_in' => 'Entrate',
         'clock_out' => 'Uscite',
     ],
-
     'pages' => [
         'timeclock' => [
             'title' => 'Timbratura Dipendenti',
@@ -184,7 +178,6 @@ return [
             'subtitle' => 'Panoramica delle ore di lavoro e statistiche',
         ],
     ],
-
     'widgets' => [
         'stats' => [
             'today' => [
@@ -213,14 +206,12 @@ return [
             'empty_state' => 'Nessuna voce recente',
         ],
     ],
-
     'status' => [
         'not_clocked_in' => 'Non Timbrato',
         'clocked_in' => 'Timbrato in Entrata',
         'on_break' => 'In Pausa',
         'clocked_out' => 'Timbrato in Uscita',
     ],
-
     'messages' => [
         'validation' => [
             'invalid_sequence' => 'Sequenza di voci non valida. Ultima voce: :last_entry. Azione prevista: :expected_action',
@@ -242,7 +233,6 @@ return [
             'no_recent_entries' => 'Nessuna voce recente',
         ],
     ],
-
     'summary' => [
         'total_hours_worked' => 'Ore Totali Lavorate',
         'current_status' => 'Stato Attuale',
@@ -251,7 +241,6 @@ return [
         'todays_entries' => 'Voci di Oggi',
         'last_entry' => 'Ultima voce: :type alle :time',
     ],
-
     'quick_actions' => [
         'title' => 'Azioni Rapide',
         'refresh_data' => 'Aggiorna Dati',

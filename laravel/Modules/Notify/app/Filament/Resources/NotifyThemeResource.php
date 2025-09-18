@@ -17,19 +17,15 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class NotifyThemeResource extends XotBaseResource
 {
-    protected static ?string $model = NotifyTheme::class;
-
+    protected static null|string $model = NotifyTheme::class;
 
     #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'lang' => Select::make('lang')
-                ->options(fn (): array => self::fieldOptions('lang')),
-            'type' => Select::make('type')
-                ->options(fn (): array => self::fieldOptions('type')),
-            'post_type' => Select::make('post_type')
-                ->options(fn (): array => self::fieldOptions('post_type')),
+            'lang' => Select::make('lang')->options(fn(): array => self::fieldOptions('lang')),
+            'type' => Select::make('type')->options(fn(): array => self::fieldOptions('type')),
+            'post_type' => Select::make('post_type')->options(fn(): array => self::fieldOptions('post_type')),
             'post_id' => TextInput::make('post_id'),
             'subject' => TextInput::make('subject'),
             'from' => TextInput::make('from'),
@@ -52,14 +48,10 @@ class NotifyThemeResource extends XotBaseResource
                     'widgets' => 'widgets',
                 ])
                 ->default('empty'),
-            'body' => Textarea::make('body')
-                ->columnSpanFull(),
-            'body_html' => RichEditor::make('body_html')
-                ->columnSpanFull(),
+            'body' => Textarea::make('body')->columnSpanFull(),
+            'body_html' => RichEditor::make('body_html')->columnSpanFull(),
         ];
     }
-
-   
 
     public static function fieldOptions(string $field): array
     {

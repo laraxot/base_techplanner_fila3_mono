@@ -20,21 +20,21 @@ class RelationAction
     {
         $relations = app(FilterRelationsAction::class)->execute($model, $data);
         /*
-        if ('Operation' === class_basename($model)) {
-            dddx([
-                'basename' => class_basename($model),
-                'model' => $model,
-                'data' => $data,
-                'relations' => $relations,
-            ]);
-        }
-        // */
+         * if ('Operation' === class_basename($model)) {
+         * dddx([
+         * 'basename' => class_basename($model),
+         * 'model' => $model,
+         * 'data' => $data,
+         * 'relations' => $relations,
+         * ]);
+         * }
+         * // */
         foreach ($relations as $relation) {
             // Ottieni il tipo di relazione dal nome della classe
             $relationClass = get_class($relation);
             $relationshipType = class_basename($relationClass);
-            
-            $actionClass = __NAMESPACE__.'\\'.$relationshipType.'Action';
+
+            $actionClass = __NAMESPACE__ . '\\' . $relationshipType . 'Action';
             Assert::object($action = app($actionClass));
 
             if (method_exists($action, 'execute')) {

@@ -24,19 +24,10 @@ class ListFeatures extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'name' => TextColumn::make('name')
-                ->searchable()
-                ->sortable(),
-            'type' => TextColumn::make('type')
-                ->searchable()
-                ->sortable(),
-            'active' => IconColumn::make('active')
-                ->boolean(),
-            'created_at' => TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
+            'name' => TextColumn::make('name')->searchable()->sortable(),
+            'type' => TextColumn::make('type')->searchable()->sortable(),
+            'active' => IconColumn::make('active')->boolean(),
+            'created_at' => TextColumn::make('created_at')->dateTime()->sortable(),
         ];
     }
-
-   
 }

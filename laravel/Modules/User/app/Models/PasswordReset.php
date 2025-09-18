@@ -52,4 +52,6 @@ class PasswordReset extends BaseModel
      * @var string
      */
     protected $table = 'password_resets';
-}// end class PasswordReset
+}
+
+// end class PasswordReset

@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\TechPlanner\Filament\Resources\RelationManagers;
 
 use Filament\Forms;
@@ -14,12 +17,9 @@ class DeviceVerificationsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('title')->required()->maxLength(255),
+        ]);
     }
 
     public function table(Table $table): Table
@@ -29,7 +29,7 @@ class DeviceVerificationsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('title'),
             ])
             ->filters([
-                //
+                
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

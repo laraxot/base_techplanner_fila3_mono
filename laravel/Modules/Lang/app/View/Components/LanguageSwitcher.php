@@ -10,9 +10,9 @@ use Modules\Lang\Filament\Widgets\LanguageSwitcherWidget;
 
 /**
  * Componente Blade per il Language Switcher.
- * 
+ *
  * Wrappa il LanguageSwitcherWidget per l'uso nei temi tramite sintassi Blade.
- * 
+ *
  * @package Modules\Lang\View\Components *
  * Wrappa il LanguageSwitcherWidget per l'uso nei temi tramite sintassi Blade.
  */
@@ -28,7 +28,8 @@ class LanguageSwitcher extends Component
      */
     public function __construct()
     {
-        $this->widget = new LanguageSwitcherWidget();        $this->widget = new LanguageSwitcherWidget;
+        $this->widget = new LanguageSwitcherWidget();
+        $this->widget = new LanguageSwitcherWidget();
     }
 
     /**
@@ -36,7 +37,7 @@ class LanguageSwitcher extends Component
      */
     public function render(): View
     {
-        if (! LanguageSwitcherWidget::canView()) {
+        if (!LanguageSwitcherWidget::canView()) {
             /** @var view-string $view */
             $view = 'lang::components.empty';
             return view($view);
@@ -46,7 +47,7 @@ class LanguageSwitcher extends Component
         $viewData = [
             'current_locale' => app()->getLocale(),
             'available_locales' => $this->widget->getAvailableLocales(),
-            'widget_id' => 'language-switcher-'.uniqid(),
+            'widget_id' => 'language-switcher-' . uniqid(),
         ];
 
         return \view('lang::components.language-switcher', $viewData);

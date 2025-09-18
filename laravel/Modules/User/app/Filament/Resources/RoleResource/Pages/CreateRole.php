@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\User\Filament\Resources\RoleResource;
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
-
 use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class CreateRole extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord
@@ -21,10 +20,16 @@ class CreateRole extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreateReco
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $this->permissions = collect($data)->filter(static fn ($permission, $key): bool => ! in_array($key, ['name', 'guard_name', 'select_all'], false) && Str::contains($key, '_'))->keys();
+        $this->permissions = collect($data)
+            ->filter(
+                static fn($_permission, $key): bool => (
+                    !in_array($key, ['name', 'guard_name', 'select_all'], false) && Str::contains($key, '_')
+                ),
+            )
+            ->keys();
 
         $res = Arr::only($data, ['name', 'guard_name', 'team_id']);
-        if (! isset($res['team_id'])) {
+        if (!isset($res['team_id'])) {
             $res['team_id'] = null;
         }
 
@@ -33,18 +38,18 @@ class CreateRole extends \Modules\Xot\Filament\Resources\Pages\XotBaseCreateReco
 
     /*
      *  Modules\User\Filament\Resources\RoleResource\Pages\CreateRole::afterCreate does not exist.
-
-    private function afterCreate(): void {
-        $permissionModels = collect();
-        $this->permissions->each(function ($permission) use ($permissionModels): void {
-            $permissionModels->push(Utils::getPermissionModel()::firstOrCreate([
-
-                'name' => $permission,
-                'guard_name' => $this->data['guard_name'],
-            ]));
-        });
-
-        $this->record->syncPermissions($permissionModels);
-    }
-    */
+     *
+     * private function afterCreate(): void {
+     * $permissionModels = collect();
+     * $this->permissions->each(function ($permission) use ($permissionModels): void {
+     * $permissionModels->push(Utils::getPermissionModel()::firstOrCreate([
+     *
+     * 'name' => $permission,
+     * 'guard_name' => $this->data['guard_name'],
+     * ]));
+     * });
+     *
+     * $this->record->syncPermissions($permissionModels);
+     * }
+     */
 }

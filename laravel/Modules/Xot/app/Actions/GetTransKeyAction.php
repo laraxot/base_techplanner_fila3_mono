@@ -25,7 +25,7 @@ class GetTransKeyAction
             $backtrace = debug_backtrace();
             Assert::isArray($backtrace);
             $class = Arr::get($backtrace, '1.class');
-            Assert::string($class, '['.__LINE__.']['.class_basename($this).']');
+            Assert::string($class, '[' . __LINE__ . '][' . class_basename($this) . ']');
         }
 
         $arr = explode('\\', $class);
@@ -35,19 +35,21 @@ class GetTransKeyAction
             $backtrace = array_slice(debug_backtrace(), 2);
             $res = Arr::first(
                 $backtrace,
-                fn (array $item): bool => isset($item['object']) && 'Modules' === explode('\\', get_class($item['object']))[0]
+                fn(array $item): bool => (
+                    isset($item['object']) && 'Modules' === explode('\\', get_class($item['object']))[0]
+                ),
             );
 
-            if (null === $res || ! isset($res['object'])) {
+            if (null === $res || !isset($res['object'])) {
                 $page = Arr::get(debug_backtrace(), '0.args.0');
-                Assert::string($page);
+                Assert::string($page, __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
                 $main_module = XotData::make()->main_module;
                 $main_module_low = mb_strtolower($main_module);
                 $page_arr = explode('\\', $page);
                 $page_arr_count = count($page_arr);
                 $page_arr_last = $page_arr[$page_arr_count - 1];
                 $page_arr_last_snake = Str::of($page_arr_last)->snake()->toString();
-                $tmp = $main_module_low.'::'.$page_arr_last_snake;
+                $tmp = $main_module_low . '::' . $page_arr_last_snake;
 
                 return $tmp;
             }
@@ -66,7 +68,7 @@ class GetTransKeyAction
         // If the class name ends with the type, remove the suffix
         if (Str::endsWith($class, $type)) {
             $class = Str::beforeLast($class, $type);
-            if (in_array($type, ['RelationManager'])) {
+            if (in_array($type, ['RelationManager'], strict: true)) {
                 $class = Str::of($class)->singular()->toString();
             }
         }
@@ -75,11 +77,11 @@ class GetTransKeyAction
         $arr = explode('_', $class_snake);
         $first = $arr[0];
         $last = $arr[count($arr) - 1];
-        if (in_array($first, ['dashboard', 'list', 'get', 'manage'])) {
+        if (in_array($first, ['dashboard', 'list', 'get', 'manage'], strict: true)) {
             $class_snake = implode('_', array_slice($arr, 1));
         }
-        if (in_array($last, ['action'])) {
-            $class_snake = Str::beforeLast($class_snake, '_'.$last);
+        if (in_array($last, ['action'], strict: true)) {
+            $class_snake = Str::beforeLast($class_snake, '_' . $last);
         }
 
         if (Str::endsWith($class_snake, 'form_schema')) {
@@ -87,14 +89,14 @@ class GetTransKeyAction
         }
 
         // Handle cases where the class starts with "list_"
-        if (in_array($first, ['list'])) {
+        if (in_array($first, ['list'], strict: true)) {
             $class_snake = Str::of($class_snake)
                 // ->after('list_')
                 ->singular()
                 ->toString();
         }
 
-        $tmp = $module_low.'::'.$class_snake;
+        $tmp = $module_low . '::' . $class_snake;
 
         return $tmp;
     }

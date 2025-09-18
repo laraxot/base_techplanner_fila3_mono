@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'column.name' => 'Name',
     'column.guard_name' => 'Guard Name',

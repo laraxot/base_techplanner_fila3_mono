@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @auth
     <x-filament::dropdown>
         <x-slot name="trigger">

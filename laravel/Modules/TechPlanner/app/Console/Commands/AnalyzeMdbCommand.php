@@ -6,6 +6,7 @@ namespace Modules\TechPlanner\Console\Commands;
 
 use Modules\Xot\Console\Commands\XotBaseCommand;
 use Symfony\Component\Process\Process;
+
 use function Safe\chmod;
 
 class AnalyzeMdbCommand extends XotBaseCommand
@@ -18,7 +19,7 @@ class AnalyzeMdbCommand extends XotBaseCommand
     {
         $mdbPath = $this->argument('mdb_path') ?? '/mnt/nas02/var/www/_bases/Sottana.com/Sorvegli01.mdb';
 
-        if (! file_exists($mdbPath)) {
+        if (!file_exists($mdbPath)) {
             $this->error("File not found: {$mdbPath}");
 
             return self::FAILURE;
@@ -27,15 +28,15 @@ class AnalyzeMdbCommand extends XotBaseCommand
         $scriptsPath = module_path('TechPlanner', 'scripts');
 
         // Make scripts executable
-        chmod($scriptsPath.'/analyze_mdb_tables.sh', 0755);
-        chmod($scriptsPath.'/analyze_mdb_relations.sh', 0755);
+        chmod($scriptsPath . '/analyze_mdb_tables.sh', 0o755);
+        chmod($scriptsPath . '/analyze_mdb_relations.sh', 0o755);
 
         // Run analysis scripts
         $this->info('Analyzing tables...');
-        $tablesProcess = new Process([$scriptsPath.'/analyze_mdb_tables.sh', $mdbPath]);
+        $tablesProcess = new Process([$scriptsPath . '/analyze_mdb_tables.sh', $mdbPath]);
         $tablesProcess->run();
 
-        if (! $tablesProcess->isSuccessful()) {
+        if (!$tablesProcess->isSuccessful()) {
             $this->error($tablesProcess->getErrorOutput());
 
             return self::FAILURE;
@@ -44,10 +45,10 @@ class AnalyzeMdbCommand extends XotBaseCommand
         $this->info($tablesProcess->getOutput());
 
         $this->info('Analyzing relationships...');
-        $relationsProcess = new Process([$scriptsPath.'/analyze_mdb_relations.sh', $mdbPath]);
+        $relationsProcess = new Process([$scriptsPath . '/analyze_mdb_relations.sh', $mdbPath]);
         $relationsProcess->run();
 
-        if (! $relationsProcess->isSuccessful()) {
+        if (!$relationsProcess->isSuccessful()) {
             $this->error($relationsProcess->getErrorOutput());
 
             return self::FAILURE;

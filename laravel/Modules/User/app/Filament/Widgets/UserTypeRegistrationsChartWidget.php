@@ -11,14 +11,14 @@ use Modules\Xot\Filament\Widgets\XotBaseChartWidget;
 
 class UserTypeRegistrationsChartWidget extends XotBaseChartWidget
 {
-    protected static ?string $heading = null;
-    protected static ?int $sort = 1;
+    protected static null|string $heading = null;
+    protected static null|int $sort = 1;
     protected static bool $isLazy = true;
 
     public string $model;
 
     #[\Override]
-    public function getHeading(): ?string
+    public function getHeading(): null|string
     {
         return static::transClass($this->model, 'widgets.user_type_registrations_chart.heading');
     }
@@ -34,11 +34,11 @@ class UserTypeRegistrationsChartWidget extends XotBaseChartWidget
         $endDate = null;
 
         // Verifica se i filtri sono disponibili e validi
-        if (is_array($filters) && ! empty($filters)) {
+        if (is_array($filters) && !empty($filters)) {
             /** @phpstan-ignore-next-line */
-            $startDate = ! empty($filters['startDate']) ? Carbon::parse($filters['startDate']) : null;
+            $startDate = !empty($filters['startDate']) ? Carbon::parse($filters['startDate']) : null;
             /** @phpstan-ignore-next-line */
-            $endDate = ! empty($filters['endDate']) ? Carbon::parse($filters['endDate']) : null;
+            $endDate = !empty($filters['endDate']) ? Carbon::parse($filters['endDate']) : null;
         }
 
         // Fallback ai valori di default se i filtri non sono disponibili
@@ -62,14 +62,18 @@ class UserTypeRegistrationsChartWidget extends XotBaseChartWidget
                 'datasets' => [
                     [
                         'label' => static::transClass($this->model, 'widgets.user_type_registrations_chart.label'),
-                        'data' => $data->map(fn (mixed $value) => $value instanceof TrendValue ? $value->aggregate : 0),
+                        'data' => $data->map(fn(mixed $value) => ($value instanceof TrendValue)
+                            ? $value->aggregate
+                            : 0),
                         'backgroundColor' => 'rgba(59, 130, 246, 0.5)',
                         'borderColor' => 'rgb(59, 130, 246)',
                         'borderWidth' => 2,
                         'tension' => 0.4,
                     ],
                 ],
-                'labels' => $data->map(fn (mixed $value) => $value instanceof TrendValue ? \Carbon\Carbon::parse($value->date)->format('d/m') : ''),
+                'labels' => $data->map(fn(mixed $value) => ($value instanceof TrendValue)
+                    ? \Carbon\Carbon::parse($value->date)->format('d/m')
+                    : ''),
             ];
         } catch (\Exception $e) {
             // Fallback appropriato senza logging inutile

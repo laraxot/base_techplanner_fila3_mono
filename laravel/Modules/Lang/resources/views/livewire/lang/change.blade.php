@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div x-data="{ open: false }">
     <button
         @click="open = !open"

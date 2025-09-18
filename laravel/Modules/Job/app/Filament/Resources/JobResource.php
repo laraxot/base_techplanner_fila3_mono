@@ -11,36 +11,28 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class JobResource extends XotBaseResource
 {
-    protected static ?string $model = Job::class;
+    protected static null|string $model = Job::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-circle-stack';
+    protected static null|string $navigationIcon = 'heroicon-o-circle-stack';
 
-    protected static ?string $recordTitleAttribute = 'display_name';
+    protected static null|string $recordTitleAttribute = 'display_name';
 
     #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'queue' => \Filament\Forms\Components\TextInput::make('queue')
-                ->required()
-                ->maxLength(255),
-            'payload' => \Filament\Forms\Components\TextInput::make('payload')
-                ->required(),
-            'attempts' => \Filament\Forms\Components\TextInput::make('attempts')
-                ->numeric()
-                ->required(),
-            'available_at' => \Filament\Forms\Components\DateTimePicker::make('available_at')
-                ->required(),
-            'created_at' => \Filament\Forms\Components\DateTimePicker::make('created_at')
-                ->required(),
+            'queue' => \Filament\Forms\Components\TextInput::make('queue')->required()->maxLength(255),
+            'payload' => \Filament\Forms\Components\TextInput::make('payload')->required(),
+            'attempts' => \Filament\Forms\Components\TextInput::make('attempts')->numeric()->required(),
+            'available_at' => \Filament\Forms\Components\DateTimePicker::make('available_at')->required(),
+            'created_at' => \Filament\Forms\Components\DateTimePicker::make('created_at')->required(),
         ];
     }
 
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Override]

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['title', 'sections'])
 
 <section class="py-12 bg-white">
@@ -24,4 +29,4 @@
             </div>
         </div>
     </div>
-</section> 
+</section>

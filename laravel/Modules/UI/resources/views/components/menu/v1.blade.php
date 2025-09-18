@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <ul class="ml-auto flex items-center space-x-4">
         @foreach ($menu->items as $item)
             <li>

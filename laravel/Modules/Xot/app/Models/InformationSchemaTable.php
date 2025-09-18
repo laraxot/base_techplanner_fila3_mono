@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
-use Sushi\Sushi;
-use Webmozart\Assert\Assert;
-use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 use Modules\Tenant\Models\Traits\SushiToJson;
+use Sushi\Sushi;
+use Webmozart\Assert\Assert;
 
 /**
  * Represents a table in the INFORMATION_SCHEMA.TABLES.
- * 
+ *
  * Provides metadata and statistics about database tables.
  *
  * @property string|null $TABLE_CATALOG
@@ -83,8 +83,6 @@ class InformationSchemaTable extends Model
 {
     use SushiToJson;
 
-    
-
     /**
      * The attributes that are mass assignable.
      *
@@ -118,8 +116,6 @@ class InformationSchemaTable extends Model
         'created_by' => 'string',
     ];
 
-    
-   
     /**
      * Get the rows array for the Sushi model.
      * This method is required by Sushi to provide the data.
@@ -131,28 +127,26 @@ class InformationSchemaTable extends Model
         return $this->getSushiRows();
     }
 
-    public static function updateModelCount(string $modelClass,int $total): void
+    public static function updateModelCount(string $modelClass, int $total): void
     {
-         if (! class_exists($modelClass)) {
-            throw new InvalidArgumentException("Model class [$modelClass] does not exist");
+        if (!class_exists($modelClass)) {
+            throw new InvalidArgumentException("Model class [{$modelClass}] does not exist");
         }
 
         /** @var Model $model */
         $model = app($modelClass);
 
-        if (! $model instanceof Model) {
-            throw new InvalidArgumentException("Class [$modelClass] must be an instance of ".Model::class);
+        if (!($model instanceof Model)) {
+            throw new InvalidArgumentException("Class [{$modelClass}] must be an instance of " . Model::class);
         }
 
         $connection = $model->getConnection();
         $database = $connection->getDatabaseName();
         $driver = $connection->getDriverName();
         $table = $model->getTable();
-        $where=['table_schema'=>$database,'model_class'=>$modelClass,'table_name'=>$table];
-        $row= InformationSchemaTable::updateOrCreate($where,['table_rows'=>$total]);
-
+        $where = ['table_schema' => $database, 'model_class' => $modelClass, 'table_name' => $table];
+        $row = InformationSchemaTable::updateOrCreate($where, ['table_rows' => $total]);
     }
-   
 
     /**
      * Get the row count for a model class.
@@ -164,15 +158,15 @@ class InformationSchemaTable extends Model
      */
     public static function getModelCount(string $modelClass): int
     {
-        if (! class_exists($modelClass)) {
-            throw new InvalidArgumentException("Model class [$modelClass] does not exist");
+        if (!class_exists($modelClass)) {
+            throw new InvalidArgumentException("Model class [{$modelClass}] does not exist");
         }
 
         /** @var Model $model */
         $model = app($modelClass);
 
-        if (! $model instanceof Model) {
-            throw new InvalidArgumentException("Class [$modelClass] must be an instance of ".Model::class);
+        if (!($model instanceof Model)) {
+            throw new InvalidArgumentException("Class [{$modelClass}] must be an instance of " . Model::class);
         }
 
         $connection = $model->getConnection();
@@ -180,30 +174,29 @@ class InformationSchemaTable extends Model
         $driver = $connection->getDriverName();
         $table = $model->getTable();
 
-        $where=['table_schema'=>$database,'model_class'=>$modelClass,'table_name'=>$table];
-        $row= InformationSchemaTable::firstOrCreate($where);
-        if($row->table_rows===null){
-            $table_rows=$model->count();
-            $row= tap($row)->update(['table_rows'=>$table_rows]);
+        $where = ['table_schema' => $database, 'model_class' => $modelClass, 'table_name' => $table];
+        $row = InformationSchemaTable::firstOrCreate($where);
+        if ($row->table_rows === null) {
+            $table_rows = $model->count();
+            $row = tap($row)->update(['table_rows' => $table_rows]);
         }
-        
+
         return intval($row->table_rows);
+
         /*
-        // Handle in-memory database
-        if (':memory:' === $database) {
-            return (int) $model->count();
-        }
-
-        // Handle SQLite specifically
-        if ('sqlite' === $driver) {
-            return (int) $model->count();
-        }
-
-        return $model->count();
-        
-        return static::getAccurateRowCount($table, $database);
-        */
+         * // Handle in-memory database
+         * if (':memory:' === $database) {
+         * return (int) $model->count();
+         * }
+         *
+         * // Handle SQLite specifically
+         * if ('sqlite' === $driver) {
+         * return (int) $model->count();
+         * }
+         *
+         * return $model->count();
+         *
+         * return static::getAccurateRowCount($table, $database);
+         */
     }
-
-   
 }

@@ -10,7 +10,7 @@ use Modules\Geo\Models\PlaceType;
 
 /**
  * Place Factory
- * 
+ *
  * @extends Factory<Place>
  */
 class PlaceFactory extends Factory

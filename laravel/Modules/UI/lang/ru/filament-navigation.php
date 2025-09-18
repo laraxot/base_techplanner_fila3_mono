@@ -13,12 +13,10 @@ return [
         'created_at' => 'Создано в',
         'updated_at' => 'Изменено в',
     ],
-
     'select-options' => [
         'same-tab' => 'Этой вкладке',
         'new-tab' => 'Новой вкладке',
     ],
-
     'items' => [
         'empty' => 'Нет элементов',
         'add-item' => 'Добавить элемент',
@@ -29,7 +27,6 @@ return [
         'dedent' => 'Dedent',
         'remove' => 'Удалить',
     ],
-
     'items-modal' => [
         'title' => 'Элемент',
         'label' => 'Название',

@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace Modules\Employee\Http\Livewire;
 
 use Carbon\Carbon;
-
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
-use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Models\WorkHour;
 
 class WorkHourDashboard extends Component
 {
-    public ?Employee $employee = null;
-
+    public null|Employee $employee = null;
 
     /** @var array<int, array{date: string, day: string, hours: float, formatted_hours: string}> */
     public array $weeklyStats = [];
@@ -41,11 +39,10 @@ class WorkHourDashboard extends Component
         'workHourRecorded' => 'refreshStats',
         'refreshDashboard' => 'refreshStats',
     ];
-    public function mount(?int $employeeId = null): void
+
+    public function mount(null|int $employeeId = null): void
     {
-        $this->employee = $employeeId 
-            ? Employee::find($employeeId) 
-            : (Auth::user()->employee ?? null);
+        $this->employee = $employeeId ? Employee::find($employeeId) : (Auth::user()->employee ?? null);
         $this->refreshStats();
     }
 
@@ -61,9 +58,7 @@ class WorkHourDashboard extends Component
     public function getProgressColor(): string
     {
         $percentage = $this->getProgressPercentage();
-        
 
-        
         if ($percentage >= 90) {
             return 'success';
         } elseif ($percentage >= 70) {
@@ -105,14 +100,11 @@ class WorkHourDashboard extends Component
 
         $startOfWeek = Carbon::now()->startOfWeek();
         $endOfWeek = Carbon::now()->endOfWeek();
-        
-        $this->weekHours = (float) WorkHour::calculateWorkedHours(
-            $this->employee->id, 
-            $startOfWeek
-        );
+
+        $this->weekHours = (float) WorkHour::calculateWorkedHours($this->employee->id, $startOfWeek);
 
         $this->weeklyStats = [];
-        
+
         // Build proper weekly stats array
         for ($i = 0; $i < 7; $i++) {
             $date = $startOfWeek->copy()->addDays($i);
@@ -136,14 +128,11 @@ class WorkHourDashboard extends Component
 
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
-        
-        $this->monthHours = (float) WorkHour::calculateWorkedHours(
-            $this->employee->id, 
-            $startOfMonth
-        );
+
+        $this->monthHours = (float) WorkHour::calculateWorkedHours($this->employee->id, $startOfMonth);
 
         $this->monthlyStats = [];
-        
+
         // Build proper monthly stats array by weeks
         $currentWeek = $startOfMonth->copy();
         $weekNumber = 1;
@@ -152,14 +141,14 @@ class WorkHourDashboard extends Component
             if ($weekEnd->gt($endOfMonth)) {
                 $weekEnd = $endOfMonth->copy();
             }
-            
+
             $weekHours = 0.0;
             $tempDate = $currentWeek->copy();
             while ($tempDate->lte($weekEnd)) {
                 $weekHours += WorkHour::calculateWorkedHours($this->employee->id, $tempDate);
                 $tempDate->addDay();
             }
-            
+
             $this->monthlyStats[] = [
                 'week' => $weekNumber,
                 'start_date' => $currentWeek->format('d/m'),
@@ -167,7 +156,7 @@ class WorkHourDashboard extends Component
                 'hours' => $weekHours,
                 'formatted_hours' => number_format($weekHours, 2) . 'h',
             ];
-            
+
             $currentWeek->addWeek();
             $weekNumber++;
         }
@@ -182,21 +171,21 @@ class WorkHourDashboard extends Component
 
         $entries = WorkHour::getTodayEntries($this->employee->id);
         /** @var array<int, array{id: int, date: string, time: string, type: WorkHourTypeEnum, type_label: string, type_color: string, notes: string|null, status: WorkHourStatusEnum, status_color: string}> $mappedEntries */
-        $mappedEntries = $entries->map(function (WorkHour $entry): array {
-            return [
+        $mappedEntries = $entries->map(fn (WorkHour $entry): array => [
                 'id' => $entry->id,
                 'date' => $entry->timestamp->format('Y-m-d'),
                 'time' => $entry->timestamp->format('H:i'),
                 'type' => $entry->type,
                 //@phpstan-ignore-next-line
-                'type_label' => $entry->type instanceof WorkHourTypeEnum ? $entry->type->getLabel() : (string) $entry->type,
+                'type_label' => ($entry->type instanceof WorkHourTypeEnum)
+                    ? $entry->type->getLabel()
+                    : ((string) $entry->type),
                 //@phpstan-ignore-next-line
-                'type_color' => $entry->type instanceof WorkHourTypeEnum ? $entry->type->getColor() : 'gray',
+                'type_color' => ($entry->type instanceof WorkHourTypeEnum) ? $entry->type->getColor() : 'gray',
                 'notes' => $entry->notes,
                 'status' => $entry->status,
-                'status_color' => $entry->status instanceof WorkHourStatusEnum ? $entry->status->getColor() : 'gray',
-            ];
-        })->toArray();
+                'status_color' => ($entry->status instanceof WorkHourStatusEnum) ? $entry->status->getColor() : 'gray',
+            ])->toArray();
         $this->recentEntries = $mappedEntries;
     }
 
@@ -211,9 +200,7 @@ class WorkHourDashboard extends Component
             ->where('type', WorkHourTypeEnum::CLOCK_IN->value)
             ->get();
 
-        return $entries->groupBy(function (WorkHour $entry): string {
-            return $entry->timestamp->format('Y-m-d');
-        })->count();
+        return $entries->groupBy(fn (WorkHour $entry): string => $entry->timestamp->format('Y-m-d'))->count();
     }
 
     public function render(): View

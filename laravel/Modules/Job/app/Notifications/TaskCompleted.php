@@ -19,7 +19,9 @@ class TaskCompleted extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(private readonly string $output) {}
+    public function __construct(
+        private readonly string $output,
+    ) {}
 
     /**
      * Get the notification's delivery channels.
@@ -48,7 +50,7 @@ class TaskCompleted extends Notification implements ShouldQueue
      */
     public function toMail(Task $task): MailMessage
     {
-        return (new MailMessage)
+        return new MailMessage()
             ->subject($task->description)
             ->greeting('Hi,')
             ->line(sprintf('%s just finished running.', $task->description))
@@ -57,26 +59,25 @@ class TaskCompleted extends Notification implements ShouldQueue
 
     /*
      * Get the Nexmo / SMS representation of the notification.
-
-    public function toNexmo(mixed $notifiable): NexmoMessage
-    {
-        return (new NexmoMessage())
-            ->content($notifiable->description.' just finished running.');
-    }
-    */
-
+     *
+     * public function toNexmo(mixed $notifiable): NexmoMessage
+     * {
+     * return (new NexmoMessage())
+     * ->content($notifiable->description.' just finished running.');
+     * }
+     */
     /*
      * Get the Slack representation of the notification.
-
-    public function toSlack(mixed $notifiable): SlackMessage
-    {
-        return (new SlackMessage())
-            ->content(config('app.name'))
-            ->attachment(function (SlackAttachment $attachment) use ($notifiable) {
-                $attachment
-                    ->title('Totem Task')
-                    ->content($notifiable->description.' just finished running.');
-            });
-    }
-    */
+     *
+     * public function toSlack(mixed $notifiable): SlackMessage
+     * {
+     * return (new SlackMessage())
+     * ->content(config('app.name'))
+     * ->attachment(function (SlackAttachment $attachment) use ($notifiable) {
+     * $attachment
+     * ->title('Totem Task')
+     * ->content($notifiable->description.' just finished running.');
+     * });
+     * }
+     */
 }

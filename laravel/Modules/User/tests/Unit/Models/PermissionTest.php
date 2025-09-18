@@ -50,14 +50,14 @@ class PermissionTest extends TestCase
     {
         $permission = new Permission();
 
-        $this->assertEquals('user', $permission->connection);
+        static::assertSame('user', $permission->connection);
     }
 
     public function test_permission_has_key_type_attribute(): void
     {
         $permission = new Permission();
 
-        $this->assertEquals('string', $permission->keyType);
+        static::assertSame('string', $permission->keyType);
     }
 
     public function test_permission_has_fillable_attributes(): void
@@ -74,7 +74,7 @@ class PermissionTest extends TestCase
             'updated_by',
         ];
 
-        $this->assertEquals($expectedFillable, $permission->getFillable());
+        static::assertSame($expectedFillable, $permission->getFillable());
     }
 
     public function test_permission_has_casts(): void
@@ -90,7 +90,7 @@ class PermissionTest extends TestCase
             'updated_at' => 'datetime',
         ];
 
-        $this->assertEquals($expectedCasts, $permission->getCasts());
+        static::assertSame($expectedCasts, $permission->getCasts());
     }
 
     public function test_can_find_permission_by_name(): void
@@ -99,8 +99,8 @@ class PermissionTest extends TestCase
 
         $foundPermission = Permission::where('name', 'unique.permission')->first();
 
-        $this->assertNotNull($foundPermission);
-        $this->assertEquals($permission->id, $foundPermission->id);
+        static::assertNotNull($foundPermission);
+        static::assertSame($permission->id, $foundPermission->id);
     }
 
     public function test_can_find_permission_by_guard_name(): void
@@ -111,8 +111,8 @@ class PermissionTest extends TestCase
 
         $webPermissions = Permission::where('guard_name', 'web')->get();
 
-        $this->assertCount(2, $webPermissions);
-        $this->assertTrue($webPermissions->every(fn ($permission) => $permission->guard_name === 'web'));
+        static::assertCount(2, $webPermissions);
+        static::assertTrue($webPermissions->every(fn($permission) => $permission->guard_name === 'web'));
     }
 
     public function test_can_find_permission_by_created_by(): void
@@ -121,8 +121,8 @@ class PermissionTest extends TestCase
 
         $foundPermission = Permission::where('created_by', 'user123')->first();
 
-        $this->assertNotNull($foundPermission);
-        $this->assertEquals($permission->id, $foundPermission->id);
+        static::assertNotNull($foundPermission);
+        static::assertSame($permission->id, $foundPermission->id);
     }
 
     public function test_can_find_permission_by_updated_by(): void
@@ -131,8 +131,8 @@ class PermissionTest extends TestCase
 
         $foundPermission = Permission::where('updated_by', 'user456')->first();
 
-        $this->assertNotNull($foundPermission);
-        $this->assertEquals($permission->id, $foundPermission->id);
+        static::assertNotNull($foundPermission);
+        static::assertSame($permission->id, $foundPermission->id);
     }
 
     public function test_can_find_permissions_by_name_pattern(): void
@@ -144,8 +144,8 @@ class PermissionTest extends TestCase
 
         $userPermissions = Permission::where('name', 'like', 'user.%')->get();
 
-        $this->assertCount(3, $userPermissions);
-        $this->assertTrue($userPermissions->every(fn ($permission) => str_starts_with($permission->name, 'user.')));
+        static::assertCount(3, $userPermissions);
+        static::assertTrue($userPermissions->every(fn($permission) => str_starts_with($permission->name, 'user.')));
     }
 
     public function test_can_update_permission(): void
@@ -190,13 +190,11 @@ class PermissionTest extends TestCase
             'created_by' => 'admin',
         ]);
 
-        $permissions = Permission::where('name', 'like', 'admin.user.%')
-            ->where('created_by', 'admin')
-            ->get();
+        $permissions = Permission::where('name', 'like', 'admin.user.%')->where('created_by', 'admin')->get();
 
-        $this->assertCount(2, $permissions);
-        $this->assertTrue($permissions->every(fn ($permission) => 
-            str_starts_with($permission->name, 'admin.user.') && $permission->created_by === 'admin'
+        static::assertCount(2, $permissions);
+        static::assertTrue($permissions->every(
+            fn($permission) => str_starts_with($permission->name, 'admin.user.') && $permission->created_by === 'admin',
         ));
     }
 
@@ -204,51 +202,49 @@ class PermissionTest extends TestCase
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'roles'));
+        static::assertTrue(method_exists($permission, 'roles'));
     }
 
     public function test_permission_has_users_relationship(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'users'));
+        static::assertTrue(method_exists($permission, 'users'));
     }
 
     public function test_permission_can_use_role_scopes(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'role'));
+        static::assertTrue(method_exists($permission, 'role'));
     }
 
     public function test_permission_can_use_permission_scopes(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'permission'));
-        $this->assertTrue(method_exists($permission, 'withoutPermission'));
+        static::assertTrue(method_exists($permission, 'permission'));
+        static::assertTrue(method_exists($permission, 'withoutPermission'));
     }
 
     public function test_permission_can_use_without_role_scopes(): void
     {
         $permission = Permission::factory()->create();
 
-        $this->assertTrue(method_exists($permission, 'withoutRole'));
+        static::assertTrue(method_exists($permission, 'withoutRole'));
     }
 
     public function test_permission_has_factory_method(): void
     {
         $permission = new Permission();
 
-        $this->assertTrue(method_exists($permission, 'newFactory'));
+        static::assertTrue(method_exists($permission, 'newFactory'));
     }
 
     public function test_permission_has_get_table_method(): void
     {
         $permission = new Permission();
 
-        $this->assertTrue(method_exists($permission, 'getTable'));
+        static::assertTrue(method_exists($permission, 'getTable'));
     }
 }
-
-

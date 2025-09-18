@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Nwidart\Modules\Facades\Module as ModuleFacade;
 use Nwidart\Modules\Module as NModule;
+use Sushi\Sushi;
 
 use function Safe\json_encode;
-
-use Sushi\Sushi;
 
 /**
  * @property int         $id
@@ -57,27 +56,24 @@ class Module extends Model
     public function getRows(): array
     {
         $modules = ModuleFacade::all();
-        $modules = Arr::map(
-            $modules,
-            function (NModule $module): array {
-                $config = config('tenant::config');
-                if (! is_array($config)) {
-                    $config = [];
-                }
-                $colors = Arr::get($config, 'colors', []);
-
-                return [
-                    'name' => $module->getName(),
-                    // 'alias' => $module->getAlias(),
-                    'description' => $module->getDescription(),
-                    'status' => $module->isEnabled(),
-                    'priority' => $module->get('priority'),
-                    'path' => $module->getPath(),
-                    'icon' => Arr::get($config, 'icon', 'heroicon-o-question-mark-circle'),
-                    'colors' => json_encode($colors),
-                ];
+        $modules = Arr::map($modules, function (NModule $module): array {
+            $config = config('tenant::config');
+            if (!is_array($config)) {
+                $config = [];
             }
-        );
+            $colors = Arr::get($config, 'colors', []);
+
+            return [
+                'name' => $module->getName(),
+                // 'alias' => $module->getAlias(),
+                'description' => $module->getDescription(),
+                'status' => $module->isEnabled(),
+                'priority' => $module->get('priority'),
+                'path' => $module->getPath(),
+                'icon' => Arr::get($config, 'icon', 'heroicon-o-question-mark-circle'),
+                'colors' => json_encode($colors),
+            ];
+        });
 
         return array_values($modules);
     }

@@ -63,10 +63,10 @@ trait IsProfileTrait
      * Utilizza prima i dati del profilo, altrimenti ricade sul nome dell'utente.
      *
      * @param string|null $value Il valore attuale dell'attributo
-     * 
+     *
      * @return string|null Il nome completo dell'utente
      */
-    public function getFullNameAttribute(?string $value): ?string
+    public function getFullNameAttribute(null|string $value): null|string
     {
         if ($value !== null) {
             return $value;
@@ -90,10 +90,10 @@ trait IsProfileTrait
      * Se non presente nel profilo, lo recupera dall'utente collegato.
      *
      * @param string|null $value Il valore attuale dell'attributo
-     * 
+     *
      * @return string|null Il nome dell'utente
      */
-    public function getFirstNameAttribute(?string $value): ?string
+    public function getFirstNameAttribute(null|string $value): null|string
     {
         if ($value !== null) {
             return $value;
@@ -118,10 +118,10 @@ trait IsProfileTrait
      * Se non presente nel profilo, lo recupera dall'utente collegato.
      *
      * @param string|null $value Il valore attuale dell'attributo
-     * 
+     *
      * @return string|null Il cognome dell'utente
      */
-    public function getLastNameAttribute(?string $value): ?string
+    public function getLastNameAttribute(null|string $value): null|string
     {
         if ($value !== null) {
             return $value;
@@ -175,7 +175,7 @@ trait IsProfileTrait
      * Se l'utente non è super-admin, assegna super-admin e rimuove negate-super-admin.
      *
      * @throws \Exception Se l'utente non è disponibile
-     * 
+     *
      * @return void
      */
     public function toggleSuperAdmin(): void
@@ -278,15 +278,13 @@ trait IsProfileTrait
      */
     protected function userName(): Attribute
     {
-        return Attribute::make(
-            get: function (): ?string {
-                $user = $this->user;
-                if ($user === null) {
-                    return null;
-                }
-                return $user->name;
+        return Attribute::make(get: function (): null|string {
+            $user = $this->user;
+            if ($user === null) {
+                return null;
             }
-        );
+            return $user->name;
+        });
     }
 
     /**
@@ -297,12 +295,10 @@ trait IsProfileTrait
      */
     protected function avatar(): Attribute
     {
-        return Attribute::make(
-            get: function (): string {
-                $value = $this->getFirstMediaUrl('avatar');
+        return Attribute::make(get: function (): string {
+            $value = $this->getFirstMediaUrl('avatar');
 
-                return $value;
-            }
-        );
+            return $value;
+        });
     }
 }

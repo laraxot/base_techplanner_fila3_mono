@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Modules\User\Filament\Widgets;
 
 use Exception;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form as FilamentForm;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Modules\Xot\Filament\Widgets\XotBaseWidget;
 
@@ -29,14 +29,13 @@ class LoginWidget extends XotBaseWidget
      * Blade view del widget nel modulo User.
      * IMPORTANTE: quando il widget viene usato con @livewire() direttamente nelle Blade,
      * il path deve essere senza il namespace del modulo (senza "user::").
-     * 
+     *
      * @see \Modules\User\docs\WIDGETS_STRUCTURE.md - Sezione B
      * @var view-string
      */
     /** @phpstan-ignore-next-line property.defaultValue */
     protected static string $view = 'pub_theme::filament.widgets.auth.login';
-    
-   
+
     /**
      * Inizializza il widget quando viene montato.
      *
@@ -46,7 +45,7 @@ class LoginWidget extends XotBaseWidget
     {
         $this->form->fill();
     }
-    
+
     /**
      * Get the form schema for the login form.
      *
@@ -64,8 +63,7 @@ class LoginWidget extends XotBaseWidget
                 ->password()
                 ->required()
                 ->revealable(),
-            Toggle::make('remember')
-                ->visible(false),
+            Toggle::make('remember')->visible(false),
         ];
     }
 
@@ -75,11 +73,11 @@ class LoginWidget extends XotBaseWidget
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     #[\Override]
-    protected function getFormModel(): ?\Illuminate\Database\Eloquent\Model
+    protected function getFormModel(): null|\Illuminate\Database\Eloquent\Model
     {
         return null;
     }
-    
+
     /**
      * Get the form fill data.
      *
@@ -104,11 +102,11 @@ class LoginWidget extends XotBaseWidget
     {
         try {
             $data = $this->form->getState();
-            
+
             // Cast esplicito per type safety PHPStan
             $remember = (bool) ($data['remember'] ?? false);
-            $attempt_data =Arr::only($data,['email','password']);
-            
+            $attempt_data = Arr::only($data, ['email', 'password']);
+
             if (!Auth::attempt($attempt_data, $remember)) {
                 throw ValidationException::withMessages([
                     'email' => [__('user::messages.credentials_incorrect')],
@@ -116,47 +114,47 @@ class LoginWidget extends XotBaseWidget
             }
 
             session()->regenerate();
-            
+
             Notification::make()
                 ->title(__('user::messages.login_success'))
                 ->success()
                 ->send();
-                
+
             $this->redirect(route('home'));
-            
         } catch (ValidationException $e) {
             Notification::make()
                 ->title(__('user::messages.validation_error'))
                 ->body($e->getMessage())
                 ->danger()
                 ->send();
-                
+
             $this->form->fill();
             $this->form->saveRelationships();
             //$this->form->callAfter();
-            
+
             foreach ($e->errors() as $field => $messages) {
-                $this->form->getComponent($field)?->getContainer()->getParentComponent()?->getStatePath()
+                $this->form
+                    ->getComponent($field)
+                    ?->getContainer()
+                    ->getParentComponent()
+                    ?->getStatePath()
                     ? $this->addError($field, implode(' ', $messages))
                     : $this->addError('email', implode(' ', $messages));
             }
-            
         } catch (Exception $e) {
             report($e);
-            
+
             Notification::make()
                 ->title(__('user::messages.login_error'))
                 ->body(__('user::messages.login_error'))
                 ->danger()
                 ->send();
-                
+
             $this->form->fill();
             $this->form->saveRelationships();
             //$this->form->callAfter();
-            
+
             $this->addError('email', __('user::messages.login_error'));
         }
     }
-    
-
 }

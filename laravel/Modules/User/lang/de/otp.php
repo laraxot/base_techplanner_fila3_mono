@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'otp_code' => 'Codice OTP',
     'title' => 'Password Scaduta, Reimposta Password',

@@ -29,20 +29,17 @@ class GetProductsArrayDummyAction
             if (!is_array($item)) {
                 return []; // Restituiamo un array vuoto se $item non è un array
             }
-            
-            return Arr::only(
-                $item,
-                [
-                    'id',
-                    'title',
-                    'description',
-                    'price',
-                    'rating',
-                    'brand',
-                    'category',
-                    'thumbnail',
-                ]
-            );
+
+            return Arr::only($item, [
+                'id',
+                'title',
+                'description',
+                'price',
+                'rating',
+                'brand',
+                'category',
+                'thumbnail',
+            ]);
         });
 
         return $products;

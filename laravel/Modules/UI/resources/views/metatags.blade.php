@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <meta charset="utf-8">
 <meta name="application-name" content="{{ $_theme->metatag('sitename') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">

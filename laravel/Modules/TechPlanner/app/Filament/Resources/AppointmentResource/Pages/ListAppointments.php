@@ -6,8 +6,8 @@ namespace Modules\TechPlanner\Filament\Resources\AppointmentResource\Pages;
 
 use Filament\Actions;
 use Filament\Tables;
-use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Modules\TechPlanner\Filament\Resources\AppointmentResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 /**
  * @property AppointmentResource $resource
@@ -19,26 +19,12 @@ class ListAppointments extends XotBaseListRecords
     public function getTableColumns(): array
     {
         return [
-            'client.name' => Tables\Columns\TextColumn::make('client.name')
-                ->searchable()
-                ->sortable(),
-            'date' => Tables\Columns\TextColumn::make('date')
-                ->date()
-                ->sortable(),
-            'time' => Tables\Columns\TextColumn::make('time')
-                ->time()
-                ->sortable(),
-            'status' => Tables\Columns\TextColumn::make('status')
-                ->searchable()
-                ->sortable(),
-            'notes' => Tables\Columns\TextColumn::make('notes')
-                ->searchable()
-                ->wrap(),
-            'created_at' => Tables\Columns\TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable(),
+            'client.name' => Tables\Columns\TextColumn::make('client.name')->searchable()->sortable(),
+            'date' => Tables\Columns\TextColumn::make('date')->date()->sortable(),
+            'time' => Tables\Columns\TextColumn::make('time')->time()->sortable(),
+            'status' => Tables\Columns\TextColumn::make('status')->searchable()->sortable(),
+            'notes' => Tables\Columns\TextColumn::make('notes')->searchable()->wrap(),
+            'created_at' => Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
         ];
     }
-
-  
 }

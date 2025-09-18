@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Modules\User\Models\Traits;
 
 use Filament\Panel;
-use Modules\Xot\Datas\XotData;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
 use Modules\User\Contracts\TeamContract;
 use Modules\Xot\Actions\Panel\ApplyTenancyToPanelAction;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Modules\Xot\Datas\XotData;
 
 /**
  * Trait HasTenants
- * 
+ *
  * Provides tenant functionality for User models implementing multi-tenancy.
- * 
+ *
  * @property TeamContract $currentTeam
  */
 trait HasTenants
@@ -43,7 +43,7 @@ trait HasTenants
     {
         /** @var \Illuminate\Support\Collection<int, \Illuminate\Database\Eloquent\Model> $tenants */
         $tenants = $this->tenants;
-        
+
         return $tenants;
     }
 

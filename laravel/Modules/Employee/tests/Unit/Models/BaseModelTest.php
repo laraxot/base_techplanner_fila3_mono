@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Tests\Unit\Models;
 
-use Modules\Employee\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Employee\Models\BaseModel;
 use Tests\TestCase;
 
 test('base model extends eloquent model', function () {

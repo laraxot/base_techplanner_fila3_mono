@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @php
     use Modules\TechPlanner\Models\Client;
 @endphp

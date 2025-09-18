@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- UpcomingScheduleWidget View - 7-Day Schedule Overview --}}
 <x-filament-widgets::widget>
     <x-filament::section>

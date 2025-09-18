@@ -4,39 +4,37 @@ declare(strict_types=1);
 
 namespace Modules\Notify\Filament\Clusters\Test\Pages;
 
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Modules\Notify\Datas\EmailData;
-use Illuminate\Support\Facades\Mail;
+use Filament\Forms;
 use Filament\Forms\ComponentContainer;
+use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+use Modules\Notify\Datas\EmailData;
 use Modules\Notify\Emails\EmailDataEmail;
 use Modules\Notify\Filament\Clusters\Test;
 use Modules\Xot\Filament\Pages\XotBasePage;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
-
 
 /**
  * @property ComponentContainer $emailForm
  */
 class SendEmailPage extends XotBasePage
 {
-
     // use NavigationLabelTrait;
 
-    public ?array $emailData = [];
+    public null|array $emailData = [];
 
-    protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';
+    protected static null|string $navigationIcon = 'heroicon-o-paper-airplane';
 
     protected static string $view = 'notify::filament.pages.send-email';
 
-    protected static ?string $cluster = Test::class;
+    protected static null|string $cluster = Test::class;
 
     public function mount(): void
     {
@@ -45,12 +43,9 @@ class SendEmailPage extends XotBasePage
 
     public function emailForm(Form $form): Form
     {
-        return $form
-            ->schema($this->getEmailFormSchema())
-            ->model($this->getUser())
-            ->statePath('emailData');
+        return $form->schema($this->getEmailFormSchema())->model($this->getUser())->statePath('emailData');
     }
-    
+
     public function getEmailFormSchema(): array
     {
         return [
@@ -61,10 +56,8 @@ class SendEmailPage extends XotBasePage
                         // ->unique(ignoreRecord: true)
                         ->email()
                         ->required(),
-                    'subject' => Forms\Components\TextInput::make('subject')
-                        ->required(),
-                    'body_html' => Forms\Components\RichEditor::make('body_html')
-                        ->required(),
+                    'subject' => Forms\Components\TextInput::make('subject')->required(),
+                    'body_html' => Forms\Components\RichEditor::make('body_html')->required(),
                 ]),
         ];
     }
@@ -74,9 +67,7 @@ class SendEmailPage extends XotBasePage
         $data = $this->emailForm->getState();
         $email_data = EmailData::from($data);
 
-        Mail::to($data['to'])->send(
-            new EmailDataEmail($email_data)
-        );
+        Mail::to($data['to'])->send(new EmailDataEmail($email_data));
 
         Notification::make()
             ->success()
@@ -96,7 +87,7 @@ class SendEmailPage extends XotBasePage
     {
         return [
             Action::make('emailFormActions')
-                //
+                
 
                 ->submit('emailFormActions'),
         ];
@@ -107,8 +98,10 @@ class SendEmailPage extends XotBasePage
     {
         $user = Filament::auth()->user();
 
-        if (! $user instanceof Model) {
-            throw new \Exception('The authenticated user object must be an Eloquent model to allow the profile page to update it.');
+        if (!($user instanceof Model)) {
+            throw new \Exception(
+                'The authenticated user object must be an Eloquent model to allow the profile page to update it.',
+            );
         }
 
         return $user;

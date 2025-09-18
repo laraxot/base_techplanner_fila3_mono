@@ -20,8 +20,7 @@ class TableLayoutToggleTableAction extends Action
 
         $current = $this->getCurrentLayout();
 
-        $this
-            ->label('Toggle Layout')
+        $this->label('Toggle Layout')
             ->tooltip($current->getLabel())
             ->color($current->getColor())
             ->icon($current->getIcon())
@@ -35,7 +34,7 @@ class TableLayoutToggleTableAction extends Action
     {
         $currentLayout = $this->getCurrentLayout();
         $newLayout = $currentLayout->toggle();
-        
+
         $this->setTableLayout($newLayout);
 
         if ($livewire instanceof ListRecords) {

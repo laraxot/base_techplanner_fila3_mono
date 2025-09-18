@@ -6,14 +6,13 @@ namespace Modules\Xot\Actions\Export;
 
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
+use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use Webmozart\Assert\Assert;
 
 use function Safe\fclose;
 use function Safe\fopen;
 use function Safe\fputcsv;
-
-use Spatie\QueueableAction\QueueableAction;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-use Webmozart\Assert\Assert;
 
 class ExportXlsStreamByLazyCollection
 {
@@ -25,15 +24,15 @@ class ExportXlsStreamByLazyCollection
      * @param LazyCollection $data I dati da esportare
      * @param string $filename Nome del file CSV
      * @param string|null $transKey Chiave di traduzione per le intestazioni
-     * @param array<string>|null $fields Campi da includere nell'export
-     * 
+     * @param array<string>|null $_fields Campi da includere nell'export (attualmente non utilizzato)
+     *
      * @return StreamedResponse
      */
     public function execute(
         LazyCollection $data,
         string $filename = 'test.csv',
-        ?string $transKey = null,
-        ?array $fields = null,
+        null|string $transKey = null,
+        null|array $_fields = null,
     ): StreamedResponse {
         $headers = [
             'Content-Disposition' => 'attachment; filename=' . $filename,
@@ -66,7 +65,7 @@ class ExportXlsStreamByLazyCollection
                         if ($item === null) {
                             return null;
                         }
-                        return is_string($item) ? $item : (string) $item;
+                        return is_string($item) ? $item : ((string) $item);
                     }, $rowData);
 
                     fputcsv($file, $safeRowData);
@@ -81,7 +80,7 @@ class ExportXlsStreamByLazyCollection
                 fclose($file);
             },
             200,
-            $headers
+            $headers,
         );
     }
 
@@ -90,10 +89,10 @@ class ExportXlsStreamByLazyCollection
      *
      * @param LazyCollection $data I dati da cui estrarre le intestazioni
      * @param string|null $transKey Chiave di traduzione per le intestazioni
-     * 
+     *
      * @return array<string>
      */
-    public function headings(LazyCollection $data, ?string $transKey = null): array
+    public function headings(LazyCollection $data, null|string $transKey = null): array
     {
         $first = $data->first();
         if (!is_array($first) && (!is_object($first) || !method_exists($first, 'toArray'))) {
@@ -102,31 +101,29 @@ class ExportXlsStreamByLazyCollection
 
         $headArray = is_array($first) ? $first : $first->toArray();
 
-        /** 
-         * @var array<string, mixed> $headArray 
-         * @var \Illuminate\Support\Collection<int, string> $headings 
+        /**
+         * @var array<string, mixed> $headArray
+         * @var \Illuminate\Support\Collection<int, string> $headings
          */
         $headings = collect($headArray)->keys();
 
         if (null !== $transKey) {
-            $headings = $headings->map(
-                static function (string $item) use ($transKey) {
-                    $key = $transKey . '.fields.' . $item;
-                    $trans = trans($key);
-                    if ($trans !== $key) {
-                        return $trans;
-                    }
-
-                    Assert::string($item1 = Str::replace('.', '_', $item), '[' . __LINE__ . '][' . __CLASS__ . ']');
-                    $key = $transKey . '.fields.' . $item1;
-                    $trans = trans($key);
-                    if ($trans !== $key) {
-                        return $trans;
-                    }
-
-                    return $item;
+            $headings = $headings->map(static function (string $item) use ($transKey) {
+                $key = $transKey . '.fields.' . $item;
+                $trans = trans($key);
+                if ($trans !== $key) {
+                    return $trans;
                 }
-            );
+
+                Assert::string($item1 = Str::replace('.', '_', $item), '[' . __LINE__ . '][' . __CLASS__ . ']');
+                $key = $transKey . '.fields.' . $item1;
+                $trans = trans($key);
+                if ($trans !== $key) {
+                    return $trans;
+                }
+
+                return $item;
+            });
         }
 
         /** @var array<string> */

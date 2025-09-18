@@ -62,29 +62,30 @@ class Job extends BaseModel
 
     public function getTable(): string
     {
-        Assert::string($res = config('queue.connections.database.table'), '['.__LINE__.']['.class_basename($this).']');
+        Assert::string(
+            $res = config('queue.connections.database.table'),
+            '[' . __LINE__ . '][' . class_basename($this) . ']',
+        );
 
         return $res;
     }
 
     public function status(): Attribute
     {
-        return Attribute::make(
-            get: function (): string {
-                if ($this->reserved_at) {
-                    return 'running';
-                }
+        return Attribute::make(get: function (): string {
+            if ($this->reserved_at) {
+                return 'running';
+            }
 
-                return 'waiting';
-            },
-        );
+            return 'waiting';
+        });
     }
 
-    public function getDisplayNameAttribute(): ?string
+    public function getDisplayNameAttribute(): null|string
     {
-        Assert::string($json = $this->attributes['payload']);
+        Assert::string($json = $this->attributes['payload'], __FILE__ . ':' . __LINE__ . ' - ' . class_basename(__CLASS__));
         $payload = json_decode($json, true);
-        if (! is_array($payload)) {
+        if (!is_array($payload)) {
             return null;
         }
 

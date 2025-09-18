@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props(['href'])
 <x-filament::button
     href="{{ $href }}"
@@ -6,4 +11,3 @@
     icon="heroicon-o-home"
 
 />
-

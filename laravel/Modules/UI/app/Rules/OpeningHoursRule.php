@@ -1,44 +1,42 @@
 <?php
 
 declare(strict_types=1);
+
 // app/Rules/OpeningHoursRule.php
 namespace Modules\UI\Rules;
 
-use Closure;
 use Carbon\Carbon;
-use Modules\Xot\Filament\Traits\TransTrait;
+use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Modules\UI\Actions\Datetime\GetDaysMappingAction;
 use Illuminate\Translation\PotentiallyTranslatedString;
+use Modules\UI\Actions\Datetime\GetDaysMappingAction;
+use Modules\Xot\Filament\Traits\TransTrait;
 
 use function Safe\preg_match;
 
-
 class OpeningHoursRule implements ValidationRule
 {
-
     use TransTrait;
-    
-    public function validate(string $attribute, mixed $value, Closure $fail): void
+
+    public function validate(string $_attribute, mixed $value, Closure $fail): void
     {
-       
         $days = app(GetDaysMappingAction::class)->execute();
         /*
-        foreach ($days as $dayKey => $dayLabel) {
-            $hours = $value[$dayKey];
-                
-            foreach ($hours as $hourKey => $hour) {
-                if(is_string($hour) && $hour===''){
-                    
-                    $fail("L'orario di {$hourKey} deve essere impostato per il {$dayLabel}.");
-                }
-            }
-        }
-        */
+         * foreach ($days as $dayKey => $dayLabel) {
+         * $hours = $value[$dayKey];
+         *
+         * foreach ($hours as $hourKey => $hour) {
+         * if(is_string($hour) && $hour===''){
+         *
+         * $fail("L'orario di {$hourKey} deve essere impostato per il {$dayLabel}.");
+         * }
+         * }
+         * }
+         */
         foreach ($days as $dayKey => $dayLabel) {
             /**@phpstan-ignore-next-line */
             $dayHours = $value[$dayKey] ?? [];
-            
+
             if (!is_array($dayHours)) {
                 continue;
             }
@@ -46,26 +44,24 @@ class OpeningHoursRule implements ValidationRule
             // Valida ogni sessione (mattina e pomeriggio)
             $this->validateSession($dayHours, 'morning', $dayLabel, $fail);
             $this->validateSession($dayHours, 'afternoon', $dayLabel, $fail);
-            
+
             // Valida la coerenza tra sessioni dello stesso giorno
             $this->validateDayLogic($dayHours, $dayLabel, $fail);
         }
-        
     }
 
-     /**
+    /**
      * Valida la coerenza tra le sessioni dello stesso giorno
      */
     private function validateDayLogic(array $dayHours, string $dayLabel, Closure $fail): void
     {
-        
         $morningTo = $this->cleanTimeValue($dayHours['morning_to'] ?? null);
         $afternoonFrom = $this->cleanTimeValue($dayHours['afternoon_from'] ?? null);
 
         // Se ci sono entrambe le sessioni, la chiusura mattina deve essere prima dell'apertura pomeriggio
         if ($morningTo !== null && $afternoonFrom !== null) {
             if ($morningTo >= $afternoonFrom) {
-                $fail(static::trans('validation.morning_before_afternoon', params:['day' => $dayLabel]));
+                $fail(static::trans('validation.morning_before_afternoon', params: ['day' => $dayLabel]));
             }
         }
     }
@@ -77,27 +73,29 @@ class OpeningHoursRule implements ValidationRule
     {
         $fromKey = "{$session}_from";
         $toKey = "{$session}_to";
-        $sessionLabel = $session === 'morning' ? static::trans('validation.opening_hours.morning') : static::trans('validation.opening_hours.afternoon');
+        $sessionLabel = $session === 'morning'
+            ? static::trans('validation.opening_hours.morning')
+            : static::trans('validation.opening_hours.afternoon');
 
         $fromTime = $this->cleanTimeValue($dayHours[$fromKey] ?? null);
         $toTime = $this->cleanTimeValue($dayHours[$toKey] ?? null);
         /*
-        // Validazione formato orario
-        if ($fromTime !== null && !$this->isValidTimeFormat($fromTime)) {
-            $fail("L'orario di apertura {$sessionLabel} per {$dayLabel} deve essere nel formato HH:MM.");
-            return;
-        }
-
-        if ($toTime !== null && !$this->isValidTimeFormat($toTime)) {
-            $fail("L'orario di chiusura {$sessionLabel} per {$dayLabel} deve essere nel formato HH:MM.");
-            return;
-        }
-        */
+         * // Validazione formato orario
+         * if ($fromTime !== null && !$this->isValidTimeFormat($fromTime)) {
+         * $fail("L'orario di apertura {$sessionLabel} per {$dayLabel} deve essere nel formato HH:MM.");
+         * return;
+         * }
+         *
+         * if ($toTime !== null && !$this->isValidTimeFormat($toTime)) {
+         * $fail("L'orario di chiusura {$sessionLabel} per {$dayLabel} deve essere nel formato HH:MM.");
+         * return;
+         * }
+         */
         // Validazione completezza: se uno è specificato, anche l'altro deve esserlo
         if ($fromTime !== null && $toTime === null) {
             $fail(static::trans('validation.opening_hours.missing_closing_time', params: [
                 'session' => $sessionLabel,
-                'day' => $dayLabel
+                'day' => $dayLabel,
             ]));
             return;
         }
@@ -105,7 +103,7 @@ class OpeningHoursRule implements ValidationRule
         if ($toTime !== null && $fromTime === null) {
             $fail(static::trans('validation.opening_hours.missing_opening_time', params: [
                 'session' => $sessionLabel,
-                'day' => $dayLabel
+                'day' => $dayLabel,
             ]));
             return;
         }
@@ -115,7 +113,7 @@ class OpeningHoursRule implements ValidationRule
             if ($fromTime >= $toTime) {
                 $fail(static::trans('validation.opening_hours.opening_before_closing', params: [
                     'session' => $sessionLabel,
-                    'day' => $dayLabel
+                    'day' => $dayLabel,
                 ]));
                 return;
             }
@@ -125,7 +123,7 @@ class OpeningHoursRule implements ValidationRule
     /**
      * Pulisce il valore dell'orario (rimuove stringhe vuote, spazi, etc.)
      */
-    private function cleanTimeValue(mixed $value): ?string
+    private function cleanTimeValue(mixed $value): null|string
     {
         if ($value === null || $value === '' || $value === '--:--') {
             return null;

@@ -74,11 +74,9 @@ class Import extends BaseModel
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'payload' => 'array',
             'completed_at' => 'datetime',
             // 'updated_at' => 'datetime:Y-m-d H:00',

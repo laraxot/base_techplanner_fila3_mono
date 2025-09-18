@@ -61,11 +61,11 @@ class NotificationTemplateVersion extends BaseModel
     public function restore(): NotificationTemplate
     {
         $template = $this->template;
-        
+
         if (!$template) {
             throw new \RuntimeException('Template not found for version ' . $this->id);
         }
-        
+
         $template->update([
             'subject' => $this->subject ?? null,
             'body_html' => $this->body_html ?? null,
@@ -77,4 +77,4 @@ class NotificationTemplateVersion extends BaseModel
 
         return $template;
     }
-} 
+}

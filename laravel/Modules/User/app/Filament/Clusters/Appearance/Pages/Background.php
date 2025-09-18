@@ -24,15 +24,15 @@ class Background extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    public ?array $data = [];
+    public null|array $data = [];
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static null|string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'user::filament.clusters.appearance.pages.background';
 
-    protected static ?string $cluster = Appearance::class;
+    protected static null|string $cluster = Appearance::class;
 
-    protected static ?int $navigationSort = 2;
+    protected static null|int $navigationSort = 2;
 
     public function mount(): void
     {
@@ -56,10 +56,13 @@ class Background extends Page implements HasForms
                 ColorPicker::make('background_color'),
                 FileUpload::make('background'),
                 ColorPicker::make('overlay_color'),
-                TextInput::make('overlay_opacity')->numeric()->minValue(0)->maxValue(100),
-
+                TextInput::make('overlay_opacity')
+                    ->numeric()
+                    ->minValue(0)
+                    ->maxValue(100),
                 // ])->columns(2),
-            ])->columns(2)
+            ])
+            ->columns(2)
             // ->model($this->getUser())
             ->statePath('data');
     }
@@ -69,6 +72,7 @@ class Background extends Page implements HasForms
         try {
             $data = $this->form->getState();
             dddx($data);
+
             // $this->handleRecordUpdate($this->getUser(), $data);
         } catch (Halt $exception) {
             dddx($exception->getMessage());
@@ -88,9 +92,7 @@ class Background extends Page implements HasForms
     protected function getUpdateFormActions(): array
     {
         return [
-            Action::make('updateAction')
-
-                ->submit('editForm'),
+            Action::make('updateAction')->submit('editForm'),
         ];
     }
 

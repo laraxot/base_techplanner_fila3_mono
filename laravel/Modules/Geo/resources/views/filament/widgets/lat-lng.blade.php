@@ -1,4 +1,8 @@
+<?php
 
+declare(strict_types=1);
+
+?>
 <x-filament-widgets::widget >
     Lat-lng <br/>
     lat:{{ $lat }}<br/>

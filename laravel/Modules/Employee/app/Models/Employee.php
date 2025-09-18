@@ -154,6 +154,7 @@ class Employee extends User
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -202,9 +203,7 @@ class Employee extends User
      */
     public function isActiveToday(): bool
     {
-        return $this->workHours()
-            ->whereDate('timestamp', today())
-            ->exists();
+        return $this->workHours()->whereDate('timestamp', today())->exists();
     }
 
     /**

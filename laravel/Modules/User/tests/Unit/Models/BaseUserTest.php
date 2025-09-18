@@ -12,8 +12,7 @@ use Modules\User\Tests\TestCase;
 uses(TestCase::class, RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->baseUser = new class extends BaseUser
-    {
+    $this->baseUser = new class extends BaseUser {
         protected $table = 'test_users';
     };
 });

@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\Xot\Actions;
 
 use Illuminate\Support\Arr;
-
-use function Safe\preg_match_all;
-
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
+
+use function Safe\preg_match_all;
 
 /**
  * Parses a print page string into an array of page numbers.
@@ -49,10 +48,7 @@ class ParsePrintPageStringAction
             if ('' === $secondNumber) {
                 $res[] = (int) $firstNumber;
             } else {
-                $res = array_merge(
-                    $res,
-                    self::fromTo((int) $firstNumber, (int) $secondNumber)
-                );
+                $res = array_merge($res, self::fromTo((int) $firstNumber, (int) $secondNumber));
             }
         }
 

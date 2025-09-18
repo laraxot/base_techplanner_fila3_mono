@@ -14,8 +14,7 @@ class Sidebar extends Component
     public function __construct(
         public Collection $collection,
         // public string $tpl = 'v1'
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -43,7 +42,6 @@ class Sidebar extends Component
     //         ->orderByDesc('total')
     //         ->limit(5)
     //         ->get();
-
     //     return view('components.sidebar', ['categories' => $categories]);
     // }
 }

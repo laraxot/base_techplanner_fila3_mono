@@ -10,9 +10,7 @@ use Modules\Xot\Filament\Pages\XotBaseDashboard;
 class Dashboard extends XotBaseDashboard
 {
     //protected static ?string $navigationIcon = 'heroicon-o-home';
-
     //protected static string $view = 'activity::filament.pages.dashboard';
-
     // public function mount(): void
     // {
     //     // $user = auth()->user();

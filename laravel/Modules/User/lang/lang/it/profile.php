@@ -8,25 +8,21 @@ return [
         'description' => 'Gestione delle impostazioni dell\'account utente',
         'help' => 'Configura le informazioni del tuo account personale',
     ],
-
     'profile' => [
         'label' => 'Profilo',
         'description' => 'Informazioni del profilo utente',
         'help' => 'Visualizza e modifica le informazioni del tuo profilo',
     ],
-
     'my_profile' => [
         'label' => 'Il mio profilo',
         'description' => 'Gestione del profilo personale',
         'help' => 'Accedi alle impostazioni del tuo profilo personale',
     ],
-
     'subheading' => [
         'label' => 'Gestisci il tuo profilo.',
         'description' => 'Aggiorna le tue informazioni personali e le impostazioni dell\'account',
         'help' => 'Mantieni aggiornate le tue informazioni per un\'esperienza ottimale',
     ],
-
     'fields' => [
         'id' => [
             'label' => 'ID',
@@ -175,7 +171,6 @@ return [
             'help' => 'Data dell\'ultimo aggiornamento del profilo',
         ],
     ],
-
     'personal_info' => [
         'heading' => 'Informazioni personali',
         'subheading' => 'Gestisci le tue informazioni personali.',
@@ -188,7 +183,6 @@ return [
         ],
         'notify' => 'Profilo aggiornato correttamente!',
     ],
-
     'security' => [
         'heading' => 'Sicurezza',
         'subheading' => 'Gestisci le impostazioni di sicurezza del tuo account.',
@@ -225,7 +219,6 @@ return [
             ],
         ],
     ],
-
     'preferences' => [
         'heading' => 'Preferenze',
         'subheading' => 'Personalizza la tua esperienza utente.',
@@ -266,7 +259,6 @@ return [
             ],
         ],
     ],
-
     'actions' => [
         'edit_profile' => [
             'label' => 'Modifica Profilo',
@@ -295,7 +287,6 @@ return [
             'error' => 'Errore durante l\'eliminazione dell\'account',
         ],
     ],
-
     'sections' => [
         'basic_info' => [
             'label' => 'Informazioni Base',
@@ -314,7 +305,6 @@ return [
             'description' => 'Lingua, fuso orario e impostazioni',
         ],
     ],
-
     'validation' => [
         'required' => 'Il campo :attribute è obbligatorio',
         'email' => 'Il campo :attribute deve essere un indirizzo email valido',
@@ -332,7 +322,6 @@ return [
         'phone' => 'Il numero di telefono deve essere valido',
         'postal_code' => 'Il codice postale deve essere valido',
     ],
-
     'messages' => [
         'profile_updated' => 'Profilo aggiornato con successo',
         'password_changed' => 'Password cambiata con successo',

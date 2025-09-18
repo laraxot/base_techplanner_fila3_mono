@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 {{-- Requires Js --}}
 <div class="isolate overflow-hidden">
     <div class="flow-root bg-gray-900 pb-16 pt-24 sm:pt-32 lg:pb-0">
@@ -1168,4 +1173,3 @@
       </div>
     </div>
   </div>
-  

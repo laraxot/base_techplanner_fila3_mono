@@ -20,7 +20,7 @@ class EventPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Event $event): bool
+    public function view(UserContract $user, Event $_event): bool
     {
         return $user->hasPermissionTo('event.view');
     }
@@ -36,7 +36,7 @@ class EventPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Event $event): bool
+    public function update(UserContract $user, Event $_event): bool
     {
         return $user->hasPermissionTo('event.update');
     }
@@ -44,7 +44,7 @@ class EventPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Event $event): bool
+    public function delete(UserContract $user, Event $_event): bool
     {
         return $user->hasPermissionTo('event.delete');
     }
@@ -52,7 +52,7 @@ class EventPolicy extends GdprBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Event $event): bool
+    public function restore(UserContract $user, Event $_event): bool
     {
         return $user->hasPermissionTo('event.restore');
     }

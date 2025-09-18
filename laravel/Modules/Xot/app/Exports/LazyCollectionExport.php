@@ -21,7 +21,7 @@ class LazyCollectionExport implements FromIterator, ShouldQueue, WithHeadings, W
 
     public array $headings;
 
-    public ?string $transKey;
+    public null|string $transKey;
 
     /** @var array<int, string> */
     public array $fields = [];
@@ -29,12 +29,16 @@ class LazyCollectionExport implements FromIterator, ShouldQueue, WithHeadings, W
     /**
      * @param array<int, string> $fields
      */
-    public function __construct(public LazyCollection $collection, ?string $transKey = null, array $fields = [])
-    {
+    public function __construct(
+        public LazyCollection $collection,
+        null|string $transKey = null,
+        array $fields = [],
+    ) {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
 
         $this->transKey = $transKey;
         $this->fields = $fields;
+
         // $this->headings = $headings->toArray();
     }
 
@@ -48,16 +52,17 @@ class LazyCollectionExport implements FromIterator, ShouldQueue, WithHeadings, W
         $data = $item->only($this->fields);
 
         return $data->toArray();
+
         /*
-        return [
-            $item->,
-        ];
-        */
+         * return [
+         * $item->,
+         * ];
+         */
     }
 
     public function getHead(): Collection
     {
-        if (! empty($this->fields)) {
+        if (!empty($this->fields)) {
             return collect($this->fields);
         }
 

@@ -19,13 +19,14 @@ class TodayPresenceWidget extends XotBaseWidget
 
     protected int|string|array $columnSpan = 1;
 
-    protected static ?int $sort = 4;
+    protected static null|int $sort = 4;
 
     /**
      * Get the form schema for the widget.
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [];
@@ -55,10 +56,10 @@ class TodayPresenceWidget extends XotBaseWidget
             if ($index < 6) {
                 $presentEmployees[] = array_merge($employeeData, [
                     'department' => 'SVILUPPO',
-                    'check_in_time' => '08:'.str_pad((string) (30 + $index * 5), 2, '0', STR_PAD_LEFT),
+                    'check_in_time' => '08:' . str_pad((string) (30 + ($index * 5)), 2, '0', STR_PAD_LEFT),
                     'location' => 'Ufficio',
                     'status' => 'present',
-                    'work_type' => $index % 2 === 0 ? 'office' : 'remote',
+                    'work_type' => ($index % 2) === 0 ? 'office' : 'remote',
                 ]);
             } else {
                 $absentEmployees[] = array_merge($employeeData, [
@@ -102,9 +103,18 @@ class TodayPresenceWidget extends XotBaseWidget
     protected function getAvatarColor(string $initials): string
     {
         $colors = [
-            'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500',
-            'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-teal-500',
-            'bg-orange-500', 'bg-cyan-500', 'bg-lime-500', 'bg-amber-500',
+            'bg-red-500',
+            'bg-blue-500',
+            'bg-green-500',
+            'bg-yellow-500',
+            'bg-purple-500',
+            'bg-pink-500',
+            'bg-indigo-500',
+            'bg-teal-500',
+            'bg-orange-500',
+            'bg-cyan-500',
+            'bg-lime-500',
+            'bg-amber-500',
         ];
 
         $hash = array_sum(array_map('ord', str_split($initials)));
@@ -192,17 +202,17 @@ class TodayPresenceWidget extends XotBaseWidget
     protected function getEmployeeFullName(Employee $employee): string
     {
         // Use full_name mutator if available
-        if (! empty($employee->full_name)) {
+        if (!empty($employee->full_name)) {
             return $employee->full_name;
         }
 
         // Combine first_name + last_name
-        if (! empty($employee->first_name) || ! empty($employee->last_name)) {
-            return trim(($employee->first_name ?? '').' '.($employee->last_name ?? ''));
+        if (!empty($employee->first_name) || !empty($employee->last_name)) {
+            return trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? ''));
         }
 
         // Fallback to name field
-        return $employee->name ?? 'Dipendente #'.$employee->id;
+        return $employee->name ?? ('Dipendente #' . $employee->id);
     }
 
     /**
@@ -214,7 +224,7 @@ class TodayPresenceWidget extends XotBaseWidget
         $initials = '';
 
         foreach ($parts as $part) {
-            if (! empty($part)) {
+            if (!empty($part)) {
                 $initials .= strtoupper(substr($part, 0, 1));
             }
         }

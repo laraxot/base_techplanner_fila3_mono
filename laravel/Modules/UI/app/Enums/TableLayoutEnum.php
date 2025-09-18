@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\UI\Enums;
 
-use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Modules\Xot\Filament\Traits\TransTrait;
 
@@ -21,7 +21,7 @@ use Modules\Xot\Filament\Traits\TransTrait;
 enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
 {
     use TransTrait;
-    
+
     case LIST = 'list';
     case GRID = 'grid';
 
@@ -32,32 +32,32 @@ enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
 
     public function getLabel(): string
     {
-        return $this->transClass(self::class, $this->value.'.label');
+        return $this->transClass(self::class, $this->value . '.label');
     }
 
     public function getColor(): string
     {
-        return $this->transClass(self::class, $this->value.'.color');
+        return $this->transClass(self::class, $this->value . '.color');
     }
 
     public function getIcon(): string
     {
-        return $this->transClass(self::class, $this->value.'.icon');
+        return $this->transClass(self::class, $this->value . '.icon');
     }
 
     public function getDescription(): string
     {
-        return $this->transClass(self::class, $this->value.'.description');
+        return $this->transClass(self::class, $this->value . '.description');
     }
 
     public function getTooltip(): string
     {
-        return $this->transClass(self::class, $this->value.'.tooltip');
+        return $this->transClass(self::class, $this->value . '.tooltip');
     }
 
     public function getHelperText(): string
     {
-        return $this->transClass(self::class, $this->value.'.helper_text');
+        return $this->transClass(self::class, $this->value . '.helper_text');
     }
 
     public function toggle(): self
@@ -86,7 +86,7 @@ enum TableLayoutEnum: string implements HasColor, HasIcon, HasLabel
      *
      * @return array<string, int>|null Grid configuration or null for list layout
      */
-    public function getTableContentGrid(): ?array
+    public function getTableContentGrid(): null|array
     {
         return $this->isGridLayout()
             ? [

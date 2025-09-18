@@ -21,7 +21,7 @@ class LogPolicy extends XotBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Log $log): bool
+    public function view(UserContract $user, Log $_log): bool
     {
         return $user->hasPermissionTo('log.view');
     }
@@ -37,7 +37,7 @@ class LogPolicy extends XotBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Log $log): bool
+    public function update(UserContract $user, Log $_log): bool
     {
         return $user->hasPermissionTo('log.update');
     }
@@ -45,7 +45,7 @@ class LogPolicy extends XotBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Log $log): bool
+    public function delete(UserContract $user, Log $_log): bool
     {
         return $user->hasPermissionTo('log.delete');
     }
@@ -53,7 +53,7 @@ class LogPolicy extends XotBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Log $log): bool
+    public function restore(UserContract $user, Log $_log): bool
     {
         return $user->hasPermissionTo('log.restore');
     }

@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace Modules\TechPlanner\Tests\Feature\Actions;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
 namespace Modules\TechPlanner\Tests\Feature\Actions;
 
 use Modules\Geo\Actions\UpdateCoordinatesAction;
@@ -46,7 +50,7 @@ class UpdateAllClientCoordinatesTest extends TestCase
         $result = $action->execute();
 
         // Assert
-        $this->assertTrue($result);
+        static::assertTrue($result);
 
         $this->assertDatabaseHas('clients', [
             'id' => $client1->id,
@@ -70,15 +74,14 @@ class UpdateAllClientCoordinatesTest extends TestCase
             'longitude' => 9.1900,
         ]);
 
-        $this->mock(UpdateCoordinatesAction::class)
-            ->shouldNotReceive('execute');
+        $this->mock(UpdateCoordinatesAction::class)->shouldNotReceive('execute');
 
         // Act
         $action = app(UpdateAllClientCoordinatesAction::class);
         $result = $action->execute();
 
         // Assert
-        $this->assertTrue($result);
+        static::assertTrue($result);
 
         $this->assertDatabaseHas('clients', [
             'id' => $client->id,
@@ -107,7 +110,7 @@ class UpdateAllClientCoordinatesTest extends TestCase
         $result = $action->execute();
 
         // Assert
-        $this->assertTrue($result);
+        static::assertTrue($result);
 
         $this->assertDatabaseHas('clients', [
             'id' => $client->id,

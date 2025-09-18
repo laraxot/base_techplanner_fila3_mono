@@ -12,61 +12,52 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Modules\Xot\Filament\Infolists\Components\FileContentEntry;
 use Modules\Xot\Filament\Resources\LogResource\Pages;
+use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 use Modules\Xot\Models\Log;
-use Modules\Xot\Filament\Resources\RelationManagers\XotBaseRelationManager;
 
 class LogResource extends XotBaseResource
 {
     use NavigationLabelTrait;
 
-    protected static ?string $model = Log::class;
+    protected static null|string $model = Log::class;
 
     #[\Override]
     public static function getFormSchema(): array
     {
         return [
-            'name' => TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-
-            'path' => TextInput::make('path')
-                ->required()
-                ->maxLength(255),
-
-            'content' => Textarea::make('content')
-                ->columnSpanFull(),
+            'name' => TextInput::make('name')->required()->maxLength(255),
+            'path' => TextInput::make('path')->required()->maxLength(255),
+            'content' => Textarea::make('content')->columnSpanFull(),
         ];
     }
 
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([
-            TextEntry::make('name')
-                ->columnSpanFull(),
+            TextEntry::make('name')->columnSpanFull(),
             /*
-            Infolists\Components\TextEntry::make('email')
-                ->columnSpanFull(),
-
-            Infolists\Components\TextEntry::make('message')
-                ->formatStateUsing(static fn ($state) => new HtmlString(nl2br($state)))
-                ->columnSpanFull(),
-            */
+             * Infolists\Components\TextEntry::make('email')
+             * ->columnSpanFull(),
+             *
+             * Infolists\Components\TextEntry::make('message')
+             * ->formatStateUsing(static fn ($state) => new HtmlString(nl2br($state)))
+             * ->columnSpanFull(),
+             */
             FileContentEntry::make('file-content'),
             /*
-            RepeatableEntry::make('lines')
-                ->schema([
-                    TextEntry::make('txt'),
-                ])
-            */
+             * RepeatableEntry::make('lines')
+             * ->schema([
+             * TextEntry::make('txt'),
+             * ])
+             */
         ]);
     }
 
     #[\Override]
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Override]

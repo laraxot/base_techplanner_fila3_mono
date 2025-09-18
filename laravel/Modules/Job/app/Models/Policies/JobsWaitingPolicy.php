@@ -20,7 +20,7 @@ class JobsWaitingPolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, JobsWaiting $jobs_waiting): bool
+    public function view(UserContract $user, JobsWaiting $_jobs_waiting): bool
     {
         return $user->hasPermissionTo('jobs_waiting.view');
     }
@@ -36,7 +36,7 @@ class JobsWaitingPolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, JobsWaiting $jobs_waiting): bool
+    public function update(UserContract $user, JobsWaiting $_jobs_waiting): bool
     {
         return $user->hasPermissionTo('jobs_waiting.update');
     }
@@ -44,7 +44,7 @@ class JobsWaitingPolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, JobsWaiting $jobs_waiting): bool
+    public function delete(UserContract $user, JobsWaiting $_jobs_waiting): bool
     {
         return $user->hasPermissionTo('jobs_waiting.delete');
     }
@@ -52,7 +52,7 @@ class JobsWaitingPolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, JobsWaiting $jobs_waiting): bool
+    public function restore(UserContract $user, JobsWaiting $_jobs_waiting): bool
     {
         return $user->hasPermissionTo('jobs_waiting.restore');
     }

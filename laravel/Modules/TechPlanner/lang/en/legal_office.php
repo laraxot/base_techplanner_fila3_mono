@@ -9,7 +9,6 @@ return [
         'icon' => 'heroicon-o-building-office',
         'sort' => 9,
     ],
-
     'resource' => [
         'label' => 'Law Firm',
         'plural_label' => 'Law Firms',
@@ -18,7 +17,6 @@ return [
         'navigation_sort' => 9,
         'description' => 'Law firm management',
     ],
-
     'actions' => [
         'create' => [
             'label' => 'New Law Firm',
@@ -45,12 +43,11 @@ return [
             'tooltip' => 'View law firm',
         ],
     ],
-
     'fields' => [
         'name' => [
             'label' => 'Firm Name',
             'placeholder' => 'Enter law firm name',
-            'help' => 'Complete name of the law firm',
+            'help' => 'Full name of the law firm',
         ],
         'address' => [
             'label' => 'Address',
@@ -70,24 +67,23 @@ return [
         'website' => [
             'label' => 'Website',
             'placeholder' => 'Enter website URL',
-            'help' => 'Website URL of the law firm',
+            'help' => 'Firm website URL',
         ],
         'vat_number' => [
             'label' => 'VAT Number',
             'placeholder' => 'Enter VAT number',
-            'help' => 'VAT number of the law firm',
+            'help' => 'Law firm VAT number',
         ],
         'fiscal_code' => [
             'label' => 'Fiscal Code',
             'placeholder' => 'Enter fiscal code',
-            'help' => 'Fiscal code of the law firm',
+            'help' => 'Law firm fiscal code',
         ],
         'is_active' => [
             'label' => 'Active',
             'help' => 'Whether the law firm is active',
         ],
     ],
-
     'filters' => [
         'is_active' => [
             'label' => 'Status',
@@ -101,7 +97,6 @@ return [
             'placeholder' => 'Select a city',
         ],
     ],
-
     'messages' => [
         'created' => 'Law firm created successfully',
         'updated' => 'Law firm updated successfully',

@@ -61,21 +61,22 @@ class ScheduleHistory extends BaseModel
         'output',
         'options',
     ];
-    /*
-         * Creates a new instance of the model.
-         *
-         * @param array $attributes
-         * @return void
-         */
-    /*
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
 
-        $this->table = Config::get('filament-database-schedule.table.schedule_histories', 'schedule_histories');
-    }
-
-    */
+    /*
+     * Creates a new instance of the model.
+     *
+     * @param array $attributes
+     * @return void
+     */
+    /*
+     * public function __construct(array $attributes = [])
+     * {
+     * parent::__construct($attributes);
+     *
+     * $this->table = Config::get('filament-database-schedule.table.schedule_histories', 'schedule_histories');
+     * }
+     *
+     */
 
     public function command(): BelongsTo
     {
@@ -91,11 +92,9 @@ class ScheduleHistory extends BaseModel
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'params' => 'array',
             'options' => 'array',
         ];

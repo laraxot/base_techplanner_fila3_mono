@@ -26,7 +26,7 @@ class ThemeComposer
         // $ris = self::__getStatic($index);
         // echo '<br/>['.$index.']['.$ris.']';
         // if ('' === $ris || null === $ris) {
-        $ris = config('metatag.'.$index);
+        $ris = config('metatag.' . $index);
         // self::__setStatic($index, $ris);
         // }
 
@@ -41,8 +41,8 @@ class ThemeComposer
     public function flag(string $lang): \Illuminate\View\View
     {
         $view = "ui::svg.flags.{$lang}";
-        if (! view()->exists($view)) {
-            throw new \Exception('view not exits ['.$view.']');
+        if (!view()->exists($view)) {
+            throw new \Exception('view not exits [' . $view . ']');
         }
 
         return view($view);

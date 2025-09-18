@@ -25,10 +25,10 @@ class GetViewByClassAction
      *
      * @return View
      */
-    public function execute(string $class, array $params = [], ?string $viewName = null): View
+    public function execute(string $class, array $params = [], null|string $viewName = null): View
     {
         $viewName ??= $this->getViewNameFromClass($class);
-        
+
         /** @var view-string $viewName */
         return view($viewName, $params);
     }
@@ -70,6 +70,6 @@ class GetViewByClassAction
         $class_name = Str::kebab(class_basename($class));
 
         // Costruisci il percorso della view
-        return $module_low.'::pages.'.$class_name;
+        return $module_low . '::pages.' . $class_name;
     }
 }

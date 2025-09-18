@@ -19,19 +19,19 @@ class AppointmentsRelationManager extends XotBaseRelationManager
      *
      * @return array<string, \Filament\Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
             'date' => Columns\TextColumn::make('date')->label('Date')->sortable(),
             'notes' => Columns\TextColumn::make('notes')->limit(50),
             /*
-            'machines_count' => Columns\TextColumn::make('machines_count')
-                ->label('Machines Checked')
-                ->counts('machines'),
-            */
+             * 'machines_count' => Columns\TextColumn::make('machines_count')
+             * ->label('Machines Checked')
+             * ->counts('machines'),
+             */
         ];
     }
-
 
     public function canAttach(): bool
     {

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @props([
     'background' => 'bg-blue-600',
     'color' => 'text-white'

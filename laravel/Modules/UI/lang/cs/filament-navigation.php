@@ -13,12 +13,10 @@ return [
         'created_at' => 'Vytvořeno',
         'updated_at' => 'Upraveno',
     ],
-
     'select-options' => [
         'same-tab' => 'Ve stejném okně',
         'new-tab' => 'V novém okně',
     ],
-
     'items' => [
         'empty' => 'Žádné položky',
         'add-item' => 'Přidat položku',
@@ -29,7 +27,6 @@ return [
         'dedent' => 'Oddělit',
         'remove' => 'Odstranit',
     ],
-
     'items-modal' => [
         'title' => 'Nová položka',
         'label' => 'Název',

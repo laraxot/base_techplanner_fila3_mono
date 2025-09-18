@@ -22,9 +22,11 @@ class OauthClientPolicy extends UserBasePolicy
      */
     public function view(UserContract $user, OauthClient $oauthClient): bool
     {
-        return $user->hasPermissionTo('oauth-client.view') ||
-               $user->id === $oauthClient->user_id ||
-               $user->hasRole('super-admin');
+        return (
+            $user->hasPermissionTo('oauth-client.view') ||
+            $user->id === $oauthClient->user_id ||
+            $user->hasRole('super-admin')
+        );
     }
 
     /**
@@ -38,28 +40,25 @@ class OauthClientPolicy extends UserBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, OauthClient $oauthClient): bool
+    public function update(UserContract $user, OauthClient $_oauthClient): bool
     {
-        return $user->hasPermissionTo('oauth-client.update') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-client.update') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, OauthClient $oauthClient): bool
+    public function delete(UserContract $user, OauthClient $_oauthClient): bool
     {
-        return $user->hasPermissionTo('oauth-client.delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-client.delete') || $user->hasRole('super-admin');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, OauthClient $oauthClient): bool
+    public function restore(UserContract $user, OauthClient $_oauthClient): bool
     {
-        return $user->hasPermissionTo('oauth-client.restore') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-client.restore') || $user->hasRole('super-admin');
     }
 
     /**
@@ -67,7 +66,6 @@ class OauthClientPolicy extends UserBasePolicy
      */
     public function forceDelete(UserContract $user, OauthClient $oauthClient): bool
     {
-        return $user->hasPermissionTo('oauth-client.force-delete') ||
-               $user->hasRole('super-admin');
+        return $user->hasPermissionTo('oauth-client.force-delete') || $user->hasRole('super-admin');
     }
 }

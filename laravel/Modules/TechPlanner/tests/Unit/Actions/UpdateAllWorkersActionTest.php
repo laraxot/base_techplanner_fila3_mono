@@ -7,8 +7,8 @@ namespace Modules\TechPlanner\Tests\Unit\Actions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Modules\TechPlanner\Actions\UpdateAllWorkersAction;
-use Modules\TechPlanner\Models\Worker;
 use Modules\TechPlanner\Jobs\UpdateWorkerJob;
+use Modules\TechPlanner\Models\Worker;
 use Tests\TestCase;
 
 /**
@@ -25,15 +25,13 @@ class UpdateAllWorkersActionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->action = new UpdateAllWorkersAction();
-        
 
-        $this->action = new UpdateAllWorkersAction;
-
-        
         $this->action = new UpdateAllWorkersAction();
-        
+
+        $this->action = new UpdateAllWorkersAction();
+
+        $this->action = new UpdateAllWorkersAction();
+
         // Disabilita le code per i test
         Queue::fake();
     }
@@ -64,10 +62,12 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_updates_all_workers_with_given_data(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(3)->create([
-            'status' => 'Inactive',
-            'department' => 'Sales',
-        ]);
+        $workers = Worker::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Inactive',
+                'department' => 'Sales',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -210,10 +210,12 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_boolean_values(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(3)->create([
-            'is_active' => false,
-            'is_verified' => false,
-        ]);
+        $workers = Worker::factory()
+            ->count(3)
+            ->create([
+                'is_active' => false,
+                'is_verified' => false,
+            ]);
 
         $updateData = [
             'is_active' => true,
@@ -260,10 +262,12 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_decimal_values(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(2)->create([
-            'hourly_rate' => 15.00,
-            'overtime_rate' => 22.50,
-        ]);
+        $workers = Worker::factory()
+            ->count(2)
+            ->create([
+                'hourly_rate' => 15.00,
+                'overtime_rate' => 22.50,
+            ]);
 
         $updateData = [
             'hourly_rate' => 18.00,
@@ -327,9 +331,11 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_transaction_rollback_on_error(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(3)->create([
-            'status' => 'Inactive',
-        ]);
+        $workers = Worker::factory()
+            ->count(3)
+            ->create([
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -373,9 +379,11 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_creates_audit_trail(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(2)->create([
-            'status' => 'Inactive',
-        ]);
+        $workers = Worker::factory()
+            ->count(2)
+            ->create([
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'status' => 'Active',
@@ -432,7 +440,6 @@ class UpdateAllWorkersActionTest extends TestCase
         // Arrange
         $activeWorkers = Worker::factory()->count(2)->create();
         $deletedWorkers = Worker::factory()->count(2)->create();
-        
 
         // Soft delete alcuni lavoratori
         $deletedWorkers->each(function ($worker) {
@@ -538,10 +545,12 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_enum_values(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(2)->create([
-            'type' => 'Full-time',
-            'status' => 'Inactive',
-        ]);
+        $workers = Worker::factory()
+            ->count(2)
+            ->create([
+                'type' => 'Full-time',
+                'status' => 'Inactive',
+            ]);
 
         $updateData = [
             'type' => 'Part-time',
@@ -568,7 +577,6 @@ class UpdateAllWorkersActionTest extends TestCase
         // Arrange
         $workers = Worker::factory()->count(2)->create();
         $longText = str_repeat('This is a very long text field content. ', 50);
-        
 
         $updateData = [
             'description' => $longText,
@@ -621,10 +629,12 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_nullable_fields(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(2)->create([
-            'phone' => '+1234567890',
-            'address' => '123 Main St',
-        ]);
+        $workers = Worker::factory()
+            ->count(2)
+            ->create([
+                'phone' => '+1234567890',
+                'address' => '123 Main St',
+            ]);
 
         $updateData = [
             'phone' => null,
@@ -660,10 +670,7 @@ class UpdateAllWorkersActionTest extends TestCase
         // Assert
         foreach ($workers as $worker) {
             $worker->refresh();
-            $this->assertGreaterThan(
-                $worker->created_at,
-                $worker->updated_at
-            );
+            $this->assertGreaterThan($worker->created_at, $worker->updated_at);
         }
     }
 
@@ -801,11 +808,13 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_worker_specific_fields(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(3)->create([
-            'position' => 'Developer',
-            'level' => 'Junior',
-            'start_date' => '2023-01-01',
-        ]);
+        $workers = Worker::factory()
+            ->count(3)
+            ->create([
+                'position' => 'Developer',
+                'level' => 'Junior',
+                'start_date' => '2023-01-01',
+            ]);
 
         $updateData = [
             'position' => 'Senior Developer',
@@ -832,10 +841,12 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_worker_scheduling_fields(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(2)->create([
-            'work_schedule' => '9-5',
-            'break_time' => '12:00-13:00',
-        ]);
+        $workers = Worker::factory()
+            ->count(2)
+            ->create([
+                'work_schedule' => '9-5',
+                'break_time' => '12:00-13:00',
+            ]);
 
         $updateData = [
             'work_schedule' => '8-4',
@@ -860,11 +871,13 @@ class UpdateAllWorkersActionTest extends TestCase
     public function it_handles_worker_availability_fields(): void
     {
         // Arrange
-        $workers = Worker::factory()->count(2)->create([
-            'is_available' => false,
-            'available_from' => '09:00',
-            'available_until' => '17:00',
-        ]);
+        $workers = Worker::factory()
+            ->count(2)
+            ->create([
+                'is_available' => false,
+                'available_from' => '09:00',
+                'available_until' => '17:00',
+            ]);
 
         $updateData = [
             'is_available' => true,

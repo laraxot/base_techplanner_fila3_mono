@@ -23,7 +23,6 @@ return [
         'sort' => 10,
         'badge' => 'Descrizione badge opzionale',
     ],
-
     // ==============================================
     // MODEL INFORMATION
     // ==============================================
@@ -32,7 +31,6 @@ return [
         'plural' => 'Nome Entità Plurali',
         'description' => 'Descrizione dell\'entità',
     ],
-
     // ==============================================
     // FIELDS - STRUTTURA ESPANSA OBBLIGATORIA
     // ==============================================
@@ -86,7 +84,6 @@ return [
             'helper_text' => 'Data e ora dell\'ultimo aggiornamento dell\'entità',
         ],
     ],
-
     // ==============================================
     // ACTIONS - STRUTTURA ESPANSA OBBLIGATORIA
     // ==============================================
@@ -165,7 +162,6 @@ return [
             ],
         ],
     ],
-
     // ==============================================
     // SECTIONS - ORGANIZZAZIONE FORM
     // ==============================================
@@ -186,7 +182,6 @@ return [
             'icon' => 'heroicon-o-cog',
         ],
     ],
-
     // ==============================================
     // FILTERS - RICERCA E FILTRI
     // ==============================================
@@ -208,7 +203,6 @@ return [
             'placeholder' => 'Cerca nelle entità...',
         ],
     ],
-
     // ==============================================
     // MESSAGES - FEEDBACK UTENTE
     // ==============================================
@@ -226,7 +220,6 @@ return [
         'error_permission' => 'Non hai i permessi per eseguire questa azione.',
         'success_operation' => 'Operazione completata con successo',
     ],
-
     // ==============================================
     // VALIDATION - MESSAGGI DI VALIDAZIONE
     // ==============================================
@@ -240,7 +233,6 @@ return [
         'numeric' => 'Il campo :field deve essere numerico',
         'boolean' => 'Il campo :field deve essere vero o falso',
     ],
-
     // ==============================================
     // DESCRIPTIONS - DESCRIZIONI CONTESTUALI
     // ==============================================
@@ -250,7 +242,6 @@ return [
         'best_practices' => 'Migliori pratiche per l\'utilizzo',
         'limitations' => 'Limitazioni e vincoli',
     ],
-
     // ==============================================
     // OPTIONS - OPZIONI E VALORI PREDEFINITI
     // ==============================================
@@ -275,4 +266,3 @@ return [
         ],
     ],
 ];
-

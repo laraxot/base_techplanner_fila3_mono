@@ -23,10 +23,9 @@ use Modules\Xot\Filament\Traits\TransTrait;
  */
 final class UsersRelationManager extends XotBaseRelationManager
 {
-
     protected static string $relationship = 'users';
 
-    protected static ?string $inverseRelationship = 'roles';
+    protected static null|string $inverseRelationship = 'roles';
 
     /**
      * Returns the form schema structure, defining the input fields for user data.
@@ -37,9 +36,7 @@ final class UsersRelationManager extends XotBaseRelationManager
     public function getFormSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
+            Forms\Components\TextInput::make('name')->required()->maxLength(255),
             // Additional fields can be added here as necessary
         ];
     }
@@ -54,25 +51,18 @@ final class UsersRelationManager extends XotBaseRelationManager
     {
         return [
             TextColumn::make('name')
-
                 ->searchable()
                 ->sortable()
                 ->copyable(),
-
             TextColumn::make('email')
-
                 ->searchable()
                 ->sortable()
                 ->copyable(),
-
             TextColumn::make('created_at')
-
                 ->dateTime()
                 ->sortable()
                 ->toggleable(),
-
             TextColumn::make('updated_at')
-
                 ->dateTime()
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
@@ -88,22 +78,20 @@ final class UsersRelationManager extends XotBaseRelationManager
     public function getTableFilters(): array
     {
         return [
-            Filter::make('active')
-
-                ->query(fn (Builder $query): Builder => $query->where('is_active', true))
-                ->toggle(),
-
+            Filter::make('active')->query(fn(Builder $query): Builder => $query->where('is_active', true))->toggle(),
             Filter::make('created_at')
-
                 ->form([
                     Forms\Components\DatePicker::make('created_from'),
                     Forms\Components\DatePicker::make('created_until'),
                 ])
-                ->query(fn (Builder $query, array $data): Builder => $query
-                        ->when($data['created_from'], fn (Builder $query, $date) => $query->whereDate('created_at', '>=', $date))
-                        ->when($data['created_until'], fn (Builder $query, $date) => $query->whereDate('created_at', '<=', $date)))
+                ->query(fn(Builder $query, array $data): Builder => $query->when($data['created_from'], fn(
+                    Builder $query,
+                    $date,
+                ) => $query->whereDate('created_at', '>=', $date))->when($data['created_until'], fn(
+                    Builder $query,
+                    $date,
+                ) => $query->whereDate('created_at', '<=', $date)))
                 ->columns(2),
         ];
     }
-
 }

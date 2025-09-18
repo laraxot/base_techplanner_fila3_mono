@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Xot\Models\Module;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ModuleBusinessLogicTest extends TestCase
 {
@@ -465,4 +465,3 @@ class ModuleBusinessLogicTest extends TestCase
         $this->assertEquals(42, $moduleErrorLog[0]['context']['line']);
     }
 }
-

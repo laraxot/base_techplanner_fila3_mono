@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <div>
     @if (count($providers))
         <div class="relative flex items-center justify-center text-center mb-">

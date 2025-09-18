@@ -14,4 +14,6 @@ namespace Modules\User\Models;
  * @mixin IdeHelperPermissionUser
  * @mixin \Eloquent
  */
-class PermissionUser extends ModelHasPermission {}
+class PermissionUser extends ModelHasPermission
+{
+}

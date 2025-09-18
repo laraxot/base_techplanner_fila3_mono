@@ -24,29 +24,43 @@ class ThemeComposer
     public function languages(): DataCollection
     {
         // ✅ Controllo sicuro della configurazione laravellocalization
-        $langs = config()->has('laravellocalization.supportedLocales') 
-            ? config('laravellocalization.supportedLocales') 
-            : ['it' => ['name' => 'Italiano', 'regional' => 'it_IT'], 'en' => ['name' => 'English', 'regional' => 'en_US']];
+        $langs = config()->has('laravellocalization.supportedLocales')
+            ? config('laravellocalization.supportedLocales')
+            : [
+                'it' => ['name' => 'Italiano', 'regional' => 'it_IT'],
+                'en' => ['name' => 'English', 'regional' => 'en_US'],
+            ];
 
-        if (! is_array($langs)) {
-            throw new \Exception(sprintf('Invalid config for supportedLocales on line %d in %s', __LINE__, class_basename($this)));
+        if (!is_array($langs)) {
+            throw new \Exception(sprintf(
+                'Invalid config for supportedLocales on line %d in %s',
+                __LINE__,
+                class_basename($this),
+            ));
         }
 
         $languages = collect($langs)->map(function (mixed $item, string $locale): array {
             // Ensure $item is an array
-            if (! is_array($item)) {
-                throw new \InvalidArgumentException(sprintf('Expected array at locale %s, got %s', $locale, gettype($item)));
+            if (!is_array($item)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Expected array at locale %s, got %s',
+                    $locale,
+                    gettype($item),
+                ));
             }
 
             // Ensure $item has the required keys
-            if (! isset($item['regional'], $item['name'])) {
-                throw new \InvalidArgumentException(sprintf('Expected array with "regional" and "name" keys at locale %s', $locale));
+            if (!isset($item['regional'], $item['name'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Expected array with "regional" and "name" keys at locale %s',
+                    $locale,
+                ));
             }
 
             // Extract regional code and handle 'en' to 'gb' mapping.
             // Verifichiamo che regional sia una stringa o lo convertiamo in modo sicuro
             $regional = $item['regional'];
-            if (! is_string($regional)) {
+            if (!is_string($regional)) {
                 $regional = '';
             }
             $regionalParts = explode('_', $regional);
@@ -63,7 +77,7 @@ class ThemeComposer
 
             // Verifichiamo che name sia una stringa o lo convertiamo in modo sicuro
             $name = $item['name'];
-            if (! is_string($name)) {
+            if (!is_string($name)) {
                 $name = $locale; // Fallback al codice locale
             }
 
@@ -90,15 +104,17 @@ class ThemeComposer
     {
         $currentLocale = app()->getLocale();
 
-        return $this->languages()
-            ->filter(function (mixed $item) use ($currentLocale): bool {
-                // Ensure the item is an instance of LangData
-                if (! $item instanceof LangData) {
-                    throw new \Exception(sprintf('Expected instance of LangData, got %s', is_object($item) ? get_class($item) : gettype($item)));
-                }
+        return $this->languages()->filter(function (mixed $item) use ($currentLocale): bool {
+            // Ensure the item is an instance of LangData
+            if (!($item instanceof LangData)) {
+                throw new \Exception(sprintf(
+                    'Expected instance of LangData, got %s',
+                    is_object($item) ? get_class($item) : gettype($item),
+                ));
+            }
 
-                return $item->id !== $currentLocale;
-            });
+            return $item->id !== $currentLocale;
+        });
     }
 
     /**
@@ -111,17 +127,19 @@ class ThemeComposer
         $currentLocale = app()->getLocale();
 
         // Convert DataCollection to a Laravel Collection to use firstWhere()
-        $lang = $this->languages()
-            ->toCollection()
-            ->firstWhere('id', $currentLocale);
+        $lang = $this->languages()->toCollection()->firstWhere('id', $currentLocale);
 
-        if (! $lang instanceof LangData) {
-            throw new \Exception(sprintf('Current language not found on line %d in %s', __LINE__, class_basename($this)));
+        if (!($lang instanceof LangData)) {
+            throw new \Exception(sprintf(
+                'Current language not found on line %d in %s',
+                __LINE__,
+                class_basename($this),
+            ));
         }
 
         // Verifichiamo che il valore del campo sia una stringa o lo convertiamo in modo sicuro
         $value = $lang->{$field};
-        if (! is_string($value)) {
+        if (!is_string($value)) {
             return 'id' === $field ? $currentLocale : '';
         }
 
@@ -138,7 +156,7 @@ class ThemeComposer
     private function buildAdminLanguageUrl(string $locale): string
     {
         $routeName = Route::currentRouteName();
-        if (! is_string($routeName)) {
+        if (!is_string($routeName)) {
             return '#';
         }
         $routeParameters = array_merge(getRouteParameters(), ['lang' => $locale]);
@@ -158,9 +176,6 @@ class ThemeComposer
      */
     private function buildFlagHtml(string $regionalCode): string
     {
-        return sprintf(
-            '<div class="iti__flag-box"><div class="iti__flag iti__%s"></div></div>',
-            e($regionalCode)
-        );
+        return sprintf('<div class="iti__flag-box"><div class="iti__flag iti__%s"></div></div>', e($regionalCode));
     }
 }

@@ -20,7 +20,7 @@ class ExportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(UserContract $user, Export $export): bool
+    public function view(UserContract $user, Export $_export): bool
     {
         return $user->hasPermissionTo('export.view');
     }
@@ -36,7 +36,7 @@ class ExportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(UserContract $user, Export $export): bool
+    public function update(UserContract $user, Export $_export): bool
     {
         return $user->hasPermissionTo('export.update');
     }
@@ -44,7 +44,7 @@ class ExportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(UserContract $user, Export $export): bool
+    public function delete(UserContract $user, Export $_export): bool
     {
         return $user->hasPermissionTo('export.delete');
     }
@@ -52,7 +52,7 @@ class ExportPolicy extends JobBasePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(UserContract $user, Export $export): bool
+    public function restore(UserContract $user, Export $_export): bool
     {
         return $user->hasPermissionTo('export.restore');
     }

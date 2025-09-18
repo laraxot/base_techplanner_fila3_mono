@@ -82,7 +82,7 @@ class JobBatch extends BaseModel
      */
     public function progress(): int
     {
-        $progress = $this->total_jobs > 0 ? round($this->processedJobs() / $this->total_jobs * 100) : 0;
+        $progress = $this->total_jobs > 0 ? round(($this->processedJobs() / $this->total_jobs) * 100) : 0;
 
         return (int) $progress;
     }
@@ -137,11 +137,9 @@ class JobBatch extends BaseModel
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
-
             'updated_by' => 'string',
             'created_by' => 'string',
             'deleted_by' => 'string',
-
             'options' => 'collection',
             'failed_jobs' => 'integer',
             'cancelled_at' => 'datetime',

@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 @extends('notify::emails.templates.widgets')
 
 @section('content')

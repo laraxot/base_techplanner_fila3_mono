@@ -56,11 +56,11 @@ final class MorphOneAction
     private function validateAndPrepareData(array $data): array
     {
         // Ensure the 'lang' key is set to the current locale if not provided
-        if (! isset($data['lang'])) {
+        if (!isset($data['lang'])) {
             $data['lang'] = App::getLocale();
         }
 
         // Remove null values from the data array
-        return array_filter($data, static fn ($value): bool => null !== $value);
+        return array_filter($data, static fn($value): bool => null !== $value);
     }
 }

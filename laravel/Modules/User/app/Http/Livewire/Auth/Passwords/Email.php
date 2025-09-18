@@ -11,7 +11,7 @@ class Email extends Component
 {
     public string $email = '';
 
-    public ?string $emailSentMessage = null;
+    public null|string $emailSentMessage = null;
 
     /**
      * Invia il link per il reset della password.
@@ -26,11 +26,11 @@ class Email extends Component
         $response = $broker->sendResetLink(['email' => $this->email]);
 
         if ($response === Password::RESET_LINK_SENT) {
-            $this->emailSentMessage = trans('user::'.$response);
+            $this->emailSentMessage = trans('user::' . $response);
             return;
         }
 
-        $this->addError('email', trans('user::'.$response));
+        $this->addError('email', trans('user::' . $response));
     }
 
     /**
@@ -43,7 +43,8 @@ class Email extends Component
 
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
-        app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::livewire.auth.passwords.email', 'pub_theme::livewire.auth.passwords.email');
+        app(\Modules\Xot\Actions\File\ViewCopyAction::class)
+            ->execute('user::livewire.auth.passwords.email', 'pub_theme::livewire.auth.passwords.email');
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::layouts.auth', 'pub_theme::layouts.auth');
         app(\Modules\Xot\Actions\File\ViewCopyAction::class)->execute('user::layouts.base', 'pub_theme::layouts.base');
 
@@ -53,7 +54,7 @@ class Email extends Component
         $view = 'pub_theme::livewire.auth.passwords.email';
 
         return view($view, [
-            'layout' => 'pub_theme::layouts.auth'
+            'layout' => 'pub_theme::layouts.auth',
         ]);
     }
 }

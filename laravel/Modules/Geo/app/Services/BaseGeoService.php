@@ -63,29 +63,22 @@ abstract class BaseGeoService
         // Rate limiting
         /** @var int $maxAttempts */
         $maxAttempts = config("geo.rate_limits.{$this->getServiceName()}.requests_per_second", 50);
-        RateLimiter::attempt(
-            $this->getServiceName(),
-            $maxAttempts,
-            function () {
-                return true;
-            }
-        );
+        RateLimiter::attempt($this->getServiceName(), $maxAttempts, fn () => true);
 
         try {
-            $response = $this->buildHttpClient()
-                ->{strtolower($method)}($url, $params);
+            $response = $this->buildHttpClient()->{strtolower($method)}($url, $params);
 
-            if (! $response->successful()) {
-                throw new \RuntimeException("Richiesta fallita a {$this->getServiceName()}: ".$response->status());
+            if (!$response->successful()) {
+                throw new \RuntimeException("Richiesta fallita a {$this->getServiceName()}: " . $response->status());
             }
 
             $data = $response->json();
-            
+
             // Validazione tipo di ritorno per PHPStan level 9 compliance
             if (!is_array($data)) {
-                throw new \RuntimeException("Risposta API non valida: atteso array, ricevuto " . gettype($data));
+                throw new \RuntimeException('Risposta API non valida: atteso array, ricevuto ' . gettype($data));
             }
-            
+
             // Assicura che sia array<string, mixed> come richiesto dalla signature
             /** @var array<string, mixed> $validatedData */
             $validatedData = $data;
@@ -98,7 +91,11 @@ abstract class BaseGeoService
 
             return $validatedData;
         } catch (\Throwable $e) {
-            throw new \RuntimeException("Errore durante la richiesta a {$this->getServiceName()}: ".$e->getMessage(), 0, $e);
+            throw new \RuntimeException(
+                "Errore durante la richiesta a {$this->getServiceName()}: " . $e->getMessage(),
+                0,
+                $e,
+            );
         }
     }
 
@@ -116,20 +113,15 @@ abstract class BaseGeoService
         /** @var array<string> $whenTypes */
         $whenTypes = config('geo.http_client.retry.when', []);
 
-        return Http::timeout($timeout)
-            ->retry(
-                $retryTimes,
-                $retrySleep,
-                function ($exception) use ($whenTypes) {
-                    foreach ($whenTypes as $type) {
-                        if (is_a($exception, "\\GuzzleHttp\\Exception\\{$type}")) {
-                            return true;
-                        }
-                    }
-
-                    return false;
+        return Http::timeout($timeout)->retry($retryTimes, $retrySleep, function ($exception) use ($whenTypes) {
+            foreach ($whenTypes as $type) {
+                if (is_a($exception, "\\GuzzleHttp\\Exception\\{$type}")) {
+                    return true;
                 }
-            );
+            }
+
+            return false;
+        });
     }
 
     /**
@@ -143,7 +135,7 @@ abstract class BaseGeoService
     {
         /** @var string $prefix */
         $prefix = config('geo.cache.prefix', 'geo_');
-        $hash = md5($method.$url.serialize($params));
+        $hash = md5($method . $url . serialize($params));
 
         return "{$prefix}{$this->getServiceName()}_{$hash}";
     }

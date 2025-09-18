@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+
 return [
     'delete_account' => [
         'title' => 'Elimina Account',
