@@ -30,34 +30,7 @@ class JobStatus extends Page
         ];
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     
-=======
-=======
->>>>>>> 2e199498 (.)
-=======
->>>>>>> eaeb6531 (.)
-    public function zibibbo(): void
-    {
-        $result = Process::run('dir');
-        $this->out = '';
-        $output = mb_convert_encoding($result->output(), 'UTF-8');
-        Assert::string($output, '['.__LINE__.']['.class_basename($this).']');
-        $this->out .= $output;
-        $errorOutput = mb_convert_encoding($result->errorOutput(), 'UTF-8');
-        Assert::string($errorOutput, '['.__LINE__.']['.class_basename($this).']');
-        $this->out .= $errorOutput;
-        $this->out .= now();
-    }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> de0f89b5 (.)
-=======
->>>>>>> 2e199498 (.)
-=======
->>>>>>> eaeb6531 (.)
 
     public function artisan(string $cmd): void
     {

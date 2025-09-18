@@ -21,16 +21,6 @@ class JobsWaitingResource extends XotBaseResource
 
     public static function getFormSchema(): array
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        /** @var array<string, \Filament\Forms\Components\Component> */
-=======
->>>>>>> de0f89b5 (.)
-=======
->>>>>>> 2e199498 (.)
-=======
->>>>>>> eaeb6531 (.)
         return [
             'job_id' => Forms\Components\TextInput::make('job_id')
                 ->required()

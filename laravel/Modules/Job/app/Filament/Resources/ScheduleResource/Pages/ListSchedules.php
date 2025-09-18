@@ -12,24 +12,8 @@ class ListSchedules extends XotBaseListRecords
 {
     protected static string $resource = ScheduleResource::class;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function getTableColumns(): array
     {
-        /** @var array<string, \Filament\Tables\Columns\Column> */
-=======
-    public function getListTableColumns(): array
-    {
->>>>>>> de0f89b5 (.)
-=======
-    public function getListTableColumns(): array
-    {
->>>>>>> 2e199498 (.)
-=======
-    public function getListTableColumns(): array
-    {
->>>>>>> eaeb6531 (.)
         return [
             'id' => Tables\Columns\TextColumn::make('id')
                 ->numeric()

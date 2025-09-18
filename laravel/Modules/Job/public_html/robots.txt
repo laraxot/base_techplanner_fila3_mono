@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-User-agent: *
-Disallow:
-=======
-User-agent: *
-Disallow:
->>>>>>> origin/dev

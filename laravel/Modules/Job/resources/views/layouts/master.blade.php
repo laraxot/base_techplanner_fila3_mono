@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-TYPE html>
-=======
 <!DOCTYPE html>
->>>>>>> de0f89b5 (.)
-=======
-<!DOCTYPE html>
->>>>>>> 2e199498 (.)
-=======
-<!DOCTYPE html>
->>>>>>> eaeb6531 (.)
 <html lang="en">
     <head>
         <meta charset="utf-8">
