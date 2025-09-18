@@ -23,6 +23,7 @@ class TemporaryUploadResource extends XotBaseResource
     /**
      * @return array<string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -42,6 +43,7 @@ class TemporaryUploadResource extends XotBaseResource
     /**
      * @psalm-return array<never, never>
      */
+    #[\Override]
     public static function getRelations(): array
     {
         return [
@@ -53,6 +55,7 @@ class TemporaryUploadResource extends XotBaseResource
      *
      * @psalm-return array{index: PageRegistration, create: PageRegistration, edit: PageRegistration}
      */
+    #[\Override]
     public static function getPages(): array
     {
         return [

@@ -24,6 +24,7 @@ class PermissionResource extends XotBaseResource
 
     protected static ?string $model = Permission::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -38,11 +39,13 @@ class PermissionResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

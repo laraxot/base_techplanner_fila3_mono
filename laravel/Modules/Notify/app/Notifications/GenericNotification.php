@@ -80,7 +80,7 @@ class GenericNotification extends Notification implements ShouldQueue
             ->line($this->message);
 
         // Aggiungi eventuali azioni se specificate nei dati
-        if (isset($this->data['action_text']) && isset($this->data['action_url'])) {
+        if (isset($this->data['action_text'], $this->data['action_url'])) {
             /** @phpstan-ignore-next-line */
             $mail->action((string) $this->data['action_text'], (string) $this->data['action_url']);
         }

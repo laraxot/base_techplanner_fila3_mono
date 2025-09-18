@@ -1,23 +1,33 @@
 <?php
 
-return array (
+return  [
   'actions' => 
-  array (
+   [
     'view' => 
-    array (
+     [
       'label' => 'view',
-    ),
+    ],
     'delete' => 
-    array (
+     [
       'label' => 'delete',
+<<<<<<< HEAD
+    ],
+=======
     ),
+>>>>>>> 4efd3ae9 (.)
     'cancel' => 
-    array (
+     [
       'label' => 'cancel',
-    ),
+    ],
     'save' => 
-    array (
+     [
       'label' => 'save',
+<<<<<<< HEAD
+    ],
+  ],
+];
+=======
     ),
   ),
 );
+>>>>>>> 4efd3ae9 (.)

@@ -39,6 +39,7 @@ class UserResource extends XotBaseResource
     //    static::$extendFormCallback = $callback;
     // }
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -78,6 +79,7 @@ class UserResource extends XotBaseResource
     }
     */
 
+    #[\Override]
     public function hasCombinedRelationManagerTabsWithContent(): bool
     {
         return true;

@@ -38,7 +38,7 @@ final class WhatsAppActionFactory
      */
     public function create(?string $driver = null): WhatsAppProviderActionInterface
     {
-        $driver = $driver ?? Config::get('whatsapp.default', 'twilio');
+        $driver ??= Config::get('whatsapp.default', 'twilio');
         
         // Gestione speciale per driver con caratteri non alfanumerici (es. 360dialog)
         $normalizedDriver = preg_replace('/[^a-zA-Z0-9]/', '', ucfirst(strtolower(is_string($driver) ? $driver : '')));

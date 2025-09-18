@@ -30,9 +30,7 @@ use function Safe\file_put_contents;
 use function Safe\unlink;
 
 
-/**
- *
- */
+
 class SaveAttachmentsAction
 {
 
@@ -80,9 +78,7 @@ class SaveAttachmentsAction
             $record->update($dataAttachments);
         }
     }
-    /**
-     *
-     */
+    
     public function executeOLD(HasMedia $record,array $attachments,array $data, string $disk='attachments'): void
     {
         $data_attachments = [];

@@ -17,6 +17,7 @@ class ViewTeam extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
     /**
      * @return array<\Filament\Infolists\Components\Component>
      */
+    #[\Override]
     public function getInfolistSchema(): array
     {
         return [

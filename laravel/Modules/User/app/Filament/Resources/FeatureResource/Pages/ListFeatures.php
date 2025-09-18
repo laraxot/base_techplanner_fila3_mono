@@ -20,6 +20,7 @@ class ListFeatures extends XotBaseListRecords
     /**
      * @return array<string, \Filament\Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [

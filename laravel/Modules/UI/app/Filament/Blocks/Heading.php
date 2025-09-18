@@ -12,7 +12,7 @@ class Heading
 {
     public static function make(
         string $name = 'heading',
-        string $context = 'form',
+        string $_context = 'form',
     ): Block {
         return Block::make($name)
             ->schema(

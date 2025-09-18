@@ -80,13 +80,15 @@ class IconStateColumn extends IconColumn
                         : false;
                 }),
             ])
-            ->fillForm(function($record){
-                // Generic state handling - project-specific state classes should be injected
-                return [
+            ->fillForm(fn($record)=> [
                     'state' => $record->state::$name,
-                ];
-            })
+                ])
             ->action(function($record, $data) {
+<<<<<<< HEAD
+                //dddx(['record'=>$record, 'data'=>$data]);
+                $record->state->transitionTo($data['state'],$data['message']);
+
+=======
                 $state=$data['state'];
                 $model=Str::of(class_basename($record))->slug()->toString();
                 Assert::string($label=__('pub_theme::'.$model.'_states.'.$state.'.label'));
@@ -95,6 +97,7 @@ class IconStateColumn extends IconColumn
                     ->title('Stato aggiornato a '.$label)
                     ->success()
                     ->send();
+>>>>>>> a04e673e (.)
             })
         );
 

@@ -19,6 +19,7 @@ class PermissionsRelationManager extends XotBaseRelationManager
      *
      * @return array<string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -32,6 +33,7 @@ class PermissionsRelationManager extends XotBaseRelationManager
     /**
      * Configura la tabella per la visualizzazione e la gestione dei permessi.
      */
+    #[\Override]
     public function table(Table $table): Table
     {
         return $table

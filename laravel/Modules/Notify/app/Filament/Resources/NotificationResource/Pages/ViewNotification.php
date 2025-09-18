@@ -16,6 +16,7 @@ class ViewNotification extends XotBaseViewRecord
     /**
      * @return array<\Filament\Infolists\Components\Component>
      */
+    #[\Override]
     protected function getInfolistSchema(): array
     {
         return [

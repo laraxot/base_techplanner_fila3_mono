@@ -64,10 +64,7 @@ class InlineDatePicker extends DatePicker
             }
         });
 
-        $this->dehydrateStateUsing(static function (self $component, $state) {
-            
-            return $state ? Carbon::parse($state)->format('Y-m-d') : null;
-        });
+        $this->dehydrateStateUsing(static fn (self $component, $state) => $state ? Carbon::parse($state)->format('Y-m-d') : null);
     }
 
     /**
@@ -141,9 +138,7 @@ class InlineDatePicker extends DatePicker
     {
         $dates = $this->evaluate($this->enabledDates) ?? [];
         /** @phpstan-ignore return.type, argument.templateType, argument.templateType */
-        return collect($dates)->map(function ($date): string {
-            return Carbon::parse($date)->format('Y-m-d');
-        });
+        return collect($dates)->map(fn ($date): string => Carbon::parse($date)->format('Y-m-d'));
     }
 
     /**

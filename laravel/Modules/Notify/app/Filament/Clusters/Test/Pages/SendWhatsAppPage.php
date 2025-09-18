@@ -144,6 +144,7 @@ class SendWhatsAppPage extends XotBasePage
         ];
     }
 
+    #[\Override]
     protected function getUser(): Authenticatable&Model
     {
         $user = Filament::auth()->user();

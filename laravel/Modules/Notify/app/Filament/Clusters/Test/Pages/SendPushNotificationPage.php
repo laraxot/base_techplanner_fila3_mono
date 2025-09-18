@@ -114,9 +114,7 @@ class SendPushNotificationPage extends XotBasePage
             ->schema(
                 [
                     Forms\Components\Select::make('deviceToken')
-                        ->options(function () use ($to): array {
-                            return $to;
-                        }),
+                        ->options(fn () => $to),
                     Forms\Components\TextInput::make('type')
                         ->required(),
                     Forms\Components\TextInput::make('title')
@@ -233,6 +231,7 @@ class SendPushNotificationPage extends XotBasePage
         ];
     }
 
+    #[\Override]
     protected function getUser(): Authenticatable&Model
     {
         $user = Filament::auth()->user();

@@ -17,6 +17,7 @@ class RoleResource extends XotBaseResource
 {
     protected static ?string $model = Role::class;
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -31,11 +32,13 @@ class RoleResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

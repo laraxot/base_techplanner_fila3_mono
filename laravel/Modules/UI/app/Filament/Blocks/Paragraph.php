@@ -16,7 +16,7 @@ class Paragraph
 {
     public static function make(
         string $name = 'paragraph',
-        string $context = 'form',
+        string $_context = 'form',
     ): Block {
         // $view = 'ui::components.blocks.paragraph.v1';
         // $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);

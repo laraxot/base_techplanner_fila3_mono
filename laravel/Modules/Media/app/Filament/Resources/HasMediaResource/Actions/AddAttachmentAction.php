@@ -26,7 +26,7 @@ class AddAttachmentAction extends Action
                 fn (): array => static::getFormSchema(false)
             )
             ->action(
-                fn (RelationManager $livewire, array $data) => static::formHandlerCallback($livewire, $data),
+                static::formHandlerCallback(...),
             );
     }
 

@@ -1,11 +1,11 @@
 <?php
 
-return array (
+return  [
   'fields' => 
-  array (
+   [
     'view' => 
-    array (
+     [
       'label' => 'view',
-    ),
-  ),
-);
+    ],
+  ],
+];

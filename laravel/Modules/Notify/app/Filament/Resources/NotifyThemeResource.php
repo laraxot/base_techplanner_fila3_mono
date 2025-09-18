@@ -20,21 +20,16 @@ class NotifyThemeResource extends XotBaseResource
     protected static ?string $model = NotifyTheme::class;
 
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
             'lang' => Select::make('lang')
-                ->options(function (): array {
-                    return self::fieldOptions('lang');
-                }),
+                ->options(fn (): array => self::fieldOptions('lang')),
             'type' => Select::make('type')
-                ->options(function (): array {
-                    return self::fieldOptions('type');
-                }),
+                ->options(fn (): array => self::fieldOptions('type')),
             'post_type' => Select::make('post_type')
-                ->options(function (): array {
-                    return self::fieldOptions('post_type');
-                }),
+                ->options(fn (): array => self::fieldOptions('post_type')),
             'post_id' => TextInput::make('post_id'),
             'subject' => TextInput::make('subject'),
             'from' => TextInput::make('from'),

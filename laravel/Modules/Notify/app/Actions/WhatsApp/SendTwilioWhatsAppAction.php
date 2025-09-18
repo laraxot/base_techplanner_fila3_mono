@@ -58,6 +58,7 @@ final class SendTwilioWhatsAppAction implements WhatsAppProviderActionInterface
      * @return array Risultato dell'operazione
      * @throws Exception In caso di errore durante l'invio
      */
+    #[\Override]
     public function execute(WhatsAppData $whatsAppData): array
     {
         $from = 'whatsapp:' . ($whatsAppData->from ?? $this->defaultSender);

@@ -20,6 +20,7 @@ class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'User';
 
+    #[\Override]
     public function panel(Panel $panel): Panel
     {
         $panel = parent::panel($panel);

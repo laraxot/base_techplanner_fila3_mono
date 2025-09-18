@@ -136,6 +136,7 @@ class TestSmtpPage extends XotBasePage implements HasForms
         ];
     }
 
+    #[\Override]
     protected function getUser(): Authenticatable&Model
     {
         $user = Filament::auth()->user();

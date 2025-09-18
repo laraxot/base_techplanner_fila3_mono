@@ -33,6 +33,7 @@ final class UsersRelationManager extends XotBaseRelationManager
      *
      * @return array<Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -48,6 +49,7 @@ final class UsersRelationManager extends XotBaseRelationManager
      *
      * @return array<Tables\Columns\Column|Tables\Columns\Layout\Component>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
@@ -82,6 +84,7 @@ final class UsersRelationManager extends XotBaseRelationManager
      *
      * @return array<Tables\Filters\BaseFilter>
      */
+    #[\Override]
     public function getTableFilters(): array
     {
         return [
@@ -96,11 +99,9 @@ final class UsersRelationManager extends XotBaseRelationManager
                     Forms\Components\DatePicker::make('created_from'),
                     Forms\Components\DatePicker::make('created_until'),
                 ])
-                ->query(function (Builder $query, array $data): Builder {
-                    return $query
+                ->query(fn (Builder $query, array $data): Builder => $query
                         ->when($data['created_from'], fn (Builder $query, $date) => $query->whereDate('created_at', '>=', $date))
-                        ->when($data['created_until'], fn (Builder $query, $date) => $query->whereDate('created_at', '<=', $date));
-                })
+                        ->when($data['created_until'], fn (Builder $query, $date) => $query->whereDate('created_at', '<=', $date)))
                 ->columns(2),
         ];
     }

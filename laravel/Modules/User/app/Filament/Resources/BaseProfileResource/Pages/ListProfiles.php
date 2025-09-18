@@ -25,6 +25,7 @@ class ListProfiles extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
@@ -76,6 +77,7 @@ class ListProfiles extends XotBaseListRecords
     /**
      * @return array<string, Tables\Filters\BaseFilter>
      */
+    #[\Override]
     public function getTableFilters(): array
     {
         return [

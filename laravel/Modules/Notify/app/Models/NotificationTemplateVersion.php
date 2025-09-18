@@ -43,6 +43,7 @@ class NotificationTemplateVersion extends BaseModel
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [

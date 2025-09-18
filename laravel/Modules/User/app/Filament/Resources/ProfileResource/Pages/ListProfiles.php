@@ -12,6 +12,7 @@ class ListProfiles extends XotBaseListRecords
 {
     protected static string $resource = ProfileResource::class;
 
+    #[\Override]
     public function getTableColumns(): array
     {
         return [

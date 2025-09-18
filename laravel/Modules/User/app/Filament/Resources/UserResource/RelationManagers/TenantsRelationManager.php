@@ -29,6 +29,7 @@ class TenantsRelationManager extends XotBaseRelationManager
      *
      * @return array<\Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -43,13 +44,12 @@ class TenantsRelationManager extends XotBaseRelationManager
      *
      * @return array<string, \Filament\Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         $columns = app(ListTenants::class)->getTableColumns();
         
         // Ensure we only return Column instances, filter out any Layout\Component instances
-        return array_filter($columns, function ($column): bool {
-            return $column instanceof \Filament\Tables\Columns\Column;
-        });
+        return array_filter($columns, fn ($column): bool => $column instanceof \Filament\Tables\Columns\Column);
     }
 }

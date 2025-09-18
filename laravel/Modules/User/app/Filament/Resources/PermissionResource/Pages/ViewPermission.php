@@ -15,6 +15,7 @@ class ViewPermission extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRe
     /**
      * @return array<string, \Filament\Infolists\Components\Component>
      */
+    #[\Override]
     public function getInfolistSchema(): array
     {
         return [

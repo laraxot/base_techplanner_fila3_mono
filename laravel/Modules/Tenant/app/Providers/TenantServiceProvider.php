@@ -22,6 +22,7 @@ class TenantServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
+    #[\Override]
     public function boot(): void
     {
         parent::boot();
@@ -70,6 +71,7 @@ class TenantServiceProvider extends XotBaseServiceProvider
         Schema::defaultStringLength(191);
     }
 
+    #[\Override]
     public function register(): void
     {
         parent::register();

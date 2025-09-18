@@ -22,6 +22,7 @@ class ClientsRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -31,6 +32,7 @@ class ClientsRelationManager extends XotBaseRelationManager
         ];
     }
 
+    #[\Override]
     public function table(Table $table): Table
     {
         return $table

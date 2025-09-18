@@ -29,13 +29,9 @@ pest()->extend(TestCase::class)
 |
 */
 
-expect()->extend('toBeMedia', function () {
-    return $this->toBeInstanceOf(\Modules\Media\Models\Media::class);
-});
+expect()->extend('toBeMedia', fn () => $this->toBeInstanceOf(\Modules\Media\Models\Media::class));
 
-expect()->extend('toBeMediaCollection', function () {
-    return $this->toBeInstanceOf(\Modules\Media\Models\MediaCollection::class);
-});
+expect()->extend('toBeMediaCollection', fn () => $this->toBeInstanceOf(\Modules\Media\Models\MediaCollection::class));
 
 /*
 |--------------------------------------------------------------------------

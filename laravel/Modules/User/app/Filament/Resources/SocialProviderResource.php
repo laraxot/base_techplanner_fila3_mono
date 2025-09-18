@@ -23,6 +23,7 @@ class SocialProviderResource extends XotBaseResource
     /**
      * @return array<string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -78,12 +79,14 @@ class SocialProviderResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

@@ -12,6 +12,7 @@ class ListDomains extends XotBaseListRecords
 {
     protected static string $resource = DomainResource::class;
 
+    #[\Override]
     public function getTableColumns(): array
     {
         return [

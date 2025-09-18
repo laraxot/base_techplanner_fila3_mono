@@ -16,6 +16,7 @@ class ListNotifications extends XotBaseListRecords
 {
     protected static string $resource = NotificationResource::class;
 
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
@@ -42,18 +43,15 @@ class ListNotifications extends XotBaseListRecords
         ];
     }
 
+    #[\Override]
     public function getTableFilters(): array
     {
         return [
             'read' => Filter::make('is_read')
-                ->query(function (Builder $query): Builder {
-                    return $query->where('read_at', '!=', null);
-                })
+                ->query(fn (Builder $query): Builder => $query->where('read_at', '!=', null))
                 ->label('Read'),
             'unread' => Filter::make('is_unread')
-                ->query(function (Builder $query): Builder {
-                    return $query->whereNull('read_at');
-                })
+                ->query(fn (Builder $query): Builder => $query->whereNull('read_at'))
                 ->label('Unread'),
             'type' => SelectFilter::make('type')
                 ->options([

@@ -14,7 +14,7 @@ class Slider
 {
     public static function make(
         string $name = 'slider',
-        string $context = 'form',
+        string $_context = 'form',
     ): Block {
         // $view = 'ui::components.blocks.slider.v1';
         // $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);

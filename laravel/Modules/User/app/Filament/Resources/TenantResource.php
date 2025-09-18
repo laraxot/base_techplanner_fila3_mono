@@ -35,12 +35,14 @@ class TenantResource extends XotBaseResource
      *
      * @return class-string<\Illuminate\Database\Eloquent\Model>
      */
+    #[\Override]
     public static function getModel(): string
     {
         $xot = app(XotService::class);
         return $xot->getTenantClass();
     }
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -102,6 +104,7 @@ class TenantResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [
@@ -110,6 +113,7 @@ class TenantResource extends XotBaseResource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

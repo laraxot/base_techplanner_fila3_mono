@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
 
 class SmtpMailSendAction
 {
-    public function execute(string $to, string $subject, string $body): void
+    public function execute(string $_to, string $_subject, string $_body): void
     {
         dddx('WIP');
         /*

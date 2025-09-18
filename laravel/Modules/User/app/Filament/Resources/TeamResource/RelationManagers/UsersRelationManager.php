@@ -22,6 +22,7 @@ class UsersRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, \Filament\Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
@@ -34,6 +35,7 @@ class UsersRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, \Filament\Tables\Actions\Action>
      */
+    #[\Override]
     public function getTableHeaderActions(): array
     {
         return [
@@ -44,6 +46,7 @@ class UsersRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, \Filament\Tables\Actions\Action|\Filament\Tables\Actions\ActionGroup>
      */
+    #[\Override]
     public function getTableActions(): array
     {
         return [
@@ -57,6 +60,7 @@ class UsersRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, \Filament\Tables\Actions\BulkAction>
      */
+    #[\Override]
     public function getTableBulkActions(): array
     {
         return [

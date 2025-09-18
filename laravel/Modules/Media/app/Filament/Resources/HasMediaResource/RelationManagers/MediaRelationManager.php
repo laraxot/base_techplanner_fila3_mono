@@ -28,6 +28,7 @@ class MediaRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, Action|ActionGroup>
      */
+    #[\Override]
     public function getTableHeaderActions(): array
     {
         return [

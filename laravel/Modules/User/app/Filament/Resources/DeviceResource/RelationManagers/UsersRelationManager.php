@@ -17,6 +17,7 @@ class UsersRelationManager extends XotBaseRelationManager
     /**
      * @return array<string, \Filament\Forms\Components\Component>
      */
+    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -26,6 +27,7 @@ class UsersRelationManager extends XotBaseRelationManager
         ];
     }
 
+    #[\Override]
     public function table(Table $table): Table
     {
         $table = UserResource::table($table);

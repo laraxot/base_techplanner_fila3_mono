@@ -17,7 +17,7 @@ class Hero
 {
     public static function make(
         string $name = 'hero',
-        string $context = 'form',
+        string $_context = 'form',
     ): Block {
         $options = app(GetViewBlocksOptionsByTypeAction::class)
             ->execute('hero', true);

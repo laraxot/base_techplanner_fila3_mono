@@ -25,6 +25,7 @@ class ListMediaConverts extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+    #[\Override]
     public function getTableColumns(): array
     {
         return [
@@ -63,21 +64,23 @@ class ListMediaConverts extends XotBaseListRecords
     /**
      * @return array<string, Tables\Filters\BaseFilter>
      */
+    #[\Override]
     public function getTableFilters(): array
     {
         return [
             'format' => SelectFilter::make('format')
-                ->options(fn () => MediaConvert::distinct()->pluck('format', 'format')->toArray()),
+                ->options(MediaConvert::distinct()->pluck('format', 'format')->toArray(...)),
             'codec_video' => SelectFilter::make('codec_video')
-                ->options(fn () => MediaConvert::distinct()->pluck('codec_video', 'codec_video')->toArray()),
+                ->options(MediaConvert::distinct()->pluck('codec_video', 'codec_video')->toArray(...)),
             'codec_audio' => SelectFilter::make('codec_audio')
-                ->options(fn () => MediaConvert::distinct()->pluck('codec_audio', 'codec_audio')->toArray()),
+                ->options(MediaConvert::distinct()->pluck('codec_audio', 'codec_audio')->toArray(...)),
         ];
     }
 
     /**
      * @return array<string, Tables\Actions\Action|Tables\Actions\ActionGroup>
      */
+    #[\Override]
     public function getTableActions(): array
     {
         return [
@@ -100,6 +103,7 @@ class ListMediaConverts extends XotBaseListRecords
     /**
      * @return array<string, Tables\Actions\BulkAction>
      */
+    #[\Override]
     public function getTableBulkActions(): array
     {
         return [

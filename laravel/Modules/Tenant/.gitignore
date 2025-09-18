@@ -1,3 +1,64 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+# ==============================================
+# LARAXOT MODULE TENANT - .GITIGNORE
+# ==============================================
+# Modulo Tenant Laraxot - Template standardizzato
+# Ultimo aggiornamento: 2025-01-06
+# ==============================================
+
+# ==============================================
+# DEPENDENCIES & PACKAGES
+# ==============================================
+vendor/
+node_modules/
+package-lock.json
+yarn.lock
+composer.lock
+
+# ==============================================
+# BUILD & COMPILED FILES
+# ==============================================
+/build
+build/
+dist/
+docs/cache/
+cache/
+
+# ==============================================
+# CACHE & TEMPORARY FILES
+# ==============================================
+*.cache
+*.lock
+*.phar
+*.jar
+*.tmp
+*.swp
+*.swo
+*.stackdump
+*:Zone.Identifier
+v8-compile-cache-*
+.php-cs-fixer.cache
+.phpunit.result.cache
+
+# ==============================================
+# LOG FILES
+# ==============================================
+*.log
+error_log
+npm-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ==============================================
+# LARAVEL SPECIFIC
+# ==============================================
+=======
+=======
+>>>>>>> 7f1d6dde (.)
+=======
+>>>>>>> f0ea4d24 (.)
 # Dependencies and packages
 /vendor/
 /node_modules/
@@ -24,6 +85,11 @@ error_log
 /build
 build/
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f0ea4d24 (.)
 # Dependencies
 vendor/
 node_modules/
@@ -48,7 +114,12 @@ cache/
 .phpunit.result.cache
 .php-cs-fixer.cache
 
+<<<<<<< HEAD
+>>>>>>> 7f1d6dde (.)
+=======
+>>>>>>> f0ea4d24 (.)
 # Laravel specific
+>>>>>>> 3b7794c (.)
 bootstrap/compiled.php
 app/storage/
 public/storage
@@ -57,6 +128,89 @@ public_html/storage
 public_html/hot
 storage/*.key
 .env
+<<<<<<< HEAD
+.env.*
+!.env.example
+
+# ==============================================
+# ENVIRONMENT & CONFIGURATION
+# ==============================================
+Homestead.yaml
+Homestead.json
+/.vagrant
+/.idea
+.phpintel
+
+# ==============================================
+# GIT SPECIFIC
+# ==============================================
+.git-rewrite/
+.git-blame-ignore-revs
+
+# ==============================================
+# SYSTEM FILES
+# ==============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==============================================
+# BACKUP FILES
+# ==============================================
+*.old
+*.old1
+*.old2
+*.backup
+*.backup.*
+*.bak
+*.bakcup
+*.new
+
+# ==============================================
+# DEVELOPMENT TOOLS
+# ==============================================
+.windsurf/
+.cursor/
+.phpstorm.meta.php
+
+# ==============================================
+# DOCUMENTATION CACHE
+# ==============================================
+docs/phpstan/
+docs/cache/
+
+# ==============================================
+# OLD DIRECTORIES (LEGACY CLEANUP)
+# ==============================================
+resources/views/Components_old/
+database/Migrations_old/
+database/Seeders_old/
+database/Factories_old/
+database_old/
+
+# ==============================================
+# MODULE SPECIFIC - TENANT
+# ==============================================
+# File di configurazione locale
+config/local.php
+config/development.php
+
+# Cache tenant
+storage/tenant/
+storage/multi-tenant/
+
+# File di test tenant
+tenant_test_data.json
+test_tenants.sql
+
+# ==============================================
+# END OF TENANT .GITIGNORE
+# ==============================================
+=======
 
 # Database directories
 database/Factories_
@@ -64,9 +218,18 @@ database/Factories_old
 database/Migrations_old
 
 # Local configurations
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
 # Environment and configuration
 .env
+>>>>>>> 7f1d6dde (.)
+=======
+
+# Environment and configuration
+.env
+>>>>>>> f0ea4d24 (.)
 Homestead.yaml
 Homestead.json
 /.vagrant
@@ -88,11 +251,20 @@ Homestead.json
 *.exe
 *:Zone.Identifier
 .DS_Store
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f0ea4d24 (.)
 # Git related
 .git-rewrite/
 .git-blame-ignore-revs
 
 # Backup files
+<<<<<<< HEAD
+>>>>>>> 7f1d6dde (.)
+=======
+>>>>>>> f0ea4d24 (.)
 *.old
 *.old1
 *.backup
@@ -108,6 +280,12 @@ cache/
 # Development tools
 .windsurf/
 .cursor/
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 3b7794c (.)
+=======
+=======
+>>>>>>> f0ea4d24 (.)
 
 # PHPStan documentation
 docs/phpstan/
@@ -128,3 +306,7 @@ database/Migrations_old
 database/Seeders_old
 database/Factories_old
 database_old
+<<<<<<< HEAD
+>>>>>>> 7f1d6dde (.)
+=======
+>>>>>>> f0ea4d24 (.)

@@ -89,6 +89,7 @@ class NotificationTemplate extends BaseModel implements HasMedia
      *
      * @return array<string, string>
      */
+    #[\Override]
     protected function casts(): array
     {
         return [
@@ -266,9 +267,7 @@ class NotificationTemplate extends BaseModel implements HasMedia
      */
     public function getChannelsLabelAttribute(): string
     {
-        return collect($this->channels)->map(function ($channel) {
-            return __('notify::template.fields.channel.options.' . $channel . '.label');
-        })->implode(', ');
+        return collect($this->channels)->map(fn ($channel) => __('notify::template.fields.channel.options.' . $channel . '.label'))->implode(', ');
     }
 
     /**

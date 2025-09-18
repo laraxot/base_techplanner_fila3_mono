@@ -23,6 +23,7 @@ class NotificationTemplateResource extends XotBaseResource
 
 
 
+    #[\Override]
     public static function getFormSchema(): array
     {
         return [
@@ -82,6 +83,7 @@ class NotificationTemplateResource extends XotBaseResource
 
 
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

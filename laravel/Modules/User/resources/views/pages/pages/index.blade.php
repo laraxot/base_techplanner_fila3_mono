@@ -11,15 +11,11 @@ render(function (View $view) {
     $hasCategory = \Schema::hasColumn('pages', 'category');
 
     // Recupero le pagine con paginazione (12 per pagina)
-    $pages = Page::when(request()->has('q'), function($query) {
-        return $query->where('title', 'like', '%' . request()->get('q') . '%');
-    });
+    $pages = Page::when(request()->has('q'), fn($query) => $query->where('title', 'like', '%' . request()->get('q') . '%'));
 
     // Applichiamo il filtro per categoria solo se la colonna esiste
     if ($hasCategory) {
-        $pages = $pages->when(request()->has('category'), function($query) {
-            return $query->where('category', request()->get('category'));
-        });
+        $pages = $pages->when(request()->has('category'), fn($query) => $query->where('category', request()->get('category')));
     }
 
     $pages = $pages->orderBy('created_at', 'desc')

@@ -15,6 +15,7 @@ class LinkableRelationManager extends XotBaseRelationManager
 
     protected static ?string $recordTitleAttribute = 'id';
 
+    #[\Override]
     public function getFormSchema(): array
     {
         return [

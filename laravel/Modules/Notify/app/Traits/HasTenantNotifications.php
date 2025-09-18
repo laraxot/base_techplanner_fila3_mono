@@ -54,7 +54,7 @@ trait HasTenantNotifications
      */
     public function scopeForTenant(Builder $query, ?string $tenantId = null): Builder
     {
-        $tenantId = $tenantId ?? $this->getTenantId();
+        $tenantId ??= $this->getTenantId();
         return $query->where('tenant_id', $tenantId);
     }
 

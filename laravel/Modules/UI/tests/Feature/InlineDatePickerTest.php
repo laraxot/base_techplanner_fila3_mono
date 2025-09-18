@@ -87,7 +87,7 @@ test('it handles empty enabled dates', function (): void {
 
 test('it throws on invalid enabled dates input', function (): void {
     $component = InlineDatePicker::make('test')->enabledDates(['invalid-date']);
-    expect(fn () => $component->getEnabledDates()->toArray())
+    expect($component->getEnabledDates()->toArray(...))
         ->toThrow(\Carbon\Exceptions\InvalidFormatException::class);
 });
 

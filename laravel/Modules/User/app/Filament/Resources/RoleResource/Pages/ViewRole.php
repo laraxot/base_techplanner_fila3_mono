@@ -17,6 +17,7 @@ class ViewRole extends \Modules\Xot\Filament\Resources\Pages\XotBaseViewRecord
     /**
      * @return array<\Filament\Infolists\Components\Component>
      */
+    #[\Override]
     protected function getInfolistSchema(): array
     {
         return [
