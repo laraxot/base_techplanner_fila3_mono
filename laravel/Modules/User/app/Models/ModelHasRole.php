@@ -69,7 +69,6 @@ class ModelHasRole extends BaseMorphPivot
     }
 
     /** @return array<string, string> */
-    #[\Override]
     protected function casts(): array
     {
         return [

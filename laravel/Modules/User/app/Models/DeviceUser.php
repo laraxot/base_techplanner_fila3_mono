@@ -93,7 +93,6 @@ class DeviceUser extends BasePivot
     }
 
     /** @return array<string, string> */
-    #[\Override]
     protected function casts(): array
     {
         return [

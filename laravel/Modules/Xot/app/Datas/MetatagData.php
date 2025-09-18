@@ -718,11 +718,16 @@ class MetatagData extends Data implements Wireable
      * Concatenate a title to the existing title.
      * This method allows adding page-specific titles to the base site title.
      *
-     * @param string $title The title to concatenate
+     * @param string|null $title The title to concatenate
      * @return self
      */
-    public function concatTitle(string $title): self
+    public function concatTitle(?string $title): self
     {
+        // Skip concatenation if title is null or empty
+        if (empty($title)) {
+            return $this;
+        }
+        
         if (empty($this->title)) {
             $this->title = $title;
         } else {
@@ -736,11 +741,16 @@ class MetatagData extends Data implements Wireable
      * Concatenate a description to the existing description.
      * This method allows adding page-specific descriptions to the base site description.
      *
-     * @param string $description The description to concatenate
+     * @param string|null $description The description to concatenate
      * @return self
      */
-    public function concatDescription(string $description): self
+    public function concatDescription(?string $description): self
     {
+        // Skip concatenation if description is null or empty
+        if (empty($description)) {
+            return $this;
+        }
+        
         if (empty($this->description)) {
             $this->description = $description;
         } else {

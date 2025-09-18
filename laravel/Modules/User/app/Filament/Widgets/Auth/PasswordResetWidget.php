@@ -34,7 +34,6 @@ class PasswordResetWidget extends XotBaseWidget
     /**
      * Get the form schema for password reset.
      */
-    #[\Override]
     public function getFormSchema(): array
     {
         return [

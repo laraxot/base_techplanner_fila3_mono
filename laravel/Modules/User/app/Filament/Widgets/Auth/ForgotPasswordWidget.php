@@ -24,7 +24,6 @@ class ForgotPasswordWidget extends XotBaseWidget
      *
      * @return array<string, \Filament\Forms\Components\Component>
      */
-    #[\Override]
     public function getFormSchema(): array
     {
         return [
@@ -35,7 +34,6 @@ class ForgotPasswordWidget extends XotBaseWidget
         ];
     }
 
-    #[\Override]
     public function form(Form $form): Form
     {
         return $form

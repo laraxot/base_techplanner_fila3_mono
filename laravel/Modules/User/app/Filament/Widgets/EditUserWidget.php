@@ -90,7 +90,6 @@ class EditUserWidget extends XotBaseWidget
      * @param int|null $userId
      * @return Model
      */
-    #[\Override]
     protected function getFormModel(?int $userId = null): Model
     {
         if ($userId) {
@@ -121,7 +120,6 @@ class EditUserWidget extends XotBaseWidget
      *
      * @return array<string, mixed>
      */
-    #[\Override]
     public function getFormFill(): array
     {
         $model = $this->record ?? $this->getFormModel();
@@ -157,7 +155,6 @@ class EditUserWidget extends XotBaseWidget
      *
      * @return array<int|string, \Filament\Forms\Components\Component>
      */
-    #[\Override]
     public function getFormSchema(): array
     {
         return $this->resource::getFormSchemaWidget();

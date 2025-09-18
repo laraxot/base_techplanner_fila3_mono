@@ -1,11 +1,11 @@
 <?php
 
-return  [
+return array (
   'actions' => 
-   [
+  array (
     'edit' => 
-     [
+    array (
       'label' => 'edit',
-    ],
-  ],
-];
+    ),
+  ),
+);

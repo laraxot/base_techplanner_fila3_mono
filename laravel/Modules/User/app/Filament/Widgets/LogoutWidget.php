@@ -82,7 +82,6 @@ class LogoutWidget extends XotBaseWidget
      *
      * @return array<string, Component>
      */
-    #[\Override]
     public function getFormSchema(): array
     {
         $view='filament.widgets.auth.logout-message';
@@ -139,7 +138,6 @@ class LogoutWidget extends XotBaseWidget
      *
      * @return array<string, Action>
      */
-    #[\Override]
     public function getFormActions(): array
     {
         return [
@@ -160,7 +158,7 @@ class LogoutWidget extends XotBaseWidget
             ->color('danger')
             ->size('lg')
             ->extraAttributes(['class' => 'w-full justify-center'])
-            ->action($this->logout(...));
+            ->action(fn () => $this->logout());
     }
 
     /**

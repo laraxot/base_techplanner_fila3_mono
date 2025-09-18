@@ -45,7 +45,9 @@ class CreateTenantCommand extends Command
             'name' => $name,
         ]);
 
-        $map = static fn (Model $row) => $row->toArray();
+        $map = static function (Model $row) {
+            return $row->toArray();
+        };
 
         $rows = $modelClass::get()->map($map);
 

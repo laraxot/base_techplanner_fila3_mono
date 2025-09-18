@@ -142,7 +142,7 @@ trait HasTeams
     /**
      * Check if the user can remove a member from a team.
      */
-    public function canRemoveTeamMember(TeamContract $team, UserContract $_user): bool
+    public function canRemoveTeamMember(TeamContract $team, UserContract $user): bool
     {
         return $this->ownsTeam($team) || $this->hasTeamPermission($team, 'remove team member');
     }
@@ -158,7 +158,7 @@ trait HasTeams
     /**
      * Check if the user can update a team member.
      */
-    public function canUpdateTeamMember(TeamContract $team, UserContract $_user): bool
+    public function canUpdateTeamMember(TeamContract $team, UserContract $user): bool
     {
         return $this->ownsTeam($team) || $this->hasTeamPermission($team, 'update team member');
     }

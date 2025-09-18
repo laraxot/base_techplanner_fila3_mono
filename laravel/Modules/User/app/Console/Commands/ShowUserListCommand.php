@@ -32,7 +32,9 @@ class ShowUserListCommand extends Command
     {
         $modelClass = XotData::make()->getUserClass();
 
-        $map = static fn (Model $row) => $row->toArray();
+        $map = static function (Model $row) {
+            return $row->toArray();
+        };
 
         $rows = $modelClass::get()->map($map);
 

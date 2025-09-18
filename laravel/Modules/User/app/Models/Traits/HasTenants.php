@@ -36,10 +36,10 @@ trait HasTenants
     /**
      * Get tenants for the given panel.
      *
-     * @param \Filament\Panel $_panel
+     * @param \Filament\Panel $panel
      * @return array<\Illuminate\Database\Eloquent\Model>|\Illuminate\Support\Collection<int, \Illuminate\Database\Eloquent\Model>
      */
-    public function getTenants(Panel $_panel): array|Collection
+    public function getTenants(Panel $panel): array|Collection
     {
         /** @var \Illuminate\Support\Collection<int, \Illuminate\Database\Eloquent\Model> $tenants */
         $tenants = $this->tenants;

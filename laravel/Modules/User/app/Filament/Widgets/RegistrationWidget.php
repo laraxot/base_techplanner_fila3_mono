@@ -60,7 +60,6 @@ class RegistrationWidget extends XotBaseWidget
         
     }
 
-    #[\Override]
     public function getFormModel(): Model
     {
        
@@ -87,7 +86,6 @@ class RegistrationWidget extends XotBaseWidget
         return app($this->model);
     }
 
-    #[\Override]
     public function getFormFill(): array{
         $data=parent::getFormFill();
         $data['type']=$this->type;
@@ -97,7 +95,6 @@ class RegistrationWidget extends XotBaseWidget
 
    
 
-    #[\Override]
     public function getFormSchema(): array
     {
         return $this->resource::getFormSchemaWidget();
