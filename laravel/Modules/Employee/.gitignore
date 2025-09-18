@@ -145,3 +145,7 @@ test_employee_data.sql
 # ==============================================
 # END OF EMPLOYEE .GITIGNORE
 # ==============================================
+# 🚫 File specifici del progetto
+*.fila2
+laravel
+public_html

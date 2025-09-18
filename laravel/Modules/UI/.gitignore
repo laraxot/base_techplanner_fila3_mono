@@ -157,3 +157,8 @@ design_notes.txt
 # ==============================================
 # END OF UI .GITIGNORE
 # ==============================================
+
+# 🚫 File specifici del progetto
+*.fila2
+laravel
+public_html

@@ -89,3 +89,8 @@ resources/views/Components_old
 # 🔧 Development tools
 .windsurf/
 .cursor/
+
+# 🚫 File specifici del progetto
+*.fila2
+laravel
+public_html

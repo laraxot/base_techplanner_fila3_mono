@@ -159,3 +159,8 @@ test_media_files/
 # ==============================================
 # END OF MEDIA .GITIGNORE
 # ==============================================
+
+# 🚫 File specifici del progetto
+*.fila2
+laravel
+public_html

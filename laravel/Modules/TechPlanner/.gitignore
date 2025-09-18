@@ -145,3 +145,7 @@ planning_test.sql
 # ==============================================
 # END OF TECHPLANNER .GITIGNORE
 # ==============================================
+# 🚫 File specifici del progetto
+*.fila2
+laravel
+public_html

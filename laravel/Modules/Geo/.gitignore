@@ -146,3 +146,8 @@ test_geo_data.sql
 # END OF GEO .GITIGNORE
 # ==============================================
 
+
+# 🚫 File specifici del progetto
+*.fila2
+laravel
+public_html
