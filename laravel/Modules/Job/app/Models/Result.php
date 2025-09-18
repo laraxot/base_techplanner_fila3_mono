@@ -71,6 +71,10 @@ class Result extends BaseModel
             ->getQuery();
     }
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     protected function casts(): array
     {
         return [

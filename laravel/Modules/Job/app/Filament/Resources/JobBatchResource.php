@@ -18,6 +18,10 @@ class JobBatchResource extends XotBaseResource
 
     // protected static ?string $model = JobBatch::class;
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [
@@ -47,6 +51,10 @@ class JobBatchResource extends XotBaseResource
         ];
     }
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public static function getPages(): array
     {
         return [

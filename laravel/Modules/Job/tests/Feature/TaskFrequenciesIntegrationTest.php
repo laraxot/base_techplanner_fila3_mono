@@ -178,7 +178,11 @@ describe('TaskFrequencies Integration', function () {
         foreach ($invalidConfigs as $invalidConfig) {
             config(['totem.frequencies' => $invalidConfig]);
             
+<<<<<<< HEAD
             expect(fn () => $this->action->execute())
+=======
+            expect($this->action->execute(...))
+>>>>>>> 4e86067 (.)
                 ->toThrow(Exception::class);
         }
     });

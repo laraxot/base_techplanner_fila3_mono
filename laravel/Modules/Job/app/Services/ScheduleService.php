@@ -56,6 +56,10 @@ class ScheduleService
         Assert::string($store = config('job::cache.store'), '['.__LINE__.']['.class_basename($this).']');
         Assert::string($key = config('job::cache.key'), '['.__LINE__.']['.class_basename($this).']');
 
+<<<<<<< HEAD
         return Cache::store($store)->rememberForever($key, fn () => $this->model->active()->get());
+=======
+        return Cache::store($store)->rememberForever($key, $this->model->active()->get(...));
+>>>>>>> 4e86067 (.)
     }
 }

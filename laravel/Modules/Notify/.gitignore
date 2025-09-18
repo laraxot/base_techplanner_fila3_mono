@@ -1,56 +1,33 @@
-# ==============================================
-# LARAXOT MODULE NOTIFY - .GITIGNORE
-# ==============================================
-# Modulo Notify Laraxot - Template standardizzato
-# Ultimo aggiornamento: 2025-01-06
-# ==============================================
+# Dependencies and packages
+/vendor/
+/node_modules/
+/docs/vendor/
 
-# ==============================================
-# DEPENDENCIES & PACKAGES
-# ==============================================
-vendor/
-node_modules/
-package-lock.json
-yarn.lock
-composer.lock
-
-# ==============================================
-# BUILD & COMPILED FILES
-# ==============================================
-/build
-build/
-dist/
-docs/cache/
-cache/
-
-# ==============================================
-# CACHE & TEMPORARY FILES
-# ==============================================
-*.cache
+# Lock files and cache
 *.lock
+*.cache
 *.phar
 *.jar
-*.tmp
-*.swp
-*.swo
-*.stackdump
-*:Zone.Identifier
-v8-compile-cache-*
-.php-cs-fixer.cache
+package-lock.json
+yarn-error.log
+npm-debug.log
+composer.lock
+package-lock.json
+yarn-error.log
+npm-debug.log
 .phpunit.result.cache
+.php-cs-fixer.cache
 
-# ==============================================
-# LOG FILES
-# ==============================================
+# Log files
 *.log
 error_log
-npm-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
-# ==============================================
-# LARAVEL SPECIFIC
-# ==============================================
+# Build directories
+/build/
+/build
+build/
+
+# Laravel specific
 bootstrap/compiled.php
 app/storage/
 public/storage
@@ -59,84 +36,59 @@ public_html/storage
 public_html/hot
 storage/*.key
 .env
-.env.*
-!.env.example
 
-# ==============================================
-# ENVIRONMENT & CONFIGURATION
-# ==============================================
+# Database directories
+database/Factories_
+database/Factories_old
+database/Migrations_old
+
+# Local configurations
 Homestead.yaml
 Homestead.json
 /.vagrant
+
+# IDE specific
 /.idea
 .phpintel
 
-# ==============================================
-# GIT SPECIFIC
-# ==============================================
-.git-rewrite/
+# Git specific
 .git-blame-ignore-revs
+.git-rewrite/
+.git-rewrite
 
-# ==============================================
-# SYSTEM FILES
-# ==============================================
+# Temporary and system files
+*.tmp
+*.swp
+*.swo
+*.stackdump
+*.exe
+*:Zone.Identifier
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# ==============================================
-# BACKUP FILES
-# ==============================================
 *.old
 *.old1
-*.old2
 *.backup
 *.backup.*
 *.bak
-*.bakcup
 *.new
 
-# ==============================================
-# DEVELOPMENT TOOLS
-# ==============================================
-.windsurf/
-.cursor/
-.phpstorm.meta.php
-
-# ==============================================
-# DOCUMENTATION CACHE
-# ==============================================
+# Documentation and cache
 docs/phpstan/
 docs/cache/
+cache/
 
-# ==============================================
-# OLD DIRECTORIES (LEGACY CLEANUP)
-# ==============================================
-resources/views/Components_old/
-database/Migrations_old/
-database/Seeders_old/
-database/Factories_old/
-database_old/
+# Development tools
+.windsurf/
+.cursor/
+# Old directories
+resources/views/Components_old
+database/Migrations_old
+database/Seeders_old
+database/Factories_old
+database_old
 
-# ==============================================
-# MODULE SPECIFIC - NOTIFY
-# ==============================================
-# File di configurazione locale
-config/local.php
-config/development.php
-
-# Queue e notifiche
-storage/notifications/
-storage/queue/
-
-# File di test notifiche
-notification_test_data.json
-test_notifications.sql
-
-# ==============================================
-# END OF NOTIFY .GITIGNORE
-# ==============================================
+# Old directories to ignore
+resources/views/Components_old
+database/Migrations_old
+database/Seeders_old
+database/Factories_old
+database_old

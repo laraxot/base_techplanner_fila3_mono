@@ -16,6 +16,10 @@ class ListExports extends XotBaseListRecords
     /**
      * @return array<string, Column>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableColumns(): array
     {
         return [

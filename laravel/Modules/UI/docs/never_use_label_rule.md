@@ -137,14 +137,11 @@ Prima di usare qualsiasi componente Filament:
 - [ ] Verificare struttura espansa (label, placeholder, tooltip, helper_text)
 - [ ] Non usare mai `->label()` nel codice
 
-<<<<<<< HEAD
 ### Prima di committare:
 - [ ] Verificare che non ci siano `->label()` nel codice
 - [ ] Controllare che tutte le traduzioni siano implementate
 - [ ] Testare che le traduzioni funzionino correttamente
 
-=======
->>>>>>> f628b10 (.)
 ## Verifica Automatica
 
 ### PHPStan Rule (Ideale)
@@ -191,12 +188,5 @@ rules:
 - SEMPRE testare le traduzioni prima del commit
 - SEMPRE sincronizzare IT/EN/DE
 - SEMPRE testare le traduzioni prima del commit
-<<<<<<< HEAD
-=======
-- MAI `->label()` 
-- SEMPRE traduzioni nei file lang/
-- SEMPRE struttura espansa
-- SEMPRE sincronizzazione IT/EN/DE
->>>>>>> f628b10 (.)
 
 *Ultimo aggiornamento: 2025-01-06*

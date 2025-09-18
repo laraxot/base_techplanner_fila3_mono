@@ -12,6 +12,10 @@ class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Lang';
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public function panel(Panel $panel): Panel
     {
         $panel= parent::panel($panel);

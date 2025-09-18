@@ -35,6 +35,10 @@ class TranslationFileResource extends XotBaseResource
 
     
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public static function getFormSchema(): array
     {
        
@@ -73,6 +77,10 @@ class TranslationFileResource extends XotBaseResource
     }
 
    
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public static function getPages(): array
     {
         return [

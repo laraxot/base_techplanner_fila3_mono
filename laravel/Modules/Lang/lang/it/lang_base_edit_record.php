@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 return array (
   'actions' => 
   array (
@@ -9,3 +10,14 @@ return array (
     ),
   ),
 );
+=======
+return  [
+  'actions' => 
+   [
+    'activeLocale' => 
+     [
+      'label' => 'activeLocale',
+    ],
+  ],
+];
+>>>>>>> 37612df (.)

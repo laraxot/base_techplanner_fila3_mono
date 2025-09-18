@@ -14,6 +14,22 @@ class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Gdpr';
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 97a11f9 (.)
+=======
+>>>>>>> cb0fd7e5 (.)
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+>>>>>>> ee97d89f (.)
+=======
+>>>>>>> faeca70 (.)
     public function panel(Panel $panel): Panel
     {
         $panel = parent::panel($panel);

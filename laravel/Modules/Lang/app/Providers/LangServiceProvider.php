@@ -36,6 +36,10 @@ class LangServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public function boot(): void
     {
         parent::boot();
@@ -46,6 +50,10 @@ class LangServiceProvider extends XotBaseServiceProvider
         
     }
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public function register(): void
     {
         parent::register();

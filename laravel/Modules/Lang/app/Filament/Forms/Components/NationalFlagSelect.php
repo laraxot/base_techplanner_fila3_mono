@@ -32,8 +32,13 @@ class NationalFlagSelect extends Select
             ->allowHtml()
             ->optionsLimit(300)
             ->native(false)
+<<<<<<< HEAD
             ->options(fn () => $this->getCountryOptions())
             ->getSearchResultsUsing(fn (string $search): array => $this->getFilteredCountryOptions($search));
+=======
+            ->options($this->getCountryOptions(...))
+            ->getSearchResultsUsing($this->getFilteredCountryOptions(...));
+>>>>>>> 37612df (.)
     }
 
     /**
@@ -46,9 +51,13 @@ class NationalFlagSelect extends Select
 
        
         $countries = countries();
+<<<<<<< HEAD
         $countries = Arr::sort($countries, function ($c) {
             return $c['name'];
         });
+=======
+        $countries = Arr::sort($countries, fn ($c) => $c['name']);
+>>>>>>> 37612df (.)
 
        
 
@@ -98,9 +107,13 @@ class NationalFlagSelect extends Select
         });
 
         // Sort filtered results by name
+<<<<<<< HEAD
         $filteredCountries = Arr::sort($filteredCountries, function ($c) {
             return $c['name'];
         });
+=======
+        $filteredCountries = Arr::sort($filteredCountries, fn ($c) => $c['name']);
+>>>>>>> 37612df (.)
 
         // Map to options format with flags
         $options = Arr::mapWithKeys($filteredCountries, function ($c) {

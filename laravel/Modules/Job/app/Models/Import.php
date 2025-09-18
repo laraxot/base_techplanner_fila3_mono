@@ -64,6 +64,10 @@ class Import extends BaseModel
         'user_id',
     ];
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     protected function casts(): array
     {
         return [

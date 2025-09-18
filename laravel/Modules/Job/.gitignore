@@ -1,3 +1,61 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# ==============================================
+# LARAXOT MODULE JOB - .GITIGNORE
+# ==============================================
+# Modulo Job Laraxot - Template standardizzato
+# Ultimo aggiornamento: 2025-01-06
+# ==============================================
+
+# ==============================================
+# DEPENDENCIES & PACKAGES
+# ==============================================
+vendor/
+node_modules/
+package-lock.json
+yarn.lock
+composer.lock
+
+# ==============================================
+# BUILD & COMPILED FILES
+# ==============================================
+/build
+build/
+dist/
+docs/cache/
+cache/
+
+# ==============================================
+# CACHE & TEMPORARY FILES
+# ==============================================
+*.cache
+*.lock
+*.phar
+*.jar
+*.tmp
+*.swp
+*.swo
+*.stackdump
+*:Zone.Identifier
+v8-compile-cache-*
+.php-cs-fixer.cache
+.phpunit.result.cache
+
+# ==============================================
+# LOG FILES
+# ==============================================
+*.log
+error_log
+npm-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ==============================================
+# LARAVEL SPECIFIC
+# ==============================================
+=======
+=======
+>>>>>>> b263d416 (.)
 # Dependencies and packages
 /vendor/
 /node_modules/
@@ -25,6 +83,7 @@ error_log
 build/
 
 # Laravel specific
+>>>>>>> 4e86067 (.)
 bootstrap/compiled.php
 app/storage/
 public/storage
@@ -33,6 +92,89 @@ public_html/storage
 public_html/hot
 storage/*.key
 .env
+<<<<<<< HEAD
+.env.*
+!.env.example
+
+# ==============================================
+# ENVIRONMENT & CONFIGURATION
+# ==============================================
+Homestead.yaml
+Homestead.json
+/.vagrant
+/.idea
+.phpintel
+
+# ==============================================
+# GIT SPECIFIC
+# ==============================================
+.git-rewrite/
+.git-blame-ignore-revs
+
+# ==============================================
+# SYSTEM FILES
+# ==============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==============================================
+# BACKUP FILES
+# ==============================================
+*.old
+*.old1
+*.old2
+*.backup
+*.backup.*
+*.bak
+*.bakcup
+*.new
+
+# ==============================================
+# DEVELOPMENT TOOLS
+# ==============================================
+.windsurf/
+.cursor/
+.phpstorm.meta.php
+
+# ==============================================
+# DOCUMENTATION CACHE
+# ==============================================
+docs/phpstan/
+docs/cache/
+
+# ==============================================
+# OLD DIRECTORIES (LEGACY CLEANUP)
+# ==============================================
+resources/views/Components_old/
+database/Migrations_old/
+database/Seeders_old/
+database/Factories_old/
+database_old/
+
+# ==============================================
+# MODULE SPECIFIC - JOB
+# ==============================================
+# File di configurazione locale
+config/local.php
+config/development.php
+
+# Queue e job
+storage/queue/
+storage/jobs/
+
+# File di test job
+job_test_data.json
+test_jobs.sql
+
+# ==============================================
+# END OF JOB .GITIGNORE
+# ==============================================
+=======
 
 # Database directories
 database/Factories_
@@ -61,6 +203,8 @@ Homestead.json
 *.exe
 *:Zone.Identifier
 .DS_Store
+<<<<<<< HEAD
+=======
 # Dependencies
 vendor/
 node_modules/
@@ -85,6 +229,7 @@ docs/cache/
 .git-blame-ignore-revs
 
 # Backup files
+>>>>>>> b263d416 (.)
 *.old
 *.old1
 *.backup
@@ -100,6 +245,9 @@ cache/
 # Development tools
 .windsurf/
 .cursor/
+<<<<<<< HEAD
+>>>>>>> 4e86067 (.)
+=======
 
 # File di log
 *.log
@@ -116,3 +264,4 @@ database_old
 
 # Other
 
+>>>>>>> b263d416 (.)

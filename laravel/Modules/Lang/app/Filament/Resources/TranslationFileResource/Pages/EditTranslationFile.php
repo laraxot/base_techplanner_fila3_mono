@@ -69,6 +69,10 @@ class EditTranslationFile extends XotBaseEditRecord
     }
 
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public function getFormSchema(): array
     {
         return [

@@ -29,6 +29,7 @@ pest()->extend(TestCase::class)
 |
 */
 
+<<<<<<< HEAD
 expect()->extend('toBeJob', function () {
     return $this->toBeInstanceOf(\Modules\Job\Models\Job::class);
 });
@@ -36,6 +37,11 @@ expect()->extend('toBeJob', function () {
 expect()->extend('toBeJobBatch', function () {
     return $this->toBeInstanceOf(\Modules\Job\Models\JobBatch::class);
 });
+=======
+expect()->extend('toBeJob', fn () => $this->toBeInstanceOf(\Modules\Job\Models\Job::class));
+
+expect()->extend('toBeJobBatch', fn () => $this->toBeInstanceOf(\Modules\Job\Models\JobBatch::class));
+>>>>>>> 4e86067 (.)
 
 /*
 |--------------------------------------------------------------------------

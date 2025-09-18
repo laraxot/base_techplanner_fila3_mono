@@ -1,56 +1,54 @@
-# ==============================================
-# LARAXOT MODULE TENANT - .GITIGNORE
-# ==============================================
-# Modulo Tenant Laraxot - Template standardizzato
-# Ultimo aggiornamento: 2025-01-06
-# ==============================================
+# Dependencies and packages
+/vendor/
+/node_modules/
+/docs/vendor/
 
-# ==============================================
-# DEPENDENCIES & PACKAGES
-# ==============================================
+# Lock files and cache
+*.lock
+*.cache
+*.phar
+*.jar
+package-lock.json
+yarn-error.log
+npm-debug.log
+composer.lock
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# Log files
+*.log
+error_log
+
+# Build directories
+/build/
+/build
+build/
+
+# Dependencies
 vendor/
 node_modules/
 package-lock.json
-yarn.lock
-composer.lock
+yarn-error.log
+npm-debug.log
 
-# ==============================================
-# BUILD & COMPILED FILES
-# ==============================================
+# Build and compiled files
 /build
-build/
-dist/
+/docs/package-lock.json
 docs/cache/
 cache/
 
-# ==============================================
-# CACHE & TEMPORARY FILES
-# ==============================================
+# Cache and temporary files
 *.cache
 *.lock
 *.phar
-*.jar
-*.tmp
-*.swp
-*.swo
-*.stackdump
-*:Zone.Identifier
-v8-compile-cache-*
-.php-cs-fixer.cache
-.phpunit.result.cache
-
-# ==============================================
-# LOG FILES
-# ==============================================
 *.log
-error_log
-npm-debug.log*
-yarn-error.log*
-lerna-debug.log*
+*.stackdump
+*.exe
+*:Zone.Identifier
+.phpunit.result.cache
+.php-cs-fixer.cache
 
-# ==============================================
-# LARAVEL SPECIFIC
-# ==============================================
+# Laravel specific
 bootstrap/compiled.php
 app/storage/
 public/storage
@@ -59,84 +57,74 @@ public_html/storage
 public_html/hot
 storage/*.key
 .env
-.env.*
-!.env.example
 
-# ==============================================
-# ENVIRONMENT & CONFIGURATION
-# ==============================================
+# Database directories
+database/Factories_
+database/Factories_old
+database/Migrations_old
+
+# Local configurations
+
+# Environment and configuration
+.env
 Homestead.yaml
 Homestead.json
 /.vagrant
+
+# IDE specific
 /.idea
 .phpintel
 
-# ==============================================
-# GIT SPECIFIC
-# ==============================================
+# Git specific
+.git-blame-ignore-revs
+.git-rewrite/
+.git-rewrite
+
+# Temporary and system files
+*.tmp
+*.swp
+*.swo
+*.stackdump
+*.exe
+*:Zone.Identifier
+.DS_Store
+# Git related
 .git-rewrite/
 .git-blame-ignore-revs
 
-# ==============================================
-# SYSTEM FILES
-# ==============================================
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# ==============================================
-# BACKUP FILES
-# ==============================================
+# Backup files
 *.old
 *.old1
-*.old2
 *.backup
 *.backup.*
 *.bak
-*.bakcup
 *.new
 
-# ==============================================
-# DEVELOPMENT TOOLS
-# ==============================================
-.windsurf/
-.cursor/
-.phpstorm.meta.php
-
-# ==============================================
-# DOCUMENTATION CACHE
-# ==============================================
+# Documentation and cache
 docs/phpstan/
 docs/cache/
+cache/
 
-# ==============================================
-# OLD DIRECTORIES (LEGACY CLEANUP)
-# ==============================================
-resources/views/Components_old/
-database/Migrations_old/
-database/Seeders_old/
-database/Factories_old/
-database_old/
+# Development tools
+.windsurf/
+.cursor/
 
-# ==============================================
-# MODULE SPECIFIC - TENANT
-# ==============================================
-# File di configurazione locale
-config/local.php
-config/development.php
+# PHPStan documentation
+docs/phpstan/
 
-# Cache tenant
-storage/tenant/
-storage/multi-tenant/
+# Old directories
+resources/views/Components_old
+database/Migrations_old
+database/Seeders_old
+database/Factories_old
+database_old
 
-# File di test tenant
-tenant_test_data.json
-test_tenants.sql
+# Other
+-e
 
-# ==============================================
-# END OF TENANT .GITIGNORE
-# ==============================================
+# Old directories to ignore
+resources/views/Components_old
+database/Migrations_old
+database/Seeders_old
+database/Factories_old
+database_old

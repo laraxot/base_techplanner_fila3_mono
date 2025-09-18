@@ -13,7 +13,27 @@ class ListConsents extends XotBaseListRecords
 {
     protected static string $resource = ConsentResource::class;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 97a11f9 (.)
     public function getTableColumns(): array
+=======
+    public function getListTableColumns(): array
+>>>>>>> cb0fd7e5 (.)
+=======
+    public function getListTableColumns(): array
+>>>>>>> 6f6abe7c (.)
+=======
+    public function getListTableColumns(): array
+>>>>>>> ee97d89f (.)
+=======
+    public function getTableColumns(): array
+>>>>>>> faeca70 (.)
     {
         return [
             'id' => TextColumn::make('id')

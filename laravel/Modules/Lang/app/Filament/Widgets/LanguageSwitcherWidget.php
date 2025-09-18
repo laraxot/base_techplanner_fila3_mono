@@ -38,6 +38,10 @@ class LanguageSwitcherWidget extends XotBaseWidget
      *      *
      * @return array<int, \Filament\Forms\Components\Component>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     public function getFormSchema(): array
     {
         return [];
@@ -82,14 +86,22 @@ class LanguageSwitcherWidget extends XotBaseWidget
                     ->get(['code', 'name', 'native_name', 'flag']);
                 
                 if ($languages->isNotEmpty()) {
+<<<<<<< HEAD
                     return $languages->map(function ($language) {
                         return [
+=======
+                    return $languages->map(fn ($language) => [
+>>>>>>> 37612df (.)
                             'code' => $language->code,
                             'name' => $language->name,
                             'native_name' => $language->native_name ?? $language->name,
                             'flag' => (string) ($language->flag ?? ''),
+<<<<<<< HEAD
                         ];
                     });
+=======
+                        ]);
+>>>>>>> 37612df (.)
                 }
             } catch (\Exception $e) {
                 // Log dell'errore ma continua con il fallback
@@ -172,7 +184,11 @@ class LanguageSwitcherWidget extends XotBaseWidget
         $currentLocale = app()->getLocale();
         
         // Se l'URL contiene già la lingua corrente, sostituiscila
+<<<<<<< HEAD
         if (strpos($currentUrl, '/'.$currentLocale.'/') !== false) {
+=======
+        if (str_contains($currentUrl, '/'.$currentLocale.'/') ) {
+>>>>>>> 37612df (.)
             return str_replace('/'.$currentLocale.'/', '/'.$locale.'/', $currentUrl);
         } elseif (str_ends_with($currentUrl, '/'.$currentLocale)) {
             return str_replace('/'.$currentLocale, '/'.$locale, $currentUrl);

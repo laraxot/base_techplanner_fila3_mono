@@ -29,6 +29,10 @@ pest()->extend(TestCase::class)
 |
 */
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> faeca70 (.)
 expect()->extend('toBeGdprConsent', function () {
     return $this->toBeInstanceOf(\Modules\Gdpr\Models\GdprConsent::class);
 });
@@ -36,6 +40,14 @@ expect()->extend('toBeGdprConsent', function () {
 expect()->extend('toBeGdprRequest', function () {
     return $this->toBeInstanceOf(\Modules\Gdpr\Models\GdprRequest::class);
 });
+<<<<<<< HEAD
+=======
+expect()->extend('toBeGdprConsent', fn () => $this->toBeInstanceOf(\Modules\Gdpr\Models\GdprConsent::class));
+
+expect()->extend('toBeGdprRequest', fn () => $this->toBeInstanceOf(\Modules\Gdpr\Models\GdprRequest::class));
+>>>>>>> 97a11f9 (.)
+=======
+>>>>>>> faeca70 (.)
 
 /*
 |--------------------------------------------------------------------------

@@ -24,6 +24,21 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  * @property Treatment|null                  $treatment
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> cb0fd7e5 (.)
+=======
+ *
+>>>>>>> 6f6abe7c (.)
+=======
+ *
+>>>>>>> ee97d89f (.)
+=======
+>>>>>>> faeca70 (.)
  * @method static \Modules\Gdpr\Database\Factories\ConsentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   newQuery()
@@ -37,7 +52,29 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   whereTreatmentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   whereUpdatedBy($value)
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
  * @property Treatment|null $treatment
+=======
+ *
+ * @property Treatment|null $treatment
+ *
+>>>>>>> cb0fd7e5 (.)
+=======
+ *
+ * @property Treatment|null $treatment
+ *
+>>>>>>> 6f6abe7c (.)
+=======
+ *
+ * @property Treatment|null $treatment
+ *
+>>>>>>> ee97d89f (.)
+=======
+ * @property Treatment|null $treatment
+>>>>>>> faeca70 (.)
  * @method static \Modules\Gdpr\Database\Factories\ConsentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   newQuery()
@@ -59,6 +96,12 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   whereTreatmentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Consent   whereUpdatedBy($value)
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> faeca70 (.)
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
  * @property string $user_type
@@ -70,6 +113,25 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Consent whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Consent whereUserType($value)
  * @mixin IdeHelperConsent
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+>>>>>>> ee97d89f (.)
+ *
+ * @property ProfileContract|null $creator
+ * @property ProfileContract|null $updater
+ *
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> cb0fd7e5 (.)
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+>>>>>>> ee97d89f (.)
+=======
+>>>>>>> faeca70 (.)
  * @mixin \Eloquent
  */
 class Consent extends BaseModel

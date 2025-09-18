@@ -21,6 +21,10 @@ class ListJobs extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableColumns(): array
     {
         return [
@@ -60,6 +64,10 @@ class ListJobs extends XotBaseListRecords
     /**
      * @return array<string, Tables\Filters\BaseFilter>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableFilters(): array
     {
         return [
@@ -70,13 +78,21 @@ class ListJobs extends XotBaseListRecords
                     'failed' => 'Failed',
                 ]),
             'queue' => SelectFilter::make('queue')
+<<<<<<< HEAD
                 ->options(fn () => Job::distinct()->pluck('queue', 'queue')->toArray()),
+=======
+                ->options(Job::distinct()->pluck('queue', 'queue')->toArray(...)),
+>>>>>>> 4e86067 (.)
         ];
     }
 
     /**
      * @return array<string, Tables\Actions\Action|Tables\Actions\ActionGroup>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableActions(): array
     {
         return [

@@ -14,6 +14,10 @@ class ExportResource extends XotBaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [

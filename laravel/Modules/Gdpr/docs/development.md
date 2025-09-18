@@ -177,7 +177,17 @@ trait HasConsent
 
 ### 2. Commit
 ```bash
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb0fd7e5 (.)
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+
+>>>>>>> faeca70 (.)
 # Formato messaggi commit
 feat(gdpr): aggiunta gestione consensi cookie
 fix(gdpr): correzione validazione consensi
@@ -194,7 +204,17 @@ docs(gdpr): aggiornamento documentazione
 
 ### 1. PHPStan
 ```neon
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb0fd7e5 (.)
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+
+>>>>>>> faeca70 (.)
 # phpstan.neon.dist
 parameters:
     level: 5
@@ -253,7 +273,17 @@ public function storeConsent(User $user, array $data): Consent
 
 ### 1. CI/CD
 ```yaml
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> cb0fd7e5 (.)
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+
+>>>>>>> faeca70 (.)
 # .github/workflows/gdpr.yml
 name: Gdpr CI
 
@@ -280,8 +310,20 @@ jobs:
 - [Architettura](architecture.md)
 - [Pacchetti](packages.md)
 - [Roadmap](roadmap.md) 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> faeca70 (.)
 
 ## Collegamenti tra versioni di development.md
 * [development.md](laravel/Modules/Gdpr/docs/development.md)
 * [development.md](laravel/Modules/Xot/docs/packages/development.md)
 
+<<<<<<< HEAD
+=======
+>>>>>>> cb0fd7e5 (.)
+=======
+>>>>>>> 6f6abe7c (.)
+=======
+>>>>>>> faeca70 (.)

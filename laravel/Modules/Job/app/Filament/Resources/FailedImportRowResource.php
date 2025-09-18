@@ -13,6 +13,10 @@ class FailedImportRowResource extends XotBaseResource
 {
     protected static ?string $model = FailedImportRow::class;
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public static function getFormSchema(): array
     {
         return [
@@ -31,6 +35,10 @@ class FailedImportRowResource extends XotBaseResource
         ];
     }
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public static function getRelations(): array
     {
         return [

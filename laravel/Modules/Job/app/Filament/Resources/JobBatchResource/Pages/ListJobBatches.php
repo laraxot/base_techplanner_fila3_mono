@@ -25,6 +25,10 @@ class ListJobBatches extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableColumns(): array
     {
         Assert::string($date_format = config('app.date_format'), '['.__LINE__.']['.class_basename(__CLASS__).']');
@@ -74,6 +78,10 @@ class ListJobBatches extends XotBaseListRecords
     /**
      * @return array<string, Tables\Actions\Action|Tables\Actions\ActionGroup>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableActions(): array
     {
         return [];
@@ -82,6 +90,10 @@ class ListJobBatches extends XotBaseListRecords
     /**
      * @return array<string, Tables\Actions\BulkAction>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     public function getTableBulkActions(): array
     {
         return [
@@ -92,6 +104,10 @@ class ListJobBatches extends XotBaseListRecords
     /**
      * @return array<Action>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     protected function getHeaderActions(): array
     {
         return [

@@ -93,6 +93,10 @@ class Job extends BaseModel
         return $res;
     }
 
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 4e86067 (.)
     protected function casts(): array
     {
         return [

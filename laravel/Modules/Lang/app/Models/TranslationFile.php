@@ -59,6 +59,10 @@ class TranslationFile extends BaseModel
      *
      * @return array<string, string>
      */
+<<<<<<< HEAD
+=======
+    #[\Override]
+>>>>>>> 37612df (.)
     protected function casts(): array
     {
         return [
