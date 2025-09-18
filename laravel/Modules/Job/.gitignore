@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 # ==============================================
 # LARAXOT MODULE JOB - .GITIGNORE
 # ==============================================
@@ -137,6 +141,158 @@ storage/jobs/
 job_test_data.json
 test_jobs.sql
 
+lang/lang/
+
 # ==============================================
 # END OF JOB .GITIGNORE
 # ==============================================
+=======
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
+*.lock
+package-lock.json
+.git-rewrite
+/docs/cache
+/build
+/vendor
+*.cache
+.git-blame-ignore-revs
+.git-rewrite
+.git-blame-ignore-revs
+/vendor
+*.lock
+composer.lock
+package-lock.json
+.php-cs-fixer.cache
+*.cache
+.git-blame-ignore-revs
+.git-rewrite
+
+.git-blame-ignore-revs
+*.phar
+.php-cs-fixer.cache
+.git-blame-ignore-revs
+package-lock.json
+.php-cs-fixer.cache
+package-lock.json
+.git-rewrite/
+node_modules
+vendor
+.php-cs-fixer.cache
+.git-blame-ignore-revs
+vendor/
+build/
+docs/cache/
+cache/
+.git-blame-ignore-revs
+.php-cs-fixer.cache
+*:Zone.Identifier
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+# File di log
+*.log
+>>>>>>> de0f89b5 (.)
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
+=======
+.DS_Store
+
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+public_html/assets
+public_html/build
+
+
+storage/*.key
+.env
+laravel/.env
+laravel/storage/*.key
+
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+*.lock
+*.phar
+*.log
+*.old
+*.old1
+*.old2
+*.old3
+
+.php-cs-fixer.cache
+logs
+error.log
+
+/laravel/database/migrations
+/public_html/media
+/laravel/storage/media-library
+/laravel/build
+.phpstorm.meta.php
+_ide_helper.php
+
+.gnupg/
+
+.idea
+.vscode-server
+.vscode/launch.json
+
+.cache
+.nodenv
+.phpenv
+.ssh
+/error_docs
+/logs
+vendor
+vendor
+docker
+vendor
+/public_html/deploy/config.php
+*.lock
+/public_html/css
+/public_html/js
+
+.git-rewrite
+/*.phar
+uploads
+laravel/database/migrations/
+laravel/composer.phar
+uploads
+laravel/composer.phar
+public_html/modules
+npm install -g opencommit
+laravel/stubs/
+laravel/stubs/
+public_html/js
+public_html/css
+public_html/themes/
+public_html/modules/
+laravel/public/
+laravel/public
+laravel/stubs/
+public_html/js
+cache/
+orbit.sqlite
+cache
+_docs
+>>>>>>> 2492ddab (first)

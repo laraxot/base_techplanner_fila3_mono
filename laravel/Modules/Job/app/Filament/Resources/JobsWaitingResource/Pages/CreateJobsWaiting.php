@@ -1,5 +1,18 @@
 <?php
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+declare(strict_types=1);
+
+
+
+=======
+>>>>>>> de0f89b5 (.)
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
 namespace Modules\Job\Filament\Resources\JobsWaitingResource\Pages;
 
 use Modules\Job\Filament\Resources\JobsWaitingResource;

@@ -4,6 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Job\Models;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+>>>>>>> de0f89b5 (.)
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+>>>>>>> 2e199498 (.)
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+>>>>>>> eaeb6531 (.)
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
@@ -35,17 +47,51 @@ use Illuminate\Support\Facades\DB;
  * @method static \Illuminate\Database\Eloquent\Builder|Result whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Result whereUpdatedBy($value)
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
  * @mixin IdeHelperResult
  * @property-read \Modules\Xot\Contracts\ProfileContract|null $updater
  * @method static \Modules\Job\Database\Factories\ResultFactory factory($count = null, $state = [])
+=======
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+>>>>>>> de0f89b5 (.)
+=======
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+>>>>>>> 2e199498 (.)
+=======
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+>>>>>>> eaeb6531 (.)
  * @mixin \Eloquent
  */
 class Result extends BaseModel
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     protected $fillable = [
         'duration',
         'result',
         'task_id',
+=======
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
+    use HasFactory;
+
+    // protected $table = 'task_results';
+
+    protected $fillable = [
+        'duration',
+        'result',
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> de0f89b5 (.)
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
     ];
 
     public function task(): BelongsTo

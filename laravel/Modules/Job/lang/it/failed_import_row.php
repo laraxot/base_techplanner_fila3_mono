@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <?php
+
+declare(strict_types=1);
+
+
 
 return array (
   'pages' => 'Pagine',
@@ -191,3 +198,12 @@ return array (
     'icon' => 'job-failed-job',
   ),
 );
+=======
+null
+>>>>>>> de0f89b5 (.)
+=======
+null
+>>>>>>> 2e199498 (.)
+=======
+null
+>>>>>>> eaeb6531 (.)

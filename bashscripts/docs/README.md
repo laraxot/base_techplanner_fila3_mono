@@ -59,38 +59,11 @@ php artisan migrate
 
 ### 7. Installare i Moduli
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> f71d08e230 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Installare Laravel Modules
 composer require nwidart/laravel-modules
 
@@ -166,38 +139,11 @@ La documentazione completa è disponibile nella directory `docs/`:
 
 ### Comandi Utili
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> f71d08e230 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Creare un nuovo modulo
 php artisan module:make NomeModulo
 
@@ -229,57 +175,15 @@ Questo progetto è sotto licenza MIT. Vedere il file [LICENSE](LICENSE) per i de
 
  b0f37c83 (.)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 
  b7907077 (.)
 
 
  b1ca4c93 (Squashed 'bashscripts/' changes from c21599d..019cc70)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
-=======
-<<<<<<< HEAD
->>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
-=======
->>>>>>> f71d08e230 (.)
-=======
-=======
-=======
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # 🚀 BashScripts Power Tools
  80ec88ee9 (.
 
@@ -356,38 +260,11 @@ php artisan migrate
 
 ### 7. Install Modules
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> f71d08e230 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Install Laravel Modules
 composer require nwidart/laravel-modules
 
@@ -463,38 +340,11 @@ Complete documentation is available in the `docs/` directory:
 
 ### Useful Commands
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> f71d08e230 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Create a new module
 php artisan module:make ModuleName
 
@@ -628,63 +478,19 @@ Questo progetto è distribuito sotto la licenza MIT. Vedi il file `LICENSE` per 
 
 
  4bd5ca8f (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 
  b0f37c83 (.)
 
 
  b7907077 (.)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # 📣 Enhance Your App with the Fila3 Notify Module! 🚀
 
 ![GitHub issues](https://img.shields.io/github/issues/laraxot/module_notify_fila3)
@@ -773,38 +579,11 @@ Discover more of my work at marco76tv!
  b1ca4c93 (Squashed 'bashscripts/' changes from c21599d..019cc70)
  80ec88ee9 (.)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> 1831d11e78 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Bash Scripts
 
 **Policy di organizzazione:** Nessuno script `.sh` deve essere presente direttamente nella root di questa cartella. Tutti gli script devono essere categorizzati e inseriti in sottocartelle dedicate in base alla loro funzione (es. `utils/`, `git/`, `docs_update/`).
@@ -884,38 +663,11 @@ Script per i test:
 
 ### 1. Esecuzione degli Script
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> f71d08e230 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Rendere lo script eseguibile
 chmod +x script.sh
 

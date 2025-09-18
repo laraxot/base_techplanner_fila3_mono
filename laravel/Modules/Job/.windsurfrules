@@ -1,0 +1,273 @@
+# Regole Windsurf per base_predict_fila3_mono
+
+## 1. Struttura Modulare
+- Mantenere la struttura modulare Laravel con separazione chiara delle responsabilità
+- Posizionare ogni nuova funzionalità all'interno del modulo appropriato
+- Utilizzare i namespace corretti per ogni modulo (Modules\NomeModulo\...)
+- Seguire le convenzioni di Laravel per la struttura delle cartelle
+
+## 2. Standard di Codifica
+- Utilizzare strict_types=1 in tutti i file PHP
+- Fornire tipizzazione completa per tutti i metodi e le proprietà
+- Documentare le classi e i metodi con DocBlocks completi
+- Seguire PSR-1, PSR-2 e PSR-12 per lo stile del codice
+- Utilizzare typed properties in PHP 8.0+
+- Preferire named arguments per i metodi con molti parametri
+- Utilizzare Spatie Data Objects per strutture dati complesse
+
+## 3. Best Practices Architetturali
+- NON riferirsi direttamente a \Modules\User\Models\User, usare Modules\Xot\Contracts\UserContract
+- Estendere XotBaseServiceProvider per i Service Provider dei moduli
+- Utilizzare Actions per la logica di business invece di Service Classes
+- Applicare il principio SOLID in tutto il codice
+- Preferire l'iniezione delle dipendenze alla creazione diretta di oggetti
+- Utilizzare contratti/interfacce per il disaccoppiamento
+
+## 4. PHPStan
+- Configurare correttamente i livelli di PHPStan per ogni modulo
+- Iniziare dal livello 1 per i nuovi moduli
+- Assicurarsi che tutto il codice passi almeno il livello 5
+- Mirare al livello 9 come obiettivo finale per tutto il codice
+- Documentare i problemi non risolvibili con annotazioni @phpstan-ignore
+
+## 5. Gestione dei Conflitti Git
+- Risolvere i conflitti considerando sempre la versione più funzionale
+- Prestare particolare attenzione alla formattazione JSON nei file composer.json
+- Mantenere la coerenza nelle dichiarazioni di namespace
+- Documentare le risoluzioni dei conflitti nei file della cartella docs/
+- Testare approfonditamente dopo la risoluzione dei conflitti
+
+## 6. Documentazione
+- Creare e mantenere file di documentazione nella cartella docs/ di ogni modulo
+- Documentare le strutture, i pattern utilizzati e le decisioni architetturali
+- Aggiornare la documentazione quando vengono apportate modifiche significative
+- Includere esempi di utilizzo per le API pubbliche
+- Utilizzare il formato Markdown per tutta la documentazione
+
+## 7. Testing
+- Scrivere test per tutte le nuove funzionalità
+- Assicurarsi che i test esistenti passino dopo le modifiche
+- Utilizzare mocking appropriato per isolare i componenti durante i test
+- Preferire test funzionali per le operazioni end-to-end
+- Documentare casi di test particolari o complessi
+
+## 8. Pacchetti e Dipendenze
+- Utilizzare Composer per gestire le dipendenze
+- Dichiarare esplicitamente tutte le dipendenze nei file composer.json
+- Utilizzare versioni bloccate per le dipendenze critiche
+- Preferire pacchetti ben mantenuti e tipizzati
+- Documentare l'uso di pacchetti personalizzati o fork
+
+## 9. Compatibilità con Filament
+- Seguire le best practices di Filament per gli amministratori
+- Utilizzare la tipizzazione corretta per i componenti Filament
+- Implementare correttamente le azioni e i form di Filament
+- Testare l'interfaccia utente dopo le modifiche
+
+## 10. Traduzioni e Internazionalizzazione
+- Utilizzare il modulo Lang per tutte le traduzioni
+- Strutturare le chiavi di traduzione in modo coerente
+- Evitare stringhe hardcoded nell'interfaccia utente
+- Implementare correttamente la funzione __ per le traduzioni
+- Fornire traduzioni complete per tutte le lingue supportate
+
+## 11. Gestione Eventi e Projectors
+- Utilizzare Spatie Event Sourcing per la gestione degli eventi
+- Implementare Projectors per la proiezione degli eventi
+- Mantenere la coerenza dei dati attraverso gli eventi
+- Documentare gli eventi e i loro handler
+- Testare il flusso degli eventi
+
+## 12. Database e Migrazioni
+- Utilizzare migrazioni atomiche e reversibili
+- Documentare le modifiche al database
+- Mantenere la coerenza dei dati tra le tabelle
+- Utilizzare foreign keys e indici appropriati
+- Testare le migrazioni in ambiente di sviluppo
+
+## 13. Livewire e Volt
+- Organizzare i componenti Livewire in namespace appropriati
+- Utilizzare il pattern Form Request per la validazione dei dati
+- Implementare azioni come metodi pubblici con tipizzazione completa
+- Utilizzare le funzioni helper di Volt come state(), rules(), mount(), computed() e on()
+- Evitare query N+1 utilizzando eager loading per le relazioni
+- Utilizzare la lazy loading per componenti pesanti
+- Implementare il lifecycle hook mount() per inizializzare i dati
+- Utilizzare eventi per la comunicazione tra componenti
+
+## 14. Folio
+- Organizzare le pagine in directory semantiche sotto resources/views/pages o Themes/ThemeName/resources/views/pages
+- Utilizzare parametri dinamici con la sintassi [param].blade.php per pagine con parametri URL
+- Registrare i percorsi delle pagine in app/Providers/FolioServiceProvider.php o nel provider del modulo
+- Utilizzare le funzioni helper di Folio come middleware(), name(), withTrashed() e render()
+- Implementare il middleware appropriato per le pagine che richiedono autenticazione
+
+## Regole di Tipizzazione
+
+1. **Tipi di Ritorno**
+   - Evitare l'uso di `mixed` come tipo di ritorno
+   - Specificare sempre i tipi di ritorno espliciti
+   - Utilizzare tipi specifici per le proprietà
+
+2. **Contratti**
+   - Rispettare i tipi di ritorno definiti nei contratti
+   - Implementare correttamente le interfacce
+   - Mantenere la compatibilità con i contratti esistenti
+
+3. **Documentazione**
+   - Fornire annotazioni PHPDoc complete
+   - Documentare i tipi di ritorno e i parametri
+   - Includere descrizioni chiare per le proprietà
+
+## Regole per Moduli
+
+### Blog Module
+- Implementare correttamente `HasTranslationsContract`
+- Utilizzare tipi specifici per le proprietà
+- Evitare l'uso di `mixed` nei metodi pubblici
+
+### Lang Module
+- Mantenere la compatibilità con i contratti di traduzione
+- Utilizzare tipi specifici per i valori di traduzione
+
+## Validazione
+
+- Eseguire l'analisi PHPStan a livello 2
+- Controllare la compatibilità con i contratti
+# Regole Windsurf per base_predict_fila3_mono
+
+## 1. Struttura Modulare
+- Mantenere la struttura modulare Laravel con separazione chiara delle responsabilità
+- Posizionare ogni nuova funzionalità all'interno del modulo appropriato
+- Utilizzare i namespace corretti per ogni modulo (Modules\NomeModulo\...)
+- Seguire le convenzioni di Laravel per la struttura delle cartelle
+
+## 2. Standard di Codifica
+- Utilizzare strict_types=1 in tutti i file PHP
+- Fornire tipizzazione completa per tutti i metodi e le proprietà
+- Documentare le classi e i metodi con DocBlocks completi
+- Seguire PSR-1, PSR-2 e PSR-12 per lo stile del codice
+- Utilizzare typed properties in PHP 8.0+
+- Preferire named arguments per i metodi con molti parametri
+- Utilizzare Spatie Data Objects per strutture dati complesse
+
+## 3. Best Practices Architetturali
+- NON riferirsi direttamente a \Modules\User\Models\User, usare Modules\Xot\Contracts\UserContract
+- Estendere XotBaseServiceProvider per i Service Provider dei moduli
+- Utilizzare Actions per la logica di business invece di Service Classes
+- Applicare il principio SOLID in tutto il codice
+- Preferire l'iniezione delle dipendenze alla creazione diretta di oggetti
+- Utilizzare contratti/interfacce per il disaccoppiamento
+
+## 4. PHPStan
+- Configurare correttamente i livelli di PHPStan per ogni modulo
+- Iniziare dal livello 1 per i nuovi moduli
+- Assicurarsi che tutto il codice passi almeno il livello 5
+- Mirare al livello 9 come obiettivo finale per tutto il codice
+- Documentare i problemi non risolvibili con annotazioni @phpstan-ignore
+
+## 5. Gestione dei Conflitti Git
+- Risolvere i conflitti considerando sempre la versione più funzionale
+- Prestare particolare attenzione alla formattazione JSON nei file composer.json
+- Mantenere la coerenza nelle dichiarazioni di namespace
+- Documentare le risoluzioni dei conflitti nei file della cartella docs/
+- Testare approfonditamente dopo la risoluzione dei conflitti
+
+## 6. Documentazione
+- Creare e mantenere file di documentazione nella cartella docs/ di ogni modulo
+- Documentare le strutture, i pattern utilizzati e le decisioni architetturali
+- Aggiornare la documentazione quando vengono apportate modifiche significative
+- Includere esempi di utilizzo per le API pubbliche
+- Utilizzare il formato Markdown per tutta la documentazione
+
+## 7. Testing
+- Scrivere test per tutte le nuove funzionalità
+- Assicurarsi che i test esistenti passino dopo le modifiche
+- Utilizzare mocking appropriato per isolare i componenti durante i test
+- Preferire test funzionali per le operazioni end-to-end
+- Documentare casi di test particolari o complessi
+
+## 8. Pacchetti e Dipendenze
+- Utilizzare Composer per gestire le dipendenze
+- Dichiarare esplicitamente tutte le dipendenze nei file composer.json
+- Utilizzare versioni bloccate per le dipendenze critiche
+- Preferire pacchetti ben mantenuti e tipizzati
+- Documentare l'uso di pacchetti personalizzati o fork
+
+## 9. Compatibilità con Filament
+- Seguire le best practices di Filament per gli amministratori
+- Utilizzare la tipizzazione corretta per i componenti Filament
+- Implementare correttamente le azioni e i form di Filament
+- Testare l'interfaccia utente dopo le modifiche
+
+## 10. Traduzioni e Internazionalizzazione
+- Utilizzare il modulo Lang per tutte le traduzioni
+- Strutturare le chiavi di traduzione in modo coerente
+- Evitare stringhe hardcoded nell'interfaccia utente
+- Implementare correttamente la funzione __ per le traduzioni
+- Fornire traduzioni complete per tutte le lingue supportate
+
+## 11. Gestione Eventi e Projectors
+- Utilizzare Spatie Event Sourcing per la gestione degli eventi
+- Implementare Projectors per la proiezione degli eventi
+- Mantenere la coerenza dei dati attraverso gli eventi
+- Documentare gli eventi e i loro handler
+- Testare il flusso degli eventi
+
+## 12. Database e Migrazioni
+- Utilizzare migrazioni atomiche e reversibili
+- Documentare le modifiche al database
+- Mantenere la coerenza dei dati tra le tabelle
+- Utilizzare foreign keys e indici appropriati
+- Testare le migrazioni in ambiente di sviluppo
+
+## 13. Livewire e Volt
+- Organizzare i componenti Livewire in namespace appropriati
+- Utilizzare il pattern Form Request per la validazione dei dati
+- Implementare azioni come metodi pubblici con tipizzazione completa
+- Utilizzare le funzioni helper di Volt come state(), rules(), mount(), computed() e on()
+- Evitare query N+1 utilizzando eager loading per le relazioni
+- Utilizzare la lazy loading per componenti pesanti
+- Implementare il lifecycle hook mount() per inizializzare i dati
+- Utilizzare eventi per la comunicazione tra componenti
+
+## 14. Folio
+- Organizzare le pagine in directory semantiche sotto resources/views/pages o Themes/ThemeName/resources/views/pages
+- Utilizzare parametri dinamici con la sintassi [param].blade.php per pagine con parametri URL
+- Registrare i percorsi delle pagine in app/Providers/FolioServiceProvider.php o nel provider del modulo
+- Utilizzare le funzioni helper di Folio come middleware(), name(), withTrashed() e render()
+- Implementare il middleware appropriato per le pagine che richiedono autenticazione
+
+## Regole di Tipizzazione
+
+1. **Tipi di Ritorno**
+   - Evitare l'uso di `mixed` come tipo di ritorno
+   - Specificare sempre i tipi di ritorno espliciti
+   - Utilizzare tipi specifici per le proprietà
+
+2. **Contratti**
+   - Rispettare i tipi di ritorno definiti nei contratti
+   - Implementare correttamente le interfacce
+   - Mantenere la compatibilità con i contratti esistenti
+
+3. **Documentazione**
+   - Fornire annotazioni PHPDoc complete
+   - Documentare i tipi di ritorno e i parametri
+   - Includere descrizioni chiare per le proprietà
+
+## Regole per Moduli
+
+### Blog Module
+- Implementare correttamente `HasTranslationsContract`
+- Utilizzare tipi specifici per le proprietà
+- Evitare l'uso di `mixed` nei metodi pubblici
+
+### Lang Module
+- Mantenere la compatibilità con i contratti di traduzione
+- Utilizzare tipi specifici per i valori di traduzione
+
+## Validazione
+
+- Eseguire l'analisi PHPStan a livello 2
+- Controllare la compatibilità con i contratti
+- Verificare la completezza della documentazione

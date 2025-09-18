@@ -25,8 +25,24 @@ class ListJobBatches extends XotBaseListRecords
     /**
      * @return array<string, Tables\Columns\Column>
      */
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public function getTableColumns(): array
     {
+        /** @var array<string, \Filament\Tables\Columns\Column> */
+=======
+    public function getListTableColumns(): array
+    {
+>>>>>>> de0f89b5 (.)
+=======
+    public function getListTableColumns(): array
+    {
+>>>>>>> 2e199498 (.)
+=======
+    public function getListTableColumns(): array
+    {
+>>>>>>> eaeb6531 (.)
         Assert::string($date_format = config('app.date_format'), '['.__LINE__.']['.class_basename(__CLASS__).']');
 
         return [
@@ -94,6 +110,16 @@ class ListJobBatches extends XotBaseListRecords
      */
     protected function getHeaderActions(): array
     {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        /** @var array<string, \Filament\Actions\Action> */
+=======
+>>>>>>> de0f89b5 (.)
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
         return [
             Action::make('prune_batches')
                 ->requiresConfirmation()

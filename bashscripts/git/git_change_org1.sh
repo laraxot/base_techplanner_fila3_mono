@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> ec52a6b4 (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e9356a3a (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 #!/bin/bash
 
 # Ensure that the script is provided with the new organization name
@@ -93,26 +62,6 @@ git submodule foreach --quiet '
 # done
 
 sed -i 's/\r$//' "$SCRIPT_PATH"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> ec52a6b4 (.)
-=======
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
-=======
->>>>>>> 4f97354 (.)
->>>>>>> f198176d (.)
 #!/bin/bash
 
 # Ensure that the script is provided with the new organization name
@@ -179,18 +128,6 @@ git submodule foreach --quiet '
 # done
 
 sed -i 's/\r$//' "$SCRIPT_PATH"
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
->>>>>>> e9356a3a (.)
-=======
-<<<<<<< HEAD
 #!/bin/bash
 
 # Ensure that the script is provided with the new organization name
@@ -257,8 +194,6 @@ git submodule foreach --quiet '
 # done
 
 sed -i 's/\r$//' "$SCRIPT_PATH"
->>>>>>> 42ab2308 (.)
-=======
 #!/bin/bash
 
 # Ensure that the script is provided with the new organization name
@@ -325,18 +260,4 @@ git submodule foreach --quiet '
 # done
 
 sed -i 's/\r$//' "$SCRIPT_PATH"
->>>>>>> 42ab2308 (.)
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 echo "All submodules and the main repository remote URL have been updated!"

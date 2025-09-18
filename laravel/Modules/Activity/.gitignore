@@ -1,56 +1,33 @@
-# ==============================================
-# LARAXOT MODULE ACTIVITY - .GITIGNORE
-# ==============================================
-# Modulo Activity Laraxot - Template standardizzato
-# Ultimo aggiornamento: 2025-01-06
-# ==============================================
+# 🔧 Activity Module .gitignore
+# File di configurazione per ignorare file e directory nel modulo Activity
 
-# ==============================================
-# DEPENDENCIES & PACKAGES
-# ==============================================
-vendor/
-node_modules/
-package-lock.json
-yarn.lock
-composer.lock
+# 📦 Dipendenze e packages
+/vendor/
+/node_modules/
+/docs/vendor/
 
-# ==============================================
-# BUILD & COMPILED FILES
-# ==============================================
-/build
-build/
-dist/
-docs/cache/
-cache/
-
-# ==============================================
-# CACHE & TEMPORARY FILES
-# ==============================================
-*.cache
+# 🔒 Lock files e cache
 *.lock
+*.cache
 *.phar
 *.jar
-*.tmp
-*.swp
-*.swo
-*.stackdump
-*:Zone.Identifier
-v8-compile-cache-*
-.php-cs-fixer.cache
+package-lock.json
+composer.lock
+yarn-error.log
+npm-debug.log
 .phpunit.result.cache
+.php-cs-fixer.cache
 
-# ==============================================
-# LOG FILES
-# ==============================================
+# 📝 Log files
 *.log
 error_log
-npm-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
-# ==============================================
-# LARAVEL SPECIFIC
-# ==============================================
+# 🏗️ Build directories
+/build/
+/build
+build/
+
+# 📱 Laravel specifici
 bootstrap/compiled.php
 app/storage/
 public/storage
@@ -60,88 +37,55 @@ public_html/hot
 storage/*.key
 .env
 .env.*
-!.env.example
 
-# ==============================================
-# ENVIRONMENT & CONFIGURATION
-# ==============================================
+# 🗃️ Database directories
+database/Factories_old
+database/Migrations_old
+database/Seeders_old
+database_old
+
+# ⚙️ Configurazioni locali
 Homestead.yaml
 Homestead.json
 /.vagrant
+
+# 🛠️ IDE e editor
 /.idea
 .phpintel
+.vscode/
+*.swp
+*.swo
+*~
 
-# ==============================================
-# GIT SPECIFIC
-# ==============================================
-.git-rewrite/
+# 🔄 Git specifici
 .git-blame-ignore-revs
+.git-rewrite/
+.git-rewrite
 
-# ==============================================
-# SYSTEM FILES
-# ==============================================
+# 🗂️ File temporanei e di sistema
+*.tmp
+*.stackdump
+*.exe
+*:Zone.Identifier
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# ==============================================
-# BACKUP FILES
-# ==============================================
+# 📋 Backup files
 *.old
 *.old1
-*.old2
 *.backup
 *.backup.*
 *.bak
-*.bakcup
 *.new
 
-# ==============================================
-# DEVELOPMENT TOOLS
-# ==============================================
-.windsurf/
-.cursor/
-.phpstorm.meta.php
-
-# ==============================================
-# DOCUMENTATION CACHE
-# ==============================================
+# 📚 Documentation e cache
 docs/phpstan/
 docs/cache/
+cache/
 
-# ==============================================
-# OLD DIRECTORIES (LEGACY CLEANUP)
-# ==============================================
-resources/views/Components_old/
-database/Migrations_old/
-database/Seeders_old/
-database/Factories_old/
-database_old/
+# 🎨 Risorse e componenti
+resources/views/Components_old
 
-# ==============================================
-# MODULE SPECIFIC - ACTIVITY
-# ==============================================
-# File di configurazione locale
-config/local.php
-config/development.php
-
-# Log attività temporanei
-activity/temp/
-activity/logs/temp/
-activity/exports/temp/
-
-# Cache attività
-storage/activity/
-storage/logs/
-
-# File di test attività
-activity_test_data.json
-test_activity_logs.sql
-
-# ==============================================
-# END OF ACTIVITY .GITIGNORE
-# ==============================================
+# 🔧 Development tools
+.windsurf/
+.cursor/

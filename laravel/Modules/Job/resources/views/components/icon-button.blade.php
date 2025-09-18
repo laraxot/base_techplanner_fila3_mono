@@ -1,4 +1,16 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+s([
+=======
 @props([
+>>>>>>> de0f89b5 (.)
+=======
+@props([
+>>>>>>> 2e199498 (.)
+=======
+@props([
+>>>>>>> eaeb6531 (.)
     'color' => 'primary',
     'darkMode' => false,
     'disabled' => false,

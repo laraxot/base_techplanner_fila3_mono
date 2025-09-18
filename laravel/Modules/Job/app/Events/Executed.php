@@ -14,8 +14,22 @@ class Executed extends BroadcastingEvent
      *
      * @return void
      */
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public function __construct(): void {
+=======
     public function __construct(Task $task, float $started, string $output)
     {
+>>>>>>> de0f89b5 (.)
+=======
+    public function __construct(Task $task, float $started, string $output)
+    {
+>>>>>>> 2e199498 (.)
+=======
+    public function __construct(Task $task, float $started, string $output)
+    {
+>>>>>>> eaeb6531 (.)
         parent::__construct($task);
 
         $time_elapsed_secs = microtime(true) - $started;

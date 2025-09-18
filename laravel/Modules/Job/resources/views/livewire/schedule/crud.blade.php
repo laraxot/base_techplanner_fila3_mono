@@ -1,4 +1,15 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 <div>
+>>>>>>> de0f89b5 (.)
+=======
+<div>
+>>>>>>> 2e199498 (.)
+=======
+<div>
+>>>>>>> eaeb6531 (.)
     <div class="uk-flex uk-flex-between uk-flex-middle">
         <h4 class="uk-card-title uk-margin-remove">Tasks</h4>
         {!! Form::open([

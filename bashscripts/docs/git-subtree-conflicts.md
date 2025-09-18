@@ -62,41 +62,9 @@ La soluzione ottimale è mantenere la versione che accetta 3 parametri, ma con g
 #!/bin/bash
 
 source ./bashscripts/lib/custom.sh
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-=======
-
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-<<<<<<< HEAD
-
->>>>>>> f71d08e230 (.)
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-
->>>>>>> develop
-=======
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Validate input
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     log "error" "Parametri errati"

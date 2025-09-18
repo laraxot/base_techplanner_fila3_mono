@@ -1,0 +1,19 @@
+{
+    "Activity": true,
+    "Blog": true,
+    "Cms": true,
+    "Gdpr": true,
+    "Job": true,
+    "Media": true,
+    "Notify": true,
+    "Rating": true,
+    "Setting": true,
+    "Tenant": true,
+    "UI": true,
+    "User": true,
+    "Xot": true,
+    "Lang": true,
+    "Chart": true,
+    "Ticket": true,
+    "Predict": true
+}

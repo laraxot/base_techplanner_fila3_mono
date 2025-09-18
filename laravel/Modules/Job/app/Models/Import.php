@@ -9,6 +9,21 @@ declare(strict_types=1);
 namespace Modules\Job\Models;
 
 /**
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+ * 
+ *
+>>>>>>> de0f89b5 (.)
+=======
+ * 
+ *
+>>>>>>> 2e199498 (.)
+=======
+ * 
+ *
+>>>>>>> eaeb6531 (.)
  * @method static \Modules\Job\Database\Factories\ImportFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Import newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Import newQuery()
@@ -47,7 +62,16 @@ namespace Modules\Job\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Import whereUserType($value)
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
  * @mixin IdeHelperImport
+=======
+>>>>>>> de0f89b5 (.)
+=======
+>>>>>>> 2e199498 (.)
+=======
+>>>>>>> eaeb6531 (.)
  * @mixin \Eloquent
  */
 class Import extends BaseModel

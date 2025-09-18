@@ -43,26 +43,6 @@ La risoluzione manuale dei conflitti negli script bash è particolarmente delica
 ### Conflitto in funzione di logging
 
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Versione avanzata con livelli di log
-log() {
-    local level="$1"
-    local message="$2"
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    
-    case "$level" in
-        "error") echo -e "❌ [$timestamp] $message" | tee -a "$LOG_FILE" ;;
-        "success") echo -e "✅ [$timestamp] $message" | tee -a "$LOG_FILE" ;;
-        "warning") echo -e "⚠️ [$timestamp] $message" | tee -a "$LOG_FILE" ;;
-        "info") echo -e "ℹ️ [$timestamp] $message" | tee -a "$LOG_FILE" ;;
-        *) echo -e "[$timestamp] $message" | tee -a "$LOG_FILE" ;;
-    esac
-}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 >>>>>>> ec52a6b4 (.)
 
 # Versione semplice
@@ -78,31 +58,7 @@ log() {
 # Funzione avanzata per loggare messaggi che supporta entrambi i formati
 log() {
     # Supporta sia il formato avanzato con livelli che il formato semplice
-=======
-# Funzione di log avanzata: accetta sia log "message" che log "level" "message"
-log() {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 04d882f8f6 (.)
-=======
-=======
 
->>>>>>> f71d08e230 (.)
-=======
->>>>>>> ec52a6b4 (.)
-=======
-=======
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
 # Versione semplice
 log() {
     local message="$1"
@@ -116,22 +72,8 @@ log() {
 # Funzione avanzata per loggare messaggi che supporta entrambi i formati
 log() {
     # Supporta sia il formato avanzato con livelli che il formato semplice
-=======
-# Funzione di log avanzata: accetta sia log "message" che log "level" "message"
-log() {
->>>>>>> 04d882f8f6 (.)
-=======
-=======
-
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Versione avanzata con livelli di log
 log() {
     local level="$1"
@@ -161,25 +103,8 @@ log() {
 # Funzione avanzata per loggare messaggi che supporta entrambi i formati
 log() {
     # Supporta sia il formato avanzato con livelli che il formato semplice
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
     if [ $# -eq 2 ]; then
         # Formato avanzato: log "level" "message"
         local level="$1"
@@ -205,41 +130,9 @@ log() {
 ### Conflitto in parametri di script
 
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-=======
-
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-<<<<<<< HEAD
-
->>>>>>> f71d08e230 (.)
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-
->>>>>>> develop
-=======
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Versione che richiede 2 parametri
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <path> <remote_repo>"
@@ -263,63 +156,16 @@ BRANCH="$3"
 **Soluzione ottimale**: Valutare quale approccio è più flessibile e coerente con il resto del sistema. Se il branch è opzionale, rendere il terzo parametro opzionale con un valore predefinito.
 
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
 # Versione che supporta 2 o 3 parametri
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 >>>>>>> f71d08e230 (.)
 # Versione che supporta 2 o 3 parametri
-=======
 # Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
 >>>>>>> 04d882f8f6 (.)
-=======
-# Versione che supporta 2 o 3 parametri
->>>>>>> f1e7ef1046 (.)
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-=======
->>>>>>> develop
-
->>>>>>> f71d08e230 (.)
-# Versione che supporta 2 o 3 parametri
-<<<<<<< HEAD
-=======
 # Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
->>>>>>> 04d882f8f6 (.)
-=======
-# Versione che supporta 2 o 3 parametri
->>>>>>> f1e7ef1046 (.)
-=======
->>>>>>> ec52a6b4 (.)
-# Gestione robusta dei parametri: supporta 2 o 3 parametri, con branch opzionale
-=======
-# Versione che supporta 2 o 3 parametri
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
-# Versione che supporta 2 o 3 parametri
->>>>>>> ea169dcc (.)
-=======
-
-# Versione che supporta 2 o 3 parametri
->>>>>>> e0c964a3 (first)
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     echo "Usage: $0 <path> <remote_repo> [branch]"
     exit 1

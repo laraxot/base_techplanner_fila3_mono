@@ -50,132 +50,17 @@ fix_php_code() {
 You are an expert PHP developer tasked with fixing and optimizing the following code. Your objective is to:
 
 1. Fix any syntax errors, unresolved merge conflicts, or logical issues
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
 2. Remove git conflict markers if present
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
 2. Remove git conflict markers if present
-=======
-<<<<<<< HEAD
-=======
->>>>>>> ec52a6b4 (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 2. Remove git conflict markers if present
-=======
-<<<<<<< HEAD
-=======
->>>>>>> f198176d (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
->>>>>>> f52d0712 (.)
->>>>>>> ec52a6b4 (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
-=======
-<<<<<<< HEAD
->>>>>>> 574afe9e (.)
 2. Remove git conflict markers if present
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-<<<<<<< HEAD
-=======
->>>>>>> ec52a6b4 (.)
-=======
-=======
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
-=======
-<<<<<<< HEAD
->>>>>>> 574afe9e (.)
 2. Remove git conflict markers if present
->>>>>>> 42ab2308 (.)
-<<<<<<< HEAD
-=======
->>>>>>> f52d0712 (.)
->>>>>>> ec52a6b4 (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
-=======
-=======
 2. Remove git conflict markers (<<<<<<<, =======, >>>>>>>) if present
->>>>>>> 3c18aa7e (.)
->>>>>>> 9c02579 (.)
-<<<<<<< HEAD
-=======
->>>>>>> 1420e3b683 (.)
->>>>>>> 574afe9e (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
->>>>>>> 7de7063d (.)
-=======
-<<<<<<< HEAD
->>>>>>> ec52a6b4 (.)
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
-=======
 2. Remove git conflict markers if present
->>>>>>> e9356a3a (.)
-=======
->>>>>>> 42ab2308 (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
 2. Remove git conflict markers if present
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 3. Optimize the code structure and readability without changing functionality
 4. Ensure consistency in formatting and naming conventions
 5. Apply PHP best practices and modern syntax where appropriate

@@ -128,62 +128,8 @@ Script per il push dei subtree. Funzionalità:
 2. Errori di path: verificare la configurazione Windows
 3. Problemi di permessi: controllare fileMode e symlinks
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f198176d (.)
-<<<<<<< HEAD
->>>>>>> e0c964a3 (first)
-=======
-=======
->>>>>>> 4f97354 (.)
-=======
-<<<<<<< HEAD
 >>>>>>> 574afe9e (.)
-[Torna alla documentazione principale](/docs/maintenance.md#git-management) 
-[Torna alla documentazione principale](/docs/maintenance.md#git-management) 
-[Torna alla documentazione principale](/docs/maintenance.md#git-management) 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 1420e3b683 (.)
->>>>>>> 574afe9e (.)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-=======
->>>>>>> f52d0712 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 # Script Git
 
 Questi script sono utilizzati per automatizzare le operazioni Git nel progetto.
@@ -246,52 +192,11 @@ Script per il push dei subtree. Funzionalità:
 
 ## Collegamenti
 [Torna alla documentazione principale](/docs/maintenance.md#git-management) 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 >>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
->>>>>>> 7de7063d (.)
-=======
-=======
-<<<<<<< HEAD
-=======
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
 >>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)

@@ -21,58 +21,10 @@ Il sistema di gestione dei subtree è composto da tre componenti principali:
 
 ### 2. Push Script (`git_push_subtree.sh`)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+```bash
 
-=======
-```bash
-=======
-<<<<<<< HEAD
-=======
-
-=======
-```bash
-<<<<<<< HEAD
->>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
-=======
-```bash
->>>>>>> f1e7ef1046 (.)
-=======
->>>>>>> f71d08e230 (.)
-=======
->>>>>>> ec52a6b4 (.)
-=======
-```bash
-=======
-=======
-```bash
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
-=======
-```bash
->>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
-=======
-```bash
->>>>>>> f1e7ef1046 (.)
-=======
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-```bash
-
->>>>>>> ea169dcc (.)
-=======
-```bash
-
->>>>>>> e0c964a3 (first)
 # 1. Inizializzazione
 git init
 git checkout -b "$BRANCH"
@@ -84,89 +36,20 @@ git fetch --all
 # 3. Commit e push
 git add -A
 git commit -am "🔧 Aggiornamento subtree"
-<<<<<<< HEAD
-<<<<<<< HEAD
-git merge origin/"$BRANCH" --allow-unrelated-histories
-=======
-<<<<<<< HEAD
-git merge origin/"$BRANCH" --allow-unrelated-histories"
-=======
-<<<<<<< HEAD
-git merge origin/"$BRANCH" --allow-unrelated-histories"
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> f1e7ef1046 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
-git merge origin/"$BRANCH" --allow-unrelated-histories"
-=======
-git merge origin/"$BRANCH" --allow-unrelated-histories"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
-=======
->>>>>>> develop
 git merge origin/"$BRANCH" --allow-unrelated-histories"
 >>>>>>> 1831d11e78 (.)
-=======
-git merge origin/"$BRANCH" --allow-unrelated-histories"
->>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-git merge origin/"$BRANCH" --allow-unrelated-histories"
->>>>>>> ea169dcc (.)
-=======
-git merge origin/"$BRANCH" --allow-unrelated-histories"
->>>>>>> e0c964a3 (first)
 git push -u origin "$BRANCH"
 ```
 
 ### 3. Pull Script (`git_pull_subtree.sh`)
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-=======
-
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-<<<<<<< HEAD
-
->>>>>>> f71d08e230 (.)
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-
->>>>>>> develop
-=======
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # 1. Pull standard
 git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH" --squash
 
@@ -176,59 +59,14 @@ git subtree pull -P "$LOCAL_PATH" "$REMOTE_REPO" "$BRANCH"
 # 3. Fallback 2
 git fetch "$REMOTE_REPO" "$BRANCH" --depth=1
 git merge -s subtree FETCH_HEAD --allow-unrelated-histories
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-aurmich/dev
-=======
-<<<<<<< HEAD
-```
-
-=======
-<<<<<<< HEAD
-```
-
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
 ```
 
 >>>>>>> f1e7ef1046 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
-```
-
-=======
-```
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
-=======
->>>>>>> develop
 ```
 
 >>>>>>> 1831d11e78 (.)
-=======
-```
-
->>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-```
-
->>>>>>> ea169dcc (.)
-=======
-```
-
->>>>>>> e0c964a3 (first)
 Esegue una sequenza complessa di operazioni:
 ```bash
 1. git add -A && git commit -am "."
@@ -242,31 +80,8 @@ Esegue una sequenza complessa di operazioni:
 9. git rebase --rebase-merges --strategy subtree $REMOTE_BRANCH
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-### 3. Pull Script (`git_pull_subtree.sh`)
-=======
-<<<<<<< HEAD
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 Esegue una sequenza con fallback:
 ```bash
 1. git subtree pull -P $LOCAL_PATH $REMOTE_REPO $REMOTE_BRANCH --squash
@@ -275,33 +90,8 @@ Esegue una sequenza con fallback:
    - git fetch $REMOTE_REPO $REMOTE_BRANCH --depth=1
    - git merge -s subtree FETCH_HEAD --allow-unrelated-histories
 4. git rebase --rebase-merges --strategy subtree $REMOTE_BRANCH
-<<<<<<< HEAD
-<<<<<<< HEAD
-
- 43df3e0 (.)
-aurmich/dev
-=======
-<<<<<<< HEAD
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 ```
 
 ## 🚨 Analisi Errori Comuni
@@ -315,41 +105,9 @@ fatal: you must provide the --prefix option
 
 **Soluzione**:
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-=======
-
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-<<<<<<< HEAD
-
->>>>>>> f71d08e230 (.)
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-
->>>>>>> develop
-=======
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Verifica variabili
 if [ -z "$LOCAL_PATH" ] || [ -z "$REMOTE_REPO" ]; then
     echo "❌ Error: Missing required variables"
@@ -362,32 +120,8 @@ fi
 ! [rejected] dev -> dev (non-fast-forward)
 ```
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 **Causa**: Divergenze tra repository locale e remoto
 
 **Soluzione**:
@@ -396,45 +130,12 @@ fi
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
 git merge origin/"$BRANCH" --allow-unrelated-histories"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 # Aggiorna repository locale
 git fetch origin "$BRANCH"
-=======
-git merge origin/"$BRANCH" --allow-unrelated-histories"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-# Aggiorna repository locale
-git fetch origin "$BRANCH"
-git merge origin/"$BRANCH" --allow-unrelated-histories"
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 
 # Riprova push
 if ! git push -u origin "$BRANCH"; then
@@ -502,77 +203,5 @@ fi
 <div align="center">
   <sub>Built with ❤️ by the development team</sub>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-aurmich/dev
-**Causa**: Questo errore si verifica nella sequenza di push quando ci sono divergenze tra il repository locale e remoto.
-
-**Soluzione**:
-1. Prima del push, assicurarsi che il repository locale sia aggiornato:
-```bash
-git fetch origin $REMOTE_BRANCH
-git merge origin/$REMOTE_BRANCH --allow-unrelated-histories
-```
-
-2. Modificare la sequenza di push per gestire meglio i conflitti:
-```bash
-if ! git push -u origin "$REMOTE_BRANCH"; then
-    git pull --rebase origin "$REMOTE_BRANCH"
-    git push -u origin "$REMOTE_BRANCH"
-fi
-```
-
-## Best Practices per l'Uso
-
-1. **Prima dell'Esecuzione**:
-   - Committare o stashare modifiche pendenti
-   - Assicurarsi di essere sul branch corretto
-   - Verificare lo stato del repository remoto
-
-2. **Durante l'Esecuzione**:
-   - Monitorare l'output per errori specifici
-   - Non interrompere gli script durante l'esecuzione
-
-3. **Dopo l'Esecuzione**:
-   - Verificare lo stato del subtree
-   - Controllare la storia dei commit
-   - Verificare la sincronizzazione con il remote
-
-## Note sulla Manutenzione
-
-1. Gli script utilizzano una strategia aggressiva con `--force` push in alcuni casi
-2. Il rebase viene utilizzato per mantenere una storia pulita
-3. Sono implementati meccanismi di fallback per il pull
-4. La gestione degli errori potrebbe essere migliorata con più logging
-
-## Suggerimenti per il Debugging
-
-1. Aggiungere `set -x` all'inizio degli script per debug verbose
-2. Implementare logging più dettagliato
-3. Verificare i permessi degli script
-
- 43df3e0 (.)
-aurmich/dev
-=======
-<<<<<<< HEAD
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)

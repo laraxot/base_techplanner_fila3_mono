@@ -56,41 +56,9 @@ La soluzione ottimale è mantenere la versione che accetta 3 parametri, ma con g
 #!/bin/bash
 
 source ./bashscripts/lib/custom.sh
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
-=======
-
-=======
-<<<<<<< HEAD
->>>>>>> f1e7ef1046 (.)
-=======
-<<<<<<< HEAD
-
->>>>>>> f71d08e230 (.)
-=======
-=======
->>>>>>> 71ff9e32 (.)
-=======
-
->>>>>>> develop
-=======
-
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Validate input
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     log "error" "Parametri errati"
@@ -211,38 +179,11 @@ La soluzione ottimale è mantenere la versione che accetta 3 parametri, ma con g
 #!/bin/bash
 
 source ./bashscripts/lib/custom.sh
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-
-=======
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> f71d08e230 (.)
-=======
-=======
-
->>>>>>> f52d0712 (.)
-=======
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> develop
 
 >>>>>>> f71d08e230 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-=======
-
->>>>>>> e0c964a3 (first)
 # Validate input
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
     log "error" "Parametri errati"
@@ -316,106 +257,11 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)# Risoluzione dei Conflitti negli Script Git Subtree
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Validate input
-if [ $# -lt 2 ] || [ $# -gt 3 ]; then
-    log "error" "Parametri errati"
-    log "info" "Uso: $0 <path> <remote_repo> [branch]"
-    exit 1
-fi
-
-LOCAL_PATH="$1"
-REMOTE_REPO="$2"
-BRANCH="${3:-main}"  # Usa il terzo parametro se fornito, altrimenti "main"
-```
-
-Questo approccio:
-- Mantiene la compatibilità con gli script esistenti che potrebbero passare solo 2 parametri
-- Offre la flessibilità di specificare un branch personalizzato
-- Migliora la robustezza gestendo correttamente i casi edge
-
-### git_pull_subtrees.sh.old
-
-**Perché è stato modificato** (Aprile 2025):
-- Rimozione delle ambiguità causate da merge incompleti e marker di conflitto annidati
-- Preservazione dell'intento originale dello script per riferimento futuro
-- Mantenimento nella directory .old_scripts come documentazione storica
-
-**Cosa è stato fatto**:
-- Eliminati tutti i marker di conflitto git e i messaggi di debug
-- Mantenuta una singola versione funzionale dello script
-- Documentato nella README della directory .old_scripts
-
-**Valore architetturale**:
-Il valore principale di questa risoluzione è documentativo, mantenendo la leggibilità del codice originale senza i disturbi dei marker di conflitto, pur conservando la logica della versione archiviata come riferimento.
-
-## File con Conflitti Risolti
-
-### git_pull_subtree_org.sh
-
-**Perché è stato modificato**:
-- Miglioramento della flessibilità nella gestione dei branch
-- Ottimizzazione dell'interazione con repository remote
-- Standardizzazione dell'approccio di gestione dei subtree
-
-**Cosa è stato fatto**:
-- Reso opzionale il terzo parametro (branch) con valore predefinito "main"
-- Consolidata l'implementazione per garantire compatibilità con diverse configurazioni
-- Migliorata la gestione degli errori per evitare interruzioni impreviste
-
-### git_pull_subtrees.sh.old
-
-**Perché è stato modificato** (Aprile 2025):
-- Rimozione delle ambiguità causate da merge incompleti e marker di conflitto annidati
-- Preservazione dell'intento originale dello script per riferimento futuro
-- Mantenimento nella directory .old_scripts come documentazione storica
-
-**Cosa è stato fatto**:
-- Eliminati tutti i marker di conflitto git e i messaggi di debug
-- Mantenuta una singola versione funzionale dello script
-- Documentato nella README della directory .old_scripts
-
-**Valore architetturale**:
-Il valore principale di questa risoluzione è documentativo, mantenendo la leggibilità del codice originale senza i disturbi dei marker di conflitto, pur conservando la logica della versione archiviata come riferimento.
-
-## Considerazioni Importanti
-
-1. **Test approfonditi**: Testare accuratamente gli script dopo la risoluzione
-2. **Documentazione**: Aggiornare la documentazione con le modifiche apportate
-3. **Segnalazioni agli sviluppatori**: Informare gli sviluppatori delle modifiche alla firma dei metodi
-
-## Collegamenti
-
-- [Documentazione Git Subtree](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging)
-- [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
-- [Documentazione degli Script Git](git_scripts.md)
-- [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)# Risoluzione dei Conflitti negli Script Git Subtree
-=======
 ## Collegamenti tra versioni di git_subtree_conflicts.md
 * [risoluzione_conflitti_git.md](../../docs/risoluzione_conflitti_git.md)
 * [git_subtree_conflicts.md](git_subtree_conflicts.md)
-<<<<<<< HEAD
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 04d882f8f6 (.)
-=======
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 
 ## Problema
 
@@ -547,49 +393,10 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-5338a990 (.)
-=======
-<<<<<<< HEAD
-5338a990 (.)
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
-5338a990 (.)
->>>>>>> f1e7ef1046 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
-5338a990 (.)
-=======
-5338a990 (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
-=======
->>>>>>> develop
 5338a990 (.)
 >>>>>>> 1831d11e78 (.)
-=======
-5338a990 (.)
->>>>>>> f1e7ef1046 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-5338a990 (.)
->>>>>>> ea169dcc (.)
-=======
-5338a990 (.)
->>>>>>> e0c964a3 (first)
 # Risoluzione dei Conflitti negli Script Git Subtree
 
 ## Problema
@@ -853,37 +660,9 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 3a6821ae8 (aggiornamento cartella bashscripts)
-=======
->>>>>>> f71d08e230 (.)
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
 # Risoluzione dei Conflitti negli Script Git Subtree
-=======
-f000df5 (.)
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 1831d11e78 (.)
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
 
@@ -1016,30 +795,9 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
-=======
-
-<<<<<<< HEAD
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 0c55086029 (.)
-=======
->>>>>>> f000df5 (.)
 >>>>>>> f1e7ef1046 (.)
-=======
-=======
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)
 # Risoluzione dei Conflitti negli Script Git Subtree
 
 ## Problema
@@ -1171,56 +929,9 @@ Il valore principale di questa risoluzione è documentativo, mantenendo la leggi
 - [Documentazione sulla Risoluzione dei Conflitti Bash](CONFLICT_RESOLUTION_BASH.md)
 - [Documentazione degli Script Git](git_scripts.md)
 - [Documentazione Generale sulla Risoluzione dei Conflitti](../../docs/bashscripts_conflict_resolution.md)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4d4d6cb7 (.)
-=======
-=======
->>>>>>> d83fe8da (.)
 - [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
 >>>>>>> 1831d11e78 (.)
-=======
-3. **Segnalazioni agli sviluppatori**: Informare gli sviluppatori delle modifiche alla firma dei metodi
->>>>>>> 0c55086029 (.)
-=======
-- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md)
-- [Risoluzione Conflitti Git](../../docs/risoluzione_conflitti_git.md) 
->>>>>>> 04d882f8f6 (.)
-=======
-=======
->>>>>>> d83fe8da (.)
 - [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
 >>>>>>> f1e7ef1046 (.)
-=======
->>>>>>> f71d08e230 (.)
-=======
->>>>>>> ec52a6b4 (.)
-=======
-=======
-- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
-=======
-3. **Segnalazioni agli sviluppatori**: Informare gli sviluppatori delle modifiche alla firma dei metodi
-=======
-- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md)
-- [Risoluzione Conflitti Git](../../docs/risoluzione_conflitti_git.md) 
-=======
-=======
-- [Archivio degli Script con Conflitti Risolti](../.old_scripts/README.md) 
-=======
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
->>>>>>> ea169dcc (.)
-=======
->>>>>>> e0c964a3 (first)

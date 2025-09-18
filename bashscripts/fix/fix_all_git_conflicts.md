@@ -57,198 +57,35 @@ File aggiornato per chiarezza, eliminata duplicazione. Vedi anche [README global
 [Backlink: Documentazione Globale](/docs/README.md)
 [Backlink: scripts_conflict_resolution.md](scripts_conflict_resolution.md)
 [Backlink: git_conflicts_resolution.md](git_conflicts_resolution.md)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> f198176d (.)
 >>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
-<<<<<<< HEAD
-
-=======
 >>>>>>> 3c18aa7e (.)
-=======
->>>>>>> 574afe9e (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
->>>>>>> 7de7063d (.)
-=======
-=======
-
-=======
+>>>>>>> ec52a6b4 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-=======
-
-=======
-
-=======
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
 >>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 ## Casi d'Uso Avanzati
 
 ### 1. Risoluzione Selettiva
 È possibile modificare lo script per risolvere selettivamente solo determinati tipi di file:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-<<<<<<< HEAD
-
-=======
 >>>>>>> ec52a6b4 (.)
-=======
-=======
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
 >>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 ### 2. Integrazione con Git Hooks
 Lo script può essere integrato con Git hooks per verificare automaticamente la presenza di conflitti prima del commit:
 
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 >>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f198176d (.)
-=======
->>>>>>> e0c964a3 (first)
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> 574afe9e (.)
-
-=======
->>>>>>> 3c18aa7e (.)
 >>>>>>> 9c02579 (.)
-<<<<<<< HEAD
-=======
 >>>>>>> 1420e3b683 (.)
 >>>>>>> 574afe9e (.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f97354 (.)
->>>>>>> 7de7063d (.)
-=======
-=======
-
-=======
+>>>>>>> ec52a6b4 (.)
 >>>>>>> 71ff9e32 (.)
 >>>>>>> ec52a6b4 (.)
-=======
-=======
-=======
-=======
-=======
-=======
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f52d0712 (.)
-=======
->>>>>>> develop
->>>>>>> 71ff9e32 (.)
->>>>>>> ec52a6b4 (.)
-=======
-
->>>>>>> ea169dcc (.)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 59901687 (.)
-=======
->>>>>>> f198176d (.)
 >>>>>>> e0c964a3 (first)
-=======
->>>>>>> 4f97354 (.)
 # .git/hooks/pre-commit
 #!/bin/bash
 ```
